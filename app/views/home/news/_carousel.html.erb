@@ -1,21 +1,30 @@
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <% @news_posts.each_with_index do |post, i| %>
-      <div class="item <%=  "active" if i == 0 %>">
-        <a href="/news/<%= post.id %>">
+      <div class="item <%= "active" if i == 0 %>">
+
+        <%= link_to news_path post do %>
           <% if post.picture.try(:url) %>
-            <img class="carousel-image center-block"  src="<%= post.picture.url %>" alt="<%= post.title %>-image">
+            <%= image_tag post.picture.try(:url),
+                          alt: "#{post.title}-image",
+                          class: "carousel-image center-block"%>
           <% else %>
-            <%= image_tag('community.jpg', alt: 'Placeholder-image', class: "carousel-image center-block") %>
+            <%= image_tag 'community.jpg',
+                          alt: 'Placeholder-image',
+                          class: "carousel-image center-block" %>
           <% end %>
-        </a>
+        <% end %>
+
         <div class="news-caption">
-          <h4><a href="/news/<%= post.id %>"><%= post.title %></a></h4>
+          <h4><%= link_to post.title, news_path(post) %></h4>
         </div>
+
       </div>
     <% end %>
   </div>
+  <!-- Wrapper for slides -->
 
   <!-- Controls -->
   <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -26,4 +35,6 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+  <!-- Controls -->
+
 </div>
