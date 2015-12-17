@@ -9,6 +9,7 @@ require "spec_helper"
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "capybara/rails"
+require 'devise'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -16,6 +17,8 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Devise::TestHelpers, type: :controller
+  config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
@@ -40,4 +43,3 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
-
