@@ -7,6 +7,8 @@ gem "uglifier", ">= 1.3.0"
 gem "jquery-rails"
 gem "bootstrap-sass"
 
+gem "devise"
+
 group :development, :test do
   gem "pry-byebug"
   gem "rspec-rails"
@@ -14,8 +16,8 @@ group :development, :test do
 end
 
 group :development do
-  gem 'quiet_assets'
-  gem 'bullet'
+  gem "quiet_assets"
+  gem "bullet"
   gem "spring-commands-rspec"
   gem "web-console", "~> 2.0"
   gem "spring"
