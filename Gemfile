@@ -12,8 +12,9 @@ gem "devise-bootstrap-views"
 
 group :development, :test do
   gem "pry-byebug"
-  gem "rspec-rails"
-  gem "capybara"
+  gem "factory_girl_rails"
+  gem "faker"
+  gem "awesome_print"
 end
 
 group :development do
@@ -22,4 +23,13 @@ group :development do
   gem "spring-commands-rspec"
   gem "web-console", "~> 2.0"
   gem "spring"
+  gem "guard-rspec", require: false
+  gem "terminal-notifier-guard"
+end
+
+group :test do
+  gem "rspec-rails"
+  gem "capybara"
+  gem "shoulda-matchers"
+  gem "database_cleaner"
 end
