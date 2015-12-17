@@ -10,6 +10,9 @@ gem "bootstrap-sass"
 gem "devise"
 gem "devise-bootstrap-views"
 
+gem "kaminari"
+gem "bootstrap-kaminari-views"
+
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"

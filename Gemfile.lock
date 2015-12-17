@@ -44,6 +44,9 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-kaminari-views (0.0.5)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -104,6 +107,9 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (3.0.5)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -233,6 +239,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  bootstrap-kaminari-views
   bootstrap-sass
   bullet
   capybara
@@ -243,6 +250,7 @@ DEPENDENCIES
   faker
   guard-rspec
   jquery-rails
+  kaminari
   pg (~> 0.15)
   pry-byebug
   quiet_assets
