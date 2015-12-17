@@ -8,6 +8,7 @@ gem "jquery-rails"
 gem "bootstrap-sass"
 
 gem "devise"
+gem "devise-bootstrap-views"
 
 group :development, :test do
   gem "pry-byebug"
