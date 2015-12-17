@@ -10,4 +10,15 @@ describe NewsController do
       expect(assigns(:posts)).to eq([second, first])
     end
   end
+
+  describe "#show" do
+    it "assings @post" do
+      post = instance_double("post", id: "1")
+      allow(Post).to receive(:find).with(post.id).and_return([post])
+
+      get :show, id: post.id
+
+      expect(assigns(:post)).to eq([post])
+    end
+  end
 end
