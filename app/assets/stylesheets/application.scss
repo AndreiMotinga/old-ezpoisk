@@ -1,2 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+@import "shared/colors";
+
+@import "shared/main-navbar";
+@import "shared/sidebar";
+@import "shared/footer";
+@import "shared/general";
+@import "shared/post";
+
+@import "news";
+@import "re-blog";

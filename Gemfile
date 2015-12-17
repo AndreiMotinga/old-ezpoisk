@@ -13,6 +13,8 @@ gem "devise-bootstrap-views"
 gem "kaminari"
 gem "bootstrap-kaminari-views"
 
+gem "font-awesome-rails"
+
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"

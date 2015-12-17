@@ -1,0 +1,33 @@
+hr.post-devider {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.scrollable-menu {
+  height: auto;
+  max-height: 400px;
+  overflow-x: hidden;
+}
+
+.map-canvas {
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+
+.blue {
+  color: $blue;
+}
+.tab-pane {
+  min-height: 300px;
+}
+
+.my-img-thumb {
+  width: auto;
+  height: 45px;
+  margin-top: 10px;
+}
+
+.upcase {
+  text-transform: uppercase;
+}

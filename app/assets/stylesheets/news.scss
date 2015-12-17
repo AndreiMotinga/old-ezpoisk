@@ -1,0 +1,30 @@
+/* News carousel */
+.news {
+  .title {
+    padding-left: 30px;
+    a {
+      color: #333333;
+      text-decoration: none;
+    }
+  }
+  .img-responsive {
+    padding-left: 10px;
+  }
+}
+.news-caption {
+  position: absolute;
+  bottom: 0px;
+  z-index: 10;
+  padding-left: 10px;
+  background-color: rgba(211, 211, 211, 0.77);
+  a {
+    color: #333333;
+    text-decoration: none;
+  }
+}
+.news-block {
+  a {
+    color: #333333;
+    text-decoration: none;
+  }
+}
