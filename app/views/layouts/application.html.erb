@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Chogde</title>
-  <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Chogde</title>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= yield %>
+    <%= render 'shared/navbar' %>
+    <%= render 'shared/notice' %>
+    <%= render 'shared/xs_links' %>
 
-</body>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <div class="hidden-xs">
+      <%= render 'shared/footer' %>
+    </div>
+
+  </body>
 </html>

@@ -5,6 +5,7 @@ gem "pg", "~> 0.15"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 gem "jquery-rails"
+gem "bootstrap-sass"
 
 group :development, :test do
   gem "pry-byebug"
@@ -13,6 +14,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'quiet_assets'
+  gem 'bullet'
   gem "spring-commands-rspec"
   gem "web-console", "~> 2.0"
   gem "spring"
