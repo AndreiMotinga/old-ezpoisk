@@ -30,11 +30,13 @@ group :development do
   gem "spring"
   gem "guard-rspec", require: false
   gem "terminal-notifier-guard"
+  gem "launchy-rails"
 end
 
 group :test do
   gem "rspec-rails"
   gem "capybara"
+  gem "capybara-webkit"
   gem "shoulda-matchers"
   gem "database_cleaner"
 end

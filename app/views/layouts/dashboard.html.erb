@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chogde</title>
+    <%= stylesheet_link_tag    'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+    <%= render 'shared/navbar' %>
+
+    <div class="container-fluid">
+    <%= render 'shared/notice' %>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs dashboard-sidebar">
+        <%= render 'layouts/dashboard/sidebar' %>
+      </div>
+
+      <div class="col-lg-9 col-md-9 col-sm-12 hidden-xs ">
+        <%= yield %>
+      </div>
+    </div>
+
+    <div class="hidden-xs">
+      <%= render 'shared/footer' %>
+    </div>
+
+  </body>
+</html>

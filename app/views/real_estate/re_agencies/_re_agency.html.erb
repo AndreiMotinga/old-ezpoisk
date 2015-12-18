@@ -2,7 +2,6 @@
   <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
     <br>
     <%= link_to real_estate_re_agency_path re_agency do  %>
-      <% #TODO: remove conditional by defining logo in re_agency %>
       <% if re_agency.try(:logo) %>
         <% image_tag(re_agency.try(:logo), alt: re_agency.title, class: "img-responsive center-block" ) %>
       <% else %>

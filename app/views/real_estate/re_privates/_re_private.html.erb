@@ -2,8 +2,6 @@
 
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
   <br>
-  <% #TODO: refactor %>
-  <% #TODO: fix styles, some of them are missing %>
   <% if re_private.try(:logo ) %>
     <img src="{{re_private.logo}}" class="img-responsive" alt="re_private main image">
   <% else %>
@@ -28,7 +26,6 @@
     $ <%= re_private.price %>  |
   </strong>
 
-  <% #TODO: refactor %>
   <% if re_private.duration %>
     <%= re_private.duration %>
   <% end %>

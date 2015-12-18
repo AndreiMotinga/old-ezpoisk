@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resource :dashboard, only: [:show]
+  get "update_cities", to: "cities#update_cities"
   resources :news
 
   namespace :real_estate do
@@ -8,10 +8,10 @@ Rails.application.routes.draw do
     resources :re_privates, only: [:index, :show]
   end
 
+  resource :dashboard, only: [:show]
+
   namespace :dashboard do
-    namespace :real_estate do
-      resources :re_agencies, only: [:new]
-    end
+    resources :re_agencies
   end
 
   root to: "home#index"

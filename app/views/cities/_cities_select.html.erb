@@ -1,0 +1,2 @@
+<% options = options_from_collection_for_select(@cities, "id", "name") if @cities.present? %>
+<%= select_tag "", options %>

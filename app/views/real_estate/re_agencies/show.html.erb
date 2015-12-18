@@ -22,18 +22,13 @@
   <div class="tab-content">
 
     <div role="tabpanel" class="tab-pane fade in active" id="home">
-      <% #TODO: refactor to handle description on the model %>
-      <% if @re_agency.description %>
-        <%= @re_agency.description %>
-      <% else  %>
-        <p>Автор не предоставил описание</p>
-      <% end %>
+      <%= @re_agency.show_description %>
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="contacts">
       <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6">
-           <%= render 'shared/contact', post: @re_agency %>
+          <%= render 'shared/contact', post: @re_agency %>
         </div>
       </div>
     </div>
