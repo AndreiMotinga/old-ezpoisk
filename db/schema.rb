@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218001825) do
+ActiveRecord::Schema.define(version: 20151218004122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,27 @@ ActiveRecord::Schema.define(version: 20151218001825) do
   add_index "posts", ["picture_id"], name: "index_posts_on_picture_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
+  create_table "re_agencies", force: :cascade do |t|
+    t.string   "title",       default: "",    null: false
+    t.string   "street",      default: "",    null: false
+    t.string   "phone",       default: "",    null: false
+    t.string   "email",       default: "",    null: false
+    t.string   "site",        default: ""
+    t.text     "description", default: ""
+    t.boolean  "active",      default: false
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "picture_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "re_agencies", ["city_id"], name: "index_re_agencies_on_city_id", using: :btree
+  add_index "re_agencies", ["picture_id"], name: "index_re_agencies_on_picture_id", using: :btree
+  add_index "re_agencies", ["state_id"], name: "index_re_agencies_on_state_id", using: :btree
+  add_index "re_agencies", ["user_id"], name: "index_re_agencies_on_user_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.string "name"
   end
@@ -74,4 +95,8 @@ ActiveRecord::Schema.define(version: 20151218001825) do
   add_foreign_key "cities", "states"
   add_foreign_key "posts", "pictures"
   add_foreign_key "posts", "users"
+  add_foreign_key "re_agencies", "cities"
+  add_foreign_key "re_agencies", "pictures"
+  add_foreign_key "re_agencies", "states"
+  add_foreign_key "re_agencies", "users"
 end
