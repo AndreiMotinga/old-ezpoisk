@@ -1,0 +1,18 @@
+<div class="row">
+<h4 class="title"> <a href="/news/<%= post.id %>"><strong><%= post.title %></strong></a></h4>
+<span class="pull-right text-muted"><em><%= post.created_at.to_formatted_s(:long) %></em></span>
+
+<div class="col-lg-4 col-md-4 col-sm-4">
+  <a href="/news/<%= post.id %>">
+    <% if post.picture.try(:url) %>
+      <img src="<%= post.picture.url %>" class="img-responsive" alt="<%= post.title %>">
+    <% else %>
+      <%= image_tag('community.jpg', alt: 'Placeholder-image', class: "img-responsive") %>
+    <% end %>
+  </a>
+</div>
+<div class="col-lg-8 col-md-8">
+  <p><%= sanitize post.body.truncate(300) %></p>
+</div>
+</div>
+<hr>
