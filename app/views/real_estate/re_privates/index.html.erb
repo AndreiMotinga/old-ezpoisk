@@ -1,0 +1,46 @@
+<div class="row">
+  <!-- ----------------------------------------------------------------- -->
+  <!-- CONTENT  -->
+  <!-- ----------------------------------------------------------------- -->
+  <div class="col-lg-9 col-md-9">
+    <div class="row">
+      <h4 class="pull-right"> <a>Всего <%= @re_privates.size %></a></h4>
+      <%= render 'real_estate/re_privates/search' %>
+    </div>
+
+    <div class="row">
+      <hr>
+      <%= render @re_privates %>
+    </div>
+
+    <div class="row">
+      <hr>
+      <div class="text-center">
+        <%= paginate @re_privates, :theme => 'twitter-bootstrap-3' %></span>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <!-- ----------------------------------------------------------------- -->
+  <!-- // CONTENT  -->
+  <!-- ----------------------------------------------------------------- -->
+
+
+  <!-- ----------------------------------------------------------------- -->
+  <!-- PARTNERS  -->
+  <!-- ----------------------------------------------------------------- -->
+  <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+    <!-- <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block"> -->
+    <!-- <br> -->
+    <!-- <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block"> -->
+    <!-- <br> -->
+    <!-- <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block"> -->
+    <!-- <br> -->
+    <!-- <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block"> -->
+    <!-- <br> -->
+  </div>
+  <!-- ----------------------------------------------------------------- -->
+  <!-- // PARTNERS  -->
+  <!-- ----------------------------------------------------------------- -->
+
+</div>

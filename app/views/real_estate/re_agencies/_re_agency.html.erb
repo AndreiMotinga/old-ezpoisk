@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs">
+    <br>
+    <%= link_to real_estate_re_agency_path re_agency do  %>
+      <% #TODO: remove conditional by defining logo in re_agency %>
+      <% if re_agency.try(:logo) %>
+        <% image_tag(re_agency.try(:logo), alt: re_agency.title, class: "img-responsive center-block" ) %>
+      <% else %>
+        <%= image_tag('photo_default', alt: 'Placeholder-image', class: "img-responsive center-block" ) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+
+    <h3 class="blue text-center">
+      <%= link_to re_agency.title, real_estate_re_agency_path(re_agency) %>
+    </h3>
+
+    <!-- line 1 -->
+    <strong>
+      <a href="http://<%= re_agency.site %>" target="blank">
+        <%= re_agency.site %>
+      </a>
+    </strong>
+    <hr class="post-devider">
+
+    <!-- line 2 -->
+    <span><%= re_agency.street %></span>
+    <hr class="post-devider">
+
+    <!-- line 3 -->
+    <span class="glyphicon glyphicon-phone"></span> <%= re_agency.phone %>
+  <hr class="post-devider">
+
+  <!-- line 4 -->
+  <span><%= re_agency.email %></span>
+  </div>
+</div>

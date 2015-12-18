@@ -13,12 +13,12 @@ class ReAgency < ActiveRecord::Base
   belongs_to :user
   belongs_to :picture # logo
 
-  has_many :pictures, as: :imageable
-  has_many :re_privates
-  # has_many :re_agents, dependent: :destroy
-  has_many :re_privates, through: :re_agents
-  has_many :re_commercials, through: :re_agents
-  has_many :openhouses, through: :re_agents
+  # has_many :pictures, as: :imageable
+  # has_many :re_privates
+  # # has_many :re_agents, dependent: :destroy
+  # has_many :re_privates, through: :re_agents
+  # has_many :re_commercials, through: :re_agents
+  # has_many :openhouses, through: :re_agents
 
   scope :active, -> { where(active: true) }
   scope :state_id, ->(id) { where(state_id: id) }

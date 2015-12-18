@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218005132) do
+ActiveRecord::Schema.define(version: 20151218010539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,35 @@ ActiveRecord::Schema.define(version: 20151218005132) do
   add_index "re_commercials", ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
   add_index "re_commercials", ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
 
+  create_table "re_privates", force: :cascade do |t|
+    t.string   "street",      null: false
+    t.string   "post_type",   null: false
+    t.string   "duration",    null: false
+    t.string   "apt",         null: false
+    t.string   "phone",       null: false
+    t.text     "description", null: false
+    t.integer  "price"
+    t.integer  "baths"
+    t.integer  "space"
+    t.integer  "rooms"
+    t.integer  "zip"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "active"
+    t.boolean  "fee"
+    t.integer  "user_id"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "picture_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "re_privates", ["city_id"], name: "index_re_privates_on_city_id", using: :btree
+  add_index "re_privates", ["picture_id"], name: "index_re_privates_on_picture_id", using: :btree
+  add_index "re_privates", ["state_id"], name: "index_re_privates_on_state_id", using: :btree
+  add_index "re_privates", ["user_id"], name: "index_re_privates_on_user_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.string "name"
   end
@@ -128,4 +157,8 @@ ActiveRecord::Schema.define(version: 20151218005132) do
   add_foreign_key "re_commercials", "pictures"
   add_foreign_key "re_commercials", "states"
   add_foreign_key "re_commercials", "users"
+  add_foreign_key "re_privates", "cities"
+  add_foreign_key "re_privates", "pictures"
+  add_foreign_key "re_privates", "states"
+  add_foreign_key "re_privates", "users"
 end

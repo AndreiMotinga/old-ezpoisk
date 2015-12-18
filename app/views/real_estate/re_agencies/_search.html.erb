@@ -1,0 +1,41 @@
+<!-- Button trigger modal -->
+<a role="button" class="btn btn-primary" data-toggle="modal" data-target="#search">
+  Расширенный поиск
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Расширенный поиск
+          <hr class="post-devider">
+          <a>Всего {{model.meta.total_posts}} </a>
+        </h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="state">Штат</label>
+              {{state-select state_id=state_id}}
+            </div>
+
+            <div class="form-group">
+              <label for="city">Города</label>
+              {{city-select state_id=state_id city_ids=city_ids multiple=true}}
+            </div>
+          </div>
+        </div>
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <a href="/real_estate/agencies" class="btn btn-danger pull-left">Сброс</a>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Поиск</button>
+      </div>
+    </div>
+  </div>
+</div>
