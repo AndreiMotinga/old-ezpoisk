@@ -1,6 +1,6 @@
 class CitiesController < ApplicationController
   def update_cities
-    # TODO: wirte test for it
     @cities = State.find(params[:state_id]).cities
+    @id = params[:id]
   end
 end

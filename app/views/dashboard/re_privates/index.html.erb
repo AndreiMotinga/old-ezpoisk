@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Ваше агенство недвижимости</h2>
+
+<%= link_to 'New Re private', new_dashboard_re_private_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Street</th>
+      <th>Active</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @re_privates.each do |re_private| %>
+      <tr>
+        <td><%= re_private.street %></td>
+        <td><%= re_private.active %></td>
+        <td><%= link_to 'Edit', edit_dashboard_re_private_path(re_private) %></td>
+        <td><%= link_to 'Destroy', dashboard_re_private_path(re_private), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

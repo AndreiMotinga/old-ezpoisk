@@ -1,5 +1,6 @@
 class Dashboard::ReAgenciesController < ApplicationController
   layout "dashboard"
+  before_action :authenticate_user!
   before_action :set_re_agency, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,7 +21,7 @@ class Dashboard::ReAgenciesController < ApplicationController
     @re_agency = current_user.re_agencies.build(re_agency_params)
 
     if @re_agency.save
-      redirect_to dashboard_re_agency_path @re_agency,
+      redirect_to dashboard_re_agency_path(@re_agency),
                   notice: "Re agency was successfully created."
     else
       render :new

@@ -1,0 +1,15 @@
+class RePrivate < ActiveRecord::Base
+
+  validates :price, presence: true,
+                    numericality: { greater_than_or_equal_to: 0 }
+  validates :post_type, presence: true
+  validates :state_id, presence: true
+  validates :city_id, presence: true
+  validates :street, presence: true
+  validates :user_id, presence: true
+
+  belongs_to :user
+  belongs_to :state
+  belongs_to :city
+  belongs_to :picture
+end

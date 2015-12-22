@@ -7,7 +7,7 @@ FactoryGirl.define do
     site { Faker::Internet.url("example.com") }
     description { Faker::Lorem.paragraph(5) }
 
-    association :user, factory: :user
+    association :user
     association :state
     association :city
     # active true

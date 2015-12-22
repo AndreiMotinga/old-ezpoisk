@@ -1,71 +1,49 @@
 require "rails_helper"
 
 describe Dashboard::ReAgenciesController do
+  before { sign_in(@user = create(:user)) }
+
   describe "GET #index" do
-    it "only returns current_users re_agencies" do
-      me = create :user
-      sign_in me
-      2.times { create :re_agency, user: me }
-      create :re_agency # not my agency
+    it "renders the index template and return user's re_agencies" do
+      2.times { create :re_agency, user: @user }
+      create :re_agency # different user
 
       get :index
       agencies = assigns(:re_agencies)
 
-      expect(response).to be_success
+      expect(response).to render_template(:index)
       expect(agencies.size).to eq 2
     end
   end
 
   describe "GET #new" do
-    it "assigns @re_agency" do
-      get :new
-
-      expect(assigns(:re_agency)).to be_a_new(ReAgency)
-    end
-    it "renders the new template" do
+    it "renders the new template and assigns @re_agency" do
       get :new
 
       expect(response).to render_template(:new)
+      expect(assigns(:re_agency)).to be_a_new(ReAgency)
     end
   end
 
   describe "POST #create" do
     it "creates re_agency" do
-      # TODO :extrct method
-      me = create :user
-      sign_in me
-      attrs = attributes_for(:re_agency)
-      state = create :state
-      city = create :city
-      attrs[:state_id] = state.id
-      attrs[:city_id] = city.id
-      attrs[:user_id] = me.id
+      attrs = re_agency_attributes(user: @user)
 
       post :create, re_agency: attrs
-      agency = assigns(:re_agency)
+      re_agency = assigns(:re_agency)
 
       expect(response).to redirect_to(
-        dashboard_re_agency_path(
-          agency,
-          notice: "Re agency was successfully created."
-        )
+        dashboard_re_agency_path(re_agency)
       )
-      expect(agency.title).to eq attrs[:title]
-      expect(agency.user).to eq me
+      expect(re_agency.title).to eq attrs[:title]
+      expect(re_agency.user).to eq @user
     end
   end
 
   describe "PUT #update" do
     it "updates re_agency" do
-      me = create :user
-      sign_in me
       re_agency = create(:re_agency)
-      attrs = attributes_for(:re_agency)
-      state = create :state
-      city = create :city
-      attrs[:state_id] = state.id
-      attrs[:city_id] = city.id
-      attrs[:user_id] = me.id
+      attrs = re_agency_attributes(user: @user)
 
       put :update, id: re_agency.id,  re_agency: attrs
       updated_agency = assigns(:re_agency)
@@ -82,7 +60,7 @@ describe Dashboard::ReAgenciesController do
 
       expect(updated_agency.city_id).to eq attrs[:city_id]
       expect(updated_agency.state_id).to eq attrs[:state_id]
-      expect(updated_agency.user).to eq me
+      expect(updated_agency.user).to eq @user
     end
   end
 
@@ -96,4 +74,12 @@ describe Dashboard::ReAgenciesController do
       expect(ReAgency.count).to be 0
     end
   end
+end
+
+def re_agency_attributes(user:)
+  attrs = attributes_for(:re_agency)
+  attrs[:state_id] = create(:state).id
+  attrs[:city_id] = create(:city).id
+  attrs[:user_id] = user.id
+  attrs
 end
