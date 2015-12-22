@@ -16,6 +16,19 @@ describe Dashboard::ReAgenciesController do
     end
   end
 
+  describe "GET #new" do
+    it "assigns @re_agency" do
+      get :new
+
+      expect(assigns(:re_agency)).to be_a_new(ReAgency)
+    end
+    it "renders the new template" do
+      get :new
+
+      expect(response).to render_template(:new)
+    end
+  end
+
   describe "POST #create" do
     it "creates re_agency" do
       # TODO :extrct method
