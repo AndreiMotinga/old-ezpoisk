@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   has_many :re_agencies
   has_many :re_privates
+  has_many :re_commercials
 end

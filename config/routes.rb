@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :re_agencies
     resources :re_privates
+    resources :re_commercials
   end
 
   root to: "home#index"
