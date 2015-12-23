@@ -12,3 +12,8 @@
 !/log/.keep
 /tmp
 .rubocop.yml
+notes
+foo
+
+# Ignore application configuration
+/config/application.yml

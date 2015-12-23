@@ -1,0 +1,36 @@
+%p
+  %strong Title:
+  = @re_agency.title
+%p
+  %strong Street:
+  = @re_agency.street
+%p
+  %strong Phone:
+  = @re_agency.phone
+%p
+  %strong Email:
+  = @re_agency.email
+%p
+  %strong Site:
+  = @re_agency.site
+%p
+  %strong Description:
+  = @re_agency.description
+%p
+  %strong Active:
+  = @re_agency.active
+%p
+  %strong State:
+  = @re_agency.state.name
+%p
+  %strong City:
+  = @re_agency.city.name
+%p
+  %strong User:
+  = @re_agency.user.email
+%p
+  %strong Logo:
+  = image_tag @re_agency.logo.url(:thumb)
+= link_to 'Edit', edit_dashboard_re_agency_path(@re_agency)
+|
+= link_to 'Back', dashboard_re_agencies_path

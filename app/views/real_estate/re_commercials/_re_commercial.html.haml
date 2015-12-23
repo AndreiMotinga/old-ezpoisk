@@ -1,0 +1,32 @@
+.row
+  .col-lg-4.col-md-4.col-sm-4.col-xs-12
+    %br/
+    - if re_commercial.try(:logo )
+      %img.img-responsive{:alt => "re_commercial main image", :src => "{{re_commercial.logo}}"}/
+    - else
+      = image_tag 'photo_default', alt: "Image placeholder", class: "img-responsive"
+  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+    %h3
+      = link_to re_commercial.street, real_estate_re_commercial_path(re_commercial)
+    %span.post-type
+      for
+      %span.type
+        %strong= re_commercial.post_type
+    %strong
+      $ #{re_commercial.price}
+    %hr.post-devider/
+    - if re_commercial.category
+      %span.upcase
+        %strong= re_commercial.category
+      |
+    - if re_commercial.space
+      = re_commercial.space
+      ft.
+    - if re_commercial.phone
+      %span.pull-right
+        %span.glyphicon.glyphicon-phone
+        = re_commercial.phone
+    %hr.post-devider/
+    автор:
+    %strong= re_commercial.user.email
+    %span.pull-right= re_commercial.updated_at

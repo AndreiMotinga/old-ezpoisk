@@ -1,0 +1,36 @@
+%p
+  %strong Categroy
+  = @re_commercial.category
+%p
+  %strong Price
+  = @re_commercial.price
+%p
+  %strong Space
+  = @re_commercial.space
+%p
+  %strong Post Type:
+  = @re_commercial.post_type
+%p
+  %strong Street:
+  = @re_commercial.street
+%p
+  %strong Phone:
+  = @re_commercial.phone
+%p
+  %strong Description:
+  = @re_commercial.description
+%p
+  %strong Active:
+  = @re_commercial.active
+%p
+  %strong State:
+  = @re_commercial.state.name
+%p
+  %strong City:
+  = @re_commercial.city.name
+%p
+  %strong User:
+  = @re_commercial.user.email
+= link_to 'Edit', edit_dashboard_re_commercial_path(@re_commercial)
+|
+= link_to 'Back', dashboard_re_commercials_path

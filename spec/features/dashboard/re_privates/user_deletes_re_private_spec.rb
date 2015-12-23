@@ -7,7 +7,7 @@ feature "user deletes re_private" do
     create :re_private, user: user
 
     visit dashboard_re_privates_path
-    click_on "Destroy"
+    click_on "Удалить"
 
     expect(RePrivate.count).to be 0
   end

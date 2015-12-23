@@ -1,0 +1,19 @@
+%h2 Re commercials
+= link_to 'New Re Commercial', new_dashboard_re_commercial_path
+%table.table
+  %thead
+    %tr
+      %th Street
+      %th Active
+      %th{:colspan => "2"}
+  %tbody
+    - @re_commercials.each do |re_commercial|
+      %tr
+        %td= re_commercial.street
+        %td= re_commercial.active
+        %td
+          = link_to 'Edit', edit_dashboard_re_commercial_path(re_commercial)
+        %td
+          = link_to 'Destroy', dashboard_re_commercial_path(re_commercial), |
+            method: :delete, data: { confirm: 'Are you sure?' }             |
+%br/

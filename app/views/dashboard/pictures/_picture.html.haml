@@ -1,0 +1,16 @@
+%tr{:id => "picture-#{picture.id}"}
+  %td
+    .img-thumbnail
+      = image_tag picture.image.url(:medium),
+                  alt: picture.image.url(:medium)
+  %td
+    = link_to 'Сделать главной',
+              dashboard_picture_path(picture),
+              method: :put,
+              remote: true
+    %br/
+    %br/
+    = link_to 'Удалить',
+              dashboard_picture_path(picture),
+              method: :delete,
+              data: { confirm: 'Are you sure?', remote: true }

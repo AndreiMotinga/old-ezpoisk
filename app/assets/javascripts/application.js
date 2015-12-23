@@ -13,4 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require dropzone
+//= require underscore
+//= require gmaps/google
+//= require summernote
+//= require summernote/locales/ko-KR
 //= require_tree .

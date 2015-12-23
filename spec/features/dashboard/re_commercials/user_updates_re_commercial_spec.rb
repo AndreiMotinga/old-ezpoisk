@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "User updates re_commercial" do
   scenario "success", js: true do
-    # TODO :refactor
     user = create :user
     login_as(user, scope: :user)
     re_commercial = create :re_commercial, user: user
@@ -22,7 +21,7 @@ feature "User updates re_commercial" do
     select("Abbeville", from: :City)
     select("office", from: :Category)
     check(:Active)
-    click_on "Update Re commercial"
+    click_on "Сохранить Re commercial"
 
     expect(page).to have_content updated_re_commercial.street
     expect(page).to have_content updated_re_commercial.phone

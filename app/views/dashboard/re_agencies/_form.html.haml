@@ -1,0 +1,59 @@
+= form_for([:dashboard, @re_agency]) do |f|
+  - if @re_agency.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@re_agency.errors.count, "error")
+        prohibited this re_agency from being saved:
+      %ul
+        - @re_agency.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :title
+    %br/
+    = f.text_field :title
+  .field
+    = f.label :street
+    %br/
+    = f.text_field :street
+  .field
+    = f.label :phone
+    %br/
+    = f.text_field :phone
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email
+  .field
+    = f.label :site
+    %br/
+    = f.text_field :site
+  .field
+    = f.label :description
+    %br/
+    = f.text_field :description
+  .field
+    = f.label :active
+    %br/
+    = f.check_box :active
+  .field
+    = f.label :state_id
+    %br/
+    = f.select(:state_id,                        |
+      State.all.collect {|s| [ s.name, s.id ] }, |
+      include_blank: true)                       |
+  .field
+    = f.label :city_id
+    %br/
+    - if @re_agency.state
+      = f.select(:city_id,               |
+        @re_agency.state                 |
+        .cities                          |
+        .collect { |c| [c.name, c.id] }) |
+    - else
+      = f.select(:city_id,[])
+    .field
+      = f.label :logo
+      %br/
+      = f.file_field :logo
+  .actions
+    = f.submit

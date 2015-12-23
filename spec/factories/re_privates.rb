@@ -10,13 +10,18 @@ FactoryGirl.define do
     zip { Faker::Address.zip }
     apt { Faker::Address.secondary_address }
     rooms { (1..5).to_a.sample }
-    post_type { %w(rent sale).sample }
-    duration { ["by day", "by hour", "by month"].sample }
+    post_type { %w(продажа аренда).sample }
+    duration { %w(почасово посуточно помесячно).sample }
     latitude { Faker::Address.latitude }
     longitude { Faker::Address.longitude }
+    fee { [true, false].sample }
 
     association :user
     association :state
     association :city
+
+    trait :active do
+      active true
+    end
   end
 end

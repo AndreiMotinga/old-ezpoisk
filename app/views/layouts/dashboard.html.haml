@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Chogde
+    = stylesheet_link_tag    'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+  %body
+    #wrap
+      = render 'shared/navbar'
+      .container
+        .row
+          = render 'layouts/dashboard/navbar'
+        .row
+          = render 'shared/notice'
+        .row
+          = yield
+      / required for sticky footer
+      #push
+    / wrap
+    #footer.hidden-xs
+      = render 'shared/footer'

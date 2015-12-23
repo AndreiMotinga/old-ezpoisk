@@ -9,7 +9,13 @@ class ReAgency < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
 
+  has_attached_file :logo,
+                    styles: { thumb: "200x100>" },
+                    default_url: "missing.png"
+  validates_attachment_content_type :logo,
+                                    content_type: /\Aimage\/.*\Z/
+
   def show_description
-    description.blank? ? "Автор не предоставил описание" : description
+    description.blank? ? I18n.t(:no_description) : description
   end
 end

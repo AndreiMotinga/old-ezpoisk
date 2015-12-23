@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222235455) do
+ActiveRecord::Schema.define(version: 20151231182959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,11 +25,15 @@ ActiveRecord::Schema.define(version: 20151222235455) do
   add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "name"
     t.integer  "imageable_id"
     t.string   "imageable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean  "logo"
   end
 
   add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
@@ -59,8 +63,12 @@ ActiveRecord::Schema.define(version: 20151222235455) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "re_agencies", ["city_id"], name: "index_re_agencies_on_city_id", using: :btree
@@ -82,13 +90,11 @@ ActiveRecord::Schema.define(version: 20151222235455) do
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.integer  "picture_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   add_index "re_commercials", ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
-  add_index "re_commercials", ["picture_id"], name: "index_re_commercials_on_picture_id", using: :btree
   add_index "re_commercials", ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
   add_index "re_commercials", ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
 
@@ -111,13 +117,11 @@ ActiveRecord::Schema.define(version: 20151222235455) do
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.integer  "picture_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   add_index "re_privates", ["city_id"], name: "index_re_privates_on_city_id", using: :btree
-  add_index "re_privates", ["picture_id"], name: "index_re_privates_on_picture_id", using: :btree
   add_index "re_privates", ["state_id"], name: "index_re_privates_on_state_id", using: :btree
   add_index "re_privates", ["user_id"], name: "index_re_privates_on_user_id", using: :btree
 
@@ -151,11 +155,9 @@ ActiveRecord::Schema.define(version: 20151222235455) do
   add_foreign_key "re_agencies", "states"
   add_foreign_key "re_agencies", "users"
   add_foreign_key "re_commercials", "cities"
-  add_foreign_key "re_commercials", "pictures"
   add_foreign_key "re_commercials", "states"
   add_foreign_key "re_commercials", "users"
   add_foreign_key "re_privates", "cities"
-  add_foreign_key "re_privates", "pictures"
   add_foreign_key "re_privates", "states"
   add_foreign_key "re_privates", "users"
 end

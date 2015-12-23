@@ -1,0 +1,26 @@
+= render 'real_estate/re_commercials/re_commercial', |
+  re_commercial: @re_commercial                      |
+%br/
+%div
+  / Nav tabs
+  %ul.nav.nav-tabs{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "photo", "data-toggle" => "tab", :href => "#photo", :role => "tab"} Фотографии
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Контакты
+  %hr/
+  / Tab panes
+  .tab-content
+    #foo.tab-pane.fade.in.active{:role => "tabpanel"}
+      {{partial 'partials/map'}}
+    #photo.tab-pane.fade{:role => "tabpanel"}
+      .row
+        {{post-images images=model.pictures url=model.logo}}
+    #description.tab-pane.fade{:role => "tabpanel"}
+      {{post-description description=model.description}}
+    #contacts.tab-pane.fade{:role => "tabpanel"}
+      {{contacts-tab model=model}}

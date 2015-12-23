@@ -10,21 +10,23 @@ feature "user creates re_private" do
     login_as(user, scope: :user)
 
     visit edit_dashboard_re_private_path re_private
-    fill_in :Street, with: updated_re_private.street
-    select("Аренда", from: "Post type")
-    select("Месяц", from: :Duration)
-    fill_in :Apt, with: updated_re_private.apt
-    fill_in :Phone, with: updated_re_private.phone
-    fill_in :Price, with: updated_re_private.price
-    fill_in :Baths, with: updated_re_private.baths
-    fill_in :Space, with: updated_re_private.space
-    fill_in :Rooms, with: updated_re_private.rooms
-    fill_in :Description, with: updated_re_private.description
-    check(:Active)
-    check(:Fee)
-    select("Alabama", from: :State)
-    select("Abbeville", from: :City)
-    click_on "Update Re private"
+
+    fill_in "Улица", with: updated_re_private.street
+    select("Аренда", from: "Тип обьявления")
+    select("Месяц", from: "Продолжительность")
+    fill_in "Квартира", with: updated_re_private.apt
+    fill_in "Телефон", with: updated_re_private.phone
+    fill_in "Цена", with: updated_re_private.price
+    fill_in "Ванные", with: updated_re_private.baths
+    fill_in "Площадь", with: updated_re_private.space
+    fill_in "Комнат", with: updated_re_private.rooms
+    check("Активно?")
+    check("Комиссия")
+    select("Alabama", from: "Штат")
+    select("Abbeville", from: "Город")
+    click_on "Сохранить"
+
+
 
     expect(page).to have_content updated_re_private.street
   end

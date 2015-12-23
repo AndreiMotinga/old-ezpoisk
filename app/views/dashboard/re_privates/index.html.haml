@@ -1,0 +1,26 @@
+%p#notice= notice
+
+= link_to 'Создать новое',
+           new_dashboard_re_private_path,
+           class: 'btn btn-success'
+
+- if @re_privates.any?
+  %table.table.table-hover
+    %thead
+      %tr
+        %th{:colspan => "4"}
+    %tbody
+      - @re_privates.each do |re_private|
+        %tr
+          %td
+            = link_to re_private.street,
+                      edit_dashboard_re_private_path(re_private)
+          %td= re_private.active? ? "Активно" : "Не актвино"
+          %td= link_to 'Редактировать', edit_dashboard_re_private_path(re_private)
+          %td= link_to 'Удалить', dashboard_re_private_path(re_private),
+                        method: :delete,
+                        data: { confirm: I18n.t(:confirm) }
+- else
+  %hr/
+  %p
+    Вы пока не создали обьявлений

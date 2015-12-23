@@ -59,6 +59,7 @@ class Dashboard::ReAgenciesController < ApplicationController
                                       :active,
                                       :state_id,
                                       :city_id,
+                                      :logo,
                                       :user_id )
   end
 end

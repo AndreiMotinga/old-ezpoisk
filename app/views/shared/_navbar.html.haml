@@ -1,0 +1,62 @@
+%nav.navbar.navbar-default.navbar-main
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false",
+                            "data-target" => "#bs-example-navbar-collapse-1",
+                            "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'CHOGDE', root_path, class: "navbar-brand"
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+
+      / right links
+      %ul.nav.navbar-nav.navbar-right
+
+        /real_estate
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+                             "data-toggle" => "dropdown", :role => "button"}
+            = t(:real_estate)
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to t(:agencies), real_estate_re_agencies_path
+            %li
+              = link_to t(:private), real_estate_re_privates_path
+            %li
+              = link_to t(:commercial), real_estate_re_commercials_path
+        / real_estate
+
+        / news
+        %li
+          = link_to(t(:news), news_index_path)
+        / news
+
+        / dashboard
+        %li.dropdown
+          %a.dropdown-toggle{ "aria-expanded" => "false",
+                              "aria-haspopup" => "true",
+                              "data-toggle" => "dropdown",
+                              :href => "#",
+                              :role => "button" }
+            - if user_signed_in?
+              %strong= current_user.email
+            - else
+              = t(:dashboard)
+            %span.caret
+          %ul.dropdown-menu
+            - if !user_signed_in?
+              %li= link_to t(:sign_in), new_user_session_path
+              %li= link_to t(:sign_up), new_user_registration_path
+              %li.divider{:role => "separator"}
+            %li= link_to t(:account), dashboard_path
+            - if user_signed_in?
+              %li.divider{:role => "separator"}
+              %li= link_to t(:sign_out), destroy_user_session_path
+        / dashboard
+      / right links
+
+    /.navbar-collapse
+  /.container-fluid

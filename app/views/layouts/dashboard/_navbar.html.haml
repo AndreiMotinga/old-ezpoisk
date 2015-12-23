@@ -1,0 +1,40 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{ "aria-expanded" => "false",
+                                       "data-target" => "#dashboard-nav-bar",
+                                       "data-toggle" => "collapse",
+                                       :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/dashboard/"}
+        %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
+        Панель управления
+    / Collect the nav links, forms, and other content for toggling
+    #dashboard-nav-bar.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+
+        /real_estate
+        %li.dropdown
+          %a.dropdown-toggle{ "aria-expanded" => "false",
+                              "aria-haspopup" => "true",
+                              "data-toggle" => "dropdown",
+                              :role => "button"}
+            = t(:real_estate)
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to t(:agencies), dashboard_re_agencies_path
+            %li
+              = link_to t(:private), dashboard_re_privates_path
+            %li
+              = link_to t(:commercial), dashboard_re_commercials_path
+        / real_estate
+
+        %li
+          %a{:href => "/dashboard/users/edit"} Профиль
+    / /.navbar-collapse
+  / /.container-fluid

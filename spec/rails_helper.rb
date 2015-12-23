@@ -10,6 +10,7 @@ require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 require "capybara/rails"
 require "devise"
+require "sidekiq/testing"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -38,6 +39,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
+    Sidekiq::Worker.clear_all
     DatabaseCleaner.start
   end
 

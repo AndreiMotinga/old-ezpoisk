@@ -9,25 +9,30 @@ feature "User create re_private" do
     City.create(name: "Abbeville", state: state)
 
     visit new_dashboard_re_private_path
-    fill_in :Street, with: re_private.street
-    select("Аренда", from: "Post type")
-    select("Месяц", from: :Duration)
-    fill_in :Apt, with: re_private.apt
-    fill_in :Phone, with: re_private.phone
-    fill_in :Price, with: re_private.price
-    fill_in :Baths, with: re_private.baths
-    fill_in :Space, with: re_private.space
-    fill_in :Rooms, with: re_private.rooms
-    fill_in :Description, with: re_private.description
-    check(:Active)
-    check(:Fee)
-    select("Alabama", from: :State)
-    select("Abbeville", from: :City)
-    click_on "Create Re private"
+    fill_in "Улица", with: re_private.street
+    select("Аренда", from: "Тип обьявления")
+    select("Месяц", from: "Продолжительность")
+    fill_in "Квартира", with: re_private.apt
+    fill_in "Телефон", with: re_private.phone
+    fill_in "Цена", with: re_private.price
+    fill_in "Ванные", with: re_private.baths
+    fill_in "Площадь", with: re_private.space
+    fill_in "Комнат", with: re_private.rooms
+    check("Активно?")
+    check("Комиссия")
+    select("Alabama", from: "Штат")
+    select("Abbeville", from: "Город")
+    click_on "Сохранить"
 
     expect(page).to have_content re_private.street
-    expect(page).to have_content "Alabama"
-    expect(page).to have_content "Abbeville"
+    expect(page).to have_content "АРЕНДА"
+    expect(page).to have_content "Месяц"
+    expect(page).to have_content re_private.phone
+    expect(page).to have_content re_private.space
+    expect(page).to have_content re_private.price
+    expect(page).to have_content re_private.baths
+    expect(page).to have_content re_private.rooms
+
     expect(RePrivate.count).to be 1
   end
 end

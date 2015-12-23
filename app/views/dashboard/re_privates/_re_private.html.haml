@@ -1,0 +1,42 @@
+.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
+  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
+    %br/
+    = image_tag re_private.logo_url(:medium),
+                alt: re_private.logo_url(:medium),
+                class: 'img-responsive center-block'
+
+  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+    / line 1
+    %h3
+      = link_to re_private.street, real_estate_re_private_path(re_private)
+
+    / line 2
+    %span.post-type
+      %span.type
+        %strong= re_private.post_type
+    %strong
+      $ #{re_private.price}  |
+
+    = re_private.duration if re_private.duration
+
+    - unless re_private.fee
+      %span.pull-right.no-fee NO FEE
+    %hr.post-devider/
+
+    / line 3
+    .hidden-xs
+      = "комнаты: #{re_private.rooms} |"
+      =  "ванные: #{re_private.baths} |"
+      = "площадь:  #{re_private.space} ft"
+      %span.pull-right
+        %span.glyphicon.glyphicon-phone
+        = re_private.phone
+      %hr.post-devider/
+
+    / line 4
+    автор:
+    %strong= re_private.user.email
+    %hr.post-devider/
+
+    / line 5
+    %span.pull-right= re_private.updated_at

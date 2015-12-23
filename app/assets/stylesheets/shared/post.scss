@@ -1,11 +1,12 @@
 .post {
+  background-color: white;
   border-bottom: 5px solid black;
   padding-bottom: 25px;
-  margin-bottom: 10px;
-  img {
-    max-height: 150px;
-    margin: 0 auto;
-  }
+  // margin-bottom: 10px;
+  // img {
+  //   max-height: 150px;
+  //   margin: 0 auto;
+  // }
 }
 .post-type {
   background-color: lightgray;
@@ -16,8 +17,17 @@
   }
   margin-right: 10px;
 }
+
 .no-fee {
   background-color: green;
   color: white;
   padding: 4px 15px 4px 15px;
+}
+
+.post-preview {
+   background-color: $lightgrey;
+}
+
+.upcase {
+  text-transform: uppercase;
 }

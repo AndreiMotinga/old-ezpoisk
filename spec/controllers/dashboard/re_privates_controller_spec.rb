@@ -24,17 +24,6 @@ describe Dashboard::RePrivatesController do
     end
   end
 
-  describe "GET #show" do
-    it "renders the show template and assigns @re_private" do
-      re_private = create :re_private
-
-      get :show, id: re_private.id
-
-      expect(response).to render_template(:show)
-      expect(assigns(:re_private)).to eq re_private
-    end
-  end
-
   describe "GET #edit" do
     it "renders the edit template and assigns @re_private" do
       re_private = create :re_private
@@ -54,27 +43,42 @@ describe Dashboard::RePrivatesController do
       re_private = assigns(:re_private)
 
       expect(response).to redirect_to(
-        dashboard_re_private_path(re_private)
+        edit_dashboard_re_private_path(re_private)
       )
       expect(re_private.street).to eq attrs[:street]
       expect(re_private.user).to eq @user
       expect(re_private.city.id).to eq attrs[:city_id]
       expect(re_private.state.id).to eq attrs[:state_id]
+      expect(flash[:notice]).to eq I18n.t(:post_saved)
+
+      expect(GeocodeJob.jobs.size).to eq 1
+    end
+
+    it "renders form and displays alert when record isn't saved" do
+      attrs = attributes_for(:re_private, user: @user, street: nil)
+
+      post :create, re_private: attrs
+
+      expect(response).to render_template(:new)
+      expect(flash[:alert]).to be_present
     end
   end
 
   describe "PUT #update" do
     it "updates the record" do
       re_private = create :re_private
-      attrs = attributes_for(:re_private)
+      attrs = attributes_for(:re_private, street: "New Street")
 
       put :update, id: re_private.id, re_private: attrs
 
-      expect(response).to redirect_to(dashboard_re_private_path(re_private))
+      expect(response).to redirect_to(edit_dashboard_re_private_path(re_private))
       re_private.reload
 
       expect(re_private.street).to eq attrs[:street]
       expect(re_private.phone).to eq attrs[:phone]
+      expect(flash[:notice]).to eq I18n.t(:post_saved)
+
+      expect(GeocodeJob.jobs.size).to eq 1
     end
   end
 
@@ -86,6 +90,7 @@ describe Dashboard::RePrivatesController do
 
       expect(response).to redirect_to(dashboard_re_privates_path)
       expect(RePrivate.count).to be 0
+      expect(flash[:notice]).to eq I18n.t(:post_removed)
     end
   end
 end

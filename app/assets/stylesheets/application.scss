@@ -1,11 +1,16 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
-@import "shared/colors";
+@import "dropzone/dropzone";
+@import "rails_bootstrap_forms";
+@import "summernote";
 
+@import "shared/colors";
+@import "shared/helpers";
+
+@import "shared/layout";
 @import "shared/main-navbar";
 @import "shared/sidebar";
-@import "shared/footer";
 @import "shared/general";
 @import "shared/post";
 

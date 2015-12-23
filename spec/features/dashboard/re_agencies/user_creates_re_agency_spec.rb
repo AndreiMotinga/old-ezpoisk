@@ -19,7 +19,7 @@ feature "user creates re_agency" do
     select("Alabama", from: :State)
     select("Abbeville", from: :City)
 
-    click_on "Create Re agency"
+    click_on "Создать Re agency"
 
     expect(page).to have_content re_agency.title
     expect(page).to have_content "Alabama"

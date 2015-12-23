@@ -1,6 +1,19 @@
 class RealEstate::RePrivatesController < ApplicationController
+  layout "real_estate"
+
   def index
-    @re_privates = RePrivate.all.page params[:page]
+    @re_privates = RePrivate.filter(params.slice(:state_id,
+                                                 :city_ids,
+                                                 :fee,
+                                                 :duration,
+                                                 :post_type,
+                                                 :space,
+                                                 :baths,
+                                                 :rooms,
+                                                 :min_price,
+                                                 :max_price,
+                                                 :sort))
+    @re_privates = @re_privates.page(params[:page])
   end
 
   def show

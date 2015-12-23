@@ -1,0 +1,9 @@
+.row
+  .col-lg-7.col-md-7.col-sm-6
+    = render 'home/news/carousel'
+  .col-lg-5.col-md-5.col-sm-6
+    - @news_posts.each do |post|
+      %h5.news-title
+        = link_to post.title, news_path(post)
+      %hr.post-devider/
+%br/

@@ -1,0 +1,60 @@
+= form_for([:dashboard, @re_commercial]) do |f|
+  - if @re_commercial.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@re_commercial.errors.count, "error")
+        prohibited this re_agency from being saved:
+      %ul
+        - @re_commercial.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :street
+    %br/
+    = f.text_field :street
+  .field
+    = f.label :phone
+    %br/
+    = f.text_field :phone
+  .field
+    = f.label :description
+    %br/
+    = f.text_field :description
+  .field
+    = f.label :price
+    %br/
+    = f.text_field :price
+  .field
+    = f.label :space
+    %br/
+    = f.text_field :space
+  .field
+    = f.label :active
+    %br/
+    = f.check_box :active
+  .field
+    = f.label :post_type
+    %br/
+    = f.select(:post_type, %w(Продажа Аренда), include_blank: true)
+  .field
+    = f.label :category
+    %br/
+    = f.select(:category, %w(office retail industrial parking other), |
+      include_blank: true)                                            |
+  .field
+    = f.label :state_id
+    %br/
+    = f.select(:state_id,                        |
+      State.all.collect {|s| [ s.name, s.id ] }, |
+      include_blank: true)                       |
+  .field
+    = f.label :city_id
+    %br/
+    - if @re_commercial.state
+      = f.select(:city_id,               |
+        @re_commercial.state             |
+        .cities                          |
+        .collect { |c| [c.name, c.id] }) |
+    - else
+      = f.select(:city_id,[])
+  .actions
+    = f.submit

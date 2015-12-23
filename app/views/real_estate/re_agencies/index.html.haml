@@ -1,0 +1,32 @@
+.row
+  / -----------------------------------------------------------------
+  / CONTENT
+  / -----------------------------------------------------------------
+  .col-lg-9.col-md-9
+    .row
+      = render 'real_estate/re_agencies/search.html.haml'
+    .row
+      = render @re_agencies
+    .row
+      %hr/
+      .text-center
+        = paginate @re_agencies, :theme => 'twitter-bootstrap-3'
+      %hr/
+  / -----------------------------------------------------------------
+  / // CONTENT
+  / -----------------------------------------------------------------
+  / -----------------------------------------------------------------
+  / PARTNERS
+  / -----------------------------------------------------------------
+  .col-lg-3.col-md-3.hidden-sm.hidden-xs
+    / <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block">
+    / <br>
+    / <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block">
+    / <br>
+    / <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block">
+    / <br>
+    / <img src="http://placehold.it/600x400" alt="some picture" class="img&#45;responsive center&#45;block">
+    / <br>
+  / -----------------------------------------------------------------
+  / // PARTNERS
+  / -----------------------------------------------------------------

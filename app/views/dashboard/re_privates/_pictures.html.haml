@@ -1,0 +1,12 @@
+.row
+  = render "dashboard/re_privates/upload_modal"
+%br/
+.row
+  .col-lg-8
+    %table.table
+      %thead
+        %tr
+          %th{:colspan => "2"}
+            %tbody.pictures
+        = render @re_private.pictures
+    %br/

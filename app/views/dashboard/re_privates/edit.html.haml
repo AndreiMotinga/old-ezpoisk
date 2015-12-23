@@ -1,0 +1,52 @@
+#pictures-data{ "data-id" => "#{@re_private.id}", "data-type" => "RePrivate" }
+
+.row
+  .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.hidden-xs
+    %br/
+    = render 'dashboard/re_privates/re_private', re_private: @re_private
+    %br/
+    %br/
+
+.row
+  .col-lg-12
+    / Nav tabs
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active{:role => "presentation"}
+        %a{ "aria-controls" => "form",
+            "data-toggle" => "tab",
+            :href => "#form",
+            :role => "tab" }
+          Детали
+      %li{ :role => "presentation" }
+        %a{ "aria-controls" => "messages",
+            "data-toggle" => "tab",
+            :href => "#description",
+            :role => "tab" }
+          Описание
+      %li{ :role => "presentation" }
+        %a{ "aria-controls" => "messages",
+            "data-toggle" => "tab",
+            :href => "#pictures",
+            :role => "tab" }
+          Фотографии
+    / Nav tabs
+
+    %br/
+
+    / Tab panes
+    .tab-content
+      / form
+      #form.tab-pane.fade.in.active{:role => "tabpanel"}
+        = render 'form'
+
+      / description
+      #description.tab-pane.fade{:role => "tabpanel"}
+        .col-lg-12
+          = render "dashboard/re_privates/description"
+
+      / pictures
+      #pictures.tab-pane.fade{:role => "tabpanel"}
+        .col-lg-12
+          = render "dashboard/re_privates/pictures"
+
+  %hr/

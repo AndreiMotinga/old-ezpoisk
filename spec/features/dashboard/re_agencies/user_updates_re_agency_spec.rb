@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user creates re_agency" do
+feature "user updates re_agency" do
   scenario "successfully" do
     re_agency = create :re_agency
     user = create :user
@@ -15,7 +15,7 @@ feature "user creates re_agency" do
     fill_in :Description, with: "new description"
     check(:Active)
 
-    click_on "Update Re agency"
+    click_on "Сохранить Re agency"
 
     expect(page).to have_content "New title"
     expect(page).to have_content "New street"

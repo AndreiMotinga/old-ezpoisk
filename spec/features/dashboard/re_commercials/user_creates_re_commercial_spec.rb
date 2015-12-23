@@ -19,7 +19,7 @@ feature "User create re_commercial" do
     select("Abbeville", from: :City)
     select("office", from: :Category)
     check(:Active)
-    click_on "Create Re commercial"
+    click_on "Создать Re commercial"
 
     expect(page).to have_content re_commercial.street
     expect(page).to have_content re_commercial.phone

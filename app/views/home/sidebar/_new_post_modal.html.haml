@@ -1,0 +1,54 @@
+/ Button trigger modal
+%button.btn.btn-success{ "data-target" => "#new",
+                         "data-toggle" => "modal",
+                         :role => "button" }
+  = t(:new_post)
+
+/ Modal
+#new.modal.fade{"aria-labelledby" => "myModalLabel",
+                :role => "dialog",
+                :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+
+      .modal-header
+        %button.close{"aria-label" => "Close",
+                      "data-dismiss" => "modal",
+                      :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+
+        %h4#myModalLabel.modal-title
+          = t(:category)
+      / .modal-header
+
+      .modal-body
+        .row
+          .col-lg-12
+            .list-group
+              = link_to t(:re_agency),
+                        new_dashboard_re_agency_path,
+                        class: 'list-group-item'
+              = link_to t(:private),
+                        new_dashboard_re_private_path,
+                        class: 'list-group-item'
+              = link_to t(:commercial),
+                        new_dashboard_re_commercial_path,
+                        class: 'list-group-item'
+
+              -# %a.list-group-item{:href => "/dashboard/job/agencies/new"} Агенство по трудоустройству
+              -# %a.list-group-item{:href => "/dashboard/job/jobs/new"} Работа
+              -# %a.list-group-item{:href => "/dashboard/services/new"} Услуги
+              -# %a.list-group-item{:href => "/dashboard/items/new"} Продается
+            %br/
+            %br/
+            .list-group
+              = link_to t(:leave_a_comment),
+                        "/contacts/new",
+                        class: 'list-group-item'
+      / .modal-body
+
+      .modal-footer
+        %button.btn.btn-primary{"aria-label" => "Close",
+                                "data-dismiss" => "modal",
+                                :type => "button"}
+          = t(:close)
