@@ -1,0 +1,28 @@
+= form_tag real_estate_re_agencies_path,
+           method: :get,
+           class: "form-horizontal"
+
+.form-group
+  = label_tag "Штат", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :state_id,
+                 options_from_collection_for_select(State.all,
+                                                    :id,
+                                                    :name,
+                                                    params[:state_id]),
+                 include_blank: true,
+                 class: "form-control"
+
+.form-group
+  = label_tag "Город", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    -if params[:state_id].blank?
+      = select_tag :city_id, [], class: "form-control"
+    - else
+      = select_tag :city_id,
+          options_from_collection_for_select(State.find(params[:state_id]).cities,
+                                                              :id,
+                                                              :name,
+                                                              params[:city_id]),
+          include_blank: true,
+          class: "form-control"

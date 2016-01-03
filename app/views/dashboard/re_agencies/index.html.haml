@@ -1,18 +1,24 @@
-= link_to 'Новое агенство',     |
-  new_dashboard_re_agency_path, |
-  class: "btn btn-success"      |
-%table.table
-  %thead
-    %tr
-      %th Title
-      %th Active
-      %th{:colspan => "2"}
-  %tbody
-    - @re_agencies.each do |re_agency|
+= link_to 'Новое агенство',
+          new_dashboard_re_agency_path,
+          class: "btn btn-success"
+
+- if @re_agencies.any?
+  %table.table
+    %thead
       %tr
-        %td
-          = link_to re_agency.title, dashboard_re_agency_path(re_agency)
-        %td= re_agency.active
-        %td= link_to 'Edit', edit_dashboard_re_agency_path(re_agency)
-        %td= link_to 'Destroy', dashboard_re_agency_path(re_agency), method: :delete, data: { confirm: 'Are you sure?' }
-%br/
+        %th{:colspan => "4"}
+    %tbody
+      - @re_agencies.each do |re_agency|
+        %tr
+          %td
+            = link_to re_agency.title, edit_dashboard_re_agency_path(re_agency)
+          %td= re_agency.active? ? "Активно" : "Не актвино"
+          %td= link_to 'Редактировать', edit_dashboard_re_agency_path(re_agency)
+          %td= link_to 'Удалить',
+                        dashboard_re_agency_path(re_agency),
+                        method: :delete,
+                        data: { confirm: I18n.t(:confirm) }
+- else
+  %hr/
+  %p
+    Вы пока не создали обьявлений

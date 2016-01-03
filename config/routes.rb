@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :summernote, only: [:create]
     resources :pictures, only: [:index, :create, :update, :destroy]
-    resources :re_agencies
+    resources :re_agencies, except: :show
     resources :re_privates, except: :show
-    resources :re_commercials
+    resources :re_commercials, except: :show
   end
 
   root to: "home#index"

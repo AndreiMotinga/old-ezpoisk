@@ -7,20 +7,18 @@ feature "user updates re_agency" do
     login_as(user, scope: :user)
 
     visit edit_dashboard_re_agency_path re_agency
-    fill_in :Title, with: "New title"
-    fill_in :Street, with: "New street"
-    fill_in :Phone, with: "999 999 999"
+    fill_in "Название", with: "New title"
+    fill_in "Улица", with: "New street"
+    fill_in "Телефон", with: "999 999 999"
     fill_in :Email, with: "some@gmail.com"
-    fill_in :Site, with: "www.example.com"
-    fill_in :Description, with: "new description"
-    check(:Active)
+    fill_in "Сайт", with: "www.example.com"
+    check("Активно?")
 
-    click_on "Сохранить Re agency"
+    click_on "details"
 
     expect(page).to have_content "New title"
     expect(page).to have_content "New street"
     expect(page).to have_content "999 999 999"
     expect(page).to have_content "some@gmail.com"
-    expect(page).to have_content "new description"
   end
 end

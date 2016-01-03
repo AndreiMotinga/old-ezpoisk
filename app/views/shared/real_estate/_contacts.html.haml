@@ -13,8 +13,8 @@
   -if post.try(:site)
     %li.list-group-item
       site:
-      %a{ :href => "post.site", target: :blank }
-        %strong= post.site
+      %strong
+        = link_to post.site, "http://#{post.site}", target: "blank"
   -if post.try(:email)
     %li.list-group-item
       email:

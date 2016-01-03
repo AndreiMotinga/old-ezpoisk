@@ -4,7 +4,7 @@ module Filterable
   included do
     scope :active, -> { where(active: true) }
     scope :state_id, ->(id) { where(state_id: id) }
-    scope :city_ids, -> (ids) { where(city_id: ids) }
+    scope :city_id, -> (id) { where(city_id: id) }
     scope :fee, -> (fee) { where(fee: fee) }
     scope :post_type, -> (type) { where(post_type: type) }
     scope :duration, -> (type) { where(duration: type) }

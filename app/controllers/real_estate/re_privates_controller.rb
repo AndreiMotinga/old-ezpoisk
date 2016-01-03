@@ -3,7 +3,7 @@ class RealEstate::RePrivatesController < ApplicationController
 
   def index
     @re_privates = RePrivate.filter(params.slice(:state_id,
-                                                 :city_ids,
+                                                 :city_id,
                                                  :fee,
                                                  :duration,
                                                  :post_type,
@@ -13,6 +13,7 @@ class RealEstate::RePrivatesController < ApplicationController
                                                  :min_price,
                                                  :max_price,
                                                  :sort))
+    @total = @re_privates.size
     @re_privates = @re_privates.page(params[:page])
   end
 

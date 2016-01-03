@@ -22,10 +22,10 @@ module ViewHelpers
   end
 
   def map_marker
-    Gmaps4rails.build_markers(self) do |re_private, marker|
-      marker.lat re_private.latitude
-      marker.lng re_private.longitude
-      marker.infowindow re_private.infowindow
+    Gmaps4rails.build_markers(self) do |post, marker|
+      marker.lat post.latitude
+      marker.lng post.longitude
+      marker.infowindow post.infowindow
     end
   end
 

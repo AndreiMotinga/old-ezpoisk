@@ -35,6 +35,7 @@ class Dashboard::ReCommercialsController < ApplicationController
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
                   notice: I18n.t(:post_saved)
     else
+      flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
     end
   end

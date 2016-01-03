@@ -9,19 +9,22 @@ feature "user creates re_agency" do
 
     visit new_dashboard_re_agency_path
     re_agency = build(:re_agency)
-    fill_in :Title, with: re_agency.title
-    fill_in :Street, with: re_agency.street
-    fill_in :Phone, with: re_agency.phone
-    fill_in :Email, with: re_agency.email
-    fill_in :Site, with: re_agency.site
-    fill_in :Description, with: re_agency.description
-    check(:Active)
-    select("Alabama", from: :State)
-    select("Abbeville", from: :City)
 
-    click_on "Создать Re agency"
+    fill_in "Название", with: re_agency.title
+    fill_in "Улица", with: re_agency.street
+    fill_in "Телефон", with: re_agency.phone
+    fill_in :Email, with: re_agency.email
+    fill_in "Сайт", with: re_agency.site
+    check("Активно?")
+    select("Alabama", from: "Штат")
+    select("Abbeville", from: "Город")
+
+    click_on "details"
 
     expect(page).to have_content re_agency.title
-    expect(page).to have_content "Alabama"
+    expect(page).to have_content re_agency.street
+    expect(page).to have_content re_agency.phone
+    expect(page).to have_content re_agency.site
+    expect(page).to have_content re_agency.email
   end
 end

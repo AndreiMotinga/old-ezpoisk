@@ -7,7 +7,7 @@ feature "user deletes re_agency" do
     create :re_agency, user: user
 
     visit dashboard_re_agencies_path
-    click_on "Destroy"
+    click_on "Удалить"
     page.driver.browser.accept_js_confirms
     # page.driver.browser.reject_js_confirms
 

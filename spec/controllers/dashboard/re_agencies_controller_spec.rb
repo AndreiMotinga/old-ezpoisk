@@ -33,7 +33,7 @@ describe Dashboard::ReAgenciesController do
       re_agency = assigns(:re_agency)
 
       expect(response).to redirect_to(
-        dashboard_re_agency_path(re_agency)
+        edit_dashboard_re_agency_path(re_agency)
       )
       expect(re_agency.title).to eq attrs[:title]
       expect(re_agency.user).to eq @user
@@ -49,7 +49,7 @@ describe Dashboard::ReAgenciesController do
       updated_agency = assigns(:re_agency)
 
       expect(response).to redirect_to(
-        dashboard_re_agency_path(updated_agency)
+        edit_dashboard_re_agency_path(updated_agency)
       )
       expect(updated_agency.title).to eq attrs[:title]
       expect(updated_agency.street).to eq attrs[:street]

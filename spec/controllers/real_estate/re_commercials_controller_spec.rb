@@ -38,11 +38,11 @@ describe RealEstate::ReCommercialsController do
         brooklyn = create(:city, name: "Brooklyn")
         bronx = create(:city, name: "Bronx")
         queens  = create(:city, name: "Queens")
-        2.times { create :re_commercial, city_id: queens.id }
+        2.times { create :re_commercial, :active, city_id: queens.id }
         create :re_commercial, :active,  city_id: brooklyn.id
         create :re_commercial, :active, city_id: bronx.id
 
-        get :index, city_ids: [brooklyn.id, bronx.id]
+        get :index, city_id: [brooklyn.id, bronx.id]
 
         expect(assigns(:re_commercials).size).to eq 2
       end

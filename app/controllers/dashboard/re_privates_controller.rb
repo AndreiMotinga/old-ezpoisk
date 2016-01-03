@@ -33,6 +33,7 @@ class Dashboard::RePrivatesController < ApplicationController
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
     else
+      flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
     end
   end
