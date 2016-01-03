@@ -1,11 +1,11 @@
-#pictures-data{ "data-id" => "#{@re_private.id}", "data-type" => "RePrivate" }
+#pictures-data{ "data-id" => "#{@re_private.id}",
+                "data-type" => "#{@re_private.class.to_s}" }
 
 .row
   .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.hidden-xs
     %br/
     = render 'dashboard/re_privates/re_private', re_private: @re_private
-    %br/
-    %br/
+%br/
 
 .row
   .col-lg-12

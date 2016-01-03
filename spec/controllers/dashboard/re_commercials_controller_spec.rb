@@ -24,17 +24,6 @@ describe Dashboard::ReCommercialsController do
     end
   end
 
-  describe "GET #show" do
-    it "renders the show template and assigns @re_commercial" do
-      re_commercial = create :re_commercial
-
-      get :show, id: re_commercial.id
-
-      expect(response).to render_template(:show)
-      expect(assigns(:re_commercial)).to eq re_commercial
-    end
-  end
-
   describe "GET #edit" do
     it "renders the edit template and assigns @re_commercial" do
       re_commercial = create :re_commercial
@@ -54,7 +43,7 @@ describe Dashboard::ReCommercialsController do
       re_commercial = assigns(:re_commercial)
 
       expect(response).to redirect_to(
-        dashboard_re_commercial_path(re_commercial)
+        edit_dashboard_re_commercial_path(re_commercial)
       )
       expect(re_commercial.street).to eq attrs[:street]
       expect(re_commercial.category).to eq attrs[:category]
@@ -76,7 +65,8 @@ describe Dashboard::ReCommercialsController do
 
       put :update, id: re_commercial.id, re_commercial: attrs
 
-      expect(response).to redirect_to(dashboard_re_commercial_path(re_commercial))
+      expect(response)
+        .to redirect_to(edit_dashboard_re_commercial_path(re_commercial))
       re_commercial.reload
 
       expect(re_commercial.street).to eq attrs[:street]

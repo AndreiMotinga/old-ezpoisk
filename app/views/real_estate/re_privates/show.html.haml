@@ -18,14 +18,14 @@
     / Tab panes
     .tab-content
       #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
-        = render "real_estate/re_privates/map"
+        = render "shared/real_estate/map", post: @re_private
 
       #photo.tab-pane.fade{:role => "tabpanel"}
-        = render "real_estate/re_privates/pictures"
+        = render "shared/real_estate/pictures", post: @re_private
 
       #description.tab-pane.fade{:role => "tabpanel"}
         = raw @re_private.show_description
 
       #contacts.tab-pane.fade{:role => "tabpanel"}
-        = render "real_estate/re_privates/contacts"
+        = render "shared/real_estate/contacts", post: @re_private
   %br/

@@ -12,8 +12,8 @@ feature "user creates re_private" do
     visit edit_dashboard_re_private_path re_private
 
     fill_in "Улица", with: updated_re_private.street
-    select("Аренда", from: "Тип обьявления")
-    select("Месяц", from: "Продолжительность")
+    select("аренда", from: "Тип обьявления")
+    select("помесячно", from: "Продолжительность")
     fill_in "Квартира", with: updated_re_private.apt
     fill_in "Телефон", with: updated_re_private.phone
     fill_in "Цена", with: updated_re_private.price
@@ -25,8 +25,6 @@ feature "user creates re_private" do
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     click_on "Сохранить"
-
-
 
     expect(page).to have_content updated_re_private.street
   end

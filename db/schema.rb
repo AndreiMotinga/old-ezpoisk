@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231182959) do
+ActiveRecord::Schema.define(version: 20160103165848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20151231182959) do
     t.string   "street",      default: "",    null: false
     t.string   "post_type",   default: "",    null: false
     t.string   "phone",       default: "",    null: false
-    t.text     "description", default: "",    null: false
     t.integer  "price",       default: 0,     null: false
     t.integer  "space",       default: 0,     null: false
     t.integer  "zip"
@@ -92,6 +91,7 @@ ActiveRecord::Schema.define(version: 20151231182959) do
     t.integer  "city_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.string   "description", default: ""
   end
 
   add_index "re_commercials", ["city_id"], name: "index_re_commercials_on_city_id", using: :btree

@@ -7,7 +7,7 @@ feature "user deletes re_commercial" do
     create :re_commercial, user: user
 
     visit dashboard_re_commercials_path
-    click_on "Destroy"
+    click_on "Удалить"
 
     expect(ReCommercial.count).to be 0
   end

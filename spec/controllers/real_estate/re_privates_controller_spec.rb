@@ -126,6 +126,7 @@ describe RealEstate::RePrivatesController do
       end
     end
 
+    #  todo: test sorting
     # describe "Sorting" do
     #   context "ascending" do
     #     it "by price" do

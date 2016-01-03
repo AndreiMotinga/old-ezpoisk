@@ -10,8 +10,8 @@ feature "User create re_private" do
 
     visit new_dashboard_re_private_path
     fill_in "Улица", with: re_private.street
-    select("Аренда", from: "Тип обьявления")
-    select("Месяц", from: "Продолжительность")
+    select("аренда", from: "Тип обьявления")
+    select("помесячно", from: "Продолжительность")
     fill_in "Квартира", with: re_private.apt
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price
@@ -26,7 +26,7 @@ feature "User create re_private" do
 
     expect(page).to have_content re_private.street
     expect(page).to have_content "АРЕНДА"
-    expect(page).to have_content "Месяц"
+    expect(page).to have_content "помесячно"
     expect(page).to have_content re_private.phone
     expect(page).to have_content re_private.space
     expect(page).to have_content re_private.price

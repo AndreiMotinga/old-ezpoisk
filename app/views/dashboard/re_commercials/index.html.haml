@@ -1,19 +1,28 @@
-%h2 Re commercials
-= link_to 'New Re Commercial', new_dashboard_re_commercial_path
-%table.table
-  %thead
-    %tr
-      %th Street
-      %th Active
-      %th{:colspan => "2"}
-  %tbody
-    - @re_commercials.each do |re_commercial|
+%p#notice= notice
+
+= link_to 'Создать новое',
+          new_dashboard_re_commercial_path,
+          class: 'btn btn-success'
+
+- if @re_commercials.any?
+  %table.table.table-hover
+    %thead
       %tr
-        %td= re_commercial.street
-        %td= re_commercial.active
-        %td
-          = link_to 'Edit', edit_dashboard_re_commercial_path(re_commercial)
-        %td
-          = link_to 'Destroy', dashboard_re_commercial_path(re_commercial), |
-            method: :delete, data: { confirm: 'Are you sure?' }             |
-%br/
+        %th{:colspan => "4"}
+    %tbody
+      - @re_commercials.each do |re_commercial|
+        %tr
+          %td
+            = link_to re_commercial.street,
+                      edit_dashboard_re_commercial_path(re_commercial)
+          %td= re_commercial.active ? "Активно" : "Не актвино"
+          %td
+            = link_to 'Редактировать',
+                       edit_dashboard_re_commercial_path(re_commercial)
+          %td= link_to 'Удалить', dashboard_re_commercial_path(re_commercial),
+                        method: :delete,
+                        data: { confirm: I18n.t(:confirm) }
+- else
+  %hr/
+  %p
+    Вы пока не создали обьявлений

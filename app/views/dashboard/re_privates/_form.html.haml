@@ -20,11 +20,13 @@
 
     / details
     .field
-      = f.select :post_type, %w(Продажа Аренда),
-                 include_blank: true,
-                 label: '* Тип обьявления'
+      = f.select :post_type,
+                  %w(продажа аренда),
+                  include_blank: true,
+                  label: '* Тип обьявления'
     .field
-      = f.select :duration, %w(почасово посуточно помесячно),
+      = f.select :duration,
+                 %w(почасово посуточно помесячно),
                  include_blank: true,
                  label: 'Продолжительность'
     .field

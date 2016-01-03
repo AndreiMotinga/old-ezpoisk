@@ -1,0 +1,21 @@
+%ul
+  %li.list-group-item
+    автор:
+    %strong= post.user.email
+  %li.list-group-item
+    карта:
+    %a{ :href => "http://maps.google.com/?q=#{post.address}",
+        target: :blank }
+      = post.address
+  %li.list-group-item
+    телефон:
+    %strong= post.phone
+  -if post.try(:site)
+    %li.list-group-item
+      site:
+      %a{ :href => "post.site", target: :blank }
+        %strong= post.site
+  -if post.try(:email)
+    %li.list-group-item
+      email:
+      %strong= post.email

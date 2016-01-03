@@ -1,8 +1,8 @@
--if @re_private.pictures.any?
+-if post.pictures.any?
   #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
     / Wrapper for slides
     .carousel-inner{:role => "listbox"}
-      - @re_private.pictures.each_with_index do |pic, i|
+      - post.pictures.each_with_index do |pic, i|
         %div{:class => "item #{"active" if i == 0}"}
           = image_tag pic.image.url(:large),
                       alt: "#{pic.image.url(:large)}-image",
@@ -29,9 +29,10 @@
   #slider-thumbs.col-md-12.hidden-sm.hidden-xs
     / thumb navigation carousel items
     %ul.list-inline
-      -@re_private.pictures.each_with_index do |pic, i|
+      -post.pictures.each_with_index do |pic, i|
         %li{ "data-slide-to" => "#{i}", "data-target" => "#carousel-example-generic",   class: ("active" if i == 0) }
           %a
             = image_tag pic.image.url(:thumb), class: "img-responsive"
 - else
   Автор не продаставил фотографии
+

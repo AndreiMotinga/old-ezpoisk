@@ -7,7 +7,7 @@
   $(document).ready(function(){
     handler = Gmaps.build('Google');
     handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(#{raw @re_private.map_marker.to_json});
+      markers = handler.addMarkers(#{raw post.map_marker.to_json});
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
       handler.getMap().setZoom(12);
