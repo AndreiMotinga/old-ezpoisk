@@ -10,7 +10,8 @@ gem "jquery-rails"
 gem "bootstrap-sass"
 
 gem "devise"
-gem "devise-bootstrap-views"
+gem 'devise-i18n-views'
+gem 'devise-i18n'
 gem "bootstrap_form"
 
 gem "kaminari"
