@@ -29,10 +29,11 @@
   #slider-thumbs.col-md-12.hidden-sm.hidden-xs
     / thumb navigation carousel items
     %ul.list-inline
-      -post.pictures.each_with_index do |pic, i|
+      - post.pictures.each_with_index do |pic, i|
         %li{ "data-slide-to" => "#{i}", "data-target" => "#carousel-example-generic",   class: ("active" if i == 0) }
           %a
-            = image_tag pic.image.url(:thumb), class: "img-responsive"
+            = link_to "" do
+              = image_tag pic.image.url(:thumb), class: "slider-thumb"
 - else
   Автор не продаставил фотографии
 

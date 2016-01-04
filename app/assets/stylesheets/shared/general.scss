@@ -2,6 +2,20 @@ hr.post-devider {
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
 a.active {
   background-color: $lightgrey;
+}
+
+.carousel-image {
+  width: auto;
+  height: 400px;
+  max-height: 400px;
+}
+
+.slider-thumb {
+  width: auto;
+  height: 50px;
+  max-height: 50px;
+  margin-bottom: 5px;
 }
