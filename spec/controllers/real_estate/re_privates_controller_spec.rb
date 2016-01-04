@@ -124,6 +124,20 @@ describe RealEstate::RePrivatesController do
 
         expect(assigns(:re_privates).size).to eq 1
       end
+
+      it "returns geoscoped records" do
+        searched_record = create :re_private,
+                                 :active,
+                                 lat: 40.602088,
+                                 lng: -73.954382
+        create :re_private, :active
+        create :re_private, :active
+
+        get :index, within: 1, origin: "1970 East 18th str Brooklyn New York"
+
+        expect(assigns(:re_privates).size).to eq 1
+        expect(assigns(:re_privates)).to eq [searched_record]
+      end
     end
 
     #  todo: test sorting

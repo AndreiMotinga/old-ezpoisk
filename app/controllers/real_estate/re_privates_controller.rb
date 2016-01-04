@@ -13,6 +13,7 @@ class RealEstate::RePrivatesController < ApplicationController
                                                  :min_price,
                                                  :max_price,
                                                  :sort))
+    @re_privates = geo_scope(@re_privates) if geo_scoped_params?
     @total = @re_privates.size
     @re_privates = @re_privates.page(params[:page])
   end

@@ -87,6 +87,20 @@ describe RealEstate::ReCommercialsController do
       end
     end
 
+    it "returns geoscoped records" do
+      searched_record = create :re_commercial,
+                               :active,
+                               lat: 40.602088,
+                               lng: -73.954382
+      create :re_commercial, :active
+      create :re_commercial, :active
+
+      get :index, within: 1, origin: "1970 East 18th str Brooklyn New York"
+
+      expect(assigns(:re_commercials).size).to eq 1
+      expect(assigns(:re_commercials)).to eq [searched_record]
+    end
+
     #  todo: test sorting
     # describe "Sorting" do
     #   context "ascending" do

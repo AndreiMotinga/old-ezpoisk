@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160103224741) do
+ActiveRecord::Schema.define(version: 20160104173336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20160103224741) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "lng"
     t.integer  "zip"
   end
 
@@ -86,8 +86,8 @@ ActiveRecord::Schema.define(version: 20160103224741) do
     t.integer  "price",       default: 0,     null: false
     t.integer  "space",       default: 0,     null: false
     t.integer  "zip"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "lng"
     t.boolean  "active",      default: false
     t.integer  "user_id"
     t.integer  "state_id"
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20160103224741) do
     t.integer  "space",       default: 0,     null: false
     t.integer  "rooms",       default: 0,     null: false
     t.integer  "zip"
-    t.float    "latitude"
-    t.float    "longitude"
+    t.float    "lat"
+    t.float    "lng"
     t.boolean  "active",      default: false
     t.boolean  "fee",         default: false
     t.text     "description", default: ""

@@ -6,10 +6,16 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     site { Faker::Internet.url("example.com") }
     description { Faker::Lorem.paragraph(5) }
+    lat{ Faker::Address.latitude }
+    lng{ Faker::Address.longitude }
+    zip { Faker::Address.zip }
 
     association :user
     association :state
     association :city
-    # active true
+
+    trait :active do
+      active true
+    end
   end
 end

@@ -30,7 +30,7 @@ gem "haml-rails"
 gem "sidekiq"
 gem "sinatra", require: nil
 
-gem "geokit"
+gem "geokit-rails"
 gem "gmaps4rails"
 gem "underscore-rails"
 

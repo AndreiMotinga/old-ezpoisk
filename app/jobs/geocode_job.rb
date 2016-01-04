@@ -14,8 +14,8 @@ class GeocodeJob
   end
 
   def update_post(info)
-    @post.latitude = info.lat
-    @post.longitude = info.lng
+    @post.lat= info.lat
+    @post.lng= info.lng
     @post.zip = info.zip.to_i
     @post.save
   end

@@ -1,4 +1,5 @@
 class ReCommercial < ActiveRecord::Base
+  acts_as_mappable
   include Filterable
   include ViewHelpers
 

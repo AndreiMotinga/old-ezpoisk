@@ -3,8 +3,8 @@ FactoryGirl.define do
     category { %w(office retail industrial parking other).sample }
     price { rand(2000) }
     space { Faker::Number.number(4).to_i }
-    latitude { Faker::Address.latitude }
-    longitude { Faker::Address.longitude }
+    lat { Faker::Address.latitude }
+    lng { Faker::Address.longitude }
     active { [true, false].sample }
     description { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }

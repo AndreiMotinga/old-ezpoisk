@@ -2,6 +2,24 @@
            method: :get,
            class: "form-horizontal"
 
+%h5
+  Введите адрес и радиус поиска (миль)
+.form-group
+  .col-sm-10
+    = text_field_tag :origin,
+                     params[:origin],
+                     placeholder: '1970 East 18 Brooklyn New York или 11229',
+                     class: "form-control"
+  .col-sm-2
+    = select_tag :within,
+      options_for_select(distance_array,
+                         params[:within]),
+                         include_blank: true,
+                         class: "form-control"
+
+%hr
+%h5
+  Либо выберите штат и город
 .form-group
   = label_tag "Штат", nil,  class: "col-sm-3 control-label"
   .col-sm-5
