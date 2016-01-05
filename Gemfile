@@ -37,6 +37,9 @@ gem "underscore-rails"
 
 gem "summernote-rails"
 
+gem "rails_admin"
+gem "bootstrap-wysihtml5-rails"
+
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"

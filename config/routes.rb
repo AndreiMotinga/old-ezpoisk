@@ -3,6 +3,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
   devise_for :users
   get "update_cities/:id", to: "cities#update_cities"

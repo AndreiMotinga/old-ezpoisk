@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160104190232) do
+ActiveRecord::Schema.define(version: 20160105174524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,12 +44,14 @@ ActiveRecord::Schema.define(version: 20160104190232) do
     t.string   "subcategory"
     t.text     "body"
     t.integer  "user_id"
-    t.integer  "picture_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
-  add_index "posts", ["picture_id"], name: "index_posts_on_picture_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "re_agencies", force: :cascade do |t|
@@ -154,7 +156,6 @@ ActiveRecord::Schema.define(version: 20160104190232) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "cities", "states"
-  add_foreign_key "posts", "pictures"
   add_foreign_key "posts", "users"
   add_foreign_key "re_agencies", "cities"
   add_foreign_key "re_agencies", "states"

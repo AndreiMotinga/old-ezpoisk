@@ -4,14 +4,9 @@
     - @news_posts.each_with_index do |post, i|
       %div{:class => "item #{"active" if i == 0}"}
         = link_to news_path post do
-          - if post.picture.try(:url)
-            = image_tag post.picture.try(:url),    |
-                        alt: "#{post.title}-image",          |
-                        class: "carousel-image center-block" |
-          - else
-            = image_tag 'community.jpg',           |
-                        alt: 'Placeholder-image',            |
-                        class: "carousel-image center-block" |
+          = image_tag post.logo.url(:large),
+                      alt: "#{post.title}-image",
+                      class: "carousel-image center-block"
         .news-caption
           %h4= link_to post.title, news_path(post)
   / Wrapper for slides
