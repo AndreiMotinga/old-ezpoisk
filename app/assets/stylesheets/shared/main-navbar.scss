@@ -2,24 +2,26 @@
   letter-spacing: 1px;
   float: left;
   font-size: 25px;
-  line-height: 50px;
-  height: 70px;
+  // line-height: 50px;
+  // height: 70px;
 }
 
 .navbar-main .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  background-color: transparent;
+  // background-color: transparent;
 }
 
 .navbar-main {
-  background-color: transparent;
-//   min-height: 70px;
+  background-color: white;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
 }
 
 .navbar-main .navbar-nav > li > a {
-  padding-top: 0px;
-  padding-bottom: 0px;
-  line-height: 80px;
-  font-size: 16px;
+  // padding-top: 0px;
+  // padding-bottom: 0px;
+  // line-height: 80px;
+  // font-size: 16px;
 }
 
 @media (max-width: 767px) {

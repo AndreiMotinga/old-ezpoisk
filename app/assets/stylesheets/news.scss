@@ -12,6 +12,7 @@
   }
 }
 .news-caption {
+  width: 100%;
   position: absolute;
   bottom: 0px;
   z-index: 10;
@@ -27,4 +28,12 @@
     color: #333333;
     text-decoration: none;
   }
+}
+
+.home-news-thumb {
+  margin-top: 10px;
+}
+
+.post-title {
+  margin-bottom: 0px;
 }

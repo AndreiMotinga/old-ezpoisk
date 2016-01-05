@@ -1,9 +1,15 @@
 .row
-  .col-lg-7.col-md-7.col-sm-6
+  .col-lg-12
     = render 'home/news/carousel'
-  .col-lg-5.col-md-5.col-sm-6
+.row
+  .col-lg-12.col-md-12
     - @news_posts.each do |post|
-      %h5.news-title
-        = link_to post.title, news_path(post)
+      = render "home/news/post", post: post
       %hr.post-devider/
+%br/
+.row
+  .col-md-12.text-center
+    = link_to "Читать дальше",
+              news_index_path,
+              class: "btn btn-default btn-large btn-big"
 %br/

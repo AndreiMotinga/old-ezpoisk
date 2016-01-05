@@ -1,38 +1,39 @@
-= render 'home/sidebar/new_post_modal'
-%br/
-%br/
-%ul.nav.nav-sidebar
-  %li
-    = link_to real_estate_re_agencies_path do
-      %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
-      = t(:real_estate)
+.fixed
+  = render 'home/sidebar/new_post_modal'
+  %br/
+  %br/
+  %ul.nav.nav-sidebar
+    %li
+      = link_to real_estate_re_agencies_path do
+        %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
+        = t(:real_estate)
 
-  / <li>
-  / <a href="/jobs/agencies">
-  / <span class="glyphicon glyphicon&#45;th&#45;list" aria&#45;hidden="true"></span>
-  / РАБОТА
-  / </a>
-  / </li>
-  / <li>
-  / <a href="/services/posts?category=lawers">
-  / <span class="glyphicon glyphicon&#45;folder&#45;open" aria&#45;hidden="true"></span>
-  / УСЛУГИ
-  / </a>
-  / </li>
-  / <li>
-  / <a href="/items/posts"><span class="glyphicon glyphicon&#45;search" aria&#45;hidden="true"></span>
-  / ПРОДАЕТСЯ
-  / </a>
-  / </li>
-  / <li>
-  / <a href="/news"><span class="glyphicon glyphicon&#45;globe" aria&#45;hidden="true"></span>
-  / НОВОСТИ
-  / </a>
-  / </li>
-  / <br>
-  /
-  / <li>
-  / <a href="/dashboard"><span class="glyphicon glyphicon&#45;user" aria&#45;hidden="true"></span>
-  / АККАУНТ
-  / </a>
-  / </li>
+    / <li>
+    / <a href="/jobs/agencies">
+    / <span class="glyphicon glyphicon&#45;th&#45;list" aria&#45;hidden="true"></span>
+    / РАБОТА
+    / </a>
+    / </li>
+    / <li>
+    / <a href="/services/posts?category=lawers">
+    / <span class="glyphicon glyphicon&#45;folder&#45;open" aria&#45;hidden="true"></span>
+    / УСЛУГИ
+    / </a>
+    / </li>
+    / <li>
+    / <a href="/items/posts"><span class="glyphicon glyphicon&#45;search" aria&#45;hidden="true"></span>
+    / ПРОДАЕТСЯ
+    / </a>
+    / </li>
+    / <li>
+    / <a href="/news"><span class="glyphicon glyphicon&#45;globe" aria&#45;hidden="true"></span>
+    / НОВОСТИ
+    / </a>
+    / </li>
+    / <br>
+    /
+    / <li>
+    / <a href="/dashboard"><span class="glyphicon glyphicon&#45;user" aria&#45;hidden="true"></span>
+    / АККАУНТ
+    / </a>
+    / </li>

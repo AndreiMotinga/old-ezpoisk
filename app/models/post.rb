@@ -11,7 +11,8 @@ class Post < ActiveRecord::Base
   scope :news, -> { where(category: "news") }
 
   has_attached_file :logo,
-                    styles: { large: "900x600" },
-                    default_url: "missing.png"
+    styles: { thumb: "300x150", large: "900x600" },
+    default_url: "community.jpg"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+  validates_attachment_presence :logo
 end
