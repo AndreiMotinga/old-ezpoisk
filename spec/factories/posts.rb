@@ -8,5 +8,13 @@ FactoryGirl.define do
       category "real_estate"
       subcategory "lend"
     end
+
+    trait :politics do
+      category "politics"
+    end
+
+    trait :sport do
+      category "sport"
+    end
   end
 end

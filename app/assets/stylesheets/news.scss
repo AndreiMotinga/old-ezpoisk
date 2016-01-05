@@ -1,14 +1,8 @@
-/* News carousel */
-.news {
-  .title {
-    padding-left: 30px;
-    a {
-      color: #333333;
-      text-decoration: none;
-    }
-  }
-  .img-responsive {
-    padding-left: 10px;
+.title {
+  font-family: 'Lora', 'Times New Roman', serif;
+  a {
+    color: $dark;
+    text-decoration: none;
   }
 }
 .news-caption {
@@ -36,4 +30,7 @@
 
 .post-title {
   margin-bottom: 0px;
+}
+.news-sidebar > li > a {
+ padding: 1px 15px;
 }

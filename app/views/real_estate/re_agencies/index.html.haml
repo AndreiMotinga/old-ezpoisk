@@ -6,8 +6,13 @@
   %hr/
   - @re_agencies.each do |re_agency|
     = render 'dashboard/re_agencies/re_agency', re_agency: re_agency
-.row
-  %hr/
-  .text-center
-    = paginate @re_agencies, :theme => 'twitter-bootstrap-3'
-  %hr/
+
+- if @re_agencies.empty?
+  .row
+    = render "shared/no_posts_message"
+- else
+  .row
+    %hr/
+    .text-center
+      = paginate @re_agencies, :theme => 'twitter-bootstrap-3'
+    %hr/

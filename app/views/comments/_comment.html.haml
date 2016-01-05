@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading
+    %strong= comment.user.name
+    .pull-right
+      = comment.created_at.strftime("%b %d, %Y")
+  .panel-body
+    %p= raw comment.body

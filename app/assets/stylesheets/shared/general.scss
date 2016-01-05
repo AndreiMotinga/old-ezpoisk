@@ -29,3 +29,12 @@ a.active {
 .fixed {
   position: fixed;
 }
+
+.footer {
+  background-color: $lightgrey;
+}
+
+footer a {
+  text-decoration: none;
+  color: $grey;
+}

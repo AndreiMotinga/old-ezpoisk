@@ -1,4 +1,16 @@
 .news_post
-  %h1= @post.title
-  %p
-    = @post.body
+  %h1.title= @post.title
+  = raw @post.body
+%br/
+%br/
+%br/
+
+.row
+  .col-md-12
+    = render "news/add_comment_modal"
+
+%br/
+%br/
+.row
+  .col-md-8
+    = render @post.comments

@@ -1,0 +1,19 @@
+/ Button trigger modal
+%button.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+  Добавить Коментарий
+/ Modal
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Modal title
+      .modal-body
+        = form_for(Comment.new) do |f|
+          = hidden_field_tag :post_id, @post.id
+          = f.text_area :body, class: "summernote"
+          = f.submit "Добавить", class: "btn btn-primary"
+
+
+

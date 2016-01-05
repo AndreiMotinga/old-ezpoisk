@@ -7,8 +7,14 @@
   - @re_commercials.each do |re_commercial|
     = render 'dashboard/re_commercials/re_commercial',
              re_commercial: re_commercial
-.row
-  %hr/
-  .text-center
-    = paginate @re_commercials, :theme => 'twitter-bootstrap-3'
-  %hr/
+
+
+- if @re_commercials.empty?
+  .row
+    = render "shared/no_posts_message"
+- else
+  .row
+    %hr/
+    .text-center
+      = paginate @re_commercials, :theme => 'twitter-bootstrap-3'
+    %hr/

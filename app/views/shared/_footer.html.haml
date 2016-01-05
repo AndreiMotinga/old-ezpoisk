@@ -1,3 +1,24 @@
-%footer
-  %p.copyright.text-muted
-    Copyright © Chogde #{Time.now.year}
+%footer.text-muted
+  %br/
+  .col-md-4
+    .text-right
+      %ul.list-unstyled
+        %li
+          -# = link_to 'Недвижимость', real_estate_index_path
+          = link_to 'Недвижимость', real_estate_re_agencies_path
+        %li
+          = link_to 'Новости', news_index_path
+        %li
+          = link_to 'Контакты', new_message_path
+
+  .col-md-6
+    %p.copyright
+      %strong Chogde
+      это комьюнити портал созданный с целью сблизить русскоговорящих людей
+      проживающих в США. Здесь вы сможете найти полезную и интересную информацию.
+      Ищите ли вы жилье, какой либо вид услуг или же хотите рассказать о своем бизнесе -
+      все это Вы можете сделать здесь. Если у вас есть идеи о том как можно
+      сделать этот сайт лучше - пожалуйста пишите нам. Мы действитльено ценим ваш отзыв.
+    %p
+      Copyright © Chogde #{Time.now.year}
+  %br/

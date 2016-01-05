@@ -1,6 +1,16 @@
-.row.news
-  .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
-    - @posts.each do |post|
-      = render 'news/posts', post: post
-    .text-center
-      = paginate @posts, :theme => 'twitter-bootstrap-3'
+
+/ sidebar
+.col-lg-2.col-md-2.hidden-sm.hidden-xs
+  = render 'news/sidebar'
+
+/ Main
+.col-lg-7.col-md-7.col-sm-12
+  = render "news/posts"
+.col-lg-3.col-md-3.hidden-sm.hidden-xs
+  %p
+    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
+    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
+    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
+    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
+    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
+    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.

@@ -2,6 +2,6 @@
   %div.col-lg-3
     = image_tag post.logo.url(:thumb),
       class: "img-responsive center-block home-news-thumb"
-  %h4.post-title= link_to post.title
+  %h4.post-title= link_to post.title, news_path(post)
   %p
     = raw post.body.truncate(200)

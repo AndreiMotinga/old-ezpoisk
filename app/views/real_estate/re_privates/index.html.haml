@@ -6,8 +6,12 @@
   %hr/
   - @re_privates.each do |re_private|
     = render 'dashboard/re_privates/re_private', re_private: re_private
-.row
-  %hr/
-  .text-center
-    = paginate @re_privates, :theme => 'twitter-bootstrap-3'
-  %hr/
+- if @re_privates.empty?
+  .row
+    = render "shared/no_posts_message"
+- else
+  .row
+    %hr/
+    .text-center
+      = paginate @re_privates, :theme => 'twitter-bootstrap-3'
+    %hr/

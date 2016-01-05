@@ -1,5 +1,10 @@
 .fixed
-  = render 'home/sidebar/new_post_modal'
+  / Button trigger modal
+  %button.btn.btn-success{ "data-target" => "#new",
+                           "data-toggle" => "modal",
+                           :role => "button" }
+    = t(:new_post)
+
   %br/
   %br/
   %ul.nav.nav-sidebar
@@ -7,6 +12,16 @@
       = link_to real_estate_re_agencies_path do
         %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
         = t(:real_estate)
+    %li
+      = link_to real_estate_re_agencies_path do
+        %span.glyphicon.glyphicon-globe{"aria-hidden" => "true"}
+        Новости
+
+    / <li>
+    / <a href="/news"><span class="glyphicon glyphicon&#45;globe" aria&#45;hidden="true"></span>
+    / НОВОСТИ
+    / </a>
+    / </li>
 
     / <li>
     / <a href="/jobs/agencies">
@@ -23,11 +38,6 @@
     / <li>
     / <a href="/items/posts"><span class="glyphicon glyphicon&#45;search" aria&#45;hidden="true"></span>
     / ПРОДАЕТСЯ
-    / </a>
-    / </li>
-    / <li>
-    / <a href="/news"><span class="glyphicon glyphicon&#45;globe" aria&#45;hidden="true"></span>
-    / НОВОСТИ
     / </a>
     / </li>
     / <br>

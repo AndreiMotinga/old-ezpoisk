@@ -1,6 +1,9 @@
 -# requiring these files form assets dir doesn't seem to work
-
-%script{ :src => "https://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.min.js" }
+-# %script{ :src => "https://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.min.js" }
 %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/summernote/0.7.1/summernote.min.css", :rel => "stylesheet", :type => "text/css"}/
+:css
+  .note-group-select-from-files {
+    display: none;
+  }
 
 = form.text_area :body, class: "summernote"
