@@ -93,6 +93,8 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-async (0.10.1)
+      devise (~> 3.2)
     devise-i18n (0.12.1)
     devise-i18n-views (0.3.7)
     diff-lcs (1.2.5)
@@ -359,6 +361,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
+  devise-async
   devise-i18n
   devise-i18n-views
   dropzonejs-rails
@@ -382,6 +385,7 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails_12factor
   rails_admin
+  redis
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers

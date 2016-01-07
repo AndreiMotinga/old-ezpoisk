@@ -12,6 +12,10 @@ gem "bootstrap-sass"
 gem "devise"
 gem 'devise-i18n-views'
 gem 'devise-i18n'
+gem "devise-async"
+
+gem 'redis'
+
 gem "bootstrap_form"
 
 gem "kaminari"
