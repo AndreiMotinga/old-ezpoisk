@@ -17,9 +17,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  #todo: refactor
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :phone, :email, :password, :password_confirmation, :remember_me) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :phone, :email, :password, :password_confirmation, :current_password) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(fields) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(fields) }
+  end
+
+  def fields
+    [:name, :phone, :email, :password, :password_confirmation, :remember_me]
   end
 end

@@ -1,0 +1,39 @@
+.col-lg-6.col-md-6.col-12-sm
+  = bootstrap_form_for([:dashboard, @job]) do |f|
+    / details
+    .field
+      = f.text_field :title, label: '* Заголовок'
+    .field
+      = f.select :category,
+                 options_for_select(["требуется", "ищу"], @job.category),
+                 include_blank: true,
+                 label: '* Раздел'
+    .field
+      = f.select :subcategory,
+                 options_for_select(JobSubcategories, @job.subcategory),
+                 include_blank: true,
+                 label: '* Категория'
+
+    / address
+    .field
+      = f.select :state_id,
+                 State.all.collect {|s| [ s.name, s.id ] },
+                 include_blank: true,
+                 label: '* Штат'
+    .field
+      - if @job.state
+        = f.select :city_id,
+                   @job.state.cities.collect { |c| [c.name, c.id] },
+                   label: '* Город'
+      - else
+        = f.select :city_id, [], label: '* Город'
+    .field
+      = f.text_field :phone, label: 'Телефон'
+    .field
+      = f.text_field :email
+
+    .field
+      = f.check_box :active, label: 'Активно?'
+    .actions
+      = f.submit "Сохранить", id: "details", class: "btn btn-primary"
+    %br/

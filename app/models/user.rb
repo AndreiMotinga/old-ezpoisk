@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   has_many :re_agencies
   has_many :re_privates
   has_many :re_commercials
+
+  # add test
+  has_many :job_agencies
+  has_many :jobs
 end

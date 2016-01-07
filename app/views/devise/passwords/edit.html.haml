@@ -1,4 +1,3 @@
-/ todo: after deploy:  -  improve style of the view
 .col-md-8
   %h2= t('.change_your_password', :default => 'Change your password')
   = bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|

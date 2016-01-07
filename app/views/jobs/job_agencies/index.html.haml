@@ -1,0 +1,18 @@
+.row
+  %h4.pull-right
+    %a= "Всего #{@total}"
+  = render 'jobs/job_agencies/search_modal'
+.row
+  %hr/
+  - @job_agencies.each do |job_agency|
+    = render 'dashboard/job_agencies/job_agency', job_agency: job_agency
+
+- if @job_agencies.empty?
+  .row
+    = render "shared/no_posts_message"
+- else
+  .row
+    %hr/
+    .text-center
+      = paginate @job_agencies, :theme => 'twitter-bootstrap-3'
+    %hr/

@@ -102,18 +102,6 @@ describe RealEstate::ReCommercialsController do
     end
 
     #  todo: test sorting
-    # describe "Sorting" do
-    #   context "ascending" do
-    #     it "by price" do
-    #       first = create :re_commercial, :active, price: 1000
-    #       second = create :re_commercial, :active, price: 2000
-    #       third  = create :re_commercial, :active, price: 3000
-    #
-    #       get :index, sort_type: "price",
-    #
-    #     end
-    #   end
-    # end
   end
 
   describe "GET #show" do

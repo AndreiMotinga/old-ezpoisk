@@ -18,12 +18,20 @@ Rails.application.routes.draw do
     resources :re_agencies, except: :show
     resources :re_privates, except: :show
     resources :re_commercials, except: :show
+
+    resources :job_agencies, except: :show
+    resources :jobs, except: :show
   end
 
   namespace :real_estate do
     resources :re_agencies, only: [:index, :show]
     resources :re_privates, only: [:index, :show]
     resources :re_commercials, only: [:index, :show]
+  end
+
+  namespace :jobs do
+    resources :job_agencies, only: [:index, :show]
+    resources :posts, only: [:index, :show]
   end
 
   root to: "home#index"

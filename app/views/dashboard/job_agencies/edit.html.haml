@@ -1,0 +1,52 @@
+#pictures-data{ "data-id" => "#{@job_agency.id}",
+                "data-type" => "#{@job_agency.class.to_s}" }
+
+.row
+  .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1.hidden-xs
+    %br/
+    = render 'dashboard/job_agencies/job_agency', job_agency: @job_agency
+%br/
+
+.row
+  .col-lg-12
+    / Nav tabs
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active{:role => "presentation"}
+        %a{ "aria-controls" => "form",
+            "data-toggle" => "tab",
+            :href => "#form",
+            :role => "tab" }
+          Детали
+      %li{ :role => "presentation" }
+        %a{ "aria-controls" => "messages",
+            "data-toggle" => "tab",
+            :href => "#description",
+            :role => "tab" }
+          Описание
+      %li{ :role => "presentation" }
+        %a{ "aria-controls" => "messages",
+            "data-toggle" => "tab",
+            :href => "#pictures",
+            :role => "tab" }
+          Фотографии
+    / Nav tabs
+
+    %br/
+
+    / Tab panes
+    .tab-content
+      / form
+      #form.tab-pane.fade.in.active{:role => "tabpanel"}
+        = render 'form'
+
+      / description
+      #description.tab-pane.fade{:role => "tabpanel"}
+        .col-lg-12
+          = render "shared/dashboard/description", post: @job_agency
+
+      / pictures
+      #pictures.tab-pane.fade{:role => "tabpanel"}
+        .col-lg-12
+          = render "dashboard/job_agencies/logo"
+
+  %hr/

@@ -140,19 +140,7 @@ describe RealEstate::RePrivatesController do
       end
     end
 
-    #  todo: test sorting
-    # describe "Sorting" do
-    #   context "ascending" do
-    #     it "by price" do
-    #       first = create :re_private, :active, price: 1000
-    #       second = create :re_private, :active, price: 2000
-    #       third  = create :re_private, :active, price: 3000
-    #
-    #       get :index, sort_type: "price",
-    #
-    #     end
-    #   end
-    # end
+    # todo: test sorting
   end
 
   describe "GET #show" do

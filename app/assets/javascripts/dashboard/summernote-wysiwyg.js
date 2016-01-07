@@ -11,11 +11,11 @@ $(document).ready(function() {
         tabSize: 2,
         theme: "solarized light"
       },
+      // doesn't work
       onImageUpload: function(files) {
         return sendFile(files[0], type, id);
       }
     });
-
 
     function sendFile(file, type, id) {
       var data = new FormData();

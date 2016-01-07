@@ -1,0 +1,30 @@
+.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
+  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
+    %br/
+    = image_tag job.logo.url(:medium),
+                alt: job.logo.url(:medium),
+                class: 'img-responsive center-block'
+
+  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+    / line 1
+    %h3
+      = link_to job.title, jobs_post_path(job)
+
+    / line 2
+    %strong= job.subcategory
+    %hr.post-devider/
+
+    /line 3
+    #{job.city.name},  #{job.state.name}
+    %span.pull-right
+      %span.glyphicon.glyphicon-phone
+      = job.phone
+    %hr.post-devider/
+
+    / line 4
+    - unless job.email.empty?
+      %span= job.email
+      %hr.post-devider/
+
+.row
+%br/

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160106203329) do
+ActiveRecord::Schema.define(version: 20160107213522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,56 @@ ActiveRecord::Schema.define(version: 20160106203329) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "job_agencies", force: :cascade do |t|
+    t.string   "title"
+    t.string   "street"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "site"
+    t.text     "description"
+    t.boolean  "active"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "user_id"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+  end
+
+  add_index "job_agencies", ["city_id"], name: "index_job_agencies_on_city_id", using: :btree
+  add_index "job_agencies", ["state_id"], name: "index_job_agencies_on_state_id", using: :btree
+  add_index "job_agencies", ["user_id"], name: "index_job_agencies_on_user_id", using: :btree
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "category"
+    t.string   "subcategory"
+    t.text     "description"
+    t.boolean  "active"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "user_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
+  end
+
+  add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
+  add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
+  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
@@ -178,6 +228,12 @@ ActiveRecord::Schema.define(version: 20160106203329) do
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "job_agencies", "cities"
+  add_foreign_key "job_agencies", "states"
+  add_foreign_key "job_agencies", "users"
+  add_foreign_key "jobs", "cities"
+  add_foreign_key "jobs", "states"
+  add_foreign_key "jobs", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "re_agencies", "cities"

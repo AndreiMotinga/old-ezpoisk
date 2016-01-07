@@ -29,6 +29,21 @@
               = link_to t(:commercial), real_estate_re_commercials_path
         / real_estate
 
+        / jobs
+        %li.dropdown
+          %a.dropdown-toggle{ "aria-expanded" => "false",
+                              "aria-haspopup" => "true",
+                              "data-toggle" => "dropdown",
+                              :role => "button"}
+            Работа
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to t(:agencies), jobs_job_agencies_path
+            %li
+              = link_to t(:private), jobs_posts_path
+        / jobs
+
         / news
         %li
           = link_to(t(:news), news_index_path)

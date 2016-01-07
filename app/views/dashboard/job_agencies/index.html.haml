@@ -1,0 +1,24 @@
+= link_to 'Новое агенство',
+          new_dashboard_job_agency_path,
+          class: "btn btn-success"
+
+- if @job_agencies.any?
+  %table.table
+    %thead
+      %tr
+        %th{:colspan => "4"}
+    %tbody
+      - @job_agencies.each do |job_agency|
+        %tr
+          %td
+            = link_to job_agency.title, edit_dashboard_job_agency_path(job_agency)
+          %td= job_agency.active? ? "Активно" : "Не актвино"
+          %td= link_to 'Редактировать', edit_dashboard_job_agency_path(job_agency)
+          %td= link_to 'Удалить',
+                        dashboard_job_agency_path(job_agency),
+                        method: :delete,
+                        data: { confirm: I18n.t(:confirm) }
+- else
+  %hr/
+  %p
+    Вы пока не создали обьявлений

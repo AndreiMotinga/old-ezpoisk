@@ -34,6 +34,21 @@
               = link_to t(:commercial), dashboard_re_commercials_path
         / real_estate
 
+        / jobs
+        %li.dropdown
+          %a.dropdown-toggle{ "aria-expanded" => "false",
+                              "aria-haspopup" => "true",
+                              "data-toggle" => "dropdown",
+                              :role => "button"}
+            Работа
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              = link_to t(:agencies), dashboard_job_agencies_path
+            %li
+              = link_to t(:private), dashboard_jobs_path
+        / jobs
+
         %li
           = link_to "Профиль", edit_user_registration_path
     / /.navbar-collapse

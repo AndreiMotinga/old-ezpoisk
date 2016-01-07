@@ -1,0 +1,25 @@
+/ Button trigger modal
+%a.btn.btn-primary{"data-target" => "#pirvateSearch", "data-toggle" => "modal", :role => "button"}
+  Расширенный поиск
+
+/ Modal
+#pirvateSearch.modal.fade{ "aria-labelledby" => "myModalLabel",
+                           :role => "dialog",
+                           :tabindex => "-1" }
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Расширенный поиск
+
+      .modal-body
+        = render 'jobs/job_agencies/search_form'
+      / model body
+
+      / footer
+      .modal-footer
+        = link_to "Сброс",
+          jobs_job_agencies_path,
+          class: "btn btn-danger pull-left"
+        = submit_tag "Поиск", name: nil, class: "btn btn-primary"
