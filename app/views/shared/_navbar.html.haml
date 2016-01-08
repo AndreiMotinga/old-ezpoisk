@@ -29,6 +29,17 @@
               = link_to t(:commercial), real_estate_re_commercials_path
         / real_estate
 
+        / services
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+                             "data-toggle" => "dropdown", :role => "button"}
+            Услуги
+            %span.caret
+          %ul.dropdown-menu
+            - ServiceCategories.keys.each do |category|
+              %li= link_to category, services_path(category: category)
+        / services
+
         / jobs
         %li.dropdown
           %a.dropdown-toggle{ "aria-expanded" => "false",

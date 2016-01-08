@@ -15,4 +15,5 @@ class User < ActiveRecord::Base
   has_many :job_agencies
   has_many :jobs
   has_many :sales
+  has_many :services
 end

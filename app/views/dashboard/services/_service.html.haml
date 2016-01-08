@@ -1,0 +1,31 @@
+.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
+  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
+    %br/
+    = image_tag service.logo.url(:medium),
+                alt: service.logo.url(:medium),
+                class: 'img-responsive center-block'
+
+  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+    / line 1
+    %h3.text-center
+      = link_to service.title, service_path(service)
+
+    / line 2
+    %strong
+      %a{:href => "http://#{service.site}", :target => "blank"}
+        = service.site
+    %hr.post-devider/
+
+    / line 3
+    %span= service.street
+    %hr.post-devider/
+
+    / line 4
+    %span= service.email
+    %span.pull-right
+      %span.glyphicon.glyphicon-phone
+        = service.phone
+    %hr.post-devider/
+
+.row
+%br/

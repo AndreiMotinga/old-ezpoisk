@@ -1,0 +1,5 @@
+.fixed
+  %ul.nav.news-sidebar
+    - ServiceCategories.keys.each do |category|
+      %li
+        = link_to category, services_path(category: category)

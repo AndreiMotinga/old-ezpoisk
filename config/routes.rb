@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   get "update_cities/:id", to: "cities#update_cities"
+  get "update_subcategory/:id", to: "subcategories#update_subcategory"
   resources :news, only: [:index, :show]
   resources :comments, only: [:create]
   resources :messages, only: [:new, :create]
@@ -23,9 +24,12 @@ Rails.application.routes.draw do
     resources :jobs, except: :show
 
     resources :sales, except: :show
+
+    resources :services, except: :show
   end
 
   resources :sales, only: [:index, :show]
+  resources :services, only: [:index, :show]
 
   namespace :real_estate do
     resources :re_agencies, only: [:index, :show]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108000345) do
+ActiveRecord::Schema.define(version: 20160108182407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -221,6 +221,34 @@ ActiveRecord::Schema.define(version: 20160108000345) do
   add_index "sales", ["state_id"], name: "index_sales_on_state_id", using: :btree
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
+  create_table "services", force: :cascade do |t|
+    t.string   "title"
+    t.string   "street"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "site"
+    t.string   "category"
+    t.string   "subcategory"
+    t.text     "description"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
+  end
+
+  add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree
+  add_index "services", ["state_id"], name: "index_services_on_state_id", using: :btree
+  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.string "name"
   end
@@ -269,4 +297,7 @@ ActiveRecord::Schema.define(version: 20160108000345) do
   add_foreign_key "sales", "cities"
   add_foreign_key "sales", "states"
   add_foreign_key "sales", "users"
+  add_foreign_key "services", "cities"
+  add_foreign_key "services", "states"
+  add_foreign_key "services", "users"
 end

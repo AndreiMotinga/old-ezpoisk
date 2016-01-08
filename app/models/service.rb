@@ -1,4 +1,4 @@
-class Job < ActiveRecord::Base
+class Service < ActiveRecord::Base
   acts_as_mappable
   include Filterable
   include ViewHelpers
@@ -20,8 +20,4 @@ class Job < ActiveRecord::Base
                     default_url: "missing.png"
   validates_attachment_content_type :logo,
                                     content_type: /\Aimage\/.*\Z/
-
-  def address
-    "#{city.name} #{state.name}, #{zip}"
-  end
 end
