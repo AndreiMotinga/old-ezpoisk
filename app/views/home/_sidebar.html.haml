@@ -13,13 +13,18 @@
         %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
         = t(:real_estate)
     %li
-      = link_to real_estate_re_agencies_path do
-        %span.glyphicon.glyphicon-globe{"aria-hidden" => "true"}
-        Новости
-    %li
       = link_to jobs_job_agencies_path do
         %span.glyphicon.glyphicon-th-list{"aria-hidden" => "true"}
         Работа
+    %li
+      = link_to news_index_path do
+        %span.glyphicon.glyphicon-globe{"aria-hidden" => "true"}
+        Новости
+    %li
+      = link_to sales_path do
+        %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+        Продается
+
 
     / <li>
     / <a href="/news"><span class="glyphicon glyphicon&#45;globe" aria&#45;hidden="true"></span>

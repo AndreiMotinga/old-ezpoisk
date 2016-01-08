@@ -14,4 +14,5 @@ class User < ActiveRecord::Base
   # add test
   has_many :job_agencies
   has_many :jobs
+  has_many :sales
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160107213522) do
+ActiveRecord::Schema.define(version: 20160108000345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -200,6 +200,27 @@ ActiveRecord::Schema.define(version: 20160107213522) do
   add_index "re_privates", ["state_id"], name: "index_re_privates_on_state_id", using: :btree
   add_index "re_privates", ["user_id"], name: "index_re_privates_on_user_id", using: :btree
 
+  create_table "sales", force: :cascade do |t|
+    t.string   "title"
+    t.string   "category"
+    t.string   "phone"
+    t.string   "email"
+    t.text     "description"
+    t.boolean  "active"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "user_id"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "zip"
+  end
+
+  add_index "sales", ["city_id"], name: "index_sales_on_city_id", using: :btree
+  add_index "sales", ["state_id"], name: "index_sales_on_state_id", using: :btree
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
+
   create_table "states", force: :cascade do |t|
     t.string "name"
   end
@@ -245,4 +266,7 @@ ActiveRecord::Schema.define(version: 20160107213522) do
   add_foreign_key "re_privates", "cities"
   add_foreign_key "re_privates", "states"
   add_foreign_key "re_privates", "users"
+  add_foreign_key "sales", "cities"
+  add_foreign_key "sales", "states"
+  add_foreign_key "sales", "users"
 end

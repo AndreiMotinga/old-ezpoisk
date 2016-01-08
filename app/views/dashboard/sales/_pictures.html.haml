@@ -1,0 +1,12 @@
+.row
+  = render "dashboard/sales/upload_modal"
+%br/
+.row
+  .col-lg-8
+    %table.table
+      %thead
+        %tr
+          %th{:colspan => "2"}
+            %tbody.pictures
+        = render @sale.pictures
+    %br/

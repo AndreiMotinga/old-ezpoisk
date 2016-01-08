@@ -21,7 +21,11 @@ Rails.application.routes.draw do
 
     resources :job_agencies, except: :show
     resources :jobs, except: :show
+
+    resources :sales, except: :show
   end
+
+  resources :sales, only: [:index, :show]
 
   namespace :real_estate do
     resources :re_agencies, only: [:index, :show]
