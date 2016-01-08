@@ -1,5 +1,9 @@
 FactoryGirl.define do
   factory :state do
-    name "New York"
+    name "Moldova"
+
+    trait :alabama do
+      name "Alabama"
+    end
   end
 end

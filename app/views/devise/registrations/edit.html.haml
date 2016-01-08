@@ -13,6 +13,12 @@
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p
         = t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}")
+
+    .field
+      = form_state_select(f)
+    .field
+      = form_city_select(f, @user)
+
     %div
       %i
         (#{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")})

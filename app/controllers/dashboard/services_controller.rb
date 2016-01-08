@@ -1,4 +1,3 @@
-# create tests
 class Dashboard::ServicesController < ApplicationController
   layout "dashboard"
   before_action :authenticate_user!
@@ -29,8 +28,11 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def update
+    return unless @service.user == current_user
     if @service.update(service_params)
-      GeocodeJob.perform_async(@service.id, "Service") if address_changed?
+      if address_changed?(@service, service_params)
+        GeocodeJob.perform_async(@service.id, "Service")
+      end
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else
@@ -40,18 +42,13 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def destroy
+    return unless @service.user == current_user
     @service.destroy
     redirect_to dashboard_services_url,
                 notice: I18n.t(:post_removed)
   end
 
   private
-
-  def address_changed?
-    return true if @service.street != service_params[:street]
-    return true if @service.state != service_params[:state]
-    return true if @service.city != service_params[:city]
-  end
 
   def set_service
     @service = Service.find(params[:id])

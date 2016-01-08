@@ -8,14 +8,18 @@
   .col-lg-8.col-md-8.col-sm-8.col-xs-12
     / line 1
     %h3
-      = link_to job.title, jobs_post_path(job)
+      = link_to job.title, jobs_job_path(job)
 
     / line 2
-    %strong= job.subcategory
+    %strong= job.post_type
+    %hr.post-devider/
+
+    / line 2
+    %strong= job.category
     %hr.post-devider/
 
     /line 3
-    #{job.city.name},  #{job.state.name}
+    -#style-refactor
     %span.pull-right
       %span.glyphicon.glyphicon-phone
       = job.phone

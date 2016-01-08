@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     post_id = params[:post_id]
     comment.post_id = post_id
-    comment.user_id = current_user.id
+    comment.user_id = current_user.try(:id)
     comment.save
     redirect_to news_path(post_id)
   end

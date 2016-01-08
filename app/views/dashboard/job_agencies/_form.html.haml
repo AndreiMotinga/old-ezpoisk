@@ -4,17 +4,9 @@
     .field
       = f.text_field :street, label: '* Улица'
     .field
-      = f.select :state_id,
-                 State.all.collect {|s| [ s.name, s.id ] },
-                 include_blank: true,
-                 label: '* Штат'
+      = form_state_select(f)
     .field
-      - if @job_agency.state
-        = f.select :city_id,
-                   @job_agency.state.cities.collect { |c| [c.name, c.id] },
-                   label: '* Город'
-      - else
-        = f.select :city_id, [], label: '* Город'
+      = form_city_select(f, @job_agency)
 
     / details
     .field
@@ -24,9 +16,11 @@
     .field
       = f.text_field :site, label: 'Сайт'
     .field
-      = f.text_field :email
+      = f.email_field :email
     .field
       = f.check_box :active, label: 'Активно?'
     .actions
-      = f.submit "Сохранить", id: "details", class: "btn btn-primary"
+      = f.submit "Сохранить",
+                 class: "btn btn-primary",
+                 id: "details-save-btn"
     %br/

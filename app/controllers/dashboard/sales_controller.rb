@@ -28,8 +28,11 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def update
+    return unless @sale.user == current_user
     if @sale.update(sale_params)
-      GeocodeJob.perform_async(@sale.id, "Sale") if address_changed?
+      if address_changed?(@sale, sale_params)
+        GeocodeJob.perform_async(@sale.id, "Sale")
+      end
       redirect_to edit_dashboard_sale_path(@sale),
                   notice: I18n.t(:post_saved)
     else
@@ -39,18 +42,13 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def destroy
+    return unless @sale.user == current_user
     @sale.destroy
     redirect_to dashboard_sales_path,
                 notice: I18n.t(:post_removed)
   end
 
   private
-
-  # move to ApplicationController
-  def address_changed?
-    return true if @sale.state != sale_params[:state]
-    return true if @sale.city != sale_params[:city]
-  end
 
   def set_sale
     @sale = Sale.find(params[:id])

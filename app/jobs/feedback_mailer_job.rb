@@ -2,7 +2,7 @@ class FeedbackMailerJob
   include Sidekiq::Worker
 
   def perform(id)
-    @message = Message.find(id)
-    FeedbackMailer.feedback_email(@message).deliver
+    @feedback = Feedback.find(id)
+    FeedbackMailer.feedback_email(@feedback).deliver
   end
 end

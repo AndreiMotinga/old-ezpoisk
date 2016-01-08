@@ -9,6 +9,12 @@
       = f.text_field :phone, label: "Телефон"
     %div
       = f.email_field :email
+
+    .field
+      = form_state_select(f)
+    .field
+      = form_city_select(f, @user)
+
     %div
       = f.password_field :password
     %div

@@ -1,34 +1,5 @@
 .fixed
   %ul.nav.news-sidebar
-    %li
-      = link_to "Авто", news_index_path(category: "авто")
-    %li
-      = link_to "Забавное", news_index_path(category: "забавное")
-    %li
-      = link_to "Здоровье", news_index_path(category: "здоровье")
-    %li
-      = link_to "Кино", news_index_path(category: "кино")
-    %li
-      = link_to "Музыка", news_index_path(category: "музыка")
-    %li
-      = link_to "Недвижимость", news_index_path(category: "недвижимость")
-    %li
-      = link_to "Погода", news_index_path(category: "погода")
-    %li
-      = link_to "Политика", news_index_path(category: "политика")
-    %li
-      = link_to "Путешествия", news_index_path(category: "путешествия")
-    %li
-      = link_to "Развитие", news_index_path(category: "развитие")
-    %li
-      = link_to "Семья", news_index_path(category: "семья")
-    %li
-      = link_to "Спорт", news_index_path(category: "спорт")
-    %li
-      = link_to "Стиль", news_index_path(category: "стиль")
-    %li
-      = link_to "Технологии", news_index_path(category: "технологии")
-    %li
-      = link_to "Финансы", news_index_path(category: "финансы")
-    %li
-      = link_to "Экономика", news_index_path(category: "экономика")
+    - NEWS_CATEGORIES.each do |category|
+      %li
+        = link_to category, news_index_path(category: category)

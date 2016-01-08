@@ -124,33 +124,29 @@ describe RealEstate::RePrivatesController do
 
         expect(assigns(:re_privates).size).to eq 1
       end
-
-      it "returns geoscoped records" do
-        searched_record = create :re_private,
-                                 :active,
-                                 lat: 40.602088,
-                                 lng: -73.954382
-        create :re_private, :active
-        create :re_private, :active
-
-        get :index, within: 1, origin: "1970 East 18th str Brooklyn New York"
-
-        expect(assigns(:re_privates).size).to eq 1
-        expect(assigns(:re_privates)).to eq [searched_record]
-      end
     end
 
     # todo: test sorting
   end
 
   describe "GET #show" do
-    it "renders the show template and assigns @re_private" do
-      re_private = create(:re_private)
+    it "renders the show template and assigns @re_private if its active" do
+      re_private = create(:re_private, :active)
 
       get :show, id: re_private.id
 
       expect(response).to render_template(:show)
       expect(assigns(:re_private)).to eq re_private
+      expect(flash[:alert]).to be nil
+    end
+
+    it "redirects to 404 if it's inactive" do
+      re_private = create(:re_private, active: false)
+
+      get :show, id: re_private.id
+
+      expect(response).to redirect_to real_estate_re_privates_path
+      expect(flash[:alert]).to eq I18n.t(:post_not_found)
     end
   end
 end

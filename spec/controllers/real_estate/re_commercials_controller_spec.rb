@@ -87,31 +87,27 @@ describe RealEstate::ReCommercialsController do
       end
     end
 
-    it "returns geoscoped records" do
-      searched_record = create :re_commercial,
-                               :active,
-                               lat: 40.602088,
-                               lng: -73.954382
-      create :re_commercial, :active
-      create :re_commercial, :active
-
-      get :index, within: 1, origin: "1970 East 18th str Brooklyn New York"
-
-      expect(assigns(:re_commercials).size).to eq 1
-      expect(assigns(:re_commercials)).to eq [searched_record]
-    end
-
     #  todo: test sorting
   end
 
-  describe "GET #show" do
-    it "renders the show template and assigns @re_commercial" do
-      re_commercial = create(:re_commercial)
+  describe "GET @show" do
+    it "renders the show template and assigns @re_commercial if its active" do
+      re_commercial = create(:re_commercial, :active)
 
       get :show, id: re_commercial.id
 
       expect(response).to render_template(:show)
       expect(assigns(:re_commercial)).to eq re_commercial
+      expect(flash[:alert]).to be nil
+    end
+
+    it "redirects to 404 if it's inactive" do
+      re_commercial = create(:re_commercial, active: false)
+
+      get :show, id: re_commercial.id
+
+      expect(response).to redirect_to real_estate_re_commercials_path
+      expect(flash[:alert]).to eq I18n.t(:post_not_found)
     end
   end
 end

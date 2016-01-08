@@ -27,7 +27,7 @@ describe Dashboard::ReAgenciesController do
 
   describe "POST #create" do
     it "creates re_agency" do
-      attrs = re_agency_attributes(user: @user)
+      attrs = attrs_with_state_and_city(:re_agency)
 
       post :create, re_agency: attrs
       re_agency = assigns(:re_agency)
@@ -42,8 +42,8 @@ describe Dashboard::ReAgenciesController do
 
   describe "PUT #update" do
     it "updates re_agency" do
-      re_agency = create(:re_agency)
-      attrs = re_agency_attributes(user: @user)
+      re_agency = create(:re_agency, user: @user)
+      attrs = attrs_with_state_and_city(:re_agency)
 
       put :update, id: re_agency.id,  re_agency: attrs
       updated_agency = assigns(:re_agency)
@@ -66,7 +66,7 @@ describe Dashboard::ReAgenciesController do
 
   describe "DELETE #destroy" do
     it "removes record" do
-      re_agency = create(:re_agency)
+      re_agency = create(:re_agency, user: @user)
 
       delete :destroy, id: re_agency.id
 
@@ -74,12 +74,4 @@ describe Dashboard::ReAgenciesController do
       expect(ReAgency.count).to be 0
     end
   end
-end
-
-def re_agency_attributes(user:)
-  attrs = attributes_for(:re_agency)
-  attrs[:state_id] = create(:state).id
-  attrs[:city_id] = create(:city).id
-  attrs[:user_id] = user.id
-  attrs
 end

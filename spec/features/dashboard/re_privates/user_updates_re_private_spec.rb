@@ -2,30 +2,54 @@ require "rails_helper"
 
 feature "user creates re_private" do
   scenario "successfully", js: true do
-    re_private = create :re_private
-    updated_re_private = build :re_private
-    state = State.create(name: "Alabama")
-    City.create(name: "Abbeville", state: state)
-    user = create :user
-    login_as(user, scope: :user)
+    create_alabama_and_abbeville
+    user = create_and_login_user
+    re_private = create :re_private, user: user
+    attrs = build :re_private
 
     visit edit_dashboard_re_private_path re_private
 
-    fill_in "Улица", with: updated_re_private.street
-    select("аренда", from: "Тип обьявления")
-    select("помесячно", from: "Продолжительность")
-    fill_in "Квартира", with: updated_re_private.apt
-    fill_in "Телефон", with: updated_re_private.phone
-    fill_in "Цена", with: updated_re_private.price
-    fill_in "Ванные", with: updated_re_private.baths
-    fill_in "Площадь", with: updated_re_private.space
-    fill_in "Комнат", with: updated_re_private.rooms
+    fill_in "Улица", with: attrs.street
+    select(attrs.post_type, from: "Тип обьявления")
+    select(attrs.duration, from: "Продолжительность")
+    fill_in "Телефон", with: attrs.phone
+    fill_in "Цена", with: attrs.price
+    fill_in "Ванные", with: attrs.baths
+    fill_in "Площадь", with: attrs.space
+    fill_in "Комнат", with: attrs.rooms
     check("Активно?")
     check("Комиссия")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    click_on "Сохранить"
 
-    expect(page).to have_content updated_re_private.street
+    click_on "details-save-btn"
+
+    expect(page).to have_content I18n.t(:post_saved)
+    re_private.reload
+    expect(re_private.street).to eq attrs.street
+    expect(re_private.post_type).to eq attrs.post_type
+    expect(re_private.duration).to eq attrs.duration
+    expect(re_private.phone).to eq attrs.phone
+    expect(re_private.price).to eq attrs.price
+    expect(re_private.baths).to eq attrs.baths
+    expect(re_private.rooms).to eq attrs.rooms
+    expect(re_private.space).to eq attrs.space
+    expect(re_private.active).to be true
+    expect(re_private.fee).to be true
+    expect(re_private.state.name).to eq "Alabama"
+    expect(re_private.city.name).to eq "Abbeville"
+  end
+
+  scenario "updates description" do
+    user = create_and_login_user
+
+    re_private = create :re_private, user: user
+
+    visit edit_dashboard_re_private_path re_private
+    fill_in "Описание", with: "New description"
+    click_on "description-save-btn"
+    re_private.reload
+
+    expect(re_private.description).to eq "New description"
   end
 end

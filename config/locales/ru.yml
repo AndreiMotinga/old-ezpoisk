@@ -17,9 +17,12 @@ ru:
   category: Раздел
   post_saved: Обьявление успешно сохранено
   post_not_saved: Обьявление не сохранено, пожалуйста исправьте ошибки
+  post_not_found: Обьявление не найдено, возможно оно было удалено
   post_removed: Обьявление успешно удалено
   confirm: Вы уверены?
   no_description: Автор не предоставил описание
+  thanks_for_feedback: Спасибо за ваш отзыв
+  feebback_not_sent: Отзыв не отпрвлен
 
   activerecord:
     errors:

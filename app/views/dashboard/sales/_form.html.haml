@@ -5,22 +5,14 @@
 
     .field
       = f.select :category,
-                  SaleCategories,
+                  SALE_CATEGORIES,
                   include_blank: true,
                   label: '* Категория'
 
     .field
-      = f.select :state_id,
-                 State.all.collect {|s| [ s.name, s.id ] },
-                 include_blank: true,
-                 label: '* Штат'
+      = form_state_select(f)
     .field
-      - if @sale.state
-        = f.select :city_id,
-                   @sale.state.cities.collect { |c| [c.name, c.id] },
-                   label: '* Город'
-      - else
-        = f.select :city_id, [], label: '* Город'
+      = form_city_select(f, @sale)
 
     .field
       = f.text_field :phone, label: 'Телефон'
@@ -32,5 +24,7 @@
       = f.check_box :active, label: 'Активно?'
 
     .actions
-      = f.submit "Сохранить", class: "btn btn-primary"
+      = f.submit "Сохранить",
+                 class: "btn btn-primary",
+                 id: 'details-save-btn'
     %br/

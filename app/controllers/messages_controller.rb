@@ -1,23 +1,22 @@
-class MessagesController < ApplicationController
-  before_action :authenticate_user!
-
+class FeedbackController < ApplicationController
   def new
+    @feedback = Feedback.new
   end
 
   def create
-    message = Message.new(message_params)
-    message.user = current_user
-    if message.save
-      FeedbackMailerJob.perform_async(message.id)
-      redirect_to root_path, notice: "Спасибо за ваш отзыв"
+    feedback = Feedback.new(message_params)
+    feedback.user = current_user
+    if feedback.save
+      FeedbackMailerJob.perform_async(feedback.id)
+      redirect_to root_path, notice: I18n.t(:thanks_for_feedback)
     else
-      render :new, alert: "Отзыв не отпрвлен"
+      render :new, alert: I18n.t(:feedback_not_sent)
     end
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:feedback).permit(:body, :name, :email)
   end
 end

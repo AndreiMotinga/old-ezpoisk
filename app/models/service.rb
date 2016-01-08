@@ -15,6 +15,8 @@ class Service < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
 
+  has_many :pictures, as: :imageable, dependent: :destroy
+
   has_attached_file :logo,
                     styles: { medium: "300x150>" },
                     default_url: "missing.png"

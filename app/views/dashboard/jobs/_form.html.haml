@@ -4,36 +4,32 @@
     .field
       = f.text_field :title, label: '* Заголовок'
     .field
-      = f.select :category,
-                 options_for_select(["требуется", "ищу"], @job.category),
+      = f.select :post_type,
+                 JOB_TYPES,
                  include_blank: true,
-                 label: '* Раздел'
+                 label: '* Тип обьявлния'
     .field
-      = f.select :subcategory,
-                 options_for_select(JobSubcategories, @job.subcategory),
+      = f.select :category,
+                 JOB_CATEGORIES,
                  include_blank: true,
                  label: '* Категория'
 
     / address
     .field
-      = f.select :state_id,
-                 State.all.collect {|s| [ s.name, s.id ] },
-                 include_blank: true,
-                 label: '* Штат'
+      = form_state_select(f)
+
     .field
-      - if @job.state
-        = f.select :city_id,
-                   @job.state.cities.collect { |c| [c.name, c.id] },
-                   label: '* Город'
-      - else
-        = f.select :city_id, [], label: '* Город'
+      = form_city_select(f, @job)
+
     .field
       = f.text_field :phone, label: 'Телефон'
     .field
-      = f.text_field :email
+      = f.email_field :email
 
     .field
       = f.check_box :active, label: 'Активно?'
     .actions
-      = f.submit "Сохранить", id: "details", class: "btn btn-primary"
+      = f.submit "Сохранить",
+        class: "btn btn-primary",
+        id: "details-save-btn"
     %br/

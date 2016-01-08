@@ -28,8 +28,11 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def update
+    return unless @re_agency.user == current_user
     if @re_agency.update(re_agency_params)
-      GeocodeJob.perform_async(@re_agency.id, "ReAgency") if address_changed?
+      if address_changed?(@re_agency, re_agency_params)
+        GeocodeJob.perform_async(@re_agency.id, "ReAgency")
+      end
       redirect_to edit_dashboard_re_agency_path(@re_agency),
                   notice: I18n.t(:post_saved)
     else
@@ -39,18 +42,13 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def destroy
-    @re_agency.destroy
+    return unless @re_agency.user == current_user
+    @re_agency.destroy if @re_agency.user == current_user
     redirect_to dashboard_re_agencies_url,
                 notice: I18n.t(:post_removed)
   end
 
   private
-
-  def address_changed?
-    return true if @re_agency.street != re_agency_params[:street]
-    return true if @re_agency.state != re_agency_params[:state]
-    return true if @re_agency.city != re_agency_params[:city]
-  end
 
   def set_re_agency
     @re_agency = ReAgency.find(params[:id])

@@ -28,8 +28,11 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def update
+    return unless @re_private.user == current_user
     if @re_private.update(re_private_params)
-      GeocodeJob.perform_async(@re_private.id, "RePrivate") if address_changed?
+      if address_changed?(@re_private, re_private_params)
+        GeocodeJob.perform_async(@re_private.id, "RePrivate")
+      end
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
     else
@@ -39,7 +42,8 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def destroy
-    @re_private.destroy
+    return unless @re_private.user == current_user
+    @re_private.destroy if @re_private.user == current_user
     redirect_to dashboard_re_privates_path,
                 notice: I18n.t(:post_removed)
   end
@@ -50,17 +54,10 @@ class Dashboard::RePrivatesController < ApplicationController
     @re_private = RePrivate.find(params[:id])
   end
 
-  def address_changed?
-    return true if @re_private.street != re_private_params[:street]
-    return true if @re_private.state != re_private_params[:state]
-    return true if @re_private.city != re_private_params[:city]
-  end
-
   def re_private_params
     params.require(:re_private).permit(:street,
                                        :post_type,
                                        :duration,
-                                       :apt,
                                        :phone,
                                        :price,
                                        :baths,

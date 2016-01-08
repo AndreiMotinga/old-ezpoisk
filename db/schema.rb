@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160108182407) do
+ActiveRecord::Schema.define(version: 20160111191038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 20160108182407) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "email"
+  end
+
+  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "job_agencies", force: :cascade do |t|
     t.string   "title"
@@ -66,7 +77,7 @@ ActiveRecord::Schema.define(version: 20160108182407) do
     t.string   "phone"
     t.string   "email"
     t.string   "category"
-    t.string   "subcategory"
+    t.string   "post_type"
     t.text     "description"
     t.boolean  "active"
     t.integer  "state_id"
@@ -84,15 +95,6 @@ ActiveRecord::Schema.define(version: 20160108182407) do
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
   add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
-
-  create_table "messages", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -155,8 +157,8 @@ ActiveRecord::Schema.define(version: 20160108182407) do
     t.string   "street",      default: "",    null: false
     t.string   "post_type",   default: "",    null: false
     t.string   "phone",       default: "",    null: false
-    t.integer  "price",       default: 0,     null: false
-    t.integer  "space",       default: 0,     null: false
+    t.integer  "price",                       null: false
+    t.integer  "space",                       null: false
     t.integer  "zip"
     t.float    "lat"
     t.float    "lng"
@@ -177,12 +179,11 @@ ActiveRecord::Schema.define(version: 20160108182407) do
     t.string   "street",      default: "",    null: false
     t.string   "post_type",   default: "",    null: false
     t.string   "duration",    default: "",    null: false
-    t.string   "apt",         default: "",    null: false
     t.string   "phone",       default: "",    null: false
-    t.integer  "price",       default: 0,     null: false
-    t.integer  "baths",       default: 0,     null: false
-    t.integer  "space",       default: 0,     null: false
-    t.integer  "rooms",       default: 0,     null: false
+    t.integer  "price",                       null: false
+    t.integer  "baths",                       null: false
+    t.integer  "space",                       null: false
+    t.integer  "rooms",                       null: false
     t.integer  "zip"
     t.float    "lat"
     t.float    "lng"
@@ -269,21 +270,25 @@ ActiveRecord::Schema.define(version: 20160108182407) do
     t.boolean  "admin",                  default: false
     t.string   "name",                                   null: false
     t.string   "phone",                                  null: false
+    t.integer  "state_id"
+    t.integer  "city_id"
   end
 
+  add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
 
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "feedbacks", "users"
   add_foreign_key "job_agencies", "cities"
   add_foreign_key "job_agencies", "states"
   add_foreign_key "job_agencies", "users"
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"
   add_foreign_key "jobs", "users"
-  add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "re_agencies", "cities"
   add_foreign_key "re_agencies", "states"
@@ -300,4 +305,6 @@ ActiveRecord::Schema.define(version: 20160108182407) do
   add_foreign_key "services", "cities"
   add_foreign_key "services", "states"
   add_foreign_key "services", "users"
+  add_foreign_key "users", "cities"
+  add_foreign_key "users", "states"
 end

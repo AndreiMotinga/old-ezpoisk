@@ -1,0 +1,48 @@
+= form_tag jobs_jobs_path,
+           method: :get,
+           class: "form-horizontal"
+
+%h5
+  Введите адрес и радиус поиска (миль)
+.form-group
+  .col-sm-10
+    = origin_text_field_param
+  .col-sm-2
+    = within_text_field_param
+
+%hr
+%h5
+  Либо выберите штат и город
+.form-group
+  = label_tag "Штат", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :state_id,
+                 state_select_with_param,
+                 include_blank: true,
+                 class: "form-control state-select"
+
+.form-group
+  = label_tag "Город", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :city_id,
+                 city_select_with_param,
+                 include_blank: true,
+                 class: "form-control city-select"
+
+%hr/
+
+.form-group
+  = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :post_type,
+      options_for_select(JOB_TYPES, params[:post_type]),
+      include_blank: true,
+      class: "form-control"
+
+.form-group
+  = label_tag "Категория", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :category,
+      options_for_select(JOB_CATEGORIES, params[:category]),
+      include_blank: true,
+      class: "form-control"

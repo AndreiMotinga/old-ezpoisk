@@ -6,14 +6,18 @@ class User < ActiveRecord::Base
 
   validates :phone, presence: true
   validates :name, presence: true
+  validates :state_id, presence: true
+  validates :city_id, presence: true
 
-  has_many :re_agencies
-  has_many :re_privates
-  has_many :re_commercials
+  #test
+  belongs_to :state
+  belongs_to :city
 
-  # add test
-  has_many :job_agencies
-  has_many :jobs
-  has_many :sales
-  has_many :services
+  has_many :re_agencies, dependent: :destroy
+  has_many :re_privates, dependent: :destroy
+  has_many :re_commercials, dependent: :destroy
+  has_many :job_agencies, dependent: :destroy
+  has_many :jobs, dependent: :destroy
+  has_many :sales, dependent: :destroy
+  has_many :services, dependent: :destroy
 end

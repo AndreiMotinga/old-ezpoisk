@@ -10,6 +10,7 @@ describe ReAgency do
   it { should belong_to(:user) }
   it { should belong_to(:city) }
   it { should belong_to(:state) }
+  it { should have_many(:pictures).dependent(:destroy) }
 
   describe "#show_description" do
     it "uses default string when doesn't have description" do

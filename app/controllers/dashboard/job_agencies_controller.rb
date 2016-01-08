@@ -1,4 +1,3 @@
-# create tests
 class Dashboard::JobAgenciesController < ApplicationController
   layout "dashboard"
   before_action :authenticate_user!
@@ -29,8 +28,11 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def update
+    return unless @job_agency.user == current_user
     if @job_agency.update(job_agency_params)
-      GeocodeJob.perform_async(@job_agency.id, "JobAgency") if address_changed?
+      if address_changed?(@job_agency, job_agency_params)
+        GeocodeJob.perform_async(@job_agency.id, "JobAgency")
+      end
       redirect_to edit_dashboard_job_agency_path(@job_agency),
                   notice: I18n.t(:post_saved)
     else
@@ -40,18 +42,13 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def destroy
+    return unless @job_agency.user == current_user
     @job_agency.destroy
     redirect_to dashboard_job_agencies_url,
                 notice: I18n.t(:post_removed)
   end
 
   private
-
-  def address_changed?
-    return true if @job_agency.street != job_agency_params[:street]
-    return true if @job_agency.state != job_agency_params[:state]
-    return true if @job_agency.city != job_agency_params[:city]
-  end
 
   def set_job_agency
     @job_agency = JobAgency.find(params[:id])

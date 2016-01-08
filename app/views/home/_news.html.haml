@@ -3,7 +3,7 @@
     = render 'home/news/carousel'
 .row
   .col-lg-12.col-md-12
-    - @news_posts.each do |post|
+    - @posts.each do |post|
       = render "home/news/post", post: post
       %hr.post-devider/
 %br/

@@ -6,7 +6,7 @@ class Job < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :phone, presence: true
   validates :category, presence: true
-  validates :subcategory, presence: true
+  validates :post_type, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates :user_id, presence: true
@@ -14,6 +14,7 @@ class Job < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   belongs_to :user
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   has_attached_file :logo,
                     styles: { medium: "300x150>" },

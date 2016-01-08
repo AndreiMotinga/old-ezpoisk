@@ -11,6 +11,8 @@ require "rspec/rails"
 require "capybara/rails"
 require "devise"
 require "sidekiq/testing"
+require "webmock/rspec"
+WebMock.disable_net_connect!(allow_localhost: true)
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -24,6 +26,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+  config.include Helpers
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)

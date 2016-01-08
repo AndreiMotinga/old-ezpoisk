@@ -2,11 +2,11 @@ class NewsController < ApplicationController
   def index
     category = params[:category]
     if category.blank?
-      @posts = Post.all
+      posts = Post.all
     else
-      @posts = Post.where("category LIKE ?", "%#{category}%")
+      posts = Post.by_category(category)
     end
-    @posts = @posts.page params[:page]
+    @posts = posts.page params[:page]
   end
 
   def show

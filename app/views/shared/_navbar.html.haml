@@ -36,7 +36,7 @@
             Услуги
             %span.caret
           %ul.dropdown-menu
-            - ServiceCategories.keys.each do |category|
+            - SERVICE_CATEGORIES.keys.each do |category|
               %li= link_to category, services_path(category: category)
         / services
 
@@ -52,7 +52,7 @@
             %li
               = link_to t(:agencies), jobs_job_agencies_path
             %li
-              = link_to t(:private), jobs_posts_path
+              = link_to 'Работа', jobs_jobs_path
         / jobs
 
         / news

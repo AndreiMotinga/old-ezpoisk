@@ -6,11 +6,11 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
   devise_for :users
-  get "update_cities/:id", to: "cities#update_cities"
-  get "update_subcategory/:id", to: "subcategories#update_subcategory"
+  get "update_cities", to: "cities#update_cities"
+  get "update_subcategory", to: "subcategories#update_subcategory"
   resources :news, only: [:index, :show]
   resources :comments, only: [:create]
-  resources :messages, only: [:new, :create]
+  resources :feedbacks, only: [:new, :create]
 
   resource :dashboard, only: [:show]
   namespace :dashboard do
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
 
   namespace :jobs do
     resources :job_agencies, only: [:index, :show]
-    resources :posts, only: [:index, :show]
+    resources :jobs, only: [:index, :show]
   end
 
   root to: "home#index"

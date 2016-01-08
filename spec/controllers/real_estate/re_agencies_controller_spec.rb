@@ -19,19 +19,24 @@ describe RealEstate::ReAgenciesController do
     expect(assigns(:re_agencies).size).to eq 2
   end
 
-  describe "search" do
-      it "returns geoscoped records" do
-        searched_record = create :re_agency,
-                                 :active,
-                                 lat: 40.602088,
-                                 lng: -73.954382
-        create :re_agency, :active
-        create :re_agency, :active
+  describe "GET @show" do
+    it "renders the show template and assigns @re_agency if its active" do
+      re_agency = create(:re_agency, :active)
 
-        get :index, within: 1, origin: "1970 East 18th str Brooklyn New York"
+      get :show, id: re_agency.id
 
-        expect(assigns(:re_agencies).size).to eq 1
-        expect(assigns(:re_agencies)).to eq [searched_record]
-      end
+      expect(response).to render_template(:show)
+      expect(assigns(:re_agency)).to eq re_agency
+      expect(flash[:alert]).to be nil
+    end
+
+    it "redirects to 404 if it's inactive" do
+      re_agency = create(:re_agency, active: false)
+
+      get :show, id: re_agency.id
+
+      expect(response).to redirect_to real_estate_re_agencies_path
+      expect(flash[:alert]).to eq I18n.t(:post_not_found)
+    end
   end
 end

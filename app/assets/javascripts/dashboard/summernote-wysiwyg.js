@@ -12,8 +12,10 @@ $(document).ready(function() {
         theme: "solarized light"
       },
       // doesn't work
-      onImageUpload: function(files) {
-        return sendFile(files[0], type, id);
+      callbacks: {
+        onImageUpload: function(files) {
+          return sendFile(files[0], type, id);
+        }
       }
     });
 

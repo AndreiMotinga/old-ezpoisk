@@ -28,8 +28,9 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def update
+    return unless @re_commercial.user == current_user
     if @re_commercial.update(re_commercial_params)
-      if address_changed?
+      if address_changed?(@re_commercial, re_commercial_params)
         GeocodeJob.perform_async(@re_commercial.id, "ReCommercial")
       end
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
@@ -41,6 +42,7 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def destroy
+    return unless @re_commercial.user == current_user
     @re_commercial.destroy
     redirect_to dashboard_re_commercials_path,
                 notice: I18n.t(:post_removed)
@@ -48,14 +50,8 @@ class Dashboard::ReCommercialsController < ApplicationController
 
   private
 
-    def set_re_commercial
-      @re_commercial = ReCommercial.find(params[:id])
-    end
-
-  def address_changed?
-    return true if @re_commercial.street != re_commercial_params[:street]
-    return true if @re_commercial.state != re_commercial_params[:state]
-    return true if @re_commercial.city != re_commercial_params[:city]
+  def set_re_commercial
+    @re_commercial = ReCommercial.find(params[:id])
   end
 
   def re_commercial_params

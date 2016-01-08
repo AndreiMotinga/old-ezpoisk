@@ -7,6 +7,8 @@ module Filterable
     scope :city_id, -> (id) { where(city_id: id) }
     scope :fee, -> (fee) { where(fee: fee) }
     scope :post_type, -> (type) { where(post_type: type) }
+    scope :category, -> (category) { where(category: category) }
+    scope :subcategory, -> (subcategory) { where(subcategory: subcategory) }
     scope :duration, -> (type) { where(duration: type) }
     scope :rooms, -> (num) { where("rooms >= ?", num.to_i) }
     scope :baths, -> (num) { where("baths >= ?", num.to_i) }
@@ -14,6 +16,17 @@ module Filterable
     scope :min_price, -> (num) { where("price >= ?", num.to_i) }
     scope :max_price, -> (num) { where("price <= ?", num.to_i) }
     scope :sort, ->(type) { order type }
+
+    scope(:geo_scope, lambda do |geo_scope|
+      return if geo_scope[:within].blank? || geo_scope[:origin].blank?
+      within(geo_scope[:within], origin: geo_scope[:origin])
+    end)
+
+    scope(:keyword, lambda do |keyword|
+      query = "LOWER(title) LIKE ? OR LOWER(description) LIKE ?"
+      keyword = "%#{keyword.mb_chars.downcase}%"
+      where(query, keyword, keyword)
+    end)
   end
 
   module ClassMethods

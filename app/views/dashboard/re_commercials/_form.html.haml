@@ -5,27 +5,19 @@
       = f.text_field :street, label: '* Улица'
 
     .field
-      = f.select :state_id,
-                 State.all.collect {|s| [ s.name, s.id ] },
-                 include_blank: true,
-                 label: '* Штат'
+      = form_state_select(f)
     .field
-      - if @re_commercial.state
-        = f.select :city_id,
-                   @re_commercial.state.cities.collect { |c| [c.name, c.id] },
-                   label: '* Город'
-      - else
-        = f.select :city_id, [], label: '* Город'
+      = form_city_select(f, @re_commercial)
 
     / details
     .field
       = f.select :category,
-                  %w(офис торговля промышленность парковка другое),
+                  RE_COMMERCIAL_CATEGORIES,
                   include_blank: true,
                   label: "Категория"
     .field
       = f.select :post_type,
-                 %w(продажа аренда),
+                 RE_TYPES,
                  include_blank: true,
                  label: '* Тип обьявления'
     .field
@@ -37,4 +29,4 @@
     .field
       = f.check_box :active, label: 'Активно?'
     .actions
-      = f.submit "Сохранить", class: "btn btn-primary"
+      = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"

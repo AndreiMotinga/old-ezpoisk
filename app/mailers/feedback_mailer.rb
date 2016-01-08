@@ -1,6 +1,6 @@
 class FeedbackMailer < ApplicationMailer
-  def feedback_email(message)
-    @message = message
+  def feedback_email(feedback)
+    @feedback = feedback
     mail(to: "andrew.motinga@gmail.com", subject: "New Feedback")
   end
 end

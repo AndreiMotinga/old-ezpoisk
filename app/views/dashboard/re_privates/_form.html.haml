@@ -4,29 +4,19 @@
     .field
       = f.text_field :street, label: '* Улица'
     .field
-      = f.text_field :apt, label: 'Квартира'
+      = form_state_select(f)
     .field
-      = f.select :state_id,
-                 State.all.collect {|s| [ s.name, s.id ] },
-                 include_blank: true,
-                 label: '* Штат'
-    .field
-      - if @re_private.state
-        = f.select :city_id,
-                   @re_private.state.cities.collect { |c| [c.name, c.id] },
-                   label: '* Город'
-      - else
-        = f.select :city_id, [], label: '* Город'
+      = form_city_select(f, @re_private)
 
     / details
     .field
       = f.select :post_type,
-                  %w(продажа аренда),
+                  RE_TYPES,
                   include_blank: true,
                   label: '* Тип обьявления'
     .field
       = f.select :duration,
-                 %w(почасово посуточно помесячно),
+                 RE_DURATION,
                  include_blank: true,
                  label: 'Продолжительность'
     .field
@@ -46,5 +36,5 @@
       = f.check_box :fee, label: 'Комиссия'
 
     .actions
-      = f.submit "Сохранить", class: "btn btn-primary"
+      = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
     %br/

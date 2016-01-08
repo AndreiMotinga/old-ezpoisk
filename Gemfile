@@ -44,20 +44,23 @@ gem "summernote-rails"
 gem "rails_admin"
 gem "bootstrap-wysihtml5-rails"
 
-gem 'rails_12factor', group: :production
-gem 'puma'
+gem "rails_12factor", group: :production
+gem "puma"
 
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"
   gem "faker"
   gem "awesome_print"
-  gem "guard-livereload", '~> 2.4', require: false
+  gem "guard-livereload", "~> 2.4", require: false
+  gem "web-console"
 end
 
 group :development do
   gem "quiet_assets"
   gem "bullet"
+  gem "better_errors"
+  gem "meta_request"
   gem "spring-commands-rspec"
   gem "spring"
   gem "guard-rspec", require: false
@@ -67,6 +70,7 @@ end
 
 group :test do
   gem "rspec-rails"
+  gem "webmock" # stub external connections
   gem "capybara"
   gem "capybara-webkit"
   gem "shoulda-matchers"

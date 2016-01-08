@@ -1,1 +1,3 @@
-= select_tag "", options_for_select(@subcategories) if @subcategories
+= select_tag "",
+             options_for_select(@subcategories),
+             include_blank: true

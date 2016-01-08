@@ -37,7 +37,7 @@ describe Dashboard::ReCommercialsController do
 
   describe "POST #create" do
     it "creates new record" do
-      attrs = re_commercial_attributes(user: @user)
+      attrs = attrs_with_state_and_city(:re_commercial)
 
       post :create, re_commercial: attrs
       re_commercial = assigns(:re_commercial)
@@ -52,16 +52,16 @@ describe Dashboard::ReCommercialsController do
       expect(re_commercial.price).to eq attrs[:price]
       expect(re_commercial.space).to eq attrs[:space]
       expect(re_commercial.active).to eq attrs[:active]
-      expect(re_commercial.user.id).to eq attrs[:user_id]
       expect(re_commercial.city.id).to eq attrs[:city_id]
       expect(re_commercial.state.id).to eq attrs[:state_id]
+      expect(re_commercial.user).to eq @user
     end
   end
 
   describe "PUT #update" do
     it "updates the record" do
       re_commercial = create :re_commercial, user: @user
-      attrs = re_commercial_attributes(user: @user)
+      attrs = attrs_with_state_and_city(:re_commercial)
 
       put :update, id: re_commercial.id, re_commercial: attrs
 
@@ -76,15 +76,15 @@ describe Dashboard::ReCommercialsController do
       expect(re_commercial.price).to eq attrs[:price]
       expect(re_commercial.space).to eq attrs[:space]
       expect(re_commercial.active).to eq attrs[:active]
-      expect(re_commercial.user.id).to eq attrs[:user_id]
       expect(re_commercial.city.id).to eq attrs[:city_id]
       expect(re_commercial.state.id).to eq attrs[:state_id]
+      expect(re_commercial.user).to eq @user
     end
   end
 
   describe "DELETE #destroy" do
     it "removes record" do
-      re_commercial = create(:re_commercial)
+      re_commercial = create(:re_commercial, user: @user)
 
       delete :destroy, id: re_commercial.id
 
@@ -92,12 +92,4 @@ describe Dashboard::ReCommercialsController do
       expect(ReCommercial.count).to be 0
     end
   end
-end
-
-def re_commercial_attributes(user:)
-  attrs = attributes_for(:re_commercial)
-  attrs[:state_id] = create(:state).id
-  attrs[:city_id] = create(:city).id
-  attrs[:user_id] = user.id
-  attrs
 end

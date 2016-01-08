@@ -2,17 +2,17 @@ require "rails_helper"
 
 feature "User create re_private" do
   scenario "success", js: true do
-    user = create :user
-    login_as(user, scope: :user)
+    create_and_login_user
     re_private = build(:re_private)
     state = State.create(name: "Alabama")
     City.create(name: "Abbeville", state: state)
 
     visit new_dashboard_re_private_path
     fill_in "Улица", with: re_private.street
+    select("Alabama", from: "Штат")
+    select("Abbeville", from: "Город")
     select("аренда", from: "Тип обьявления")
     select("помесячно", from: "Продолжительность")
-    fill_in "Квартира", with: re_private.apt
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price
     fill_in "Ванные", with: re_private.baths
@@ -20,8 +20,6 @@ feature "User create re_private" do
     fill_in "Комнат", with: re_private.rooms
     check("Активно?")
     check("Комиссия")
-    select("Alabama", from: "Штат")
-    select("Abbeville", from: "Город")
     click_on "Сохранить"
 
     expect(page).to have_content re_private.street
@@ -33,6 +31,11 @@ feature "User create re_private" do
     expect(page).to have_content re_private.baths
     expect(page).to have_content re_private.rooms
 
-    expect(RePrivate.count).to be 1
+    re_private = RePrivate.last
+    expect(re_private.active).to be true
+    expect(re_private.fee).to be true
+    expect(re_private.state_id).to_not be nil
+    expect(re_private.city_id).to_not be nil
+    expect(re_private.user_id).to_not be nil
   end
 end

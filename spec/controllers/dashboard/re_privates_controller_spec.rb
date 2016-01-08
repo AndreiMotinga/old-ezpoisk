@@ -37,7 +37,7 @@ describe Dashboard::RePrivatesController do
 
   describe "POST #create" do
     it "creates new record" do
-      attrs = re_private_attributes(user: @user)
+      attrs = attrs_with_state_and_city(:re_private)
 
       post :create, re_private: attrs
       re_private = assigns(:re_private)
@@ -66,12 +66,12 @@ describe Dashboard::RePrivatesController do
 
   describe "PUT #update" do
     it "updates the record" do
-      re_private = create :re_private
-      attrs = attributes_for(:re_private, street: "New Street")
+      re_private = create :re_private, user: @user
+      attrs = attributes_for(:re_private)
 
       put :update, id: re_private.id, re_private: attrs
 
-      expect(response).to redirect_to(edit_dashboard_re_private_path(re_private))
+      expect(response).to redirect_to(edit_dashboard_re_private_path re_private)
       re_private.reload
 
       expect(re_private.street).to eq attrs[:street]
@@ -84,7 +84,7 @@ describe Dashboard::RePrivatesController do
 
   describe "DELETE #destroy" do
     it "removes record" do
-      re_private = create(:re_private)
+      re_private = create(:re_private, user: @user)
 
       delete :destroy, id: re_private.id
 
@@ -93,12 +93,4 @@ describe Dashboard::RePrivatesController do
       expect(flash[:notice]).to eq I18n.t(:post_removed)
     end
   end
-end
-
-def re_private_attributes(user:)
-  attrs = attributes_for(:re_private)
-  attrs[:state_id] = create(:state).id
-  attrs[:city_id] = create(:city).id
-  attrs[:user_id] = user.id
-  attrs
 end
