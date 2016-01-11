@@ -92,7 +92,7 @@ STATES = [
   [ "California", 5 ],
   [ "Colorado", 6 ],
   [ "Connecticut", 7 ],
-  [ "Delaware District", 8 ],
+  [ "Delaware", 8 ],
   [ "Florida", 9 ],
   [ "Georgia", 10 ],
   [ "Hawaii", 11 ],

@@ -1413,7 +1413,6 @@ AR | Arkansas | Uniontown
 AR | Arkansas | Van Buren
 AR | Arkansas | Waldron
 AR | Arkansas | Winslow
-AS | American Samoa | Pago Pago
 AZ | Arizona | Phoenix
 AZ | Arizona | New River
 AZ | Arizona | Apache Junction
@@ -3603,12 +3602,6 @@ CT | Connecticut | Redding
 CT | Connecticut | Wilton
 CT | Connecticut | Stamford
 CT | Connecticut | GECC
-DC | District of ColumbIowa | Washington
-DC | District of ColumbIowa | Naval Anacost Annex
-DC | District of ColumbIowa | Washington Navy Yard
-DC | District of ColumbIowa | FBI
-DC | District of ColumbIowa | Parcel Return Service
-DC | District of ColumbIowa | PRS
 DE | Delaware | Bear
 DE | Delaware | Newark
 DE | Delaware | Claymont
@@ -4204,10 +4197,6 @@ FL | Florida | Okeechobee
 FL | Florida | Palm City
 FL | Florida | Port Salerno
 FL | Florida | Stuart
-FM | Federated States of Micronesia | Pohnpei
-FM | Federated States of Micronesia | Chuuk
-FM | Federated States of Micronesia | Yap
-FM | Federated States of Micronesia | Kosrae
 GA | Georgia | Avondale Estates
 GA | Georgia | Norcross
 GA | Georgia | Alpharetta
@@ -4839,17 +4828,6 @@ GA | Georgia | Parrott
 GA | Georgia | Sasser
 GA | Georgia | Shellman
 GA | Georgia | Whigham
-GU | Guam | Hagatna
-GU | Guam | Dededo
-GU | Guam | Barrigada
-GU | Guam | Santa Rita
-GU | Guam | Merizo
-GU | Guam | Inarajan
-GU | Guam | Agana Heights
-GU | Guam | Mangilao
-GU | Guam | Agat
-GU | Guam | Yigo
-GU | Guam | Tamuning
 HI | Hawaii | Aiea
 HI | Hawaii | Anahola
 HI | Hawaii | Captain Cook
@@ -11487,8 +11465,6 @@ ME | Maine | Troy
 ME | Maine | Unity
 ME | Maine | Vassalboro
 ME | Maine | West Farmington
-MH | Marshall Islands | Majuro
-MH | Marshall Islands | Ebeye
 MI | Michigan | Algonac
 MI | Michigan | Allenton
 MI | Michigan | Almont
@@ -14127,9 +14103,6 @@ MO | Missouri | Thayer
 MO | Missouri | Willow Springs
 MO | Missouri | Springfield
 MO | Missouri | SMSU
-MP | Northern Mariana Islands | Saipan
-MP | Northern Mariana Islands | Rota
-MP | Northern Mariana Islands | Tinian
 MS | Mississippi | Abbeville
 MS | Mississippi | Arkabutla
 MS | Mississippi | Ashland
@@ -23344,107 +23317,6 @@ PA | Pennsylvania | Virginville
 PA | Pennsylvania | Wernersville
 PA | Pennsylvania | Womelsdorf
 PA | Pennsylvania | Reading
-PR | Puerto Rico | Adjuntas
-PR | Puerto Rico | Aguada
-PR | Puerto Rico | Aguadilla
-PR | Puerto Rico | Maricao
-PR | Puerto Rico | Anasco
-PR | Puerto Rico | Angeles
-PR | Puerto Rico | Arecibo
-PR | Puerto Rico | Bajadero
-PR | Puerto Rico | Barceloneta
-PR | Puerto Rico | Boqueron
-PR | Puerto Rico | Cabo Rojo
-PR | Puerto Rico | Penuelas
-PR | Puerto Rico | Camuy
-PR | Puerto Rico | Castaner
-PR | Puerto Rico | Rosario
-PR | Puerto Rico | Sabana Grande
-PR | Puerto Rico | Ciales
-PR | Puerto Rico | Utuado
-PR | Puerto Rico | Dorado
-PR | Puerto Rico | Ensenada
-PR | Puerto Rico | Florida
-PR | Puerto Rico | Garrochales
-PR | Puerto Rico | Guanica
-PR | Puerto Rico | Guayanilla
-PR | Puerto Rico | Hatillo
-PR | Puerto Rico | Hormigueros
-PR | Puerto Rico | Isabela
-PR | Puerto Rico | Jayuya
-PR | Puerto Rico | Lajas
-PR | Puerto Rico | Lares
-PR | Puerto Rico | Las Marias
-PR | Puerto Rico | Manati
-PR | Puerto Rico | Moca
-PR | Puerto Rico | Rincon
-PR | Puerto Rico | Quebradillas
-PR | Puerto Rico | Mayaguez
-PR | Puerto Rico | San German
-PR | Puerto Rico | San Sebastian
-PR | Puerto Rico | Morovis
-PR | Puerto Rico | Sabana Hoyos
-PR | Puerto Rico | San Antonio
-PR | Puerto Rico | Vega Alta
-PR | Puerto Rico | Vega Baja
-PR | Puerto Rico | Yauco
-PR | Puerto Rico | Aguas Buenas
-PR | Puerto Rico | Aguirre
-PR | Puerto Rico | Aibonito
-PR | Puerto Rico | Maunabo
-PR | Puerto Rico | Arroyo
-PR | Puerto Rico | Mercedita
-PR | Puerto Rico | Ponce
-PR | Puerto Rico | Naguabo
-PR | Puerto Rico | Naranjito
-PR | Puerto Rico | Orocovis
-PR | Puerto Rico | Palmer
-PR | Puerto Rico | Patillas
-PR | Puerto Rico | Caguas
-PR | Puerto Rico | Canovanas
-PR | Puerto Rico | Ceiba
-PR | Puerto Rico | Cayey
-PR | Puerto Rico | Fajardo
-PR | Puerto Rico | Cidra
-PR | Puerto Rico | Puerto Real
-PR | Puerto Rico | Punta Santiago
-PR | Puerto Rico | Roosevelt Roads
-PR | Puerto Rico | Rio Blanco
-PR | Puerto Rico | Rio Grande
-PR | Puerto Rico | Salinas
-PR | Puerto Rico | San Lorenzo
-PR | Puerto Rico | Santa Isabel
-PR | Puerto Rico | Vieques
-PR | Puerto Rico | Villalba
-PR | Puerto Rico | Yabucoa
-PR | Puerto Rico | Coamo
-PR | Puerto Rico | Las Piedras
-PR | Puerto Rico | Loiza
-PR | Puerto Rico | Luquillo
-PR | Puerto Rico | Culebra
-PR | Puerto Rico | Juncos
-PR | Puerto Rico | Gurabo
-PR | Puerto Rico | Coto Laurel
-PR | Puerto Rico | Comerio
-PR | Puerto Rico | Corozal
-PR | Puerto Rico | Guayama
-PR | Puerto Rico | La Plata
-PR | Puerto Rico | Humacao
-PR | Puerto Rico | Barranquitas
-PR | Puerto Rico | Juana Diaz
-PR | Puerto Rico | San Juan
-PR | Puerto Rico | Fort Buchanan
-PR | Puerto Rico | GPO
-PR | Puerto Rico | Toa Baja
-PR | Puerto Rico | Sabana Seca
-PR | Puerto Rico | Toa Alta
-PR | Puerto Rico | Bayamon
-PR | Puerto Rico | Catano
-PR | Puerto Rico | Guaynabo
-PR | Puerto Rico | Trujillo Alto
-PR | Puerto Rico | Saint Just
-PR | Puerto Rico | Carolina
-PW | Palau |	Palau
 RI | Rhode Island | Adamsville
 RI | Rhode Island | Albion
 RI | Rhode Island | Ashaway
@@ -27386,11 +27258,6 @@ VA | Virginia | Tazewell
 VA | Virginia | Vansant
 VA | Virginia | Whitewood
 VA | Virginia | Wolford
-VI | Virgin Islands | St Thomas
-VI | Virgin Islands | Christiansted
-VI | Virgin Islands | St John
-VI | Virgin Islands | Frederiksted
-VI | Virgin Islands | Kingshill
 VT | Vermont | White River Junction
 VT | Vermont | Ascutney
 VT | Vermont | Barnard

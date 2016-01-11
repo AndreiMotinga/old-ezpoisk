@@ -1,6 +1,6 @@
 require 'csv'
 
-STATES.each { |s| State.create(name: s) }
+STATES.each { |s| State.create(name: s.first) }
 
 # create cities
 csv_text = File.read("public/us_cities_and_states.csv")
