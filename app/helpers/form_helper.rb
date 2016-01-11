@@ -12,7 +12,7 @@ module FormHelper
   end
 
   def city_id
-    params[:city_id] || current_user.try(:city_id) || 18_058
+    params[:city_id] || current_user.try(:city_id) || 18_031
   end
 
   def state_cities
