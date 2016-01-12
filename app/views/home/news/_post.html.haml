@@ -1,6 +1,6 @@
 .row
   %div.col-lg-3
-    = image_tag post.logo.url(:thumb),
+    = image_tag post.logo,
       class: "img-responsive center-block home-news-thumb"
   %h4.post-title= link_to post.title, news_path(post)
   %p

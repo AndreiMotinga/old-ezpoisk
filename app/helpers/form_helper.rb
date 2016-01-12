@@ -79,4 +79,12 @@ module FormHelper
       f.select :city_id, [], { label: "* Город" }, class: "city-select"
     end
   end
+
+  def news_options(post = nil)
+    if post.category
+      options_for_select(NEWS_CATEGORIES, @post.category.split(" "))
+    else
+      NEWS_CATEGORIES
+    end
+  end
 end

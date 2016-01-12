@@ -4,7 +4,7 @@
     - @posts.each_with_index do |post, i|
       %div{:class => "item #{"active" if i == 0}"}
         = link_to news_path post do
-          = image_tag post.logo.url(:large),
+          = image_tag post.logo,
                       alt: "#{post.title}-image",
                       class: "carousel-image center-block"
         .news-caption

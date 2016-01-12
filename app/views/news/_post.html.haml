@@ -4,7 +4,7 @@
       %strong= post.title
   .col-lg-4.col-md-4.col-sm-4
     %a{:href => "/news/#{post.id}"}
-      %img.img-responsive{:alt => "#{post.title}", :src => "#{post.logo.url(:thumb)}"}/
+      %img.img-responsive{:alt => "#{post.title}", :src => "#{post.logo}"}/
   .col-lg-8.col-md-8
     %p= sanitize post.body.truncate(300)
 %hr/

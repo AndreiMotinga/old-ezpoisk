@@ -1,6 +1,6 @@
 # home page
 class HomeController < ApplicationController
   def index
-    @posts = Post.last(5)
+    @posts = Post.first(5)
   end
 end

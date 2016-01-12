@@ -11,6 +11,7 @@ describe User do
   it { should have_many(:jobs).dependent(:destroy) }
   it { should have_many(:services).dependent(:destroy) }
   it { should have_many(:sales).dependent(:destroy) }
+  it { should have_many(:posts) }
 
   it { should validate_presence_of(:state_id) }
   it { should validate_presence_of(:city_id) }

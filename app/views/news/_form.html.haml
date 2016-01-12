@@ -1,0 +1,22 @@
+= bootstrap_form_for(@post, url: url) do |f|
+  .actions
+    = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
+  %br/
+  .field
+    = f.text_field :logo, label: '* Лого'
+  .field
+    = f.text_field :title, label: '* Название'
+
+  .field
+    = f.text_area :body,
+                  label: 'Содержание',
+                  class: "summernote"
+
+  .field
+    = f.select :category,
+               news_options(@post),
+               {},
+               { multiple: true, size: 20 }
+
+  .actions
+    = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"

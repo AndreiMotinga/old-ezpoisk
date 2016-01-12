@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates :state_id, presence: true
   validates :city_id, presence: true
 
-  #test
   belongs_to :state
   belongs_to :city
 
@@ -20,4 +19,5 @@ class User < ActiveRecord::Base
   has_many :jobs, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy
+  has_many :posts
 end

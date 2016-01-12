@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end
+  authenticate :user, ->(u) { u.author? } do
+    resources :news, only: [:new, :create, :edit, :update]
+  end
+
   devise_for :users
   get "update_cities", to: "cities#update_cities"
   get "update_subcategory", to: "subcategories#update_subcategory"
