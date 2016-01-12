@@ -1,0 +1,22 @@
+%ul
+  %li.list-group-item
+    автор:
+    %strong= record.user.name
+  %li.list-group-item
+    карта:
+    %a{ :href => "http://maps.google.com/?q=#{record.address}",
+        target: :blank }
+      = record.address
+  - unless record.phone.blank?
+    %li.list-group-item
+      телефон:
+      %strong= record.phone
+  - unless record.try(:site).blank?
+    %li.list-group-item
+      site:
+      %strong
+        = link_to record.site, "http://#{record.site}", target: "blank"
+  - unless record.try(:email).blank?
+    %li.list-group-item
+      email:
+      %strong= record.email

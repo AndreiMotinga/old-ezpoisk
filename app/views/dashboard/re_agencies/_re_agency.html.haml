@@ -1,31 +1,23 @@
-.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
-  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
-    %br/
-    = image_tag re_agency.logo.url(:medium),
-                alt: re_agency.logo.url(:medium),
-                class: 'img-responsive center-block'
+.col-md-12.post-item
+  #logo.col-lg-3.col-md-4.col-sm-4.hidden-xs
+    = image_tag record.logo,
+                alt: record.logo,
+                class: "img-responsive"
 
-  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+  .col-lg-9.col-md-8.col-sm-8.col-xs-12
     / line 1
-    %h3.text-center
-      = link_to re_agency.title, real_estate_re_agency_path(re_agency)
+    %h3= link_to record.title, real_estate_re_agency_path(record)
 
     / line 2
-    %strong
-      %a{:href => "http://#{re_agency.site}", :target => "blank"}
-        = re_agency.site
+    %span= record.address
+    %span.pull-right.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 3
-    %span= re_agency.street
-    %hr.post-devider/
+    - unless record.site.blank?
+      %strong
+        = link_to record.site, "http://#{record.site}", target: "blank"
+        %hr.post-devider/
 
     / line 4
-    %span= re_agency.email
-    %span.pull-right
-      %span.glyphicon.glyphicon-phone
-        = re_agency.phone
-    %hr.post-devider/
-
-.row
-%br/
+    %span.pull-right= time_ago_in_words record.created_at

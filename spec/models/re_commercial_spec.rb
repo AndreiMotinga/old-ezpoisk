@@ -3,6 +3,7 @@ require "rails_helper"
 describe ReCommercial do
   it { should validate_presence_of :price }
   it { should validate_presence_of :post_type }
+  it { should validate_presence_of :category }
   it { should validate_presence_of :state_id }
   it { should validate_presence_of :city_id }
   it { should validate_presence_of :user_id }
@@ -45,13 +46,6 @@ describe ReCommercial do
       re_commercial = create(:re_commercial)
 
       expect(re_commercial.logo_url(:thumb)).to eq "missing.png"
-    end
-  end
-
-  describe "#show_description" do
-    it "uses default string when doesn't have description" do
-      re_commercial = create :re_commercial, description: ''
-      expect(re_commercial.show_description).to eq I18n.t(:no_description)
     end
   end
 

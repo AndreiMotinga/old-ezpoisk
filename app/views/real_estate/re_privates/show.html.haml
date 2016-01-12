@@ -1,31 +1,6 @@
-.hidden-xs
-  = render 'dashboard/re_privates/re_private', re_private: @re_private
-%br
-%div
-  / Nav tabs
-  %ul.nav.nav-tabs{:role => "tablist"}
-    %li.hidden-xs.active{:role => "presentation"}
-      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "photo", "data-toggle" => "tab", :href => "#photo", :role => "tab"} Фотографии
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Контакты
+- content_for :tab_links do
+  = render 'layouts/tab_links/real_estate'
 
-  / Nav tabs
-  %hr
-    / Tab panes
-    .tab-content
-      #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
-        = render "shared/real_estate/map", post: @re_private
-
-      #photo.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/pictures", post: @re_private
-
-      #description.tab-pane.fade{:role => "tabpanel"}
-        = raw @re_private.show_description
-
-      #contacts.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/contacts", post: @re_private
-  %br/
+= render "shared/show",
+          record: @re_private,
+          template: 'dashboard/re_privates/re_private'

@@ -13,10 +13,6 @@ module ViewHelpers
     end
   end
 
-  def show_description
-    description.blank? ? I18n.t(:no_description) : description
-  end
-
   def address
     "#{street}, #{city.name} #{state.name}, #{zip}"
   end

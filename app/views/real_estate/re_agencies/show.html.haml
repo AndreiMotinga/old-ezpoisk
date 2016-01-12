@@ -1,26 +1,6 @@
-.hidden-xs
-  = render 'dashboard/re_agencies/re_agency', re_agency: @re_agency
+- content_for :tab_links do
+  = render 'layouts/tab_links/real_estate'
 
-%div
-  / Nav tabs
-  %ul.nav.nav-tabs{:role => "tablist"}
-    %li.hidden-xs.active{:role => "presentation"}
-      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Контакты
-
-  / Nav tabs
-  %hr
-    / Tab panes
-    .tab-content
-      #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
-        = render "shared/real_estate/map", post: @re_agency
-
-      #description.tab-pane.fade{:role => "tabpanel"}
-        = raw @re_agency.show_description
-
-      #contacts.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/contacts", post: @re_agency
-  %br/
+= render "shared/show",
+          record: @re_agency,
+          template: 'dashboard/re_agencies/re_agency'

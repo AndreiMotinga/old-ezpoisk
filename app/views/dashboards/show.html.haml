@@ -1,72 +1,46 @@
-.container
-  / real estate
-  .category
-    .row
-      %h4
-        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-        Недвижимость
-    .row
-      .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-        = link_to "Агенства невдижимости", dashboard_re_agencies_path
-        %br
-        = link_to "Частная недвижимость", dashboard_re_privates_path
-        %br
-        = link_to "Коммерческая недвижимость ", dashboard_re_commercials_path
-    %hr.post-devide
+/ real estate
+.category
+  .row
+    %h4
+      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+      Недвижимость
+  .row
+    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
+      = link_to "Агенства невдижимости", dashboard_re_agencies_path
+      %br
+      = link_to "Частная недвижимость", dashboard_re_privates_path
+      %br
+      = link_to "Коммерческая недвижимость ", dashboard_re_commercials_path
+  %hr.post-devide
 
-  .category
-    .row
-      %h4
-        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-        Услуги
-    .row
-      .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-        = link_to "Услуги", dashboard_services_path
-    %hr.post-devide
+.category
+  .row
+    %h4
+      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+      Услуги
+  .row
+    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
+      = link_to "Услуги", dashboard_services_path
+  %hr.post-devide
 
-  .category
-    .row
-      %h4
-        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-        Работа
-    .row
-      .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-        = link_to "Агенства", dashboard_job_agencies_path
-        %br
-        = link_to "Работа", dashboard_jobs_path
-    %hr.post-devide
+.category
+  .row
+    %h4
+      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+      Работа
+  .row
+    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
+      = link_to "Агенства", dashboard_job_agencies_path
+      %br
+      = link_to "Работа", dashboard_jobs_path
+  %hr.post-devide
 
-  .category
-    .row
-      %h4
-        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-        Продаю/отдаю
-    .row
-      .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-        = link_to "Обьявления", dashboard_sales_path
-    %hr.post-devide
-
--# .row
--#   %h4
--#     %span.glyphicon.glyphicon-hand-right.blue{"aria-hidden" => "true"}         Работа
--#   .col-lg-4.col-md-6.col-sm-6
--#     %a#ember895.ember-view{:href => "/dashboard/job/agencies/new"} Зарегестрировать агенство
--#     %br
--#       %a#ember934.ember-view{:href => "/dashboard/job/jobs/new"} Новое обьявление
--#       %br
--#   .col-lg-4.col-md-6.col-sm-6
--#     %a#ember966.ember-view{:href => "/dashboard/job/agencies"} Мое Агенство
--#     %br
--#       %a#ember975.ember-view{:href => "/dashboard/job/jobs"} Мои обьявления
--#       %br
--# %hr.post-devide
--#   .row
--#     %h4
--#       %span.glyphicon.glyphicon-hand-right.blue{"aria-hidden" => "true"}           Услуги
--#     .col-lg-4.col-md-6.col-sm-6
--#       %a#ember984.ember-view{:href => "/dashboard/services/new"} Новое обьявление
--#       %br
--#     .col-lg-4.col-md-6.col-sm-6
--#       %a#ember1016.ember-view{:href => "/dashboard/services"} Мои обьявления
--#       %br
-      %hr.post-devide
+.category
+  .row
+    %h4
+      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+      Продаю/отдаю
+  .row
+    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
+      = link_to "Обьявления", dashboard_sales_path
+  %hr.post-devide

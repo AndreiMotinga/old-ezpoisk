@@ -1,6 +1,8 @@
 = link_to 'Создать новое',
            new_dashboard_sale_path,
            class: 'btn btn-success'
+%br/
+%br/
 
 - if @sales.any?
   %table.table.table-hover
@@ -18,7 +20,9 @@
           %td= link_to 'Удалить', dashboard_sale_path(sale),
                         method: :delete,
                         data: { confirm: I18n.t(:confirm) }
+
+  / Table
+  = render "shared/pagination", records: @sales
+
 - else
-  %hr/
-  %p
-  Вы пока не создали обьявлений
+  %p= I18n.t(:no_messages)

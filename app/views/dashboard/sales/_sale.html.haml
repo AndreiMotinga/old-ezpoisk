@@ -1,33 +1,23 @@
-.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
+.col-lg-12.col-md-12.col-sm-12.col-xs-12.post-item
   #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
     %br/
-    = image_tag sale.logo_url(:medium),
-                alt: sale.logo_url(:medium),
-                class: 'img-responsive center-block'
+    = image_tag record.logo_url(:medium),
+                alt: record.logo_url(:medium),
+                class: "img-responsive"
 
   .col-lg-8.col-md-8.col-sm-8.col-xs-12
     / line 1
-    %h3
-      = link_to sale.title, sale_path(sale)
+    %h3= link_to record.title, sale_path(record)
 
     / line 2
-    %strong= sale.category
-    %span.pull-right
-      style-refactor
+    %span= "#{record.city.name}, #{record.state.name}"
     %hr.post-devider/
 
     / line 3
-    style-refactor
-    %span.pull-right
-      %span.glyphicon.glyphicon-phone
-      = sale.phone
+    %strong= record.category
+    %span.pull-right.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 4
-    - unless sale.email.blank?
-      %span= sale.email
-    %span.pull-right
-      = sale.created_at
-
-.row
-%br/
+    %span= record.email unless record.email.blank?
+    %span.pull-right= time_ago_in_words record.created_at

@@ -4,11 +4,13 @@ class Dashboard::ReAgenciesController < ApplicationController
   before_action :set_re_agency, only: [:edit, :update, :destroy]
 
   def index
-    @re_agencies = current_user.re_agencies
+    @re_agencies = current_user.re_agencies.page params[:page]
   end
 
   def new
-    @re_agency = ReAgency.new
+    @re_agency = ReAgency.new state_id: current_user.state_id,
+                              city_id: current_user.city_id,
+                              phone: current_user.phone
   end
 
   def edit

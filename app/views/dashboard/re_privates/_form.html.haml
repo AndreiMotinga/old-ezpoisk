@@ -1,40 +1,39 @@
-.col-lg-6.col-md-8.col-12-sm
-  = bootstrap_form_for([:dashboard, @re_private]) do |f|
-    / address
-    .field
-      = f.text_field :street, label: '* Улица'
-    .field
-      = form_state_select(f)
-    .field
-      = form_city_select(f, @re_private)
+= bootstrap_form_for([:dashboard, @re_private]) do |f|
+  / address
+  .field
+    = f.text_field :street, label: '* Улица'
+  .field
+    = form_state_select(f)
+  .field
+    = form_city_select(f, @re_private)
 
-    / details
-    .field
-      = f.select :post_type,
-                  RE_TYPES,
-                  include_blank: true,
-                  label: '* Тип обьявления'
-    .field
-      = f.select :duration,
-                 RE_DURATION,
-                 include_blank: true,
-                 label: 'Продолжительность'
-    .field
-      = f.text_field :price, label: 'Цена'
-    .field
-      = f.text_field :baths, label: 'Ванные'
-    .field
-      = f.text_field :space, label: 'Площадь'
-    .field
-      = f.text_field :rooms, label: 'Комнат'
+  / details
+  .field
+    = f.select :post_type,
+                RE_TYPES,
+                include_blank: true,
+                label: '* Тип обьявления'
+  .field
+    = f.select :duration,
+               RE_DURATION,
+               include_blank: true,
+               label: '* Продолжительность'
+  .field
+    = f.text_field :price, label: '* Цена'
+  .field
+    = f.text_field :baths, label: 'Ванные'
+  .field
+    = f.text_field :space, label: 'Площадь ft2'
+  .field
+    = f.text_field :rooms, label: '* Комнат'
 
-    .field
-      = f.text_field :phone, label: 'Телефон'
-    .field
-      = f.check_box :active, label: 'Активно?'
-    .field
-      = f.check_box :fee, label: 'Комиссия'
+  .field
+    = f.text_field :phone, label: '* Телефон'
+  .field
+    = f.check_box :active, label: 'Активно?'
+  .field
+    = f.check_box :fee, label: 'Комиссия'
 
-    .actions
-      = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
-    %br/
+  .actions
+    = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
+  %br/

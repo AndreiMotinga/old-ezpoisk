@@ -13,13 +13,39 @@
       = render 'shared/navbar'
       = render 'shared/notice'
       .container
-        = yield
-      / required for sticky footer
+        / Tab links
+        - if content_for?(:tab_links)
+          .row
+            = yield :tab_links
+        / Tab links
+
+        / left sidebar
+        - if content_for?(:left_sidebar)
+          .col-lg-2.col-md-3.hidden-sm.hidden-xs
+            = yield :left_sidebar
+        / left sidebar
+
+        / Main
+        - if content_for?(:left_sidebar)
+          .col-lg-7.col-md-9
+            = yield
+        - else
+          .col-md-9
+            = yield
+        / Main
+
+        / right sidebar
+        .col-lg-3.hidden-md.hidden-sm.hidden-xs
+          - if content_for?(:right_sidebar)
+            = yield :right_sidebar
+          - else
+            = render 'news/right_sidebar'
+        / right sidebar
+
       #push
-    / wrap
 
     /modals
-    = render 'home/sidebar/new_post_modal'
+    = render 'home/new_post_modal'
 
     #footer.hidden-sm.hidden-xs
       = render 'shared/footer'

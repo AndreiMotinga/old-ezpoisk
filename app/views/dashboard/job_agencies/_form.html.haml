@@ -1,26 +1,24 @@
-.col-lg-6.col-md-8.col-12-sm
-  = bootstrap_form_for([:dashboard, @job_agency]) do |f|
-    / address
-    .field
-      = f.text_field :street, label: '* Улица'
-    .field
-      = form_state_select(f)
-    .field
-      = form_city_select(f, @job_agency)
+= bootstrap_form_for([:dashboard, @job_agency]) do |f|
+  / address
+  .field
+    = f.text_field :street, label: '* Улица'
+  .field
+    = form_state_select(f)
+  .field
+    = form_city_select(f, @job_agency)
 
-    / details
-    .field
-      = f.text_field :title, label: '* Название'
-    .field
-      = f.text_field :phone, label: 'Телефон'
-    .field
-      = f.text_field :site, label: 'Сайт'
-    .field
-      = f.email_field :email
-    .field
-      = f.check_box :active, label: 'Активно?'
-    .actions
-      = f.submit "Сохранить",
-                 class: "btn btn-primary",
-                 id: "details-save-btn"
-    %br/
+  / details
+  .field
+    = f.text_field :title, label: '* Название'
+  .field
+    = f.text_field :phone, label: '* Телефон'
+  .field
+    = f.text_field :site, label: 'Сайт'
+  .field
+    = f.email_field :email
+  .field
+    = f.check_box :active, label: 'Активно?'
+  .actions
+    = f.submit "Сохранить",
+               class: "btn btn-primary",
+               id: "details-save-btn"

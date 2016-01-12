@@ -23,7 +23,6 @@ feature "user creates service" do
     expect(page).to have_content service.street
     expect(page).to have_content service.phone
     expect(page).to have_content service.site
-    expect(page).to have_content service.email
 
     record = Service.last
     expect(record.active).to be true

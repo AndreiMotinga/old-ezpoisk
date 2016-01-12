@@ -4,11 +4,14 @@ class Dashboard::ServicesController < ApplicationController
   before_action :set_service, only: [:edit, :update, :destroy]
 
   def index
-    @services = current_user.services
+    @services = current_user.services.page params[:page]
   end
 
   def new
-    @service = Service.new
+    @service = Service.new state_id: current_user.state_id,
+                           city_id: current_user.city_id,
+                           phone: current_user.phone,
+                           email: current_user.email
   end
 
   def edit

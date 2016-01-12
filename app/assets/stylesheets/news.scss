@@ -1,36 +1,4 @@
-.title {
-  font-family: 'Lora', 'Times New Roman', serif;
-  a {
-    color: $dark;
-    text-decoration: none;
-  }
-}
-.news-caption {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-  z-index: 10;
-  padding-left: 10px;
-  background-color: rgba(211, 211, 211, 0.77);
-  a {
-    color: #333333;
-    text-decoration: none;
-  }
-}
-.news-block {
-  a {
-    color: #333333;
-    text-decoration: none;
-  }
-}
-
-.home-news-thumb {
-  margin-top: 10px;
-}
-
-.post-title {
-  margin-bottom: 0px;
-}
 .news-sidebar > li > a {
- padding: 1px 15px;
+  // padding: 2px 15px; goes over footer
+  padding: 0px 15px;
 }

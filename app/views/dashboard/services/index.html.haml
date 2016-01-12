@@ -1,6 +1,8 @@
 = link_to 'Новое',
           new_dashboard_service_path,
           class: "btn btn-success"
+%br/
+%br/
 
 - if @services.any?
   %table.table
@@ -18,7 +20,9 @@
                         dashboard_service_path(service),
                         method: :delete,
                         data: { confirm: I18n.t(:confirm) }
+
+  / Table
+  = render "shared/pagination", records: @services
+
 - else
-  %hr/
-  %p
-    Вы пока не создали обьявлений
+  %p= I18n.t(:no_messages)

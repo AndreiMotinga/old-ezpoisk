@@ -10,10 +10,11 @@
 
 @import "shared/layout";
 @import "shared/main-navbar";
-@import "shared/sidebar";
 @import "shared/general";
-@import "shared/post";
+@import "shared/post-item";
 @import "shared/comments";
 
+@import "home";
 @import "news";
-@import "re-blog";
+@import "post";
+@import "comments";

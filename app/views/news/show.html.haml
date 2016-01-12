@@ -1,16 +1,23 @@
-.news_post
-  %h1.title= @post.title
-  = raw @post.body
+- content_for :left_sidebar do
+  = render 'news/left_sidebar'
+
+/ Main
+%h1.post-title= @post.title
 %br/
+.col-sm-5
+  = image_tag @post.logo, class: "img-responsive center-block"
+= raw @post.body
+
+%div
+  %span.pull-right= link_to "Назад", :back
 %br/
 %br/
 
-.row
-  .col-md-12
-    = render "news/add_comment_modal"
-
-%br/
-%br/
-.row
-  .col-md-8
-    = render @post.comments
+.col-sm-12.comments
+  = bootstrap_form_for(Comment.new) do |f|
+    = hidden_field_tag :post_id, @post.id
+    = f.text_area :body, label: "Оставьте свой коментарий", autofocus: true
+    = f.submit "Добавить", class: "btn btn-primary"
+  %br/
+  = render @post.comments.includes(:user)
+/ Main

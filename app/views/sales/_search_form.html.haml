@@ -14,16 +14,16 @@
 %h5
   Либо выберите штат и город
 .form-group
-  = label_tag "Штат", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
+  = label_tag "Штат", nil,  class: "col-sm-3 control-label"
+  .col-sm-9
     = select_tag :state_id,
                  state_select_with_param,
                  include_blank: true,
                  class: "form-control state-select"
 
 .form-group
-  = label_tag "Город", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
+  = label_tag "Город", nil,  class: "col-sm-3 control-label"
+  .col-sm-9
     = select_tag :city_id,
                  city_select_with_param,
                  include_blank: true,
@@ -32,16 +32,16 @@
 %hr/
 
 .form-group
-  = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
-  .col-sm-5
-    = select_tag :category,
-      options_for_select(SALE_CATEGORIES, params[:category]),
-      include_blank: true,
-      class: "form-control"
-
-.form-group
   = label_tag "Ключевое слово", nil,  class: "col-sm-3 control-label"
   .col-sm-9
     = text_field_tag :keyword,
                      params[:keyword],
                      class: "form-control"
+
+.form-group
+  = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
+  .col-sm-9
+    = select_tag :category,
+      options_for_select(SALE_CATEGORIES, params[:category]),
+      include_blank: true,
+      class: "form-control"

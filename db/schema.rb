@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160112175422) do
+ActiveRecord::Schema.define(version: 20160114154726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20160112175422) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
@@ -155,7 +157,7 @@ ActiveRecord::Schema.define(version: 20160112175422) do
     t.string   "post_type",   default: "",    null: false
     t.string   "phone",       default: "",    null: false
     t.integer  "price",                       null: false
-    t.integer  "space",                       null: false
+    t.integer  "space"
     t.integer  "zip"
     t.float    "lat"
     t.float    "lng"
@@ -178,8 +180,8 @@ ActiveRecord::Schema.define(version: 20160112175422) do
     t.string   "duration",    default: "",    null: false
     t.string   "phone",       default: "",    null: false
     t.integer  "price",                       null: false
-    t.integer  "baths",                       null: false
-    t.integer  "space",                       null: false
+    t.integer  "baths"
+    t.integer  "space"
     t.integer  "rooms",                       null: false
     t.integer  "zip"
     t.float    "lat"

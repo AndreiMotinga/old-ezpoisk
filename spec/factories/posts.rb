@@ -4,6 +4,7 @@ FactoryGirl.define do
     body { Faker::Lorem.paragraph 40 }
     category NEWS_CATEGORIES.sample
     subcategory ""
+    logo "http://images5.fanpop.com/image/photos/29200000/Obama-barack-obama-29238444-1280-800.jpg"
 
     association :user
 

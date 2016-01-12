@@ -1,34 +1,21 @@
-.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
+.col-lg-12.col-md-12.col-sm-12.col-xs-12.post-item
   #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
-    %br/
-    = image_tag job.logo.url(:medium),
-                alt: job.logo.url(:medium),
-                class: 'img-responsive center-block'
+    = image_tag record.logo, alt: record.logo, class: "img-responsive"
 
   .col-lg-8.col-md-8.col-sm-8.col-xs-12
     / line 1
-    %h3
-      = link_to job.title, jobs_job_path(job)
+    %h3= link_to record.title, jobs_job_path(record)
 
     / line 2
-    %strong= job.post_type
+    %strong= record.post_type
+    %span.pull-right= "#{record.city.name}, #{record.state.name}"
     %hr.post-devider/
 
-    / line 2
-    %strong= job.category
+    / line 3
+    %strong= record.category
+    %span.pull-right.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
-    /line 3
-    -#style-refactor
-    %span.pull-right
-      %span.glyphicon.glyphicon-phone
-      = job.phone
+    /line 4
+    %span= time_ago_in_words record.created_at
     %hr.post-devider/
-
-    / line 4
-    - unless job.email.empty?
-      %span= job.email
-      %hr.post-devider/
-
-.row
-%br/

@@ -23,7 +23,6 @@ feature "user creates re_agency" do
     expect(page).to have_content re_agency.street
     expect(page).to have_content re_agency.phone
     expect(page).to have_content re_agency.site
-    expect(page).to have_content re_agency.email
 
     agency = ReAgency.last
     expect(agency.active).to be true

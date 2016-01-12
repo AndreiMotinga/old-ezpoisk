@@ -21,7 +21,6 @@ feature "user creates job" do
 
     expect(page).to have_content job.title
     expect(page).to have_content job.phone
-    expect(page).to have_content job.email
 
     saved_job = Job.last
     expect(saved_job.active).to be true

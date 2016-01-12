@@ -1,30 +1,28 @@
-.col-lg-6.col-md-8.col-12-sm
-  = bootstrap_form_for([:dashboard, @sale]) do |f|
-    .field
-      = f.text_field :title, label: '* Заголовок'
+= bootstrap_form_for([:dashboard, @sale]) do |f|
+  .field
+    = f.text_field :title, label: '* Заголовок'
 
-    .field
-      = f.select :category,
-                  SALE_CATEGORIES,
-                  include_blank: true,
-                  label: '* Категория'
+  .field
+    = f.select :category,
+                SALE_CATEGORIES,
+                include_blank: true,
+                label: '* Категория'
 
-    .field
-      = form_state_select(f)
-    .field
-      = form_city_select(f, @sale)
+  .field
+    = form_state_select(f)
+  .field
+    = form_city_select(f, @sale)
 
-    .field
-      = f.text_field :phone, label: 'Телефон'
+  .field
+    = f.text_field :phone, label: '* Телефон'
 
-    .field
-      = f.email_field :email
+  .field
+    = f.email_field :email
 
-    .field
-      = f.check_box :active, label: 'Активно?'
+  .field
+    = f.check_box :active, label: 'Активно?'
 
-    .actions
-      = f.submit "Сохранить",
-                 class: "btn btn-primary",
-                 id: 'details-save-btn'
-    %br/
+  .actions
+    = f.submit "Сохранить",
+               class: "btn btn-primary",
+               id: 'details-save-btn'

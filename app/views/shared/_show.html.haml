@@ -1,0 +1,43 @@
+= link_to "Назад", :back, class: "btn btn-primary"
+%br
+%br
+
+.hidden-xs
+  = render template, record: record
+
+%div
+  / Nav tabs
+  %ul.nav.nav-tabs{:role => "tablist"}
+
+    %li.hidden-xs.active{:role => "presentation"}
+      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
+
+    - if record.class.method_defined?(:pictures)
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab"} Фото
+
+    %li{:role => "presentation"}
+      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Адрес / Контакты
+
+    - unless record.description.blank?
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
+
+  / Nav tabs
+  %hr
+    / Tab panes
+    .tab-content
+      #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
+        = render "shared/show/map", record: record
+
+      - if record.class.method_defined?(:pictures)
+        #pictures.tab-pane.fade{:role => "tabpanel"}
+          = render "shared/show/pictures", record: record
+
+      #contacts.tab-pane.fade{:role => "tabpanel"}
+        = render "shared/show/contacts", record: record
+
+      - unless record.description.blank?
+        #description.tab-pane.fade{:role => "tabpanel"}
+          = raw record.description
+  %br/

@@ -1,6 +1,7 @@
 class ServicesController < ApplicationController
   def index
-    services = Service.filter(params.slice(:state_id,
+    services = Service.includes(:state, :city)
+                      .filter(params.slice(:state_id,
                                            :city_id,
                                            :category,
                                            :subcategory,

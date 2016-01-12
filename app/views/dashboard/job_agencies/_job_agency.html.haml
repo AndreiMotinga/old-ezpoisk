@@ -1,31 +1,24 @@
-.col-lg-12.col-md-12.col-sm-12.col-xs-12.post
-  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
-    %br/
-    = image_tag job_agency.logo.url(:medium),
-                alt: job_agency.logo.url(:medium),
-                class: 'img-responsive center-block'
+/ same as re_agency
+.col-md-12.post-item
+  #logo.col-lg-3.col-md-4.col-sm-4.hidden-xs
+    = image_tag record.logo,
+                alt: record.logo,
+                class: "img-responsive"
 
-  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+  .col-lg-9.col-md-8.col-sm-8.col-xs-12
     / line 1
-    %h3.text-center
-      = link_to job_agency.title, jobs_job_agency_path(job_agency)
+    %h3= link_to record.title, jobs_job_agency_path(record)
 
     / line 2
-    %strong
-      %a{:href => "http://#{job_agency.site}", :target => "blank"}
-        = job_agency.site
+    %span= record.address
+    %span.pull-right.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 3
-    %span= job_agency.street
-    %hr.post-devider/
+    - unless record.site.blank?
+      %strong
+        = link_to record.site, "http://#{record.site}", target: "blank"
+        %hr.post-devider/
 
     / line 4
-    %span= job_agency.email
-    %span.pull-right
-      %span.glyphicon.glyphicon-phone
-        = job_agency.phone
-    %hr.post-devider/
-
-.row
-%br/
+    %span.pull-right= time_ago_in_words record.created_at

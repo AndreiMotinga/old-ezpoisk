@@ -3,12 +3,16 @@ class Dashboard::ReCommercialsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_re_commercial, only: [:edit, :update, :destroy]
 
+
+
   def index
-    @re_commercials = current_user.re_commercials
+    @re_commercials = current_user.re_commercials.page params[:page]
   end
 
   def new
-    @re_commercial = ReCommercial.new
+    @re_commercial = ReCommercial.new state_id: current_user.state_id,
+                                      city_id: current_user.city_id,
+                                      phone: current_user.phone
   end
 
   def edit

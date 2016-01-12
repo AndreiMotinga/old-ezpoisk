@@ -1,6 +1,8 @@
 = link_to 'Новое',
           new_dashboard_job_path,
           class: "btn btn-success"
+%br/
+%br/
 
 - if @jobs.any?
   %table.table
@@ -18,7 +20,9 @@
                         dashboard_job_path(job),
                         method: :delete,
                         data: { confirm: I18n.t(:confirm) }
+
+  / Table
+  = render "shared/pagination", records: @jobs
+
 - else
-  %hr/
-  %p
-    Вы пока не создали обьявлений
+  %p= I18n.t(:no_messages)

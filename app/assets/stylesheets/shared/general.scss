@@ -1,40 +1,20 @@
-body {
-  padding-top: 80px;
-}
-hr.post-devider {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-a.active {
-  background-color: $lightgrey;
-}
-
-.carousel-image {
-  width: auto;
-  height: 400px;
-  max-height: 400px;
-}
-
-.slider-thumb {
-  width: auto;
-  height: 50px;
-  max-height: 50px;
-  margin-bottom: 5px;
-}
-
 .btn-big {
   padding: 15px 60px;
 }
+
 .fixed {
   position: fixed;
 }
 
-.footer {
-  background-color: $lightgrey;
+.upcase {
+  text-transform: uppercase;
 }
 
-footer a {
-  text-decoration: none;
-  color: $grey;
+a.active {
+  background: $lightgrey;
+}
+
+.grey-block {
+  background-color: $lightergrey;
+  padding-bottom: 10px;
 }

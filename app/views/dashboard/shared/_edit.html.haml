@@ -1,0 +1,51 @@
+#pictures-data{ "data-id" => "#{record.id}",
+                "data-type" => "#{record.class.to_s}" }
+
+= render template, record: record
+%br/
+
+.row
+  .col-lg-12
+    / Nav tabs
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active{:role => "presentation"}
+        %a{ "aria-controls" => "form",
+            "data-toggle" => "tab",
+            :href => "#form",
+            :role => "tab" }
+          Детали
+      %li{ :role => "presentation" }
+        %a{ "aria-controls" => "messages",
+            "data-toggle" => "tab",
+            :href => "#description",
+            :role => "tab" }
+          Описание
+      %li{ :role => "presentation" }
+        %a{ "aria-controls" => "messages",
+            "data-toggle" => "tab",
+            :href => "#pictures",
+            :role => "tab" }
+          Фотографии
+    / Nav tabs
+
+    %br/
+
+    / Tab panes
+    .tab-content
+      / form
+      #form.tab-pane.fade.in.active{:role => "tabpanel"}
+        = render 'form'
+
+      / description
+      #description.tab-pane.fade{:role => "tabpanel"}
+        .col-lg-12
+          = render "dashboard/shared/description", record: record
+
+      / pictures
+      #pictures.tab-pane.fade{:role => "tabpanel"}
+        .col-lg-12
+          - if record.class.method_defined?(:pictures)
+            = render "dashboard/shared/pictures", record: record
+          - else
+            = render "dashboard/shared/logo", record: record
+    / Tab panes

@@ -1,26 +1,3 @@
-.hidden-xs
-  = render 'dashboard/job_agencies/job_agency', job_agency: @job_agency
-
-%div
-  / Nav tabs
-  %ul.nav.nav-tabs{:role => "tablist"}
-    %li.hidden-xs.active{:role => "presentation"}
-      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Контакты
-
-  / Nav tabs
-  %hr
-    / Tab panes
-    .tab-content
-      #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
-        = render "shared/real_estate/map", post: @job_agency
-
-      #description.tab-pane.fade{:role => "tabpanel"}
-        = raw @job_agency.show_description
-
-      #contacts.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/contacts", post: @job_agency
-  %br/
+= render "shared/show",
+          record: @job_agency,
+          template: 'dashboard/job_agencies/job_agency'

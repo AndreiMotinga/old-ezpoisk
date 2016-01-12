@@ -1,43 +1,24 @@
-.col-md-12
+.col-md-12.grey-block
   %h4 Пажалуйста, оставьте ваш отзыв
-  %hr
-  .col-md-10.col-md-offset-1
-    = form_for @feedback, :html => {:class => "form-horizontal"} do |f|
-      .row
-        .col-lg-8.col-md-8.col-sm-8
-          - if @feedback.errors.any?
-            %h4.text-center Пожалуйста заполните все необходимые поля
-            .text-center.bg-danger.errors
-              %ul.list-unstyled
-                %br
-                  - @feedback.errors.full_messages.each do |feedback|
-                    %li.text-danger= feedback
-                  %br
+  .col-md-12
+    = bootstrap_form_for @feedback do |f|
       .form-group
-        = f.label :name, "Ваше имя *", class: "col-lg-2 col-md-2 control-label"
-        .col-lg-6.col-md-6
-          = f.text_field :name, class: "form-control", required: true
+        = f.text_field :name, label: "Ваше имя *", required: true
       .form-group
-        = f.label :email, "Ваш email *", class: "col-lg-2 col-md-2 control-label"
-        .col-lg-6.col-md-6
-          = f.email_field :email, class: "form-control", required: true
+        = f.email_field :email, label: "Ваш email *", required: true
       .form-group
-        = f.label :body, "Сообщение *", class: "col-lg-2 col-md-2 control-label"
-        .col-lg-6.col-md-6
-          = f.text_area :body, class: 'form-control', rows: 3, required: true
+        = f.text_area :body, label: "Сообщение *", rows: 3, required: true
       .form-group
-        .col-lg-offset-2.col-md-offset-2
-          = f.submit class: "btn btn-default", value: 'Оставить отзыв'
+        = f.submit class: "btn btn-default", value: 'Оставить отзыв'
+      %hr
 
-    %hr
-      .row
-        %h4 Мои контакты
-        %p
-          email
-          %strong andrew.motinga@gmail.com
-        %p
-          phone
-          %strong 1(929) 293 5385
-      %br
-        %br
-          = link_to 'Вернуться на главную', root_path
+  %h4 Мои контакты
+  .col-md-12
+    %p
+      email
+      %strong andrew.motinga@gmail.com
+    %p
+      phone
+      %strong 1(929) 293 5385
+
+  = link_to 'Вернуться на главную', root_path

@@ -11,8 +11,8 @@ feature "User create re_commercial" do
     fill_in "Телефон", with: re_commercial.phone
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    select("офис", from: "Категория")
-    select("аренда", from:  "Тип обьявления")
+    select("Офис", from: "Категория")
+    select("Аренда", from:  "Тип обьявления")
     fill_in "Цена", with: re_commercial.price
     fill_in "Площадь", with: re_commercial.space
     fill_in "Телефон", with: re_commercial.phone
@@ -25,8 +25,8 @@ feature "User create re_commercial" do
     expect(page).to have_content re_commercial.price
     expect(page).to have_content re_commercial.space
     expect(page).to have_content re_commercial.space
-    expect(page).to have_content "АРЕНДА"
-    expect(page).to have_content "ОФИС"
+    expect(page).to have_content "Аренда"
+    expect(page).to have_content "Офис"
 
     re_commercial = ReCommercial.last
     expect(re_commercial.active).to be true

@@ -1,3 +1,7 @@
+- content_for :tab_links do
+  = render 'layouts/tab_links/jobs'
+
+/ Main
 .row
   %h4.pull-right
     %a= "Всего #{@jobs.total_count}"
@@ -5,14 +9,7 @@
 .row
   %hr/
   - @jobs.each do |job|
-    = render 'dashboard/jobs/job', job: job
+    = render 'dashboard/jobs/job', record: job
 
-- if @jobs.empty?
-  .row
-    = render "shared/no_posts_message"
-- else
-  .row
-    %hr/
-    .text-center
-      = paginate @jobs, :theme => 'twitter-bootstrap-3'
-    %hr/
+= render "shared/pagination", records: @jobs
+/ Main

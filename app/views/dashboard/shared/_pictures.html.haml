@@ -1,0 +1,33 @@
+.row
+  / Button trigger modal
+  %button.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+    Загрузить фотографии
+
+  / Modal
+  #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog{:role => "document"}
+      .modal-content
+        .modal-body
+          = form_for([:dashboard, Picture.new], html: { multipart: true, class: "dropzone"}) do |f|
+            = f.hidden_field(:imageable_id, value: record.id)
+            = f.hidden_field(:imageable_type, value: record.class.to_s)
+            .fallback
+              = f.file_field :image
+              %br/
+              = f.submit "Upload"
+        .modal-footer
+          %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+  / Modal
+
+/ Pictures
+%br/
+.row
+  .col-lg-8
+    %table.table
+      %thead
+        %tr
+          %th{:colspan => "2"}
+            %tbody.pictures
+        = render record.pictures
+    %br/
+/ Pictures

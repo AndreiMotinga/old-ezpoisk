@@ -1,35 +1,33 @@
-.col-lg-6.col-md-6.col-12-sm
-  = bootstrap_form_for([:dashboard, @job]) do |f|
-    / details
-    .field
-      = f.text_field :title, label: '* Заголовок'
-    .field
-      = f.select :post_type,
-                 JOB_TYPES,
-                 include_blank: true,
-                 label: '* Тип обьявлния'
-    .field
-      = f.select :category,
-                 JOB_CATEGORIES,
-                 include_blank: true,
-                 label: '* Категория'
+= bootstrap_form_for([:dashboard, @job]) do |f|
+  / details
+  .field
+    = f.text_field :title, label: '* Заголовок'
+  .field
+    = f.select :post_type,
+               JOB_TYPES,
+               include_blank: true,
+               label: '* Тип обьявлния'
+  .field
+    = f.select :category,
+               JOB_CATEGORIES,
+               include_blank: true,
+               label: '* Категория'
 
-    / address
-    .field
-      = form_state_select(f)
+  / address
+  .field
+    = form_state_select(f)
 
-    .field
-      = form_city_select(f, @job)
+  .field
+    = form_city_select(f, @job)
 
-    .field
-      = f.text_field :phone, label: 'Телефон'
-    .field
-      = f.email_field :email
+  .field
+    = f.text_field :phone, label: '* Телефон'
+  .field
+    = f.email_field :email
 
-    .field
-      = f.check_box :active, label: 'Активно?'
-    .actions
-      = f.submit "Сохранить",
-        class: "btn btn-primary",
-        id: "details-save-btn"
-    %br/
+  .field
+    = f.check_box :active, label: 'Активно?'
+  .actions
+    = f.submit "Сохранить",
+      class: "btn btn-primary",
+      id: "details-save-btn"

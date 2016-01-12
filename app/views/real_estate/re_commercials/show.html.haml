@@ -1,32 +1,3 @@
-.hidden-xs
-  = render 'dashboard/re_commercials/re_commercial',
-            re_commercial: @re_commercial
-%br
-%div
-  / Nav tabs
-  %ul.nav.nav-tabs{:role => "tablist"}
-    %li.hidden-xs.active{:role => "presentation"}
-      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "photo", "data-toggle" => "tab", :href => "#photo", :role => "tab"} Фотографии
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Контакты
-
-  / Nav tabs
-  %hr
-    / Tab panes
-    .tab-content
-      #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
-        = render "shared/real_estate/map", post: @re_commercial
-
-      #photo.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/pictures", post: @re_commercial
-
-      #description.tab-pane.fade{:role => "tabpanel"}
-        = raw @re_commercial.show_description
-
-      #contacts.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/contacts", post: @re_commercial
-  %br/
+= render "shared/show",
+          record: @re_commercial,
+          template: 'dashboard/re_commercials/re_commercial'

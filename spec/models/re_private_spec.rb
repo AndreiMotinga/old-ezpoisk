@@ -7,6 +7,9 @@ describe RePrivate do
   it { should validate_presence_of :city_id }
   it { should validate_presence_of :user_id }
   it { should validate_presence_of :street }
+  it { should validate_presence_of :rooms }
+  it { should validate_presence_of :duration }
+  it { should validate_presence_of :phone }
 
   it { should belong_to(:user) }
   it { should belong_to(:state) }
@@ -43,13 +46,6 @@ describe RePrivate do
       re_private = create(:re_private)
 
       expect(re_private.logo_url(:thumb)).to eq "missing.png"
-    end
-  end
-
-  describe "#show_description" do
-    it "uses default string when doesn't have description" do
-      re_private = create :re_private, description: nil
-      expect(re_private.show_description).to eq I18n.t(:no_description)
     end
   end
 

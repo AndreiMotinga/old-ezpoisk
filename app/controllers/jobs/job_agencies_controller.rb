@@ -1,10 +1,9 @@
 class Jobs::JobAgenciesController < ApplicationController
-  layout "jobs"
-
   def index
-    job_agencies = JobAgency.filter(params.slice(:state_id,
-                                                 :city_id,
-                                                 :geo_scope))
+    job_agencies = JobAgency.includes(:state, :city)
+                   .filter(params.slice(:state_id,
+                                        :city_id,
+                                        :geo_scope))
     @job_agencies = job_agencies.page(params[:page])
   end
 

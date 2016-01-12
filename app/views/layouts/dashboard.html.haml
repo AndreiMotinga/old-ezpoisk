@@ -3,21 +3,32 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Chogde
+    %meta{:charset => "UTF-8"}/
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+
     #wrap
       = render 'shared/navbar'
       .container
+        = render 'layouts/dashboard/navbar'
+        = render 'shared/notice'
         .row
-          = render 'layouts/dashboard/navbar'
-        .row
-          = render 'shared/notice'
-        .row
-          = yield
-      / required for sticky footer
+          / Main
+          .col-md-9
+            = yield
+          / Main
+
+          / right sidebar
+          .col-lg-3.hidden-md.hidden-sm.hidden-xs
+            - if content_for?(:right_sidebar)
+              = yield :right_sidebar
+            - else
+              = render 'news/right_sidebar'
+          / right sidebar
+
       #push
-    / wrap
+
     #footer.hidden-sm.hidden-xs
       = render 'shared/footer'

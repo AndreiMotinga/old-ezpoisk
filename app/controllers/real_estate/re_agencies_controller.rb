@@ -1,7 +1,7 @@
 class RealEstate::ReAgenciesController < ApplicationController
-  layout "real_estate"
   def index
-    re_agencies = ReAgency.filter(params.slice(:state_id, :city_id, :geo_scope))
+    re_agencies = ReAgency.includes(:state, :city)
+                  .filter(params.slice(:state_id, :city_id, :geo_scope))
     @re_agencies = re_agencies.page(params[:page])
   end
 

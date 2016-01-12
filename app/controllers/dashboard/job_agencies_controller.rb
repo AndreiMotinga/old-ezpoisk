@@ -4,11 +4,14 @@ class Dashboard::JobAgenciesController < ApplicationController
   before_action :set_job_agency, only: [:edit, :update, :destroy]
 
   def index
-    @job_agencies = current_user.job_agencies
+    @job_agencies = current_user.job_agencies.page params[:page]
   end
 
   def new
-    @job_agency = JobAgency.new
+    @job_agency = JobAgency.new state_id: current_user.state_id,
+                                city_id: current_user.city_id,
+                                phone: current_user.phone,
+                                email: current_user.email
   end
 
   def edit

@@ -13,14 +13,6 @@ describe Job do
   it { should belong_to(:user) }
   it { should belong_to(:city) }
   it { should belong_to(:state) }
-  it { should have_many(:pictures).dependent(:destroy) }
-
-  describe "#show_description" do
-    it "uses default string when doesn't have description" do
-      job = create :job, description: ""
-      expect(job.show_description).to eq "Автор не предоставил описание"
-    end
-  end
 
   describe "#address" do
     it "return proper formatted address" do

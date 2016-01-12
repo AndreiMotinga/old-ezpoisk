@@ -3,12 +3,6 @@
   font-size: 25px;
   font-family: "Lucida Grande", Times, serif;
   font-weight: 900;
-  // line-height: 50px;
-  // height: 70px;
-}
-
-.navbar-main .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  // background-color: transparent;
 }
 
 .navbar-main {
@@ -16,19 +10,4 @@
   -webkit-box-shadow: 0 8px 6px -6px #999;
   -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0 8px 6px -6px #999;
-}
-
-.navbar-main .navbar-nav > li > a {
-  // padding-top: 0px;
-  // padding-bottom: 0px;
-  // line-height: 80px;
-  // font-size: 16px;
-}
-
-@media (max-width: 767px) {
-  .navbar-main .navbar-nav > li > a {
-    line-height: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
 }

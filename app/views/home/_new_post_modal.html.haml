@@ -1,0 +1,58 @@
+/ Modal
+#new.modal.fade{"aria-labelledby" => "myModalLabel",
+                :role => "dialog",
+                :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+
+      .modal-header
+        %button.close{"aria-label" => "Close",
+                      "data-dismiss" => "modal",
+                      :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+
+        %h4#myModalLabel.modal-title
+          = t(:category)
+      / .modal-header
+
+      .modal-body
+        .row
+          .col-lg-12
+            .list-group
+              = link_to t(:re_agency),
+                        new_dashboard_re_agency_path,
+                        class: 'list-group-item'
+              = link_to t(:private),
+                        new_dashboard_re_private_path,
+                        class: 'list-group-item'
+              = link_to t(:commercial),
+                        new_dashboard_re_commercial_path,
+                        class: 'list-group-item'
+
+              = link_to "Услуги",
+                        new_dashboard_job_agency_path,
+                        class: 'list-group-item'
+
+              = link_to "Агенство по трудоустройству",
+                        new_dashboard_job_agency_path,
+                        class: 'list-group-item'
+              = link_to "Работа",
+                        new_dashboard_job_path,
+                        class: 'list-group-item'
+
+              = link_to "Продается",
+                        new_dashboard_job_agency_path,
+                        class: 'list-group-item'
+            %br/
+            %br/
+            .list-group
+              = link_to t(:leave_a_comment),
+                        new_feedback_path,
+                        class: 'list-group-item'
+      / .modal-body
+
+      .modal-footer
+        %button.btn.btn-primary{"aria-label" => "Close",
+                                "data-dismiss" => "modal",
+                                :type => "button"}
+          = t(:close)

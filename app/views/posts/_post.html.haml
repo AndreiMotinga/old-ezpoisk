@@ -1,0 +1,7 @@
+.row.post
+  .col-sm-3.hidden-xs
+    = image_tag post.logo, class: "img-responsive"
+  .col-sm-9.post-text
+    %h4.post-title= link_to post.title, news_path(post)
+    = strip_tags(post.body).truncate(150)
+%hr.post-devider/

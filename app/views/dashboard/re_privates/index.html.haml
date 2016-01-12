@@ -1,6 +1,8 @@
 = link_to 'Создать новое',
            new_dashboard_re_private_path,
            class: 'btn btn-success'
+%br/
+%br/
 
 - if @re_privates.any?
   %table.table.table-hover
@@ -18,7 +20,9 @@
           %td= link_to 'Удалить', dashboard_re_private_path(re_private),
                         method: :delete,
                         data: { confirm: I18n.t(:confirm) }
+
+  / Table
+  = render "shared/pagination", records: @re_privates
+
 - else
-  %hr/
-  %p
-  Вы пока не создали обьявлений
+  %p= I18n.t(:no_messages)

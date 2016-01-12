@@ -1,8 +1,11 @@
 = link_to 'Новое агенство',
           new_dashboard_re_agency_path,
           class: "btn btn-success"
+%br/
+%br/
 
 - if @re_agencies.any?
+
   %table.table
     %thead
       %tr
@@ -18,7 +21,9 @@
                         dashboard_re_agency_path(re_agency),
                         method: :delete,
                         data: { confirm: I18n.t(:confirm) }
+
+  / Table
+  = render "shared/pagination", records: @re_agencies
+
 - else
-  %hr/
-  %p
-    Вы пока не создали обьявлений
+  %p= I18n.t(:no_messages)

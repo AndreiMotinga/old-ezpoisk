@@ -4,11 +4,14 @@ class Dashboard::SalesController < ApplicationController
   before_action :set_sale, only: [:edit, :update, :destroy]
 
   def index
-    @sales = current_user.sales
+    @sales = current_user.sales.page params[:page]
   end
 
   def new
-    @sale = Sale.new
+    @sale = Sale.new state_id: current_user.state_id,
+                     city_id: current_user.city_id,
+                     phone: current_user.phone,
+                     email: current_user.email
   end
 
   def edit

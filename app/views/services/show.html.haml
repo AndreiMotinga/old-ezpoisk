@@ -1,27 +1,3 @@
-.hidden-xs
-  = render 'dashboard/services/service', service: @service
-
-%div
-  / Nav tabs
-  %ul.nav.nav-tabs{:role => "tablist"}
-    %li.hidden-xs.active{:role => "presentation"}
-      %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "description", "data-toggle" => "tab", :href => "#description", :role => "tab"} Описание
-    %li{:role => "presentation"}
-      %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Контакты
-
-  / Nav tabs
-  %hr
-    / Tab panes
-    .tab-content
-      #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
-        = render "shared/real_estate/map", post: @service
-
-      #description.tab-pane.fade{:role => "tabpanel"}
-        -# todo: convert show_description to a partial
-        = raw @service.show_description
-
-      #contacts.tab-pane.fade{:role => "tabpanel"}
-        = render "shared/real_estate/contacts", post: @service
-  %br/
+= render "shared/show",
+          record: @service,
+          template: 'dashboard/services/service'

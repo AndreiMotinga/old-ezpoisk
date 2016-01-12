@@ -1,15 +1,15 @@
-/ sidebar
-.col-lg-2.col-md-2.hidden-sm.hidden-xs
+-content_for :left_sidebar do
   = render 'services/sidebar'
 
 / Main
-.col-lg-7.col-md-7.col-sm-12
-  = render "services/services"
-.col-lg-3.col-md-3.hidden-sm.hidden-xs
-  %p
-    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
-    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
-    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
-    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
-    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
-    Dolor beatae in pariatur repellendus eveniet doloribus asperiores! Eligendi magnam quia veritatis explicabo beatae modi sunt. Delectus in dolorum laudantium doloremque incidunt autem non cupiditate non? Laudantium voluptatibus sequi soluta.
+.row
+  %h4.pull-right
+    %a= "Всего #{@services.total_count}"
+  = render 'services/search_modal'
+.row
+  %hr/
+  - @services.each do |service|
+    = render 'dashboard/services/service', record: service
+
+= render "shared/pagination", records: @services
+/ Main
