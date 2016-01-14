@@ -70,7 +70,7 @@ describe SalesController do
         get :index, keyword: "comput"
         sales = assigns(:sales)
 
-        expect(sales.map(&:title)).to match [first.title, second.title]
+        expect(sales.map(&:title)).to match_array [first.title, second.title]
         expect(sales.size).to eq 2
       end
 

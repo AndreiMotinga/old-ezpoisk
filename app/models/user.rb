@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :async
+  after_create :notify_admin
 
   validates :phone, presence: true
   validates :name, presence: true
@@ -20,4 +21,11 @@ class User < ActiveRecord::Base
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :posts
+  has_many :feedbacks
+
+  private
+
+  def notify_admin
+    AdminMailerJob.perform_async(id, "User")
+  end
 end
