@@ -21,6 +21,7 @@ class Dashboard::JobAgenciesController < ApplicationController
     @job_agency = current_user.job_agencies.build(job_agency_params)
 
     if @job_agency.save
+      AdminMailerJob.perform_async(@job_agency.id, "JobAgency")
       GeocodeJob.perform_async(@job_agency.id, "JobAgency")
       redirect_to edit_dashboard_job_agency_path(@job_agency),
                   notice: I18n.t(:post_saved)

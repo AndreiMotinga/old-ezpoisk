@@ -20,6 +20,7 @@ class Dashboard::RePrivatesController < ApplicationController
     @re_private = current_user.re_privates.build(re_private_params)
 
     if @re_private.save
+      AdminMailerJob.perform_async(@re_private.id, "RePrivate")
       GeocodeJob.perform_async(@re_private.id, "RePrivate")
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)

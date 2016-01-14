@@ -21,6 +21,7 @@ class Dashboard::ServicesController < ApplicationController
     @service = current_user.services.build(service_params)
 
     if @service.save
+      AdminMailerJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
