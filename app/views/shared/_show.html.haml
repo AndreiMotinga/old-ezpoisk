@@ -30,7 +30,7 @@
       #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
         = render "shared/show/map", record: record
 
-      - if record.class.method_defined?(:pictures)
+      - if record.class.method_defined?(:pictures) && record.pictures.any?
         #pictures.tab-pane.fade{:role => "tabpanel"}
           = render "shared/show/pictures", record: record
 
