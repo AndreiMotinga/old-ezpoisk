@@ -4,4 +4,4 @@
 User-agent: *
 Disallow: /dashboard
 
-Sitemap: https://s3.amazonaws.com/chogde-production/sitemaps/sitemap.xml.gz
+Sitemap: https://s3.amazonaws.com/ezpoisk-production/sitemaps/sitemap.xml.gz

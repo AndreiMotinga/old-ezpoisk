@@ -1,8 +1,8 @@
 == README
 
-This repo is a rewrite of chogde.com using rails only.
+This repo is a rewrite of ezpoisk.com using rails only.
 
-Chogde.com is an app that was built with 2 goals in mind.
+ezpoisk.com is an app that was built with 2 goals in mind.
 
 First, I really want to build this website to be a usefull place for russian speaking community in usa.
 

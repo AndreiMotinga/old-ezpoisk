@@ -5,11 +5,11 @@ default: &default
 
 development:
   <<: *default
-  database: chogde_development
+  database: ezpoisk_development
 
 test:
   <<: *default
-  database: chogde_test
+  database: ezpoisk_test
 
 production:
   <<: *default

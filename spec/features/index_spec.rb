@@ -4,6 +4,6 @@ feature "Home page" do
   scenario "user visits home page" do
     visit root_path
 
-    expect(page).to have_content "CHOGDE"
+    expect(page).to have_content "eZpoisk"
   end
 end
