@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
   def new
-    @feedback = Feedback.new
+    @feedback = Feedback.new name: current_user.try(:name),
+                             email: current_user.try(:email)
   end
 
   def create
