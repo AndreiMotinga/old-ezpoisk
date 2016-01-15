@@ -1,0 +1,4 @@
+- Post.content_for_right_sidebar.each do |record|
+  %div.side-post
+    = image_tag record.logo, class: "img-responsive"
+    .text= record.title

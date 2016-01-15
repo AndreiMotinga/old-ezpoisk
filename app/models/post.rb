@@ -12,4 +12,8 @@ class Post < ActiveRecord::Base
   def self.by_category(category)
     where("LOWER(category) LIKE ?", "%#{category.mb_chars.downcase}%")
   end
+
+  def self.content_for_right_sidebar
+    where(important: true).limit(10)
+  end
 end
