@@ -81,10 +81,7 @@ module FormHelper
   end
 
   def news_options(post = nil)
-    if post.category
-      options_for_select(NEWS_CATEGORIES, @post.category.split(" "))
-    else
-      NEWS_CATEGORIES
-    end
+    return NEWS_CATEGORIES.keys unless post.category
+    options_for_select(NEWS_CATEGORIES.keys, @post.category.split(" "))
   end
 end

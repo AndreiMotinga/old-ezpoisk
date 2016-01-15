@@ -2,10 +2,12 @@ FactoryGirl.define do
   factory :post do
     title { Faker::Lorem.sentence 2 }
     body { Faker::Lorem.paragraph 40 }
-    category NEWS_CATEGORIES.sample
+    category NEWS_CATEGORIES.keys.sample
     subcategory ""
-    logo "http://images5.fanpop.com/image/photos/29200000/Obama-barack-obama-29238444-1280-800.jpg"
+    logo "http://images5.fanpop.com/image"
     important true
+    from_rss false
+    description { Faker::Lorem.paragraph 4 }
 
     association :user
 

@@ -4,9 +4,9 @@ class NewsController < ApplicationController
   def index
     category = params[:category]
     if category.blank?
-      posts = Post.all
+      posts = Post.order("created_at desc")
     else
-      posts = Post.by_category(category)
+      posts = Post.by_category(category).order("created_at desc")
     end
     @posts = posts.page params[:page]
   end
@@ -46,7 +46,7 @@ class NewsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :logo, :category, :important)
+    params.require(:post).permit(:title, :body, :logo, :category, :important, :description)
   end
 
   def set_post

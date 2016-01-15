@@ -1,18 +1,23 @@
 - content_for :left_sidebar do
   = render 'home/left_sidebar'
+- content_for :right_sidebar do
+  = render 'home/right_sidebar'
 
 / Main
-.row.grey-block
+.row.main-post.grey-block
+  / Main post
   .col-md-12
-    %h4.main-title= link_to (post = @posts.shift).title, news_path(post)
-    .col-md-5.main-text
-      = strip_tags(post.body).truncate(350)
-    .col-md-7.main-image
-      = image_tag post.logo, class: "img-responsive"
+    %h4.main-title= link_to @main.title, news_path(@main)
+    .col-md-5.main-text= @main.description
+    .col-md-7.main-image= image_tag @main.logo, class: "img-responsive"
+  / Main post
 
 %br/
-= render @posts
+.row
+  .posts.grey-block
+    = render @posts
 
+%br/
 .row
   .col-md-12.text-center
     = link_to "Читать дальше",

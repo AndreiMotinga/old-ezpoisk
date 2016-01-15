@@ -8,6 +8,11 @@
   }
 }
 
+.main-post {
+  padding-bottom: 10px;
+  border-radius: 4px;
+}
+
 .main-title {
   font-family: 'Lora', 'Times New Roman', serif;
   font-weight: bold;
@@ -19,4 +24,8 @@
 }
 .main-image {
   padding-right: 0px;
+}
+
+.posts {
+  padding: 10px 30px;
 }

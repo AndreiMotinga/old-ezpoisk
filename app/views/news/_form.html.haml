@@ -5,12 +5,15 @@
   .field
     = f.text_field :title, label: '* Название'
   .field
+    = f.text_area :description, label: 'Описание'
+  .field
     = f.text_area :body,
                   label: 'Содержание',
                   class: "summernote"
 
   .field
     = f.text_field :logo, label: '* Лого'
+
   .field
     = f.select :category,
                news_options(@post),

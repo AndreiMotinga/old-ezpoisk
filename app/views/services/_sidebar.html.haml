@@ -2,4 +2,7 @@
   %ul.nav.news-sidebar
     - SERVICE_CATEGORIES.keys.each do |category|
       %li
-        = link_to category, services_path(category: category)
+        = link_to category,
+                  services_path(category: category),
+                  class: "#{'active' if cp(category: category)}"
+

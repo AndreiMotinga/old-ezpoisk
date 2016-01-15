@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "ez@ezpoisk.com"
+  default from: "eZpoisk@ezpoisk.com"
   layout 'mailer'
 end

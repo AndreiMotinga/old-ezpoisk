@@ -78,6 +78,23 @@ GEM
     capybara-webkit (1.7.1)
       capybara (>= 2.3.0, < 2.6.0)
       json
+    celluloid (0.17.2)
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      timers (>= 4.1.1)
+    celluloid-essentials (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-extras (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-fsm (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-pool (0.20.5)
+      timers (>= 4.1.1)
+    celluloid-supervision (0.20.5)
+      timers (>= 4.1.1)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -165,6 +182,7 @@ GEM
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
     hashdiff (0.2.3)
+    hitimes (1.2.3)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -172,6 +190,7 @@ GEM
       ruby_parser (~> 3.5)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
+    ice_cube (0.11.1)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -331,6 +350,10 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
+    sidetiq (0.6.3)
+      celluloid (>= 0.14.1)
+      ice_cube (= 0.11.1)
+      sidekiq (>= 3.0.0)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -352,6 +375,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.1)
+    timers (4.1.1)
+      hitimes
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
@@ -420,6 +445,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   shoulda-matchers
   sidekiq
+  sidetiq
   sinatra
   spring
   spring-commands-rspec

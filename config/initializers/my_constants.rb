@@ -1,8 +1,4 @@
 DISTANCE = [1, 5, 10, 25, 50, 100, 150, 200, 300, 500]
-NEWS_CATEGORIES = %w( Авто Забавное Здоровье Интересное Кино Культура Музыка
-                      Наука Недвижимость
-                      Общество Погода Политика Происшествия Путешествия
-                      Семья Спорт Стиль Технологии Финансы Экономика)
 RE_COMMERCIAL_CATEGORIES = %w(Офис Торговля Промышленность Парковка Другое)
 RE_TYPES = %w(Продажа Аренда)
 RE_DURATION = %w(час сутки месяц)
@@ -137,3 +133,36 @@ STATES = [
   [ "Wisconsin", 49 ],
   [ "Wyoming", 50 ]
 ]
+
+NEWS_CATEGORIES = HashWithIndifferentAccess.new(
+  "Интересное": [],
+  "Железо": ["https://news.yandex.ru/hardware.rss", "hardware"],
+  "Авто": ["https://news.yandex.ru/auto.rss", "auto"],
+  "Общество": ["https://news.yandex.ru/world.rss", "world"],
+  "Интернет": ["https://news.yandex.ru/internet.rss", "internet"],
+  "Кино": ["https://news.yandex.ru/movies.rss", "movies"],
+  "Культура": ["https://news.yandex.ru/culture.rss", "culture"],
+  "Мода": ["https://news.yandex.ru/fashion.rss", "fashion"],
+  "Музыка": ["https://news.yandex.ru/music.rss", "music"],
+  "Наука": ["https://news.yandex.ru/science.rss", "science"],
+  "Политика": ["https://news.yandex.ru/politics.rss", "politics"],
+  "Происшествия": ["https://news.yandex.ru/incident.rss", "incident"],
+  "Софт": ["https://news.yandex.ru/software.rss", "software"],
+  "Технологии": ["https://news.yandex.ru/computers.rss", "computers"],
+  "Финансы": ["https://news.yandex.ru/finances.rss", "finances"],
+  "Шоу-бизнес": ["https://news.yandex.ru/showbusiness.rss", "showbusiness"],
+  "Азербайджан": ["https://news.yandex.ru/Azerbaijan/index.rss", "Azerbaijan"],
+  "Армения": ["https://news.yandex.ru/Armenia/index.rss", "Armenia"],
+  "Беларусь": ["https://news.yandex.ru/Belarus/index.rss", "Belarus"],
+  "Грузия": ["https://news.yandex.ru/Georgia/index.rss", "Georgia"],
+  "Израиль": ["https://news.yandex.ru/Israel/index.rss", "Israel"],
+  "Казахстан": ["https://news.yandex.ru/Kazakhstan/index.rss", "Kazakhstan"],
+  "Киргизия": ["https://news.yandex.ru/Kirghizia/index.rss", "Kirghizia"],
+  "Латвия": ["https://news.yandex.ru/Latvia/index.rss", "Latvia"],
+  "Литва": ["https://news.yandex.ru/Lithuania/index.rss", "Lithuania"],
+  "Молдова": ["https://news.yandex.ru/Moldova/index.rss", "Moldova"],
+  "США": ["https://news.yandex.ru/USA/index.rss", "USA"],
+  "Таджикистан": ["https://news.yandex.ru/Tadjikistan/index.rss", "Tadjikistan"],
+  "Туркмения": ["https://news.yandex.ru/Turkmenistan/index.rss", "Turkmenistan"],
+  "Узбекистан": ["https://news.yandex.ru/Uzbekistan/index.rss", "Uzbekistan"]
+)

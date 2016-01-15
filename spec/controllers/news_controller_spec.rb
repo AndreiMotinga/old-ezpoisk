@@ -10,10 +10,10 @@ describe NewsController do
     end
 
     it "return posts by category" do
-      2.times { create :post, category: NEWS_CATEGORIES.first }
-      create :post, category: NEWS_CATEGORIES.second
+      2.times { create :post, category: NEWS_CATEGORIES.keys.first }
+      create :post, category: NEWS_CATEGORIES.keys.second
 
-      get :index, category: NEWS_CATEGORIES.first
+      get :index, category: NEWS_CATEGORIES.keys.first
 
       expect(assigns(:posts).size).to eq 2
     end

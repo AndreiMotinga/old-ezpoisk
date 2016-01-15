@@ -34,6 +34,7 @@ gem "haml-rails"
 
 gem "sidekiq"
 gem "sinatra", require: nil
+gem 'sidetiq'
 
 gem "geokit-rails"
 gem "gmaps4rails"

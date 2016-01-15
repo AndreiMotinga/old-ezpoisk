@@ -1,5 +1,6 @@
-.fixed
-  %ul.nav.news-sidebar
-    - NEWS_CATEGORIES.each do |category|
-      %li
-        = link_to category, news_index_path(category: category)
+%ul.nav.news-sidebar
+  - NEWS_CATEGORIES.keys.each do |category|
+    %li
+      = link_to category,
+                news_index_path(category: category),
+                class: "#{'active' if cp(news_index_path(category: category))}"

@@ -2,8 +2,10 @@ require "rails_helper"
 
 feature "Home page" do
   scenario "user visits home page" do
+    create :post, important: true
     visit root_path
 
-    expect(page).to have_content "eZpoisk"
+    expect(page).to have_content "Новое обьявление"
+    expect(page).to have_content "Недвижимость"
   end
 end
