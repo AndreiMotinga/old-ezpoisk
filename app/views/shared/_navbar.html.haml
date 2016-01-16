@@ -9,7 +9,7 @@
         %span.icon-bar
         %span.icon-bar
       -# = link_to 'eZpoisk', root_path, class: "navbar-brand"
-      = link_to root_path do
+      = link_to main_app.root_path do
         = image_tag "logo", class: "img-responsive", id: 'brand-image'
 
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
@@ -25,11 +25,11 @@
             %span.caret
           %ul.dropdown-menu
             %li
-              = link_to t(:agencies), real_estate_re_agencies_path
+              = link_to t(:agencies), main_app.real_estate_re_agencies_path
             %li
-              = link_to t(:private), real_estate_re_privates_path
+              = link_to t(:private), main_app.real_estate_re_privates_path
             %li
-              = link_to t(:commercial), real_estate_re_commercials_path
+              = link_to t(:commercial), main_app.real_estate_re_commercials_path
         / real_estate
 
         / services
@@ -40,7 +40,7 @@
             %span.caret
           %ul.dropdown-menu
             - SERVICE_CATEGORIES.keys.each do |category|
-              %li= link_to category, services_path(category: category)
+              %li= link_to category, main_app.services_path(category: category)
         / services
 
         / jobs
@@ -53,18 +53,18 @@
             %span.caret
           %ul.dropdown-menu
             %li
-              = link_to t(:agencies), jobs_job_agencies_path
+              = link_to t(:agencies), main_app.jobs_job_agencies_path
             %li
-              = link_to 'Работа', jobs_jobs_path
+              = link_to 'Работа', main_app.jobs_jobs_path
         / jobs
 
         / news
         %li
-          = link_to(t(:news), news_index_path)
+          = link_to(t(:news), main_app.news_index_path)
         / news
 
         %li
-          = link_to "Продается", sales_path
+          = link_to "Продается", main_app.sales_path
 
         / dashboard
         %li.dropdown
@@ -80,13 +80,13 @@
             %span.caret
           %ul.dropdown-menu
             - if !user_signed_in?
-              %li= link_to t(:sign_in), new_user_session_path
-              %li= link_to t(:sign_up), new_user_registration_path
+              %li= link_to t(:sign_in), main_app.new_user_session_path
+              %li= link_to t(:sign_up), main_app.new_user_registration_path
               %li.divider{:role => "separator"}
-            %li= link_to t(:account), dashboard_path
+            %li= link_to t(:account), main_app.dashboard_path
             - if user_signed_in?
               %li.divider{:role => "separator"}
-              %li= link_to t(:sign_out), destroy_user_session_path
+              %li= link_to t(:sign_out), main_app.destroy_user_session_path
         / dashboard
       / right links
 

@@ -1,0 +1,53 @@
+%a{:name => "post-#{post.id}"}
+.col-md-12.forem-grey
+  %div{id: "post_#{post_counter + 1}", class: "post #{cycle('odd', 'even')} col-md-12"}
+    - if post.pending_review?
+      .moderation.alert
+        = t(".pending_review")
+        - if forem_admin_or_moderator?(post.topic.forum)
+          - if local_assigns[:mass_moderation]
+            = render "/forem/posts/moderation_tools", :post => post
+          - else
+            = form_tag forem.forum_moderate_posts_path(post.topic.forum), :method => :put do
+              = render "/forem/posts/moderation_tools", :post => post
+    .contents
+      / avatar
+      .user.col-md-2.post-reply
+        = image_tag post.user.avatar, class: "img-responsive forem-user-logo"
+        .username
+          - if post.user.is_a?(Forem::NilUser)
+            = t(:deleted)
+          - else
+            = link_to_if Forem.user_profile_links, post.user.forem_name, [main_app, post.user]
+      / avatar
+
+      .contents.col-md-10
+        .forem-post-content
+          / text
+          %h5= forem_format(post.text)
+          %a{:href => "#post-#{post.id}"}
+          / text
+          %br/
+          %hr/
+
+          / button group
+          - if forem_user
+            .btn-group
+              - if can?(:reply, post.topic)
+                - if post.topic.can_be_replied_to?
+                  = link_to t('reply', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id), :class => "btn btn-default"
+                  = link_to t('quote', :scope => 'forem.topic'), forem.new_forum_topic_post_path(post.forum, post.topic, :reply_to_id => post.id, :quote => true), :class => "btn btn-default"
+              - if post.owner_or_admin?(forem_user)
+                - if can?(:edit_post, post.topic.forum)
+                  = link_to t('edit', :scope => 'forem.post'), forem.edit_forum_topic_post_path(post.forum, post.topic, post), :class => "btn btn-default"
+                - if can?(:destroy_post, post.topic.forum)
+                  = link_to t('delete', :scope => 'forem.topic'), forem.forum_topic_post_path(post.forum, post.topic, post), :method => :delete, data: { :confirm => t("are_you_sure") }, :class => "btn btn-default"
+          / button group
+
+          / response + time
+          .pull-right
+            - if post.reply_to
+              .in-reply-to
+                = link_to "#{t("forem.post.in_reply_to")} #{post.reply_to.user.forem_name}", "#post-#{post.reply_to.id}"
+            = post_time_tag(post)
+          / response + time

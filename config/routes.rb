@@ -1,11 +1,12 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get 'horoscope/index'
+  mount Forem::Engine, at: "/forums"
+  get "horoscope/index"
 
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
-    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+    mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   end
   authenticate :user, ->(u) { u.author? } do
     resources :news, only: [:new, :create, :edit, :update]

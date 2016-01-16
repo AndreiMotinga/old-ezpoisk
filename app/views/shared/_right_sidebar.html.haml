@@ -1,5 +1,5 @@
 - Post.content_for_right_sidebar(13).each do |record|
   %div.side-post
-    = link_to news_path(record) do
+    = link_to main_app.news_path(record) do
       = image_tag record.logo, class: "img-responsive"
       .text= record.title

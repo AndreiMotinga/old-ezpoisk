@@ -1,0 +1,24 @@
+<%= simple_form_for [forem, :admin, @forum], html: {class: "form-horizontal"}  do |f| %>
+  <div class="form-group">
+    <%= f.association :category, :include_blank => false, input_html: {class: "form-control"} %>
+  </div>
+  <div class="form-group">
+    <%= f.input :title, input_html: {class: "form-control"}  %>
+  </div>
+  <div class="form-group">
+    <%= f.input :position, input_html: {class: "form-control"}  %>
+  </div>
+  <div class="form-group">
+    <%= f.input :description, :as => :text, input_html: {class: "form-control"}  %>
+  </div>
+
+  <h3><%= t('forem.admin.forum.moderator_groups') %></h3>
+  <div class="checkbox">
+    <label>
+      <%= f.association :moderators, :as => :check_boxes %>
+    </label>
+  </div>
+  <br>
+  <%= f.submit :class => "btn btn-primary" %>
+<% end %>
+

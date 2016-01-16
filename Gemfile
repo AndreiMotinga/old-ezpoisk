@@ -10,11 +10,11 @@ gem "jquery-rails"
 gem "bootstrap-sass"
 
 gem "devise"
-gem 'devise-i18n-views'
-gem 'devise-i18n'
+gem "devise-i18n-views"
+gem "devise-i18n"
 gem "devise-async"
 
-gem 'redis'
+gem "redis"
 
 gem "bootstrap_form"
 
@@ -34,7 +34,7 @@ gem "haml-rails"
 
 gem "sidekiq"
 gem "sinatra", require: nil
-gem 'sidetiq'
+gem "sidetiq"
 
 gem "geokit-rails"
 gem "gmaps4rails"
@@ -47,6 +47,9 @@ gem "bootstrap-wysihtml5-rails"
 
 gem "rails_12factor", group: :production
 gem "puma"
+
+gem "forem", github: "radar/forem", branch: "rails4"
+gem "forem-bootstrap", github: "radar/forem-bootstrap"
 
 group :development, :test do
   gem "pry-byebug"

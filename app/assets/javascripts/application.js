@@ -18,4 +18,5 @@
 //= require gmaps/google
 //= require summernote
 //= require summernote/locales/ko-KR
+//= require forem
 //= require_tree .

@@ -1,0 +1,26 @@
+<a name='post-<%= post.id %>'></a>
+<div id='post_<%= post.id %>' class='reply_to_post post <%= cycle('odd', 'even') -%> col-md-12 post-reply'>
+  <div class='user col-md-2'>
+    <%= image_tag post.user.avatar, class: "img-responsive forem-user-logo" %>
+    <div class='username'>
+      <h5>
+        <%= link_to_if Forem.user_profile_links, post.user.forem_name, [main_app, post.user] %>
+      </h5>
+    </div>
+  </div>
+
+  <div class='contents col-md-10'>
+    <h4><%= forem_format(post.text) %></h4>
+    <h5>
+    <% if post.reply_to %>
+      <span class='in_reply_to'>
+        <%= link_to "#{t("forem.post.in_reply_to")} #{post.reply_to.user.forem_name}", "#post-#{post.reply_to.id}" %>
+      </span>
+    <% end %>
+    </h5>
+
+    <h4 class="pull-right">
+      <time datetime="<%= post.created_at.to_s(:db) -%>"><%= "#{time_ago_in_words(post.created_at)} #{t("ago")}" %></time>
+    </h4>
+  </div>
+</div>

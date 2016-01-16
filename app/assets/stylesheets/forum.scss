@@ -1,0 +1,38 @@
+body {
+  margin: 0% 0%;
+}
+nav {
+  margin-top: 0px;
+}
+
+.topic-response {
+  padding: 10px 20px;
+}
+.forem-user-logo {
+  margin-top: 10px;
+}
+.post-reply {
+  padding-left: 0px;
+}
+.post .contents {
+  border-left: 0px;
+  padding-left: 0px;
+  padding-bottom: 10px;
+  min-height: inherit;
+}
+
+.forem-post-content {
+  border-left: 1px solid #ddd;
+  padding-left: 10px
+}
+
+.topics thead th, .forums thead th {
+  background: $grey;
+}
+
+.forem-grey {
+  background-color: $lightergrey;
+  border-radius: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

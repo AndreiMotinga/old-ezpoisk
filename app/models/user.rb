@@ -23,9 +23,20 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :feedbacks
 
+  # forem helpers
+  def forem_name
+    name
+  end
+
+  def avatar
+    "missing"
+  end
+
   private
 
   def notify_admin
     AdminMailerJob.perform_async(id, "User")
   end
+
+
 end
