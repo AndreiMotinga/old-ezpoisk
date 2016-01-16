@@ -166,3 +166,6 @@ NEWS_CATEGORIES = HashWithIndifferentAccess.new(
   "Туркмения": ["https://news.yandex.ru/Turkmenistan/index.rss", "Turkmenistan"],
   "Узбекистан": ["https://news.yandex.ru/Uzbekistan/index.rss", "Uzbekistan"]
 )
+
+HOROSCOPE_CATEGORIES = %w(БЛИЗНЕЦЫ ВЕСЫ ВОДОЛЕЙ ДЕВА КОЗЕРОГ ЛЕВ ОВЕН РАК
+                          РЫБЫ СКОРПИОН СТРЕЛЕЦ ТЕЛЕЦ)

@@ -41,6 +41,23 @@ a.active {
   }
 }
 
-li.active {
+li.active, li:hover {
   background-color: $lightgrey;
 }
+
+.left-sidebar > li:hover {
+  background-color: $lightgrey;
+}
+.left-sidebar > li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  a {
+    display: inline;
+  }
+  span.glyphicon {
+    padding-right: 5px;
+    color: black;
+  }
+}
+

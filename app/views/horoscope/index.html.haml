@@ -1,0 +1,16 @@
+- content_for :left_sidebar do
+  = render 'horoscope/left_sidebar'
+
+.col-md-12.horoscope-main.grey-block
+  %h3.post-title= @record.title
+  %h5
+    %strong
+      Гороскоп на день
+  %p
+    = @record.day_description
+  %br/
+  %h5
+    %strong
+      Гороскоп на месяц
+  %p
+    = @record.month_description

@@ -6,7 +6,7 @@
     = t(:new_post)
 
   %br/
-  %ul.nav.home-sidebar.grey-block
+  %ul.nav.left-sidebar.grey-block
     %li
       = link_to real_estate_re_agencies_path do
         %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
@@ -27,3 +27,7 @@
       = link_to sales_path do
         %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
         Продается
+    %li
+      = link_to horoscope_index_path(title: 'БЛИЗНЕЦЫ') do
+        %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
+        Гороскоп
