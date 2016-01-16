@@ -1,5 +1,6 @@
 == README
 
+
 This repo is a rewrite of ezpoisk.com using rails only.
 
 ezpoisk.com is an app that was built with 2 goals in mind.
