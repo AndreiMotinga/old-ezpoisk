@@ -17,3 +17,10 @@
 .post-image {
   padding-left: 0px;
 }
+.post-important {
+  background-color: $heavygrey;
+  border-radius: 4px;
+  img {
+    padding: 10px 0px;
+  }
+}
