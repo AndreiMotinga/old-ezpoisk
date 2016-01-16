@@ -1,7 +1,6 @@
 .row.post
   .col-sm-12.post-text
     %h4.post-title
-      #{post.category}:
       - if post.from_rss
         = link_to post.title, "http://#{post.link}", target: "blank"
       - else
