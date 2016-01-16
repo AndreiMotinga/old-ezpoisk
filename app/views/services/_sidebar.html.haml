@@ -1,8 +1,8 @@
 .fixed
-  %ul.nav.news-sidebar
+  %ul.nav.grey-block
     - SERVICE_CATEGORIES.keys.each do |category|
-      %li
-        = link_to category,
-                  services_path(category: category),
-                  class: "#{'active' if cp(category: category)}"
+      - if cp(category: category)
+        %li.active= link_to category, services_path(category: category)
+      - else
+        %li= link_to category, services_path(category: category)
 

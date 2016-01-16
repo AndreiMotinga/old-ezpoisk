@@ -2,14 +2,12 @@
   = render 'services/sidebar'
 
 / Main
-.row
-  %h4.pull-right
-    %a= "Всего #{@services.total_count}"
-  = render 'services/search_modal'
-.row
-  %hr/
-  - @services.each do |service|
-    = render 'dashboard/services/service', record: service
+%h4.pull-right
+  %a= "Всего #{@services.total_count}"
+= render 'services/search_modal'
+%hr/
+- @services.each do |service|
+  = render 'dashboard/services/service', record: service
 
 = render "shared/pagination", records: @services
 / Main
