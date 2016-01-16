@@ -1,16 +1,22 @@
+
+.home-sidebar > li:hover {
+  background-color: $lightgrey;
+}
 .home-sidebar > li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 15px;
   a {
-    font-size: 15px;
-    padding: 5px 15px;
+    display: inline;
   }
   span.glyphicon {
     padding-right: 5px;
+    color: black;
   }
 }
 
 .main-post {
   padding-bottom: 10px;
-  border-radius: 4px;
 }
 
 .main-title {

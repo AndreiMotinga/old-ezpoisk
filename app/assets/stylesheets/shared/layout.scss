@@ -22,5 +22,12 @@ body {
   a {
     text-decoration: none;
     color: $grey;
+    padding: 8px;
+  }
+  li {
+    padding: 8px;
+  }
+  a:hover {
+    background-color: $lightgrey;
   }
 }

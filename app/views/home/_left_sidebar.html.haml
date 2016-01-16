@@ -1,13 +1,12 @@
 .fixed
   / Button trigger modal
-  %button.btn.btn-success{ "data-target" => "#new",
+  %button.btn.btn-block.btn-success{ "data-target" => "#new",
                            "data-toggle" => "modal",
                            :role => "button" }
     = t(:new_post)
 
   %br/
-  %br/
-  %ul.nav.home-sidebar
+  %ul.nav.home-sidebar.grey-block
     %li
       = link_to real_estate_re_agencies_path do
         %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
