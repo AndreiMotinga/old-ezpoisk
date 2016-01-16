@@ -48,6 +48,7 @@ li.active, li:hover {
 .left-sidebar > li:hover {
   background-color: $lightgrey;
 }
+
 .left-sidebar > li {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -55,7 +56,7 @@ li.active, li:hover {
   a {
     display: inline;
   }
-  span.glyphicon {
+  span.glyphicon, .fa {
     padding-right: 5px;
     color: black;
   }
