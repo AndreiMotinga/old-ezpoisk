@@ -23,6 +23,7 @@ ru:
   thanks_for_feedback: Спасибо за ваш отзыв
   feebback_not_sent: Отзыв не отпрвлен
   no_messages: Вы пока не создали обьявлений
+  forum_title: Форум русскоговорящих людей в Америке
 
   activerecord:
     errors:

@@ -9,7 +9,7 @@
     %h3= link_to record.title, real_estate_re_agency_path(record)
 
     / line 2
-    %span= record.address
+    %span= "#{record.street}, #{record.city.name}, #{record.state.name}"
     %span.pull-right.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 

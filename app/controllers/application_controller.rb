@@ -22,8 +22,8 @@ class ApplicationController < ActionController::Base
 
   def address_changed?(record, prms)
     return true if record.try(:street) != prms[:street]
-    return true if record.state != prms[:state]
-    return true if record.city != prms[:city]
+    return true if record.state_id != prms[:state_id].to_i
+    return true if record.city_id != prms[:city_id].to_i
   end
 
 

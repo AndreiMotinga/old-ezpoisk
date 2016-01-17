@@ -51,6 +51,8 @@ gem "puma"
 gem "forem", github: "radar/forem", branch: "rails4"
 gem "forem-bootstrap", github: "radar/forem-bootstrap"
 
+gem "sitemap_generator"
+
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"

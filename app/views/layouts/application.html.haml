@@ -2,8 +2,10 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title eZpoisk
+    %title= "eZpoisk | #{yield(:title)}"
     %meta{:charset => "UTF-8"}/
+    %meta{ name: "google-site-verification", content: "aMlxCG3XekLdKIq1jjGJkMfb2M7mO4cKfDMhf4BUWhg" }
+    %meta{ name: "msvalidate.01", content: "EAE9E1BC865C52CA068724F63495FF7B" }
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -45,5 +47,5 @@
 
       #push
 
-    #footer.hidden-sm.hidden-xs
-      = render 'shared/footer'
+      #footer.hidden-sm.hidden-xs
+        = render 'shared/footer'

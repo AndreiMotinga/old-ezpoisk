@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  scope :important, -> { where(important: true) }
+
   def self.by_category(category)
     where("LOWER(category) LIKE ?", "%#{category.mb_chars.downcase}%")
   end

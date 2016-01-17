@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116225114) do
+ActiveRecord::Schema.define(version: 20160118231340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -199,7 +199,9 @@ ActiveRecord::Schema.define(version: 20160116225114) do
     t.datetime "updated_at"
   end
 
+  add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
+  add_index "jobs", ["post_type"], name: "index_jobs_on_post_type", using: :btree
   add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
@@ -232,6 +234,7 @@ ActiveRecord::Schema.define(version: 20160116225114) do
     t.boolean  "from_rss"
   end
 
+  add_index "posts", ["category"], name: "index_posts_on_category", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "re_agencies", force: :cascade do |t|
@@ -279,7 +282,10 @@ ActiveRecord::Schema.define(version: 20160116225114) do
     t.string   "description", default: ""
   end
 
+  add_index "re_commercials", ["category"], name: "index_re_commercials_on_category", using: :btree
   add_index "re_commercials", ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
+  add_index "re_commercials", ["price"], name: "index_re_commercials_on_price", using: :btree
+  add_index "re_commercials", ["space"], name: "index_re_commercials_on_space", using: :btree
   add_index "re_commercials", ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
   add_index "re_commercials", ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
 
@@ -306,6 +312,8 @@ ActiveRecord::Schema.define(version: 20160116225114) do
   end
 
   add_index "re_privates", ["city_id"], name: "index_re_privates_on_city_id", using: :btree
+  add_index "re_privates", ["price"], name: "index_re_privates_on_price", using: :btree
+  add_index "re_privates", ["space"], name: "index_re_privates_on_space", using: :btree
   add_index "re_privates", ["state_id"], name: "index_re_privates_on_state_id", using: :btree
   add_index "re_privates", ["user_id"], name: "index_re_privates_on_user_id", using: :btree
 
@@ -327,7 +335,9 @@ ActiveRecord::Schema.define(version: 20160116225114) do
   end
 
   add_index "sales", ["city_id"], name: "index_sales_on_city_id", using: :btree
+  add_index "sales", ["description"], name: "index_sales_on_description", using: :btree
   add_index "sales", ["state_id"], name: "index_sales_on_state_id", using: :btree
+  add_index "sales", ["title"], name: "index_sales_on_title", using: :btree
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
   create_table "services", force: :cascade do |t|

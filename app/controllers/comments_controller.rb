@@ -4,7 +4,9 @@ class CommentsController < ApplicationController
     post_id = params[:post_id]
     comment.post_id = post_id
     comment.user_id = current_user.try(:id)
-    comment.save
+    if comment.save
+      AdminMailerJob.perform_async(comment.id, "Comment")
+    end
     redirect_to news_path(post_id)
   end
 

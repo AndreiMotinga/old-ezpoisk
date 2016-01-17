@@ -35,13 +35,13 @@
         %span.glyphicon.glyphicon-log-in{"aria-hidden" => "true"}
         Форум
     %li
-      = link_to horoscope_index_path(title: 'БЛИЗНЕЦЫ') do
+      = link_to horoscopes_path(title: 'БЛИЗНЕЦЫ') do
         = fa_icon "random"
         Гороскоп
 
   %br/
   %ul.nav.left-sidebar.grey-block
     %li
-      = link_to horoscope_index_path(title: 'БЛИЗНЕЦЫ') do
+      = link_to dashboard_path do
         %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
         Аккаунт
