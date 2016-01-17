@@ -20,13 +20,16 @@
         %span.glyphicon.glyphicon-th-list{"aria-hidden" => "true"}
         Работа
     %li
-      = link_to news_index_path do
-        %span.glyphicon.glyphicon-globe{"aria-hidden" => "true"}
-        Новости
-    %li
       = link_to sales_path do
         %span.glyphicon.glyphicon-search{"aria-hidden" => "true"}
         Продается
+
+  %br/
+  %ul.nav.left-sidebar.grey-block
+    %li
+      = link_to news_index_path do
+        %span.glyphicon.glyphicon-globe{"aria-hidden" => "true"}
+        Новости
     %li
       = link_to forem.forums_path do
         %span.glyphicon.glyphicon-log-in{"aria-hidden" => "true"}
@@ -35,3 +38,10 @@
       = link_to horoscope_index_path(title: 'БЛИЗНЕЦЫ') do
         = fa_icon "random"
         Гороскоп
+
+  %br/
+  %ul.nav.left-sidebar.grey-block
+    %li
+      = link_to horoscope_index_path(title: 'БЛИЗНЕЦЫ') do
+        %span.glyphicon.glyphicon-user{"aria-hidden" => "true"}
+        Аккаунт

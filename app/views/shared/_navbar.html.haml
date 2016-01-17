@@ -58,13 +58,13 @@
               = link_to 'Работа', main_app.jobs_jobs_path
         / jobs
 
+        %li
+          = link_to "Продается", main_app.sales_path
+
         / news
         %li
           = link_to(t(:news), main_app.news_index_path)
         / news
-
-        %li
-          = link_to "Продается", main_app.sales_path
 
         / dashboard
         %li.dropdown
@@ -84,6 +84,7 @@
               %li= link_to t(:sign_up), main_app.new_user_registration_path
               %li.divider{:role => "separator"}
             %li= link_to t(:account), main_app.dashboard_path
+            %li= link_to "Отзыв", main_app.new_feedback_path
             - if user_signed_in?
               %li.divider{:role => "separator"}
               %li= link_to t(:sign_out), main_app.destroy_user_session_path

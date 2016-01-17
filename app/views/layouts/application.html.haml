@@ -30,12 +30,13 @@
           .col-lg-7.col-md-9
             = yield
         - else
-          .col-md-9
+          .col-lg-7.col-md-8
             = yield
+
         / Main
 
         / right sidebar
-        .col-lg-3.hidden-md.hidden-sm.hidden-xs
+        .col-lg-3.hidden-md.hidden-sm.hidden-xs{ class: ("col-lg-offset-1" if !content_for?(:left_sidebar)) }
           - if content_for?(:right_sidebar)
             = yield :right_sidebar
           - else
