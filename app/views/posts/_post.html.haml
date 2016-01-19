@@ -2,7 +2,10 @@
   .row.post-important
     .col-md-12
       .col-md-7.main-text
-        %h4.main-title= link_to post.title, news_path(post)
+        - if post.from_rss
+          %h4.main-title= link_to post.title, "http://#{post.link}", target: "blank"
+        - else
+          %h4.main-title= link_to post.title, news_path(post)
         = post.description
         %span.pull-right= time_ago_in_words post.created_at
       .col-md-5.main-image= image_tag post.logo, class: "img-responsive pull-right"
