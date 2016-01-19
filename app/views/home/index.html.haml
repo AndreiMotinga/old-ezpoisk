@@ -9,7 +9,9 @@
   / Main post
   .col-md-12
     %h4.main-title= link_to @main.title, news_path(@main)
-    .col-md-5.main-text= @main.description
+    .col-md-5.main-text
+      = "#{ time_ago_in_words @main.created_at} назад"
+      = @main.description
     .col-md-7.main-image= image_tag @main.logo, class: "img-responsive"
   / Main post
 

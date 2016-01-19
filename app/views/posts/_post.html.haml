@@ -4,6 +4,7 @@
       .col-md-7.main-text
         %h4.main-title= link_to post.title, news_path(post)
         = post.description
+        %span.pull-right= time_ago_in_words post.created_at
       .col-md-5.main-image= image_tag post.logo, class: "img-responsive pull-right"
 - else
   .row
@@ -16,5 +17,6 @@
       .col-sm-2.post-image
         = image_tag post.logo, class: "img-responsive"
       = post.description
+      %span.pull-right= "#{time_ago_in_words post.created_at} назад"
 
 %hr.post-devider/

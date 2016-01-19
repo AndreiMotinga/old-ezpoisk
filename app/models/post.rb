@@ -8,7 +8,10 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  scope :desc, -> { order("created_at desc") }
   scope :important, -> { where(important: true) }
+  scope :for_homepage, -> { where(show_on_homepage: true) }
+  scope :main, -> { where(important: true).last }
 
   def self.by_category(category)
     where("LOWER(category) LIKE ?", "%#{category.mb_chars.downcase}%")
@@ -16,9 +19,5 @@ class Post < ActiveRecord::Base
 
   def self.content_for_right_sidebar(size)
     where(important: true).limit(size)
-  end
-
-  def self.main
-    where(important: true).first
   end
 end

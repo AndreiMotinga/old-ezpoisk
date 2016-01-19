@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @posts = Post.order("created_at desc").limit(30)
+    @posts = Post.for_homepage.limit(12).desc
     @main = Post.main
   end
 end
