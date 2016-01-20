@@ -34,7 +34,7 @@ gem "sidekiq"
 gem "sinatra", require: nil
 gem "sidetiq"
 
-gem "geokit-rails"
+gem "geokit-rails", github: "geokit/geokit-rails"
 gem "gmaps4rails"
 gem "underscore-rails"
 

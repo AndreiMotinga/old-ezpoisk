@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/geokit/geokit-rails.git
+  revision: 45ae9852591d0682efec753bcdeaf09a3946c524
+  specs:
+    geokit-rails (2.1.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
+
+GIT
   remote: git://github.com/radar/forem-bootstrap.git
   revision: 10be50afc1d0a22af1306076e41624c55fc585be
   specs:
@@ -176,9 +184,6 @@ GEM
       activerecord (>= 4.0.0)
     gemoji (2.1.0)
     geokit (1.10.0)
-    geokit-rails (2.1.0)
-      geokit (~> 1.5)
-      rails (>= 3.0)
     git-version-bump (0.15.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -464,7 +469,7 @@ DEPENDENCIES
   font-awesome-rails
   forem!
   forem-bootstrap!
-  geokit-rails
+  geokit-rails!
   gmaps4rails
   guard-livereload (~> 2.4)
   guard-rspec
