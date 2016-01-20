@@ -132,20 +132,20 @@ ru:
         one: больше %{count} года
         other: больше %{count} лет
       x_days:
+        one: "%{count} день"
         few: "%{count} дня"
         many: "%{count} дней"
-        one: "%{count} день"
-        other: "%{count} дня"
+        other: "%{count} дней"
       x_minutes:
         few: "%{count} минуты"
         many: "%{count} минут"
         one: "%{count} минуту"
-        other: "%{count} минуты"
+        other: "%{count} минут"
       x_months:
+        one: "%{count} месяц"
         few: "%{count} месяца"
         many: "%{count} месяцев"
-        one: "%{count} месяц"
-        other: "%{count} месяца"
+        other: "%{count} месяцев"
       x_seconds:
         few: "%{count} секунды"
         many: "%{count} секунд"
