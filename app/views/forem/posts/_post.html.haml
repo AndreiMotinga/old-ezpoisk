@@ -19,13 +19,13 @@
             = t(:deleted)
           - else
             = link_to_if Forem.user_profile_links, post.user.forem_name, [main_app, post.user]
-        = image_tag post.user.avatar, class: "img-responsive forem-user-logo"
+        = image_tag post.user.avatar, class: "img-responsive forem-user-logo center-block"
       / avatar
 
       .contents.col-md-10
         .forem-post-content
           / text
-          %h5= forem_format(post.text)
+          %p= forem_format(post.text)
           %a{:href => "#post-#{post.id}"}
           / text
           %br/

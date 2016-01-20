@@ -1,7 +1,9 @@
 <% if can?(:read, forum) %>
   <tr class="forum <%= cycle("odd", "even") %>">
     <td>
-      <%= link_to forem_emojify(forum.title), forem.forum_path(forum), :class => "title" %>
+      <h4>
+        <%= link_to forem_emojify(forum.title), forem.forum_path(forum) %>
+      </h4>
       <div class='description'><%= forem_format(forum.description) %></div>
       <%= t('forem.forums.index.last_post') -%>
       <span class='last_post'>
@@ -13,8 +15,8 @@
         <% end %>
       </span>
     </td>
-    <td class="topics-count"><%= topics_count(forum) %></td>
-    <td class="posts-count"><%= posts_count(forum) %></td>
-    <td class="views-count"><%= forum.views_count %></td>
+    <td class="topics-count text-center"><%= topics_count(forum) %></td>
+    <td class="posts-count text-center"><%= posts_count(forum) %></td>
+    <td class="views-count text-center"><%= forum.views_count %></td>
   </tr>
 <% end %>
