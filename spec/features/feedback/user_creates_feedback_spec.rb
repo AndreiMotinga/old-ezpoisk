@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Feedback" do
   scenario "User is no logged in" do
-    create :post, important: true
+    create :post, main: true
     visit new_feedback_path
     fill_in "Ваше имя", with: "Andrei"
     fill_in "email", with: "test@test.com"

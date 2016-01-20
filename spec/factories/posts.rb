@@ -15,5 +15,11 @@ FactoryGirl.define do
       category "real_estate"
       subcategory "lend"
     end
+    trait :main do
+      main true
+    end
+    trait :show_on_homepage do
+      show_on_homepage true
+    end
   end
 end

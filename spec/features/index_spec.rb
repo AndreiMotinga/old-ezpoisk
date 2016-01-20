@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "Home page" do
   scenario "user visits home page" do
-    create :post, important: true
+    create :post, main: true
     visit root_path
 
     expect(page).to have_content "Новое обьявление"

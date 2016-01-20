@@ -7,8 +7,10 @@
   -#                 label: 'Содержание',
   -#                 class: "summernote"
   .field
-    = f.check_box :important, label: 'Важная ?'
+    = f.check_box :important, label: 'Выделить ?'
   .field
-    = f.check_box :main, label: 'Главная ?'
+    = f.check_box :show_on_homepage, label: 'Поместить на домашнюю страницу ?'
+  .field
+    = f.check_box :main, label: 'Сделать главной ?'
   .actions
     = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"

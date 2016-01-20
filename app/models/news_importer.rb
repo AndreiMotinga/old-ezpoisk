@@ -16,7 +16,7 @@ class NewsImporter
       Post.create(user_id: @user_id,
                   category: category,
                   from_rss: true,
-                  logo: "posts/#{image}",
+                  # logo: "posts/#{image}",
                   title: item.at("title").text,
                   link: convert_link(item.at("link").text),
                   description: item.at("description").text,

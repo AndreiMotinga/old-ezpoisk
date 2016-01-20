@@ -46,7 +46,8 @@ class NewsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :logo, :category,
-                                 :important, :description, :main)
+                                 :important, :description, :main,
+                                 :show_on_homepage)
   end
 
   def set_post

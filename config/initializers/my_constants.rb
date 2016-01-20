@@ -134,8 +134,8 @@ STATES = [
   [ "Wyoming", 50 ]
 ]
 
+# "Интересное": [],
 NEWS_CATEGORIES = HashWithIndifferentAccess.new(
-  "Интересное": [],
   "Железо": ["https://news.yandex.ru/hardware.rss", "hardware"],
   "Авто": ["https://news.yandex.ru/auto.rss", "auto"],
   "Общество": ["https://news.yandex.ru/world.rss", "world"],
