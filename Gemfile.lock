@@ -481,7 +481,6 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails_12factor
   rails_admin
-  redis
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers
