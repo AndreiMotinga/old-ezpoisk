@@ -35,7 +35,7 @@ class NewsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to news_index_path, notice: I18n.t(:post_saved)
+      redirect_to news_index_path(category: @post.category), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
