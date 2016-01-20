@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_post, only: [:edit, :show, :update]
+  layout :resolve_layout
 
   def index
     category = params[:category]
@@ -33,8 +34,6 @@ class NewsController < ApplicationController
   end
 
   def update
-    return unless @post.user == current_user
-    @post.category = params[:post][:category].join(" ")
     if @post.update(post_params)
       redirect_to edit_news_path(@post), notice: I18n.t(:post_saved)
     else
@@ -46,10 +45,20 @@ class NewsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :logo, :category, :important, :description)
+    params.require(:post).permit(:title, :body, :logo, :category,
+                                 :important, :description, :main)
   end
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def resolve_layout
+    case action_name
+    when "edit"
+      "plain"
+    else
+      "application"
+    end
   end
 end

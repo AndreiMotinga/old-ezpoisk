@@ -1,1 +1,8 @@
-= render "news/form", url: news_path
+.row
+  .col-md-7
+    = render "news/form", url: news_path
+%br/
+%br/
+.row
+  .embed-responsive.embed-responsive-16by9
+    %iframe.embed-responsive-item{ :src => "http://#{@post.link}", :frameborder => "0" }

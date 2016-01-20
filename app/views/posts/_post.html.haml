@@ -13,7 +13,9 @@
   .row
     .col-sm-12.post-text
       %h4.post-title
-        - if post.from_rss
+        - if current_user.admin?
+          = link_to post.title, edit_news_path(post)
+        - elsif
           = link_to post.title, "http://#{post.link}", target: "blank"
         - else
           = link_to post.title, news_path(post)
