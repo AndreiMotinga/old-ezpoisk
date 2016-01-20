@@ -4,6 +4,10 @@
                        :url => registration_path(resource_name),
                        :html => { :method => :put }) do |f|
     -# = devise_error_messages!
+
+    = image_tag current_user.avatar.url(:medium), class: "img-responsive"
+    %div
+      = f.file_field :avatar
     %div
       = f.text_field :name, label: "Ваше имя"
     %div

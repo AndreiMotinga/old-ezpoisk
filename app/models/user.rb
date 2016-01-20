@@ -23,13 +23,14 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :feedbacks
 
+  has_attached_file :avatar,
+                    styles: { medium: "300x150" },
+                    default_url: "missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   # forem helpers
   def forem_name
     name
-  end
-
-  def avatar
-    "missing"
   end
 
   private
@@ -37,6 +38,4 @@ class User < ActiveRecord::Base
   def notify_admin
     AdminMailerJob.perform_async(id, "User")
   end
-
-
 end
