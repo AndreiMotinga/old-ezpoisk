@@ -5,7 +5,7 @@ Forem.email_from_address = "eZ@ezpoisk.com"
 Forem.per_page = 20
 
 Rails.application.config.to_prepare do
-  Forem.layout = "application"
+  Forem.layout = "forem"
 
   # If you want to add your own cancan Abilities to Forem
   # Forem::Ability.register_ability(Ability)
