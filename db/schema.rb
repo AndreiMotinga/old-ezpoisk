@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120000834) do
+ActiveRecord::Schema.define(version: 20160120011632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(version: 20160120000834) do
     t.string   "description"
     t.boolean  "from_rss"
     t.boolean  "show_on_homepage"
+    t.boolean  "main"
   end
 
   add_index "posts", ["category"], name: "index_posts_on_category", using: :btree

@@ -11,13 +11,9 @@ class Post < ActiveRecord::Base
   scope :desc, -> { order("created_at desc") }
   scope :important, -> { where(important: true) }
   scope :for_homepage, -> { where(show_on_homepage: true) }
-  scope :main, -> { where(important: true).last }
+  scope :main, -> { where(main: true).last }
 
   def self.by_category(category)
     where("LOWER(category) LIKE ?", "%#{category.mb_chars.downcase}%")
-  end
-
-  def self.content_for_right_sidebar(size)
-    where(important: true).limit(size)
   end
 end

@@ -1,4 +1,4 @@
-- Post.content_for_right_sidebar(13).each do |record|
+- Post.important.limit(13).each do |record|
   %div.side-post
     = link_to "http://#{record.link}", target: "blank" do
       = image_tag record.logo, class: "img-responsive"
