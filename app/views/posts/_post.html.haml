@@ -13,7 +13,7 @@
   .row
     .col-sm-12.post-text
       %h4.post-title
-        - if current_user.admin?
+        - if current_user.author?
           = link_to post.title, edit_news_path(post)
         - elsif
           = link_to post.title, "http://#{post.link}", target: "blank"
