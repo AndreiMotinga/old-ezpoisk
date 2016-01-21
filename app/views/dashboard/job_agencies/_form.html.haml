@@ -17,8 +17,12 @@
   .field
     = f.email_field :email
   .field
-    = f.check_box :active, label: 'Активно?'
+    = f.check_box :active, label: 'Активно? *'
   .actions
     = f.submit "Сохранить",
                class: "btn btn-primary",
                id: "details-save-btn"
+
+  %br/
+  %hr/
+  = render "dashboard/shared/active_message"

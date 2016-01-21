@@ -30,10 +30,18 @@
   .field
     = f.text_field :phone, label: '* Телефон'
   .field
-    = f.check_box :active, label: 'Активно?'
+    = f.check_box :active, label: 'Активно? *'
   .field
-    = f.check_box :fee, label: 'Комиссия'
+    = f.check_box :fee, label: 'Комиссия? *'
 
   .actions
     = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
   %br/
+  %hr/
+  = render "dashboard/shared/active_message"
+  %p
+    %strong
+      * Комиссия
+    Если это поле НЕ отмечено, значит сделка не предполагает допольнительных плат
+    (т.е квартира сдается напрямую владельцем). В противном случае квартира сдается
+    через посредника и предполагает дополнительные платы
