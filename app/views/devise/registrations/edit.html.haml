@@ -1,13 +1,17 @@
-.col-md-8
-  = bootstrap_form_for(resource,
-                       :as => resource_name,
-                       :url => registration_path(resource_name),
-                       :html => { :method => :put }) do |f|
-    -# = devise_error_messages!
+= bootstrap_form_for(resource,
+                     :as => resource_name,
+                     :url => registration_path(resource_name),
+                     :html => { :method => :put }) do |f|
+  -# = devise_error_messages!
 
-    = image_tag current_user.avatar.url(:medium), class: "img-responsive"
-    %div
-      = f.file_field :avatar
+  .row
+    .col-md-4
+      = image_tag current_user.avatar.url(:medium), class: "img-responsive"
+    .col-md-8
+      %div
+        = f.file_field :avatar
+  .row
+    %hr/
     %div
       = f.text_field :name, label: "Ваше имя"
     %div
@@ -25,17 +29,21 @@
 
     %div
       %i
-        (#{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")})
-      %br/
-      = f.password_field :password, :autocomplete => "off"
-    %div
-      %br/
-      = f.password_field :password_confirmation
-    %div
-      %i
         (#{t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes')})
       %br/
       = f.password_field :current_password
+
+    %hr/
+
+    %div
+      %i
+        -# (#{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")})
+        Если хотите изменить пароль, введите текущий пароль выше и новый пароль дважды ниже
+      %br/
+      = f.password_field :password, :autocomplete => "off", label: "Новый пароль"
+    %div
+      %br/
+      = f.password_field :password_confirmation, label: "Подтверждение нового пароля"
     %div= f.submit t('.update', :default => "Update")
   -# %h3= t('.cancel_my_account', :default => 'Cancel my account')
   -# %p
