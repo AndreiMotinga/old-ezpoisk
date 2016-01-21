@@ -2,12 +2,14 @@
            method: :get,
            class: "form-horizontal"
 
-%h5
-  Введите адрес и радиус поиска (миль)
 .form-group
   .col-sm-10
+    %label
+      Введите адрес и радиус поиска
     = origin_text_field_param
   .col-sm-2
+    %label
+      миль
     = within_text_field_param
 
 %hr

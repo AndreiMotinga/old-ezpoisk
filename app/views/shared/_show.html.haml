@@ -12,7 +12,7 @@
     %li.hidden-xs.active{:role => "presentation"}
       %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
 
-    - if record.class.method_defined?(:pictures)
+    - if record.class.method_defined?(:pictures) && record.pictures.any?
       %li{:role => "presentation"}
         %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab"} Фото
 
