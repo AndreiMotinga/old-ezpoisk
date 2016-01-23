@@ -1,16 +1,20 @@
-.col-md-12.post-item
+.col-lg-12.col-md-12.col-sm-12.post-item
   #logo.col-lg-3.col-md-4.col-sm-4.hidden-xs
     = image_tag record.logo,
                 alt: record.logo,
                 class: "img-responsive"
 
-  .col-lg-9.col-md-8.col-sm-8.col-xs-12
+  .col-lg-9.col-md-8.col-sm-8
     / line 1
     %h3= link_to record.title, real_estate_re_agency_path(record)
+    %hr.post-devider/
 
     / line 2
     %span= "#{record.street}, #{record.city.name}, #{record.state.name}"
-    %span.pull-right.glyphicon.glyphicon-phone= record.phone
+    %hr.post-devider/
+
+    /line 3
+    %span.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 3
@@ -20,4 +24,4 @@
         %hr.post-devider/
 
     / line 4
-    %span.pull-right= time_ago_in_words record.created_at
+    %span= time_ago_in_words record.created_at

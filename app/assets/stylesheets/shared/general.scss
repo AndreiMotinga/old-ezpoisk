@@ -79,7 +79,12 @@ li.active, li:hover {
   transform-origin: left top 0;
   color: white;
   text-decoration: none;
+  z-index: 1;
 }
 #feedback a:hover{
   background-color: $darkblue;
+}
+
+.contacts-list {
+  margin-right: 0px;
 }
