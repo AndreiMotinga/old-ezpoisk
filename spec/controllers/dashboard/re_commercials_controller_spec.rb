@@ -26,12 +26,21 @@ describe Dashboard::ReCommercialsController do
 
   describe "GET #edit" do
     it "renders the edit template and assigns @re_commercial" do
-      re_commercial = create :re_commercial
+      re_commercial = create :re_commercial, user: @user
 
       get :edit, id: re_commercial.id
 
       expect(response).to render_template(:edit)
       expect(assigns(:re_commercial)).to eq re_commercial
+    end
+
+    it "only shows record that belongs to user" do
+      re_commercial = create :re_commercial
+      create :re_commercial, user: @user
+
+      get :edit, id: re_commercial.id
+
+      expect(response).to redirect_to(dashboard_path)
     end
   end
 

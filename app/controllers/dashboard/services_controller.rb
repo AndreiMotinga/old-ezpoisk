@@ -15,6 +15,7 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def edit
+    redirect_to dashboard_path if @service.user != current_user
   end
 
   def create

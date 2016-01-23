@@ -14,6 +14,7 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def edit
+    redirect_to dashboard_path if @re_agency.user != current_user
   end
 
   def create

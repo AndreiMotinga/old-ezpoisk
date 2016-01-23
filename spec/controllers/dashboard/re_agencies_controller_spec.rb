@@ -25,6 +25,17 @@ describe Dashboard::ReAgenciesController do
     end
   end
 
+  describe "GET #edit" do
+    it "only shows record that belongs to user" do
+      re_agency = create :re_agency
+      create :re_agency, user: @user
+
+      get :edit, id: re_agency.id
+
+      expect(response).to redirect_to(dashboard_path)
+    end
+  end
+
   describe "POST #create" do
     it "creates re_agency" do
       attrs = attrs_with_state_and_city(:re_agency)

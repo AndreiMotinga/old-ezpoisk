@@ -26,12 +26,21 @@ describe Dashboard::RePrivatesController do
 
   describe "GET #edit" do
     it "renders the edit template and assigns @re_private" do
-      re_private = create :re_private
+      re_private = create :re_private, user: @user
 
       get :edit, id: re_private.id
 
       expect(response).to render_template(:edit)
       expect(assigns(:re_private)).to eq re_private
+    end
+
+    it "only shows record that belongs to user" do
+      re_private = create :re_private
+      create :re_private, user: @user
+
+      get :edit, id: re_private.id
+
+      expect(response).to redirect_to(dashboard_path)
     end
   end
 

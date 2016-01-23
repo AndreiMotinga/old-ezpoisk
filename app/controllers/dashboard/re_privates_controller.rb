@@ -14,6 +14,7 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def edit
+    redirect_to dashboard_path if @re_private.user != current_user
   end
 
   def create

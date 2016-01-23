@@ -25,6 +25,17 @@ describe Dashboard::ServicesController do
     end
   end
 
+  describe "GET #edit" do
+    it "only shows record that belongs to user" do
+      service = create :service
+      create :service, user: @user
+
+      get :edit, id: service.id
+
+      expect(response).to redirect_to(dashboard_path)
+    end
+  end
+
   describe "POST #create" do
     it "creates service" do
       attrs = attrs_with_state_and_city(:service)

@@ -15,6 +15,7 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def edit
+    redirect_to dashboard_path if @job_agency.user != current_user
   end
 
   def create

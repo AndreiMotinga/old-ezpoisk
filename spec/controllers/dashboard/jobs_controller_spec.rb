@@ -25,6 +25,17 @@ describe Dashboard::JobsController do
     end
   end
 
+  describe "GET #edit" do
+    it "only shows record that belongs to user" do
+      job = create :job
+      create :job, user: @user
+
+      get :edit, id: job.id
+
+      expect(response).to redirect_to(dashboard_path)
+    end
+  end
+
   describe "POST #create" do
     it "creates job" do
       attrs = attrs_with_state_and_city(:job)

@@ -25,6 +25,17 @@ describe Dashboard::JobAgenciesController do
     end
   end
 
+  describe "GET #edit" do
+    it "only shows record that belongs to user" do
+      job_agency = create :job_agency
+      create :job_agency, user: @user
+
+      get :edit, id: job_agency.id
+
+      expect(response).to redirect_to(dashboard_path)
+    end
+  end
+
   describe "POST #create" do
     it "creates job_agency" do
       attrs = attrs_with_state_and_city(:re_agency)

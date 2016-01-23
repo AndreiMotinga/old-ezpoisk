@@ -15,6 +15,7 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def edit
+    redirect_to dashboard_path if @job.user != current_user
   end
 
   def create

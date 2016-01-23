@@ -25,6 +25,17 @@ describe Dashboard::SalesController do
     end
   end
 
+  describe "GET #edit" do
+    it "only shows record that belongs to user" do
+      sale = create :sale
+      create :sale, user: @user
+
+      get :edit, id: sale.id
+
+      expect(response).to redirect_to(dashboard_path)
+    end
+  end
+
   describe "POST #create" do
     it "creates sale" do
       attrs = attrs_with_state_and_city(:sale)

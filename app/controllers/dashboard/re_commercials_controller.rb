@@ -16,6 +16,7 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def edit
+    redirect_to dashboard_path if @re_commercial.user != current_user
   end
 
   def create
