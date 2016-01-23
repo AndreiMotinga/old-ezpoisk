@@ -4,6 +4,7 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title eZpoisk |Панель управления
     %meta{:charset => "UTF-8"}/
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
     = favicon_link_tag 'favicon.ico'
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
@@ -22,7 +23,7 @@
           / Main
 
           / right sidebar
-          .col-lg-3.hidden-md.hidden-sm.hidden-xs
+          .col-lg-3.col-md-3.hidden-sm.hidden-xs
             - if content_for?(:right_sidebar)
               = yield :right_sidebar
             - else
