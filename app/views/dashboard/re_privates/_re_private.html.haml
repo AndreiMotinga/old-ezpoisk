@@ -17,12 +17,14 @@
     %hr.post-devider/
 
     / line 3
-    .hidden-xs
-      = "комнаты: #{record.rooms}"
-      =  " | ванные: #{record.baths}" unless record.baths.blank?
-      = " | площадь:  #{record.space} ft" unless record.baths.blank?
-      %span.pull-right.glyphicon.glyphicon-phone= record.phone
-      %hr.post-devider/
+    = "комнаты: #{record.rooms}"
+    =  " | ванные: #{record.baths}" unless record.baths.blank?
+    = " | площадь:  #{record.space} ft" unless record.space.blank?
+    %hr.post-devider/
+
+    / line 4
+    %span.glyphicon.glyphicon-phone= record.phone
+    %hr.post-devider/
 
     / line 5
     - unless record.fee
