@@ -1,22 +1,27 @@
-.col-lg-12.col-md-12.col-sm-12.col-xs-12.post-item
+.col-lg-12.col-md-12.col-sm-12.post-item
   #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
-    %br/
     = image_tag record.logo.url(:medium),
                 alt: record.logo.url(:medium),
                 class: "img-responsive"
 
-  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+  .col-lg-8.col-md-8.col-sm-8
     / line 1
     %h3= link_to record.title, service_path(record)
 
     / line 2
-    %span= "#{record.city.name}, #{record.state.name}"
-    %span.pull-right= record.street unless record.street.blank?
+    %span= record.slug
+    %hr.post-devider/
+
+    / line 2
+    %span= "#{record.street}, #{record.city.name}, #{record.state.name}"
     %hr.post-devider/
 
     / line 3
     = record.category
-    %span.pull-right.glyphicon.glyphicon-phone= record.phone
+    %hr.post-devider/
+
+    / line 3
+    %span.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 4

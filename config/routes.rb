@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   authenticate :user, ->(u) { u.author? } do
     resources :news, only: [:new, :create, :edit, :update]
+    resources :companies
   end
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
   get "sitemap(:id).:format.:compression" => "sitemap#index"

@@ -63,6 +63,7 @@ class Dashboard::ServicesController < ApplicationController
     params.require(:service).permit(:title,
                                     :street,
                                     :phone,
+                                    :fax,
                                     :email,
                                     :site,
                                     :description,
@@ -70,6 +71,7 @@ class Dashboard::ServicesController < ApplicationController
                                     :state_id,
                                     :city_id,
                                     :logo,
+                                    :slug,
                                     :category,
                                     :subcategory)
   end

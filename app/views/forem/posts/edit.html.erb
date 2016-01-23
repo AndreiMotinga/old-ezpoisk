@@ -1,7 +1,7 @@
 <%= render :partial => 'forem/forums/head', :locals => { :forum => @topic.forum } %>
 
 
-<div class="col-md-12 forem-grey">
+<div class="col-md-12 forem-white">
   <!-- <h2><%# t("forem.post.edit", :post => @post) %></h2> -->
 
   <%= simple_form_for [forem, @topic.forum, @topic, @post] do |f| %>

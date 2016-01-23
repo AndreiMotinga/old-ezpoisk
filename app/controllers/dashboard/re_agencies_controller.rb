@@ -62,6 +62,7 @@ class Dashboard::ReAgenciesController < ApplicationController
     params.require(:re_agency).permit(:title,
                                       :street,
                                       :phone,
+                                      :fax,
                                       :email,
                                       :site,
                                       :description,

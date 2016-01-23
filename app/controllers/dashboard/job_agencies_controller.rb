@@ -63,6 +63,7 @@ class Dashboard::JobAgenciesController < ApplicationController
     params.require(:job_agency).permit(:title,
                                       :street,
                                       :phone,
+                                      :fax,
                                       :email,
                                       :site,
                                       :description,

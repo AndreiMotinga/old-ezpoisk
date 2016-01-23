@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160120011632) do
+ActiveRecord::Schema.define(version: 20160124025244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,22 @@ ActiveRecord::Schema.define(version: 20160120011632) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "title"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "site"
+    t.string   "category"
+    t.string   "subcategory"
+    t.boolean  "contacted"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.boolean  "contacted_by_serghei"
+    t.boolean  "contacted_by_andrei"
+    t.boolean  "contacted_by_greta"
+    t.string   "owner"
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.text     "body"
@@ -171,6 +187,7 @@ ActiveRecord::Schema.define(version: 20160120011632) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.string   "fax"
   end
 
   add_index "job_agencies", ["city_id"], name: "index_job_agencies_on_city_id", using: :btree
@@ -259,6 +276,7 @@ ActiveRecord::Schema.define(version: 20160120011632) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
+    t.string   "fax"
   end
 
   add_index "re_agencies", ["city_id"], name: "index_re_agencies_on_city_id", using: :btree
@@ -355,8 +373,8 @@ ActiveRecord::Schema.define(version: 20160120011632) do
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "state_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -364,6 +382,8 @@ ActiveRecord::Schema.define(version: 20160120011632) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
+    t.string   "slug",              default: ""
+    t.string   "fax"
   end
 
   add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree

@@ -3,6 +3,9 @@
     = f.text_field :title, label: '* Заголовок'
 
   .field
+    = f.text_field :slug, label: 'Подпись'
+
+  .field
     = f.select :category,
                 SERVICE_CATEGORIES.keys,
                 { include_blank: true, label: '* Раздел' },
@@ -27,6 +30,9 @@
 
   .field
     = f.text_field :phone, label: '* Телефон'
+
+  .field
+    = f.text_field :fax, label: 'Факс'
 
   .field
     = f.text_field :site, label: 'Сайт'

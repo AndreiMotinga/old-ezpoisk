@@ -12,7 +12,7 @@ feature "User create re_private" do
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     select("Аренда", from: "Тип обьявления")
-    select("месяц", from: "Продолжительность")
+    select("помесячно", from: "Квартира сдается")
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price
     fill_in "Ванные", with: re_private.baths
@@ -24,7 +24,7 @@ feature "User create re_private" do
 
     expect(page).to have_content re_private.street
     expect(page).to have_content "Аренда"
-    expect(page).to have_content "месяц"
+    expect(page).to have_content "помесячно"
     expect(page).to have_content re_private.phone
     expect(page).to have_content re_private.space
     expect(page).to have_content re_private.price

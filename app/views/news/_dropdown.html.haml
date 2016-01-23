@@ -1,0 +1,14 @@
+/ Single button
+.btn-group
+  %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+    Категории
+    %span.caret
+  %ul.dropdown-menu
+    - NEWS_CATEGORIES.keys.each do |category|
+      %li
+        = link_to category,
+                  news_index_path(category: category),
+                  class: "#{'active' if cp(news_index_path(category: category))}"
+
+%br/
+%br/

@@ -17,7 +17,9 @@ FactoryGirl.define do
     category { category }
     subcategory { subcategory }
 
-    # todo fix?
+    slug "All aboard"
+
+    # TODO: fix?
     # logo_file_name "97ca280e9fff23110bc5fbab1ada1.jpg"
     # logo_content_type "image/jpeg"
     # logo_file_size 867_67

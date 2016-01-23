@@ -11,7 +11,7 @@ feature "user creates re_private" do
 
     fill_in "Улица", with: attrs.street
     select(attrs.post_type, from: "Тип обьявления")
-    select(attrs.duration, from: "Продолжительность")
+    select(attrs.duration, from: "Квартира сдается")
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
     fill_in "Ванные", with: attrs.baths
