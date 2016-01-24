@@ -11,10 +11,10 @@
     %li.list-group-item
       телефон:
       %strong= record.phone
-  - unless record.fax.blank?
+  - unless record.try(:fax).blank?
     %li.list-group-item
       факс:
-      %strong= record.fax
+      %strong= record.try(:fax)
   - unless record.try(:site).blank?
     %li.list-group-item
       site:
