@@ -34,6 +34,7 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+  config.excluded_models = ["State", "City", "Horoscope", "User"]
 
   config.model Post do
     include_all_fields
@@ -41,7 +42,7 @@ RailsAdmin.config do |config|
       field :body do
         render do
           bindings[:view].render partial: "body",
-                                 locals: { field: self, form: bindings[:form] }
+            locals: { field: self, form: bindings[:form] }
         end
       end
     end

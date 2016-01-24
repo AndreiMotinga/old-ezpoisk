@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  layout "forem"
+  layout "plain"
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies

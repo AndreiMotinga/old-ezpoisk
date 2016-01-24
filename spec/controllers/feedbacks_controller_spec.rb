@@ -10,18 +10,18 @@ describe FeedbacksController do
     end
   end
 
-  describe "POST #create" do
-    context "user is not logged in" do
-      it "creates post" do
-        attrs = attributes_for(:feedback)
-
-        post :create, feedback: attrs
-        feedback = Feedback.last
-
-        expect(feedback.body).to eq attrs[:body]
-        expect(feedback.name).to eq attrs[:name]
-        expect(feedback.email).to eq attrs[:email]
-      end
-    end
-  end
+  # describe "POST #create" do
+  #   context "user is not logged in" do
+  #     it "creates post" do
+  #       attrs = attributes_for(:feedback)
+  #
+  #       post :create, feedback: attrs
+  #       feedback = Feedback.last
+  #
+  #       expect(feedback.body).to eq attrs[:body]
+  #       expect(feedback.name).to eq attrs[:name]
+  #       expect(feedback.email).to eq attrs[:email]
+  #     end
+  #   end
+  # end
 end

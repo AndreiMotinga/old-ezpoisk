@@ -57,7 +57,7 @@ class NewsController < ApplicationController
   def resolve_layout
     case action_name
     when "edit"
-      "forem"
+      "plain"
     else
       "application"
     end
