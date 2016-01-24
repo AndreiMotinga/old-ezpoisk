@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  layout "plain"
+  layout "forem"
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
   # GET /companies
@@ -22,7 +22,6 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   def create
-    binding.pry
     @company = Company.new(company_params)
 
     if @company.save

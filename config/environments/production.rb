@@ -68,12 +68,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'www.ezpoisk.com' }
 
   config.action_mailer.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
+    :address        => "smtp.sendgrid.net",
+    :port           => "587",
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
+    :user_name      => ENV["SENDGRID_USERNAME"],
+    :password       => ENV["SENDGRID_PASSWORD"],
+    :domain         => "heroku.com",
     :enable_starttls_auto => true
   }
 

@@ -1,30 +1,85 @@
-.col-md-12.white-block
-  %h4 Пажалуйста, оставьте ваш отзыв
-  .col-md-12
-    = bootstrap_form_for @feedback do |f|
-      .form-group
-        = f.text_field :name, label: "Ваше имя", id: "feedback-name"
-      .form-group
-        = f.email_field :email, label: "Ваш email", id: "feedback-email"
-      .form-group
-        = f.text_area :body,
-                      label: "Сообщение *",
-                      rows: 3,
-                      required: true,
-                      id: "feedback-body"
-      .form-group
-        = f.submit class: "btn btn-default",
-                   value: 'Оставить отзыв',
-                   id: "feedback-submit"
-      %hr
+.row.hidden-xs
+  .col-sm-4
+    .col-sm-12
+      = image_tag "http://placehold.it/330x330", class: "img-responsive"
+      .col-sm-12.white.team-block
+        %h5.text-center.text-muted Serghei Blinov, CEO
+        %hr.post-devider
+        %ul.list-unstyled
+          %li
+            %i.fa.fa-envelope-o
+            serghei@ezpoisk.com
+          %li
+            %i.fa.fa-phone
+            +1 (929) 293 5385
+          %li
+            = image_tag "viber"
+            +1 (929) 293 5385
+          %li
+            %i.fa.fa-skype
+            Andrei Motinga
 
-  %h4 Мои контакты
-  .col-md-12
-    %p
-      email
-      %strong andrew.motinga@gmail.com
-    %p
-      phone
-      %strong 1(929) 293 5385
+  .col-sm-4
+    .col-sm-12
+      = image_tag "http://placehold.it/330x330", class: "img-responsive"
+      .col-sm-12.white.team-block
+        %h5.text-center.text-muted Greta Blinova, CCO
+        %hr.post-devider
+        %ul.list-unstyled
+          %li
+            %i.fa.fa-envelope-o
+            greta@ezpoisk.com
+          %li
+            %i.fa.fa-phone
+            +1 (929) 293 5385
+          %li
+            = image_tag "viber"
+            +1 (929) 293 5385
+          %li
+            %i.fa.fa-skype
+            sogreta
+  .col-sm-4
+    .col-sm-12
+      = image_tag "andrei", class: "img-responsive"
+      .col-sm-12.white.team-block
+        %h5.text-center.text-muted Andrei Motinga, CTO
+        %hr.post-devider
+        %ul.list-unstyled
+          %li
+            %i.fa.fa-envelope-o
+            andrei@ezpoisk.com
+          %li
+            %i.fa.fa-phone
+            +1 (929) 293 5385
+          %li
+            = image_tag "viber"
+            +1 (929) 293 5385
+          %li
+            %i.fa.fa-skype
+            andrei.ezpoisk
 
-  = link_to 'Вернуться на главную', root_path
+%br/
+%hr/
+%br/
+.row
+  .col-md-12.white-block
+    %h3.text-center Пишите нам
+    .col-md-12
+      = bootstrap_form_for @feedback do |f|
+        .form-group
+          = f.text_field :name, label: "Ваше имя", id: "feedback-name"
+        .form-group
+          = f.email_field :email, label: "Ваш email", id: "feedback-email"
+        .form-group
+          = f.text_area :body,
+                        label: "Сообщение *",
+                        rows: 3,
+                        required: true,
+                        id: "feedback-body"
+        .form-group
+          = f.submit class: "btn btn-default",
+                     value: "Оправить",
+                     id: "feedback-submit"
+        %hr
+
+    %h5= link_to 'Вернуться на главную', root_path
