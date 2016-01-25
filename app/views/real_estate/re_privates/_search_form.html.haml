@@ -58,7 +58,7 @@
     = text_field_tag :max_price, params[:max_price], class: "form-control"
 
 .form-group
-  = label_tag "Продолжительность", nil,  class: "col-sm-5 control-label"
+  = label_tag "Квартира сдается", nil,  class: "col-sm-5 control-label"
   .col-sm-5
     = select_tag :duration,
                  options_for_select(RE_DURATION, params[:duration]),
