@@ -10,7 +10,7 @@
   .col-md-12
     %h4.main-title= link_to @main.title, "http://#{@main.link}", target: "blank"
     .col-md-5.hidden-xs.main-text
-      = @main.description
+      = strip_tags @main.description
     .col-md-7.hidden-xs.main-image= image_tag @main.logo, class: "img-responsive"
   / Main post
 
