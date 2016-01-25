@@ -3,6 +3,8 @@
     = image_tag record.logo_url(:medium),
                 alt: record.logo_url(:medium),
                 class: "img-responsive"
+    - unless record.fee
+      %h4.capture Без комиссии
 
   .col-lg-8.col-md-8.col-sm-8.col-xs-12
     / line 1
@@ -27,6 +29,4 @@
     %hr.post-devider/
 
     / line 5
-    - unless record.fee
-      %span.no-fee NO FEE
-    %span.pull-right= time_ago_in_words record.updated_at
+    %span= time_ago_in_words record.updated_at

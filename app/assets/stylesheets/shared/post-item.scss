@@ -1,10 +1,21 @@
 .post-item {
+  position: relative;
+  width: 100%; /* for IE 6 */
   background-color: white;
   border-bottom: 2px solid $gray;
   padding-bottom: 5px;
   padding-left: 0px;
   padding-right: 0px;
   margin-bottom: 15px;
+  .capture {
+    color: white;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
   h3 {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -15,10 +26,4 @@
   padding-top: 5px;
   padding-right: 0px;
   padding-left: 5px;
-}
-
-.no-fee {
-  background-color: green;
-  color: white;
-  padding: 4px 15px 4px 15px;
 }
