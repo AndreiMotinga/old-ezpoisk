@@ -34,10 +34,9 @@ class Dashboard::JobAgenciesController < ApplicationController
 
   def update
     return unless @job_agency.user == current_user
+    address_changed = address_changed?(@job_agency, job_agency_params)
     if @job_agency.update(job_agency_params)
-      if address_changed?(@job_agency, job_agency_params)
-        GeocodeJob.perform_async(@job_agency.id, "JobAgency")
-      end
+      GeocodeJob.perform_async(@job_agency.id, "JobAgency") if address_changed
       redirect_to edit_dashboard_job_agency_path(@job_agency),
                   notice: I18n.t(:post_saved)
     else

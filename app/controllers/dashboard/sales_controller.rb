@@ -33,10 +33,9 @@ class Dashboard::SalesController < ApplicationController
 
   def update
     return unless @sale.user == current_user
+    address_changed = address_changed?(@sale, sale_params)
     if @sale.update(sale_params)
-      if address_changed?(@sale, sale_params)
-        GeocodeJob.perform_async(@sale.id, "Sale")
-      end
+      GeocodeJob.perform_async(@sale.id, "Sale") if address_changed
       redirect_to edit_dashboard_sale_path(@sale),
                   notice: I18n.t(:post_saved)
     else

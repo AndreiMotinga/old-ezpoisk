@@ -34,10 +34,9 @@ class Dashboard::ServicesController < ApplicationController
 
   def update
     return unless @service.user == current_user
+    address_changed = address_changed?(@service, service_params)
     if @service.update(service_params)
-      if address_changed?(@service, service_params)
-        GeocodeJob.perform_async(@service.id, "Service")
-      end
+      GeocodeJob.perform_async(@service.id, "Service") if address_changed
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else

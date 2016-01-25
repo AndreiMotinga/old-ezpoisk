@@ -34,10 +34,9 @@ class Dashboard::ReCommercialsController < ApplicationController
 
   def update
     return unless @re_commercial.user == current_user
+    address_changed = address_changed?(@re_commercial, re_commercial_params)
     if @re_commercial.update(re_commercial_params)
-      if address_changed?(@re_commercial, re_commercial_params)
-        GeocodeJob.perform_async(@re_commercial.id, "ReCommercial")
-      end
+      GeocodeJob.perform_async(@re_commercial.id, "ReCommercial") if address_changed
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
                   notice: I18n.t(:post_saved)
     else
