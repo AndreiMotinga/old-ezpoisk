@@ -17,16 +17,6 @@
   .row
     %h4
       %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-      Услуги
-  .row
-    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-      = link_to "Услуги", dashboard_services_path
-  %hr.post-devide
-
-.category
-  .row
-    %h4
-      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
       Работа
   .row
     .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
@@ -39,8 +29,13 @@
   .row
     %h4
       %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-      Продаю/отдаю
+      = link_to "Услуги", dashboard_services_path
+  %hr.post-devide
+
+
+.category
   .row
-    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-      = link_to "Обьявления", dashboard_sales_path
+    %h4
+      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+      = link_to "Продаю/отдаю", dashboard_sales_path
   %hr.post-devide

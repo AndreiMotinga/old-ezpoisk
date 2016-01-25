@@ -14,16 +14,18 @@
     #wrap
       = render 'shared/navbar'
       .container
-        = render 'layouts/dashboard/navbar'
-        = render 'shared/notice'
+        .row
+          = render 'layouts/dashboard/navbar'
+        .row
+          = render 'shared/notice'
         .row
           / Main
-          .col-md-9
+          .col-md-9.white-block
             = yield
           / Main
 
           / right sidebar
-          .col-lg-3.col-md-3.hidden-sm.hidden-xs
+          .col-lg-3.col-md-3.hidden-sm.hidden-xs.side-posts
             - if content_for?(:right_sidebar)
               = yield :right_sidebar
             - else
