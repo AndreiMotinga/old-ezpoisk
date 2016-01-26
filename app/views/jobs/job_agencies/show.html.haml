@@ -1,6 +1,7 @@
 = title("|Агенства по трудоустройству")
-- content_for :tab_links do
-  = render 'layouts/tab_links/jobs'
+= desc("eZpoisk - Агентство по трудоустройству #{@job_agency.title}, #{@job_agency.address}")
+- content_for :secondary_navbar do
+  = render "jobs/navbar"
 
 = render "shared/show",
           record: @job_agency,

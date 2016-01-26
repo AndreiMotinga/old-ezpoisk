@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.white-block
+%nav.navbar.navbar-default.secondary-navbar.white-block
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -17,7 +17,7 @@
     #dashboard-nav-bar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - SALE_CATEGORIES.each do |category|
-          %li{:class => ("active" if cp(sales_pathcategory: category))}
+          %li{:class => (category_active?(category, @sale))}
             = link_to category, sales_path(category: category)
     / /.navbar-collapse
   / /.container-fluid

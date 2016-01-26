@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.white-block
+%nav.navbar.navbar-default.secondary-navbar.white-block
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -14,7 +14,7 @@
     #dashboard-nav-bar.collapse.navbar-collapse
       %ul.nav.navbar-nav
         - SERVICE_CATEGORIES.keys.each do |category|
-          %li.dropdown{:class => ("active" if params[:category] == category)}
+          %li.dropdown{:class => (category_active?(category, @service))}
             %a.dropdown-toggle{ "aria-expanded" => "false",
                                 "aria-haspopup" => "true",
                                 "data-toggle" => "dropdown",

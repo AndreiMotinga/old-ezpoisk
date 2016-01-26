@@ -1,6 +1,7 @@
 = title("|Аренда, продажа частной недвижимости в США")
-- content_for :tab_links do
-  = render 'layouts/tab_links/real_estate'
+= desc("eZpoisk - Объявления о продаже, покупке и аренде квартир без посредников в США. #{@re_private.address}")
+- content_for :secondary_navbar do
+  = render "real_estate/navbar"
 
 = render "shared/show",
           record: @re_private,

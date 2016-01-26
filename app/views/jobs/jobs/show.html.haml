@@ -1,6 +1,7 @@
 = title("|Работа, требуются, ищу...")
-- content_for :tab_links do
-  = render 'layouts/tab_links/jobs'
+= desc("eZpoisk - Требуется на работу #{@job.title} - #{@job.category}")
+- content_for :secondary_navbar do
+  = render "jobs/navbar"
 
 = render "shared/show",
           record: @job,

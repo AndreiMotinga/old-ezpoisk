@@ -101,3 +101,11 @@ li.active, li:hover {
 .fa-skype {
   color: $blue;
 }
+.secondary-navbar {
+  li.active {
+    border-bottom: 5px solid blue;
+    a {
+      background-color: white !important;
+    }
+  }
+}

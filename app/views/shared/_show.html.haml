@@ -40,5 +40,6 @@
 
       - unless record.description.blank?
         #description.tab-pane.fade{:role => "tabpanel"}
-          = raw record.description
+          .description.white-block
+            = raw record.description
   %br/

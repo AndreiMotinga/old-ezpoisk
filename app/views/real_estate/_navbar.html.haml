@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.white-block
+%nav.navbar.navbar-default.secondary-navbar.white-block
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -13,11 +13,11 @@
     / Collect the nav links, forms, and other content for toggling
     #dashboard-nav-bar.collapse.navbar-collapse
       %ul.nav.navbar-nav
-        %li{:class => ("active" if cp(real_estate_re_agencies_path))}
+        %li{:class => (cp(real_estate_re_agencies_path))}
           = link_to "Агентства", real_estate_re_agencies_path
-        %li{:class => ("active" if cp(real_estate_re_privates_path))}
+        %li{:class => (cp(real_estate_re_privates_path))}
           = link_to "Частная", real_estate_re_privates_path
-        %li{:class => ("active" if cp(real_estate_re_commercials_path))}
+        %li{:class => (cp(real_estate_re_commercials_path))}
           = link_to "Коммерческая", real_estate_re_commercials_path
     / /.navbar-collapse
   / /.container-fluid

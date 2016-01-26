@@ -1,4 +1,8 @@
 = title("|Услуги, адвокаты, образование, медицина")
+= desc("eZpoisk - #{@service.title}, #{@service.category} - #{@service.subcategory}, #{@service.address}")
+- content_for :secondary_navbar do
+  = render "services/navbar"
+
 = render "shared/show",
           record: @service,
           template: 'dashboard/services/service'

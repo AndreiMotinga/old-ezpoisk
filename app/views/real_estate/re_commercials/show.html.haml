@@ -1,4 +1,7 @@
 = title("|Аренда, продажа коммерческой недвижимости в США")
+= desc("eZpoisk - Объявления о продаже, покупке и аренде квартир без посредников в США. #{@re_commercial.address}")
+- content_for :secondary_navbar do
+  = render "real_estate/navbar"
 = render "shared/show",
           record: @re_commercial,
           template: 'dashboard/re_commercials/re_commercial'

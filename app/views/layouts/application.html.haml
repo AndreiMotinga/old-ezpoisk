@@ -7,6 +7,8 @@
     %meta{ name: "google-site-verification", content: "aMlxCG3XekLdKIq1jjGJkMfb2M7mO4cKfDMhf4BUWhg" }
     %meta{ name: "msvalidate.01", content: "EAE9E1BC865C52CA068724F63495FF7B" }
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    %meta{ name: "description", content: "#{yield(:description)}"}
+
     = favicon_link_tag 'favicon.ico'
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
@@ -21,12 +23,6 @@
       .container
         - if content_for?(:secondary_navbar)
           = yield :secondary_navbar
-
-        / Tab links
-        - if content_for?(:tab_links)
-          .row
-            = yield :tab_links
-        / Tab links
 
         / left sidebar
         - if content_for?(:left_sidebar)

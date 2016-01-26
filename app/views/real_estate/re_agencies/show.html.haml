@@ -1,6 +1,7 @@
 = title("|Агенства Недвижимости в США")
-- content_for :tab_links do
-  = render 'layouts/tab_links/real_estate'
+= desc("eZpoisk - Русские Агентства Недвижимости в США #{@re_agency.title} #{@re_agency.city.name} #{@re_agency.state.name}")
+- content_for :secondary_navbar do
+  = render "real_estate/navbar"
 
 = render "shared/show",
           record: @re_agency,
