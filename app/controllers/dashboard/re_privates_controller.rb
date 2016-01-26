@@ -33,7 +33,7 @@ class Dashboard::RePrivatesController < ApplicationController
 
   def update
     return unless @re_private.user == current_user
-    address_changed = address_changed?(@re_private, re_agency_params)
+    address_changed = address_changed?(@re_private, re_private_params)
     if @re_private.update(re_private_params)
       GeocodeJob.perform_async(@re_private.id, "RePrivate") if address_changed
       redirect_to edit_dashboard_re_private_path(@re_private),
