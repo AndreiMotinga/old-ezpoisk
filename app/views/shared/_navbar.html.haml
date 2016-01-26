@@ -58,8 +58,16 @@
               = link_to 'Работа', main_app.jobs_jobs_path
         / jobs
 
-        %li
-          = link_to "Продается", main_app.sales_path
+        / sale
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+                             "data-toggle" => "dropdown", :role => "button"}
+            Продается
+            %span.caret
+          %ul.dropdown-menu
+            - SALE_CATEGORIES.each do |category|
+              %li= link_to category, main_app.sales_path(category: category)
+        / sale
 
         / news
         %li

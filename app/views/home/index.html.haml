@@ -4,26 +4,42 @@
 /modals
 = render 'home/new_post_modal'
 
-/ Main
-.row.main-post.white-block
-  / Main post
-  .col-md-12
-    %h4.main-title= link_to @main.title, "http://#{@main.link}", target: "blank"
-    .col-md-5.hidden-xs.main-text
-      = strip_tags @main.description
-    .col-md-7.hidden-xs.main-image= image_tag @main.logo, class: "img-responsive"
-  / Main post
+/ show on desktop
+.col-sm-12.hidden-xs
+  / Main
+  .row.main-post.white-block
+    / Main post
+    .col-md-12
+      %h4.main-title= link_to @main.title, "http://#{@main.link}", target: "blank"
+      .col-md-5.hidden-xs.main-text
+        = strip_tags @main.description
+      .col-md-7.hidden-xs.main-image= image_tag @main.logo, class: "img-responsive"
+    / Main post
 
-%br/
-.row
-  .posts.white-block
-    = render @posts
+  %br/
+  .row
+    .posts.white-block
+      = render @posts
 
-%br/
-.row
-  .col-md-12.text-center
-    = link_to "Читать дальше",
-              news_index_path,
-              class: "btn btn-default btn-large btn-big"
-%br/
-/ Main
+  %br/
+  .row
+    .col-md-12.text-center
+      = link_to "Читать дальше",
+                news_index_path,
+                class: "btn btn-default btn-large btn-big"
+  %br/
+  / Main
+/ show on desktop
+
+/ show on cell
+.col-xs-12.mobile-navigation.white-block
+  %ul.list-unstyled
+    %li= link_to "Агентства недвижимости", real_estate_re_agencies_path
+    %li= link_to "Частная недвижимость", real_estate_re_privates_path
+    %li= link_to "Коммерческая недвижимость", real_estate_re_commercials_path
+    %li= link_to "Услуги", services_path
+    %li= link_to "Агентства по трудоустройству", jobs_job_agencies_path
+    %li= link_to "Работа", jobs_jobs_path
+    %li= link_to "Продается", sales_path
+    %li= link_to "Новости", news_index_path
+/ show on cell
