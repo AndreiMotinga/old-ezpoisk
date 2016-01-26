@@ -1,0 +1,21 @@
+%nav.navbar.navbar-default.white-block
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{ "aria-expanded" => "false",
+                                       "data-target" => "#dashboard-nav-bar",
+                                       "data-toggle" => "collapse",
+                                       :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    / Collect the nav links, forms, and other content for toggling
+    #dashboard-nav-bar.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li{:class => ("active" if cp(jobs_job_agencies_path))}
+          = link_to "Агентства", jobs_job_agencies_path
+        %li{:class => ("active" if cp(jobs_jobs_path))}
+          = link_to "Работа", jobs_jobs_path
+    / /.navbar-collapse
+  / /.container-fluid

@@ -1,0 +1,23 @@
+%nav.navbar.navbar-default.white-block
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{ "aria-expanded" => "false",
+                                       "data-target" => "#dashboard-nav-bar",
+                                       "data-toggle" => "collapse",
+                                       :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/sales"}
+        %span.glyphicon.glyphicon-home{"aria-hidden" => "true"}
+        Все обьявления
+    / Collect the nav links, forms, and other content for toggling
+    #dashboard-nav-bar.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - SALE_CATEGORIES.each do |category|
+          %li{:class => ("active" if cp(sales_pathcategory: category))}
+            = link_to category, sales_path(category: category)
+    / /.navbar-collapse
+  / /.container-fluid
