@@ -19,6 +19,9 @@
       = render 'shared/notice'
 
       .container
+        - if content_for?(:secondary_navbar)
+          = yield :secondary_navbar
+
         / Tab links
         - if content_for?(:tab_links)
           .row
@@ -42,7 +45,7 @@
         / Main
 
         / right sidebar
-        .col-lg-3.col-md-3.hidden-sm.hidden-xs.pull-right.side-posts{ class: ("col-lg-offset-1" if !content_for?(:left_sidebar)) }
+        .col-lg-3.col-md-3.hidden-sm.hidden-xs.pull-right{ class: ("col-lg-offset-1" if !content_for?(:left_sidebar)) }
           - if content_for?(:right_sidebar)
             = yield :right_sidebar
           - else
