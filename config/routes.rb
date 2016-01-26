@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => "/admin", as: "rails_admin"
   end
   authenticate :user, ->(u) { u.author? } do
-    resources :news, only: [:new, :create, :edit, :update]
+    resources :news, only: [:edit, :update]
     resources :companies
   end
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"

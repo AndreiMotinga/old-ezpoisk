@@ -15,22 +15,7 @@ class NewsController < ApplicationController
   def show
   end
 
-  def new
-    @post = Post.new
-  end
-
   def edit
-  end
-
-  def create
-    @post = current_user.posts.build(post_params)
-    @post.category = params[:post][:category].join(" ")
-    if @post.save
-      redirect_to edit_news_path(@post), notice: I18n.t(:post_saved)
-    else
-      flash.now[:alert] = I18n.t(:post_not_saved)
-      render :new
-    end
   end
 
   def update
