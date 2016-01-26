@@ -153,7 +153,7 @@ SERVICE_CATEGORIES = HashWithIndifferentAccess.new(
     "Ювелирные изделия",
     "Автозапчасти"
   ],
-  "Другие Услуги": [
+  "Другие услуги": [
     "Артисты, праздники",
     "Бизнес, партнерства",
     "Детективы, охрана",
@@ -230,7 +230,7 @@ STATES = [
 
 # "Интересное": [],
 NEWS_CATEGORIES = HashWithIndifferentAccess.new(
-  "Железо": ["https://news.yandex.ru/hardware.rss", "hardware"],
+  "Hardware": ["https://news.yandex.ru/hardware.rss", "hardware"],
   "Авто": ["https://news.yandex.ru/auto.rss", "auto"],
   "Общество": ["https://news.yandex.ru/world.rss", "world"],
   "Интернет": ["https://news.yandex.ru/internet.rss", "internet"],
