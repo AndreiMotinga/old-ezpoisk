@@ -15,8 +15,9 @@
 
   / address
   .field
+    = f.text_field :street, label: 'Улица'
+  .field
     = form_state_select(f)
-
   .field
     = form_city_select(f, @job)
 

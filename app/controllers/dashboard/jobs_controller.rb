@@ -65,6 +65,7 @@ class Dashboard::JobsController < ApplicationController
                                 :email,
                                 :description,
                                 :active,
+                                :street,
                                 :state_id,
                                 :city_id,
                                 :logo,

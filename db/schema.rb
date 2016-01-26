@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124025244) do
+ActiveRecord::Schema.define(version: 20160126141241) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20160124025244) do
     t.integer  "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "street"
   end
 
   add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree

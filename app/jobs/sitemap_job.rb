@@ -7,6 +7,7 @@ class SitemapJob
   end
 
   def perform
+    return if Rails.env.development?
     system "rake sitemap:create_upload_and_ping"
   end
 end
