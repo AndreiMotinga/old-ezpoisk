@@ -1,4 +1,4 @@
-- Post.important.desc.limit(13).each do |record|
+- Post.important.desc.limit(10).each do |record|
   %div.side-post
     = link_to "http://#{record.link}", target: "blank" do
       = image_tag record.logo, class: "img-responsive"

@@ -26,6 +26,7 @@ class NewsImporter
 
   def convert_link(url)
     url = url.gsub("https://news.yandex.ru/yandsearch?cl4url=", "")
+    url = url.gsub("https://news.yandex.ua/yandsearch?cl4url=", "")
     URI.decode(url)
   end
 end
