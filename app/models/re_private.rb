@@ -8,7 +8,6 @@ class RePrivate < ActiveRecord::Base
   validates :rooms, presence: true
   validates :phone, presence: true
   validates :post_type, presence: true
-  validates :duration, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates :street, presence: true
