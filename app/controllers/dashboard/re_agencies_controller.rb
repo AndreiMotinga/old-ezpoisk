@@ -10,6 +10,7 @@ class Dashboard::ReAgenciesController < ApplicationController
   def new
     @re_agency = ReAgency.new state_id: current_user.state_id,
                               city_id: current_user.city_id,
+                              active: true,
                               phone: current_user.phone
   end
 

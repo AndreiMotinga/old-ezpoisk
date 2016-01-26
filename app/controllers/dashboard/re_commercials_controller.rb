@@ -12,6 +12,7 @@ class Dashboard::ReCommercialsController < ApplicationController
   def new
     @re_commercial = ReCommercial.new state_id: current_user.state_id,
                                       city_id: current_user.city_id,
+                                      active: true,
                                       phone: current_user.phone
   end
 

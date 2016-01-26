@@ -10,6 +10,7 @@ class Dashboard::JobAgenciesController < ApplicationController
   def new
     @job_agency = JobAgency.new state_id: current_user.state_id,
                                 city_id: current_user.city_id,
+                                active: true,
                                 phone: current_user.phone,
                                 email: current_user.email
   end
