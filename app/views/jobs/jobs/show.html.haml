@@ -1,4 +1,7 @@
 = title("|Работа, требуются, ищу...")
+- content_for :tab_links do
+  = render 'layouts/tab_links/jobs'
+
 = render "shared/show",
           record: @job,
           template: 'dashboard/jobs/job'

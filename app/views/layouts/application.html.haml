@@ -42,7 +42,7 @@
         / Main
 
         / right sidebar
-        .col-lg-3.col-md-3.hidden-sm.hidden-xs.side-posts{ class: ("col-lg-offset-1" if !content_for?(:left_sidebar)) }
+        .col-lg-3.col-md-3.hidden-sm.hidden-xs.pull-right.side-posts{ class: ("col-lg-offset-1" if !content_for?(:left_sidebar)) }
           - if content_for?(:right_sidebar)
             = yield :right_sidebar
           - else

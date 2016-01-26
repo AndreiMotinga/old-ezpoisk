@@ -1,4 +1,7 @@
 = title("|Агенства по трудоустройству")
+- content_for :tab_links do
+  = render 'layouts/tab_links/jobs'
+
 = render "shared/show",
           record: @job_agency,
           template: 'dashboard/job_agencies/job_agency'
