@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.white-block
+%nav.navbar.navbar-default.secondary-navbar.white-block
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -18,7 +18,7 @@
       %ul.nav.navbar-nav.navbar-right
 
         /real_estate
-        %li.dropdown
+        %li.dropdown{class: (cp(dashboard_re_agencies_path) || cp(dashboard_re_privates_path) || cp(dashboard_re_commercials_path))}
           %a.dropdown-toggle{ "aria-expanded" => "false",
                               "aria-haspopup" => "true",
                               "data-toggle" => "dropdown",
@@ -34,11 +34,11 @@
               = link_to t(:commercial), dashboard_re_commercials_path
         / real_estate
 
-        %li
+        %li{class: (cp(dashboard_services_path))}
           = link_to "Услуги", dashboard_services_path
 
         / jobs
-        %li.dropdown
+        %li.dropdown{class: (cp(dashboard_job_agencies_path) || cp(dashboard_jobs_path))}
           %a.dropdown-toggle{ "aria-expanded" => "false",
                               "aria-haspopup" => "true",
                               "data-toggle" => "dropdown",
@@ -52,11 +52,11 @@
               = link_to "Работа", dashboard_jobs_path
         / jobs
 
-        %li
+        %li{class: (cp(dashboard_sales_path))}
           = link_to "Продается", dashboard_sales_path
 
 
-        %li
+        %li{class: (cp(edit_user_registration_path))}
           = link_to "Профиль", edit_user_registration_path
     / /.navbar-collapse
   / /.container-fluid
