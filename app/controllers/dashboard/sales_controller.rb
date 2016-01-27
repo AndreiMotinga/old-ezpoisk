@@ -23,6 +23,7 @@ class Dashboard::SalesController < ApplicationController
     @sale = current_user.sales.build(sale_params)
 
     if @sale.save
+      AdminMailerJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@sale.id, "Sale")
       redirect_to edit_dashboard_sale_path(@sale),
                   notice: I18n.t(:post_saved)
