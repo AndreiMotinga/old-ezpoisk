@@ -57,7 +57,7 @@ describe ReCommercial do
                          city: city,
                          zip: 11_229,
                          street: "1970 East 18th"
-      address = "1970 East 18th, Brooklyn New York, 11229"
+      address = "1970 East 18th Brooklyn New York, 11229"
       expect(re_commercial.address).to eq address
     end
   end

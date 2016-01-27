@@ -14,7 +14,7 @@ module ViewHelpers
   end
 
   def address
-    "#{street}, #{city.name} #{state.name}, #{zip}"
+    "#{street} #{city.name} #{state.name}, #{zip}"
   end
 
   def map_marker
