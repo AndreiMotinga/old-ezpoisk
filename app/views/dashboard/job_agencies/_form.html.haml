@@ -20,6 +20,10 @@
     = f.email_field :email
   .field
     = f.check_box :active, label: 'Активно? *'
+  .field
+    - if @job_agency.new_record? && Rails.env != "test"
+      = recaptcha_tags
+  %br/
   .actions
     = f.submit "Сохранить",
                class: "btn btn-primary",

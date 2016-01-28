@@ -3,8 +3,6 @@ class Dashboard::ReCommercialsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_re_commercial, only: [:edit, :update, :destroy]
 
-
-
   def index
     @re_commercials = current_user.re_commercials.page params[:page]
   end
@@ -17,13 +15,12 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def edit
-    redirect_to dashboard_path if @re_commercial.user != current_user
   end
 
   def create
     @re_commercial = current_user.re_commercials.build(re_commercial_params)
 
-    if @re_commercial.save
+    if verify_recaptcha &&  @re_commercial.save
       GeocodeJob.perform_async(@re_commercial.id, "ReCommercial")
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
                   notice: I18n.t(:post_saved)
@@ -34,7 +31,6 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def update
-    return unless @re_commercial.user == current_user
     address_changed = address_changed?(@re_commercial, re_commercial_params)
     if @re_commercial.update(re_commercial_params)
       GeocodeJob.perform_async(@re_commercial.id, "ReCommercial") if address_changed
@@ -47,7 +43,6 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def destroy
-    return unless @re_commercial.user == current_user
     @re_commercial.destroy
     redirect_to dashboard_re_commercials_path,
                 notice: I18n.t(:post_removed)
@@ -56,7 +51,7 @@ class Dashboard::ReCommercialsController < ApplicationController
   private
 
   def set_re_commercial
-    @re_commercial = ReCommercial.find(params[:id])
+    @re_commercial = current_user.re_commercials.find(params[:id])
   end
 
   def re_commercial_params

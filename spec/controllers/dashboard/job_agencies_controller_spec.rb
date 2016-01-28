@@ -30,9 +30,8 @@ describe Dashboard::JobAgenciesController do
       job_agency = create :job_agency
       create :job_agency, user: @user
 
-      get :edit, id: job_agency.id
-
-      expect(response).to redirect_to(dashboard_path)
+      expect { get :edit, id: job_agency.id }
+        .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

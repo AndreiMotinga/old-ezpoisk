@@ -1,8 +1,6 @@
 class Dashboard::SummernoteController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
-    @picture.imageable_id = params[:id]
-    @picture.imageable_type = params[:type]
 
     if @picture.save
       render json: { message: "success",
@@ -17,6 +15,6 @@ class Dashboard::SummernoteController < ApplicationController
   private
 
   def picture_params
-    params.require(:picture).permit(:image, :imageable_id, :imageable_type)
+    params.require(:picture).permit(:imageable_id, :imageable_type, :image)
   end
 end

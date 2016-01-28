@@ -30,9 +30,8 @@ describe Dashboard::SalesController do
       sale = create :sale
       create :sale, user: @user
 
-      get :edit, id: sale.id
-
-      expect(response).to redirect_to(dashboard_path)
+      expect { get :edit, id: sale.id}
+        .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

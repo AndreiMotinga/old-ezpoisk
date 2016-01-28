@@ -27,6 +27,11 @@
     = f.text_field :space, label: 'Площадь'
   .field
     = f.check_box :active, label: 'Активно? *'
+  .field
+    / TODO: move Rails.env to tests
+    - if @re_commercial.new_record? && Rails.env != "test"
+      = recaptcha_tags
+  %br/
   .actions
     = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
   %br/

@@ -38,9 +38,8 @@ describe Dashboard::ReCommercialsController do
       re_commercial = create :re_commercial
       create :re_commercial, user: @user
 
-      get :edit, id: re_commercial.id
-
-      expect(response).to redirect_to(dashboard_path)
+      expect { get :edit, id: re_commercial.id }
+        .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

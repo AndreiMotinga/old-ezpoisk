@@ -16,13 +16,12 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def edit
-    redirect_to dashboard_path if @job.user != current_user
   end
 
   def create
     @job = current_user.jobs.build(job_params)
 
-    if @job.save
+    if verify_recaptcha && @job.save
       AdminMailerJob.perform_async(@job.id, "Job")
       GeocodeJob.perform_async(@job.id, "Job")
       redirect_to edit_dashboard_job_path(@job),
@@ -34,7 +33,6 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def update
-    return unless @job.user == current_user
     address_changed = address_changed?(@job, job_params)
     if @job.update(job_params)
       GeocodeJob.perform_async(@job.id, "Job") if address_changed
@@ -47,7 +45,6 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def destroy
-    return unless @job.user == current_user
     @job.destroy
     redirect_to dashboard_jobs_path,
                 notice: I18n.t(:post_removed)
@@ -56,7 +53,7 @@ class Dashboard::JobsController < ApplicationController
   private
 
   def set_job
-    @job = Job.find(params[:id])
+    @job = current_user.jobs.find(params[:id])
   end
 
   def job_params

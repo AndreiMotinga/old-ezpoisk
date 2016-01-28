@@ -15,9 +15,14 @@
     .field
       = form_city_select(f, @user)
 
-    %div
+    .field
       = f.password_field :password
-    %div
+    .field
       = f.password_field :password_confirmation
+
+    .field
+      = recaptcha_tags
+    %br/
+
     %div= f.submit t('.sign_up', :default => "Sign up")
   = render "devise/shared/links"

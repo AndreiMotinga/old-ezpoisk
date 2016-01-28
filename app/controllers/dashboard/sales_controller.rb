@@ -16,13 +16,12 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def edit
-    redirect_to dashboard_path if @sale.user != current_user
   end
 
   def create
     @sale = current_user.sales.build(sale_params)
 
-    if @sale.save
+    if verify_recaptcha && @sale.save
       AdminMailerJob.perform_async(@sale.id, "Sale")
       GeocodeJob.perform_async(@sale.id, "Sale")
       redirect_to edit_dashboard_sale_path(@sale),
@@ -34,7 +33,6 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def update
-    return unless @sale.user == current_user
     address_changed = address_changed?(@sale, sale_params)
     if @sale.update(sale_params)
       GeocodeJob.perform_async(@sale.id, "Sale") if address_changed
@@ -47,7 +45,6 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def destroy
-    return unless @sale.user == current_user
     @sale.destroy
     redirect_to dashboard_sales_path,
                 notice: I18n.t(:post_removed)
@@ -56,7 +53,7 @@ class Dashboard::SalesController < ApplicationController
   private
 
   def set_sale
-    @sale = Sale.find(params[:id])
+    @sale = current_user.sales.find(params[:id])
   end
 
   def sale_params

@@ -43,6 +43,11 @@
   .field
     = f.check_box :active, label: 'Активно? *'
 
+  .field
+    - if @service.new_record?
+      = recaptcha_tags && Rails.env != "test"
+  %br/
+
   .actions
     = f.submit "Сохранить",
                id: "details-save-btn",

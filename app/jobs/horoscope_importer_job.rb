@@ -1,6 +1,7 @@
 class HoroscopeImporterJob
   include Sidekiq::Worker
   include Sidetiq::Schedulable
+  sidekiq_options queue: :low
 
   recurrence { daily.hour_of_day(0) }
 

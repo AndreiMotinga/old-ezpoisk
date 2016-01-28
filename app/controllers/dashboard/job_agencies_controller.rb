@@ -16,13 +16,12 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def edit
-    redirect_to dashboard_path if @job_agency.user != current_user
   end
 
   def create
     @job_agency = current_user.job_agencies.build(job_agency_params)
 
-    if @job_agency.save
+    if verify_recaptcha && @job_agency.save
       AdminMailerJob.perform_async(@job_agency.id, "JobAgency")
       GeocodeJob.perform_async(@job_agency.id, "JobAgency")
       redirect_to edit_dashboard_job_agency_path(@job_agency),
@@ -34,7 +33,6 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def update
-    return unless @job_agency.user == current_user
     address_changed = address_changed?(@job_agency, job_agency_params)
     if @job_agency.update(job_agency_params)
       GeocodeJob.perform_async(@job_agency.id, "JobAgency") if address_changed
@@ -47,7 +45,6 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def destroy
-    return unless @job_agency.user == current_user
     @job_agency.destroy
     redirect_to dashboard_job_agencies_url,
                 notice: I18n.t(:post_removed)
@@ -56,7 +53,7 @@ class Dashboard::JobAgenciesController < ApplicationController
   private
 
   def set_job_agency
-    @job_agency = JobAgency.find(params[:id])
+    @job_agency = current_user.job_agencies.find(params[:id])
   end
 
   def job_agency_params

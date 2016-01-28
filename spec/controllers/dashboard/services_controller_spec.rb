@@ -30,9 +30,8 @@ describe Dashboard::ServicesController do
       service = create :service
       create :service, user: @user
 
-      get :edit, id: service.id
-
-      expect(response).to redirect_to(dashboard_path)
+      expect { get :edit, id: service.id }
+        .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

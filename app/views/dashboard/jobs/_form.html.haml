@@ -20,14 +20,16 @@
     = form_state_select(f)
   .field
     = form_city_select(f, @job)
-
   .field
     = f.text_field :phone, label: '* Телефон'
   .field
     = f.email_field :email
-
   .field
     = f.check_box :active, label: 'Активно? *'
+  .field
+    - if @job.new_record? && Rails.env != "test"
+      = recaptcha_tags
+  %br/
   .actions
     = f.submit "Сохранить",
       class: "btn btn-primary",

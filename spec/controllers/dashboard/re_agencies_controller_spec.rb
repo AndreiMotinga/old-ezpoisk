@@ -30,9 +30,9 @@ describe Dashboard::ReAgenciesController do
       re_agency = create :re_agency
       create :re_agency, user: @user
 
-      get :edit, id: re_agency.id
 
-      expect(response).to redirect_to(dashboard_path)
+      expect{ get :edit, id: re_agency.id }.
+        to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

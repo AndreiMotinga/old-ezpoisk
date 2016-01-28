@@ -38,9 +38,8 @@ describe Dashboard::RePrivatesController do
       re_private = create :re_private
       create :re_private, user: @user
 
-      get :edit, id: re_private.id
-
-      expect(response).to redirect_to(dashboard_path)
+      expect { get :edit, id: re_private.id }
+        .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

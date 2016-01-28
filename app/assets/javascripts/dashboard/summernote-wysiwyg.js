@@ -11,7 +11,6 @@ $(document).ready(function() {
         tabSize: 2,
         theme: "solarized light"
       },
-      // doesn't work
       callbacks: {
         onImageUpload: function(files) {
           return sendFile(files[0], type, id);
@@ -22,10 +21,12 @@ $(document).ready(function() {
     function sendFile(file, type, id) {
       var data = new FormData();
       data.append('picture[image]', file);
+      data.append('picture[imageable_id]', id);
+      data.append('picture[imageable_type]', type);
       return $.ajax({
         data: data,
         type: 'POST',
-        url: '/dashboard/summernote?type=' + type + '&id=' + id,
+        url: '/dashboard/summernote',
         cache: false,
         contentType: false,
         processData: false,

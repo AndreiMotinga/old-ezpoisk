@@ -30,9 +30,8 @@ describe Dashboard::JobsController do
       job = create :job
       create :job, user: @user
 
-      get :edit, id: job.id
-
-      expect(response).to redirect_to(dashboard_path)
+      expect { get :edit, id: job.id }
+        .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
 

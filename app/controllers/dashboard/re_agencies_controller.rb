@@ -11,17 +11,17 @@ class Dashboard::ReAgenciesController < ApplicationController
     @re_agency = ReAgency.new state_id: current_user.state_id,
                               city_id: current_user.city_id,
                               active: true,
-                              phone: current_user.phone
+                              phone: current_user.phone,
+                              email: current_user.email
   end
 
   def edit
-    redirect_to dashboard_path if @re_agency.user != current_user
   end
 
   def create
     @re_agency = current_user.re_agencies.build(re_agency_params)
 
-    if @re_agency.save
+    if verify_recaptcha && @re_agency.save
       AdminMailerJob.perform_async(@re_agency.id, "ReAgency")
       GeocodeJob.perform_async(@re_agency.id, "ReAgency")
       redirect_to edit_dashboard_re_agency_path(@re_agency),
@@ -33,7 +33,6 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def update
-    return unless @re_agency.user == current_user
     address_changed = address_changed?(@re_agency, re_agency_params)
     if @re_agency.update(re_agency_params)
       GeocodeJob.perform_async(@re_agency.id, "ReAgency") if address_changed
@@ -46,7 +45,6 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def destroy
-    return unless @re_agency.user == current_user
     @re_agency.destroy if @re_agency.user == current_user
     redirect_to dashboard_re_agencies_url,
                 notice: I18n.t(:post_removed)
@@ -55,7 +53,7 @@ class Dashboard::ReAgenciesController < ApplicationController
   private
 
   def set_re_agency
-    @re_agency = ReAgency.find(params[:id])
+    @re_agency = current_user.re_agencies.find(params[:id])
   end
 
   def re_agency_params

@@ -14,7 +14,7 @@
     .row
       .col-sm-12.post-text
         %h4.post-title
-          - if current_user.try(:author?)
+          - if current_user.try(:admin?)
             = link_to post.title, edit_news_path(post)
           - elsif post.from_rss?
             = link_to post.title, "http://#{post.link}", target: "blank"

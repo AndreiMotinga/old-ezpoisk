@@ -16,13 +16,12 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def edit
-    redirect_to dashboard_path if @service.user != current_user
   end
 
   def create
     @service = current_user.services.build(service_params)
 
-    if @service.save
+    if verify_recaptcha && @service.save
       AdminMailerJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")
       redirect_to edit_dashboard_service_path(@service),
@@ -34,7 +33,6 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def update
-    return unless @service.user == current_user
     address_changed = address_changed?(@service, service_params)
     if @service.update(service_params)
       GeocodeJob.perform_async(@service.id, "Service") if address_changed
@@ -47,7 +45,6 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def destroy
-    return unless @service.user == current_user
     @service.destroy
     redirect_to dashboard_services_url,
                 notice: I18n.t(:post_removed)
@@ -56,7 +53,7 @@ class Dashboard::ServicesController < ApplicationController
   private
 
   def set_service
-    @service = Service.find(params[:id])
+    @service = current_user.services.find(params[:id])
   end
 
   def service_params

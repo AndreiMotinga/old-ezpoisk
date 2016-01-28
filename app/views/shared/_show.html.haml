@@ -41,5 +41,5 @@
       - unless record.description.blank?
         #description.tab-pane.fade{:role => "tabpanel"}
           .post-item-description.white-block
-            = raw record.description
+            = sanitize record.description
   %br/

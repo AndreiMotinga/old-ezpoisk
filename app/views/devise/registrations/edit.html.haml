@@ -12,43 +12,46 @@
       %div
         = f.file_field :avatar
   .row
-    %hr/
-    %div
-      = f.text_field :name, label: "Ваше имя"
-    %div
-      = f.text_field :phone, label: "Телефон"
-    %div
-      = f.email_field :email
-    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-      %p
-        = t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}")
+    .col-md-12
+      %hr/
+      %div
+        = f.text_field :name, label: "Ваше имя"
+      %div
+        = f.text_field :phone, label: "Телефон"
+      %div
+        = f.email_field :email
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        %p
+          = t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}")
 
-    .field
-      = form_state_select(f)
-    .field
-      = form_city_select(f, @user)
+      .field
+        = form_state_select(f)
+      .field
+        = form_city_select(f, @user)
 
-    %div
-      %i
-        (#{t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes')})
+      %div
+        %i
+          (#{t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes')})
+        %br/
+        = f.password_field :current_password
+
       %br/
-      = f.password_field :current_password
+      %hr/
 
-    %hr/
+      %div
+        %i
+          -# (#{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")})
+          Если хотите изменить пароль, введите текущий пароль выше и новый пароль дважды ниже
+        %br/
+        = f.password_field :password, :autocomplete => "off", label: "Новый пароль"
+      %div
+        %br/
+        = f.password_field :password_confirmation, label: "Подтверждение нового пароля"
+      %div= f.submit t('.update', :default => "Update")
+    -# %h3= t('.cancel_my_account', :default => 'Cancel my account')
+    -# %p
+    -#   = t('.unhappy', :default => 'Unhappy')
+    -#   ? #{link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete}.
 
-    %div
-      %i
-        -# (#{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")})
-        Если хотите изменить пароль, введите текущий пароль выше и новый пароль дважды ниже
-      %br/
-      = f.password_field :password, :autocomplete => "off", label: "Новый пароль"
-    %div
-      %br/
-      = f.password_field :password_confirmation, label: "Подтверждение нового пароля"
-    %div= f.submit t('.update', :default => "Update")
-  -# %h3= t('.cancel_my_account', :default => 'Cancel my account')
-  -# %p
-  -#   = t('.unhappy', :default => 'Unhappy')
-  -#   ? #{link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete}.
   %br/
   = link_to t('devise.shared.links.back', :default => "Back"), :back

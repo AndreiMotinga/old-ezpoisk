@@ -33,6 +33,6 @@ module Ezpoisk
     config.active_record.raise_in_transactional_callbacks = true
 
     # rspec doesn't pick up jobs without it
-    config.autoload_paths += %W(#{config.root}/app/jobs)
+    config.autoload_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
   end
 end

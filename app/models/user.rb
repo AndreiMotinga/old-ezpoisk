@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :async
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+    :trackable, :validatable, :lockable, :async
   after_create :notify_admin
 
   validates :phone, presence: true
@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :services, dependent: :destroy
   has_many :posts
   has_many :feedbacks
+  has_many :pictures
 
   has_attached_file :avatar,
                     styles: { medium: "300x150" },
@@ -31,6 +32,10 @@ class User < ActiveRecord::Base
   # forem helpers
   def forem_name
     name
+  end
+
+  def role?(val)
+    role.to_sym == val
   end
 
   private

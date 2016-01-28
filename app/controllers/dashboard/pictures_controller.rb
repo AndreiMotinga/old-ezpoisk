@@ -4,7 +4,7 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def create
-    @picture = Picture.new(picture_params)
+    @picture = current_user.pictures.build(picture_params)
 
     if @picture.save
       render json: { message: "success",
@@ -16,7 +16,7 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def update
-    @picture = Picture.find(params[:id])
+    @picture = current_user.pictures.find(params[:id])
     unset_current_logo
     @picture.logo = true
     @picture.save
@@ -24,7 +24,7 @@ class Dashboard::PicturesController < ApplicationController
 
   def destroy
     @id = params[:id]
-    Picture.find(@id).destroy
+    current_user.pictures.find(@id).destroy
   end
 
   private
@@ -39,5 +39,4 @@ class Dashboard::PicturesController < ApplicationController
     current_logo.logo = false
     current_logo.save
   end
-
 end

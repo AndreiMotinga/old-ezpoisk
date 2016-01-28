@@ -22,6 +22,11 @@
   .field
     = f.check_box :active, label: 'Активно? *'
 
+  .field
+    - if @sale.new_record? && Rails.env != "test"
+      = recaptcha_tags
+  %br/
+
   .actions
     = f.submit "Сохранить",
                class: "btn btn-primary",

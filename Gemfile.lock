@@ -340,6 +340,8 @@ GEM
     rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    recaptcha (1.1.0)
+      json
     redis (3.2.2)
     remotipart (1.2.1)
     responders (2.1.0)
@@ -455,6 +457,7 @@ DEPENDENCIES
   bootstrap-wysihtml5-rails
   bootstrap_form
   bullet
+  cancancan
   capybara
   capybara-webkit
   coffee-rails (~> 4.1.0)
@@ -487,6 +490,7 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails_12factor
   rails_admin
+  recaptcha
   rspec-rails
   sass-rails (~> 5.0)
   shoulda-matchers

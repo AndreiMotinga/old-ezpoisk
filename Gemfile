@@ -52,6 +52,9 @@ gem "forem-bootstrap", github: "radar/forem-bootstrap"
 gem "sitemap_generator"
 gem "slack-notifier"
 
+gem "cancancan"
+gem "recaptcha", require: "recaptcha/rails"
+
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"
