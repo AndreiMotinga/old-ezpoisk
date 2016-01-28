@@ -271,6 +271,7 @@ TEAM = HashWithIndifferentAccess.new(
   "andrei": { email: "andrei@ezpoisk.com", name: "глупый" },
   "serghei": { email: "serghei@ezpoisk.com", name: "важный" },
   "greta": { email: "greta@ezpoisk.com", name: "элегантная" },
+  "masha": { name: "думает о пирожках" },
   "oleg": { name: "директор" },
   "nastya": { name: "веселая" },
   "alex": { name: "друг глупого" },
