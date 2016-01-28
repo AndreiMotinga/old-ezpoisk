@@ -18,47 +18,26 @@
 
 .row.hidden-xs
   %hr/
-  .col-sm-4
-    .col-sm-12
-      = image_tag "team/andrei", class: "img-responsive"
-      .col-sm-12.white.team-block
-        %h5.text-center.text-muted Andrei Motinga
-        %hr.post-devider
-        %ul.list-unstyled
-          %li
-            %i.fa.fa-envelope-o
-            andrei@ezpoisk.com
-          %li
-            %i.fa.fa-phone
-            +1 (929) 293 5385
-          %li
-            = image_tag "viber"
-            +1 (929) 293 5385
-          %li
-            %i.fa.fa-skype
-            andrei.ezpoisk
-
-  .col-sm-4
-    .col-sm-12
-      = image_tag "team/serghei", class: "img-responsive"
-      .col-sm-12.white.team-block
-        %h5.text-center.text-muted Serghei Blinov
-        %hr.post-devider
-        %ul.list-unstyled
-          %li
-            %i.fa.fa-envelope-o
-            serghei@ezpoisk.com
-
-  .col-sm-4
-    .col-sm-12
-      = image_tag "http://placehold.it/330x330", class: "img-responsive"
-      .col-sm-12.white.team-block
-        %h5.text-center.text-muted Greta Blinova
-        %hr.post-devider
-        %ul.list-unstyled
-          %li
-            %i.fa.fa-envelope-o
-            greta@ezpoisk.com
+  - TEAM.each_pair do |member, props|
+    .col-sm-4
+      .col-sm-12
+        -# = image_tag "team/#{member}", class: "img-responsive"
+        - if member == "andrei" || member == "serghei"
+          = image_tag "team/#{member}", class: "img-responsive"
+        -  else
+          = image_tag "http://placehold.it/330x330", class: "img-responsive"
+        .col-sm-12.white.team-block
+          %h5.text-center.text-muted #{props[:name]}
+          %hr.post-devider
+          %ul.list-unstyled.text-center
+            - if !props[:email].blank?
+              %li
+                %i.fa.fa-envelope-o
+                #{props[:email]}
+            - if !props[:skype].blank?
+              %li
+                %i.fa.fa-skype
+                  #{props[:skype]}
 
 %br/
 %hr/

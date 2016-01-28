@@ -267,3 +267,12 @@ NEWS_CATEGORIES = HashWithIndifferentAccess.new(
 
 HOROSCOPE_CATEGORIES = %w(БЛИЗНЕЦЫ ВЕСЫ ВОДОЛЕЙ ДЕВА КОЗЕРОГ ЛЕВ ОВЕН РАК
                           РЫБЫ СКОРПИОН СТРЕЛЕЦ ТЕЛЕЦ)
+TEAM = HashWithIndifferentAccess.new(
+  "andrei": { email: "andrei@ezpoisk.com", name: "глупый" },
+  "serghei": { email: "serghei@ezpoisk.com", name: "важный" },
+  "greta": { email: "greta@ezpoisk.com", name: "элегантная" },
+  "oleg": { name: "директор" },
+  "nastya": { name: "веселая" },
+  "alex": { name: "друг глупого" },
+  "yuri": { name: "стильный" }
+)
