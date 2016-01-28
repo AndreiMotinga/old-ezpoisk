@@ -1,9 +1,8 @@
 class Jobs::JobAgenciesController < ApplicationController
   def index
     job_agencies = JobAgency.includes(:state, :city)
-                   .filter(params.slice(:state_id,
-                                        :city_id,
-                                        :geo_scope))
+                            .filter(params.slice(:state_id, :city_id, :geo_scope))
+                            .order("RANDOM ()")
     @job_agencies = job_agencies.page(params[:page])
   end
 

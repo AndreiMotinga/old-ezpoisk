@@ -6,6 +6,7 @@ class ServicesController < ApplicationController
                                            :category,
                                            :subcategory,
                                            :geo_scope))
+                      .order("RANDOM ()")
     @services = services.page(params[:page])
   end
 
