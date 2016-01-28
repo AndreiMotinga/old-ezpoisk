@@ -3,7 +3,7 @@ class Ez
     @notifier = Slack::Notifier.new ENV["SLACK_URL"]
   end
 
-  def ping(message)
-    @notifier.ping message
+  def ping(*args)
+    @notifier.ping args.join ","
   end
 end
