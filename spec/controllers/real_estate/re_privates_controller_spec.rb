@@ -124,9 +124,58 @@ describe RealEstate::RePrivatesController do
 
         expect(assigns(:re_privates).size).to eq 1
       end
-    end
 
-    # todo: test sorting
+      context "sorts records" do
+        context "by price" do
+          it "in asc order" do
+            create :re_private, :active, price: 200
+            create :re_private, :active, price: 100
+            create :re_private, :active, price: 300
+
+            get :index, sorted: "price asc"
+            expect(assigns(:re_privates).pluck(:price)).to eq [100, 200, 300]
+          end
+          it "in desc order" do
+            create :re_private, :active, price: 200
+            create :re_private, :active, price: 100
+            create :re_private, :active, price: 300
+
+            get :index, sorted: "price desc"
+            expect(assigns(:re_privates).pluck(:price)).to eq [300, 200, 100]
+          end
+        end
+
+        context "by space" do
+          it "in asc order" do
+            create :re_private, :active, space: 200
+            create :re_private, :active, space: 100
+            create :re_private, :active, space: 300
+
+            get :index, sorted: "space asc"
+            expect(assigns(:re_privates).pluck(:space)).to eq [100, 200, 300]
+          end
+          it "in desc order" do
+            create :re_private, :active, space: 200
+            create :re_private, :active, space: 100
+            create :re_private, :active, space: 300
+
+            get :index, sorted: "space desc"
+            expect(assigns(:re_privates).pluck(:space)).to eq [300, 200, 100]
+          end
+        end
+
+        context "by date" do
+          it "newest first" do
+            create :re_private, :active, space: 200
+            create :re_private, :active, space: 100
+            create :re_private, :active, space: 300
+
+            get :index, sorted: "updated_at asc"
+            expect(assigns(:re_privates).pluck(:space)).to eq [200, 100, 300]
+          end
+        end
+      end
+    end
   end
 
   describe "GET #show" do

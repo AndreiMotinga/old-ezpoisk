@@ -3,12 +3,12 @@ class RealEstate::ReCommercialsController < ApplicationController
     re_commercials  = ReCommercial.includes(:city, :state)
                       .filter(params.slice(:state_id,
                                            :city_id,
+                                           :geo_scope,
                                            :post_type,
                                            :space,
                                            :min_price,
                                            :max_price,
-                                           :sort,
-                                           :geo_scope))
+                                           :sorted))
     @re_commercials = re_commercials.page(params[:page])
   end
 

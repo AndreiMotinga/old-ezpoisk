@@ -3,6 +3,7 @@ class RealEstate::RePrivatesController < ApplicationController
     re_privates = RePrivate.includes(:state, :city)
                   .filter(params.slice(:state_id,
                                        :city_id,
+                                       :geo_scope,
                                        :fee,
                                        :duration,
                                        :post_type,
@@ -11,8 +12,7 @@ class RealEstate::RePrivatesController < ApplicationController
                                        :rooms,
                                        :min_price,
                                        :max_price,
-                                       :sort,
-                                       :geo_scope))
+                                       :sorted))
     @re_privates = re_privates.page(params[:page])
   end
 

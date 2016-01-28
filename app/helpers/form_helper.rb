@@ -20,13 +20,13 @@ module FormHelper
   end
 
   def sort_select
-    select_tag :sort,
+    select_tag :sorted,
                options_for_select({ "Цена вверх" => "price asc",
                                     "Цена вниз" => "price desc",
                                     "Площадь вверх" => "space asc",
                                     "Площадь вниз" => "space desc",
                                     "По дате" => "updated_at desc" },
-                                  params[:sort]),
+                                  params[:sorted]),
                include_blank: true,
                class: "form-control"
   end

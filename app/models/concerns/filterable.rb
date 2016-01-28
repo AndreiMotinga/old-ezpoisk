@@ -15,7 +15,7 @@ module Filterable
     scope :space, -> (num) { where("space >= ?", num.to_i) }
     scope :min_price, -> (num) { where("price >= ?", num.to_i) }
     scope :max_price, -> (num) { where("price <= ?", num.to_i) }
-    scope :sort, ->(type) { order type }
+    scope :sorted, ->(type) { order type }
 
     scope(:geo_scope, lambda do |geo_scope|
       return if geo_scope[:within].blank? || geo_scope[:origin].blank?
@@ -31,7 +31,8 @@ module Filterable
 
   module ClassMethods
     def filter(filtering_params)
-      results = active.order("RANDOM()")
+      # results = active.order("RANDOM()")
+      results = active
       filtering_params.each do |key, value|
         results = results.public_send(key, value) unless value.blank?
       end
