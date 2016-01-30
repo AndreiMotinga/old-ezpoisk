@@ -4,7 +4,7 @@
 #
 ##############################################################
 
-SitemapGenerator::Sitemap.default_host = "http://www.ezpoisk.com"
+SitemapGenerator::Sitemap.default_host = "https://www.ezpoisk.com"
 SitemapGenerator::Sitemap.create_index = true
 SitemapGenerator::Sitemap.public_path = 'tmp/'
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'

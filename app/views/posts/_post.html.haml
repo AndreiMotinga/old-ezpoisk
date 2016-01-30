@@ -4,7 +4,7 @@
       .col-md-12
         .col-md-7.main-text
           - if post.from_rss
-            %h4.main-title= link_to post.title, "http://#{post.link}", target: "blank"
+            %h4.main-title= link_to post.title, "https://#{post.link}", target: "blank"
           - else
             %h4.main-title= link_to post.title, news_path(post)
           = strip_tags post.description
@@ -17,7 +17,7 @@
           - if current_user.try(:admin?)
             = link_to post.title, edit_news_path(post)
           - elsif post.from_rss?
-            = link_to post.title, "http://#{post.link}", target: "blank"
+            = link_to post.title, "https://#{post.link}", target: "blank"
           - else
             = link_to post.title, news_path(post)
         - if !post.logo.blank?
@@ -29,7 +29,7 @@
 
 .hidden-lg.hidden-md.hidden-sm
   - if post.from_rss?
-    = link_to post.title, "http://#{post.link}", target: "blank"
+    = link_to post.title, "https://#{post.link}", target: "blank"
   - else
     = link_to post.title, news_path(post)
   %hr.post-devider/

@@ -26,6 +26,6 @@ module ViewHelpers
   end
 
   def infowindow
-    "<a href='http://maps.google.com/?q=#{address}' target='blank'>#{address}</a>"
+    "<a href='https://maps.google.com/?q=#{address}' target='blank'>#{address}</a>"
   end
 end
