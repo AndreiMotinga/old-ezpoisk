@@ -18,6 +18,7 @@ class Service < ActiveRecord::Base
 
   has_attached_file :logo,
                     styles: { medium: "300x150>" },
+                    :s3_protocol => :https,
                     default_url: "missing.png"
   validates_attachment_content_type :logo,
                                     content_type: /\Aimage\/.*\Z/

@@ -8,6 +8,6 @@ class NewsImporterJob
 
   def perform
     return if Rails.env.development?
-    NewsImporter.new.import
+    # NewsImporter.new.import
   end
 end
