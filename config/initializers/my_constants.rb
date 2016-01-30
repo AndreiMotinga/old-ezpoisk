@@ -270,10 +270,10 @@ HOROSCOPE_CATEGORIES = %w(БЛИЗНЕЦЫ ВЕСЫ ВОДОЛЕЙ ДЕВА КО
 TEAM = HashWithIndifferentAccess.new(
   "andrei": { name: "глупый" },
   "serghei": { name: "важный" },
-  "greta": { name: "элегантная" },
+  "greta": { name: "черно-белая-белка" },
   "masha": { name: "думает о пирожках" },
   "oleg": { name: "директор" },
-  "nastya": { name: "веселая" },
-  "alex": { name: "друг глупого" },
-  "yuri": { name: "стильный" }
+  "nastya": { name: "лисенак" },
+  "sasha": { name: "друг глупого" },
+  "bond": { name: "Bond... James Bond" }
 )

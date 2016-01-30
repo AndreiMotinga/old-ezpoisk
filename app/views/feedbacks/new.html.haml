@@ -21,11 +21,7 @@
   - TEAM.each_pair do |member, props|
     .col-sm-4
       .col-sm-12
-        -# = image_tag "team/#{member}", class: "img-responsive"
-        - if member == "andrei" || member == "serghei" || member == "masha" || member == "oleg"
-          = image_tag "team/#{member}", class: "img-responsive"
-        -  else
-          = image_tag "http://placehold.it/330x330", class: "img-responsive"
+        = image_tag "team/#{member}", class: "img-responsive"
         .col-sm-12.white.team-block
           %h5.text-center.text-muted #{props[:name]}
           %hr.post-devider
