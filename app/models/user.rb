@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable,  and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-    :trackable, :validatable, :lockable, :async
+    :trackable, :timeoutable, :validatable, :lockable, :async
   after_create :notify_admin
 
   validates :phone, presence: true
@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
   has_many :pictures
 
   has_attached_file :avatar,
-                    styles: { medium: "300x150" },
-                    :s3_protocol => :https,
-                    default_url: "missing.png"
+    styles: { medium: "300x150" },
+    :s3_protocol => :https,
+    default_url: "missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   # forem helpers
@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
 
   def role?(val)
     role.to_sym == val
+  end
+
+  def timeout_in
+    self.admin? ? 2.hours : 7.days
   end
 
   private

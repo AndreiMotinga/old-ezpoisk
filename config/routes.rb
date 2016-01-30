@@ -2,15 +2,6 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
-  authenticate :user, ->(u) { u.admin? } do
-    mount Sidekiq::Web => "/sidekiq_monstro"
-    resources :news, only: [:edit, :update]
-    resource :admin, only: [:show], constraints: { subdomain: 'www' }
-    constraints subdomain: "godzilla", id: BlacklistConstraint.new do
-      mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
-    end
-  end
-
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
   get "sitemap(:id).:format.:compression" => "sitemap#index"
   get "update_cities", to: "cities#update_cities"
@@ -48,6 +39,17 @@ Rails.application.routes.draw do
   namespace :jobs do
     resources :job_agencies, only: [:index, :show]
     resources :jobs, only: [:index, :show]
+  end
+
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web => "/sidekiq_monstro"
+    resources :news, only: [:edit, :update]
+    resource :admin, only: [:show], constraints: { subdomain: 'www' }
+    constraints subdomain: "godzilla" do
+      constraints BlacklistConstraint.new do
+        mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
+      end
+    end
   end
 
   root to: "home#index"

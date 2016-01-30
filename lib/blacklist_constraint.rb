@@ -1,9 +1,10 @@
 class BlacklistConstraint
   def initialize
-    @whitelist = [ENV["MY_API_ONE"], ENV["GRETA_IP"], ENV["SERGHEI_IP"]].freeze
+    @ips =[ ENV["MY_API_ONE"], ENV["GRETA_API"], ENV["SERGHEI_API"] ]
   end
 
   def matches?(request)
-    !@whitelist.include?(request.remote_ip)
+    return true if Rails.env == "development" || Rails.env == "test"
+    @ips.include?(request.remote_ip)
   end
 end

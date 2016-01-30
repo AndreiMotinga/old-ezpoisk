@@ -1,30 +1,12 @@
 .hidden-xs
-  - if post.important
-    .row.post-important
-      .col-md-12
-        .col-md-7.main-text
-          - if post.from_rss
-            %h4.main-title= link_to post.title, "https://#{post.link}", target: "blank"
-          - else
-            %h4.main-title= link_to post.title, news_path(post)
-          = strip_tags post.description
-          %span.pull-right= time_ago_in_words post.created_at
-        .col-md-5.main-image= image_tag post.logo, class: "img-responsive pull-right"
-  - else
-    .row
-      .col-sm-12.post-text
-        %h4.post-title
-          - if current_user.try(:admin?)
-            = link_to post.title, edit_news_path(post)
-          - elsif post.from_rss?
-            = link_to post.title, "https://#{post.link}", target: "blank"
-          - else
-            = link_to post.title, news_path(post)
-        - if !post.logo.blank?
-          .col-sm-2.post-image
-            = image_tag post.logo, class: "img-responsive"
-        = strip_tags post.description
-        %span.pull-right= "#{time_ago_in_words post.created_at} назад"
+  .row
+    .col-sm-12.post-text
+      %h4.post-title
+        - if current_user.try(:admin?)
+          = link_to post.title, edit_news_path(post)
+        - else
+          = link_to post.title, news_path(post)
+      %span.pull-right= "#{time_ago_in_words post.created_at} назад"
   %hr.post-devider/
 
 .hidden-lg.hidden-md.hidden-sm
