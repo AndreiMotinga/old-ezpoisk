@@ -1,6 +1,6 @@
 class BlacklistConstraint
   def initialize
-    @ips =[ ENV["MY_API_ONE"], ENV["GRETA_API"], ENV["SERGHEI_API"] ]
+    @ips =[ ENV["MY_IP_ONE"], ENV["GRETA_IP"], ENV["SERGHEI_IP"] ]
   end
 
   def matches?(request)

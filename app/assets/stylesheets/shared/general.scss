@@ -1,11 +1,3 @@
-.btn-big {
-  padding: 15px 60px;
-}
-
-.fixed {
-  position: fixed;
-}
-
 .upcase {
   text-transform: uppercase;
 }
@@ -48,23 +40,6 @@ li.active, li:hover {
   background-color: $grey1;
 }
 
-.left-sidebar > li:hover {
-  background-color: $grey1;
-}
-
-.left-sidebar > li {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: 15px;
-  a {
-    display: inline;
-  }
-  span.glyphicon, .fa {
-    padding-right: 5px;
-    color: black;
-  }
-}
-
 .nav-tabs > li > a {
   margin-right: 0px;
 }
@@ -100,6 +75,9 @@ li.active, li:hover {
 }
 .fa-skype {
   color: $blue;
+}
+.fa-comment {
+  color: $grey2;
 }
 .secondary-navbar {
   li.active {

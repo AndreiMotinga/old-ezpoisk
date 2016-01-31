@@ -1,17 +1,36 @@
+.posts {
+  padding-bottom: 0px;
+}
 .post-devider {
   margin-top: 0px;
   margin-bottom: 5px;
 }
+.post-time {
+  margin-right: 10px;
+}
 
+.post-show-title {
+
+}
 .post-title {
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   margin-top: 0px;
-  font-family: 'Lora', 'Times New Roman', serif;
-  font-weight: bold;
+  font-family: 'open Sans', arial, sans-serif;
+;
+  // font-weight: bold;
+  font-size: 16px;
+  a {
+    color: $grey3;
+  }
 }
 
 .post-text {
   padding: 0px 0px;
+  margin: 0px 0px;
+}
+
+.post-description {
+  padding-left: 10px;
 }
 
 .post-image {

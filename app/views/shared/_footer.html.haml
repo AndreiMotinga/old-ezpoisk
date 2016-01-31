@@ -1,6 +1,5 @@
-%footer.text-muted
-  %br/
-  .col-md-4
+.row.white.footer.text-muted.hidden-xs
+  .col-sm-4
     .text-right
       %ul.list-unstyled
         %li
@@ -10,7 +9,7 @@
         %li
           = link_to 'Новости', main_app.news_index_path
 
-  .col-md-6
+  .col-sm-6
     %p.copyright
       %strong eZpoisk
       это комьюнити портал, созданный с целью сблизить русскоговорящих людей
@@ -21,5 +20,3 @@
       Мы действительно ценим ваш отзыв.
     %p
       Copyright © eZpoisk #{Time.now.year}
-  %br/
-

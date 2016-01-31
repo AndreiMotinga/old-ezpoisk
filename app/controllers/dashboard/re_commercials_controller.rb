@@ -1,5 +1,4 @@
 class Dashboard::ReCommercialsController < ApplicationController
-  layout "dashboard"
   before_action :authenticate_user!
   before_action :set_re_commercial, only: [:edit, :update, :destroy]
 

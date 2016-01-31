@@ -1,5 +1,4 @@
 class Dashboard::ServicesController < ApplicationController
-  layout "dashboard"
   before_action :authenticate_user!
   before_action :set_service, only: [:edit, :update, :destroy]
 

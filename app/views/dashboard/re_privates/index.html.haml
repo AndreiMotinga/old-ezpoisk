@@ -1,3 +1,6 @@
+- content_for :secondary_navbar do
+  = render 'dashboards/navbar'
+
 %br/
 = link_to 'Создать новое',
            new_dashboard_re_private_path,

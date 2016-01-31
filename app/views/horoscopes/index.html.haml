@@ -1,6 +1,6 @@
 = title("Гороскопы")
-- content_for :left_sidebar do
-  = render 'horoscopes/left_sidebar'
+- content_for :secondary_navbar do
+  = render 'horoscopes/navbar'
 
 .col-md-12.horoscope-main.white-block
   %h3.post-title= @record.title

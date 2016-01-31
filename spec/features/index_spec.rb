@@ -5,7 +5,7 @@ feature "Home page" do
     create :post, main: true
     visit root_path
 
-    expect(page).to have_content "Новое обьявление"
+    expect(page).to have_content "Услуги"
     expect(page).to have_content "Недвижимость"
   end
 end

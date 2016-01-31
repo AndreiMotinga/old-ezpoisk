@@ -4,10 +4,12 @@ class NewsController < ApplicationController
 
   def index
     category = params[:category]
+    subcategory = params[:subcategory]
     if category.blank?
       posts = Post.order("created_at desc")
     else
       posts = Post.by_category(category).order("created_at desc")
+      posts = posts.by_subcategory(subcategory) unless subcategory.blank?
     end
     @posts = posts.page params[:page]
   end

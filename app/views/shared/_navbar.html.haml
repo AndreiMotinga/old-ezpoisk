@@ -70,8 +70,14 @@
         / sale
 
         / news
-        %li
-          = link_to(t(:news), main_app.news_index_path)
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+                             "data-toggle" => "dropdown", :role => "button"}
+            Почитать
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to(t(:news), main_app.news_index_path(category: "Интересное"))
+            %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
         / news
 
         / dashboard

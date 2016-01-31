@@ -21,35 +21,12 @@
       = render 'shared/notice'
 
       .container
-        - if content_for?(:secondary_navbar)
-          = yield :secondary_navbar
-
-        / left sidebar
-        - if content_for?(:left_sidebar)
-          .col-lg-2.col-md-3.hidden-sm.hidden-xs
-            = yield :left_sidebar
-        / left sidebar
-
-        / Main
-        - if content_for?(:left_sidebar)
-          .col-lg-7.col-md-9
-            = yield
-        - else
-          .col-lg-7.col-md-8
-            = yield
-
-        / Main
-
-        / right sidebar
-        .col-lg-3.col-md-3.hidden-sm.hidden-xs.pull-right{ class: ("col-lg-offset-1" if !content_for?(:left_sidebar)) }
-          - if content_for?(:right_sidebar)
-            = yield :right_sidebar
-          - else
-            = render "shared/right_sidebar"
-        / right sidebar
-
-      #push
-
-      #footer.hidden-sm.hidden-xs
-        = render 'shared/footer'
-
+        .row
+          = yield :secondary_navbar if content_for?(:secondary_navbar)
+        .row
+          .container
+            .col-md-8.col-xs-12
+              = yield
+            .col-md-4
+              = yield :news if content_for :news
+      = render 'shared/footer'

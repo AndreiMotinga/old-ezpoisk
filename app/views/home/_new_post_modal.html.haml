@@ -1,3 +1,9 @@
+/ Button trigger modal
+%button.btn.btn-block.btn-success{ "data-target" => "#new",
+                         "data-toggle" => "modal",
+                         :role => "button" }
+  = t(:new_post)
+
 / Modal
 #new.modal.fade{"aria-labelledby" => "myModalLabel",
                 :role => "dialog",

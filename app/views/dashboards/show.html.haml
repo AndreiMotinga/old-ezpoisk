@@ -1,41 +1,45 @@
+- content_for :secondary_navbar do
+  = render 'dashboards/navbar'
+
 / real estate
-.category
-  .row
-    %h4
-      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-      Недвижимость
-  .row
-    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-      = link_to "Агентства недвижимости", dashboard_re_agencies_path
-      %br
-      = link_to "Частная недвижимость", dashboard_re_privates_path
-      %br
-      = link_to "Коммерческая недвижимость ", dashboard_re_commercials_path
-  %hr.post-devide
+.col-sm-12.white-block
+  .category
+    .row
+      %h4
+        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+        Недвижимость
+    .row
+      .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
+        = link_to "Агентства недвижимости", dashboard_re_agencies_path
+        %br
+        = link_to "Частная недвижимость", dashboard_re_privates_path
+        %br
+        = link_to "Коммерческая недвижимость ", dashboard_re_commercials_path
+    %hr.post-devide
 
-.category
-  .row
-    %h4
-      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-      Работа
-  .row
-    .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
-      = link_to "Агентство по трудоустройству", dashboard_job_agencies_path
-      %br
-      = link_to "Работа", dashboard_jobs_path
-  %hr.post-devide
+  .category
+    .row
+      %h4
+        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+        Работа
+    .row
+      .col-lg-offset-1.col-mg-offset-1.col-sm-offset-1
+        = link_to "Агентство по трудоустройству", dashboard_job_agencies_path
+        %br
+        = link_to "Работа", dashboard_jobs_path
+    %hr.post-devide
 
-.category
-  .row
-    %h4
-      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-      = link_to "Услуги", dashboard_services_path
-  %hr.post-devide
+  .category
+    .row
+      %h4
+        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+        = link_to "Услуги", dashboard_services_path
+    %hr.post-devide
 
 
-.category
-  .row
-    %h4
-      %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
-      = link_to "Продаю/отдаю", dashboard_sales_path
-  %hr.post-devide
+  .category
+    .row
+      %h4
+        %span.glyphicon.glyphicon-hand-right{"aria-hidden" => "true"}
+        = link_to "Продаю/отдаю", dashboard_sales_path
+    %hr.post-devide

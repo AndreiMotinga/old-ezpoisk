@@ -1,17 +1,8 @@
-.hidden-xs
-  .row
-    .col-sm-12.post-text
-      %h4.post-title
-        - if current_user.try(:admin?)
-          = link_to post.title, edit_news_path(post)
-        - else
-          = link_to post.title, news_path(post)
-      %span.pull-right= "#{time_ago_in_words post.created_at} назад"
-  %hr.post-devider/
-
-.hidden-lg.hidden-md.hidden-sm
-  - if post.from_rss?
-    = link_to post.title, "https://#{post.link}", target: "blank"
-  - else
-    = link_to post.title, news_path(post)
-  %hr.post-devider/
+.row
+  .col-sm-12.post-text
+    %p.post-title.text-muted
+      %span.post-time= post.created_at.strftime("%H:%M")
+      - if current_user.try(:admin?)
+        = link_to post.title, edit_news_path(post)
+      - else
+        = link_to post.title, news_path(post)

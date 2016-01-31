@@ -1,5 +1,0 @@
-.fixed
-  %ul.nav.left-sidebar.horoscope-sidebar.white-block
-    - HOROSCOPE_CATEGORIES.each do |title|
-      %li{:class => ("active" if cp(horoscopes_path(title: title)))}
-        = link_to title, horoscopes_path(title: title)

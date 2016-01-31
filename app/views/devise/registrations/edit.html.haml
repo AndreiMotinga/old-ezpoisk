@@ -1,3 +1,6 @@
+- content_for :secondary_navbar do
+  = render 'dashboards/navbar'
+
 %br/
 = bootstrap_form_for(resource,
                      :as => resource_name,

@@ -1,3 +1,6 @@
+- content_for :secondary_navbar do
+  = render 'dashboards/navbar'
+
 = render "dashboard/shared/edit",
          record: @re_commercial,
          template: 'dashboard/re_commercials/re_commercial'

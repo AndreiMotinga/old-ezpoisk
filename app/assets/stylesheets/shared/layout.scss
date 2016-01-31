@@ -1,29 +1,17 @@
 html,
 body {
   padding-top: 35px;
-  height: 100%;
   background-color: $grey0;
 }
 
-#wrap {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  /* Negative indent footer by it's height */
-  margin: 0 auto -200px;
-}
-
-#push,
-#footer {
-  height: 200px;
-}
-
-#footer {
+.footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
   margin-top: 20px;
   background-color: $grey1;
   a {
     text-decoration: none;
-    color: $grey2;
+    color: $grey4;
     padding: 8px;
   }
   li {

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  layout :layout_by_resource
 
   def forem_user
     current_user
@@ -19,10 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
-  def layout_by_resource
-    "dashboard" if devise_controller?
-  end
 
   def address_changed?(record, prms)
     return true if record.try(:street) != prms[:street]

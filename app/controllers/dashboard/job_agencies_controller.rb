@@ -1,5 +1,4 @@
 class Dashboard::JobAgenciesController < ApplicationController
-  layout "dashboard"
   before_action :authenticate_user!
   before_action :set_job_agency, only: [:edit, :update, :destroy]
 
