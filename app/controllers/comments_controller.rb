@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     comment.post_id = post_id
     comment.user_id = current_user.try(:id)
     if comment.save
+      SlackNotifierJob.perform_async(comment.id, "Comment")
       AdminMailerJob.perform_async(comment.id, "Comment")
     end
     redirect_to news_path(post_id)

@@ -21,6 +21,7 @@ class Dashboard::JobsController < ApplicationController
     @job = current_user.jobs.build(job_params)
 
     if verify_recaptcha && @job.save
+      SlackNotifierJob.perform_async(@job.id, "Job")
       AdminMailerJob.perform_async(@job.id, "Job")
       GeocodeJob.perform_async(@job.id, "Job")
       redirect_to edit_dashboard_job_path(@job),

@@ -34,7 +34,7 @@
   .field
     = f.check_box :fee, label: 'Комиссия? *'
   .field
-    - if @re_private.new_record? && Rails.env != "test"
+    - if @re_private.new_record? && !Rails.env.test?
       = recaptcha_tags
   %br/
   .actions

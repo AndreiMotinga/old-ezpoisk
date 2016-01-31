@@ -20,6 +20,7 @@ class Dashboard::RePrivatesController < ApplicationController
     @re_private = current_user.re_privates.build(re_private_params)
 
     if verify_recaptcha && @re_private.save
+      SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
       AdminMailerJob.perform_async(@re_private.id, "RePrivate")
       GeocodeJob.perform_async(@re_private.id, "RePrivate")
       redirect_to edit_dashboard_re_private_path(@re_private),

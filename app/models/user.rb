@@ -47,5 +47,6 @@ class User < ActiveRecord::Base
 
   def notify_admin
     AdminMailerJob.perform_async(id, "User")
+    SlackNotifierJob.perform_async(id, "User")
   end
 end

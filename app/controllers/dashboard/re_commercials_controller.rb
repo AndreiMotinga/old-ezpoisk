@@ -20,6 +20,7 @@ class Dashboard::ReCommercialsController < ApplicationController
     @re_commercial = current_user.re_commercials.build(re_commercial_params)
 
     if verify_recaptcha &&  @re_commercial.save
+      SlackNotifierJob.perform_async(@re_commercial.id, "ReCommercial")
       GeocodeJob.perform_async(@re_commercial.id, "ReCommercial")
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
                   notice: I18n.t(:post_saved)

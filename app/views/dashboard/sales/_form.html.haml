@@ -23,7 +23,7 @@
     = f.check_box :active, label: 'Активно? *'
 
   .field
-    - if @sale.new_record? && Rails.env != "test"
+    - if @sale.new_record? && !Rails.env.test?
       = recaptcha_tags
   %br/
 

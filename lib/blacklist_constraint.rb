@@ -4,7 +4,7 @@ class BlacklistConstraint
   end
 
   def matches?(request)
-    return true if Rails.env == "development" || Rails.env == "test"
+    return true if Rails.env.development? || Rails.env.text?
     @ips.include?(request.remote_ip)
   end
 end

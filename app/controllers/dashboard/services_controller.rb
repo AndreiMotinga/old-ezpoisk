@@ -21,6 +21,7 @@ class Dashboard::ServicesController < ApplicationController
     @service = current_user.services.build(service_params)
 
     if verify_recaptcha && @service.save
+      SlackNotifierJob.perform_async(@service.id, "Service")
       AdminMailerJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")
       redirect_to edit_dashboard_service_path(@service),
