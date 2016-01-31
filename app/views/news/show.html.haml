@@ -25,7 +25,7 @@
   .col-sm-12.comments
     = bootstrap_form_for(Comment.new) do |f|
       = hidden_field_tag :post_id, @post.id
-      = f.text_area :body, label: "Оставьте свой коментарий", autofocus: true, rows: 3
+      = f.text_area :body, label: "Оставьте свой комментарий", autofocus: true, rows: 3
       = f.submit "Добавить", class: "btn btn-primary"
     %br/
     = render @post.comments.includes(:user)
