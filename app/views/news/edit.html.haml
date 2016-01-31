@@ -8,4 +8,7 @@
 .row
   .col-md-12
     .embed-responsive.embed-responsive-16by9
-      %iframe.embed-responsive-item{ :src => "http://#{@post.link}", :frameborder => "0" }
+      - if @post.link.blank?
+        %iframe.embed-responsive-item{ :src => "#{news_path(@post)}", :frameborder => "0" }
+      - else
+        %iframe.embed-responsive-item{ :src => "http://#{@post.link}", :frameborder => "0" }
