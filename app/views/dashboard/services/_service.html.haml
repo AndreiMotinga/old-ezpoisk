@@ -13,7 +13,10 @@
     %hr.post-devider/
 
     / line 2
-    %span= record.address
+    - if record.street.blank?
+      %span #{record.city.name}, #{record.state.name}
+    - else
+      %span= record.address
     %hr.post-devider/
 
     / line 3
