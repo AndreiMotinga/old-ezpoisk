@@ -6,6 +6,6 @@ feature "User reads post" do
     visit news_path post
 
     expect(page).to have_content(post.title)
-    expect(page).to have_content(post.body)
+    expect(page).to have_content(post.text)
   end
 end

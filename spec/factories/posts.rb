@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post do
     title { Faker::Lorem.sentence 2 }
-    body { Faker::Lorem.paragraph 40 }
+    text { Faker::Lorem.paragraph 40 }
     category NEWS_CATEGORIES.keys.sample
     subcategory ""
     logo "http://images5.fanpop.com/image"

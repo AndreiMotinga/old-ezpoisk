@@ -5,6 +5,6 @@
     - else
       %h4.main-title= link_to @main.title, news_path(@main)
     .col-md-5.hidden-xs.main-text
-      = strip_tags @main.body.truncate(250)
+      = strip_tags @main.text.truncate(250)
       = link_to "читать дальше", news_path(@main)
     .col-md-7.hidden-xs.main-image= image_tag @main.logo, class: "img-responsive"

@@ -15,7 +15,7 @@
       %ul.nav.navbar-nav
         - NEWS_CATEGORIES.keys.each do |category|
           - if category == 'Страны'
-            %li.dropdown{class: category_active?(category)}
+            %li.dropdown{class: category_active?(category, @post)}
               %a.dropdown-toggle{ "aria-expanded" => "false",
                                   "aria-haspopup" => "true",
                                   "data-toggle" => "dropdown",
@@ -29,7 +29,7 @@
                               news_index_path(category: category,
                                               subcategory: subcategory.last)
           - else
-            %li{class: category_active?(category)}
+            %li{class: category_active?(category, @post)}
               = link_to category, news_index_path(category: category)
     / /.navbar-collapse
   / /.container-fluid

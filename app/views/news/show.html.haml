@@ -1,4 +1,6 @@
 = title("|Новости, США, Россия, Украина, Молдова ...")
+-content_for :secondary_navbar do
+  = render 'news/navbar'
 
 / Main
 .row
@@ -9,7 +11,7 @@
         .col-md-5
           = image_tag @post.logo, class: "img-responsive"
           %br/
-      %p= sanitize @post.body
+      %p= sanitize @post.text
       - if !@post.link.blank?
         %span.pull-right
           = link_to "Источник", "http://#{@post.link}", target: "blank", :rel => 'nofollow'
