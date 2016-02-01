@@ -26,7 +26,7 @@ class NewsImporter
                   from_rss: true,
                   title: item.at("title").text,
                   link: convert_link(item.at("link").text),
-                  body: item.at("description").text,
+                  text: item.at("description").text,
                   created_at: item.at("pubDate").text)
     end
   end
