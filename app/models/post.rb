@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates_uniqueness_of :title
   validates :category, presence: true
-  validates :description, presence: true
+  validates :text, presence: true
 
   belongs_to :user
   has_many :comments, dependent: :destroy
