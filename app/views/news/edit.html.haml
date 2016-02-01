@@ -1,9 +1,6 @@
 .row
   .col-md-7
     = render "news/form", url: news_path
-    %br/
-    = @post.link
-%br/
 %br/
 .row
   .col-md-12
@@ -12,3 +9,5 @@
         %iframe.embed-responsive-item{ :src => "#{news_path(@post)}", :frameborder => "0" }
       - else
         %iframe.embed-responsive-item{ :src => "http://#{@post.link}", :frameborder => "0" }
+%br/
+= @post.link

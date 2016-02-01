@@ -1,16 +1,12 @@
 = bootstrap_form_for(@post, url: url) do |f|
-  %br/
   .field
+    = f.text_area :text,
+                  label: 'Содержание',
+                  class: "summernote"
+  .field
+    = f.check_box :main, label: 'Главная?'
+    = f.check_box :important, label: 'Выделить?'
+    = f.check_box :show_on_homepage, label: 'На домашнюю?'
     = f.text_field :logo, label: '* Лого'
-  -# .field
-  -#   = f.text_area :body,
-  -#                 label: 'Содержание',
-  -#                 class: "summernote"
-  .field
-    = f.check_box :important, label: 'Выделить ?'
-  .field
-    = f.check_box :show_on_homepage, label: 'Поместить на домашнюю страницу ?'
-  .field
-    = f.check_box :main, label: 'Сделать главной ?'
   .actions
     = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
