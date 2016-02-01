@@ -1,32 +1,33 @@
 - content_for :secondary_navbar do
   = render 'dashboards/navbar'
 
-%br/
-= link_to 'Создать новое',
-          new_dashboard_service_path,
-          class: "btn btn-success"
-%br/
-%br/
+.col-md-8.col-xs-12
+  %br/
+  = link_to 'Создать новое',
+            new_dashboard_service_path,
+            class: "btn btn-success"
+  %br/
+  %br/
 
-- if @services.any?
-  %table.table
-    %thead
-      %tr
-        %th{:colspan => "4"}
-    %tbody
-      - @services.each do |service|
+  - if @services.any?
+    %table.table
+      %thead
         %tr
-          %td
-            = link_to service.title, edit_dashboard_service_path(service)
-          %td= service.active? ? "Активно" : "Не актвино"
-          %td= link_to 'Редактировать', edit_dashboard_service_path(service)
-          %td= link_to 'Удалить',
-                        dashboard_service_path(service),
-                        method: :delete,
-                        data: { confirm: I18n.t(:confirm) }
+          %th{:colspan => "4"}
+      %tbody
+        - @services.each do |service|
+          %tr
+            %td
+              = link_to service.title, edit_dashboard_service_path(service)
+            %td= service.active? ? "Активно" : "Не актвино"
+            %td= link_to 'Редактировать', edit_dashboard_service_path(service)
+            %td= link_to 'Удалить',
+                          dashboard_service_path(service),
+                          method: :delete,
+                          data: { confirm: I18n.t(:confirm) }
 
-  / Table
-  = render "shared/pagination", records: @services
+    / Table
+    = render "shared/pagination", records: @services
 
-- else
-  %p= I18n.t(:no_messages)
+  - else
+    %p= I18n.t(:no_messages)

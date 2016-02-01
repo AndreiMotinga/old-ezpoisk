@@ -3,13 +3,13 @@
   = render 'news/navbar'
 
 / Main
-.row
-  .article
+.col-md-8.col-xs-12
+  .row
     .col-md-12.white-block
       %h3.post-show-title= @post.title
-      - if !@post.logo.blank?
+      - if !@post.logo_url.blank?
         .col-md-5
-          = image_tag @post.logo, class: "img-responsive"
+          = image_tag @post.logo_url, class: "img-responsive"
           %br/
       %p= sanitize @post.text
       - if !@post.link.blank?
@@ -18,17 +18,17 @@
       %br/
       %br/
 
-.row
-  %br/
-  %span= link_to "Вернуться назад", :back
-
-%br/
-.row
-  .col-sm-12.comments
-    = bootstrap_form_for(Comment.new) do |f|
-      = hidden_field_tag :post_id, @post.id
-      = f.text_area :body, label: "Оставьте свой комментарий", rows: 3
-      = f.submit "Добавить", class: "btn btn-primary"
+  .row
     %br/
-    = render @post.comments.includes(:user)
-  / Main
+    %span= link_to "Вернуться назад", :back
+
+  %br/
+  .row
+    .col-sm-12.comments
+      = bootstrap_form_for(Comment.new) do |f|
+        = hidden_field_tag :post_id, @post.id
+        = f.text_area :body, label: "Оставьте свой комментарий", rows: 3
+        = f.submit "Добавить", class: "btn btn-primary"
+      %br/
+      = render @post.comments.includes(:user)
+    / Main

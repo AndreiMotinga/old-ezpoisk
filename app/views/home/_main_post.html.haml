@@ -1,10 +1,29 @@
-.row.main-post.white-block
-  .col-md-12
-    - if current_user.try(:admin)
-      %h4.main-title= link_to @main.title, edit_news_path(@main)
-    - else
-      %h4.main-title= link_to @main.title, news_path(@main)
-    .col-md-5.hidden-xs.main-text
-      = strip_tags @main.text.truncate(250)
-      = link_to "читать дальше", news_path(@main)
-    .col-md-7.hidden-xs.main-image= image_tag @main.logo, class: "img-responsive"
+.row.main-post
+  #carousel-main-post.carousel.slide{"data-ride" => "carousel"}
+    / Wrapper for slides
+    .carousel-inner{:role => "listbox"}
+      - @homepage.main_posts(7).each_with_index do |p, i|
+        .item{class: ("active" if i == 0) }
+          =link_to news_path(p) do
+            = image_tag p.image.url(:medium), class: "img-responsive"
+          .news-caption
+            %h4= p.title
+
+    / Controls
+    %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-main-post", :role => "button"}
+      %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+      %span.sr-only Previous
+    %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-main-post", :role => "button"}
+      %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+      %span.sr-only Next
+
+
+-# .col-md-12
+-#   - if current_user.try(:admin)
+-#     %h4.main-title= link_to @homepage.main.title, edit_news_path(@homepage.main)
+-#   - else
+-#     %h4.main-title= link_to @homepage.main.title, news_path(@homepage.main)
+-#   .col-md-5.hidden-xs.main-text
+-#     = strip_tags @homepage.main.text.truncate(250)
+-#     = link_to "читать дальше", news_path(@homepage.main)
+-#   .col-md-7.hidden-xs.main-image= image_tag @homepage.main.logo, class: "img-responsive"

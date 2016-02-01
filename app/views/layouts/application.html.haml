@@ -18,6 +18,10 @@
     = render "shared/google_analytics"
     #wrap
       = render 'shared/navbar'
+      .hidden-xs
+        = yield :top_partner if content_for?(:top_partner)
+        %br/
+
       = render 'shared/notice'
 
       .container
@@ -25,8 +29,5 @@
           = yield :secondary_navbar if content_for?(:secondary_navbar)
         .row
           .container
-            .col-md-8.col-xs-12
-              = yield
-            .col-md-4
-              = yield :news if content_for :news
+            = yield
       = render 'shared/footer'

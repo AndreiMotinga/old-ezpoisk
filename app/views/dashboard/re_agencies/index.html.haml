@@ -1,33 +1,34 @@
 - content_for :secondary_navbar do
   = render 'dashboards/navbar'
 
-%br/
-= link_to 'Новое агенство',
-          new_dashboard_re_agency_path,
-          class: "btn btn-success"
-%br/
-%br/
+.col-md-8.col-xs-12
+  %br/
+  = link_to 'Новое агенство',
+            new_dashboard_re_agency_path,
+            class: "btn btn-success"
+  %br/
+  %br/
 
-- if @re_agencies.any?
+  - if @re_agencies.any?
 
-  %table.table.table-hover
-    %thead
-      %tr
-        %th{:colspan => "4"}
-    %tbody
-      - @re_agencies.each do |re_agency|
+    %table.table.table-hover
+      %thead
         %tr
-          %td
-            = link_to re_agency.title, edit_dashboard_re_agency_path(re_agency)
-          %td= re_agency.active? ? "Активно" : "Не актвино"
-          %td= link_to 'Редактировать', edit_dashboard_re_agency_path(re_agency)
-          %td= link_to 'Удалить',
-                        dashboard_re_agency_path(re_agency),
-                        method: :delete,
-                        data: { confirm: I18n.t(:confirm) }
+          %th{:colspan => "4"}
+      %tbody
+        - @re_agencies.each do |re_agency|
+          %tr
+            %td
+              = link_to re_agency.title, edit_dashboard_re_agency_path(re_agency)
+            %td= re_agency.active? ? "Активно" : "Не актвино"
+            %td= link_to 'Редактировать', edit_dashboard_re_agency_path(re_agency)
+            %td= link_to 'Удалить',
+                          dashboard_re_agency_path(re_agency),
+                          method: :delete,
+                          data: { confirm: I18n.t(:confirm) }
 
-  / Table
-  = render "shared/pagination", records: @re_agencies
+    / Table
+    = render "shared/pagination", records: @re_agencies
 
-- else
-  %p= I18n.t(:no_messages)
+  - else
+    %p= I18n.t(:no_messages)

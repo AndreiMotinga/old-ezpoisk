@@ -18,6 +18,6 @@ class JobAgency < ActiveRecord::Base
                     styles: { medium: "300x150>" },
                     :s3_protocol => :https,
                     default_url: "missing.png"
-  validates_attachment_content_type :logo,
-                                    content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
+  validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
 end

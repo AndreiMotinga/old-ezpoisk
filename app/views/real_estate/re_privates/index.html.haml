@@ -3,28 +3,27 @@
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
 
-/ Main
-.row
-  %h4.pull-right
-    %a= "Всего #{@re_privates.total_count}"
-  = render 'real_estate/re_privates/search_modal'
-.row
-  %hr/
-  - @re_privates.each do |re_private|
-    = render 'dashboard/re_privates/re_private', record: re_private
+.col-md-8.col-xs-12
+  .row
+    %h4.pull-right
+      %a= "Всего #{@re_privates.total_count}"
+    = render 'real_estate/re_privates/search_modal'
+  .row
+    %hr/
+    - @re_privates.each do |re_private|
+      = render 'dashboard/re_privates/re_private', record: re_private
 
-= render "shared/pagination", records: @re_privates
-/ Main
+  = render "shared/pagination", records: @re_privates
 
-.row
-  .col-md-12
-    %p
-      Поиск недвижимости порой бывает достаточно трудной задачей,
-      отнимающей много времени и сил.
-    %p
-      %strong
-        eZpoisk
-      старается облегчить эту задачу, активно улучшая фильтры и способы поиска.
-      Если у вас есть идеи о том, как улучшить этот проект, пожалуйста, пишите нам.
-      Мы надеемся, что вместе мы сможем сделать качественный и полезный для нас
-      всех инструмент.
+  .row
+    .col-md-12
+      %p
+        Поиск недвижимости порой бывает достаточно трудной задачей,
+        отнимающей много времени и сил.
+      %p
+        %strong
+          eZpoisk
+        старается облегчить эту задачу, активно улучшая фильтры и способы поиска.
+        Если у вас есть идеи о том, как улучшить этот проект, пожалуйста, пишите нам.
+        Мы надеемся, что вместе мы сможем сделать качественный и полезный для нас
+        всех инструмент.

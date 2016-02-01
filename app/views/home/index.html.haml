@@ -1,20 +1,30 @@
 = title("Бесплатные обьявления в США")
 = desc("eZpoisk (easy poisk) - форум русскоговорящих людей в Америке. Обьявления, Квартиры, Работа, Адвокаты, Услуги, Новости. Полезная информация об иммиграции в США")
+= content_for :top_partner do
+  = render "home/carousel"
 
 / show on desktop
-.col-sm-12.hidden-xs
-  = render "home/main_post"
+.row
+  .col-md-6.hidden-sm.hidden-xs
+    = render "home/main_post"
+    %br/
+    = render "home/users_posts"
+  .col-md-6.posts
+    .col-md-12.white-block.padding-vertical-10
+      %span.lenta
+        %strong ЛЕНТА НОВОСТЕЙ
+      %span.pull-right= l Date.current, format: :long
+      %hr#lenta/
+      = render @homepage.news_posts(27)
 
-  %br/
-  .row
-    .posts.white-block
-      = render @posts
-      %br/
-  %br/
+%br/
+.row.visible-lg.white-block
+  - @homepage.articles.each do |p|
+    = link_to news_path(p) do
+      .col-md-2.article.padding-vertical-10
+        = image_tag p.logo_url(:small), class: "img-responsive article-img"
+        %span= p.title
 
-/ on cell
-.visible-xs
-  %table.table.stable-striped
-    - @posts.each do |p|
-      %tr
-        %td= link_to p.title, news_path(p)
+%br/
+.row.visible-lg.white-block
+  = render "home/forum_posts"

@@ -1,0 +1,16 @@
+.row.white-block
+  .col-md-12
+    %table.table.table-striped
+      %thead
+        %tr
+          %td.users-post
+            %h5 Последние обьявления
+          %td.users-post
+            %h5 Раздел
+          %td.users-post
+            %h5 Дата
+      - @homepage.users_posts(9).each do |p|
+        %tr
+          %td.users-post= link_to p.title.truncate(30), p.link
+          %td.users-post= p.block
+          %td.users-post #{time_ago_in_words p.created_at} назад

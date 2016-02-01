@@ -1,5 +1,4 @@
 class FeedbacksController < ApplicationController
-  layout "plain"
   def new
     @feedback = Feedback.new name: current_user.try(:name),
                              email: current_user.try(:email)

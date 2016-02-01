@@ -1,0 +1,13 @@
+.container-fluid
+  .row
+    #carousel-example-generic.carousel.slide{"data-ride" => "carousel"}
+      / Indicators
+      %ol.carousel-indicators
+        %li.active{"data-slide-to" => "0", "data-target" => "#carousel-example-generic"}
+        %li{"data-slide-to" => "1", "data-target" => "#carousel-example-generic"}
+      / Wrapper for slides
+      .carousel-inner{:role => "listbox"}
+        .item.active
+          = image_tag "partners/red", class: 'img-responsive center-block'
+        .item
+          = image_tag "partners/black", class: 'img-responsive center-block'

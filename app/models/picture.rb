@@ -6,5 +6,6 @@ class Picture < ActiveRecord::Base
                     :s3_protocol => :https,
                     default_url: "missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_attachment_file_name :image, matches: [/png\Z/, /jpe?g\Z/]
   # validates_attachment_presence :image
 end

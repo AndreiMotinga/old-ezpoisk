@@ -3,6 +3,7 @@
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
 
-= render "shared/show",
-          record: @re_private,
-          template: 'dashboard/re_privates/re_private'
+.col-md-8.col-xs-12
+  = render "shared/show",
+            record: @re_private,
+            template: 'dashboard/re_privates/re_private'

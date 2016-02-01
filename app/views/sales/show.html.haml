@@ -3,6 +3,7 @@
 - content_for :secondary_navbar do
   = render "sales/navbar"
 
-= render "shared/show",
-          record: @sale,
-          template: 'dashboard/sales/sale'
+.col-md-8.col-xs-12
+  = render "shared/show",
+            record: @sale,
+            template: 'dashboard/sales/sale'

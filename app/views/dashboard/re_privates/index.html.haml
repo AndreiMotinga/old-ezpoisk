@@ -1,32 +1,33 @@
 - content_for :secondary_navbar do
   = render 'dashboards/navbar'
 
-%br/
-= link_to 'Создать новое',
-           new_dashboard_re_private_path,
-           class: 'btn btn-success'
-%br/
-%br/
+.col-md-8.col-xs-12
+  %br/
+  = link_to 'Создать новое',
+             new_dashboard_re_private_path,
+             class: 'btn btn-success'
+  %br/
+  %br/
 
-- if @re_privates.any?
-  %table.table.table-hover
-    %thead
-      %tr
-        %th{:colspan => "4"}
-    %tbody
-      - @re_privates.each do |re_private|
+  - if @re_privates.any?
+    %table.table.table-hover
+      %thead
         %tr
-          %td
-            = link_to re_private.street,
-                      edit_dashboard_re_private_path(re_private)
-          %td= re_private.active? ? "Активно" : "Не актвино"
-          %td= link_to 'Редактировать', edit_dashboard_re_private_path(re_private)
-          %td= link_to 'Удалить', dashboard_re_private_path(re_private),
-                        method: :delete,
-                        data: { confirm: I18n.t(:confirm) }
+          %th{:colspan => "4"}
+      %tbody
+        - @re_privates.each do |re_private|
+          %tr
+            %td
+              = link_to re_private.street,
+                        edit_dashboard_re_private_path(re_private)
+            %td= re_private.active? ? "Активно" : "Не актвино"
+            %td= link_to 'Редактировать', edit_dashboard_re_private_path(re_private)
+            %td= link_to 'Удалить', dashboard_re_private_path(re_private),
+                          method: :delete,
+                          data: { confirm: I18n.t(:confirm) }
 
-  / Table
-  = render "shared/pagination", records: @re_privates
+    / Table
+    = render "shared/pagination", records: @re_privates
 
-- else
-  %p= I18n.t(:no_messages)
+  - else
+    %p= I18n.t(:no_messages)

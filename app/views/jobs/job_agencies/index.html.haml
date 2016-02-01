@@ -3,20 +3,19 @@
 - content_for :secondary_navbar do
   = render "jobs/navbar"
 
-/ Main
-.row
-  %h4.pull-right
-    %a= "Всего #{@job_agencies.total_count}"
-  = render 'jobs/job_agencies/search_modal'
-.row
-  %hr/
-  - @job_agencies.each do |job_agency|
-    = render 'dashboard/job_agencies/job_agency', record: job_agency
+.col-md-8.col-xs-12
+  .row
+    %h4.pull-right
+      %a= "Всего #{@job_agencies.total_count}"
+    = render 'jobs/job_agencies/search_modal'
+  .row
+    %hr/
+    - @job_agencies.each do |job_agency|
+      = render 'dashboard/job_agencies/job_agency', record: job_agency
 
-= render "shared/pagination", records: @job_agencies
-/ Main
+  = render "shared/pagination", records: @job_agencies
 
-.row
-  .col-md-12
-    %h5
-      Агентства по трудоустройству в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
+  .row
+    .col-md-12
+      %h5
+        Агентства по трудоустройству в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.

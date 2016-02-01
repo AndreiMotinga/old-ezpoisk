@@ -3,6 +3,7 @@
 - content_for :secondary_navbar do
   = render "services/navbar"
 
-= render "shared/show",
-          record: @service,
-          template: 'dashboard/services/service'
+.col-md-8.col-xs-12
+  = render "shared/show",
+            record: @service,
+            template: 'dashboard/services/service'

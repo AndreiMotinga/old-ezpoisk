@@ -1,6 +1,5 @@
 class NewsController < ApplicationController
   before_action :set_post, only: [:edit, :show, :update]
-  layout :resolve_layout
 
   def index
     category = params[:category]
@@ -32,21 +31,16 @@ class NewsController < ApplicationController
   private
 
   def post_params
+    return if should_include_image
     params.require(:post).permit(:title, :text, :logo, :category,
-                                 :important, :description, :main,
-                                 :show_on_homepage)
+                                 :main, :show_on_homepage, :image)
   end
 
   def set_post
     @post = Post.find(params[:id])
   end
 
-  def resolve_layout
-    case action_name
-    when "edit"
-      "plain"
-    else
-      "application"
-    end
+  def should_include_image
+    params[:post][:main] == "1" && !params[:post][:image]
   end
 end

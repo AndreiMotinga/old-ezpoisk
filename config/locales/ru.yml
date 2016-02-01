@@ -134,7 +134,7 @@ ru:
       x_days:
         one: "%{count} день"
         few: "%{count} дня"
-        many: "%{count} дней"
+        many: "%{count} дняяяя"
         other: "%{count} дней"
       x_minutes:
         few: "%{count} минуты"

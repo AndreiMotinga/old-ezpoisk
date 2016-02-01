@@ -1,6 +1,7 @@
 - content_for :secondary_navbar do
   = render 'dashboards/navbar'
 
-= render "dashboard/shared/edit",
-         record: @re_agency,
-         template: 'dashboard/re_agencies/re_agency'
+.col-md-8.col-xs-12
+  = render "dashboard/shared/edit",
+           record: @re_agency,
+           template: 'dashboard/re_agencies/re_agency'

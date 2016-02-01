@@ -20,4 +20,11 @@ class Job < ActiveRecord::Base
                     default_url: "missing.png"
   validates_attachment_content_type :logo,
                                     content_type: /\Aimage\/.*\Z/
+  def link
+    "/jobs/jobs/#{id}"
+  end
+
+  def block
+    "Работа"
+  end
 end

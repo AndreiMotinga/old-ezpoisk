@@ -18,4 +18,8 @@ class Sale < ActiveRecord::Base
   def address
     "#{city.name} #{state.name}"
   end
+
+  def link
+    "/sales/#{id}"
+  end
 end

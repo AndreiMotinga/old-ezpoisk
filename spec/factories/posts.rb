@@ -5,9 +5,6 @@ FactoryGirl.define do
     category NEWS_CATEGORIES.keys.sample
     subcategory ""
     logo "http://images5.fanpop.com/image"
-    important true
-    from_rss false
-    description { Faker::Lorem.paragraph 4 }
 
     association :user
 
