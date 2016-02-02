@@ -14,6 +14,8 @@
       = render 'dashboard/jobs/job', record: job
 
   = render "shared/pagination", records: @jobs
+  = link_to 'Новое обьявление', new_dashboard_job_path, class: "btn btn-success"
+  %br/
 
   .row
     .col-md-12

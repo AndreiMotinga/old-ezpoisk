@@ -14,8 +14,13 @@
       = render 'dashboard/re_commercials/re_commercial', record: record
 
   = render "shared/pagination", records: @re_commercials
+  = link_to 'Новое обьявление', new_dashboard_re_commercial_path, class: "btn btn-success"
+  %br/
+
   .row
     .col-md-12
+      %h5
+        Коммерческая недвижимость в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
       %p
         Вряд ли в поисках
         %strong

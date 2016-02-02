@@ -14,9 +14,13 @@
       = render 'dashboard/re_privates/re_private', record: re_private
 
   = render "shared/pagination", records: @re_privates
+  = link_to 'Новое обьявление', new_dashboard_re_private_path, class: "btn btn-success"
+  %br/
 
   .row
     .col-md-12
+      %h5
+        Частная недвижимость в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
       %p
         Поиск недвижимости порой бывает достаточно трудной задачей,
         отнимающей много времени и сил.

@@ -14,9 +14,13 @@
       = render 'dashboard/sales/sale', record: sale
 
   = render "shared/pagination", records: @sales
+  = link_to 'Новое обьявление', new_dashboard_sale_path, class: "btn btn-success"
+  %br/
 
   .row
     .col-md-12
+      %h5
+        Объявления о продажах в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
       %p
         %strong
           Продажа
