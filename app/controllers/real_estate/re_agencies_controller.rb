@@ -1,5 +1,6 @@
 class RealEstate::ReAgenciesController < ApplicationController
   def index
+    ReAgency.connection.execute "SELECT setseed(#{rand_cookie})"
     re_agencies = ReAgency.includes(:state, :city)
                   .filter(params.slice(:state_id, :city_id, :geo_scope))
                   .order("RANDOM ()")

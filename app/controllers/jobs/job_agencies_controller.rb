@@ -1,5 +1,6 @@
 class Jobs::JobAgenciesController < ApplicationController
   def index
+    JobAgency.connection.execute "SELECT setseed(#{rand_cookie})"
     job_agencies = JobAgency.includes(:state, :city)
                             .filter(params.slice(:state_id, :city_id, :geo_scope))
                             .order("RANDOM ()")

@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :rand_cookie, only: [:index]
 
   def forem_user
     current_user
@@ -18,6 +19,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def rand_cookie
+    cookies[:random_seed] ||= { value: rand, expires: 1.hour.from_now }
+  end
 
   def address_changed?(record, prms)
     return true if record.try(:street) != prms[:street]
