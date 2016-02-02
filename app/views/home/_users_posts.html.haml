@@ -1,5 +1,5 @@
 .row.white-block
-  .col-md-12
+  .col-md-12.padding-vertical-10
     %table.table.table-striped
       %thead
         %tr
@@ -14,3 +14,4 @@
           %td.users-post= link_to p.title.truncate(30), p.link
           %td.users-post= p.block
           %td.users-post #{time_ago_in_words p.created_at} назад
+    = render "home/new_post_modal"

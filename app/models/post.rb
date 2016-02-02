@@ -27,7 +27,6 @@ class Post < ActiveRecord::Base
   end
 
   def logo_url(style = :medium)
-    return logo unless main?
-    image.url(style)
+    image.url(style).present? ? image.url(style) : logo
   end
 end
