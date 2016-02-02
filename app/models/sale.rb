@@ -22,4 +22,8 @@ class Sale < ActiveRecord::Base
   def link
     "/sales/#{id}"
   end
+
+  def block
+    "Продается"
+  end
 end
