@@ -31,7 +31,7 @@ class StringForSlack
     string += "name   #{user.name}\n email  #{user.email}\n"
     string += "phone  #{user.phone}\n"
     string += "\n"
-    string += "Всего: #{User.count}"
+    string += "Всего: #{User.count}\n"
     string += "==========================================================="
     string
   end
@@ -42,7 +42,7 @@ class StringForSlack
     string += "title     #{record.title}\n" if record.try(:title)
     string += "category   #{record.category}\n" if record.try(:category)
     string += "\n"
-    string += "Всего: #{record.class.count}"
+    string += "Всего: #{record.class.count}\n"
     string += "==========================================================="
     string
   end
