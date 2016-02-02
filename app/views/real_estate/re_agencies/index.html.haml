@@ -15,6 +15,7 @@
       = render 'dashboard/re_agencies/re_agency', record: re_agency
 
   = render "shared/pagination", records: @re_agencies
+  = link_to 'Новое обьявление', new_dashboard_re_agency_path, class: "btn btn-success"
 
   .row
     .col-md-12
