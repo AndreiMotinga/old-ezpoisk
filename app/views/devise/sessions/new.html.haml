@@ -8,5 +8,8 @@
     - if devise_mapping.rememberable?
       %div
         = f.check_box :remember_me
-    %div= f.submit t('.sign_in', :default => "Sign in")
+    .hidden-xs
+      = f.submit t('.sign_in', :default => "Sign in")
+    .visible-xs
+      = f.submit t('.sign_in', :default => "Sign in")
   = render "devise/shared/links"

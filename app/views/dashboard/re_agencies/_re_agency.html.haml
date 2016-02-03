@@ -1,17 +1,15 @@
-.col-lg-12.col-md-12.col-sm-12.post-item
-  #logo.col-lg-3.col-md-4.col-sm-4.hidden-xs
-    = image_tag record.logo,
-                alt: record.logo,
-                class: "img-responsive"
-
-  .col-lg-9.col-md-8.col-sm-8
+.row.post-item
+  .col-xs-4.col-sm-4.logo-js
+    = link_to link_from_controller(record) do
+      = image_tag record.logo,
+                  alt: record.logo,
+                  class: "img-responsive"
+  .col-xs-8.col-sm-8
     / line 1
-    %h3= link_to record.title, real_estate_re_agency_path(record)
-    %hr.post-devider/
-
-    / line 2
-    -# %span= "#{record.street}, #{record.city.name}, #{record.state.name}"
-    %span= record.address
+    .hidden-xs
+      %h3= link_to record.title, link_from_controller(record)
+    .visible-xs
+      %h5= link_to record.title, link_from_controller(record)
     %hr.post-devider/
 
     /line 3
@@ -19,10 +17,11 @@
     %hr.post-devider/
 
     / line 3
-    - unless record.site.blank?
-      %strong
-        = link_to record.site, "http://#{record.site}", target: "blank"
-        %hr.post-devider/
+    .hidden-xs
+      - if record.site.present?
+        %strong= link_to record.site, "http://#{record.site}", target: "blank"
+      %hr.post-devider/
 
     / line 4
-    %span= time_ago_in_words record.created_at
+    .hidden-xs
+      %span= time_ago_in_words record.created_at

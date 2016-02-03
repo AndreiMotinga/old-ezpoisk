@@ -3,9 +3,39 @@
 -content_for :secondary_navbar do
   = render 'news/navbar'
 
-.hidden-lg.hidden-md
-  = render "news/dropdown"
+/ DESKTOP
+.hidden-xs
+  = render @posts
+  = render "shared/pagination", records: @posts
+/ /DESKTOP
 
-/ Main
-= render @posts
-= render "shared/pagination", records: @posts
+/ MOBILE
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-6
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-6
+      .pull-right
+        %button.btn.mobile-btn.dropdown-toggle{"aria-expanded" => "false",
+                                                "aria-haspopup" => "true",
+                                                "data-toggle" => "dropdown",
+                                                :type => "button"}
+          Категории
+          %span.caret
+        %ul.dropdown-menu
+          - NEWS_CATEGORIES.keys.each do |category|
+            %li
+              = link_to category,
+                        news_index_path(category: category),
+                        class: "#{'active' if cp(news_index_path(category: category))}"
+
+  .row
+    %ul.list-group
+      - @posts.each do |p|
+        = link_to news_path(p) do
+          .hidden-xs
+            %li.list-group-item= p.title
+          .visible-xs
+            %li.list-group-item.mobile-link= p.title
+  .row
+    = render "shared/pagination", records: @posts

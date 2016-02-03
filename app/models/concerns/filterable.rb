@@ -27,6 +27,12 @@ module Filterable
       keyword = "%#{keyword.mb_chars.downcase}%"
       where(query, keyword, keyword)
     end)
+
+    scope(:street, lambda do |keyword|
+      query = "LOWER(street) LIKE ? OR LOWER(description) LIKE ?"
+      keyword = "%#{keyword.mb_chars.downcase}%"
+      where(query, keyword, keyword)
+    end)
   end
 
   module ClassMethods

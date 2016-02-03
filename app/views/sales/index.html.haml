@@ -2,28 +2,35 @@
 = sales_description_meta(params[:category])
 - content_for :secondary_navbar do
   = render "sales/navbar"
+= render 'sales/search_modal'
+= content_for :top_partner do
+  = render "sales/partner"
 
-.col-md-8.col-xs-12
-  .row
-    %h4.pull-right
-      %a= "Всего #{@sales.total_count}"
-    = render 'sales/search_modal'
-  .row
-    %hr/
-    - @sales.each do |sale|
-      = render 'dashboard/sales/sale', record: sale
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @sales.total_count
+    .col-xs-6
+      = render 'sales/search_modal_trigger'
+/ /Secondary navbar
 
-  = render "shared/pagination", records: @sales
-  = link_to 'Новое обьявление', new_dashboard_sale_path, class: "btn btn-success"
-  %br/
-
-  .row
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     .col-md-12
-      %h5
-        Объявления о продажах в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
-      %p
-        %strong
-          Продажа
-        автомобилей, товаров для дома, для детей, одежда, электроника,
-        домашние животные и растения в Нью Йорке, Сан-Франциско, Лос-Анджелес,
-        Хьюстон, Майами и др. городах.
+      %h4.pull-right
+        %a= "Всего #{@sales.total_count}"
+      = render 'sales/search_modal_trigger'
+  / /total
+
+  .row
+    .col-xs-12
+      - @sales.each do |sale|
+        = render 'dashboard/sales/sale', record: sale
+
+    .col-xs-12
+      = render "shared/pagination", records: @sales

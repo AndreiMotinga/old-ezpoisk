@@ -2,11 +2,6 @@
   %li.list-group-item
     автор:
     %strong= record.user.name
-  %li.list-group-item
-    карта:
-    %a{ :href => "https://maps.google.com/?q=#{record.address}",
-        target: :blank }
-      = record.address
   - unless record.phone.blank?
     %li.list-group-item
       телефон:
@@ -24,3 +19,8 @@
     %li.list-group-item
       email:
       %strong= record.email
+  %li.list-group-item
+    карта:
+    %a{ :href => "https://maps.google.com/?q=#{record.address}",
+        target: :blank }
+      = record.address

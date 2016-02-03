@@ -41,6 +41,7 @@ class StringForSlack
     string += "id         #{record.id}\n"
     string += "title     #{record.title}\n" if record.try(:title)
     string += "category   #{record.category}\n" if record.try(:category)
+    string += "text   #{record.body}\n" if record.try(:body)
     string += "\n"
     string += "Всего: #{record.class.count}\n"
     string += "==========================================================="

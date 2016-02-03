@@ -1,8 +1,9 @@
 #feedback
-  %a{ "data-target" => "#feedback-modal",
-       "data-toggle" => "modal",
-       :role => "button" }
-    feedback
+  .hidden-xs
+    %a{ "data-target" => "#feedback-modal",
+         "data-toggle" => "modal",
+         :role => "button" }
+      feedback
 
 / Modal
 #feedback-modal.modal.fade{"aria-labelledby" => "myModalLabel",

@@ -25,11 +25,9 @@
 %br/
 
 / thumb navigation carousel
-#slider-thumbs.col-md-12.hidden-sm.hidden-xs
+#slider-thumbs.col-xs-12
   / thumb navigation carousel items
   %ul.list-inline
     - record.pictures.each_with_index do |pic, i|
       %li{ "data-slide-to" => "#{i}", "data-target" => "#carousel-example-generic",   class: ("active" if i == 0) }
-        %a
-          = link_to "" do
-            = image_tag pic.image.url(:thumb), class: "slider-thumb"
+        %a= image_tag pic.image.url(:thumb), class: "slider-thumb"

@@ -2,44 +2,32 @@
 = services_description_meta(params[:category], params[:subcategory])
 - content_for :secondary_navbar do
   = render "services/navbar"
+= render 'services/search_modal'
 
-.col-md-8.col-xs-12
-  .row
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @services.total_count
+    .col-xs-6
+      = render 'services/search_modal_trigger'
+/  / Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     %h4.pull-right
       %a= "Всего #{@services.total_count}"
-    = render 'services/search_modal'
+    = render 'services/search_modal_trigger'
+  / /total
 
   .row
-    %hr/
-    - @services.each do |service|
-      = render 'dashboard/services/service', record: service
+    .col-xs-12
+      - @services.each do |service|
+        = render 'dashboard/shared/company', record: service
 
-  = render "shared/pagination", records: @services
-  = link_to 'Новое обьявление', new_dashboard_service_path, class: "btn btn-success"
-  %br/
-
-  .row
-    .col-md-12
-      %hr/
-      %p
-        Реклама и PR, Туристические фирмы, Уборка помещений, Посылки, Грузы,
-        Фото, Видео, Артисты, Праздники, Компьютеры, Интернет,
-        Истребление насекомых, Детективы, Охрана, Переводы,
-        Печатные работы, Сопровождение на встречах и отдыхе,
-        Массаж, Няни, гувернантки
-      %p
-        Продажа / аренда автомобилей, Автосервис, Автошколы, Перевозки, Такси
-      %p
-        Адвокаты, Юристы, Паралигалы
-      %p
-        Косметология, Салоны красоты, Пластическая хирургия
-      %p
-        Медицинские офисы, Врачи, Аптеки, Ветеринарные клиники
-      %p
-        Образование, Школы, Колледжи, Кружки, Репетиторы
-      %p
-        Ремонт техники, электроники, одежды
-      %p
-        Электрики, Сантехники, Маляры, Сигнализация, Видеонаблюдение, Архитектура, Дизайн
-      %p
-        И многое другое в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и других городах.
+    .col-xs-12
+      = render "shared/pagination", records: @services

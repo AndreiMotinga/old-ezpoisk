@@ -3,19 +3,6 @@ require "rails_helper"
 describe Dashboard::ReAgenciesController do
   before { sign_in(@user = create(:user)) }
 
-  describe "GET #index" do
-    it "renders the index template and return user's re_agencies" do
-      2.times { create :re_agency, user: @user }
-      create :re_agency # different user
-
-      get :index
-      agencies = assigns(:re_agencies)
-
-      expect(response).to render_template(:index)
-      expect(agencies.size).to eq 2
-    end
-  end
-
   describe "GET #new" do
     it "renders the new template and assigns @re_agency" do
       get :new
@@ -81,7 +68,7 @@ describe Dashboard::ReAgenciesController do
 
       delete :destroy, id: re_agency.id
 
-      expect(response).to redirect_to(dashboard_re_agencies_path)
+      expect(response).to redirect_to(dashboard_path)
       expect(ReAgency.count).to be 0
     end
   end

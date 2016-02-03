@@ -1,11 +1,9 @@
-.col-md-12
-  - if records.empty?
-    .row
-      = render "shared/no_posts_message"
-  - else
-    .row
-      %hr/
-      .text-center
-        = paginate records, :theme => 'twitter-bootstrap-3'
-      %hr/
-  %br/
+- if records.empty?
+  .row
+    = render "shared/no_posts_message"
+- else
+  .row
+    %hr/
+    .text-center
+      = paginate records, :theme => 'twitter-bootstrap-3'
+    %hr/

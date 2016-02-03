@@ -1,4 +1,9 @@
 class Ez
+  # TODO / make it init
+  def self.notifier
+    Slack::Notifier.new ENV["SLACK_URL"]
+  end
+
   def self.ping(message) # DO NOT DELETE / change
     notifier.ping message
   end
@@ -7,7 +12,4 @@ class Ez
     notifier.ping(StringForSlack.new(record).string)
   end
 
-  def self.notifier
-    Slack::Notifier.new ENV["SLACK_URL"]
-  end
 end

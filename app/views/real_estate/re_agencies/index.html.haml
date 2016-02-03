@@ -2,35 +2,32 @@
 = desc("eZpoisk - Русские Агентства Недвижимости в США, помощь в поиске недвижимости в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами")
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
+= render 'real_estate/re_agencies/search_modal'
 
-.col-md-8.col-xs-12
-  .row
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @re_agencies.total_count
+    .col-xs-6
+      = render 'real_estate/re_agencies/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     %h4.pull-right
       %a= "Всего #{@re_agencies.total_count}"
-    = render 'real_estate/re_agencies/search_modal'
+    = render 'real_estate/re_agencies/search_modal_trigger'
+  / /total
 
   .row
-    %hr/
-    - @re_agencies.each do |re_agency|
-      = render 'dashboard/re_agencies/re_agency', record: re_agency
+    .col-xs-12
+      - @re_agencies.each do |re_agency|
+        = render 'dashboard/shared/company', record: re_agency
 
-  = render "shared/pagination", records: @re_agencies
-  = link_to 'Новое обьявление', new_dashboard_re_agency_path, class: "btn btn-success"
-  %br/
-
-  .row
-    .col-md-12
-      %h5
-        Агентства недвижимости в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
-      %p
-        Любая деятельность, неизвестная нам, сперва кажется очень сложной,
-        но если в ней разобраться и уточнить все нюансы, все оказывается
-        достаточно легко. Доверяясь
-        %strong
-          Агентствам недвижимости
-        вы сэкономите время, зачастую получите лучшую цену, а также быстрый
-        доступ к изменчивому рынку. А самое главное, обезопасите сделку.
-        Здесь вы сможете найти
-        %strong
-          Агента недвижимости в США
-        ,говорящего на русском языке.
+    .col-xs-12
+      = render "shared/pagination", records: @re_agencies

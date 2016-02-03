@@ -2,10 +2,6 @@ class Dashboard::JobsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_job, only: [:edit, :update, :destroy]
 
-  def index
-    @jobs = current_user.jobs.page params[:page]
-  end
-
   def new
     @job = Job.new state_id: current_user.state_id,
                    city_id: current_user.city_id,
@@ -46,7 +42,7 @@ class Dashboard::JobsController < ApplicationController
 
   def destroy
     @job.destroy
-    redirect_to dashboard_jobs_path,
+    redirect_to dashboard_path,
                 notice: I18n.t(:post_removed)
   end
 

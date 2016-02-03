@@ -5,6 +5,10 @@
                   label: 'Описание',
                   class: "summernote"
 
-  .actions
-    = f.submit "Сохранить", class: "btn btn-primary", id: "description-save-btn"
+  .hidden-xs
+    .actions
+      = f.submit "Сохранить", class: "btn btn-primary", id: "description-save-btn"
+  .visible-xs
+    .actions
+      = f.submit "Сохранить", id: "mob-description-save-btn", class: "btn mobile-btn btn-block"
   %br/

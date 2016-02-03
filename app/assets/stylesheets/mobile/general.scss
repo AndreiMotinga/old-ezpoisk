@@ -1,0 +1,71 @@
+// navbar
+.mobile-navbar {
+  margin-bottom: 10px;
+  #mobile-brand-image {
+    max-width: 110px;
+  }
+}
+
+#mobile-brand-image {
+  margin-top: 8px;
+}
+// / navbar
+
+// tabs
+.mobile-nav-tabs > li > a{
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.mobile-nav-tabs > li.active {
+  border-top: 2px solid $blue;
+}
+// /tabs
+
+.mobile-secondary {
+  padding-bottom: 10px;
+  border-bottom: 2px solid $grey2;
+  margin-bottom: 5px;
+}
+
+.mobile-btn {
+  border-radius: 0px;
+  height: 30px;
+  font-size: 12px;
+  padding: 4px 5px;
+  background-color: transparent;
+  color: $blue;
+  border: 2px solid $blue;
+}
+.mobile-btn-new {
+  margin-top: 8px;
+}
+
+.mobile-back-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.mobile-search {
+  text-align: right;
+}
+.float-right{
+  float: right;
+}
+
+h6.mobile-category {
+  margin-top: 0px;
+}
+
+.mobile-footer {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 10px;
+  background-color: $grey1;
+}
+
+.mobile-link {
+  color: $grey3;
+  li:active {
+    background-color: $grey1;
+  }
+}

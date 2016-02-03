@@ -3,9 +3,9 @@ require "rails_helper"
 feature "user deletes re_private" do
   scenario "successfully" do
     user = create_and_login_user
-    create :re_private, user: user
+    re_p = create :re_private, user: user
 
-    visit dashboard_re_privates_path
+    visit edit_dashboard_re_private_path(re_p)
     click_on "Удалить"
 
     expect(RePrivate.count).to be 0

@@ -3,19 +3,6 @@ require "rails_helper"
 describe Dashboard::ServicesController do
   before { sign_in(@user = create(:user)) }
 
-  describe "GET #index" do
-    it "renders the index template and return user's services" do
-      2.times { create :service, user: @user }
-      create :service # different user
-
-      get :index
-      services = assigns(:services)
-
-      expect(response).to render_template(:index)
-      expect(services.size).to eq 2
-    end
-  end
-
   describe "GET #new" do
     it "renders the new template and assigns @service" do
       get :new
@@ -81,7 +68,7 @@ describe Dashboard::ServicesController do
 
       delete :destroy, id: service.id
 
-      expect(response).to redirect_to(dashboard_services_path)
+      expect(response).to redirect_to(dashboard_path)
       expect(Service.count).to be 0
     end
   end

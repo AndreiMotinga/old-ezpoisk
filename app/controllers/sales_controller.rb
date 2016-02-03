@@ -1,10 +1,11 @@
 class SalesController < ApplicationController
   def index
-    sales = Sale.includes(:state, :city).filter(params.slice(:state_id,
-                                                             :city_id,
-                                                             :category,
-                                                             :keyword,
-                                                             :geo_scope))
+    sales = Sale.filter(params.slice(:state_id,
+                                     :city_id,
+                                     :category,
+                                     :keyword,
+                                     :geo_scope))
+                .order("created_at desc")
     @sales = sales.page(params[:page])
   end
 

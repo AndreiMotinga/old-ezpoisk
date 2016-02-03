@@ -2,10 +2,6 @@ class Dashboard::SalesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_sale, only: [:edit, :update, :destroy]
 
-  def index
-    @sales = current_user.sales.page params[:page]
-  end
-
   def new
     @sale = Sale.new state_id: current_user.state_id,
                      city_id: current_user.city_id,
@@ -46,8 +42,7 @@ class Dashboard::SalesController < ApplicationController
 
   def destroy
     @sale.destroy
-    redirect_to dashboard_sales_path,
-                notice: I18n.t(:post_removed)
+    redirect_to dashboard_path, notice: I18n.t(:post_removed)
   end
 
   private
@@ -58,14 +53,15 @@ class Dashboard::SalesController < ApplicationController
 
   def sale_params
     params.require(:sale).permit(:title,
-                                :phone,
-                                :email,
-                                :description,
-                                :active,
-                                :state_id,
-                                :city_id,
-                                :logo,
-                                :category)
+                                 :price,
+                                 :phone,
+                                 :email,
+                                 :description,
+                                 :active,
+                                 :state_id,
+                                 :city_id,
+                                 :logo,
+                                 :category)
   end
 end
 

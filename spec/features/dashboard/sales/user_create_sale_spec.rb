@@ -4,9 +4,8 @@ feature "user creates sale" do
   scenario "successfully", js: true do
     create_alabama_and_abbeville
     create_and_login_user
-
-    visit new_dashboard_sale_path
     sale = build(:sale)
+    visit new_dashboard_sale_path
 
     fill_in "Заголовок", with: sale.title
     fill_in "Телефон", with: sale.phone
@@ -20,7 +19,6 @@ feature "user creates sale" do
 
     expect(page).to have_content sale.title
     expect(page).to have_content sale.phone
-    expect(page).to have_content sale.email
 
     saved_sale = Sale.last
     expect(saved_sale.active).to be true

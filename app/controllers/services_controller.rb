@@ -1,8 +1,7 @@
 class ServicesController < ApplicationController
   def index
     Service.connection.execute "SELECT setseed(#{rand_cookie})"
-    services = Service.includes(:state, :city)
-                      .filter(params.slice(:state_id,
+    services = Service.filter(params.slice(:state_id,
                                            :city_id,
                                            :category,
                                            :subcategory,

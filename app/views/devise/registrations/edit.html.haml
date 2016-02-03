@@ -1,6 +1,7 @@
-- content_for :secondary_navbar do
-  = render 'dashboards/navbar'
-
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
 .col-md-8.col-xs-12
   %br/
   = bootstrap_form_for(resource,

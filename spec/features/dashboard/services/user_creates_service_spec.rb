@@ -21,7 +21,6 @@ feature "user creates service" do
     click_on "details-save-btn"
 
     expect(page).to have_content service.title
-    expect(page).to have_content service.street
     expect(page).to have_content service.phone
     expect(page).to have_content service.site
 

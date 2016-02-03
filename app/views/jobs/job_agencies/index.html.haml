@@ -1,23 +1,34 @@
 = title("|Агенства по трудоустройству")
 = desc("eZpoisk - Объявления о приеме на работу, кадровые агентства в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
-- content_for :secondary_navbar do
-  = render "jobs/navbar"
+= render 'jobs/job_agencies/search_modal'
 
-.col-md-8.col-xs-12
-  .row
+/ Secondary navbar
+.hidden-xs
+  - content_for :secondary_navbar do
+    = render "jobs/navbar"
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @job_agencies.total_count
+    .col-xs-6
+      = render 'jobs/job_agencies/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     %h4.pull-right
       %a= "Всего #{@job_agencies.total_count}"
-    = render 'jobs/job_agencies/search_modal'
-  .row
-    %hr/
-    - @job_agencies.each do |job_agency|
-      = render 'dashboard/job_agencies/job_agency', record: job_agency
-
-  = render "shared/pagination", records: @job_agencies
-  = link_to 'Новое обьявление', new_dashboard_job_agency_path, class: "btn btn-success"
-  %br/
+    = render 'jobs/job_agencies/search_modal_trigger'
+  / /total
 
   .row
-    .col-md-12
-      %h5
-        Агентства по трудоустройству в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
+    .col-xs-12
+      - @job_agencies.each do |job_agency|
+        = render 'dashboard/shared/company', record: job_agency
+
+    .col-xs-12
+      = render "shared/pagination", records: @job_agencies

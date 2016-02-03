@@ -3,18 +3,6 @@ require "rails_helper"
 describe Dashboard::ReCommercialsController do
   before { sign_in(@user = create(:user)) }
 
-  describe "GET #index" do
-    it "renders the index template and returns user's @re_commercials" do
-      2.times { create :re_commercial, user: @user }
-      create :re_commercial # different user
-
-      get :index
-
-      expect(response).to render_template(:index)
-      expect(assigns(:re_commercials).size).to be 2
-    end
-  end
-
   describe "GET #new" do
     it "renders the new temlpate and assigns @re_commercials" do
       get :new
@@ -96,7 +84,7 @@ describe Dashboard::ReCommercialsController do
 
       delete :destroy, id: re_commercial.id
 
-      expect(response).to redirect_to(dashboard_re_commercials_path)
+      expect(response).to redirect_to(dashboard_path)
       expect(ReCommercial.count).to be 0
     end
   end

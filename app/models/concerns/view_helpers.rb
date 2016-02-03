@@ -5,16 +5,12 @@ module ViewHelpers
     pictures.find_by_logo(true)
   end
 
-  def logo_url(style)
-    if logo
-      logo.image.url(style)
-    else
-      "missing.png"
-    end
-  end
-
   def address
-    "#{street} #{city.name} #{state.name}, #{zip}"
+    if street.present?
+      "#{street} #{city.name} #{state.name}, #{zip}"
+    else
+      "#{city.name} #{state.name}, #{zip}"
+    end
   end
 
   def map_marker

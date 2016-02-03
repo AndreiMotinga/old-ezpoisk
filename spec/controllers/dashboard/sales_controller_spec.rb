@@ -3,19 +3,6 @@ require "rails_helper"
 describe Dashboard::SalesController do
   before { sign_in(@user = create(:user)) }
 
-  describe "GET #index" do
-    it "renders the index template and return user's sales" do
-      2.times { create :sale, user: @user }
-      create :sale # different user
-
-      get :index
-      sales = assigns(:sales)
-
-      expect(response).to render_template(:index)
-      expect(sales.size).to eq 2
-    end
-  end
-
   describe "GET #new" do
     it "renders the new template and assigns @sale" do
       get :new
@@ -79,7 +66,7 @@ describe Dashboard::SalesController do
 
       delete :destroy, id: sale.id
 
-      expect(response).to redirect_to(dashboard_sales_path)
+      expect(response).to redirect_to(dashboard_path)
       expect(Sale.count).to be 0
     end
   end

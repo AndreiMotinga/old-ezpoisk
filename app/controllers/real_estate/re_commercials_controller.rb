@@ -1,14 +1,16 @@
 class RealEstate::ReCommercialsController < ApplicationController
   def index
-    re_commercials  = ReCommercial.includes(:city, :state)
-                      .filter(params.slice(:state_id,
-                                           :city_id,
-                                           :geo_scope,
-                                           :post_type,
-                                           :space,
-                                           :min_price,
-                                           :max_price,
-                                           :sorted))
+    re_commercials  = ReCommercial.filter(params.slice(:state_id,
+                                                       :city_id,
+                                                       :geo_scope,
+                                                       :post_type,
+                                                       :space,
+                                                       :min_price,
+                                                       :max_price,
+                                                       :sorted))
+    if params[:sorted].blank?
+      re_commercials = re_commercials.order("created_at desc")
+    end
     @re_commercials = re_commercials.page(params[:page])
   end
 

@@ -2,32 +2,31 @@
 = desc("eZpoisk - Объявления о продаже, покупке и аренде квартир без посредников в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
+= render 'real_estate/re_privates/search_modal'
 
-.col-md-8.col-xs-12
-  .row
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @re_privates.total_count
+    .col-xs-6
+      = render 'real_estate/re_privates/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     %h4.pull-right
       %a= "Всего #{@re_privates.total_count}"
-    = render 'real_estate/re_privates/search_modal'
+    = render 'real_estate/re_privates/search_modal_trigger'
+  / /total
   .row
-    %hr/
-    - @re_privates.each do |re_private|
-      = render 'dashboard/re_privates/re_private', record: re_private
+    .col-xs-12
+      - @re_privates.each do |re_private|
+        = render 'dashboard/re_privates/re_private', record: re_private
 
-  = render "shared/pagination", records: @re_privates
-  = link_to 'Новое обьявление', new_dashboard_re_private_path, class: "btn btn-success"
-  %br/
-
-  .row
-    .col-md-12
-      %h5
-        Частная недвижимость в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
-      %p
-        Поиск недвижимости порой бывает достаточно трудной задачей,
-        отнимающей много времени и сил.
-      %p
-        %strong
-          eZpoisk
-        старается облегчить эту задачу, активно улучшая фильтры и способы поиска.
-        Если у вас есть идеи о том, как улучшить этот проект, пожалуйста, пишите нам.
-        Мы надеемся, что вместе мы сможем сделать качественный и полезный для нас
-        всех инструмент.
+    .col-xs-12
+      = render "shared/pagination", records: @re_privates

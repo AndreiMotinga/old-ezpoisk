@@ -2,10 +2,6 @@ class Dashboard::RePrivatesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
-  def index
-    @re_privates = current_user.re_privates.page params[:page]
-  end
-
   def new
     @re_private = RePrivate.new state_id: current_user.state_id,
                                 city_id: current_user.city_id,
@@ -45,7 +41,7 @@ class Dashboard::RePrivatesController < ApplicationController
 
   def destroy
     @re_private.destroy if @re_private.user == current_user
-    redirect_to dashboard_re_privates_path,
+    redirect_to dashboard_path,
                 notice: I18n.t(:post_removed)
   end
 

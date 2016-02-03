@@ -2,10 +2,6 @@ class Dashboard::JobAgenciesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_job_agency, only: [:edit, :update, :destroy]
 
-  def index
-    @job_agencies = current_user.job_agencies.page params[:page]
-  end
-
   def new
     @job_agency = JobAgency.new state_id: current_user.state_id,
                                 city_id: current_user.city_id,
@@ -46,8 +42,7 @@ class Dashboard::JobAgenciesController < ApplicationController
 
   def destroy
     @job_agency.destroy
-    redirect_to dashboard_job_agencies_url,
-                notice: I18n.t(:post_removed)
+    redirect_to dashboard_path, notice: I18n.t(:post_removed)
   end
 
   private

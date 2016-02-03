@@ -1,27 +1,38 @@
-.col-lg-12.col-md-12.col-sm-12.post-item
-  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
-    = image_tag record.logo_url(:medium),
-                alt: record.logo_url(:medium),
-                class: "img-responsive"
-
-  .col-lg-8.col-md-8.col-sm-8
-    /line 1
-    %h3= link_to record.street, real_estate_re_commercial_path(record)
-
-    / line 2
-    %strong= "$ #{record.price}"
-    %span= record.post_type
-    %span.pull-right= "#{record.city.name}, #{record.state.name}"
+.row.post-item
+  .col-xs-4.col-sm-4.logo-js
+    = link_to link_from_controller(record) do
+      = image_tag record.logo_url(:medium),
+                  alt: record.logo_url(:medium),
+                  class: "img-responsive"
+  .col-xs-8.col-sm-8
+    / line 1
+    .hidden-xs
+      %h3= link_to record.title, link_from_controller(record)
+    .visible-xs
+      %h5= link_to record.title, link_from_controller(record)
     %hr.post-devider/
 
     / line 2
-    %span= record.category
-    = "/ #{record.space }ft." unless record.space.blank?
-    %hr.post-devider/
+    .hidden-xs
+      %strong= "$ #{record.price}"
+      %span= record.post_type
+      %hr.post-devider/
+    .visible-xs
+      %strong= "$ #{record.price}"
+      %span= record.post_type
+      %hr.post-devider/
+
+
+    / line 2
+    .hidden-xs
+      %span= record.category
+      = "/ #{record.space }ft." unless record.space.blank?
+      %hr.post-devider/
 
     / line 3
     %span.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 4
-    %span= time_ago_in_words record.created_at
+    .hidden-xs
+      %span= time_ago_in_words record.created_at

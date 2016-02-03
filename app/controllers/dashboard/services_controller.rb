@@ -2,10 +2,6 @@ class Dashboard::ServicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_service, only: [:edit, :update, :destroy]
 
-  def index
-    @services = current_user.services.page params[:page]
-  end
-
   def new
     @service = Service.new state_id: current_user.state_id,
                            city_id: current_user.city_id,
@@ -46,8 +42,7 @@ class Dashboard::ServicesController < ApplicationController
 
   def destroy
     @service.destroy
-    redirect_to dashboard_services_url,
-                notice: I18n.t(:post_removed)
+    redirect_to dashboard_path, notice: I18n.t(:post_removed)
   end
 
   private

@@ -1,11 +1,16 @@
 #pictures-data{ "data-id" => "#{record.id}",
                 "data-type" => "#{record.class.to_s}" }
 
+.row
+  .col-xs-12.mobile-secondary
+    = link_to dashboard_path, class: "mobile-btn mobile-back-btn" do
+      %i.fa.fa-arrow-left
+      Назад
 = render template, record: record
 %br/
 
 .row
-  .col-lg-12
+  .col-xs-12
     / Nav tabs
     %ul.nav.nav-tabs{:role => "tablist"}
       %li.active{:role => "presentation"}
@@ -25,7 +30,7 @@
             "data-toggle" => "tab",
             :href => "#pictures",
             :role => "tab" }
-          Фотографии
+          Фото
     / Nav tabs
 
     %br/
@@ -38,14 +43,12 @@
 
       / description
       #description.tab-pane.fade{:role => "tabpanel"}
-        .col-lg-12
-          = render "dashboard/shared/description", record: record
+        = render "dashboard/shared/description", record: record
 
       / pictures
       #pictures.tab-pane.fade{:role => "tabpanel"}
-        .col-lg-12
-          - if record.class.method_defined?(:pictures)
-            = render "dashboard/shared/pictures", record: record
-          - else
-            = render "dashboard/shared/logo", record: record
+        - if record.class.method_defined?(:pictures)
+          = render "dashboard/shared/pictures", record: record
+        - else
+          = render "dashboard/shared/logo", record: record
     / Tab panes

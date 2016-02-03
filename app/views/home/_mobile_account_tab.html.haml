@@ -1,0 +1,20 @@
+- if current_user
+  %ul.list-group
+    = link_to dashboard_path do
+      %li.list-group-item.mobile-link Мои обьявления
+    = link_to edit_user_registration_path do
+      %li.list-group-item.mobile-link Личные данные
+- else
+  = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
+    = f.text_field :email
+    = f.password_field :password, label: "Пароль"
+    = f.check_box :remember_me, label: "Запомнить меня"
+    = f.submit 'Войти', class: "btn btn-block mobile-btn"
+    %br/
+    %hr/
+    = link_to "Регистрация", new_registration_path(:user), class: "mobile-link"
+    %br/
+    = link_to "Забыли пароль?", new_password_path(:user), class: "mobile-link"
+    %br/
+    = link_to "Не получили код разблокировки?", new_unlock_path(User), class: "mobile-link"
+

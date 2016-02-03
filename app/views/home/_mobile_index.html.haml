@@ -1,0 +1,38 @@
+.visible-xs
+  %div
+    / Nav tabs
+    %ul.nav.nav-tabs.mobile-nav-tabs.text-center{:role => "tablist"}
+      %li.active{:role => "presentation"}
+        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Обьявления
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Новости
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Аккаунт
+    / Tab panes
+    .tab-content
+      %br/
+      #home.tab-pane.active{:role => "tabpanel"}
+        %ul.list-group
+          = link_to real_estate_re_agencies_path, class: "mobile-link" do
+            %li.list-group-item Агентства Недвижимости
+          = link_to real_estate_re_privates_path, class: "mobile-link" do
+            %li.list-group-item Квартиры / Дома
+          = link_to real_estate_re_commercials_path, class: "mobile-link" do
+            %li.list-group-item Коммерческая Недвижимость
+          = link_to jobs_job_agencies_path, class: "mobile-link" do
+            %li.list-group-item Агентва по Трудоустройству
+          = link_to jobs_jobs_path, class: "mobile-link" do
+            %li.list-group-item Работа
+          = link_to services_path, class: "mobile-link" do
+            %li.list-group-item Услуги
+          = link_to sales_path, class: "mobile-link" do
+            %li.list-group-item Продается
+
+      #profile.tab-pane{:role => "tabpanel"}
+        %ul.list-group
+          - @homepage.news_posts(20).each do |p|
+            = link_to news_path(p) do
+              %li.list-group-item.mobile-link= p.title
+        = link_to 'Еще Новости', news_index_path(category: "Интересное"), class: "mobile-btn btn-block text-center"
+      #messages.tab-pane{:role => "tabpanel"}
+        = render 'home/mobile_account_tab'

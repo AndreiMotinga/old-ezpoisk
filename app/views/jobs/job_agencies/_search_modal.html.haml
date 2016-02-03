@@ -1,9 +1,5 @@
-/ Button trigger modal
-%a.btn.btn-primary{"data-target" => "#pirvateSearch", "data-toggle" => "modal", :role => "button"}
-  Настроить фильтр
-
 / Modal
-#pirvateSearch.modal.fade{ "aria-labelledby" => "myModalLabel",
+#jobAgenciesSearch.modal.fade{ "aria-labelledby" => "myModalLabel",
                            :role => "dialog",
                            :tabindex => "-1" }
   .modal-dialog{:role => "document"}
@@ -19,7 +15,10 @@
 
       / footer
       .modal-footer
-        = link_to "Сброс",
-          jobs_job_agencies_path,
-          class: "btn btn-danger pull-left"
-        = submit_tag "Поиск", name: nil, class: "btn btn-primary"
+        .row
+          .col-xs-6
+            = link_to "Сбросить",
+              jobs_job_agencies_path,
+              class: "btn btn-block mobile-btn"
+          .col-xs-6
+            = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"

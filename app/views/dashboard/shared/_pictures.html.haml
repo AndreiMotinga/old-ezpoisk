@@ -1,7 +1,12 @@
 .row
   / Button trigger modal
-  %button.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-    Загрузить фотографии
+  .hidden-xs
+    %button.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+      Загрузить фотографии
+
+  .visible-xs
+    %button.btn.mobile-btn{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+      Загрузить фотографии
 
   / Modal
   #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
@@ -22,7 +27,7 @@
 / Pictures
 %br/
 .row
-  .col-lg-8
+  .col-lg-8.col-xs-12
     %table.table
       %thead
         %tr

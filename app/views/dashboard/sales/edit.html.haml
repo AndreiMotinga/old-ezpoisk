@@ -1,7 +1,10 @@
-- content_for :secondary_navbar do
-  = render 'dashboards/navbar'
-
 .col-md-8.col-xs-12
   = render "dashboard/shared/edit",
            record: @sale,
            template: 'dashboard/sales/sale'
+
+  = link_to 'Удалить',
+            dashboard_sale_path(@sale),
+            method: :delete,
+            data: { confirm: I18n.t(:confirm) },
+            class: "btn btn-block mobile-btn btn-danger"

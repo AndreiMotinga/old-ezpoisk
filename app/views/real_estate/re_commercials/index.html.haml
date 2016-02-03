@@ -2,31 +2,32 @@
 = desc("eZpoisk - Объявления о продаже и аренде коммерческой недвижимости - цены на офисы, склады и магазины в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
+= render 'real_estate/re_commercials/search_modal'
 
-.col-md-8.col-xs-12
-  .row
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @re_commercials.total_count
+    .col-xs-6
+      = render 'real_estate/re_commercials/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     %h4.pull-right
       %a= "Всего #{@re_commercials.total_count}"
-    = render 'real_estate/re_commercials/search_modal'
-  .row
-    %hr/
-    - @re_commercials.each do |record|
-      = render 'dashboard/re_commercials/re_commercial', record: record
-
-  = render "shared/pagination", records: @re_commercials
-  = link_to 'Новое обьявление', new_dashboard_re_commercial_path, class: "btn btn-success"
-  %br/
+    = render 'real_estate/re_commercials/search_modal_trigger'
+  / /total
 
   .row
-    .col-md-12
-      %h5
-        Коммерческая недвижимость в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
-      %p
-        Вряд ли в поисках
-        %strong
-          коммерческой недвижимости в Нью Йорке
-        или в каком-либо другом городе вы обойдетесь без помощи профессионалов
-        в лице риэлтора, однако всегда полезно быть в курсе нынешнего состояния
-        дел на рынке недвижимости. Здесь вы всегда сможете следить за
-        актуальными предложениями и выбрать подходящий под ваши
-        уникальные требования вариант.
+    .col-xs-12
+      - @re_commercials.each do |record|
+        = render 'dashboard/re_commercials/re_commercial', record: record
+
+    .col-xs-12
+      = render "shared/pagination", records: @re_commercials

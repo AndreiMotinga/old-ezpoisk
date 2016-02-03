@@ -1,4 +1,5 @@
 class RePrivate < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   acts_as_mappable
   include Filterable
   include ViewHelpers
@@ -28,5 +29,17 @@ class RePrivate < ActiveRecord::Base
 
   def block
     "Недвижимость"
+  end
+
+  def edit_link
+    edit_dashboard_re_private_path(self)
+  end
+
+  def delete_link
+    dashboard_re_private_path(self)
+  end
+
+  def logo_url(style = :medium)
+    logo.present? ? logo.image.url(style) : "missing.png"
   end
 end

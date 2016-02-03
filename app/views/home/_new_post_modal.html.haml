@@ -1,9 +1,3 @@
-/ Button trigger modal
-%button.btn.btn-block.btn-success{ "data-target" => "#new",
-                         "data-toggle" => "modal",
-                         :role => "button" }
-  = t(:new_post)
-
 / Modal
 #new.modal.fade{"aria-labelledby" => "myModalLabel",
                 :role => "dialog",
@@ -58,7 +52,7 @@
       / .modal-body
 
       .modal-footer
-        %button.btn.btn-primary{"aria-label" => "Close",
+        %button.btn.btn-block.mobile-btn{"aria-label" => "Close",
                                 "data-dismiss" => "modal",
                                 :type => "button"}
           = t(:close)

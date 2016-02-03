@@ -9,8 +9,7 @@ class Post < ActiveRecord::Base
 
   has_attached_file :image,
                     styles: { small: "165x120#", medium: "600x337#"},
-                    :s3_protocol => :https,
-                    default_url: "missing.png"
+                    :s3_protocol => :https
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   scope :desc, -> { order("created_at desc") }
@@ -23,10 +22,10 @@ class Post < ActiveRecord::Base
   end
 
   def self.by_subcategory(subcategory)
-   where("LOWER(subcategory) LIKE ?", "%#{subcategory.mb_chars.downcase}%")
+    where("LOWER(subcategory) LIKE ?", "%#{subcategory.mb_chars.downcase}%")
   end
 
   def logo_url(style = :medium)
-    image.url(style).present? ? image.url(style) : logo
+    image.url(style)
   end
 end

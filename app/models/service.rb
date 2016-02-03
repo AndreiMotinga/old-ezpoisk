@@ -1,4 +1,5 @@
 class Service < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   acts_as_mappable
   include Filterable
   include ViewHelpers
@@ -17,7 +18,7 @@ class Service < ActiveRecord::Base
   belongs_to :user
 
   has_attached_file :logo,
-                    styles: { medium: "300x150>" },
+                    styles: { medium: "300x170>" },
                     :s3_protocol => :https,
                     default_url: "missing.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
@@ -29,5 +30,17 @@ class Service < ActiveRecord::Base
 
   def block
     "Услуги"
+  end
+
+  def edit_link
+    edit_dashboard_service_path(self)
+  end
+
+  def delete_link
+    dashboard_service_path(self)
+  end
+
+  def logo_url(style = :medium)
+    logo.url(style)
   end
 end

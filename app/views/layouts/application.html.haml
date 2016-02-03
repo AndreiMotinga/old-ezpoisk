@@ -14,20 +14,21 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+    / MODALS & services
+    = render "home/new_post_modal"
     = render "shared/feedback_modal"
     = render "shared/google_analytics"
-    #wrap
-      = render 'shared/navbar'
-      .hidden-xs
-        = yield :top_partner if content_for?(:top_partner)
-        %br/
+    / /MODALS & services
+    .hidden-xs= yield :top_partner if content_for?(:top_partner)
+    .hidden-xs= render 'shared/navbar'
+    .visible-xs= render 'shared/mobile_navbar'
+    .notice= render 'shared/notice'
 
-      = render 'shared/notice'
+    / CONTENT
+    .container
+      .row.hidden-xs= yield :secondary_navbar if content_for?(:secondary_navbar)
+      = yield
+    / CONTENT
 
-      .container
-        .row
-          = yield :secondary_navbar if content_for?(:secondary_navbar)
-        .row
-          .container
-            = yield
-      = render 'shared/footer'
+    .hidden-xs= render 'shared/footer'
+    .visible-xs= render 'shared/mobile_footer'

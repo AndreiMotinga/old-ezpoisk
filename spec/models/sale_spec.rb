@@ -21,9 +21,10 @@ describe Sale do
       city = create :city, :brooklyn
       sale = create :sale,
                     state: state,
-                    city: city
+                    city: city,
+                    zip: 123
 
-      expect(sale.address).to eq "Brooklyn Alabama"
+      expect(sale.address).to eq "Brooklyn Alabama, 123"
     end
   end
 end

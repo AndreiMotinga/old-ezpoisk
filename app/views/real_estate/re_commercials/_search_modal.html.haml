@@ -1,7 +1,3 @@
-/ Button trigger modal
-%a.btn.btn-primary{"data-target" => "#commercialSearch", "data-toggle" => "modal", :role => "button"}
-  Настроить фильтр
-
 / Modal
 #commercialSearch.modal.fade{ "aria-labelledby" => "myModalLabel",
                            :role => "dialog",
@@ -19,7 +15,10 @@
 
       / footer
       .modal-footer
-        = link_to "Сброс",
-          real_estate_re_commercials_path,
-          class: "btn btn-danger pull-left"
-        = submit_tag "Поиск", name: nil, class: "btn btn-primary"
+        .row
+          .col-xs-6
+            = link_to "Сбросить",
+              real_estate_re_commercials_path,
+              class: "btn btn-block mobile-btn"
+          .col-xs-6
+            = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"

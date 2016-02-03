@@ -1,4 +1,5 @@
 class Sale < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   acts_as_mappable
   include Filterable
   include ViewHelpers
@@ -15,15 +16,23 @@ class Sale < ActiveRecord::Base
   belongs_to :user
   has_many :pictures, as: :imageable, dependent: :destroy
 
-  def address
-    "#{city.name} #{state.name}"
-  end
-
   def link
     "/sales/#{id}"
   end
 
   def block
     "Продается"
+  end
+
+  def edit_link
+    edit_dashboard_sale_path(self)
+  end
+
+  def delete_link
+    dashboard_sale_path(self)
+  end
+
+  def logo_url(style = :medium)
+    logo.present? ? logo.image.url(style) : "missing.png"
   end
 end

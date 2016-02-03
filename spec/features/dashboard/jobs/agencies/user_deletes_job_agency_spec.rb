@@ -3,9 +3,9 @@ require "rails_helper"
 feature "user deletes job_agency" do
   scenario "successfully", js: true do
     user = create_and_login_user
-    create :job_agency, user: user
+    job_a = create :job_agency, user: user
 
-    visit dashboard_job_agencies_path
+    visit edit_dashboard_job_agency_path(job_a)
     click_on "Удалить"
     page.driver.browser.accept_js_confirms
 

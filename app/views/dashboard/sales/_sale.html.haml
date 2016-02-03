@@ -1,22 +1,26 @@
-.col-lg-12.col-md-12.col-sm-12.col-xs-12.post-item
-  #logo.col-lg-4.col-md-4.col-sm-4.hidden-xs
-    = image_tag record.logo_url(:medium),
-                alt: record.logo_url(:medium),
-                class: "img-responsive"
-
-  .col-lg-8.col-md-8.col-sm-8.col-xs-12
+.row.post-item
+  .col-xs-4.col-sm-4.logo-js
+    = link_to link_from_controller(record) do
+      = image_tag record.logo_url(:medium),
+                  alt: record.logo_url(:medium),
+                  class: "img-responsive"
+  .col-xs-8.col-sm-8
     / line 1
-    %h3= link_to record.title, sale_path(record)
-
-    / line 2
-    %span= "#{record.city.name}, #{record.state.name}"
+    .hidden-xs
+      %h3= link_to record.title, link_from_controller(record)
+    .visible-xs
+      %h5= link_to record.title, link_from_controller(record)
     %hr.post-devider/
 
+    /line 2
+    - if record.price.present?
+      %strong $ #{record.price}
+      %hr.post-devider/
+
     / line 3
-    %strong= record.category
-    %span.pull-right.glyphicon.glyphicon-phone= record.phone
+    %span.glyphicon.glyphicon-phone= record.phone
     %hr.post-devider/
 
     / line 4
-    %span= record.email unless record.email.blank?
-    %span.pull-right= time_ago_in_words record.created_at
+    .hidden-xs
+      %span= time_ago_in_words record.created_at

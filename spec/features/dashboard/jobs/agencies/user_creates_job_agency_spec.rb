@@ -20,7 +20,6 @@ feature "user creates job_agency" do
     click_on "Сохранить"
 
     expect(page).to have_content job_agency.title
-    expect(page).to have_content job_agency.street
     expect(page).to have_content job_agency.phone
     expect(page).to have_content job_agency.site
 

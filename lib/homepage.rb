@@ -12,7 +12,7 @@ class Homepage
   end
 
   def forum_posts(num)
-    Forem::Post.order("created_at desc").limit(num)
+    Forem::Post.includes(topic: :forum).order("created_at desc").limit(num)
   end
 
   def users_posts(num)

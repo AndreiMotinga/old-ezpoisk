@@ -4,7 +4,8 @@ module FormHelper
   end
 
   def state_id
-    params[:state_id] || current_user.try(:state_id) || 32
+    # params[:state_id] || current_user.try(:state_id) || 32
+    params[:state_id]
   end
 
   def city_select_with_param
@@ -12,7 +13,8 @@ module FormHelper
   end
 
   def city_id
-    params[:city_id] || current_user.try(:city_id) || 18_031
+    # params[:city_id] || current_user.try(:city_id) || 18_031
+    params[:city_id]
   end
 
   def state_cities
@@ -36,8 +38,10 @@ module FormHelper
   end
 
   def service_subcategories_options
-    options_for_select(SERVICE_CATEGORIES[params[:category].to_sym],
-                       params[:subcategory])
+    if params[:category].present?
+      options_for_select(SERVICE_CATEGORIES[params[:category].to_sym],
+                         params[:subcategory])
+    end
   end
 
   def origin

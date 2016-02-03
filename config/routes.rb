@@ -9,15 +9,15 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
   namespace :dashboard do
-    resources :re_agencies, except: :show
-    resources :re_privates, except: :show
-    resources :re_commercials, except: :show
+    resources :re_agencies, only: [:new, :create, :edit, :update, :destroy]
+    resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
+    resources :re_commercials, only: [:new, :create, :edit, :update, :destroy]
 
-    resources :job_agencies, except: :show
-    resources :jobs, except: :show
+    resources :job_agencies, only: [:new, :create, :edit, :update, :destroy]
+    resources :jobs, only: [:new, :create, :edit, :update, :destroy]
 
-    resources :sales, except: :show
-    resources :services, except: :show
+    resources :sales, only: [:new, :create, :edit, :update, :destroy]
+    resources :services, only: [:new, :create, :edit, :update, :destroy]
 
     resources :summernote, only: [:create]
     resources :pictures, only: [:index, :create, :update, :destroy]

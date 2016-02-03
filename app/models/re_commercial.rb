@@ -1,4 +1,5 @@
 class ReCommercial < ActiveRecord::Base
+  include Rails.application.routes.url_helpers
   acts_as_mappable
   include Filterable
   include ViewHelpers
@@ -15,4 +16,24 @@ class ReCommercial < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   has_many :pictures, as: :imageable, dependent: :destroy
+
+  def title
+    street
+  end
+
+  def edit_link
+    edit_dashboard_re_commercial_path(self)
+  end
+
+  def delete_link
+    dashboard_re_commercial_path(self)
+  end
+
+  def block
+    "Недвижимость"
+  end
+
+  def logo_url(style = :medium)
+    logo.present? ? logo.image.url(style) : "missing.png"
+  end
 end

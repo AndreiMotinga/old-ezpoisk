@@ -2,17 +2,20 @@
 -content_for :secondary_navbar do
   = render 'news/navbar'
 
-/ Main
-.col-md-8.col-xs-12
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-12
+      = link_to '<', :back, class: "mobile-btn mobile-back-btn"
+
+.col-md-8
   .row
-    .col-md-12.white-block
-      %h3.post-show-title= @post.title
-      - if !@post.logo_url.blank?
-        .col-md-5
-          = image_tag @post.logo_url, class: "img-responsive"
-          %br/
+    .col-xs-12.white-block
+      %h4.post-show-title= @post.title
+      - if @post.image.present?
+        .col-xs-12.col-md-5= image_tag @post.logo_url, class: "img-responsive center-block"
+        %br/
       %p= sanitize @post.text
-      - if !@post.link.blank?
+      - if @post.link.present?
         %span.pull-right
           = link_to "Источник", "http://#{@post.link}", target: "blank", :rel => 'nofollow'
       %br/
@@ -24,11 +27,10 @@
 
   %br/
   .row
-    .col-sm-12.comments
+    .col-xs-12.comments
       = bootstrap_form_for(Comment.new) do |f|
         = hidden_field_tag :post_id, @post.id
         = f.text_area :body, label: "Оставьте свой комментарий", rows: 3
-        = f.submit "Добавить", class: "btn btn-primary"
+        = f.submit " + Добавить Комментарий", class: "btn mobile-btn"
       %br/
       = render @post.comments.includes(:user)
-    / Main

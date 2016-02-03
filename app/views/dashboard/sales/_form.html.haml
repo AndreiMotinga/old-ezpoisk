@@ -1,6 +1,8 @@
 = bootstrap_form_for([:dashboard, @sale]) do |f|
   .field
     = f.text_field :title, label: '* Заголовок'
+  .field
+    = f.text_field :price, label: 'Цена'
 
   .field
     = f.select :category,
@@ -26,12 +28,11 @@
     - if @sale.new_record? && !Rails.env.test?
       = recaptcha_tags
   %br/
-
-  .actions
-    = f.submit "Сохранить",
-               class: "btn btn-primary",
-               id: 'details-save-btn'
-
+  .hidden-xs
+    .actions
+      = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
+  .visible-xs
+    .actions
+      = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
   %br/
-  %hr/
   = render "dashboard/shared/active_message"

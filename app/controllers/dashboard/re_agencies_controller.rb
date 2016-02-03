@@ -2,10 +2,6 @@ class Dashboard::ReAgenciesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_re_agency, only: [:edit, :update, :destroy]
 
-  def index
-    @re_agencies = current_user.re_agencies.page params[:page]
-  end
-
   def new
     @re_agency = ReAgency.new state_id: current_user.state_id,
                               city_id: current_user.city_id,
@@ -46,7 +42,7 @@ class Dashboard::ReAgenciesController < ApplicationController
 
   def destroy
     @re_agency.destroy if @re_agency.user == current_user
-    redirect_to dashboard_re_agencies_url,
+    redirect_to dashboard_path,
                 notice: I18n.t(:post_removed)
   end
 

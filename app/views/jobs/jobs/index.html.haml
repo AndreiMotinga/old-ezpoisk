@@ -2,22 +2,32 @@
 = desc("eZpoisk - Объявления о приеме на работу в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
 - content_for :secondary_navbar do
   = render "jobs/navbar"
+= render 'jobs/jobs/search_modal'
 
-.col-md-8.col-xs-12
-  .row
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @jobs.total_count
+    .col-xs-6
+      = render 'jobs/jobs/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
     %h4.pull-right
       %a= "Всего #{@jobs.total_count}"
-    = render 'jobs/jobs/search_modal'
-  .row
-    %hr/
-    - @jobs.each do |job|
-      = render 'dashboard/jobs/job', record: job
-
-  = render "shared/pagination", records: @jobs
-  = link_to 'Новое обьявление', new_dashboard_job_path, class: "btn btn-success"
-  %br/
+    = render 'jobs/jobs/search_modal_trigger'
+  / /total
 
   .row
-    .col-md-12
-      %h5
-        Частные объявления о работе в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др. городах.
+    .col-xs-12
+      - @jobs.each do |job|
+        = render 'dashboard/jobs/job', record: job
+
+    .col-xs-12
+      = render "shared/pagination", records: @jobs
