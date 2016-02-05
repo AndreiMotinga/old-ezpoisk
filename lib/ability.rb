@@ -9,9 +9,7 @@ class Ability
       can :manage, second_level_models
 
       if user.role? :superadmin # Andrei
-        can :manage, second_level_models
-        can :create, :all
-        can :update, :all
+        can :manage, :all
       end
     end
 

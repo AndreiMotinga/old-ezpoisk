@@ -17,6 +17,7 @@ foo
 tags
 
 **/*/.DS_Store
+ngrok
 
 # Ignore application configuration
 /config/application.yml
