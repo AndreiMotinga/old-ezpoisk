@@ -6,7 +6,7 @@
       %button.btn.btn-primary Назад
   .row
     .col-md-8
-      %h4.text-center Новое обьявление в раздел "Агентства недвижимости"
+      %h4.text-center Новое объявление в раздел "#{title}"
       = render "form"
 / /DESKTOP
 
@@ -16,7 +16,7 @@
     .col-xs-3
       = link_to '<', :back, class: "mobile-btn mobile-back-btn"
     .col-xs-9
-      %h6.mobile-category Новое обьявление в раздел "#{title}"
+      %h6.mobile-category Новое объявление в раздел "#{title}"
   .row
     .col-xs-12
       = render "form"

@@ -3,7 +3,7 @@
     / Nav tabs
     %ul.nav.nav-tabs.mobile-nav-tabs.text-center{:role => "tablist"}
       %li.active{:role => "presentation"}
-        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Обьявления
+        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Объявления
       %li{:role => "presentation"}
         %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Новости
       %li{:role => "presentation"}
@@ -14,13 +14,13 @@
       #home.tab-pane.active{:role => "tabpanel"}
         %ul.list-group
           = link_to real_estate_re_agencies_path, class: "mobile-link" do
-            %li.list-group-item Агентства Недвижимости
+            %li.list-group-item Агентства недвижимости
           = link_to real_estate_re_privates_path, class: "mobile-link" do
             %li.list-group-item Квартиры / Дома
           = link_to real_estate_re_commercials_path, class: "mobile-link" do
-            %li.list-group-item Коммерческая Недвижимость
+            %li.list-group-item Коммерческая недвижимость
           = link_to jobs_job_agencies_path, class: "mobile-link" do
-            %li.list-group-item Агентва по Трудоустройству
+            %li.list-group-item Агентства по трудоустройству
           = link_to jobs_jobs_path, class: "mobile-link" do
             %li.list-group-item Работа
           = link_to services_path, class: "mobile-link" do
