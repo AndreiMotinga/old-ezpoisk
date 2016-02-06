@@ -14,15 +14,11 @@ body {
     padding: 8px;
   }
   li {
-    padding: 8px;
+    padding: 2px;
   }
   a:hover {
     background-color: $grey1;
   }
-}
-
-.upcase {
-  text-transform: uppercase;
 }
 
 a.active {

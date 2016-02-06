@@ -11,7 +11,7 @@ feature "User create re_private" do
     fill_in "Улица", with: re_private.street
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    select("Аренда", from: "Тип обьявления")
+    select("Аренда", from: "Тип объявления")
     select("помесячно", from: "Квартира сдается")
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price

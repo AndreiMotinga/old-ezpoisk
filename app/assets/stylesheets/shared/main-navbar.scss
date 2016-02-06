@@ -1,15 +1,16 @@
+.navbar-main {
+  margin-bottom: 0px;
+  background-color: white;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+}
+
 .navbar-main .navbar-brand {
   float: left;
   font-size: 25px;
   font-family: "Lucida Grande", Times, serif;
   font-weight: 900;
-}
-
-.navbar-main {
-  background-color: white;
-  -webkit-box-shadow: 0 8px 6px -6px #999;
-  -moz-box-shadow: 0 8px 6px -6px #999;
-  box-shadow: 0 8px 6px -6px #999;
 }
 
 #brand-image {

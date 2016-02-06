@@ -12,7 +12,7 @@ feature "User updates re_commercial" do
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
     fill_in "Площадь", with: attrs.space
-    select(attrs.post_type, from: "Тип обьявления")
+    select(attrs.post_type, from: "Тип объявления")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     select(attrs.category, from: "Категория")

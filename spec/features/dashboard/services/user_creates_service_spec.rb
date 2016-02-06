@@ -12,7 +12,7 @@ feature "user creates service" do
     fill_in "Телефон", with: service.phone
     fill_in "Email", with: service.email
     fill_in "Сайт", with: service.site
-    fill_in "Подпись", with: service.slug
+    fill_in "Краткое описание", with: service.slug
     select(service.category, from: "Раздел")
     select(service.subcategory, from: "Категория")
     select("Alabama", from: "Штат")

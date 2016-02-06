@@ -19,8 +19,8 @@
     = render "shared/feedback_modal"
     = render "shared/google_analytics"
     / /MODALS & services
-    .hidden-xs= yield :top_partner if content_for?(:top_partner)
     .hidden-xs= render 'shared/navbar'
+    .hidden-xs= yield :top_partner if content_for?(:top_partner)
     .visible-xs= render 'shared/mobile_navbar'
     .notice= render 'shared/notice'
 

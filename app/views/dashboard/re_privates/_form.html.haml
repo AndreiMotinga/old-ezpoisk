@@ -12,7 +12,7 @@
     = f.select :post_type,
                 RE_TYPES,
                 include_blank: true,
-                label: '* Тип обьявления'
+                label: '* Тип объявления'
   .field
     = f.select :duration,
                RE_DURATION,
@@ -23,7 +23,7 @@
   .field
     = f.text_field :baths, label: 'Ванные'
   .field
-    = f.text_field :space, label: 'Площадь ft2'
+    = f.text_field :space, label: "Площадь (sq. feet)"
   .field
     = f.text_field :rooms, label: '* Комнат'
 

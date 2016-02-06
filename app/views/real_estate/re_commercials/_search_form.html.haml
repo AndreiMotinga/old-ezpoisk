@@ -40,7 +40,7 @@
     = sort_select
 
 .form-group
-  = label_tag "Тип обьявления", nil,  class: "col-sm-5 control-label"
+  = label_tag "Тип объявления", nil,  class: "col-sm-5 control-label"
   .col-sm-5
     = select_tag :post_type,
                  options_for_select(RE_TYPES, params[:post_type]),

@@ -11,7 +11,7 @@ feature "user creates job" do
     fill_in "Заголовок", with: job.title
     fill_in "Телефон", with: job.phone
     fill_in "Email", with: job.email
-    select(job.post_type, from: "Тип обьявлния")
+    select(job.post_type, from: "Тип объявлния")
     select(job.category, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
