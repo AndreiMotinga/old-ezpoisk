@@ -7,10 +7,17 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, dependent: :destroy
 
+  attr_reader :image_remote_url
   has_attached_file :image,
                     styles: { small: "165x120#", medium: "600x337#"},
                     :s3_protocol => :https
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  def image_remote_url=(url_value)
+    if url_value.present?
+      self.image = URI.parse(url_value)
+      @image_remote_url = url_value
+    end
+  end
 
   scope :desc, -> { order("created_at desc") }
   scope :for_homepage, -> { where(show_on_homepage: true) }

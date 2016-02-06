@@ -31,16 +31,11 @@ class NewsController < ApplicationController
   private
 
   def post_params
-    return if should_include_image
     params.require(:post).permit(:title, :text, :logo, :category,
-                                 :main, :show_on_homepage, :image)
+                                 :main, :show_on_homepage, :image_remote_url)
   end
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def should_include_image
-    params[:post][:main] == "1" && !params[:post][:image]
   end
 end
