@@ -30,11 +30,6 @@ class User < ActiveRecord::Base
     default_url: "missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  # forem helpers
-  def forem_name
-    name
-  end
-
   def role?(val)
     role.to_sym == val
   end

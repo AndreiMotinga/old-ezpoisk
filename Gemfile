@@ -46,9 +46,6 @@ gem "bootstrap-wysihtml5-rails"
 gem "rails_12factor", group: :production
 gem "puma"
 
-gem "forem", github: "radar/forem", branch: "rails4"
-gem "forem-bootstrap", github: "radar/forem-bootstrap"
-
 gem "sitemap_generator"
 gem "slack-notifier"
 

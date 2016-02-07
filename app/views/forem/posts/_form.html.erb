@@ -1,8 +1,0 @@
-<div class="form-group">
-<%= f.input :text, :input_html => { :class => "form-control", id: "text", rows: 6 } %>
-</div>
-
-
-<% if params[:reply_to_id] %>
-  <%= f.hidden_field :reply_to_id, :value => params[:reply_to_id] %>
-<% end %>

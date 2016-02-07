@@ -29,10 +29,22 @@
 
   .field
     = f.text_field :phone, label: '* Телефон'
+
   .field
-    = f.check_box :active, label: 'Активно? *'
+    .checkbox
+      %label{:for => "re_private_active"}
+        %input{:name => "re_private[active]", :type => "hidden", :value => "0"}
+          %input#re_private_active{:checked => "checked", :name => "re_private[active]", :type => "checkbox", :value => "1"}
+            Активно
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+
   .field
-    = f.check_box :fee, label: 'Комиссия? *'
+    .checkbox
+      %label{:for => "re_private_fee"}
+        %input{:name => "re_private[fee]", :type => "hidden", :value => "0"}
+          %input#re_private_fee{:name => "re_private[fee]", :type => "checkbox", :value => "1"} Комиссия
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :commission_tooltip) }
+
   .field
     - if @re_private.new_record? && !Rails.env.test?
       = recaptcha_tags
@@ -43,11 +55,3 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
-  %br/
-  = render "dashboard/shared/active_message"
-  %p
-    %strong
-      * Комиссия
-    Если это поле НЕ отмечено, значит сделка не предполагает допольнительных
-    платежей (т.е квартира сдается напрямую владельцем). В противном случае
-    квартира сдается через посредника и предполагает дополнительные платы

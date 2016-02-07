@@ -25,8 +25,15 @@
     = f.text_field :phone, label: '* Телефон'
   .field
     = f.text_field :space, label: 'Площадь'
+
   .field
-    = f.check_box :active, label: 'Активно? *'
+    .checkbox
+      %label{:for => "re_commercial_active"}
+        %input{:name => "re_commercial[active]", :type => "hidden", :value => "0"}
+          %input#re_commercial_active{:checked => "checked", :name => "re_commercial[active]", :type => "checkbox", :value => "1"}
+            Активно
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+
   .field
     / TODO: move Rails.env to tests
     - if @re_commercial.new_record? && !Rails.env.test?
@@ -38,5 +45,3 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
-  %br/
-  = render "dashboard/shared/active_message"

@@ -19,12 +19,6 @@ FactoryGirl.define do
 
     slug "All aboard"
 
-    # TODO: fix?
-    # logo_file_name "97ca280e9fff23110bc5fbab1ada1.jpg"
-    # logo_content_type "image/jpeg"
-    # logo_file_size 867_67
-    # logo_updated_at "Fri, 08 Jan 2016 18:02:01 UTC +00:00"
-
     association :user
     association :state
     association :city

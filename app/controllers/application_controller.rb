@@ -4,12 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :rand_cookie, only: [:index]
-
-  def forem_user
-    current_user
-  end
-  helper_method :forem_user
-
   private
 
   def get_record(model, id, path)

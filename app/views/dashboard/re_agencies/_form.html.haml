@@ -18,8 +18,15 @@
     = f.text_field :site, label: 'Сайт'
   .field
     = f.email_field :email
+
   .field
-    = f.check_box :active, label: 'Активно? *'
+    .checkbox
+      %label{:for => "re_agency_active"}
+        %input{:name => "re_agency[active]", :type => "hidden", :value => "0"}
+          %input#re_agency_active{:checked => "checked", :name => "re_agency[active]", :type => "checkbox", :value => "1"}
+            Активно
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+
   .field
     - if @re_agency.new_record? && !Rails.env.test?
       = recaptcha_tags
@@ -30,5 +37,3 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
-  %br/
-  = render "dashboard/shared/active_message"

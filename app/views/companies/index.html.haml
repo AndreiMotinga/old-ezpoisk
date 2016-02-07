@@ -1,0 +1,22 @@
+%h1 Listing companies
+
+= link_to 'New Company', new_company_path, class: "btn btn-success"
+%br/
+%br/
+
+.white-block
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Email
+        %th Name
+        %th Phone
+        -# %th
+
+    %tbody
+      - @companies.each do |company|
+        %tr
+          %td= link_to company.email, edit_company_path(company)
+          %td= company.name
+          %td= company.phone
+          -# %td= link_to 'Destroy', company, :method => :delete, :data => { :confirm => 'Are you sure?' }

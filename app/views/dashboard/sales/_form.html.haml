@@ -21,8 +21,14 @@
   .field
     = f.email_field :email
 
+  / TODO: refactor this and all simial
   .field
-    = f.check_box :active, label: 'Активно? *'
+    .checkbox
+      %label{:for => "sale_active"}
+        %input{:name => "sale[active]", :type => "hidden", :value => "0"}
+          %input#sale_active{:checked => "checked", :name => "sale[active]", :type => "checkbox", :value => "1"}
+            Активно
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
 
   .field
     - if @sale.new_record? && !Rails.env.test?

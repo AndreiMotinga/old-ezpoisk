@@ -11,10 +11,6 @@ class Homepage
     Post.main_posts.limit(num)
   end
 
-  def forum_posts(num)
-    Forem::Post.includes(topic: :forum).order("created_at desc").limit(num)
-  end
-
   def users_posts(num)
     LastUsersPosts.new.last_posts(num)
   end

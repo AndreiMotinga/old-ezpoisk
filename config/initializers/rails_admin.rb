@@ -28,15 +28,4 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model Forem::Post do
-    include_all_fields
-    edit do
-      field :text do
-        render do
-          bindings[:view].render partial: "text",
-            locals: { field: self, form: bindings[:form] }
-        end
-      end
-    end
-  end
 end

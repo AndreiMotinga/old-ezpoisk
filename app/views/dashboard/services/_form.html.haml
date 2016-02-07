@@ -41,7 +41,12 @@
     = f.email_field :email
 
   .field
-    = f.check_box :active, label: 'Активно? *'
+    .checkbox
+      %label{:for => "service_active"}
+        %input{:name => "service[active]", :type => "hidden", :value => "0"}
+          %input#service_active{:checked => "checked", :name => "service[active]", :type => "checkbox", :value => "1"}
+            Активно
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
 
   .field
     - if @service.new_record? && !Rails.env.test?
@@ -53,5 +58,3 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
-  %br/
-  = render "dashboard/shared/active_message"

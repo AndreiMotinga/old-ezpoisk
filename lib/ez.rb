@@ -1,5 +1,4 @@
 class Ez
-  # TODO / make it init
   def self.notifier
     Slack::Notifier.new ENV["SLACK_URL"]
   end

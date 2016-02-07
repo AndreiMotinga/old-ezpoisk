@@ -35,12 +35,6 @@ class Ability
   private
 
   def second_level_models
-    [
-      Forem::Category, Forem::Forum, Forem::Group, Forem::Membership,
-      Forem::ModeratorGroup, Forem::Post, Forem::Subscription,
-      Forem::Topic, Forem::View,
-      Post, Comment, Feedback
-    ]
+    [Post, Comment, Feedback]
   end
-
 end

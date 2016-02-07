@@ -8,15 +8,10 @@ class DataAggregator
     User.count
   end
 
-  def forum_posts_count
-    Forem::Post.count
-  end
-
   def message
     string = "Общая статистика сайта\n"
     string += "Всего пользователей: #{total_users}\n"
     string += "Всего объявлений: #{total_users_posts}\n"
-    string += "Всего постов на форуме: #{forum_posts_count}\n"
     string += "==============================================\n"
     string
   end

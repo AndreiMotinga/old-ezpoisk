@@ -26,7 +26,6 @@ Rails.application.routes.draw do
   resources :news, only: [:index, :show]
   resources :comments, only: [:create]
   resources :feedbacks, only: [:new, :create]
-  mount Forem::Engine, at: "/forums"
   resources :horoscopes, only: [:index]
   resources :sales, only: [:index, :show]
   resources :services, only: [:index, :show]
@@ -42,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, ->(u) { u.admin? } do
+    resources :companies
     mount Sidekiq::Web => "/sidekiq_monstro"
     resources :news, only: [:edit, :update]
     resource :admin, only: [:show], constraints: { subdomain: 'www' }
