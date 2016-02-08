@@ -18,15 +18,13 @@
     = render "shared/show/contacts", record: @re_commercial
   / right block
 
-.row
-  %hr.black-line/
+%hr.black-line/
 
 .row
   .col-xs-12.col-md-8
     = render "dashboard/re_commercials/re_commercial", record: @re_commercial
 
-.row
-  %hr.black-line/
+%hr.black-line/
 
 .row
   .hidden-xs.col-sm-12.col-md-8
@@ -42,6 +40,7 @@
       Площадь: #{@re_commercial.space}
     %li.list-group-item
       Подано: #{time_ago_in_words @re_commercial.created_at} назад
+
 %hr.black-line/
 
 - if @re_commercial.description.present?
