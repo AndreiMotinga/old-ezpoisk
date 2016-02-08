@@ -1,46 +1,47 @@
-.row.post-item
-  .col-xs-4.col-sm-4.logo-js
-    = link_to link_from_controller(record) do
-      = image_tag record.logo_url(:medium),
-                  alt: record.logo_url(:medium),
-                  class: "img-responsive"
-      - unless record.fee
-        .hidden-xs
-          %h4.capture Без комиссии
-        .visible-xs
-          .capture
-            %i.fa.fa-usd
+.col-xs-12
+  .row.post-item
+    .col-xs-4.col-sm-4.logo-js
+      = link_to link_from_controller(record) do
+        = image_tag record.logo_url(:medium),
+                    alt: record.logo_url(:medium),
+                    class: "img-responsive"
+        - unless record.fee
+          .hidden-xs
+            %h4.capture Без комиссии
+          .visible-xs
+            .capture
+              %i.fa.fa-usd
 
-  .col-xs-8.col-sm-8
-    / line 1
-    .hidden-xs
-      %h3= link_to record.title, link_from_controller(record)
-    .visible-xs
-      %h5= link_to record.title, link_from_controller(record)
-    %hr.post-devider/
-
-    / line 2
-    .hidden-xs
-      %span= record.post_type
-      %strong= "$#{record.price}"
-      = "/#{record.duration}"
-      %hr.post-devider/
-    .visible-xs
-      %span= record.post_type
-      %strong= "$#{record.price}"
+    .col-xs-8.col-sm-8
+      / line 1
+      .hidden-xs
+        %h3= link_to record.title, link_from_controller(record)
+      .visible-xs
+        %h5= link_to record.title, link_from_controller(record)
       %hr.post-devider/
 
-    / line 3
-    .hidden-xs
-      = "комнаты: #{record.rooms}"
-      = " | ванные: #{record.baths}" unless record.baths.blank?
-      = " | площадь:  #{record.space} ft" unless record.space.blank?
+      / line 2
+      .hidden-xs
+        %span= record.post_type
+        %strong= "$#{record.price}"
+        = "/#{record.duration}"
+        %hr.post-devider/
+      .visible-xs
+        %span= record.post_type
+        %strong= "$#{record.price}"
+        %hr.post-devider/
+
+      / line 3
+      .hidden-xs
+        = "комнаты: #{record.rooms}"
+        = " | ванные: #{record.baths}" unless record.baths.blank?
+        = " | площадь:  #{record.space} ft" unless record.space.blank?
+        %hr.post-devider/
+
+      / line 4
+      %span.glyphicon.glyphicon-phone= record.phone
       %hr.post-devider/
 
-    / line 4
-    %span.glyphicon.glyphicon-phone= record.phone
-    %hr.post-devider/
-
-    / line 5
-    .hidden-xs
-      %span= time_ago_in_words record.updated_at
+      / line 5
+      .hidden-xs
+        %span= time_ago_in_words record.updated_at

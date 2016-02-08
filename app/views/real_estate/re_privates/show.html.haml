@@ -4,7 +4,7 @@
   = render "real_estate/navbar"
 
 .row
-  .col-xs-12.col-md-7
+  .col-xs-12.col-md-7.white-block.padding-top-10
     %ul.pgwSlideshow
       - @re_private.pictures.each do |pic|
         %li
@@ -18,15 +18,13 @@
     = render "shared/show/contacts", record: @re_private
   / right block
 
-.row
-  %hr.black-line/
+%hr.black-line/
 
 .row
   .col-xs-12.col-md-8
     = render "dashboard/re_privates/re_private", record: @re_private
 
-.row
-  %hr.black-line/
+%hr.black-line/
 
 .row
   .hidden-xs.col-sm-12.col-md-8
@@ -48,6 +46,7 @@
       Площадь: #{@re_private.space}
     %li.list-group-item
       Подано: #{time_ago_in_words @re_private.created_at} назад
+
 %hr.black-line/
 
 - if @re_private.description.present?
