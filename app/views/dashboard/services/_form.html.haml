@@ -55,6 +55,7 @@
   .hidden-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
+      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
