@@ -1,5 +1,10 @@
 .contacts-list
   %li.list-group-item
+    - if record.try(:title).present?
+      Название:
+      %strong= record.title
+
+  %li.list-group-item
     автор:
     %strong= record.user.name
   - unless record.phone.blank?

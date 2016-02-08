@@ -25,8 +25,8 @@
   / /total
 
   .row
-    .col-xs-12
-      - @re_agencies.each do |re_agency|
+    - @re_agencies.each do |re_agency|
+      .col-xs-12
         = render 'dashboard/shared/company', record: re_agency
 
     .col-xs-12

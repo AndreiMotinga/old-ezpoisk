@@ -3,4 +3,26 @@
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
 
-= render "shared/show", record: @re_agency, template: 'dashboard/shared/company'
+.row
+  .col-xs-12.col-md-7
+    = render "dashboard/shared/company", record: @re_agency
+
+  .col-xs-12.col-md-5
+    .visible-xs
+      %hr.black-line/
+    = render "shared/show/contacts", record: @re_agency
+  / right block
+
+%hr.black-line/
+
+.row
+  .hidden-xs.col-sm-12.col-md-8
+    = render 'shared/show/map', record: @re_agency
+  .col-xs-12.col-md-4
+%hr.black-line/
+
+- if @re_agency.description.present?
+  .row
+    .hidden-xs.col-sm-12
+      .post-item-description.white-block
+        = sanitize @re_agency.description
