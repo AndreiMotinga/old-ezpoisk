@@ -20,7 +20,6 @@ feature "user creates job" do
     click_on "Сохранить"
 
     expect(page).to have_content job.title
-    expect(page).to have_content job.phone
 
     saved_job = Job.last
     expect(saved_job.active).to be true

@@ -4,7 +4,7 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
     name { Faker::Name.name }
-    phone { Faker::PhoneNumber.cell_phone }
+    phone '1234567890'
 
     association :state
     association :city

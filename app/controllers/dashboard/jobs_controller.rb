@@ -53,7 +53,7 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def job_params
-    params.require(:job).permit(:title,
+    prms = params.require(:job).permit(:title,
                                 :phone,
                                 :email,
                                 :description,
@@ -64,5 +64,7 @@ class Dashboard::JobsController < ApplicationController
                                 :logo,
                                 :category,
                                 :post_type)
+    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
+    prms
   end
 end

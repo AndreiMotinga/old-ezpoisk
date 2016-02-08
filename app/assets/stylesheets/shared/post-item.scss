@@ -17,12 +17,20 @@
   h5 {
     margin: 0px;
   }
+
+  .title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
 
 .logo-js {
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 0px;
+  img {
+    max-height: 150px;
+  }
 }
 .post-item-description {
   padding: 15px;

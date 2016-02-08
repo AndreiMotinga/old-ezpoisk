@@ -56,3 +56,11 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
+
+- unless @re_private.new_record?
+  %br/
+  = link_to 'Удалить',
+            dashboard_re_private_path(@re_private),
+            method: :delete,
+            data: { confirm: I18n.t(:confirm) },
+            class: "btn btn-block mobile-btn btn-danger"

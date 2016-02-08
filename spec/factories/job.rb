@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :job do
     title { Faker::Name.title }
-    phone { Faker::PhoneNumber.phone_number }
+    phone '1234567890'
     email { Faker::Internet.email }
     description { Faker::Lorem.paragraph(5) }
 

@@ -3,9 +3,9 @@
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
 
-.row
+.row.show
   .col-xs-12.col-md-7.white-block.padding-top-10
-    %ul.pgwSlideshow
+    %ul.pgwSlideshow.pictures
       - @re_private.pictures.each do |pic|
         %li
           = link_to pic.image.url do

@@ -18,7 +18,7 @@
   .col-sm-5
     = select_tag :state_id,
                  state_select_with_param,
-                 include_blank: true,
+                 multiple: true,
                  class: "form-control state-select"
 
 .form-group
@@ -26,7 +26,6 @@
   .col-sm-5
     = select_tag :city_id,
                  city_select_with_param,
-                 include_blank: true,
                  class: "form-control city-select"
 
 %hr/

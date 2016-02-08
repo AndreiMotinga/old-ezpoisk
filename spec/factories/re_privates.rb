@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :re_private do
     price { rand(2000) }
-    phone { Faker::PhoneNumber.cell_phone }
+    phone '1234567890'
     baths { Faker::Number.number(1).to_i }
     space { Faker::Number.number(4).to_i }
     active { [true, false].sample }

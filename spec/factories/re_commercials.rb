@@ -10,7 +10,7 @@ FactoryGirl.define do
     street { Faker::Address.street_name }
     post_type { RE_TYPES.sample }
     zip { Faker::Address.zip }
-    phone { Faker::PhoneNumber.cell_phone }
+    phone '1234567890'
 
     association :user
     association :state

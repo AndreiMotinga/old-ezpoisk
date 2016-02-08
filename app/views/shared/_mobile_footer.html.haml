@@ -12,6 +12,6 @@
 
     - if user_signed_in?
       .col-xs-12.text-center
-        Выйти
-        %i.fa.fa-sign-out
-
+        = link_to main_app.destroy_user_session_path, method: :delete, class: "mobile-link" do
+          Выйти
+          %i.fa.fa-sign-out

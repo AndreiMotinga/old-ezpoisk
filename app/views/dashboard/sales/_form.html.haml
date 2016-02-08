@@ -14,6 +14,9 @@
     = form_state_select(f)
   .field
     = form_city_select(f, @sale)
+  .field
+    = f.text_field :street, label: 'Улица'
+
 
   .field
     = f.text_field :phone, label: '* Телефон'
@@ -41,3 +44,11 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
+
+- unless @sale.new_record?
+  %br/
+  = link_to 'Удалить',
+            dashboard_sale_path(@sale),
+            method: :delete,
+            data: { confirm: I18n.t(:confirm) },
+            class: "btn btn-block mobile-btn btn-danger"

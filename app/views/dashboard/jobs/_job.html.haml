@@ -7,15 +7,21 @@
   .col-xs-8.col-sm-8
     / line 1
     .hidden-xs
-      %h3= link_to record.title, link_from_controller(record)
+      %h3.title= link_to record.title, link_from_controller(record)
     .visible-xs
-      %h5= link_to record.title, link_from_controller(record)
+      %h5.title= link_to record.title, link_from_controller(record)
     %hr.post-devider/
 
-    /line 3
-    %span.glyphicon.glyphicon-phone= record.phone
+    /line 2
+    %span.glyphicon.glyphicon-earphone
+    %span.company-phone= number_to_phone(record.phone, area_code: true)
     %hr.post-devider/
 
     / line 3
     %strong= record.category
     %hr.post-devider/
+
+    / line 4
+    .hidden-xs
+      %span= time_ago_in_words record.created_at
+      назад

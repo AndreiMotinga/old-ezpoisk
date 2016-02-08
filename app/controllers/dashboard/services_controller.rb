@@ -52,7 +52,7 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def service_params
-    params.require(:service).permit(:title,
+    prms = params.require(:service).permit(:title,
                                     :street,
                                     :phone,
                                     :fax,
@@ -66,5 +66,7 @@ class Dashboard::ServicesController < ApplicationController
                                     :slug,
                                     :category,
                                     :subcategory)
+    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
+    prms
   end
 end

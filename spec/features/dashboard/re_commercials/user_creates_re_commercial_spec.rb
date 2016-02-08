@@ -21,17 +21,17 @@ feature "User create re_commercial" do
     click_on "Сохранить"
 
     expect(page).to have_content re_commercial.street
-    expect(page).to have_content re_commercial.phone
     expect(page).to have_content re_commercial.price
     expect(page).to have_content re_commercial.space
     expect(page).to have_content re_commercial.space
     expect(page).to have_content "Аренда"
     expect(page).to have_content "Офис"
 
-    re_commercial = ReCommercial.last
-    expect(re_commercial.active).to be true
-    expect(re_commercial.state_id).to_not be nil
-    expect(re_commercial.city_id).to_not be nil
-    expect(re_commercial.user_id).to_not be nil
+    re_commercial_saved = ReCommercial.last
+    expect(re_commercial_saved.active).to be true
+    expect(re_commercial_saved.phone).to eq re_commercial_saved.phone
+    expect(re_commercial_saved.state_id).to_not be nil
+    expect(re_commercial_saved.city_id).to_not be nil
+    expect(re_commercial_saved.user_id).to_not be nil
   end
 end

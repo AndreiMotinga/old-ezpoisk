@@ -21,13 +21,13 @@ feature "user creates service" do
     click_on "details-save-btn"
 
     expect(page).to have_content service.title
-    expect(page).to have_content service.phone
     expect(page).to have_content service.site
 
     record = Service.last
     expect(record.active).to be true
     expect(record.category).to eq service.category
     expect(record.subcategory).to eq service.subcategory
+    expect(record.phone).to eq service.phone
     expect(record.slug).to eq service.slug
     expect(record.state.name).to eq "Alabama"
     expect(record.city.name).to eq "Abbeville"

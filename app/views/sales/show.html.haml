@@ -3,7 +3,7 @@
 - content_for :secondary_navbar do
   = render "sales/navbar"
 
-.row
+.row.show
   .col-xs-12.col-md-7
     %ul.pgwSlideshow
       - @sale.pictures.each do |pic|

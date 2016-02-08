@@ -45,7 +45,7 @@
     filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000')";
     text-align: left;
-    font-size: 1rem;
+    font-size: 1.6rem;
     color: #fff;
     position: absolute;
     left: 0px;
@@ -90,8 +90,8 @@
 .pgwSlideshow .ps-list li img {
     display: block;
     border: 1px solid #777;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 45px;
 }
 
 .pgwSlideshow .ps-list li .ps-item.ps-selected {

@@ -52,8 +52,9 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def sale_params
-    params.require(:sale).permit(:title,
+    prms = params.require(:sale).permit(:title,
                                  :price,
+                                 :street,
                                  :phone,
                                  :email,
                                  :description,
@@ -62,6 +63,7 @@ class Dashboard::SalesController < ApplicationController
                                  :city_id,
                                  :logo,
                                  :category)
+    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
+    prms
   end
 end
-

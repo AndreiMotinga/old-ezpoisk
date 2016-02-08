@@ -20,11 +20,11 @@ feature "user creates re_agency" do
     click_on "Сохранить"
 
     expect(page).to have_content re_agency.title
-    expect(page).to have_content re_agency.phone
     expect(page).to have_content re_agency.site
 
     agency = ReAgency.last
     expect(agency.active).to be true
+    expect(agency.phone).to eq agency.phone
     expect(agency.state_id).to_not be nil
     expect(agency.city_id).to_not be nil
     expect(agency.user_id).to_not be nil

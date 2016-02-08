@@ -41,6 +41,8 @@
               .form-group
                 = f.text_area :body, label: "Сообщение *", rows: 3, required: true
               .form-group
+                = recaptcha_tags unless Rails.env.test?
+              .form-group
                 = f.submit class: "btn btn-default", value: 'Оставить отзыв'
               %hr
       / .modal-body

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :timeoutable, :validatable, :lockable, :async
   after_create :notify_admin
+  before_save :format_phone
 
   validates :phone, presence: true
   validates :name, presence: true
@@ -43,5 +44,9 @@ class User < ActiveRecord::Base
   def notify_admin
     AdminMailerJob.perform_async(id, "User")
     SlackNotifierJob.perform_async(id, "User")
+  end
+
+  def format_phone
+    phone.gsub!(/\D/, "")
   end
 end

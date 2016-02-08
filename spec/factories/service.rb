@@ -5,7 +5,7 @@ FactoryGirl.define do
   factory :service do
     title { Faker::Name.title }
     street { Faker::Address.street_name }
-    phone { Faker::PhoneNumber.phone_number }
+    phone '1234567890'
     email { Faker::Internet.email }
 
     site { Faker::Internet.url("example.com") }

@@ -46,3 +46,11 @@
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
+
+- unless @re_commercial.new_record?
+  %br/
+  = link_to 'Удалить',
+            dashboard_re_commercial_path(@re_commercial),
+            method: :delete,
+            data: { confirm: I18n.t(:confirm) },
+            class: "btn btn-block mobile-btn btn-danger"

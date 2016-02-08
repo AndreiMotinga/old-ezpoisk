@@ -53,7 +53,7 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def re_agency_params
-    params.require(:re_agency).permit(:title,
+    prms = params.require(:re_agency).permit(:title,
                                       :street,
                                       :phone,
                                       :fax,
@@ -65,5 +65,7 @@ class Dashboard::ReAgenciesController < ApplicationController
                                       :city_id,
                                       :logo,
                                       :user_id )
+    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
+    prms
   end
 end

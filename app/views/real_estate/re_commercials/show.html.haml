@@ -3,7 +3,7 @@
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
 
-.row
+.row.show
   .col-xs-12.col-md-7
     %ul.pgwSlideshow
       - @re_commercial.pictures.each do |pic|

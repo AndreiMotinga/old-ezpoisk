@@ -1,4 +1,8 @@
 $(document).ready(function() {
-  $('.pgwSlideshow').pgwSlideshow();
-  $('.ps-current a').touchTouch();
+  $('.pgwSlideshow').pgwSlideshow({
+    transitionEffect : 'fading',
+    intervalDuration: 5000,
+    autoSlide: true
+  });
+  $('.show .ps-current a').touchTouch();
 });
