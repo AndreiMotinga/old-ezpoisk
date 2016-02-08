@@ -15,7 +15,7 @@ feature "user creates job" do
     select(job.category, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно?")
+    check("Активно")
 
     click_on "Сохранить"
 

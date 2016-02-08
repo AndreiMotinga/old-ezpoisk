@@ -18,7 +18,7 @@ feature "User create re_private" do
     fill_in "Ванные", with: re_private.baths
     fill_in "Площадь", with: re_private.space
     fill_in "Комнат", with: re_private.rooms
-    check("Активно?")
+    check("Активно")
     check("Комиссия")
     click_on "Сохранить"
 

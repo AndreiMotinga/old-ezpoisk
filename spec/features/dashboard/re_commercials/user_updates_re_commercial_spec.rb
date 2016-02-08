@@ -16,7 +16,7 @@ feature "User updates re_commercial" do
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     select(attrs.category, from: "Категория")
-    check("Активно?")
+    check("Активно")
     click_on "details-save-btn"
 
     expect(page).to have_content I18n.t(:post_saved)

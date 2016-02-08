@@ -1,4 +1,5 @@
 = title("")
+
 / DESCKTOP
 .hidden-xs
   = link_to "Назад", :back, class: "btn btn-primary"
@@ -15,10 +16,6 @@
       %li.hidden-xs.active{:role => "presentation"}
         %a{"aria-controls" => "foo", "data-toggle" => "tab", :href => "#foo", :role => "tab"} Карта
 
-      - if record.class.method_defined?(:pictures) && record.pictures.any?
-        %li{:role => "presentation"}
-          %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab"} Фото
-
       %li{:role => "presentation"}
         %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#contacts", :role => "tab"} Адрес / Контакты
 
@@ -32,10 +29,6 @@
       .tab-content
         #foo.tab-pane.fade.in.active.hidden-xs{:role => "tabpanel"}
           = render "shared/show/map", record: record
-
-        - if record.class.method_defined?(:pictures) && record.pictures.any?
-          #pictures.tab-pane.fade{:role => "tabpanel"}
-            = render "shared/show/pictures", record: record
 
         #contacts.tab-pane.fade{:role => "tabpanel"}
           = render "shared/show/contacts", record: record

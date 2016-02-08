@@ -15,7 +15,7 @@ feature "user updates re_agency" do
     fill_in "Сайт", with: "www.example.com"
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    uncheck("Активно?")
+    uncheck("Активно")
 
     click_on "details-save-btn"
 

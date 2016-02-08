@@ -17,7 +17,7 @@ feature "user creates re_private" do
     fill_in "Ванные", with: attrs.baths
     fill_in "Площадь", with: attrs.space
     fill_in "Комнат", with: attrs.rooms
-    check("Активно?")
+    check("Активно")
     check("Комиссия")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")

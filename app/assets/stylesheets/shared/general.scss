@@ -39,13 +39,6 @@ a.active {
   max-height: 320px;
 }
 
-.slider-thumb {
-  width: auto;
-  height: 50px;
-  max-height: 50px;
-  margin-bottom: 5px;
-}
-
 .side-post {
   background-color: white;
   text-transform: lowercase;
@@ -55,9 +48,10 @@ a.active {
   }
 }
 
-li.active, li:hover {
-  background-color: $grey1;
-}
+// todo: hover
+// li.active, li:hover {
+//   background-color: $grey1;
+// }
 
 .nav-tabs > li > a {
   margin-right: 0px;

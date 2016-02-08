@@ -16,7 +16,7 @@ feature "User create re_commercial" do
     fill_in "Цена", with: re_commercial.price
     fill_in "Площадь", with: re_commercial.space
     fill_in "Телефон", with: re_commercial.phone
-    check("Активно?")
+    check("Активно")
 
     click_on "Сохранить"
 

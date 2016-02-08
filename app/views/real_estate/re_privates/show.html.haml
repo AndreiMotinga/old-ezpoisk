@@ -3,7 +3,55 @@
 - content_for :secondary_navbar do
   = render "real_estate/navbar"
 
-.col-md-8.col-xs-12
-  = render "shared/show",
-            record: @re_private,
-            template: 'dashboard/re_privates/re_private'
+.row
+  .col-xs-12.col-md-7
+    %ul.pgwSlideshow
+      - @re_private.pictures.each do |pic|
+        %li
+          = link_to pic.image.url do
+            = image_tag pic.image.url(:large), alt: ''
+  /images
+
+  .col-xs-12.col-md-5
+    .visible-xs
+      %hr.black-line/
+    = render "shared/show/contacts", record: @re_private
+  / right block
+
+.row
+  %hr.black-line/
+
+.row
+  .col-xs-12.col-md-8
+    = render "dashboard/re_privates/re_private", record: @re_private
+
+.row
+  %hr.black-line/
+
+.row
+  .hidden-xs.col-sm-12.col-md-8
+    = render 'shared/show/map', record: @re_private
+  .col-xs-12.col-md-4
+    %li.list-group-item
+      Продолжительность: #{@re_private.duration}
+    %li.list-group-item
+      Тип обьявления: #{@re_private.post_type}
+    %li.list-group-item
+      Цена: #{@re_private.price}
+    %li.list-group-item
+      Комиссия: #{@re_private.fee ? 'да' : 'нет'}
+    %li.list-group-item
+      Коматы: #{@re_private.rooms}
+    %li.list-group-item
+      Ванные коматы: #{@re_private.baths}
+    %li.list-group-item
+      Площадь: #{@re_private.space}
+    %li.list-group-item
+      Подано: #{time_ago_in_words @re_private.created_at} назад
+%hr.black-line/
+
+- if @re_private.description.present?
+  .row
+    .hidden-xs.col-sm-12
+      .post-item-description.white-block
+        = sanitize @re_private.description

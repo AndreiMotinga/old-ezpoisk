@@ -3,7 +3,45 @@
 - content_for :secondary_navbar do
   = render "sales/navbar"
 
-.col-md-8.col-xs-12
-  = render "shared/show",
-            record: @sale,
-            template: 'dashboard/sales/sale'
+.row
+  .col-xs-12.col-md-7
+    %ul.pgwSlideshow
+      - @sale.pictures.each do |pic|
+        %li
+          = link_to pic.image.url do
+            = image_tag pic.image.url(:large), alt: ''
+  /images
+
+  .col-xs-12.col-md-5
+    .visible-xs
+      %hr.black-line/
+    = render "shared/show/contacts", record: @sale
+  / right block
+
+.row
+  %hr.black-line/
+
+.row
+  .col-xs-12.col-md-8
+    = render "dashboard/sales/sale", record: @sale
+
+.row
+  %hr.black-line/
+
+.row
+  .hidden-xs.col-sm-12.col-md-8
+    = render 'shared/show/map', record: @sale
+  .col-xs-12.col-md-4
+    %li.list-group-item
+      Цена: #{@sale.price}
+    %li.list-group-item
+      Категория: #{@sale.category}
+    %li.list-group-item
+      Подано: #{time_ago_in_words @sale.created_at} назад
+%hr.black-line/
+
+- if @sale.description.present?
+  .row
+    .hidden-xs.col-sm-12
+      .post-item-description.white-block
+        = sanitize @sale.description

@@ -15,7 +15,7 @@ feature "user creates job_agency" do
     fill_in "Сайт", with: job_agency.site
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно?")
+    check("Активно")
 
     click_on "Сохранить"
 

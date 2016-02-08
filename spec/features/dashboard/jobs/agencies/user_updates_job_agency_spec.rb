@@ -16,7 +16,7 @@ feature "user updates job_agency" do
     fill_in "Сайт", with: attrs.site
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно?")
+    check("Активно")
 
     click_on "details-save-btn"
 

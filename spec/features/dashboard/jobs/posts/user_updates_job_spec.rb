@@ -16,7 +16,7 @@ feature "user updates job" do
     select(attrs.category, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно?")
+    check("Активно")
 
     click_on "details-save-btn"
 

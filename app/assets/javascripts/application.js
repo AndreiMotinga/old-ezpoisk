@@ -18,4 +18,7 @@
 //= require gmaps/google
 //= require summernote
 //= require summernote/locales/ko-KR
+//
+//= require pgwslider
+//= require touchTouch
 //= require_tree .
