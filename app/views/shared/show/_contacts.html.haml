@@ -1,6 +1,9 @@
 .contacts-list
   %li.list-group-item
-    - if record.try(:title).present?
+    - if record.try(:street).present?
+      Название:
+      %strong= record.title
+    - elsif record.try(:title).present?
       Название:
       %strong= record.title
 

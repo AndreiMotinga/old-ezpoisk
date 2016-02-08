@@ -1,0 +1,23 @@
+.row
+  .col-xs-12.col-md-7
+    = render "dashboard/shared/company", record: record
+
+  .col-xs-12.col-md-5
+    .visible-xs
+      %hr.black-line/
+    = render "shared/show/contacts", record: record
+  / right block
+
+%hr.black-line/
+
+.row
+  .hidden-xs.col-sm-12.col-md-8
+    = render 'shared/show/map', record: record
+.hidden-xs
+  %hr.black-line/
+
+- if record.description.present?
+  .row
+    .hidden-xs.col-sm-12
+      .post-item-description.white-block
+        = sanitize record.description
