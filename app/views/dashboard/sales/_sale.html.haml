@@ -1,26 +1,27 @@
-.row.post-item
-  .col-xs-4.col-sm-4.logo-js
-    = link_to link_from_controller(record) do
-      = image_tag record.logo_url(:medium),
-                  alt: record.logo_url(:medium),
-                  class: "img-responsive"
-  .col-xs-8.col-sm-8
-    / line 1
-    .hidden-xs
-      %h3= link_to record.title, link_from_controller(record)
-    .visible-xs
-      %h5= link_to record.title, link_from_controller(record)
-    %hr.post-devider/
-
-    /line 2
-    - if record.price.present?
-      %strong $ #{record.price}
+.col-xs-12
+  .row.post-item
+    .col-xs-4.col-sm-4.logo-js
+      = link_to link_from_controller(record) do
+        = image_tag record.logo_url(:medium),
+                    alt: record.logo_url(:medium),
+                    class: "img-responsive"
+    .col-xs-8.col-sm-8
+      / line 1
+      .hidden-xs
+        %h3= link_to record.title, link_from_controller(record)
+      .visible-xs
+        %h5= link_to record.title, link_from_controller(record)
       %hr.post-devider/
 
-    / line 3
-    %span.glyphicon.glyphicon-phone= record.phone
-    %hr.post-devider/
+      /line 2
+      - if record.price.present?
+        %strong $ #{record.price}
+        %hr.post-devider/
 
-    / line 4
-    .hidden-xs
-      %span= time_ago_in_words record.created_at
+      / line 3
+      %span.glyphicon.glyphicon-phone= record.phone
+      %hr.post-devider/
+
+      / line 4
+      .hidden-xs
+        %span= time_ago_in_words record.created_at

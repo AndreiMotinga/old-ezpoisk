@@ -18,15 +18,13 @@
     = render "shared/show/contacts", record: @sale
   / right block
 
-.row
-  %hr.black-line/
+%hr.black-line/
 
 .row
   .col-xs-12.col-md-8
     = render "dashboard/sales/sale", record: @sale
 
-.row
-  %hr.black-line/
+%hr.black-line/
 
 .row
   .hidden-xs.col-sm-12.col-md-8
@@ -38,6 +36,7 @@
       Категория: #{@sale.category}
     %li.list-group-item
       Подано: #{time_ago_in_words @sale.created_at} назад
+
 %hr.black-line/
 
 - if @sale.description.present?
