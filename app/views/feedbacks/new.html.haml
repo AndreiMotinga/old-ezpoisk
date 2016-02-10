@@ -54,8 +54,6 @@
                         required: true,
                         id: "feedback-body"
         .form-group
-          = recaptcha_tags unless Rails.env.test?
-        .form-group
           = f.submit class: "btn btn-default",
                      value: "Оправить",
                      id: "feedback-submit"
