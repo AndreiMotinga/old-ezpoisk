@@ -1,5 +1,5 @@
-= title("|Услуги, адвокаты, образование, медицина")
-= desc("eZpoisk - #{@service.title}, #{@service.category} - #{@service.subcategory}, #{@service.address}")
+= title("#{@service.title} #{@service.city.name} #{@service.state.name}")
+= desc("#{@service.title}, #{@service.category} - #{@service.subcategory}, #{@service.address}")
 - content_for :secondary_navbar do
   = render "services/navbar"
 

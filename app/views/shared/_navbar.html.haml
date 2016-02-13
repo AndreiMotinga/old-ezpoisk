@@ -33,15 +33,16 @@
         / real_estate
 
         / services
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
-                             "data-toggle" => "dropdown", :role => "button"}
-            Услуги
-            %span.caret
-          %ul.dropdown-menu
-            - SERVICE_CATEGORIES.keys.each do |category|
-              %li= link_to category, main_app.services_path(category: category)
-        / services
+        %li= link_to "Услуги", services_path
+        -# %li.dropdown
+        -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+        -#                      "data-toggle" => "dropdown", :role => "button"}
+        -#     Услуги
+        -#     %span.caret
+        -#   %ul.dropdown-menu
+        -#     - SERVICE_CATEGORIES.keys.each do |category|
+        -#       %li= link_to category, main_app.services_path(category: category)
+        -# / services
 
         / jobs
         %li.dropdown
@@ -59,15 +60,16 @@
         / jobs
 
         / sale
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
-                             "data-toggle" => "dropdown", :role => "button"}
-            Продается
-            %span.caret
-          %ul.dropdown-menu
-            - SALE_CATEGORIES.each do |category|
-              %li= link_to category, main_app.sales_path(category: category)
-        / sale
+        %li= link_to "Продается", sales_path
+        -# %li.dropdown
+        -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+        -#                      "data-toggle" => "dropdown", :role => "button"}
+        -#     Продается
+        -#     %span.caret
+        -#   %ul.dropdown-menu
+        -#     - SALE_CATEGORIES.each do |category|
+        -#       %li= link_to category, main_app.sales_path(category: category)
+        -# / sale
 
         / news
         %li.dropdown

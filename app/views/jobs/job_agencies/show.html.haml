@@ -1,4 +1,4 @@
-= title("|Агенства по трудоустройству")
+= title("#{@job_agency.title} #{@job_agency.city.name} #{@job_agency.state.name}- Агентство по трудоустройству")
 = desc("eZpoisk - Агентство по трудоустройству #{@job_agency.title}, #{@job_agency.address}")
 - content_for :secondary_navbar do
   = render "jobs/navbar"

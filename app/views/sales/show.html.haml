@@ -1,4 +1,4 @@
-= title("|Продажа, автомобили, электроника, рапродажи")
+= title("#{@sale.title} #{@sale.state.name} - eZpoisk")
 = desc("eZpoisk - Продается #{@sale.category}, #{@sale.title}, #{@sale.address}")
 - content_for :secondary_navbar do
   = render "sales/navbar"
@@ -9,7 +9,7 @@
       - @sale.pictures.each do |pic|
         %li
           = link_to pic.image.url do
-            = image_tag pic.image.url(:large), alt: ''
+            = image_tag pic.image.url(:large), alt: "#{@sale.title} pictures"
   /images
 
   .col-xs-12.col-md-5

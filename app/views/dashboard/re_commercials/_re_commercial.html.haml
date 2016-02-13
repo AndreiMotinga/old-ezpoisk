@@ -2,9 +2,9 @@
   .row.post-item
     .col-xs-4.col-sm-4.logo-js
       = link_to link_from_controller(record) do
-        = image_tag record.logo_url(:medium),
-                    alt: record.logo_url(:medium),
-                    class: "img-responsive"
+        = image_tag record.logo_url(:medium), class: "img-responsive",
+                    alt: "#{record.post_type} коммерческой недвижимости - #{record.street} #{record.phone}"
+
     .col-xs-8.col-sm-8
       / line 1
       .hidden-xs

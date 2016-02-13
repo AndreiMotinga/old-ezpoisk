@@ -17,17 +17,6 @@ module ApplicationHelper
     content_for(:description) { description }
   end
 
-  def services_description_meta(category, subcategory)
-    category = category || "Услуги"
-    desc = "eZpoisk - #{category}, #{subcategory} в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др."
-    content_for(:description) { desc }
-  end
-
-  def sales_description_meta(category)
-    desc = "eZpoisk - Продажа #{category}, в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др."
-    content_for(:description) { desc }
-  end
-
   def template_for(record)
     case record.class.to_s
     when "ReAgency"
@@ -46,5 +35,4 @@ module ApplicationHelper
       render "dashboard/sales/sale", record: record
     end
   end
-
 end
