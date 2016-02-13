@@ -15,10 +15,9 @@
     .col-xs-8.col-sm-8
       / line 1
       .hidden-xs
-        %h3.title= link_to record.title, link_from_controller(record)
+        %h1.title= link_to record.title, link_from_controller(record)
       .visible-xs
-        %h5.title= link_to record.title, link_from_controller(record)
-      %hr.post-devider/
+        %h1.mob-title= link_to record.title, link_from_controller(record)
 
       / line 2
       .hidden-xs

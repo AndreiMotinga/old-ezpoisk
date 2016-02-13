@@ -7,13 +7,14 @@
   .col-xs-8.col-sm-8
     / line 1
     .hidden-xs
-      %h3.title= link_to record.title, link_from_controller(record)
+      %h1.title= link_to record.title, link_from_controller(record)
     .visible-xs
-      %h5.title= link_to record.title, link_from_controller(record)
+      %h1.mob-title= link_to record.title, link_from_controller(record)
 
     /line 3
-    %h5= record.street
-    %hr.post-devider/
+    - if record.street.present?
+      %h5= record.street
+      %hr.post-devider/
 
     /line 3
     %span.glyphicon.glyphicon-earphone

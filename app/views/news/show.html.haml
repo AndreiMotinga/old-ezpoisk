@@ -10,7 +10,7 @@
 .col-md-8
   .row
     .col-xs-12.white-block
-      %h4.post-show-title= @post.title
+      %h1.post-show-title= @post.title
       - if @post.image.present?
         .col-xs-12.col-md-5= image_tag @post.logo_url, class: "img-responsive center-block"
         %br/
