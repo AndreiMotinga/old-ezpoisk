@@ -44,7 +44,10 @@ gem "summernote-rails"
 gem "rails_admin"
 gem "bootstrap-wysihtml5-rails"
 
-gem "rails_12factor", group: :production
+group :production do
+  gem "rails_12factor"
+  gem 'heroku-deflater'
+end
 gem "puma"
 
 gem "sitemap_generator"
