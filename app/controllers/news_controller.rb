@@ -1,5 +1,5 @@
 class NewsController < ApplicationController
-  before_action :set_post, only: [:edit, :show, :update]
+  before_action :set_post, only: [:edit, :show, :update, :destroy]
 
   def index
     category = params[:category]
@@ -14,6 +14,7 @@ class NewsController < ApplicationController
   end
 
   def show
+    @side_posts = Post.by_category(@post.category).desc.with_logo.limit(10)
   end
 
   def edit
@@ -26,6 +27,11 @@ class NewsController < ApplicationController
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to :back, notice: I18n.t(:post_removed)
   end
 
   private

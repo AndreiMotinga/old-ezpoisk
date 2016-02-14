@@ -7,30 +7,34 @@
     .col-xs-12
       = link_to '<', :back, class: "mobile-btn mobile-back-btn"
 
-.col-md-8
-  .row
-    .col-xs-12.white-block
-      %h1.post-show-title= @post.title
-      - if @post.image.present?
-        .col-xs-12.col-md-5= image_tag @post.logo_url, class: "img-responsive center-block"
-        %br/
-      %p= sanitize @post.text
-      - if @post.link.present?
-        %span.pull-right
-          = link_to "Источник", "http://#{@post.link}", target: "blank", :rel => 'nofollow'
-      %br/
-      %br/
+.row
+  .col-md-8
+    .row
+      .col-xs-12.white-block.padding-vertical-10
+        %h1.post-show-title= @post.title
+        - if @post.image.present?
+          .col-xs-12.col-md-5= image_tag @post.logo_url, class: "img-responsive center-block"
+          %br/
+        %p= sanitize @post.text
+        - if @post.link.present?
+          %span.pull-right
+            = link_to "Источник", "http://#{@post.link}", target: "blank", :rel => 'nofollow'
 
-  .row
     %br/
-    %span= link_to "Вернуться назад", :back
-
-  %br/
-  .row
-    .col-xs-12.comments
-      = bootstrap_form_for(Comment.new) do |f|
-        = hidden_field_tag :post_id, @post.id
-        = f.text_area :body, label: "Оставьте свой комментарий", rows: 3
-        = f.submit " + Добавить Комментарий", class: "btn mobile-btn"
+    .row
       %br/
-      = render @post.comments.includes(:user)
+      %span= link_to "Вернуться назад", :back
+
+    %br/
+    .row
+      .col-xs-12.comments
+        = bootstrap_form_for(Comment.new) do |f|
+          = hidden_field_tag :post_id, @post.id
+          = f.text_area :body, label: "Оставьте свой комментарий", rows: 3
+          = f.submit " + Добавить Комментарий", class: "btn mobile-btn"
+        %br/
+        = render @post.comments.includes(:user)
+
+.row
+  .hidden-xs
+    = render "news/carousel"

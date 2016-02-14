@@ -4,9 +4,10 @@
   = render 'news/navbar'
 
 / DESKTOP
-.hidden-xs
-  = render @posts
-  = render "shared/pagination", records: @posts
+.row
+  .hidden-xs.col-sm-12.col-md-8
+    = render "news/accordion"
+    = render "shared/pagination", records: @posts
 / /DESKTOP
 
 / MOBILE

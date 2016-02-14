@@ -2,7 +2,6 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates_uniqueness_of :title
   validates :category, presence: true
-  validates :text, presence: true
 
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -23,6 +22,7 @@ class Post < ActiveRecord::Base
   scope :for_homepage, -> { where(show_on_homepage: true) }
   scope :main, -> { where(main: true).last }
   scope :main_posts, -> { where(main: true).order("updated_at desc") }
+  scope :with_logo, -> { where.not(image_file_name: nil) }
 
   def self.by_category(category)
     where("LOWER(category) LIKE ?", "%#{category.mb_chars.downcase}%")

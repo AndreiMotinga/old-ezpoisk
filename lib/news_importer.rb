@@ -25,7 +25,7 @@ class NewsImporter
                   subcategory: subcategory,
                   title: item.at("title").text,
                   link: convert_link(item.at("link").text),
-                  text: item.at("description").text,
+                  description: item.at("description").text,
                   created_at: item.at("pubDate").text)
     end
   end

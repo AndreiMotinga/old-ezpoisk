@@ -1,0 +1,19 @@
+#accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+  - @posts.each_with_index do |post, i|
+    .panel.panel-default
+      .panel-heading{id: "heading_#{i}", :role => "tab"}
+        %a{"aria-controls" => "collapse_#{i}", "aria-expanded" => "false",
+          "data-parent" => "#accordion", "data-toggle" => "collapse",
+          :href => "#collapse_#{i}", :role => "button", class: "post-title"}
+          %h2.panel-title.post-title
+            %span.post-time= post.created_at.strftime("%H:%M")
+            = post.title
+      .panel-collapse.collapse{id: "collapse_#{i}", "aria-labelledby" => "heading_#{i}", :role => "tabpanel"}
+        .panel-body
+          %p= sanitize post.description
+          %p
+            .pull-right= link_to 'Подробнее', news_path(post) if post.text.present?
+            - if current_user.try(:admin?)
+              = link_to "Редактировать", edit_news_path(post), target: "blank"
+              = link_to 'Удалить', news_path(post), method: :delete
+

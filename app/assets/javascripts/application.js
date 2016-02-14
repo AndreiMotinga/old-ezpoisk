@@ -23,5 +23,6 @@
 //= require touchTouch
 
 //= require select2
+//= require news/carousel
 
 //= require_tree .
