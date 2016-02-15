@@ -6,6 +6,7 @@
           .col-xs-12.col-sm-6.col-md-3
             = link_to news_path(post) do
               = image_tag post.logo_url, class: "img-responsive"
+            %h5= post.title
 
     %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel123"}
       %i.glyphicon.glyphicon-chevron-left
