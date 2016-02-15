@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "sitemap(:id).:format.:compression" => "sitemap#index"
   get "update_cities", to: "cities#update_cities"
   get "update_subcategory", to: "subcategories#update_subcategory"
+  get '/tos', to: 'tos#tos'
 
   resource :dashboard, only: [:show]
   namespace :dashboard do
