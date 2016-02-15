@@ -22,7 +22,7 @@
     %li.list-group-item
       site:
       %strong
-        = link_to record.site, "https://#{record.site}", target: "blank"
+        = link_to record.site, "http://#{record.site}", target: "blank"
   - unless record.try(:email).blank?
     %li.list-group-item
       email:
