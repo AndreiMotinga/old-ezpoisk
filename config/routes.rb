@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :questions
+  resources :answers, only: [:create, :update, :destroy]
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
   get "sitemap(:id).:format.:compression" => "sitemap#index"

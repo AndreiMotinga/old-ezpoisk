@@ -1,0 +1,28 @@
+.row
+  .col-xs-12.col-md-8.white-block.padding-bottom-10
+    .row
+      .col-xs-12
+        %h1.question-title= @question.title
+        %span.pull-right= link_to 'Редактировать', edit_question_path(@question) if @question.user == current_user
+        - if @question.text.present?
+          %p.text= @question.text
+
+        %br/
+        - if current_user
+          = render "questions/new_answear"
+        - else
+          = link_to "Войдите", new_user_session_path
+          что бы ответить
+        %br/
+
+    .row
+      .col-xs-12
+        %h2= "#{@question.answers.count} Ответов"
+        %hr#lenta/
+
+    .row
+      .col-xs-12
+        = render @question.answers.includes(:user)
+
+  / partners
+  .hidden-xs.hidden-sm.col-md-4

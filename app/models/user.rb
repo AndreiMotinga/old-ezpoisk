@@ -24,11 +24,13 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :feedbacks
   has_many :pictures
+  has_many :questions
+  has_many :answers, through: :questions
 
   has_attached_file :avatar,
-    styles: { medium: "300x150" },
+    styles: { medium: "200x200#" },
     :s3_protocol => :https,
-    default_url: "missing.png"
+    default_url: "default-avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def role?(val)

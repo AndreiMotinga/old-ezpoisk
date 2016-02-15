@@ -1,0 +1,28 @@
+.question {
+  border-bottom: 2px solid $grey2;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+h1.question-title {
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  font-weight: bold;
+  margin-top: 5px;
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+}
+h3.question-author {
+  font-size: 19px;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.text {
+  font-family: Georgia,Times,"Times New Roman",serif;
+  font-size: 18px;
+  line-height: 1.4;
+}

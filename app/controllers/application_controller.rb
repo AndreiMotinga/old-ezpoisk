@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fields
-    [:name, :phone, :state_id, :city_id, :email, :password,
+    [:name, :phone, :state_id, :city_id, :email, :password, :slug,
      :password_confirmation, :remember_me, :current_password, :avatar]
   end
 end

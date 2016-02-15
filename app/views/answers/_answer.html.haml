@@ -1,0 +1,15 @@
+.row
+  .col-xs-12
+    .row
+      .hidden-xs.col-sm-2
+        = image_tag answer.user.avatar.url(:medium), class: "img-responsive img-circle"
+      .col-xs-12.col-sm-10
+        %h3.text-muted.question-author= answer.user.name
+        %h5.text-meted= answer.user.slug if answer.user.slug.present?
+    .col-xs-12
+      .text= sanitize answer.text
+      - if answer.user  == current_user
+        = render 'questions/edit_answer', answer: answer
+        = link_to 'Удалить', answer_path(answer), method: :delete, data: { confirm: I18n.t(:confirm) }, class: " btn btn-danger pull-right"
+%hr.lenta
+%br/

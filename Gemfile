@@ -44,6 +44,8 @@ gem "summernote-rails"
 gem "rails_admin"
 gem "bootstrap-wysihtml5-rails"
 
+gem 'impressionist'
+
 group :production do
   gem "rails_12factor"
   gem 'heroku-deflater'

@@ -13,6 +13,8 @@
       %br/
       #home.tab-pane.active{:role => "tabpanel"}
         %ul.list-group
+          = link_to questions_path, class: "mobile-link" do
+            %li.list-group-item Вопросы
           = link_to real_estate_re_agencies_path, class: "mobile-link" do
             %li.list-group-item Агентства недвижимости
           = link_to real_estate_re_privates_path, class: "mobile-link" do

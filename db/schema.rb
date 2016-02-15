@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160214152103) do
+ActiveRecord::Schema.define(version: 20160215205705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "user_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string  "name"
@@ -63,6 +74,31 @@ ActiveRecord::Schema.define(version: 20160214152103) do
     t.string   "day_description"
     t.string   "month_description"
   end
+
+  create_table "impressions", force: :cascade do |t|
+    t.string   "impressionable_type"
+    t.integer  "impressionable_id"
+    t.integer  "user_id"
+    t.string   "controller_name"
+    t.string   "action_name"
+    t.string   "view_name"
+    t.string   "request_hash"
+    t.string   "ip_address"
+    t.string   "session_hash"
+    t.text     "message"
+    t.text     "referrer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
+  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
+  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
+  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
+  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "job_agencies", force: :cascade do |t|
     t.string   "title"
@@ -157,6 +193,16 @@ ActiveRecord::Schema.define(version: 20160214152103) do
 
   add_index "posts", ["category"], name: "index_posts_on_category", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "re_agencies", force: :cascade do |t|
     t.string   "title"
@@ -324,6 +370,7 @@ ActiveRecord::Schema.define(version: 20160214152103) do
     t.integer  "failed_attempts",        default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "slug"
   end
 
   add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
@@ -332,6 +379,8 @@ ActiveRecord::Schema.define(version: 20160214152103) do
   add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
@@ -344,6 +393,7 @@ ActiveRecord::Schema.define(version: 20160214152103) do
   add_foreign_key "jobs", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "questions", "users"
   add_foreign_key "re_agencies", "cities"
   add_foreign_key "re_agencies", "states"
   add_foreign_key "re_agencies", "users"

@@ -1,0 +1,9 @@
+%a.btn.btn-primary{"aria-controls" => "editAnswer", "aria-expanded" => "false",
+  "data-toggle" => "collapse", :href => "#editAnswer", :role => "button"}
+  Редактировать
+#editAnswer.collapse
+  %br/
+  = bootstrap_form_for answer do |f|
+    = hidden_field_tag 'answer[question_id]', @question.id
+    .field= f.text_area :text, hide_label: true, class: "summernote"
+    .actions= f.submit 'Сохранить', class: 'btn btn-success'

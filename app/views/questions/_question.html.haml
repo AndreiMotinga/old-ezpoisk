@@ -1,0 +1,13 @@
+.row.question
+  .col-xs-12
+    %h1.question-title= link_to question.title, question
+    .row
+      .hidden-xs.col-sm-2.col-sm-offset-1
+        = image_tag question.user.avatar.url(:medium), class: "img-responsive img-circle"
+      .col-xs-12.col-sm-9
+        %h3.text-muted.question-author= question.user.name
+        %h5.text-meted= question.user.slug if question.user.slug.present?
+        %p= "#{question.impressionist_count} просмотров"
+  .col-xs-12
+    - if question.text.present?
+      %p.text= (sanitize question.text).truncate(300)

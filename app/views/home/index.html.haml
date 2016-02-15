@@ -15,7 +15,7 @@
         %h1.lenta-title
           ЛЕНТА НОВОСТЕЙ
           %span.pull-right= l Date.current, format: :long
-        %hr#lenta/
+        %hr.lenta/
         = render @homepage.news_posts(31)
 
   %br/

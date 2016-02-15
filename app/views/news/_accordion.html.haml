@@ -16,4 +16,3 @@
             - if current_user.try(:admin?)
               = link_to "Редактировать", edit_news_path(post), target: "blank"
               = link_to 'Удалить', news_path(post), method: :delete
-
