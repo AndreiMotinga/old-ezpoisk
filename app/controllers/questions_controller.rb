@@ -23,6 +23,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.build(question_params)
 
     if @question.save
+      SlackNotifierJob.perform_async(@question.id, "Question")
       redirect_to @question, notice: 'Question was successfully created.'
     else
       render :new

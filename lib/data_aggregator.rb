@@ -4,6 +4,10 @@ class DataAggregator
       Job.count + Service.count
   end
 
+  def total_qa
+    Question.count + Answer.count
+  end
+
   def total_users
     User.count
   end
@@ -12,6 +16,7 @@ class DataAggregator
     string = "Общая статистика сайта\n"
     string += "Всего пользователей: #{total_users}\n"
     string += "Всего объявлений: #{total_users_posts}\n"
+    string += "Всего Q&A: #{total_qa}\n"
     string += "==============================================\n"
     string
   end
