@@ -8,6 +8,10 @@
         %h3.text-muted.question-author= question.user.name
         %h5.text-meted= question.user.slug if question.user.slug.present?
         %p= "#{question.impressionist_count} просмотров"
+    %hr.q-devider
   .col-xs-12
     - if question.text.present?
       %p.text= (sanitize question.text).truncate(300)
+  .col-xs-12
+    = link_to "Вверх | #{question.score}", upvote_question_path(question), method: :put, class: "btn btn-success "
+    = link_to "Вниз", downvote_question_path(question), method: :put, class: "text text-muted downvote"

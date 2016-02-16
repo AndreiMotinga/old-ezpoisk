@@ -1,13 +1,9 @@
 %tr{:id => "picture-#{picture.id}"}
   %td
     .img-thumbnail
-      = image_tag picture.image.url(:medium),
-                  class: "img-responsive"
+      = image_tag picture.image.url(:medium), class: "img-responsive"
   %td
-    = link_to 'Сделать главной',
-              dashboard_picture_path(picture),
-              method: :put,
-              remote: true
+    = link_to 'Сделать главной', dashboard_picture_path(picture), method: :put, remote: true
     %br/
     %br/
     = link_to 'Удалить',

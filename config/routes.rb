@@ -1,7 +1,13 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :questions
+  resources :votes, only: [:create]
+  resources :questions do
+    member do
+      put "upvote", to: "questions#upvote"
+      put "downvote", to: "questions#downvote"
+    end
+  end
   resources :answers, only: [:create, :update, :destroy]
 
   devise_for :users, :controllers => {:registrations => "registrations"}

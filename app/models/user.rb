@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   after_create :notify_admin
   before_save :format_phone
 
+  acts_as_voter
+
   validates :phone, presence: true
   validates :name, presence: true
   validates :state_id, presence: true

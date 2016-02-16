@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   impressionist
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :upvote, :downvote]
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
@@ -28,6 +28,18 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def upvote
+    @question = Question.find(params[:id])
+    @question.upvote_by current_user
+    redirect_to questions_path
+  end
+
+  def downvote
+    @question = Question.find(params[:id])
+    @question.downvote_by current_user
+    redirect_to questions_path
   end
 
   def update
