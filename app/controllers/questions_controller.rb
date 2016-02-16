@@ -33,13 +33,17 @@ class QuestionsController < ApplicationController
   def upvote
     @question = Question.find(params[:id])
     @question.upvote_by current_user
-    redirect_to questions_path
   end
 
   def downvote
     @question = Question.find(params[:id])
+    @question.unvote_by current_user if current_user.voted_for? @question
     @question.downvote_by current_user
-    redirect_to questions_path
+  end
+
+  def unvote
+    @question = Question.find(params[:id])
+    @question.unvote_by current_user
   end
 
   def update

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       put "upvote", to: "questions#upvote"
       put "downvote", to: "questions#downvote"
+      put "unvote", to: "questions#unvote"
     end
   end
   resources :answers, only: [:create, :update, :destroy]
