@@ -2,10 +2,8 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   resources :questions do
-    member do
-      put "upvote", to: "questions#upvote"
-      put "downvote", to: "questions#downvote"
-      put "unvote", to: "questions#unvote"
+    collection do
+      get "unanswered"
     end
   end
   resources :answers, only: [:create, :update, :destroy] do

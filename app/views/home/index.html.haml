@@ -1,30 +1,21 @@
 = title("eZpoisk обьявления. Недвижимость, Работа, Адвокаты, Услуги, Реклама в США")
 = desc("eZpoisk (easy poisk) - портал русскоговорящих людей в Америке. Обьявления, Квартиры, Работа, Адвокаты, Услуги, Новости. Полезная информация об иммиграции в США")
-= content_for :top_partner do
-  = render "home/home_partner"
+-# = content_for :top_partner do
+-#   = render "home/home_partner"
 
 / DESKTOP
 .hidden-xs
   .row
-    .col-md-6.hidden-sm.hidden-xs
+    / left
+    .col-sm-12.col-lg-6
       = render "home/main_post"
-      %br/
-      = render "home/users_posts"
-    .col-md-6.posts
-      .col-md-12.white-block.padding-vertical-10
-        %h1.lenta-title
-          ЛЕНТА НОВОСТЕЙ
-          %span.pull-right= l Date.current, format: :long
-        %hr.lenta/
-        = render @homepage.news_posts(31)
+      = render "home/news_posts"
 
-  %br/
-  .row.visible-lg.white-block
-    - @homepage.articles.each do |p|
-      = link_to news_path(p) do
-        .col-md-2.article.padding-vertical-10
-          = image_tag p.logo_url(:small), class: "img-responsive article-img"
-          %span= p.title
+    / right
+    .col-sm-12.col-lg-6
+      = render "home/users_posts"
+      %br/
+      = render "home/questions"
 
 / MOBILE
 = render "home/mobile_index"

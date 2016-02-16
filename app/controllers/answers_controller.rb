@@ -8,13 +8,13 @@ class AnswersController < ApplicationController
 
     if @answer.save
       SlackNotifierJob.perform_async(@answer.id, "Answer")
-      redirect_to question_path(@answer.question), notice: "answer added"
+      redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)
     end
   end
 
   def update
     if @answer.update(answer_params)
-      redirect_to question_path(@answer.question), notice: "answer added"
+      redirect_to question_path(@answer.question), notice: I18n.t(:answer_updated)
     else
       render :edit
     end

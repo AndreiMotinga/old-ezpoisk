@@ -4,6 +4,7 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
+  scope :the_answer, -> { by_score.first }
 
   def score
     get_upvotes.size - get_downvotes.size

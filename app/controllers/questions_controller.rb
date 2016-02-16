@@ -1,11 +1,20 @@
 class QuestionsController < ApplicationController
   impressionist
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :upvote, :downvote]
+  before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.all.includes(:user).by_score
-    @questions = Kaminari.paginate_array(@questions).page(params[:page])
+    @questions = Question.includes(:user)
+                          .by_keyword(params[:keyword])
+                          .page(params[:page])
+  end
+
+  def unanswered
+    @questions = Question.includes(:user)
+                          .by_keyword(params[:keyword])
+                          .unanswered
+                          .page(params[:page])
+    render :index
   end
 
   def show
@@ -24,31 +33,15 @@ class QuestionsController < ApplicationController
 
     if @question.save
       SlackNotifierJob.perform_async(@question.id, "Question")
-      redirect_to @question, notice: 'Question was successfully created.'
+      redirect_to @question, notice: I18n.t(:q_created)
     else
       render :new
     end
   end
 
-  def upvote
-    @question = Question.find(params[:id])
-    @question.upvote_by current_user
-  end
-
-  def downvote
-    @question = Question.find(params[:id])
-    @question.unvote_by current_user if current_user.voted_for? @question
-    @question.downvote_by current_user
-  end
-
-  def unvote
-    @question = Question.find(params[:id])
-    @question.unvote_by current_user
-  end
-
   def update
     if @question.update(question_params)
-      redirect_to @question, notice: 'Question was successfully updated.'
+      redirect_to @question, notice: I18n.t(:q_updated)
     else
       render :edit
     end

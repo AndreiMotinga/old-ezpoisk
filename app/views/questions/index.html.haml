@@ -1,14 +1,12 @@
-.row
-  = link_to 'Задать вопрос', new_question_path, class: 'btn btn-success'
-.row
-  / similar posts
-  .hidden-xs.hidden-sm.col-md-2
+- content_for :secondary_navbar do
+  = render "questions/navbar"
 
+.row
   .col-md-8.white-block.padding-bottom-10
     = render @questions
 
   / partners
-  .hidden-xs.hidden-sm.col-md-2
+  .hidden-xs.hidden-sm.col-md-4
 
 .row
   .col-xs-12

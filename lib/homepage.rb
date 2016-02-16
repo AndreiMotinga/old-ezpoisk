@@ -1,6 +1,6 @@
 class Homepage
-  def articles
-    Post.by_category("Интересное").desc.limit(6)
+  def questions
+    Question.answered.last(15)
   end
 
   def news_posts(num)

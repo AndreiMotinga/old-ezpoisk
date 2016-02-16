@@ -1,0 +1,15 @@
+.white-block.padding-10
+  %h1.lenta-title
+    Комьюнити Q&A
+    %span.pull-right= l Date.current, format: :long
+  %hr.lenta/
+  #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+    - @homepage.questions.each do |q|
+      .panel.panel-default
+        .panel-heading{:role => "tab", id: "heading-#{q.id}"}
+          %a{"aria-controls" => "collapse-#{q.id}", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{q.id}", :role => "button"}
+            %h4.panel-title= q.title
+        .panel-collapse.collapse{"aria-labelledby" => "heading-#{q.id}", :role => "tabpanel", id: "collapse-#{q.id}"}
+          .panel-body
+            = strip_tags(q.the_answer.text).truncate(200)
+            = link_to "подробнее", q

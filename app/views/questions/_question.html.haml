@@ -16,11 +16,4 @@
   / line 2 question text
   .col-xs-12
     - if question.text.present?
-      %p.text= (sanitize question.text).truncate(300)
-
-  / line 3 LInks
-  .col-xs-12
-    - if current_user
-      = render "questions/voting_links", question: question
-    - else
-      = link_to "Войдите, чтобы голосовать", new_user_session_path
+      %p.text= strip_tags(question.text).truncate(300)
