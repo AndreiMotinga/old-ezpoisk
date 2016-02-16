@@ -25,6 +25,22 @@ class AnswersController < ApplicationController
     redirect_to question_path(@answer.question), notice: "answer added"
   end
 
+  def upvote
+    @answer = Answer.find(params[:id])
+    @answer.upvote_by current_user
+  end
+
+  def downvote
+    @answer = Answer.find(params[:id])
+    @answer.unvote_by current_user if current_user.voted_for? @answer
+    @answer.downvote_by current_user
+  end
+
+  def unvote
+    @answer = Answer.find(params[:id])
+    @answer.unvote_by current_user
+  end
+
   private
     def set_answer
       @answer = current_user.answers.find(params[:id])

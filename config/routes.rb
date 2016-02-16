@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :votes, only: [:create]
   resources :questions do
     member do
       put "upvote", to: "questions#upvote"
@@ -9,7 +8,13 @@ Rails.application.routes.draw do
       put "unvote", to: "questions#unvote"
     end
   end
-  resources :answers, only: [:create, :update, :destroy]
+  resources :answers, only: [:create, :update, :destroy] do
+    member do
+      put "upvote", to: "answers#upvote"
+      put "downvote", to: "answers#downvote"
+      put "unvote", to: "answers#unvote"
+    end
+  end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"

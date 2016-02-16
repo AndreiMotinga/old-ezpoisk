@@ -1,15 +1,36 @@
 .row
   .col-xs-12
+    / user logo and name
     .row
       .hidden-xs.col-sm-2
         = image_tag answer.user.avatar.url(:medium), class: "img-responsive img-circle"
       .col-xs-12.col-sm-10
-        %h3.text-muted.question-author= answer.user.name
+        %h3.text-muted.question-author
+          = answer.user.name
+          / popover
+          - if answer.user == current_user
+            %i.fa.fa-cog.fa-lg.pull-right{"data-content" => "#{render 'questions/edit_answer', answer: answer}",
+              "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", "data-placement" => "left"}
         %h5.text-meted= answer.user.slug if answer.user.slug.present?
+
+    / edit form
+    - if answer.user == current_user
+      .col-xs-12
+        .collapse{id: "editAnswer-#{answer.id}"}
+          %br/
+          = bootstrap_form_for answer do |f|
+            = hidden_field_tag 'answer[question_id]', @question.id
+            .field= f.text_area :text, hide_label: true, class: "summernote"
+            .actions= f.submit 'Сохранить', class: 'btn btn-block btn-success'
+
+    / answer text
     .col-xs-12
       .text= sanitize answer.text
-      - if answer.user  == current_user
-        = render 'questions/edit_answer', answer: answer
-        = link_to 'Удалить', answer_path(answer), method: :delete, data: { confirm: I18n.t(:confirm) }, class: " btn btn-danger pull-right"
+
+    / voting_links
+    .col-xs-12
+      - if current_user
+        = render "answers/voting_links", answer: answer
+      - else
+        = link_to "Войдите, что бы голосовать", new_user_session_path
 %hr.lenta
-%br/

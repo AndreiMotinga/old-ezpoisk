@@ -1,6 +1,9 @@
 .row.question
+  / line 1  title and User
   .col-xs-12
-    %h1.question-title= link_to question.title, question
+    %h1.question-title
+      = link_to question.title, question
+      = ""
     .row
       .hidden-xs.col-sm-2.col-sm-offset-1
         = image_tag question.user.avatar.url(:medium), class: "img-responsive img-circle"
@@ -9,11 +12,15 @@
         %h5.text-meted= question.user.slug if question.user.slug.present?
         %p= "#{question.impressionist_count} просмотров, #{question.answers.count} ответов"
     %hr.q-devider
+
+  / line 2 question text
   .col-xs-12
     - if question.text.present?
       %p.text= (sanitize question.text).truncate(300)
+
+  / line 3 LInks
   .col-xs-12
     - if current_user
       = render "questions/voting_links", question: question
     - else
-      = link_to "Войдите, что бы голосовать", new_user_session_path
+      = link_to "Войдите, чтобы голосовать", new_user_session_path

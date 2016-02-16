@@ -1,20 +1,30 @@
 .row
-  .col-xs-12.col-md-8.white-block.padding-bottom-10
+  .col-xs-12.col-md-8.white-block
     .row
       .col-xs-12
-        %h1.question-title= @question.title
-        %span.pull-right= link_to 'Редактировать', edit_question_path(@question) if @question.user == current_user
-        - if @question.text.present?
-          %p.text= @question.text
+        / line 1 title & edit
+        %h1.question-title
+          - if @question.user == current_user
+            %i.fa.fa-cog{"data-content" => "#{render "questions/edit_link"}",
+              "data-toggle" => "popover",
+              "data-trigger" => "focus",
+              :role => "button",
+              :tabindex => "0"}
+          = @question.title
 
+        / line 2 question text
+        %p.text= sanitize @question.text if @question.text.present?
+
+        / answer link
         %br/
         - if current_user
           = render "questions/new_answear"
         - else
-          = link_to "Войдите", new_user_session_path
-          что бы ответить
+          = link_to "Войдите, чтобы ответить", new_user_session_path
+
         %br/
 
+    / ANSWERS
     .row
       .col-xs-12
         %h2= "#{@question.answers.count} Ответов"
@@ -22,7 +32,7 @@
 
     .row
       .col-xs-12
-        = render @question.answers.includes(:user)
+        = render @question.answers.includes(:user).by_score
 
   / partners
   .hidden-xs.hidden-sm.col-md-4

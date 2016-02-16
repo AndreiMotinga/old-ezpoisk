@@ -1,9 +1,7 @@
-%a.btn.btn-primary{"aria-controls" => "editAnswer", "aria-expanded" => "false",
-  "data-toggle" => "collapse", :href => "#editAnswer", :role => "button"}
-  Редактировать
-#editAnswer.collapse
-  %br/
-  = bootstrap_form_for answer do |f|
-    = hidden_field_tag 'answer[question_id]', @question.id
-    .field= f.text_area :text, hide_label: true, class: "summernote"
-    .actions= f.submit 'Сохранить', class: 'btn btn-success'
+%ul.list-group
+  %li.list-group-item
+    %a{"aria-controls" => "editAnswer-#{answer.id}", "aria-expanded" => "false",
+      "data-toggle" => "collapse", :href => "#editAnswer-#{answer.id}", :role => "button"}
+      Редактировать
+  %li.list-group-item
+    = link_to 'Удалить', answer_path(answer), method: :delete, data: { confirm: I18n.t(:confirm) }

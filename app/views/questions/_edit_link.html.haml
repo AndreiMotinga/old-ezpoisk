@@ -1,0 +1,3 @@
+%ul.list-group
+  %li.list-group-item
+    = link_to 'Редактировать', edit_question_path(@question) if @question.user == current_user

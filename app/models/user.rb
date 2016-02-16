@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :feedbacks
   has_many :pictures
   has_many :questions
-  has_many :answers, through: :questions
+  has_many :answers
 
   has_attached_file :avatar,
     styles: { medium: "200x200#" },

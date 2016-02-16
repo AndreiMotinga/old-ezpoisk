@@ -4,8 +4,8 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.all.includes(:user)
-      .order("created_at desc").page(params[:page])
+    @questions = Question.all.includes(:user).by_score
+    @questions = Kaminari.paginate_array(@questions).page(params[:page])
   end
 
   def show
