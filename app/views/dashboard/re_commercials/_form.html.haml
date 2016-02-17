@@ -32,7 +32,7 @@
         %input{:name => "re_commercial[active]", :type => "hidden", :value => "0"}
           %input#re_commercial_active{:checked => "checked", :name => "re_commercial[active]", :type => "checkbox", :value => "1"}
             Активно
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
 
   .field
     / TODO: move Rails.env to tests
@@ -42,7 +42,7 @@
   .hidden-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"

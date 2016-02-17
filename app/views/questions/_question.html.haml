@@ -2,18 +2,19 @@
   / line 1  title and User
   .col-xs-12
     %h1.question-title
-      = link_to question.title, question
-      = ""
+      = link_to question.title, question, target: "blank"
     .row
-      .hidden-xs.col-sm-2.col-sm-offset-1
-        = image_tag question.user.avatar.url(:medium), class: "img-responsive img-circle"
-      .col-xs-12.col-sm-9
-        %h3.text-muted.question-author= question.user.name
-        %h5.text-meted= question.user.slug if question.user.slug.present?
+      .hidden-xs.col-sm-1.qa-avatar
+        = image_tag question.user.avatar.url(:thumb), class: "img-responsive img-circle center-block"
+      .col-xs-12.col-sm-11
+        %h3.text-muted.question-author
+          = question.user.name
+          = ", #{question.user.slug}" if question.user.slug.present?
         %p= "#{question.impressionist_count} просмотров, #{question.answers.count} ответов"
-    %hr.q-devider
 
   / line 2 question text
   .col-xs-12
-    - if question.text.present?
-      %p.text= strip_tags(question.text).truncate(300)
+    %p.text
+      = strip_tags(question.text_to_show).truncate(200)
+      - if strip_tags(question.text_to_show).size > 200
+        = link_to "читать дальше", question, target: "blank"

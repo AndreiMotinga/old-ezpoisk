@@ -24,7 +24,7 @@
         %div
           = f.text_field :phone, label: "Телефон"
         %div
-          = f.text_field :slug, label: "Ваше кредо", placeholder: "Treat others as you would like to be treated in their situation "
+          = f.text_field :slug, label: "Коротко о себе", placeholder: "Пару слов о том, кто Вы"
         %div
           = f.email_field :email
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?

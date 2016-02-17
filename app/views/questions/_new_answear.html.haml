@@ -1,3 +1,7 @@
+%h4
+  %i.fa.fa-pencil
+  Можете ответить на этот вопрос?
+
 %a.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false",
   "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
   Ответить
@@ -6,4 +10,4 @@
   = bootstrap_form_for Answer.new do |f|
     = hidden_field_tag 'answer[question_id]', @question.id
     .field= f.text_area :text, hide_label: true, class: "summernote"
-    .actions= f.submit 'Сохранить', class: 'btn btn-success'
+    .actions= f.submit 'Сохранить', class: 'btn btn-success btn-block'

@@ -1,17 +1,18 @@
-.row
+.row.answer
   .col-xs-12
-    / user logo and name
+
+    / User
     .row
-      .hidden-xs.col-sm-2
-        = image_tag answer.user.avatar.url(:medium), class: "img-responsive img-circle"
-      .col-xs-12.col-sm-10
+      .hidden-xs.col-sm-1.qa-avatar
+        = image_tag answer.user.avatar.url(:thumb), class: "img-responsive img-circle center-block"
+      .col-xs-12.col-sm-11
         %h3.text-muted.question-author
-          = answer.user.name
           / popover
           - if answer.user == current_user
             %i.fa.fa-cog.fa-lg.pull-right{"data-content" => "#{render 'questions/edit_answer', answer: answer}",
               "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", "data-placement" => "left"}
-        %h5.text-meted= answer.user.slug if answer.user.slug.present?
+          = answer.user.name
+          = ", #{answer.user.slug}" if answer.user.slug.present?
 
     / edit form
     - if answer.user == current_user
@@ -23,9 +24,12 @@
             .field= f.text_area :text, hide_label: true, class: "summernote"
             .actions= f.submit 'Сохранить', class: 'btn btn-block btn-success'
 
+    %br/
     / answer text
-    .col-xs-12
-      .text= sanitize answer.text
+    .row
+      .col-xs-12
+        .text= sanitize answer.text
+    %br/
 
     / voting_links
     .col-xs-12
@@ -33,4 +37,3 @@
         = render "answers/voting_links", answer: answer
       - else
         = link_to "Войдите, что бы голосовать", new_user_session_path
-%hr.lenta

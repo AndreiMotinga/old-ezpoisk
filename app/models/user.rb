@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   has_many :answers
 
   has_attached_file :avatar,
-    styles: { medium: "200x200#" },
+    styles: { thumb: "50x50#", medium: "200x200#" },
     :s3_protocol => :https,
     default_url: "default-avatar.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/

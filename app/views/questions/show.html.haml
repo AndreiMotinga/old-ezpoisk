@@ -2,37 +2,36 @@
   = render "questions/navbar"
 
 .row
-  .col-xs-12.col-md-8.white-block
+  .col-xs-12.col-md-8
+    / question
     .row
-      .col-xs-12
+      .col-xs-12.question
         / line 1 title & edit
         %h1.question-title
+          = @question.title
           - if @question.user == current_user
-            %i.fa.fa-cog{"data-content" => "#{render "questions/edit_link"}",
+            %i.fa.fa-cog.pull-right{"data-content" => "#{render "questions/edit_link"}",
               "data-toggle" => "popover",
+              "data-placement" => "left",
               "data-trigger" => "focus",
               :role => "button",
               :tabindex => "0"}
-          = @question.title
 
         / line 2 question text
-        %p.text= sanitize @question.text if @question.text.present?
+        - if @question.text.present?
+          %p.text= sanitize @question.text
 
-        / answer link
-        %br/
+        / answer button/links
         - if current_user
           = render "questions/new_answear"
         - else
           = link_to "Войдите, чтобы ответить", new_user_session_path
-
-        %br/
-
-    / ANSWERS
-    .row
-      .col-xs-12
-        %h2= "#{@question.answers.count} Ответов"
+        %span.text.text-muted.qa-links= "#{@question.answers.count} ответов"
         %hr#lenta/
 
+    %br/
+
+    / ANSWERS
     .row
       .col-xs-12
         = render @question.answers.includes(:user).by_score

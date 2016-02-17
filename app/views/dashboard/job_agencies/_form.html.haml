@@ -25,7 +25,7 @@
         %input{:name => "job_agency[active]", :type => "hidden", :value => "0"}
           %input#job_agency_active{:checked => "checked", :name => "job_agency[active]", :type => "checkbox", :value => "1"}
             Активно
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
 
   .field
     - if @job_agency.new_record? && !Rails.env.test?

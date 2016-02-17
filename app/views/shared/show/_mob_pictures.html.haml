@@ -4,8 +4,7 @@
     - record.pictures.each_with_index do |pic, i|
       %div{:class => "item #{"active" if i == 0}"}
         = image_tag pic.image.url(:large),
-                    alt: "#{record.try(:title)} pictures",
-                    class: "carousel-image center-block"
+                    alt: "#{record.try(:title)} pictures"
   / Wrapper for slides
 
   / Controls

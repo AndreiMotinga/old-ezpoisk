@@ -4,7 +4,7 @@
   = render "real_estate/navbar"
 
 .row.show
-  .col-xs-12.col-md-7.white-block.padding-top-10
+  .col-xs-12.col-md-7.white-block
     %ul.pgwSlideshow.pictures
       - @re_private.pictures.each do |pic|
         %li
@@ -52,5 +52,5 @@
 - if @re_private.description.present?
   .row
     .hidden-xs.col-sm-12
-      .post-item-description.white-block
+      .white-block
         = sanitize @re_private.description

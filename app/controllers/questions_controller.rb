@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
 
   def index
     @questions = Question.includes(:user)
+                          .answered
                           .by_keyword(params[:keyword])
                           .page(params[:page])
   end

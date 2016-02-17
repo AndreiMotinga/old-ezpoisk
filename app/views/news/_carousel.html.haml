@@ -3,7 +3,7 @@
     .carousel-inner
       - @side_posts.each_with_index do |post, i|
         .item{class: (i == 0 ? "active" : '')}
-          .col-xs-12.col-sm-6.col-md-3
+          .col-xs-12.col-sm-6.col-md-3.article
             = link_to news_path(post) do
               = image_tag post.logo_url, class: "img-responsive"
             %h5= post.title

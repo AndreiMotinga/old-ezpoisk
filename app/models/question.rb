@@ -19,12 +19,17 @@ class Question < ActiveRecord::Base
   end
 
   def self.convert_keyword(keyword)
-    keyword.gsub(/[^0-9a-z ]/i, "")
+    keyword.gsub(/[^0-9a-zа-я ]/i, "")
       .split(" ")
       .map { |key| "%#{key.mb_chars.downcase}%" }
   end
 
   def the_answer
     answers.the_answer
+  end
+
+  def text_to_show
+    return the_answer.text if the_answer.present?
+    text
   end
 end

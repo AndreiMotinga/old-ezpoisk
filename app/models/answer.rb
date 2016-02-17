@@ -9,4 +9,5 @@ class Answer < ActiveRecord::Base
   def score
     get_upvotes.size - get_downvotes.size
   end
+
 end

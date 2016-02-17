@@ -36,14 +36,14 @@
         %input{:name => "re_private[active]", :type => "hidden", :value => "0"}
           %input#re_private_active{:checked => "checked", :name => "re_private[active]", :type => "checkbox", :value => "1"}
             Активно
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
 
   .field
     .checkbox
       %label{:for => "re_private_fee"}
         %input{:name => "re_private[fee]", :type => "hidden", :value => "0"}
           %input#re_private_fee{:name => "re_private[fee]", :type => "checkbox", :value => "1"} Комиссия
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :commission_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :commission_tooltip) }
 
   .field
     - if @re_private.new_record? && !Rails.env.test?
@@ -52,7 +52,7 @@
   .hidden-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"

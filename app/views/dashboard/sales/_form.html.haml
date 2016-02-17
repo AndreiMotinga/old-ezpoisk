@@ -31,7 +31,7 @@
         %input{:name => "sale[active]", :type => "hidden", :value => "0"}
           %input#sale_active{:checked => "checked", :name => "sale[active]", :type => "checkbox", :value => "1"}
             Активно
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
 
   .field
     - if @sale.new_record? && !Rails.env.test?
@@ -40,7 +40,7 @@
   .hidden-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
-      %i.fa.fa-question{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
   .visible-xs
     .actions
       = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"

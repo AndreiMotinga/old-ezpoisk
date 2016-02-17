@@ -25,40 +25,10 @@ body {
   }
 }
 
-a.active {
-  background: $grey1;
-}
-
 .white-block {
+  padding: 10px;
   background-color: white;
   border-radius: 4px;
-}
-
-.carousel-inner {
-  background: $grey1;
-}
-.carousel-image {
-  width: auto;
-  height: 320px;
-  max-height: 320px;
-}
-
-.side-post {
-  background-color: white;
-  text-transform: lowercase;
-  margin-bottom: 10px;
-  .text {
-    padding: 5px;
-  }
-}
-
-// todo: hover
-// li.active, li:hover {
-//   background-color: $grey1;
-// }
-
-.nav-tabs > li > a {
-  margin-right: 0px;
 }
 
 #feedback a{
@@ -76,12 +46,9 @@ a.active {
   text-decoration: none;
   z-index: 1;
 }
+
 #feedback a:hover{
   background-color: $darkblue;
-}
-
-.contacts-list {
-  margin-right: 0px;
 }
 
 .fa-envelope-o {
@@ -96,13 +63,15 @@ a.active {
 .fa-comment {
   color: $grey2;
 }
-.fa-question {
+
+.my-q {
   color: white;
   background-color: green;
   padding: 0px 3px;
   margin-left: 7px;
   border-radius: 6px;
 }
+
 .glyphicon-earphone {
   color: green;
   font-size: 12px;
@@ -116,13 +85,6 @@ a.active {
       background-color: white !important;
     }
   }
-}
-
-.carousel-indicators li {
- margin-left: 5px;
-}
-.carousel-inner {
-  background-color: $grey0;
 }
 
 .partner {
