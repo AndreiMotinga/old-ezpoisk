@@ -15,3 +15,8 @@
             = link_to "подробнее", q, target: "_blank"
 
   = link_to "Комьюнити Q&A", questions_path, target: "_blank"
+
+:javascript
+  setTimeout(function(){
+    $('#q-0').trigger('click');
+  }, 3000);
