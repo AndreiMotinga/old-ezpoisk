@@ -32,18 +32,6 @@
               = link_to t(:commercial), main_app.real_estate_re_commercials_path
         / real_estate
 
-        / services
-        %li= link_to "Услуги", services_path
-        -# %li.dropdown
-        -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
-        -#                      "data-toggle" => "dropdown", :role => "button"}
-        -#     Услуги
-        -#     %span.caret
-        -#   %ul.dropdown-menu
-        -#     - SERVICE_CATEGORIES.keys.each do |category|
-        -#       %li= link_to category, main_app.services_path(category: category)
-        -# / services
-
         / jobs
         %li.dropdown
           %a.dropdown-toggle{ "aria-expanded" => "false",
@@ -58,6 +46,22 @@
             %li
               = link_to 'Работа', main_app.jobs_jobs_path
         / jobs
+
+        / answers
+        %li= link_to 'ezAnswers', main_app.questions_path
+        / answers
+
+        / services
+        %li= link_to "Услуги", services_path
+        -# %li.dropdown
+        -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
+        -#                      "data-toggle" => "dropdown", :role => "button"}
+        -#     Услуги
+        -#     %span.caret
+        -#   %ul.dropdown-menu
+        -#     - SERVICE_CATEGORIES.keys.each do |category|
+        -#       %li= link_to category, main_app.services_path(category: category)
+        -# / services
 
         / sale
         %li= link_to "Продается", sales_path
@@ -75,11 +79,10 @@
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
                              "data-toggle" => "dropdown", :role => "button"}
-            Почитать
+            Новости
             %span.caret
           %ul.dropdown-menu
 
-            %li= link_to 'Вопросы', main_app.questions_path
             %li= link_to(t(:news), main_app.news_index_path(category: "Интересное"))
             %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
         / news

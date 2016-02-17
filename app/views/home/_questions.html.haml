@@ -1,15 +1,17 @@
 .white-block
   %h1.lenta-title
-    Комьюнити Q&A
+    = link_to "Комьюнити Q&A", questions_path, target: "_blank"
     %span.pull-right= l Date.current, format: :long
   %hr.lenta/
   #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-    - @homepage.questions.each do |q|
+    - @homepage.questions.each_with_index do |q, i|
       .panel.panel-default
-        .panel-heading{:role => "tab", id: "heading-#{q.id}"}
-          %a{"aria-controls" => "collapse-#{q.id}", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{q.id}", :role => "button"}
+        .panel-heading{:role => "tab", id: "heading-#{i}"}
+          %a{id: "q-#{i}", "aria-controls" => "collapse-#{i}", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{i}", :role => "button"}
             %h4.panel-title= q.title
-        .panel-collapse.collapse{"aria-labelledby" => "heading-#{q.id}", :role => "tabpanel", id: "collapse-#{q.id}"}
+        .panel-collapse.collapse{"aria-labelledby" => "heading-#{i}", :role => "tabpanel", id: "collapse-#{i}"}
           .panel-body
             = strip_tags(q.text_to_show).truncate(200)
-            = link_to "подробнее", q
+            = link_to "подробнее", q, target: "_blank"
+
+  = link_to "Комьюнити Q&A", questions_path, target: "_blank"

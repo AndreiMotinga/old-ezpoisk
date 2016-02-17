@@ -41,12 +41,7 @@
     = f.email_field :email
 
   .field
-    .checkbox
-      %label{:for => "service_active"}
-        %input{:name => "service[active]", :type => "hidden", :value => "0"}
-          %input#service_active{:checked => "checked", :name => "service[active]", :type => "checkbox", :value => "1"}
-            Активно
-      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :active_tooltip) }
+    = f.check_box :active, label: "Активно *"
 
   .field
     - if @service.new_record? && !Rails.env.test?
@@ -67,3 +62,8 @@
             method: :delete,
             data: { confirm: I18n.t(:confirm) },
             class: "btn btn-block mobile-btn btn-danger"
+
+%br/
+%p
+  %strong Активно * -
+  = t :active_tooltip

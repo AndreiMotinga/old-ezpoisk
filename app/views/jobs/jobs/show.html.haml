@@ -3,6 +3,4 @@
 - content_for :secondary_navbar do
   = render "jobs/navbar"
 
-= render "shared/show",
-          record: @job,
-          template: 'dashboard/jobs/job'
+= render 'shared/show/company', record: @job

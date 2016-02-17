@@ -23,7 +23,7 @@
 
     / line 3
     .hidden-xs
-      - if record.site.present?
+      - if record.try(:site).present?
         %strong= link_to record.site, "http://#{record.site}", target: "blank"
         %hr.post-devider/
 

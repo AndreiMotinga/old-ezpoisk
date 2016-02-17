@@ -3,6 +3,6 @@
     %h2.post-title
       %span.post-time= post.created_at.strftime("%H:%M")
       - if current_user.try(:admin?)
-        = link_to post.title.truncate(55), edit_news_path(post)
+        = link_to post.title.truncate(55), edit_news_path(post), target: "blank"
       - else
-        = link_to post.title.truncate(55), news_path(post)
+        = link_to post.title.truncate(55), news_path(post), target: "blank"

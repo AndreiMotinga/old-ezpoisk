@@ -8,11 +8,13 @@
     %h5
       %strong
         Гороскоп на день
+        %span.text-muted (#{@record.updated_at.strftime("%B %d")})
     %p
       = @record.day_description
     %br/
     %h5
       %strong
         Гороскоп на месяц
+        %span.text-muted (#{@record.updated_at.strftime("%B")})
     %p
       = @record.month_description

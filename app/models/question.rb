@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   belongs_to :user
   has_many :answers
 
+  validates :title, presence: true
+
   def self.by_keyword(keyword)
     return all if keyword.blank?
     keys = convert_keyword(keyword)

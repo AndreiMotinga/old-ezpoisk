@@ -1,7 +1,9 @@
 - unless Rails.env.test?
   %script{:src => "https://cdn.slaask.com/chat.js"}
   :javascript
-    _slaask.init('7f794f0e34273c27cc0365601bdf42fd');
+    $(document).ready(function(){
+      _slaask.init('7f794f0e34273c27cc0365601bdf42fd');
+    });
 
 - if Rails.env.production?
   :javascript
