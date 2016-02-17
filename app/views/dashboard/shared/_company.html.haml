@@ -1,6 +1,6 @@
 .row.post-item
   .col-xs-4.col-sm-4.logo-js
-    = link_to link_from_controller(record) do
+    = link_to link_from_controller(record), target: "_blank" do
       = image_tag record.logo,
                   alt: record.title,
                   class: "img-responsive"
@@ -24,7 +24,7 @@
     / line 3
     .hidden-xs
       - if record.try(:site).present?
-        %strong= link_to record.site, "http://#{record.site}", target: "blank"
+        %strong= link_to record.site, "http://#{record.site}", target: "_blank"
         %hr.post-devider/
 
     / line 4

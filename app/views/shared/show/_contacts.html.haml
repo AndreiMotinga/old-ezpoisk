@@ -22,13 +22,10 @@
     %li.list-group-item
       site:
       %strong
-        = link_to record.site, "http://#{record.site}", target: "blank"
+        = link_to record.site, "http://#{record.site}", target: "_blank"
   - unless record.try(:email).blank?
     %li.list-group-item
       email:
       %strong= record.email
   %li.list-group-item
-    GMap:
-    %a{ :href => "https://maps.google.com/?q=#{record.address}",
-        target: :blank }
-      = record.address
+    = link_to "GMap: #{record.address}", "https://maps.google.com/?q=#{record.address}", target: "_blank"

@@ -2,13 +2,13 @@
   .col-sm-4
     .text-right
       %ul.list-unstyled
-        %li= link_to 'Недвижимость', main_app.real_estate_re_agencies_path
-        %li= link_to 'Услуги', main_app.services_path
-        %li= link_to 'Работа', main_app.jobs_job_agencies_path
-        %li= link_to 'Продается', main_app.sales_path
-        %li= link_to 'Новости', main_app.news_index_path
-        %li= link_to 'Контакты', main_app.new_feedback_path
-        %li= link_to 'Terms of Service',  '/tos', target: 'blank'
+        %li= link_to 'Недвижимость', main_app.real_estate_re_agencies_path, target: "_blank"
+        %li= link_to 'Услуги', main_app.services_path, target: "_blank"
+        %li= link_to 'Работа', main_app.jobs_job_agencies_path, target: "_blank"
+        %li= link_to 'Продается', main_app.sales_path, target: "_blank"
+        %li= link_to 'Новости', main_app.news_index_path, target: "_blank"
+        %li= link_to 'Контакты', main_app.new_feedback_path, target: "_blank"
+        %li= link_to 'Terms of Service',  '/tos', target: '_blank'
 
   .col-sm-6
     %p.copyright

@@ -2,7 +2,7 @@
   / line 1  title and User
   .col-xs-12
     %h1.question-title
-      = link_to question.title, question, target: "blank"
+      = link_to question.title, question, target: "_blank"
     .row
       .hidden-xs.col-sm-1.qa-avatar
         = image_tag question.user.avatar.url(:thumb), class: "img-responsive img-circle center-block"
@@ -17,4 +17,4 @@
     %p.text
       = strip_tags(question.text_to_show).truncate(200)
       - if strip_tags(question.text_to_show).size > 200
-        = link_to "читать дальше", question, target: "blank"
+        = link_to "читать дальше", question, target: "_blank"

@@ -8,7 +8,6 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      -# = link_to 'eZpoisk', root_path, class: "navbar-brand"
       = link_to main_app.root_path do
         = image_tag "ezpoisk2", class: "img-responsive", id: 'brand-image'
 
@@ -25,11 +24,11 @@
             %span.caret
           %ul.dropdown-menu
             %li
-              = link_to t(:agencies), main_app.real_estate_re_agencies_path
+              = link_to t(:agencies), main_app.real_estate_re_agencies_path, target: "_blank"
             %li
-              = link_to t(:private), main_app.real_estate_re_privates_path
+              = link_to t(:private), main_app.real_estate_re_privates_path, target: "_blank"
             %li
-              = link_to t(:commercial), main_app.real_estate_re_commercials_path
+              = link_to t(:commercial), main_app.real_estate_re_commercials_path, target: "_blank"
         / real_estate
 
         / jobs
@@ -42,17 +41,17 @@
             %span.caret
           %ul.dropdown-menu
             %li
-              = link_to t(:agencies), main_app.jobs_job_agencies_path
+              = link_to t(:agencies), main_app.jobs_job_agencies_path, target: "_blank"
             %li
-              = link_to 'Работа', main_app.jobs_jobs_path
+              = link_to 'Работа', main_app.jobs_jobs_path, target: "_blank"
         / jobs
 
         / answers
-        %li= link_to 'ezAnswers', main_app.questions_path
+        %li= link_to 'ezAnswers', main_app.questions_path, target: "_blank"
         / answers
 
         / services
-        %li= link_to "Услуги", services_path
+        %li= link_to "Услуги", services_path, target: "_blank"
         -# %li.dropdown
         -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
         -#                      "data-toggle" => "dropdown", :role => "button"}
@@ -64,7 +63,7 @@
         -# / services
 
         / sale
-        %li= link_to "Продается", sales_path
+        %li= link_to "Продается", sales_path, target: "_blank"
         -# %li.dropdown
         -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
         -#                      "data-toggle" => "dropdown", :role => "button"}
@@ -83,8 +82,8 @@
             %span.caret
           %ul.dropdown-menu
 
-            %li= link_to(t(:news), main_app.news_index_path(category: "Интересное"))
-            %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
+            %li= link_to t(:news), main_app.news_index_path(category: "Интересное"), target: "_blank"
+            %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ"), target: "_blank"
         / news
 
         / dashboard
@@ -103,16 +102,16 @@
             %li
               %a{ "data-target" => "#new", "data-toggle" => "modal", :role => "button" }
                 Новое объявление
-            %li= link_to "Мои объявления", main_app.dashboard_path
+            %li= link_to "Мои объявления", main_app.dashboard_path, target: "_blank"
             %li.divider{:role => "separator"}
             - if user_signed_in?
-              %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
-              %li= link_to "Профиль", main_app.edit_user_registration_path
+              %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete, target: "_blank"
+              %li= link_to "Профиль", main_app.edit_user_registration_path, target: "_blank"
             - else
-              %li= link_to t(:sign_in), main_app.new_user_session_path
-              %li= link_to t(:sign_up), main_app.new_user_registration_path
+              %li= link_to t(:sign_in), main_app.new_user_session_path, target: "_blank"
+              %li= link_to t(:sign_up), main_app.new_user_registration_path, target: "_blank"
             %li.divider{:role => "separator"}
-            %li= link_to "О компании", main_app.new_feedback_path
+            %li= link_to "О компании", main_app.new_feedback_path, target: "_blank"
 
         / dashboard
       / right links
