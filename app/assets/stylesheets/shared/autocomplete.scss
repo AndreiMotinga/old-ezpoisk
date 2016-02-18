@@ -47,3 +47,24 @@
     }
   }
 }
+li.ui-menu-item {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+  font-family: Georgia,Times,"Times New Roman",serif;
+  font-size: 18px;
+}
+
+// searched term
+.ui-state-highlight {
+  font-weight: bold;
+  color: $blue;
+}
+
+li.ui-menu-item:hover {
+  background-color: $blue0;
+}
+
+//  some weird div on the bottom of the page
+.ui-helper-hidden-accessible {
+  display: none;
+}

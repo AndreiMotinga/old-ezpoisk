@@ -12,6 +12,13 @@ class Question < ActiveRecord::Base
     where(query, keys, keys)
   end
 
+  def self.term_for(term)
+    qs = where("LOWER(title) LIKE ?", "%#{term.mb_chars.downcase}%")
+    qs = qs.limit(10).pluck(:title, :id)
+    qs.map!{ |q| { value: "/questions/#{q[1]}", label: q[0]}}
+    qs << { value: "/questions?keyword=#{term}", label: "Искать:  \"#{term}\"" }
+  end
+
   def self.unanswered
     where('id NOT IN (SELECT DISTINCT(question_id) FROM answers)')
   end

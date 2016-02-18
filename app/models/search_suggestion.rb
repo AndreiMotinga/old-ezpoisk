@@ -1,8 +1,11 @@
 class SearchSuggestion < ActiveRecord::Base
 
   def self.term_for(prefix)
-    suggestions = where("lower(term) like ?", "%#{prefix.mb_chars.downcase}%")
-    suggestions.order("popularity desc").limit(10).pluck(:term)
+    where("lower(term) like ?", "%#{prefix.mb_chars.downcase}%")
+      .order("popularity desc")
+      .limit(10)
+      .pluck(:term, :id)
+      .map {|q| {value: "www.google.com", label: q.title}}
   end
 
   def self.index_questions
