@@ -34,7 +34,7 @@
     = f.check_box :active, label: "Активно *"
 
   .field
-    = f.check_box :active, label: "Комиссия *"
+    = f.check_box :fee, label: "Комиссия *"
 
   .field
     - if @re_private.new_record? && !Rails.env.test?

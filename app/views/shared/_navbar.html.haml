@@ -16,6 +16,10 @@
       / right links
       %ul.nav.navbar-nav.navbar-right
 
+        / answers
+        %li= link_to 'ezAnswers', main_app.questions_path, target: "_blank"
+        / answers
+
         /real_estate
         %li.dropdown
           %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
@@ -45,10 +49,6 @@
             %li
               = link_to 'Работа', main_app.jobs_jobs_path, target: "_blank"
         / jobs
-
-        / answers
-        %li= link_to 'ezAnswers', main_app.questions_path, target: "_blank"
-        / answers
 
         / services
         %li= link_to "Услуги", services_path, target: "_blank"

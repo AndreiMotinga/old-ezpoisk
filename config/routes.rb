@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :search_suggestions
   resources :questions do
     collection do
       get "unanswered"
