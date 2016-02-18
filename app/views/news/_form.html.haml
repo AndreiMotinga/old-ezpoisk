@@ -1,4 +1,11 @@
 = bootstrap_form_for(@post, url: url) do |f|
+  - if @post.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
+      %ul
+        - @post.errors.full_messages.each do |msg|
+          %li= msg
+
   = f.text_area :text,
                 label: 'Содержание',
                 class: "summernote"
