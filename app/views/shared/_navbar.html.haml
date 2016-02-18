@@ -82,7 +82,7 @@
             %span.caret
           %ul.dropdown-menu
 
-            %li= link_to t(:news), main_app.news_index_path(category: "Интересное"), target: "_blank"
+            %li= link_to t(:news), main_app.news_index_path, target: "_blank"
             %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ"), target: "_blank"
         / news
 
@@ -108,7 +108,7 @@
               %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete, target: "_blank"
               %li= link_to "Профиль", main_app.edit_user_registration_path, target: "_blank"
             - else
-              %li= link_to t(:sign_in), main_app.new_user_session_path, target: "_blank"
+              %li= link_to t(:sign_in), main_app.new_user_session_path
               %li= link_to t(:sign_up), main_app.new_user_registration_path, target: "_blank"
             %li.divider{:role => "separator"}
             %li= link_to "О компании", main_app.new_feedback_path, target: "_blank"

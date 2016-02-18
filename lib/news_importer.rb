@@ -5,7 +5,6 @@ class NewsImporter
 
   def import
     NEWS_CATEGORIES.each_pair do |category, details|
-      next if category == "Интересное"
       if category == "Страны"
         details.each do |country|
           xml = Nokogiri::XML(open(country.first))
