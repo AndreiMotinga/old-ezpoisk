@@ -8,6 +8,12 @@ $(document).ready(function() {
       openNewTab(ui.item.value);
     },
 
+    // replace input with user selected li
+    focus: function(event, ui) {
+      event.preventDefault();
+      $("#search").val(ui.item.label);
+    },
+
     // show menu users clicks on already populated search field
   }).focus(function(){
     $(this).autocomplete('search', $(this).val())

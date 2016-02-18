@@ -34,5 +34,6 @@ module Ezpoisk
 
     # rspec doesn't pick up jobs without it
     config.autoload_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
+    config.middleware.insert_before 0, "SearchSuggestions"
   end
 end
