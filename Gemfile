@@ -79,6 +79,7 @@ group :development do
   gem "guard-rspec", require: false
   gem "terminal-notifier-guard"
   gem "launchy-rails"
+  gem "rack-mini-profiler"
 end
 
 group :test do
