@@ -24,7 +24,7 @@ feature "user updates re_agency" do
 
     expect(re_agency.title).to eq "New title"
     expect(re_agency.street).to eq "New street"
-    expect(re_agency.phone).to eq "999999999"
+    expect(re_agency.phone).to eq "999 999 999"
     expect(re_agency.email).to eq "some@gmail.com"
     expect(re_agency.site).to eq "www.example.com"
     expect(re_agency.active).to eq false

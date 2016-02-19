@@ -7,7 +7,7 @@ class RealEstate::ReFinancesController < ApplicationController
   end
 
   def show
-    @re_agency = get_record ReFinance,
+    @re_finance = get_record ReFinance,
                             params[:id],
                             real_estate_re_finances_path
   end

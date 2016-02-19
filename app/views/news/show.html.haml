@@ -3,10 +3,6 @@
   = render 'news/navbar'
 
 = link_to 'Исправить', edit_news_path(@post) if current_user.try(:admin)
-.visible-xs
-  .row.mobile-secondary
-    .col-xs-12
-      = link_to '<', :back, class: "mobile-btn mobile-back-btn"
 
 .row
   .col-md-8

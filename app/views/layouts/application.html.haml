@@ -30,7 +30,7 @@
 
     / CONTENT
     .container
-      .row.hidden-xs= yield :secondary_navbar if content_for?(:secondary_navbar)
+      .row= yield :secondary_navbar if content_for?(:secondary_navbar)
       = yield
     / CONTENT
 

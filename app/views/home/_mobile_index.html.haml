@@ -14,9 +14,11 @@
       #home.tab-pane.active{:role => "tabpanel"}
         %ul.list-group
           = link_to questions_path, class: "mobile-link" do
-            %li.list-group-item Вопросы
+            %li.list-group-item Ответы
           = link_to real_estate_re_agencies_path, class: "mobile-link" do
             %li.list-group-item Агентства недвижимости
+          = link_to real_estate_re_finances_path, class: "mobile-link" do
+            %li.list-group-item Финансирование
           = link_to real_estate_re_privates_path, class: "mobile-link" do
             %li.list-group-item Частная недвижимость
           = link_to real_estate_re_commercials_path, class: "mobile-link" do
@@ -35,6 +37,6 @@
           - @homepage.news_posts(20).each do |p|
             = link_to news_path(p) do
               %li.list-group-item.mobile-link= p.title
-        = link_to 'Еще Новости', news_index_path(category: "Интересное"), class: "mobile-btn btn-block text-center"
+        = link_to 'Еще Новости', news_index_path, class: "mobile-btn btn-block text-center"
       #messages.tab-pane{:role => "tabpanel"}
         = render 'home/mobile_account_tab'

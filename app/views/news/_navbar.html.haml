@@ -1,37 +1,58 @@
-%nav.navbar.navbar-default.secondary-navbar.white
-  .container-fluid
-    / Brand and toggle get grouped for better mobile display
-    .navbar-header
-      %button.navbar-toggle.collapsed{ "aria-expanded" => "false",
-                                       "data-target" => "#dashboard-nav-bar",
-                                       "data-toggle" => "collapse",
-                                       :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to main_app.news_index_path do
-        = image_tag "logos/eznews", class: "img-responsive", id: 'brand-image'
-    / Collect the nav links, forms, and other content for toggling
-    #dashboard-nav-bar.collapse.navbar-collapse
-      %ul.nav.navbar-nav.navbar-right
-        - NEWS_CATEGORIES.keys.each do |category|
-          - if category == 'Страны'
-            %li.dropdown{class: category_active?(category, @post)}
-              %a.dropdown-toggle{ "aria-expanded" => "false",
-                                  "aria-haspopup" => "true",
-                                  "data-toggle" => "dropdown",
-                                  :role => "button"}
-                = category
-                %span.caret
-              %ul.dropdown-menu
-                - NEWS_CATEGORIES[category].each do |subcategory|
-                  %li
-                    = link_to subcategory.last,
-                              news_index_path(category: category,
-                                              subcategory: subcategory.last)
-          - else
-            %li{class: category_active?(category, @post)}
-              = link_to category, news_index_path(category: category)
-    / /.navbar-collapse
-  / /.container-fluid
+.hidden-xs
+  %nav.navbar.navbar-default.secondary-navbar.white
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{ "aria-expanded" => "false",
+                                         "data-target" => "#dashboard-nav-bar",
+                                         "data-toggle" => "collapse",
+                                         :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to main_app.news_index_path do
+          = image_tag "logos/eznews", class: "img-responsive", id: 'brand-image'
+      / Collect the nav links, forms, and other content for toggling
+      #dashboard-nav-bar.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          - NEWS_CATEGORIES.keys.each do |category|
+            - if category == 'Страны'
+              %li.dropdown{class: category_active?(category, @post)}
+                %a.dropdown-toggle{ "aria-expanded" => "false",
+                                    "aria-haspopup" => "true",
+                                    "data-toggle" => "dropdown",
+                                    :role => "button"}
+                  = category
+                  %span.caret
+                %ul.dropdown-menu
+                  - NEWS_CATEGORIES[category].each do |subcategory|
+                    %li
+                      = link_to subcategory.last,
+                                news_index_path(category: category,
+                                                subcategory: subcategory.last)
+            - else
+              %li{class: category_active?(category, @post)}
+                = link_to category, news_index_path(category: category)
+      / /.navbar-collapse
+    / /.container-fluid
+
+/ MOBILE
+.visible-xs.col-xs-12
+  .row.mobile-secondary
+    .col-xs-6
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-6
+      .pull-right
+        %button.btn.mobile-btn.dropdown-toggle{"aria-expanded" => "false",
+                                                "aria-haspopup" => "true",
+                                                "data-toggle" => "dropdown",
+                                                :type => "button"}
+          Категории
+          %span.caret
+        %ul.dropdown-menu
+          - NEWS_CATEGORIES.keys.each do |category|
+            %li
+              = link_to category,
+                        news_index_path(category: category),
+                        class: "#{'active' if cp(news_index_path(category: category))}"
