@@ -52,7 +52,7 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def re_private_params
-    prms = params.require(:re_private).permit(:street,
+    params.require(:re_private).permit(:street,
                                        :post_type,
                                        :duration,
                                        :phone,
@@ -65,7 +65,5 @@ class Dashboard::RePrivatesController < ApplicationController
                                        :description,
                                        :state_id,
                                        :city_id)
-    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
-    prms
   end
 end

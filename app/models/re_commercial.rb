@@ -40,4 +40,8 @@ class ReCommercial < ActiveRecord::Base
   def logo_url(style = :medium)
     logo.present? ? logo.image.url(style) : "missing.png"
   end
+
+  def email
+    user.email
+  end
 end

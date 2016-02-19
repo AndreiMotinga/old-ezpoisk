@@ -51,7 +51,7 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def re_commercial_params
-    prms = params.require(:re_commercial).permit(:street,
+    params.require(:re_commercial).permit(:street,
                                           :category,
                                           :post_type,
                                           :phone,
@@ -62,7 +62,5 @@ class Dashboard::ReCommercialsController < ApplicationController
                                           :description,
                                           :state_id,
                                           :city_id)
-    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
-    prms
   end
 end

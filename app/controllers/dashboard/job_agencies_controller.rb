@@ -52,19 +52,17 @@ class Dashboard::JobAgenciesController < ApplicationController
   end
 
   def job_agency_params
-    prms = params.require(:job_agency).permit(:title,
-                                      :street,
-                                      :phone,
-                                      :fax,
-                                      :email,
-                                      :site,
-                                      :description,
-                                      :active,
-                                      :state_id,
-                                      :city_id,
-                                      :logo,
-                                      :user_id )
-    prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
-    prms
+    params.require(:job_agency).permit(:title,
+                                       :street,
+                                       :phone,
+                                       :fax,
+                                       :email,
+                                       :site,
+                                       :description,
+                                       :active,
+                                       :state_id,
+                                       :city_id,
+                                       :logo,
+                                       :user_id)
   end
 end
