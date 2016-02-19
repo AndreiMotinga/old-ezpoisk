@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   resources :search_suggestions, only: [:index]
-  resources :questions do
+  resources :questions, path: :ezanswers do
     collection do
       get "unanswered"
     end
@@ -38,20 +38,20 @@ Rails.application.routes.draw do
     resources :pictures, only: [:index, :create, :update, :destroy]
   end
 
-  resources :news, only: [:index, :show]
+  resources :news, only: [:index, :show], path: :eznews
   resources :comments, only: [:create]
-  resources :feedbacks, only: [:new, :create]
-  resources :horoscopes, only: [:index]
-  resources :sales, only: [:index, :show]
-  resources :services, only: [:index, :show]
-  namespace :real_estate do
-    resources :re_agencies, only: [:index, :show]
-    resources :re_privates, only: [:index, :show]
-    resources :re_commercials, only: [:index, :show]
+  resources :feedbacks, only: [:new, :create], path: :team
+  resources :horoscopes, only: [:index], path: :ezscope
+  resources :sales, only: [:index, :show], path: :ezsale
+  resources :services, only: [:index, :show], path: :ezservice
+  namespace :real_estate, path: :ezrealty do
+    resources :re_agencies, only: [:index, :show], path: :agencies
+    resources :re_privates, only: [:index, :show], path: :private
+    resources :re_commercials, only: [:index, :show], path: :commercial
   end
 
-  namespace :jobs do
-    resources :job_agencies, only: [:index, :show]
+  namespace :jobs, path: :ezjob do
+    resources :job_agencies, only: [:index, :show], path: :agencies
     resources :jobs, only: [:index, :show]
   end
 
