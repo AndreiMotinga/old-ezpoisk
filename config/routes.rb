@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   authenticate :user, ->(u) { u.admin? } do
     resources :companies
     mount Sidekiq::Web => "/sidekiq_monstro"
-    resources :news, only: [:edit, :update, :destroy]
+    resources :news, only: [:edit, :update, :destroy], path: :eznews
     resource :admin, only: [:show], constraints: { subdomain: 'www' }
     constraints subdomain: "godzilla" do
       constraints BlacklistConstraint.new do
