@@ -2,6 +2,7 @@
 - content_for :secondary_navbar do
   = render 'news/navbar'
 
+= link_to 'Исправить', edit_news_path(@post) if current_user.try(:admin)
 .visible-xs
   .row.mobile-secondary
     .col-xs-12
