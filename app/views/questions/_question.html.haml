@@ -5,7 +5,7 @@
       = link_to question.title, question, target: "_blank"
     .row
       .hidden-xs.col-sm-1.qa-avatar
-        = image_tag question.user.avatar.url(:thumb), class: "img-responsive img-circle center-block"
+        = image_tag question.user.avatar.url(:thumb), alt: question.user.name,  class: "img-responsive img-circle center-block"
       .col-xs-12.col-sm-11
         %h3.text-muted.question-author
           = question.user.name
