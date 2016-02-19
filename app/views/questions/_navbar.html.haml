@@ -16,7 +16,7 @@
     #dashboard-nav-bar.collapse.navbar-collapse
       %form.navbar-form.navbar-left{:role => "search", method: "get", action: questions_path}
         .input-group.qa-search
-          %input#search.form-control{:placeholder => "Поиск вопросов по ключевым словам",
+          %input.q-search.form-control{:placeholder => "Поиск вопросов по ключевым словам",
             :type => "text", name: "keyword", value: params[:keyword]}
             %span.input-group-btn
               = submit_tag 'Искать', class: "button btn btn-default", name: nil

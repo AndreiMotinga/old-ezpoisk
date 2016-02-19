@@ -1,7 +1,10 @@
 = title("eZpoisk - полезная информация о русских в америке и не только")
 = desc("eZanswer - здесь можно находить полезную информацию, спрашить и делиться своим мнением, получать качетвенные ответы на любые вопросы")
+
 - content_for :secondary_navbar do
   = render "questions/navbar"
+.visible-xs
+  = render "questions/mobile_search"
 
 .row
   .col-md-8

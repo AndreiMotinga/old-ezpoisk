@@ -10,5 +10,4 @@ class Ez
   def self.notify_about(record)
     notifier.ping(StringForSlack.new(record).string)
   end
-
 end

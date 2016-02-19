@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $("#search").autocomplete({
+  $(".q-search").autocomplete({
     source: "/search_suggestions",
 
     // open link in new tab
@@ -11,7 +11,7 @@ $(document).ready(function() {
     // replace input with user selected li
     focus: function(event, ui) {
       event.preventDefault();
-      $("#search").val(ui.item.label);
+      $(".q-search").val(ui.item.label);
     },
 
     // show menu users clicks on already populated search field
