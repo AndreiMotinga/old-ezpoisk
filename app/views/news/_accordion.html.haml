@@ -12,7 +12,7 @@
         .panel-body
           %p= sanitize post.description
           %p
-            .pull-right= link_to 'Подробнее', news_path(post), target: "_blank" if post.text.present?
+            .pull-right= link_to 'Подробнее', news_path(post) if post.text.present?
             - if current_user.try(:admin?)
-              = link_to "Редактировать", edit_news_path(post), target: "_blank"
+              = link_to "Редактировать", edit_news_path(post)
               = link_to 'Удалить', news_path(post), method: :delete

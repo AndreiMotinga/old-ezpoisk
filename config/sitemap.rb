@@ -45,6 +45,11 @@ SitemapGenerator::Sitemap.create do
     add real_estate_re_agency_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
+  add real_estate_re_finances_path, priority: 0.6, changefreq: "weekly"
+  ReFinance.find_each do |post|
+    add real_estate_re_finance_path(post), priority: 0.6, lastmod: post.updated_at
+  end
+
   add real_estate_re_privates_path, priority: 0.6, changefreq: "weekly"
   RePrivate.find_each do |post|
     add real_estate_re_private_path(post), priority: 0.6, lastmod: post.updated_at

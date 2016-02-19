@@ -1,7 +1,7 @@
 class DataAggregator
   def total_users_posts
-    ReAgency.count + RePrivate.count + ReCommercial.count + JobAgency.count +
-      Job.count + Service.count
+    ReAgency.count + RePrivate.count + ReFinance + ReCommercial.count +
+      JobAgency.count + Job.count + Service.count
   end
 
   def total_qa

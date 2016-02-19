@@ -4,7 +4,7 @@
     / User
     .row
       .hidden-xs.col-sm-1.qa-avatar
-        = image_tag answer.user.avatar.url(:thumb), alt: question.user.name, class: "img-responsive img-circle center-block"
+        = image_tag answer.user.avatar.url(:thumb), alt: answer.user.name, class: "img-responsive img-circle center-block"
       .col-xs-12.col-sm-11
         %h3.text-muted.question-author
           / popover

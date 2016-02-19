@@ -17,7 +17,7 @@
       %ul.nav.navbar-nav.navbar-right
 
         / answers
-        %li= link_to 'Ответы', main_app.questions_path, target: "_blank"
+        %li= link_to 'Ответы', main_app.questions_path
         / answers
 
         /real_estate
@@ -27,10 +27,10 @@
             = t(:real_estate)
             %span.caret
           %ul.dropdown-menu
-            %li= link_to t(:agencies), main_app.real_estate_re_agencies_path, target: "_blank"
-            %li= link_to "Финансирование", main_app.real_estate_re_finances_path, target: "_blank"
-            %li= link_to t(:private), main_app.real_estate_re_privates_path, target: "_blank"
-            %li= link_to t(:commercial), main_app.real_estate_re_commercials_path, target: "_blank"
+            %li= link_to t(:agencies), main_app.real_estate_re_agencies_path
+            %li= link_to "Финансирование", main_app.real_estate_re_finances_path
+            %li= link_to t(:private), main_app.real_estate_re_privates_path
+            %li= link_to t(:commercial), main_app.real_estate_re_commercials_path
         / real_estate
 
         / jobs
@@ -43,13 +43,13 @@
             %span.caret
           %ul.dropdown-menu
             %li
-              = link_to t(:agencies), main_app.jobs_job_agencies_path, target: "_blank"
+              = link_to t(:agencies), main_app.jobs_job_agencies_path
             %li
-              = link_to 'Работа', main_app.jobs_jobs_path, target: "_blank"
+              = link_to 'Работа', main_app.jobs_jobs_path
         / jobs
 
         / services
-        %li= link_to "Услуги", services_path, target: "_blank"
+        %li= link_to "Услуги", services_path
         -# %li.dropdown
         -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
         -#                      "data-toggle" => "dropdown", :role => "button"}
@@ -61,7 +61,7 @@
         -# / services
 
         / sale
-        %li= link_to "Продается", sales_path, target: "_blank"
+        %li= link_to "Продается", sales_path
         -# %li.dropdown
         -#   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
         -#                      "data-toggle" => "dropdown", :role => "button"}
@@ -80,8 +80,8 @@
             %span.caret
           %ul.dropdown-menu
 
-            %li= link_to t(:news), main_app.news_index_path, target: "_blank"
-            %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ"), target: "_blank"
+            %li= link_to t(:news), main_app.news_index_path
+            %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
         / news
 
         / dashboard
@@ -100,16 +100,16 @@
             %li
               %a{ "data-target" => "#new", "data-toggle" => "modal", :role => "button" }
                 Новое объявление
-            %li= link_to "Мои объявления", main_app.dashboard_path, target: "_blank"
+            %li= link_to "Мои объявления", main_app.dashboard_path
             %li.divider{:role => "separator"}
             - if user_signed_in?
-              %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete, target: "_blank"
-              %li= link_to "Профиль", main_app.edit_user_registration_path, target: "_blank"
+              %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
+              %li= link_to "Профиль", main_app.edit_user_registration_path
             - else
               %li= link_to t(:sign_in), main_app.new_user_session_path
-              %li= link_to t(:sign_up), main_app.new_user_registration_path, target: "_blank"
+              %li= link_to t(:sign_up), main_app.new_user_registration_path
             %li.divider{:role => "separator"}
-            %li= link_to "О компании", main_app.new_feedback_path, target: "_blank"
+            %li= link_to "О компании", main_app.new_feedback_path
 
         / dashboard
       / right links
