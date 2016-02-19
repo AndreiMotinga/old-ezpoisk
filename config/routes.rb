@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   resources :search_suggestions, only: [:index]
-  resources :questions, path: :ezanswers do
+  resources :questions, path: :ezanswer do
     collection do
       get "unanswered"
     end
