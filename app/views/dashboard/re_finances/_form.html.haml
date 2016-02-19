@@ -1,0 +1,48 @@
+= bootstrap_form_for([:dashboard, @re_finance]) do |f|
+  / address
+  .field
+    = f.text_field :street, label: '* Улица'
+  .field
+    = form_state_select(f)
+  .field
+    = form_city_select(f, @re_finance)
+
+  / details
+  .field
+    = f.text_field :title, label: '* Название'
+  .field
+    = f.text_field :phone, label: '* Телефон'
+  .field
+    = f.text_field :fax, label: 'Факс'
+  .field
+    = f.text_field :site, label: 'Сайт'
+  .field
+    = f.email_field :email
+
+  .field
+    = f.check_box :active, label: "Активно *"
+
+  .field
+    - if @re_finance.new_record? && !Rails.env.test?
+      = recaptcha_tags
+  %br/
+  .hidden-xs
+    .actions
+      = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
+      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
+  .visible-xs
+    .actions
+      = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
+
+- unless @re_finance.new_record?
+  %br/
+  = link_to 'Удалить',
+            dashboard_re_finance_path(@re_finance),
+            method: :delete,
+            data: { confirm: I18n.t(:confirm) },
+            class: "btn btn-block mobile-btn btn-danger"
+
+%br/
+%p
+  %strong Активно * -
+  = t :active_tooltip

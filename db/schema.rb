@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218225942) do
+ActiveRecord::Schema.define(version: 20160219173154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,6 +258,33 @@ ActiveRecord::Schema.define(version: 20160218225942) do
   add_index "re_commercials", ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
   add_index "re_commercials", ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
 
+  create_table "re_finances", force: :cascade do |t|
+    t.string   "title"
+    t.string   "street"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "site"
+    t.string   "fax"
+    t.boolean  "active"
+    t.text     "description"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.integer  "user_id"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "re_finances", ["city_id"], name: "index_re_finances_on_city_id", using: :btree
+  add_index "re_finances", ["state_id"], name: "index_re_finances_on_state_id", using: :btree
+  add_index "re_finances", ["user_id"], name: "index_re_finances_on_user_id", using: :btree
+
   create_table "re_privates", force: :cascade do |t|
     t.string   "street",      default: "",    null: false
     t.string   "post_type",   default: "",    null: false
@@ -416,6 +443,9 @@ ActiveRecord::Schema.define(version: 20160218225942) do
   add_foreign_key "re_commercials", "cities"
   add_foreign_key "re_commercials", "states"
   add_foreign_key "re_commercials", "users"
+  add_foreign_key "re_finances", "cities"
+  add_foreign_key "re_finances", "states"
+  add_foreign_key "re_finances", "users"
   add_foreign_key "re_privates", "cities"
   add_foreign_key "re_privates", "states"
   add_foreign_key "re_privates", "users"

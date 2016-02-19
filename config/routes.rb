@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show]
   namespace :dashboard do
     resources :re_agencies, only: [:new, :create, :edit, :update, :destroy]
+    resources :re_finances, only: [:new, :create, :edit, :update, :destroy]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
     resources :re_commercials, only: [:new, :create, :edit, :update, :destroy]
 
@@ -46,6 +47,7 @@ Rails.application.routes.draw do
   resources :services, only: [:index, :show], path: :ezservice
   namespace :real_estate, path: :ezrealty do
     resources :re_agencies, only: [:index, :show], path: :agencies
+    resources :re_finances, only: [:index, :show], path: :finance
     resources :re_privates, only: [:index, :show], path: :private
     resources :re_commercials, only: [:index, :show], path: :commercial
   end

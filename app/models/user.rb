@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   belongs_to :city
 
   has_many :re_agencies, dependent: :destroy
+  has_many :re_finances, dependent: :destroy
   has_many :re_privates, dependent: :destroy
   has_many :re_commercials, dependent: :destroy
   has_many :job_agencies, dependent: :destroy

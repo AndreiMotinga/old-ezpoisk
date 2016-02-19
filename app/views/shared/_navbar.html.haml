@@ -27,12 +27,10 @@
             = t(:real_estate)
             %span.caret
           %ul.dropdown-menu
-            %li
-              = link_to t(:agencies), main_app.real_estate_re_agencies_path, target: "_blank"
-            %li
-              = link_to t(:private), main_app.real_estate_re_privates_path, target: "_blank"
-            %li
-              = link_to t(:commercial), main_app.real_estate_re_commercials_path, target: "_blank"
+            %li= link_to t(:agencies), main_app.real_estate_re_agencies_path, target: "_blank"
+            %li= link_to "Финансирование", main_app.real_estate_re_finances_path, target: "_blank"
+            %li= link_to t(:private), main_app.real_estate_re_privates_path, target: "_blank"
+            %li= link_to t(:commercial), main_app.real_estate_re_commercials_path, target: "_blank"
         / real_estate
 
         / jobs

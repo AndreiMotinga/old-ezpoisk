@@ -1,0 +1,33 @@
+= form_tag real_estate_re_finances_path,
+           method: :get,
+           class: "form-horizontal"
+
+-# todo extract in address form?
+.form-group
+  .col-sm-10
+    %label
+      Введите адрес и радиус поиска
+    = origin_text_field_param
+  .col-sm-2
+    %label
+      миль
+    = within_text_field_param
+
+%hr
+%h5
+  Либо выберите штат и город
+.form-group
+  = label_tag "Штат", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :state_id,
+                 state_select_with_param,
+                 multiple: true,
+                 class: "form-control state-select"
+
+
+.form-group
+  = label_tag "Город", nil,  class: "col-sm-3 control-label"
+  .col-sm-5
+    = select_tag :city_id,
+                 city_select_with_param,
+                 class: "form-control city-select"
