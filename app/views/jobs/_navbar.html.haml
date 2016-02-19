@@ -10,9 +10,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
+      = link_to main_app.jobs_job_agencies_path do
+        = image_tag "logos/ezjob", class: "img-responsive", id: 'brand-image'
     / Collect the nav links, forms, and other content for toggling
     #dashboard-nav-bar.collapse.navbar-collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-right
         %li{:class => ("active" if cp(jobs_job_agencies_path))}
           = link_to "Агентства", jobs_job_agencies_path
         %li{:class => ("active" if cp(jobs_jobs_path))}

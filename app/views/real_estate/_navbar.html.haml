@@ -10,9 +10,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
+      = link_to main_app.real_estate_re_agencies_path do
+        = image_tag "logos/ezrealty", class: "img-responsive", id: 'brand-image'
     / Collect the nav links, forms, and other content for toggling
     #dashboard-nav-bar.collapse.navbar-collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-right
         %li{:class => (cp(real_estate_re_agencies_path))}
           = link_to "Агентства", real_estate_re_agencies_path
         %li{:class => (cp(real_estate_re_privates_path))}

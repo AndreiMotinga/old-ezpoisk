@@ -10,9 +10,11 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
+      = link_to main_app.news_index_path do
+        = image_tag "logos/eznews", class: "img-responsive", id: 'brand-image'
     / Collect the nav links, forms, and other content for toggling
     #dashboard-nav-bar.collapse.navbar-collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-right
         - NEWS_CATEGORIES.keys.each do |category|
           - if category == 'Страны'
             %li.dropdown{class: category_active?(category, @post)}
