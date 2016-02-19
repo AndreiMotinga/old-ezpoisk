@@ -23,6 +23,10 @@ class ReAgency < ActiveRecord::Base
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
+  def link
+    "/ezrealty/agencies/#{id}"
+  end
+
   def edit_link
     edit_dashboard_re_agency_path(self)
   end

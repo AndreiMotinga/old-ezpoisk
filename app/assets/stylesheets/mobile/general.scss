@@ -12,14 +12,8 @@
 // / navbar
 
 // tabs
-.mobile-nav-tabs > li > a{
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.mobile-nav-tabs > li.active {
-  border-top: 2px solid $blue;
-}
+.mobile-nav-tabs > li { width: 33%; }
+.mobile-nav-tabs > li > a{ padding: 5px; }
 // /tabs
 
 .mobile-secondary {

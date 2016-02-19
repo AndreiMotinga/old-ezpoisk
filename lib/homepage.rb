@@ -1,6 +1,6 @@
 class Homepage
-  def questions
-    Question.answered.last(15)
+  def questions(num)
+    Question.answered.last(num)
   end
 
   def news_posts(num)

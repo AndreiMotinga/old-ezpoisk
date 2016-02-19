@@ -1,7 +1,9 @@
 .row
   .white-block
     %h1.lenta-title
-      = link_to "ЛЕНТА НОВОСТЕЙ", news_index_path, target: "_blank"
+      = link_to news_index_path, target: "_blank" do
+        %span.ez.orange ez
+        %span.ez.blue news
       %span.pull-right= l Date.current, format: :long
     %hr.lenta/
     = render @homepage.news_posts(31)

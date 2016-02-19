@@ -21,6 +21,10 @@ class ReCommercial < ActiveRecord::Base
     street
   end
 
+  def link
+    "/ezrealty/commercial/#{id}"
+  end
+
   def edit_link
     edit_dashboard_re_commercial_path(self)
   end
