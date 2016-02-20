@@ -45,14 +45,15 @@ Rails.application.routes.draw do
   resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice
-  namespace :real_estate, path: :ezrealty do
+
+  namespace :ezrealty do
     resources :re_agencies, only: [:index, :show], path: :agencies
     resources :re_finances, only: [:index, :show], path: :finance
     resources :re_privates, only: [:index, :show], path: :private
     resources :re_commercials, only: [:index, :show], path: :commercial
   end
 
-  namespace :jobs, path: :ezjob do
+  namespace :ezjob do
     resources :job_agencies, only: [:index, :show], path: :agencies
     resources :jobs, only: [:index, :show]
   end

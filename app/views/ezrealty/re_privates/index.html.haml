@@ -1,0 +1,32 @@
+= title("Недвижимость в США. Снять сдать, купить продать квартиру - eZpoisk")
+= desc("eZpoisk - Объявления о продаже, покупке и аренде квартир без посредников в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+- content_for :secondary_navbar do
+  = render "ezrealty/navbar"
+= render 'ezrealty/re_privates/search_modal'
+
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @re_privates.total_count
+    .col-xs-6
+      = render 'ezrealty/re_privates/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
+    %h4.pull-right
+      %a= "Всего #{@re_privates.total_count}"
+    = render 'ezrealty/re_privates/search_modal_trigger'
+  / /total
+  .row
+    .col-xs-12
+      - @re_privates.each do |re_private|
+        = render 'dashboard/re_privates/re_private', record: re_private
+
+    .col-xs-12
+      = render "shared/pagination", records: @re_privates

@@ -1,0 +1,50 @@
+= title("#{@re_commercial.address} #{@re_commercial.post_type} коммерческой недвижимости в США - eZpoisk")
+= desc("eZpoisk - #{@re_commercial.post_type}, #{@re_commercial.address}, #{@re_commercial.phone}")
+- content_for :secondary_navbar do
+  = render "ezrealty/navbar"
+
+.row.show
+  .col-xs-12.col-md-7
+    %ul.pgwSlideshow
+      - @re_commercial.pictures.each do |pic|
+        %li
+          = link_to pic.image.url do
+            = image_tag pic.image.url(:large), alt: "#{@re_commercial.title} pictures"
+  /images
+
+  .col-xs-12.col-md-5
+    .visible-xs
+      %hr.black-line/
+    = render "shared/show/contacts", record: @re_commercial
+  / right block
+
+%hr.black-line/
+
+.row
+  .col-xs-12.col-md-8
+    = render "dashboard/re_commercials/re_commercial", record: @re_commercial
+
+%hr.black-line/
+
+.row
+  .hidden-xs.col-sm-12.col-md-8
+    = render 'shared/show/map', record: @re_commercial
+  .col-xs-12.col-md-4
+    %li.list-group-item
+      Категория: #{@re_commercial.category}
+    %li.list-group-item
+      Тип обьявления: #{@re_commercial.post_type}
+    %li.list-group-item
+      Цена: #{@re_commercial.price}
+    %li.list-group-item
+      Площадь: #{@re_commercial.space}
+    %li.list-group-item
+      Подано: #{time_ago_in_words @re_commercial.created_at} назад
+
+%hr.black-line/
+
+- if @re_commercial.description.present?
+  .row
+    .hidden-xs.col-sm-12
+      .white-block
+        = sanitize @re_commercial.description

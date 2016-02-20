@@ -1,0 +1,33 @@
+= title("Работа в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами - eZpoisk")
+= desc("eZpoisk - Объявления о приеме на работу в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+- content_for :secondary_navbar do
+  = render "ezjob/navbar"
+= render 'ezjob/jobs/search_modal'
+
+/ Secondary navbar
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @jobs.total_count
+    .col-xs-6
+      = render 'ezjob/jobs/search_modal_trigger'
+/ /Secondary navbar
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
+    %h4.pull-right
+      %a= "Всего #{@jobs.total_count}"
+    = render 'ezjob/jobs/search_modal_trigger'
+  / /total
+
+  .row
+    .col-xs-12
+      - @jobs.each do |job|
+        = render 'dashboard/jobs/job', record: job
+
+    .col-xs-12
+      = render "shared/pagination", records: @jobs

@@ -1,6 +1,0 @@
-= title("#{@re_finance.title} - Агентство Недвижимости #{@re_finance.city.name} #{@re_finance.state.name}")
-= desc("#{@re_finance.title}. #{@re_finance.description || 'Агенство недвижимости'}")
-- content_for :secondary_navbar do
-  = render "real_estate/navbar"
-
-= render 'shared/show/company', record: @re_finance

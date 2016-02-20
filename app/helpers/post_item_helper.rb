@@ -3,6 +3,8 @@ module PostItemHelper
     case record.class.to_s
     when "ReAgency"
       path_for_re_agency(record)
+    when "ReFinance"
+      path_for_re_finance(record)
     when "JobAgency"
       path_for_job_agency(record)
     when "Job"
@@ -35,40 +37,48 @@ module PostItemHelper
   end
 
   def path_for_re_commercial(record)
-    if params[:controller] == "real_estate/re_commercials"
-      real_estate_re_commercial_path(record)
+    if params[:controller] == "ezrealty/re_commercials"
+      ezrealty_re_commercial_path(record)
     else
       edit_dashboard_re_commercial_path(record)
     end
   end
 
   def path_for_re_private(record)
-    if params[:controller] == "real_estate/re_privates"
-      real_estate_re_private_path(record)
+    if params[:controller] == "ezrealty/re_privates"
+      ezrealty_re_private_path(record)
     else
       edit_dashboard_re_private_path(record)
     end
   end
 
   def path_for_re_agency(record)
-    if params[:controller] == "real_estate/re_agencies"
-      real_estate_re_agency_path(record)
+    if params[:controller] == "ezrealty/re_agencies"
+      ezrealty_re_agency_path(record)
     else
       edit_dashboard_re_agency_path(record)
     end
   end
 
+  def path_for_re_finance(record)
+    if params[:controller] == "ezrealty/re_finances"
+      ezrealty_re_finance_path(record)
+    else
+      edit_dashboard_re_finance_path(record)
+    end
+  end
+
   def path_for_job_agency(record)
-    if params[:controller] == "jobs/job_agencies"
-      jobs_job_agency_path(record)
+    if params[:controller] == "ezjob/job_agencies"
+      ezjob_job_agency_path(record)
     else
       edit_dashboard_job_agency_path(record)
     end
   end
 
   def path_for_job(record)
-    if params[:controller] == "jobs/jobs"
-      jobs_job_path(record)
+    if params[:controller] == "ezjob/jobs"
+      ezjob_job_path(record)
     else
       edit_dashboard_job_path(record)
     end

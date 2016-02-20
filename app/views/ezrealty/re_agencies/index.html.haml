@@ -1,0 +1,33 @@
+= title("Агентства Недвижимости в США, где говорят по-русски - eZpoisk")
+= desc("eZpoisk - Русские Агентства Недвижимости в США, помощь в поиске недвижимости в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами")
+
+- content_for :secondary_navbar do
+  = render "ezrealty/navbar"
+= render 'ezrealty/re_agencies/search_modal'
+
+/ Mobile Secondary navabr
+.visible-xs
+  .row.mobile-secondary
+    .col-xs-3
+      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    .col-xs-3
+      = @re_agencies.total_count
+    .col-xs-6
+      = render 'ezrealty/re_agencies/search_modal_trigger'
+
+/ MAIN content
+.col-md-8
+  / total
+  .row.hidden-xs
+    %h4.pull-right
+      %a= "Всего #{@re_agencies.total_count}"
+    = render 'ezrealty/re_agencies/search_modal_trigger'
+  / /total
+
+  .row
+    - @re_agencies.each do |re_agency|
+      .col-xs-12
+        = render 'dashboard/shared/company', record: re_agency
+
+    .col-xs-12
+      = render "shared/pagination", records: @re_agencies

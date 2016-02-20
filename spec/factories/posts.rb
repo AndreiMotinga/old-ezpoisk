@@ -7,8 +7,8 @@ FactoryGirl.define do
 
     association :user
 
-    trait :real_estate do
-      category "real_estate"
+    trait :ezrealty do
+      category "ezrealty"
       subcategory "lend"
     end
     trait :main do
