@@ -12,5 +12,9 @@
     = f.text_field :name
   .field
     = f.text_field :phone
+  .field
+    = f.check_box :success, label: "Успех"
+  .field
+    = f.text_area :notes
   .actions
     = f.submit 'Save'

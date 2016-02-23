@@ -8,13 +8,20 @@
   %table.table.table-hover
     %thead
       %tr
-        %th Email
-        %th Name
-        %th Phone
+        %th= link_to "Phone", companies_path(sort: "phone")
+        %th= link_to "Email", companies_path(sort: "email")
+        %th= link_to "Name", companies_path(sort: "name")
+        %th Success
 
     %tbody
       - @companies.each do |company|
         %tr
+          %td= link_to company.phone, edit_company_path(company)
           %td= link_to company.email, edit_company_path(company)
-          %td= company.name
-          %td= company.phone
+          %td= link_to company.name, edit_company_path(company)
+          %td
+            - if company.success
+              %i.fa.fa-check.green-text
+            - else
+              %i.fa.fa-close.red-text
+

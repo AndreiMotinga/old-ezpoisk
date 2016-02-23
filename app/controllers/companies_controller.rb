@@ -3,7 +3,11 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    @companies = Company.order('created_at desc')
+    if params[:sort]
+      @companies = Company.order(params[:sort])
+    else
+      @companies = Company.order('created_at desc')
+    end
   end
 
   # GET /companies/1
@@ -53,6 +57,8 @@ class CompaniesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def company_params
-      params.require(:company).permit(:email, :name, :phone)
+      prms = params.require(:company).permit(:email, :name, :phone, :notes, :success)
+      prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
+      prms
     end
 end
