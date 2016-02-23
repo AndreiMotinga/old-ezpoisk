@@ -41,4 +41,8 @@ class Question < ActiveRecord::Base
     return the_answer.text if the_answer.present?
     text
   end
+
+  def link
+    "ezanswer/#{id}"
+  end
 end
