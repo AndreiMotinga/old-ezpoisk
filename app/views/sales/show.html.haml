@@ -9,7 +9,7 @@
       - @sale.pictures.each do |pic|
         %li
           = link_to pic.image.url do
-            = image_tag pic.image.url(:large), alt: "#{@sale.title} pictures"
+            = image_tag pic.image.url(:large), alt: ""
   /images
 
   .col-xs-12.col-md-5
