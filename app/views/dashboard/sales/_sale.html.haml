@@ -1,16 +1,16 @@
 .col-xs-12
   .row.post-item
     .col-xs-4.col-sm-4.logo-js
-      = link_to link_from_controller(record), target: "_blank" do
+      = link_to link_from_controller(record) do
         = image_tag record.logo_url(:medium), class: "img-responsive",
           alt: "Продается #{record.title}"
 
     .col-xs-8.col-sm-8
       / line 1
       .hidden-xs
-        %h1.title= link_to record.title, link_from_controller(record), target: "_blank"
+        %h1.title= link_to record.title, link_from_controller(record)
       .visible-xs
-        %h1.mob-title= link_to record.title, link_from_controller(record), target: "_blank"
+        %h1.mob-title= link_to record.title, link_from_controller(record)
 
       /line 2
       - if record.street.present?
