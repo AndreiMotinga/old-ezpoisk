@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
   is_impressionable
+  acts_as_taggable
   belongs_to :user
   has_many :answers
 
@@ -44,5 +45,17 @@ class Question < ActiveRecord::Base
 
   def link
     "ezanswer/#{id}"
+  end
+
+  def avatar
+    return the_answer.user.avatar.url(:thumb) if the_answer.try(:user)
+  end
+
+  def username
+    return the_answer.user.name if the_answer.try(:user)
+  end
+
+  def userslug
+    return the_answer.user.slug if the_answer.try(:slug)
   end
 end

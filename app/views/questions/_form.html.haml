@@ -2,6 +2,9 @@
   .field
     = f.text_field :title, label: "Ваш вопрос"
   .field
+    = f.text_field :tag_list, label: "Тэги"
+
+  .field
     = f.text_area :text, label: "Подробности", class: "summernote"
 
   .actions

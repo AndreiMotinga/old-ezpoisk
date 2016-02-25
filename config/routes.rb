@@ -1,12 +1,14 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :search_suggestions, only: [:index]
   resources :questions, path: :ezanswer do
     collection do
       get "unanswered"
     end
   end
+  resources :search_suggestions, only: [:index]
+  get "tags/:tag", to: "questions#index", as: :tag
+
   resources :answers, only: [:create, :update, :destroy] do
     member do
       put "upvote", to: "answers#upvote"

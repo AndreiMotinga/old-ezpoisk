@@ -4,17 +4,19 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.includes(:user)
-                          .answered
-                          .by_keyword(params[:keyword])
-                          .page(params[:page])
+    if params[:tag]
+      @questions = Question.tagged_with(params[:tag]).page(params[:page])
+    else
+      @questions = Question.includes(:answers => :user)
+                           .by_keyword(params[:keyword])
+                           .page(params[:page])
+    end
   end
 
   def unanswered
-    @questions = Question.includes(:user)
-                          .by_keyword(params[:keyword])
-                          .unanswered
-                          .page(params[:page])
+    @questions = Question.by_keyword(params[:keyword])
+                         .unanswered
+                         .page(params[:page])
     render :index
   end
 
@@ -54,6 +56,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :text)
+    params.require(:question).permit(:title, :text, :tag_list)
   end
 end

@@ -4,12 +4,13 @@
     %h1.question-title
       = link_to question.title, question, target: "_blank"
     .row
-      .hidden-xs.col-sm-1.qa-avatar
-        = image_tag question.user.avatar.url(:thumb), alt: question.user.name,  class: "img-responsive img-circle center-block"
+      -if question.avatar.present?
+        .hidden-xs.col-sm-1.qa-avatar
+          = image_tag question.avatar, alt: question.username,  class: "img-responsive img-circle center-block"
       .col-xs-12.col-sm-11
         %h3.text-muted.question-author
-          = question.user.name
-          = ", #{question.user.slug}" if question.user.slug.present?
+          = question.username
+          = ", #{question.userslug}" if question.userslug.present?
         %p= "#{question.impressionist_count} просмотров, #{question.answers.count} ответов"
 
   / line 2 question text
@@ -18,3 +19,5 @@
       = strip_tags(question.text_to_show).truncate(200)
       - if strip_tags(question.text_to_show).size > 200
         = link_to "читать дальше", question, target: "_blank"
+  .col-xs-12
+    = raw question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
