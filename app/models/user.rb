@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
 
   validates :phone, presence: true
   validates :name, presence: true
-  validates :state_id, presence: true
-  validates :city_id, presence: true
 
   belongs_to :state
   belongs_to :city
