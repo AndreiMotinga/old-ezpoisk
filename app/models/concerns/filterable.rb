@@ -10,7 +10,7 @@ module Filterable
     scope :category, -> (category) { where(category: category) }
     scope :subcategory, -> (subcategory) { where(subcategory: subcategory) }
     scope :duration, -> (type) { where(duration: type) }
-    scope :rooms, -> (num) { where("rooms >= ?", num.to_i) }
+    scope :rooms, -> (rooms) { where(rooms: rooms) }
     scope :baths, -> (num) { where("baths >= ?", num.to_i) }
     scope :space, -> (num) { where("space >= ?", num.to_i) }
     scope :min_price, -> (num) { where("price >= ?", num.to_i) }

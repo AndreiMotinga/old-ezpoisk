@@ -13,11 +13,11 @@ feature "User create re_private" do
     select("Abbeville", from: "Город")
     select("Аренда", from: "Тип объявления")
     select("помесячно", from: "Квартира сдается")
+    select(re_private.rooms, from: "Комнат")
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price
     fill_in "Ванные", with: re_private.baths
     fill_in "Площадь", with: re_private.space
-    fill_in "Комнат", with: re_private.rooms
     check("Активно")
     check("Комиссия")
     click_on "Сохранить"

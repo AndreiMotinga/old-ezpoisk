@@ -32,7 +32,7 @@
 
       / line 3
       .hidden-xs
-        = "комнаты: #{record.rooms}"
+        = record.rooms
         = " | ванные: #{record.baths}" unless record.baths.blank?
         = " | площадь:  #{record.space} ft" unless record.space.blank?
         %hr.post-devider/

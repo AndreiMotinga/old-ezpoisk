@@ -68,7 +68,7 @@
   = label_tag "Комнаты", nil,  class: "col-sm-5 control-label"
   .col-sm-5
     = select_tag :rooms,
-                 options_for_select((1..10).to_a, params[:rooms]),
+                 options_for_select(ROOM_OPTIONS, params[:rooms]),
                  include_blank: true,
                  class: "form-control"
 .form-group

@@ -76,13 +76,13 @@ describe Ezrealty::RePrivatesController do
       end
 
       it "filters by rooms" do
-        create :re_private, :active, rooms: 1
+        create :re_private, :active, rooms: "комната"
         create :re_private, :active, rooms: 2
         create :re_private, :active, rooms: 3
 
-        get :index, rooms: 2
+        get :index, rooms: "комната"
 
-        expect(assigns(:re_privates).size).to eq 2
+        expect(assigns(:re_privates).size).to eq 1
       end
 
       it "filters by baths" do

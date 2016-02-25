@@ -12,11 +12,11 @@ feature "user creates re_private" do
     fill_in "Улица", with: attrs.street
     select(attrs.post_type, from: "Тип объявления")
     select(attrs.duration, from: "Квартира сдается")
+    select(attrs.rooms, from: "Комнат")
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
     fill_in "Ванные", with: attrs.baths
     fill_in "Площадь", with: attrs.space
-    fill_in "Комнат", with: attrs.rooms
     check("Активно")
     check("Комиссия")
     select("Alabama", from: "Штат")
