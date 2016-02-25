@@ -13,7 +13,4 @@ describe User do
   it { should have_many(:sales).dependent(:destroy) }
   it { should have_many(:posts) }
   it { should have_many(:feedbacks) }
-
-  it { should validate_presence_of(:state_id) }
-  it { should validate_presence_of(:city_id) }
 end

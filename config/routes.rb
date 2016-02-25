@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
   get "sitemap(:id).:format.:compression" => "sitemap#index"
   get "update_cities", to: "cities#update_cities"
