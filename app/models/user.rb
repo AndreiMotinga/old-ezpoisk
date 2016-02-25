@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable,  and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :timeoutable, :validatable, :lockable, :async
-  after_create :notify_admin
+  after_create :geolocate_user, :notify_admin
 
   acts_as_voter
 
@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def geolocate_user
+    GeolocateUserJob.perform_async(id)
+  end
 
   def notify_admin
     AdminMailerJob.perform_async(id, "User")
