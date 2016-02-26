@@ -15,6 +15,7 @@
 notes
 foo
 tags
+brakeman
 
 **/*/.DS_Store
 ngrok

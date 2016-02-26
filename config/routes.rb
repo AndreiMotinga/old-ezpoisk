@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :questions, path: :ezanswer do
+  resources :questions, except: [:destroy], path: :ezanswer do
     collection do
       get "unanswered"
     end
