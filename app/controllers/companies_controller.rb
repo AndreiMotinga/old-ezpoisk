@@ -3,11 +3,12 @@ class CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    if params[:sort]
-      @companies = Company.order(params[:sort])
-    else
-      @companies = Company.order('created_at desc')
-    end
+    # if params[:sort]
+    #   @companies = Company.order(sort_order)
+    # else
+    #   @companies = Company.order('created_at desc')
+    # end
+    @companies = Company.order('created_at desc')
   end
 
   # GET /companies/1

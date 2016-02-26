@@ -1,8 +1,7 @@
 class Ezrealty::ReFinancesController < ApplicationController
   def index
-    ReFinance.connection.execute "SELECT setseed(#{rand_cookie})"
     re_finances = ReFinance.filter(params.slice(:state_id, :city_id, :geo_scope))
-                          .order("RANDOM ()")
+                           .order("updated_at desc")
     @re_finances = re_finances.page(params[:page])
   end
 

@@ -4,13 +4,14 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
-    if params[:tag]
-      @questions = Question.tagged_with(params[:tag]).page(params[:page])
-    else
-      @questions = Question.includes(:answers => :user)
-                           .by_keyword(params[:keyword])
-                           .page(params[:page])
-    end
+    @questions = Question.includes(:answers => :user)
+                         .by_keyword(params[:keyword])
+                         .page(params[:page])
+  end
+
+  def tag
+    @questions = Question.tagged_with(params[:tag]).page(params[:page])
+    render :index
   end
 
   def unanswered

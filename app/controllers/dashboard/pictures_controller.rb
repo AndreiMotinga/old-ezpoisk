@@ -1,17 +1,16 @@
 class Dashboard::PicturesController < ApplicationController
   def index
-    @pictures = params["type"].constantize.find(params["id"]).pictures
+    @pictures = record_class.find(params["id"]).pictures
   end
 
   def create
     @picture = current_user.pictures.build(picture_params)
 
     if @picture.save
-      render json: { message: "success",
-                     fileID: @picture.id }
+      render json: { message: "success", fileID: @picture.id }
     else
       render json: { error: @picture.errors.full_messages.join(",") },
-                     status: 400
+             status: 400
     end
   end
 
@@ -38,5 +37,13 @@ class Dashboard::PicturesController < ApplicationController
     return unless current_logo
     current_logo.logo = false
     current_logo.save
+  end
+
+  private
+
+  def record_class
+    [RePrivate, ReCommercial, Sale].find do |class_name|
+      class_name.name == params["type"].classify
+    end
   end
 end

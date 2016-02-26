@@ -1,8 +1,7 @@
 class Ezrealty::ReAgenciesController < ApplicationController
   def index
-    ReAgency.connection.execute "SELECT setseed(#{rand_cookie})"
     re_agencies = ReAgency.filter(params.slice(:state_id, :city_id, :geo_scope))
-                          .order("RANDOM ()")
+                          .order("updated_at desc")
     @re_agencies = re_agencies.page(params[:page])
   end
 

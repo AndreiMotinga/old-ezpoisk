@@ -81,6 +81,7 @@ group :development do
   gem "terminal-notifier-guard"
   gem "launchy-rails"
   gem "rack-mini-profiler"
+  gem "web-console"
 
   gem "traceroute", :require => false # search dead routes
   gem "brakeman", :require => false # security vulnerabilities

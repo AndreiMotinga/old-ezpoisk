@@ -5,9 +5,11 @@ Rails.application.routes.draw do
     collection do
       get "unanswered"
     end
+    collection do
+      get "tag/:tag", to: "questions#tag"
+    end
   end
   resources :search_suggestions, only: [:index]
-  get "tags/:tag", to: "questions#index", as: :tag
 
   resources :answers, only: [:create, :update, :destroy] do
     member do

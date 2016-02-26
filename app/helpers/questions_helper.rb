@@ -16,4 +16,12 @@ module QuestionsHelper
       class: "btn btn-default",
       id: "voted-#{q.id}"
   end
+
+  def tag_links(question)
+    sanitize question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+  end
+
+  def tag_path(t)
+    "/ezanswer/tag/#{t}"
+  end
 end

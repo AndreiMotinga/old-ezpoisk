@@ -20,4 +20,4 @@
       - if strip_tags(question.text_to_show).size > 200
         = link_to "читать дальше", question, target: "_blank"
   .col-xs-12
-    = raw question.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
+    %p= tag_links(question)
