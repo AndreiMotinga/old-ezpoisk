@@ -85,6 +85,7 @@ group :development do
 
   gem "traceroute", :require => false # search dead routes
   gem "brakeman", :require => false # security vulnerabilities
+  gem "rails_best_practices", :require => false
 end
 
 group :test do

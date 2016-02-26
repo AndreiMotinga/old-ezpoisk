@@ -22,12 +22,11 @@ class AnswersController < ApplicationController
 
   def destroy
     @answer.destroy
-    redirect_to question_path(@answer.question), notice: "answer added"
+    redirect_to question_path(@answer.question), notice: "answer removed"
   end
 
   def upvote
-    @answer = Answer.find(params[:id])
-    @answer.upvote_by current_user
+    Answer.find(params[:id]).upvote_by current_user
   end
 
   def downvote
@@ -37,8 +36,7 @@ class AnswersController < ApplicationController
   end
 
   def unvote
-    @answer = Answer.find(params[:id])
-    @answer.unvote_by current_user
+    Answer.find(params[:id]).unvote_by current_user
   end
 
   private
