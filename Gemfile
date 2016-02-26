@@ -62,6 +62,8 @@ gem "acts_as_votable", "~> 0.10.0"
 
 gem "acts-as-taggable-on"
 
+gem "rack-mini-profiler"
+
 group :development, :test do
   gem "pry-byebug"
   gem "factory_girl_rails"
@@ -80,7 +82,6 @@ group :development do
   gem "guard-rspec", require: false
   gem "terminal-notifier-guard"
   gem "launchy-rails"
-  gem "rack-mini-profiler"
   gem "web-console"
 
   gem "traceroute", :require => false # search dead routes
