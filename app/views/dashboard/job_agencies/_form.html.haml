@@ -1,12 +1,4 @@
 = bootstrap_form_for([:dashboard, @job_agency]) do |f|
-  / address
-  .field
-    = f.text_field :street, label: '* Улица'
-  .field
-    = form_state_select(f)
-  .field
-    = form_city_select(f, @job_agency)
-
   / details
   .field
     = f.text_field :title, label: '* Название'
@@ -18,6 +10,14 @@
     = f.text_field :site, label: 'Сайт'
   .field
     = f.email_field :email
+
+  / address
+  .field
+    = f.text_field :street, label: '* Улица'
+  .field
+    = form_state_select(f)
+  .field
+    = form_city_select(f, @job_agency)
 
   .field
     = f.check_box :active, label: "Активно *"

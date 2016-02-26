@@ -17,6 +17,9 @@
       / Collect the nav links, forms, and other content for toggling
       #dashboard-nav-bar.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
+          %li
+            %a{ "data-target" => "#new", "data-toggle" => "modal", :role => "button" }
+              Новое объявление
           %li{:class => (cp(ezrealty_re_agencies_path))}
             = link_to "Личные данные", edit_user_registration_path
       / /.navbar-collapse

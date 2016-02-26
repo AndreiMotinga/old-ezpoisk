@@ -38,4 +38,8 @@ class JobAgency < ActiveRecord::Base
   def logo_url(style = :medium)
     logo.url(style)
   end
+
+  def link
+    "/ezjob/agencies/#{id}"
+  end
 end
