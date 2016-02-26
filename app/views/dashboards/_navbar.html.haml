@@ -1,0 +1,24 @@
+/ Desktop
+.hidden-xs
+  %nav.navbar.navbar-default.secondary-navbar.white
+    .container-fluid
+      / Brand and toggle get grouped for better mobile display
+      .navbar-header
+        %button.navbar-toggle.collapsed{ "aria-expanded" => "false",
+                                         "data-target" => "#dashboard-nav-bar",
+                                         "data-toggle" => "collapse",
+                                         :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to main_app.dashboard_path do
+          = image_tag "logos/ezprofile", class: "img-responsive", id: 'brand-image'
+      / Collect the nav links, forms, and other content for toggling
+      #dashboard-nav-bar.collapse.navbar-collapse
+        %ul.nav.navbar-nav.navbar-right
+          %li{:class => (cp(ezrealty_re_agencies_path))}
+            = link_to "Личные данные", edit_user_registration_path
+      / /.navbar-collapse
+    / /.container-fluid
+  / /nav

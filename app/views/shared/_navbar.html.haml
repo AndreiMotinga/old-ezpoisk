@@ -100,16 +100,13 @@
             %li
               %a{ "data-target" => "#new", "data-toggle" => "modal", :role => "button" }
                 Новое объявление
-            %li= link_to "Мои объявления", main_app.dashboard_path
+            %li= link_to "Панель управления", main_app.dashboard_path
             %li.divider{:role => "separator"}
             - if user_signed_in?
               %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
-              %li= link_to "Профиль", main_app.edit_user_registration_path
             - else
               %li= link_to t(:sign_in), main_app.new_user_session_path
               %li= link_to t(:sign_up), main_app.new_user_registration_path
-            %li.divider{:role => "separator"}
-            %li= link_to "О компании", main_app.new_feedback_path
 
         / dashboard
       / right links

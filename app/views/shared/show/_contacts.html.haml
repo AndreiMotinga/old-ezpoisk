@@ -8,8 +8,9 @@
       %strong= record.title
 
   %li.list-group-item
-    автор:
-    %strong= record.user.name if record.user.name.present?
+    - if record.user.name.present?
+      автор:
+      %strong= record.user.name
   - unless record.phone.blank?
     %li.list-group-item
       телефон:
