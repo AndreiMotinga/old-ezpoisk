@@ -68,7 +68,6 @@ group :development, :test do
   gem "faker"
   gem "awesome_print"
   gem "guard-livereload", "~> 2.4", require: false
-  gem "web-console"
 end
 
 group :development do
