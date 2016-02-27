@@ -35,6 +35,6 @@ class Ability
   private
 
   def second_level_models
-    [Post, Comment, Feedback]
+    [Post, Comment]
   end
 end

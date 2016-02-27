@@ -34,29 +34,3 @@
               %li
                 %i.fa.fa-skype
                   #{props[:skype]}
-
-%br/
-%hr/
-%br/
-.row
-  .col-md-12.white-block
-    %h3.text-center Пишите нам
-    .col-md-12
-      = bootstrap_form_for @feedback do |f|
-        .form-group
-          = f.text_field :name, label: "Ваше имя", id: "feedback-name"
-        .form-group
-          = f.email_field :email, label: "Ваш email", id: "feedback-email"
-        .form-group
-          = f.text_area :body,
-                        label: "Сообщение *",
-                        rows: 3,
-                        required: true,
-                        id: "feedback-body"
-        .form-group
-          = f.submit class: "btn btn-default",
-                     value: "Оправить",
-                     id: "feedback-submit"
-        %hr
-
-    %h5= link_to 'Вернуться на главную', root_path

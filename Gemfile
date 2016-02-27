@@ -46,10 +46,6 @@ gem "bootstrap-wysihtml5-rails"
 
 gem 'impressionist'
 
-group :production do
-  gem "rails_12factor"
-  gem 'heroku-deflater'
-end
 gem "puma"
 
 gem "sitemap_generator"
@@ -62,7 +58,16 @@ gem "acts_as_votable", "~> 0.10.0"
 
 gem "acts-as-taggable-on"
 
+# performance
 gem "rack-mini-profiler"
+gem "flamegraph"
+gem "stackprof" # ruby 2.1+ only
+gem "memory_profiler"
+
+group :production do
+  gem "rails_12factor"
+  # gem 'heroku-deflater'
+end
 
 group :development, :test do
   gem "pry-byebug"
@@ -84,6 +89,7 @@ group :development do
   gem "launchy-rails"
   gem "web-console"
 
+  # code quality
   gem "traceroute", :require => false # search dead routes
   gem "brakeman", :require => false # security vulnerabilities
   gem "rails_best_practices", :require => false

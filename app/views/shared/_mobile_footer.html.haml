@@ -6,9 +6,7 @@
         %strong ezpoisk #{Time.now.year}
 
     .col-xs-12.text-center
-      %p
-        %a.mobile-link{ "data-target" => "#feedback-modal", "data-toggle" => "modal", :role => "button" }
-          Оставить отзыв
+      %p= link_to 'О компании', "/about", target: "_blank"
 
     - if user_signed_in?
       .col-xs-12.text-center

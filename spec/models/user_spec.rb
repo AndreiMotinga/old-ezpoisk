@@ -12,5 +12,4 @@ describe User do
   it { should have_many(:services).dependent(:destroy) }
   it { should have_many(:sales).dependent(:destroy) }
   it { should have_many(:posts) }
-  it { should have_many(:feedbacks) }
 end

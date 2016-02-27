@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy
   has_many :posts
-  has_many :feedbacks
   has_many :pictures
   has_many :questions
   has_many :answers

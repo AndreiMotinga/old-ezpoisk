@@ -45,7 +45,6 @@ Rails.application.routes.draw do
 
   resources :news, only: [:index, :show], path: :eznews
   resources :comments, only: [:create]
-  resources :feedbacks, only: [:new, :create], path: :team
   resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice
@@ -73,5 +72,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get "about", to: "home#about"
+
   root to: "home#index"
 end

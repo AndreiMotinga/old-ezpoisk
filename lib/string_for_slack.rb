@@ -9,19 +9,9 @@ class StringForSlack
     case record.class.to_s
     when "User"
       string = user_string(record)
-    when "Feedback"
-      string = feedback_string(record)
     else
       string = post_string(record)
     end
-    string
-  end
-
-  def feedback_string(record)
-    string = "Новый отзыв\n"
-    string += "name: #{record.name}\n" if record.name
-    string += "email: #{record.email}\n" if record.email
-    string += "text: #{record.body}\n"
     string
   end
 

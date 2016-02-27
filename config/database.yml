@@ -1,6 +1,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: <%= ENV["DATABASE_URL"] || "ezpoisk_prod" %>
   pool: 5
 
 development:

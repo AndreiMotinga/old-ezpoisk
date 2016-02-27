@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225212722) do
+ActiveRecord::Schema.define(version: 20160227002411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,17 +57,6 @@ ActiveRecord::Schema.define(version: 20160225212722) do
   end
 
   add_index "companies", ["email"], name: "index_companies_on_email", unique: true, using: :btree
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.text     "body"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "name"
-    t.string   "email"
-  end
-
-  add_index "feedbacks", ["user_id"], name: "index_feedbacks_on_user_id", using: :btree
 
   create_table "horoscopes", force: :cascade do |t|
     t.string   "title"
@@ -451,7 +440,6 @@ ActiveRecord::Schema.define(version: 20160225212722) do
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "feedbacks", "users"
   add_foreign_key "job_agencies", "cities"
   add_foreign_key "job_agencies", "states"
   add_foreign_key "job_agencies", "users"
