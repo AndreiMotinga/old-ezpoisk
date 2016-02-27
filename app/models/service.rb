@@ -17,10 +17,9 @@ class Service < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
 
-  has_attached_file :logo,
+  has_attached_file(:logo,
                     styles: { medium: "300x170>" },
-                    :s3_protocol => :https,
-                    default_url: "missing.png"
+                    default_url: "missing.png")
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
 

@@ -7,9 +7,9 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
 
   attr_reader :image_remote_url
-  has_attached_file :image,
-                    styles: { small: "165x120#", medium: "600x337#"},
-                    :s3_protocol => :https
+  has_attached_file(:image,
+                    styles: { medium: "600x337#" },
+                    default_url: "missing.png")
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   def image_remote_url=(url_value)
     if url_value.present?

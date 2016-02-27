@@ -23,10 +23,9 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
 
-  has_attached_file :avatar,
-    styles: { thumb: "50x50#", medium: "200x200#" },
-    :s3_protocol => :https,
-    default_url: "default-avatar.png"
+  has_attached_file(:avatar,
+                    styles: { thumb: "50x50#", medium: "200x200#" },
+                    default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def role?(val)
@@ -34,7 +33,7 @@ class User < ActiveRecord::Base
   end
 
   def timeout_in
-    self.admin? ? 2.hours : 7.days
+    admin? ? 2.hours : 7.days
   end
 
   private

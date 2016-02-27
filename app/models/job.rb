@@ -16,11 +16,10 @@ class Job < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
 
-  has_attached_file :logo,
+  has_attached_file(:logo,
                     styles: { medium: "300x170>" },
-                    default_url: "missing.png"
-  validates_attachment_content_type :logo,
-                                    content_type: /\Aimage\/.*\Z/
+                    default_url: "missing.png")
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
   def link
