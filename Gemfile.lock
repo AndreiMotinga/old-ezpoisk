@@ -215,7 +215,7 @@ GEM
     http_parser.rb (0.6.0)
     httpclient (2.7.1)
     i18n (0.7.0)
-    ice_cube (0.13.3)
+    ice_cube (0.11.1)
     impressionist (1.5.1)
       httpclient (~> 2.2)
       nokogiri (~> 1.5)
@@ -396,10 +396,10 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
-    sidetiq (0.7.0)
-      celluloid (>= 0.17.3)
-      ice_cube (~> 0.13.2)
-      sidekiq (>= 4.0.0)
+    sidetiq (0.6.3)
+      celluloid (>= 0.14.1)
+      ice_cube (= 0.11.1)
+      sidekiq (>= 3.0.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -510,7 +510,7 @@ DEPENDENCIES
   select2-rails
   shoulda-matchers
   sidekiq
-  sidetiq
+  sidetiq (~> 0.6.3)
   sinatra
   sitemap_generator
   slack-notifier
@@ -525,4 +525,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

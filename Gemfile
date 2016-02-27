@@ -33,7 +33,7 @@ gem "haml-rails"
 
 gem "sidekiq"
 gem "sinatra", require: nil
-gem "sidetiq"
+gem "sidetiq", '~> 0.6.3'
 
 gem "geokit-rails", github: "geokit/geokit-rails"
 gem "gmaps4rails"
