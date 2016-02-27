@@ -1,7 +1,7 @@
 .row.post-item
   .col-xs-4.col-sm-4.logo-js
     = link_to link_from_controller(record) do
-      = image_tag record.logo_url(:medium), class: "img-responsive",
+      = image_tag record.logo_url, class: "img-responsive",
                   alt: "#{record.post_type} частной недвижимости - #{record.street} #{record.phone}"
 
       - unless record.fee
