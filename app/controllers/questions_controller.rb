@@ -1,12 +1,12 @@
 class QuestionsController < ApplicationController
-  impressionist
+  impressionist actions: [:show]
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
     @questions = Question.includes(:answers => :user)
                          .by_keyword(params[:keyword])
-                         .page(params[:page])
+                         .page(params[:page]).per(10)
   end
 
   def tag

@@ -11,19 +11,17 @@
     .col-xs-3
       = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
     .col-xs-3
-      = @re_finances.total_count
+      -# = @re_finances.total_count
     .col-xs-6
       = render 'ezrealty/re_finances/search_modal_trigger'
 / /Secondary navbar
 
 / MAIN content
 .col-md-8
-  / total
-  .row.hidden-xs
-    %h4.pull-right
-      %a= "Всего #{@re_finances.total_count}"
-    = render 'ezrealty/re_finances/search_modal_trigger'
-  / /total
+  .row
+    .hidden-xs
+      = render 'ezrealty/re_finances/search_modal_trigger'
+    %br/
 
   .row
     - @re_finances.each do |re_finance|

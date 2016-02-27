@@ -11,7 +11,7 @@
         %h3.text-muted.question-author
           = question.username
           = ", #{question.userslug}" if question.userslug.present?
-        %p= "#{question.impressionist_count} просмотров, #{question.answers.count} ответов"
+        %p= "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
 
   / line 2 question text
   .col-xs-12

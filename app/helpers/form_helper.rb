@@ -18,6 +18,7 @@ module FormHelper
   end
 
   def state_cities
+    return [] unless params[:state_id].present?
     City.where(state_id: state_id)
   end
 

@@ -11,19 +11,17 @@
     .col-xs-3
       = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
     .col-xs-3
-      = @services.total_count
+      -# = @services.total_count
     .col-xs-6
       = render 'services/search_modal_trigger'
 /  / Secondary navbar
 
 / MAIN content
 .col-md-8
-  / total
-  .row.hidden-xs
-    %h4.pull-right
-      %a= "Всего #{@services.total_count}"
-    = render 'services/search_modal_trigger'
-  / /total
+  .row
+    .hidden-xs
+      = render 'services/search_modal_trigger'
+    %br/
 
   .row
     .col-xs-12

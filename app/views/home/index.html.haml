@@ -3,20 +3,19 @@
 -# = content_for :top_partner do
 -#   = render "home/home_partner"
 
-hi
--# / DESKTOP
--# .hidden-xs
--#   .row
--#     / left
--#     .col-sm-12.col-lg-6
--#       = render "home/main_post"
--#       = render "home/news_posts"
--#
--#     / right
--#     .col-sm-12.col-lg-6
--#       = render "home/users_posts"
--#       %br/
--#       = render "home/questions"
--#
--# / MOBILE
--# = render "home/mobile_index"
+/ DESKTOP
+.hidden-xs
+  .row
+    / left
+    .col-sm-12.col-lg-6
+      = render "home/main_post"
+      = render "home/news_posts"
+
+    / right
+    .col-sm-12.col-lg-6
+      = render "home/users_posts"
+      %br/
+      = render "home/questions"
+
+/ MOBILE
+= render "home/mobile_index"

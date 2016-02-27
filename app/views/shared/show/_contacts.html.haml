@@ -7,8 +7,8 @@
       Название:
       %strong= record.title
 
-  %li.list-group-item
-    - if record.user.name.present?
+  - if record.user.name.present?
+    %li.list-group-item
       автор:
       %strong= record.user.name
   - unless record.phone.blank?

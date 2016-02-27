@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  is_impressionable
+  is_impressionable :counter_cache => true
   acts_as_taggable
   belongs_to :user
   has_many :answers
@@ -35,7 +35,7 @@ class Question < ActiveRecord::Base
   end
 
   def the_answer
-    answers.the_answer
+    answers.last
   end
 
   def text_to_show

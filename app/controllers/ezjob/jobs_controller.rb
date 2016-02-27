@@ -1,12 +1,10 @@
 class Ezjob::JobsController < ApplicationController
   def index
-    jobs = Job.filter(params.slice(:state_id,
-                                   :city_id,
-                                   :post_type,
-                                   :category,
-                                   :geo_scope))
-              .order("created_at desc")
-    @jobs = jobs.page(params[:page])
+    @jobs = Job.filter(params.slice(:state_id,
+                                    :city_id,
+                                    :post_type,
+                                    :category,
+                                    :geo_scope)).page(params[:page])
   end
 
   def show
