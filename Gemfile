@@ -61,9 +61,11 @@ gem "acts_as_votable", "~> 0.10.0"
 
 gem "acts-as-taggable-on"
 
+gem "rack-mini-profiler", require: false
+
 group :production do
   gem "rails_12factor"
-  gem 'heroku-deflater'
+  # gem 'heroku-deflater'
 end
 
 group :development, :test do
@@ -85,8 +87,6 @@ group :development do
   gem "terminal-notifier-guard"
   gem "launchy-rails"
   gem "web-console"
-
-  gem "rack-mini-profiler"
 
   # code quality
   gem "traceroute", :require => false # search dead routes

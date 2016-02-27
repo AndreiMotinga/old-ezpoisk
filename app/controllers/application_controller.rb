@@ -3,8 +3,15 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :check_rack_mini_profiler
 
   private
+
+  def check_rack_mini_profiler
+    if current_user.try(:admin)
+      Rack::MiniProfiler.authorize_request
+    end
+  end
 
   def get_record(model, id, path)
     record = model.find_by_id(id)

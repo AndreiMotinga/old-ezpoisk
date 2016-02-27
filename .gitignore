@@ -13,6 +13,7 @@
 /tmp
 .rubocop.yml
 notes
+bar
 foo
 tags
 brakeman
