@@ -15,11 +15,6 @@
     = csrf_meta_tags
 
   %body
-    / MODALS & services
-    = render "home/new_post_modal"
-    = render "shared/services"
-
-    / /MODALS & services
     .hidden-xs= render 'shared/navbar'
     .hidden-xs= yield :top_partner if content_for?(:top_partner)
     .hidden-xs
@@ -35,3 +30,7 @@
 
     .hidden-xs= render 'shared/footer'
     .visible-xs= render 'shared/mobile_footer'
+
+    / MODALS & services
+    = render "home/new_post_modal"
+    = render "shared/services"
