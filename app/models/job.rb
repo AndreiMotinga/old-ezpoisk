@@ -4,7 +4,7 @@ class Job < ActiveRecord::Base
   include Filterable
   include ViewHelpers
 
-  validates :title, presence: true, length: { maximum: 90, minimum: 5 }
+  validates :title, presence: true, length: { maximum: 90, minimum: 3 }
   validates :phone, presence: true
   validates :category, presence: true
   validates :post_type, presence: true
