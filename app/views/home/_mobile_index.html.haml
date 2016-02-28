@@ -45,6 +45,10 @@
               %li.list-group-item.mobile-link Мои объявления
             = link_to edit_user_registration_path do
               %li.list-group-item.mobile-link Личные данные
+
+          %ul.list-group
+            = link_to main_app.destroy_user_session_path, method: :delete do
+              %li.list-group-item.mobile-link Выйти
         - else
           = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
             = f.text_field :email
