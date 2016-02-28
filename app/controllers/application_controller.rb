@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_to_https
+    return unless Rails.env.production?
     redirect_to protocol: "https://" unless (request.ssl? || request.local?)
   end
 
