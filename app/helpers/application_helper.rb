@@ -35,4 +35,8 @@ module ApplicationHelper
       render "dashboard/sales/sale", record: record
     end
   end
+
+  def async_js?
+    params[:controller] == "home" ? "" : false
+  end
 end
