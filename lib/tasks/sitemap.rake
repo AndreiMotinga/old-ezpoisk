@@ -31,6 +31,7 @@ namespace :sitemap do
 
     Rake::Task["sitemap:upload_to_s3"].invoke
 
-    SitemapGenerator::Sitemap.ping_search_engines('https://www.ezpoisk.com/sitemap.xml.gz')
+    url = "https://www.ezpoisk.com/sitemaps/sitemap.xml.gz"
+    SitemapGenerator::Sitemap.ping_search_engines(url)
   end
 end

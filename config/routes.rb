@@ -21,7 +21,6 @@ Rails.application.routes.draw do
 
   devise_for :users
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
-  get "sitemap(:id).:format.:compression" => "sitemap#index"
   get "update_cities", to: "cities#update_cities"
   get "update_subcategory", to: "subcategories#update_subcategory"
   get '/tos', to: 'tos#tos'
