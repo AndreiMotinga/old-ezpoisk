@@ -12,15 +12,20 @@
       %h1.mob-title= link_to record.title, link_from_controller(record)
 
     /line 2
+    %strong= record.category
+    %hr.post-devider/
+
+    / line 3
     %span.glyphicon.glyphicon-earphone
     %span.company-phone= record.phone
     %hr.post-devider/
 
-    / line 3
-    %strong= record.category
-    %hr.post-devider/
-
     / line 4
+    - if record.email.present?
+      %span= record.email
+      %hr.post-devider/
+
+    / line 5
     .hidden-xs
       %span= time_ago_in_words record.created_at
       назад

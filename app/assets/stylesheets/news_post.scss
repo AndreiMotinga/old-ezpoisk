@@ -3,36 +3,29 @@
   margin-bottom: 5px;
 }
 
-.post-time {
-  margin-right: 10px;
-}
-
-h1.post-show-title {
-  font-size: 24px;
-}
-
-a.post-title {
-  text-decoration: none;
-}
+.post-time { margin-right: 10px; }
+h1.post-show-title { font-size: 24px; }
+a.post-title { text-decoration: none; }
+.post-description { padding-left: 10px; }
+.post-image { padding-left: 0px; }
+.post-text { color: $grey3; }
 
 h2.post-title {
   margin-bottom: 0px;
   margin-top: 5px;
   font-family: 'open Sans', arial, sans-serif;
   font-size: 16px;
-  a {
-    color: $grey3;
+}
+
+.post-interesting {
+  background-color: $blue0;
+  h2 {
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    font-family: 'open Sans', arial, sans-serif;
+    font-size: 20px;
+    a { color: black; }
   }
-}
-
-.post-text {
-  margin: 0px 0px;
-}
-
-.post-description {
-  padding-left: 10px;
-}
-
-.post-image {
-  padding-left: 0px;
+  img { padding-top: 5px; }
 }

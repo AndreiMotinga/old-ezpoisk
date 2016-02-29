@@ -5,18 +5,11 @@
       %span.ez.blue answer
     %span.pull-right= l Date.current, format: :long
   %hr.lenta/
-  #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
-    - @homepage.questions(14).each_with_index do |q, i|
-      .panel.panel-default
-        .panel-heading{:role => "tab", id: "heading-#{i}"}
-          %a{id: "q-#{i}", "aria-controls" => "collapse-#{i}", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{i}", :role => "button"}
-            %h4.panel-title= q.title
-        .panel-collapse.collapse{"aria-labelledby" => "heading-#{i}", :role => "tabpanel", id: "collapse-#{i}"}
-          .panel-body
-            = strip_tags(q.text_to_show).truncate(200)
-            = link_to "подробнее", q, target: "_blank"
 
-:javascript
-  setTimeout(function(){
-    $('#q-0').trigger('click');
-  }, 4000);
+  - @homepage.questions(18).map do |q|
+    .panel.panel-default.home-panel
+      .panel-body
+        %h2.post-title= link_to q.title, q, target: "_blank"
+        %span #{q.impressions_count} просмотров,
+        %span #{q.answers_count} ответов
+%br/

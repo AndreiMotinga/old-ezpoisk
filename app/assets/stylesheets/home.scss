@@ -18,3 +18,9 @@ h1.lenta-title {
     color: black;
   }
 }
+
+.home-panel {
+  border-radius: 0px !important;
+  margin-bottom: 0px;
+  .panel-body { padding: 5px 10px; }
+}

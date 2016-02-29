@@ -1,6 +1,6 @@
 class Homepage
   def questions(num)
-    Question.answered.last(num)
+    Question.answered.order("updated_at desc").limit(num)
   end
 
   def news_posts(num)

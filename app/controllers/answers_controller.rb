@@ -7,6 +7,7 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.id
 
     if @answer.save
+      @answer.question.increment!(:answers_count)
       SlackNotifierJob.perform_async(@answer.id, "Answer")
       redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)
     end

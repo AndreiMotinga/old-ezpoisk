@@ -6,16 +6,15 @@
 / DESKTOP
 .hidden-xs
   .row
-    / left
+    .visible-lg.col-lg-6
+      = render "home/users_posts"
     .col-sm-12.col-lg-6
       = render "home/main_post"
-      = render "home/news_posts"
-
-    / right
+  .row
     .col-sm-12.col-lg-6
-      = render "home/users_posts"
-      %br/
       = render "home/questions"
+    .col-sm-12.col-lg-6
+      = render "home/news_posts"
 
 / MOBILE
 = render "home/mobile_index"

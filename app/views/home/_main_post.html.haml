@@ -1,7 +1,6 @@
 .row
   %ul.pgwSlideshow
-    - @homepage.main_posts(20).each do |post|
+    - @homepage.main_posts(10).each do |post|
       %li
         = link_to news_path(post), target: "_blank" do
           = image_tag post.image.url(:medium), alt: post.title
-%br/

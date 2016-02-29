@@ -1,34 +1,12 @@
-.red {
-  background-color: red;
-}
+.red { background-color: red; }
+.white { background-color: white; }
+.black { background-color: black; }
+.gray { background-color: gray; }
+.purple { background-color: purple; }
+.light-blue { background-color: $blue0; }
 
-.white {
-  background-color: white;
-}
-
-.black {
-  background-color: black;
-}
-
-.gray {
-  background-color: gray;
-}
-
-.purple {
-  background-color: purple;
-}
-
-.padding-10 {
-  padding: 10px;
-}
-
-hr.black-line {
-  border-top: 5px solid black;
-}
-.green-text {
-  color: green;
-}
-
-.red-text {
-  color: red;
-}
+.padding-10 { padding: 10px; }
+.margin-bottom-0 { margin-bottom: 0px; }
+hr.black-line { border-top: 5px solid black; }
+.green-text { color: green; }
+.red-text { color: red; }
