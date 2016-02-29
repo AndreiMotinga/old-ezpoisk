@@ -17,7 +17,7 @@ namespace :sitemap do
 
       begin
         object = bucket.objects[path]
-        object.write(file: file)
+        object.write(file: file, acl: :public_read)
       rescue Exception => e
         raise e
       end
