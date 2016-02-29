@@ -162,4 +162,25 @@ SitemapGenerator::Sitemap.create do
   #     HOROSCOPE ///
   #
   ##############################################################
+  #
+  ##############################################################
+  #
+  #     / EZANSWER
+  #
+  ##############################################################
+
+  add questions_path, priority: 0.8, changefreq: "dayly"
+  Question.find_each do |question|
+    add question_path(question),
+        priority: 0.7,
+        lastmod: question.updated_at
+  end
+
+  ##############################################################
+  #
+  #     // EZANSWER
+  #
+  ##############################################################
+  #
+
 end
