@@ -27,7 +27,8 @@ class AnswersController < ApplicationController
   end
 
   def upvote
-    Answer.find(params[:id]).upvote_by current_user
+    @answer = Answer.find(params[:id])
+    @answer.upvote_by current_user
   end
 
   def downvote
@@ -37,7 +38,8 @@ class AnswersController < ApplicationController
   end
 
   def unvote
-    Answer.find(params[:id]).unvote_by current_user
+    @answer = Answer.find(params[:id])
+    @answer.unvote_by current_user
   end
 
   private

@@ -7,12 +7,12 @@
         = image_tag answer.user.avatar.url(:thumb), alt: answer.user.name, class: "img-responsive img-circle center-block"
       .col-xs-12.col-sm-11
         %h3.text-muted.question-author
-          / popover
           - if answer.user == current_user
             %i.fa.fa-cog.fa-lg.pull-right{"data-content" => "#{render 'questions/edit_answer', answer: answer}",
               "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", "data-placement" => "left"}
           = answer.user.name
           = ", #{answer.user.slug}" if answer.user.slug.present?
+        %p #{answer.impressions_count} просмотров
 
     / edit form
     - if answer.user == current_user

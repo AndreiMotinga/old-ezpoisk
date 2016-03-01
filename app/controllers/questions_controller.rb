@@ -23,6 +23,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    IncreaseAnswersCountsJob.perform_async(@question.id) if @question
   end
 
   def new
