@@ -43,7 +43,6 @@ Rails.application.routes.draw do
   end
 
   resources :news, only: [:index, :show], path: :eznews
-  resources :comments, only: [:create]
   resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice

@@ -84,5 +84,8 @@ body {
   background-color: $orange;
   border-color: $orange;
   color: white;
+}
 
+.fb-comments, .fb-comments iframe[style], .fb-comments span {
+  width: 100% !important;
 }

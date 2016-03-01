@@ -29,6 +29,10 @@
         - else
           = link_to "Войдите, чтобы ответить", new_user_session_path
         %span.text.text-muted.qa-links= "#{@question.answers.count} ответов"
+        %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"}
+          коментарии
+        #comments.collapse
+          .fb-comments{"data-href" => questions_url(@question), "data-numposts" => "5"}
 
         %hr#lenta/
         %p= tag_links(@question)

@@ -1,7 +1,0 @@
-.panel.panel-default.comment-panel
-  .panel-heading
-    %strong= comment.user.try(:name) || "Гость"
-    .pull-right
-      = comment.created_at.strftime("%b %d, %Y")
-  .panel-body
-    %p= sanitize comment.body

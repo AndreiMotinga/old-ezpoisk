@@ -10,7 +10,7 @@
           - if answer.user == current_user
             %i.fa.fa-cog.fa-lg.pull-right{"data-content" => "#{render 'questions/edit_answer', answer: answer}",
               "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", "data-placement" => "left"}
-          = answer.user.name
+          = answer_name(answer)
           = ", #{answer.user.slug}" if answer.user.slug.present?
         %p #{answer.impressions_count} просмотров
 
@@ -37,3 +37,7 @@
         = render "answers/voting_links", answer: answer
       - else
         = link_to "Войдите, чтобы голосовать", new_user_session_path
+      %a.text.text-muted.qa-links{href: "#answer-comments", "aria-expanded": "false", "data-toggle": "collapse"}
+        коментарии
+      #answer-comments.collapse
+        .fb-comments{"data-href" => questions_url(@question, answer: answer.id), "data-numposts" => "5"}

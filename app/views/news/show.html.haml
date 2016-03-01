@@ -19,15 +19,8 @@
     .row
       %span= link_to "Вернуться назад", :back
 
-    %br/
     .row
-      .col-xs-12.comments
-        = bootstrap_form_for(Comment.new) do |f|
-          = hidden_field_tag :post_id, @post.id
-          = f.text_area :body, label: "Оставьте свой комментарий", rows: 3
-          = f.submit " + Добавить Комментарий", class: "btn mobile-btn"
-        %br/
-        = render @post.comments.includes(:user)
+      .fb-comments{"data-href" => news_url(@post), "data-numposts" => "5"}
 
 .row
   .hidden-xs

@@ -4,7 +4,6 @@ class Post < ActiveRecord::Base
   validates :category, presence: true
 
   belongs_to :user
-  has_many :comments, dependent: :destroy
 
   attr_reader :image_remote_url
   has_attached_file(:image,
