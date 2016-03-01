@@ -24,18 +24,15 @@
           %p.text= sanitize @question.text
 
         / answer button/links
-        - if current_user
-          = render "questions/new_answear"
-        - else
-          = link_to "Войдите, чтобы ответить", new_user_session_path
-        %span.text.text-muted.qa-links= "#{@question.answers.count} ответов"
-        %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"}
-          коментарии
+        = current_user ? render("questions/new_answear") : link_to("Войдите, чтобы ответить", new_user_session_path)
+        %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"} коментарии
+        .pull-right.fb-like{"data-action": "like", "data-href": question_url(@question), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
         #comments.collapse
-          .fb-comments{"data-href" => questions_url(@question), "data-numposts" => "5"}
+          .fb-comments{"data-href" => question_url(@question), "data-numposts" => "5"}
 
         %hr#lenta/
-        %p= tag_links(@question)
+        %p
+          = tag_links(@question)
 
     %br/
 

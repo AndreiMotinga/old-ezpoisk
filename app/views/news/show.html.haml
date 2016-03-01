@@ -20,6 +20,7 @@
       %span= link_to "Вернуться назад", :back
 
     .row
+      .pull-right.fb-like{"data-action": "like", "data-href": news_url(@post), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
       .fb-comments{"data-href" => news_url(@post), "data-numposts" => "5"}
 
 .row
