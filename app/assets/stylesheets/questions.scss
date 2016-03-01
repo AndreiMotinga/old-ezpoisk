@@ -38,8 +38,8 @@ h3.question-author {
 }
 
 q.devider {
- margin-top: 10px;
- margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .answer {
@@ -50,9 +50,21 @@ q.devider {
 }
 
 #tag_cloud {
-  width: 400px;
-  line-height: 1.6em;
-  .s { font-size: 0.8em; }
-  .m { font-size: 1.2em; }
-  .l { font-size: 1.8em; }
+  line-height: 18px;
+  .s { font-size: 12px; }
+  .m { font-size: 16px; }
+  .l { font-size: 20px; }
+  .tag-in-cloud {
+    font-family: Georgia,Times,"Times New Roman",serif;
+    color: $grey3;
+  }
 }
+
+.tag {
+  font-family: Georgia,Times,"Times New Roman",serif;
+  background-color: $grey1;
+  padding: 4px 10px;
+  border-radius: 10px;
+  color: black;
+}
+a.tag { text-decoration: none; }

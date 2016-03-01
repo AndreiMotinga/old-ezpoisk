@@ -30,8 +30,8 @@
           = link_to "Войдите, чтобы ответить", new_user_session_path
         %span.text.text-muted.qa-links= "#{@question.answers.count} ответов"
 
-        %p= tag_links(@question)
         %hr#lenta/
+        %p= tag_links(@question)
 
     %br/
 
