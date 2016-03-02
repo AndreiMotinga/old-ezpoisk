@@ -1,17 +1,17 @@
 = bootstrap_form_for @question do |f|
   .field
     = f.text_field :title, label: "Ваш вопрос"
-  .field
-    = f.text_field :tag_list, label: "Тэги через запятую"
 
-  -# .field
-  -#   = collection_select :question,
-  -#     :tag_list,
-  -#     ActsAsTaggableOn::Tag.order('name ASC'), :name, :name,
-  -#     { :selected => @question.tag_list },
-  -#     { :multiple => true, :name => 'question[tag_list][]', class: "q-select" }
   .field
     = f.text_area :text, label: "Подробности", class: "summernote"
 
+  .field
+    = collection_select :question,
+      :tag_list,
+      ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
+      { :selected => @question.tag_list },
+      { :multiple => true, :name => 'question[tag_list][]', class: "q-select" }
+
+  %br/
   .actions
     = f.submit 'Сохранить', class: "btn btn-success btn-block"

@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $("#question_tag_list").select2({
+    placeholder: "Выберите тэги (минимум 1, максимум 5)"
+  });
   $(".state-select").select2({});
 
   var state = $(".state-select").val();
