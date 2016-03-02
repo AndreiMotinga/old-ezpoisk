@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     return $(".summernote").summernote({
       lang: 'ru',
-      height: 360,
+      height: 80,
       codemirror: {
         lineNumbers: true,
         tabSize: 2,
