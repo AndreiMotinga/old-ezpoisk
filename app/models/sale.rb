@@ -17,7 +17,7 @@ class Sale < ActiveRecord::Base
   has_many :pictures, as: :imageable, dependent: :destroy
 
   def link
-    "/ezsale/#{id}"
+    "ezsale/#{id}"
   end
 
   def block

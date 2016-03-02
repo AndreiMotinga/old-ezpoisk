@@ -23,7 +23,7 @@ class Job < ActiveRecord::Base
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
   def link
-    "/ezjob/jobs/#{id}"
+    "ezjob/jobs/#{id}"
   end
 
   def block

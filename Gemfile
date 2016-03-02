@@ -62,6 +62,7 @@ gem "acts_as_votable", "~> 0.10.0"
 gem "acts-as-taggable-on"
 
 gem "rack-mini-profiler", require: false
+gem 'rack-cors', :require => 'rack/cors'
 
 group :production do
   gem "rails_12factor"

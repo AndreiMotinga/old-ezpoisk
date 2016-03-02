@@ -24,7 +24,7 @@ class RePrivate < ActiveRecord::Base
   end
 
   def link
-    "/ezrealty/private/#{id}"
+    "ezrealty/private/#{id}"
   end
 
   def block

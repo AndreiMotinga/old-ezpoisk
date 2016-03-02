@@ -24,7 +24,7 @@ class ReFinance < ActiveRecord::Base
 
   def link
     # todo change to rials link
-    "/ezrealty/finance/#{id}"
+    "ezrealty/finance/#{id}"
   end
 
   def edit_link

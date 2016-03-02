@@ -22,7 +22,7 @@ class ReCommercial < ActiveRecord::Base
   end
 
   def link
-    "/ezrealty/commercial/#{id}"
+    "ezrealty/commercial/#{id}"
   end
 
   def edit_link

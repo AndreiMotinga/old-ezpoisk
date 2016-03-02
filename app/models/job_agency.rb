@@ -39,6 +39,6 @@ class JobAgency < ActiveRecord::Base
   end
 
   def link
-    "/ezjob/agencies/#{id}"
+    "ezjob/agencies/#{id}"
   end
 end

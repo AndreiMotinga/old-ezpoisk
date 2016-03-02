@@ -24,7 +24,7 @@ class Service < ActiveRecord::Base
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
 
   def link
-    "/ezservice/#{id}"
+    "ezservice/#{id}"
   end
 
   def block
