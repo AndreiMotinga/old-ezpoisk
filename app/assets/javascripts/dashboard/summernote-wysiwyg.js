@@ -1,4 +1,9 @@
 $(document).ready(function() {
+  $(".news-summernote").summernote({
+    height: 400
+  });
+
+
   $(function() {
     var type = $("#pictures-data").data("type");
     var id = $("#pictures-data").data("id");
