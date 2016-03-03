@@ -1,0 +1,7 @@
+.white-block
+  - @questions.map do |q|
+    .panel.panel-default.home-panel
+      .panel-body
+        %h2.post-title= link_to q.title, q, target: "_blank"
+        %span #{q.impressions_count} просмотров,
+        %span #{q.answers_count} ответов

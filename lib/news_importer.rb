@@ -4,24 +4,18 @@ class NewsImporter
   end
 
   def import
-    NEWS_CATEGORIES.each_pair do |category, details|
-      if category == "Страны"
-        details.each do |country|
-          xml = Nokogiri::XML(open(country.first))
-          create_post(xml, category, country.last)
-        end
-      else
-        xml = Nokogiri::XML(open(details.first))
-        create_post(xml, category, details.last)
+    NEWS_CATEGORIES.each_pair do |category, links|
+      links.each do |link|
+        xml = Nokogiri::XML(open(link))
+        create_post(xml, category)
       end
     end
   end
 
-  def create_post(xml, category, subcategory)
+  def create_post(xml, category)
     xml.xpath("//item").each do |item|
       Post.create(user_id: @user_id,
                   category: category,
-                  subcategory: subcategory,
                   title: item.at("title").text,
                   link: convert_link(item.at("link").text),
                   description: item.at("description").text,

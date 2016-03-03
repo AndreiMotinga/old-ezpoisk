@@ -5,14 +5,17 @@
       %ul
         - @post.errors.full_messages.each do |msg|
           %li= msg
-
-  = f.text_area :text,
-                label: 'Содержание',
-                class: "news-summernote"
-  %hr/
-  = f.text_field :image_remote_url, label: '* Лого'
-  = f.check_box :main, label: 'Главная?'
-  = f.check_box :show_on_homepage, label: 'В ленту?'
-  = f.check_box :interesting, label: 'Выделить?'
-  .actions
-    = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
+  .row
+    .col-md-8
+      = f.text_area :text,
+                    label: 'Содержание',
+                    class: "news-summernote"
+    .col-md-4
+      = f.text_field :image_remote_url, label: '* Лого'
+      = f.check_box :main, label: 'Главная?'
+      = f.check_box :show_on_homepage, label: 'В ленту?'
+      = f.check_box :interesting, label: 'Выделить?'
+      .actions
+        = f.submit "Сохранить", class: "btn btn-primary", id: "details-save-btn"
+      %br/
+      = link_to @post.link, "http://#{@post.link}", target: "_blank"

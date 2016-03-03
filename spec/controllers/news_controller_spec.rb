@@ -3,19 +3,19 @@ require "rails_helper"
 describe NewsController do
   describe "GET #index" do
     it "assigns @posts" do
-      first = create :post
-      second = create :post
+      first = create :post, show_on_homepage: true
+      second = create :post, show_on_homepage: true
       get :index
-      expect(assigns(:posts)).to eq([second, first])
+      expect(assigns(:news_posts)).to eq([second, first])
     end
 
     it "return posts by category" do
       2.times { create :post, category: NEWS_CATEGORIES.keys.first }
-      create :post, category: NEWS_CATEGORIES.keys.second
+      create :post, category: NEWS_CATEGORIES.keys.second, show_on_homepage: true
 
-      get :index, category: NEWS_CATEGORIES.keys.first
+      get :index, category: NEWS_CATEGORIES.keys.second
 
-      expect(assigns(:posts).size).to eq 2
+      expect(assigns(:news_posts).size).to eq 1
     end
   end
 

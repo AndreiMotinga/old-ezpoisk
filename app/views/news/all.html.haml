@@ -1,0 +1,30 @@
+= form_tag all_news_path, method: :get, class: "form-horizontal"
+.col-sm-4
+  = select_tag :category, options_for_select([ "Авто", "Технологии", "Искусство", "Политика"], params[:category]), include_blank: true, class: "form-control"
+= submit_tag "Фильровать", commit: nil, class: "btn btn-primary"
+
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th время
+      %th category
+      %th title
+      %th главная
+      %th в ленте
+      %th выделить
+  %tbody
+    -@posts.each do |post|
+      %tr
+        %td= post.created_at.strftime("%H:%M")
+        %td= post.category
+        %td= link_to post.title, edit_news_path(post), target: "_blank"
+        %td
+          - if post.main?
+            .fa.fa-check.green-text
+        %td
+          - if post.show_on_homepage?
+            .fa.fa-check.green-text
+        %td
+          - if post.interesting?
+            .fa.fa-check.green-text

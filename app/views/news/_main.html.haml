@@ -1,0 +1,8 @@
+- @main.each do |post|
+  .padding-top-10.news-main-image
+    = link_to news_path(post) do
+      -# todo cahnge medium to large
+      = image_tag post.logo_url(:medium), class: "image-responsive"
+      .news-main-caption.white
+        %h3= post.title
+    %p.news-main-caption-text= post.description

@@ -2,8 +2,8 @@ require "rails_helper"
 
 feature "User reads news" do
   scenario "successfully" do
-    create :post, title: "first"
-    create :post, title: "second"
+    create :post, title: "first", main: true
+    create :post, title: "second", main: true
 
     visit news_index_path
 
@@ -14,7 +14,7 @@ end
 
 feature "User reads post" do
   scenario "success" do
-    post = create :post
+    post = create :post, interesting: true
     visit news_path post
 
     expect(page).to have_content(post.title)

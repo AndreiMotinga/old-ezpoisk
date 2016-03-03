@@ -255,32 +255,19 @@ STATES = [
 ]
 
 NEWS_CATEGORIES = HashWithIndifferentAccess.new(
-  "Авто": ["https://news.yandex.ru/auto.rss", "auto"],
-  "Общество": ["https://news.yandex.ru/world.rss", "world"],
-  "Интернет": ["https://news.yandex.ru/internet.rss", "internet"],
-  "Кино": ["https://news.yandex.ru/movies.rss", "movies"],
-  "Мода": ["https://news.yandex.ru/fashion.rss", "fashion"],
-  "Музыка": ["https://news.yandex.ru/music.rss", "music"],
-  "Наука": ["https://news.yandex.ru/science.rss", "science"],
-  "Политика": ["https://news.yandex.ru/politics.rss", "politics"],
-  "Технологии": ["https://news.yandex.ru/computers.rss", "computers"],
-  "Финансы": ["https://news.yandex.ru/finances.rss", "finances"],
-  "Страны": [
-    ["https://news.yandex.ru/Azerbaijan/index.rss", "Азербайджан"],
-    ["https://news.yandex.ru/Armenia/index.rss", "Армения"],
-    ["https://news.yandex.ru/Belarus/index.rss", "Беларусь"],
-    ["https://news.yandex.ru/Georgia/index.rss", "Грузия"],
-    ["https://news.yandex.ru/Israel/index.rss", "Израиль"],
-    ["https://news.yandex.ru/Kazakhstan/index.rss", "Казахстан"],
-    ["https://news.yandex.ru/Kirghizia/index.rss", "Киргизия"],
-    ["https://news.yandex.ru/Latvia/index.rss", "Латвия"],
-    ["https://news.yandex.ru/Lithuania/index.rss", "Литва"],
-    ["https://news.yandex.ru/Moldova/index.rss", "Молдова"],
-    ["https://news.yandex.ru/USA/index.rss", "США"],
-    ["https://news.yandex.ru/Tadjikistan/index.rss", "Таджикистан"],
-    ["https://news.yandex.ru/Turkmenistan/index.rss", "Туркмения"],
-    ["https://news.yandex.ru/Uzbekistan/index.rss", "Узбекистан"],
-    ["https://news.yandex.ua/index.rss", "Украина"]
+  "Авто": ["https://news.yandex.ru/auto.rss"],
+  "Общество": ["https://news.yandex.ru/world.rss", "https://news.yandex.ru/internet.rss"],
+  "Искусство": ["https://news.yandex.ru/movies.rss", "https://news.yandex.ru/fashion.rss", "https://news.yandex.ru/music.rss"],
+  "Технологии": ["https://news.yandex.ru/science.rss", "https://news.yandex.ru/computers.rss"],
+  "Политика": [
+    "https://news.yandex.ru/politics.rss",
+    "https://news.yandex.ru/finances.rss",
+    "https://news.yandex.ru/Belarus/index.rss",
+    "https://news.yandex.ru/Israel/index.rss",
+    "https://news.yandex.ru/Kazakhstan/index.rss",
+    "https://news.yandex.ru/Moldova/index.rss",
+    "https://news.yandex.ru/USA/index.rss",
+    "https://news.yandex.ua/index.rss"
   ]
 )
 

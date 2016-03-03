@@ -2,11 +2,12 @@
   #carousel123.carousel.carousel-showmanymoveone.slide
     .carousel-inner
       - @side_posts.each_with_index do |post, i|
-        .item{class: (i == 0 ? "active" : '')}
-          .col-xs-12.col-sm-6.col-md-3.article
-            = link_to news_path(post) do
-              = image_tag post.logo_url, class: "img-responsive"
-            %h5= post.title
+        - if i > 12
+          .item{class: (i == 13 ? "active" : '')}
+            .col-xs-12.col-sm-6.col-md-3.article
+              = link_to news_path(post) do
+                = image_tag post.logo_url, class: "img-responsive"
+                %h5.caption= post.title
 
     %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel123"}
       %i.glyphicon.glyphicon-chevron-left

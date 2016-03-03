@@ -1,3 +1,47 @@
 .article:hover {
   opacity: 0.7;
 }
+h3.news-posts-title {
+  margin-top: 0px;
+  color: black;
+  font-family: Georgia,Times,"Times New Roman",serif;
+  line-height: 1.4;
+}
+.news-main-image {
+  position: relative;
+}
+.news-main-caption{
+  h3 { margin-top: 5px; }
+  position: absolute;
+  // todo top - breaks on smaller layouts;
+  top: 236px;
+  padding: 0px 20px;
+  margin: 20px;
+  font-family: Georgia,Times,"Times New Roman",serif;
+  color: black;
+}
+p.news-main-caption-text{
+  font-family: Georgia,Times,"Times New Roman",serif;
+  background-color: white;
+  padding: 20px;
+}
+
+
+h1.news-post-show-title {
+  font-family: Georgia,Times,"Times New Roman",serif;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  font-weight: bold;
+  margin-top: 5px;
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+}
+
+h5.caption {
+  padding: 5px;
+  color: black;
+  a { text-decoration: none; }
+}

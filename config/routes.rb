@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     resources :companies
     mount Sidekiq::Web => "/sidekiq_monstro"
     resources :news, only: [:edit, :update, :destroy], path: :eznews
+    get "all_news", to: "news#all"
     resource :admin, only: [:show], constraints: { subdomain: 'www' }
     constraints subdomain: "godzilla" do
       constraints BlacklistConstraint.new do

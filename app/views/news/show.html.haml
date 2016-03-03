@@ -1,27 +1,55 @@
 = title("ezpoisk - #{@post.title}")
 - content_for :secondary_navbar do
   = render 'news/navbar'
-
-= link_to 'Исправить', edit_news_path(@post) if current_user.try(:admin)
+= stylesheet_link_tag "shared/bootstrap-xl"
 
 .row
   .col-md-8
     .row
-      .col-xs-12.white-block
-        %h1.post-show-title= @post.title
-        - if @post.image.present?
-          .col-xs-12.col-md-5.pull-right= image_tag @post.logo_url, class: "img-responsive center-block"
-        %p= sanitize @post.text
+      .col-xs-12
+        %h1.news-post-show-title= @post.title
         - if @post.link.present?
-          %span.pull-right
-            = link_to "Источник", "http://#{@post.link}", target: "blank", :rel => 'nofollow'
+          .pull-right
+            = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
+        .fb-like{"data-action": "like", "data-href": news_url(@post), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
+        - if @current_user.try(:admin?)
+          = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
+        %br/
+        %br/
+        -# todo change to large
+        = image_tag @post.logo_url, class: "img-responsive center-block news-show-image"
+
+        %p= sanitize @post.text
+      // main body of the post
 
     .row
-      %span= link_to "Вернуться назад", :back
+      .col-xs-12
+        .fb-comments{"data-href" => news_url(@post), "data-numposts" => "5"}
 
     .row
-      .pull-right.fb-like{"data-action": "like", "data-href": news_url(@post), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
-      .fb-comments{"data-href" => news_url(@post), "data-numposts" => "5"}
+      - @side_posts.each_with_index do |post, i|
+        - if i < 9
+          .col-xs-6.col-md-4
+            .white.article
+              = link_to news_path(post) do
+                = image_tag post.logo_url, class: "image-responsive"
+                %h5.caption= post.title
+          / clearfix every 3 posts
+          - if (i+1) % 3 == 0
+            .clearfix
+  %br/
+
+  .col-md-4
+    .row
+      .white-block
+        - @side_posts.each_with_index do |post, i |
+          - if i > 8 && i < 13
+            = link_to news_path(post) do
+              = image_tag post.logo_url, class: "image-responsive"
+              %h3.news-posts-title= post.title
+              %br/
+  // right side posts
+%br/
 
 .row
   .hidden-xs
