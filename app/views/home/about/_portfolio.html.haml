@@ -1,0 +1,78 @@
+/ Portfolio Grid Section
+%section#portfolio.bg-light-gray
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2.section-heading О сайте
+        %h3.section-subheading.text-muted Для удобства и эффективности проект разделен на несколько частей
+    .row
+      .col-md-4.col-sm-6.portfolio-item
+        %a.portfolio-link{"data-toggle" => "modal", :href => "#portfolioModal1"}
+          .portfolio-hover
+            .portfolio-hover-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag "about/portfolio/roundicons", class: "img-responsive"
+        .portfolio-caption
+          %h4
+            %span.orange EZ
+            %span.blue ANSWER
+          %p.text-muted Информация для комьюнити
+      .col-md-4.col-sm-6.portfolio-item
+        %a.portfolio-link{"data-toggle" => "modal", :href => "#portfolioModal2"}
+          .portfolio-hover
+            .portfolio-hover-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag "about/portfolio/escape", class: "img-responsive"
+        .portfolio-caption
+          %h4
+            %span.orange EZ
+            %span.blue REALTY
+          %p.text-muted Объявления о недвижимости
+      .col-md-4.col-sm-6.portfolio-item
+        %a.portfolio-link{"data-toggle" => "modal", :href => "#portfolioModal3"}
+          .portfolio-hover
+            .portfolio-hover-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag "about/portfolio/treehouse", class: "img-responsive"
+        .portfolio-caption
+          %h4
+            %span.orange EZ
+            %span.blue JOB
+          %p.text-muted  Объявления о работе
+      .col-md-4.col-sm-6.portfolio-item
+        %a.portfolio-link{"data-toggle" => "modal", :href => "#portfolioModal4"}
+          .portfolio-hover
+            .portfolio-hover-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag "about/portfolio/golden", class: "img-responsive"
+        .portfolio-caption
+          %h4
+            %span.orange EZ
+            %span.blue SERVICE
+          %p.text-muted Услуги и Бизнес
+      .col-md-4.col-sm-6.portfolio-item
+        %a.portfolio-link{"data-toggle" => "modal", :href => "#portfolioModal5"}
+          .portfolio-hover
+            .portfolio-hover-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag "about/portfolio/startup-framework", class: "img-responsive"
+        .portfolio-caption
+          %h4
+            %span.orange EZ
+            %span.blue SALE
+          %p.text-muted Кури Продай
+      .col-md-4.col-sm-6.portfolio-item
+        %a.portfolio-link{"data-toggle" => "modal", :href => "#portfolioModal6"}
+          .portfolio-hover
+            .portfolio-hover-content
+              %i.fa.fa-plus.fa-3x
+          = image_tag "about/portfolio/dreams", class: "img-responsive"
+        .portfolio-caption
+          %h4
+            %span.orange EZ
+            %span.blue NEWS
+          %p.text-muted Интересное почитать
+
+    %br/
+    .row.text-center
+      %a.page-scroll.btn.btn-xl{:href => "#about"} История

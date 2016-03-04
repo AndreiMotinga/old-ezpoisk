@@ -1,0 +1,30 @@
+%footer
+  .container
+    .row
+      .col-md-4
+        %span.copyright Copyright &copy; EZ POISK CORP 2016
+      .col-md-4
+        %ul.list-inline.social-buttons
+          %li
+            = link_to "https://twitter.com/ezpoisk", target: "_blank" do
+              %i.fa.fa-twitter
+          %li
+            = link_to "https://www.facebook.com/ezpoisk", target: "_blank" do
+              %i.fa.fa-facebook
+          %li
+            = link_to "https://vk.com/ezpoiskusa", target: "_blank" do
+              %i.fa.fa-vk
+          %li
+            %a{:href => "#"}
+              %i.fa.fa-linkedin
+      .col-md-4
+        %ul.list-inline.quicklinks
+          %li= link_to 'Terms of Service',  '/tos', target: '_blank'
+
+/ Portfolio Modals
+= render "home/about/modals/first"
+= render "home/about/modals/second"
+= render "home/about/modals/third"
+= render "home/about/modals/fourth"
+= render "home/about/modals/fifth"
+= render "home/about/modals/sixth"

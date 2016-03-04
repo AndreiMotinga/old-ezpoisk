@@ -1,0 +1,28 @@
+#portfolioModal4.portfolio-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-content
+    .close-modal{"data-dismiss" => "modal"}
+      .lr
+        .rl
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .modal-body
+            / Project Details Go Here
+            %h2
+              %span.orange EZ
+              %span.blue SERVICE
+
+            %p.item-intro.text-muted Цель - сделать быстрый, удобный поиск любых услуг в любом городе США
+            = link_to services_path, target: "_blank" do
+              = image_tag "about/portfolio/golden-preview", class: "img-responsive img-centered"
+            %p
+              В разделе
+              = link_to "EZSERVICE", services_path, target: "_blank"
+              пользователи могут искать все виды услуг. Если вы хотите рассказать
+              комьюнити о роде ваших занятий, рассказать о себе, тогда вам сюда.
+              Раздел находится в разработке, мы стараемся улучшить его, сделать
+              более интуитивными и удобным в использовании. Мы будем рады любым
+              подсказкам.
+            %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
+              %i.fa.fa-times
+              Закрыть

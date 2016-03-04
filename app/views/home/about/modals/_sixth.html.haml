@@ -1,0 +1,27 @@
+#portfolioModal6.portfolio-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-content
+    .close-modal{"data-dismiss" => "modal"}
+      .lr
+        .rl
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .modal-body
+            / Project Details Go Here
+            %h2
+              %span.orange EZ
+              %span.blue NEWS
+            %p.item-intro.text-muted Всегда что-то новеньке почитать
+            = link_to news_index_path, target: "_blank" do
+              = image_tag "about/portfolio/dreams-preview", class: "img-responsive img-centered"
+            %p
+              Мы постараемся каждый день рассказывать обо всем, что проиходит в мире.
+              Публиковать интересные открытия из мира науки и технологий,
+              делиться событиями в обществе. Рассказывать самое интересное из мира кино и музыки.
+              И многое многое другое.
+            %p
+              = link_to "EZNEWS", news_index_path, target: "_blank"
+              \- Будет интересно !
+            %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
+              %i.fa.fa-times
+              Закрыть

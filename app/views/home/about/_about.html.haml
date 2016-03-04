@@ -1,0 +1,184 @@
+%section#about
+  .container
+    .row
+      .col-lg-12.text-center
+        %h2.section-heading История
+        %h3.section-subheading.text-muted Давайте писать нашу историю вместе, присоединяйтесь !
+    .row
+      .col-lg-12
+        %ul.timeline
+          %li
+            .timeline-image
+              = link_to root_path, target: "_blank" do
+                = image_tag "about/about/1", class: "img-circle img-responsive"
+
+            .timeline-panel
+              .timeline-heading
+                %h4 лето 2015
+                %h4.subheading Наши скромные начинания
+              .timeline-body
+                %p.text-muted
+                  Идея создать eZposik витала в воздухе достаточно долгое время.
+                  Конечно, тогда он еще не был eZposik, мы просто хотели хорошее удобное место,
+                  где мы сможем искать все, что нам нужно. Сайт, где русскоговрящие люди в америке
+                  могли бы искать квартиры, работу, помощь. Где был бы удобный поиск по всем самым важным параметрам.
+                  Несмотря на то, что уже существовало множество хороших сайтов, все они казались нам
+                  несколько не тем. Поэтому летом 2015 родилась первая версия сайта.
+
+          %li.timeline-inverted
+            .timeline-image
+              = link_to ezrealty_re_agencies_path, target: "_blank" do
+                = image_tag "about/about/2", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 сентябрь 2015
+                %h4.subheading
+                  %span.orange EZ
+                  %span.blue REALTY
+
+              .timeline-body
+                %p.text-muted
+                  Самое первое и главное, что мы хотели - это удобный поиск жилья.
+                  Насколько он удобный, можете оценить сами.
+                  В
+                  = link_to "EZREALTY", ezrealty_re_agencies_path, target: "_blank"
+                  вы можете искать квартиры без посредников, коммерческую недвижимость,
+                  либо же выбрать риелтора и позволить ему сделать всю работу за вас.
+
+          %li
+            .timeline-image
+              = link_to ezjob_job_agencies_path, target: "_blank" do
+                = image_tag "about/about/3", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 Октябрь 2015
+                %h4.subheading
+                  %span.orange EZ
+                  %span.blue JOB
+              .timeline-body
+                %p.text-muted
+                  Мы помним как сложно было искать работу, когда мы только приехали,
+                  не знали языка, у нас не было здесь ни знакомых, ни друзей.
+                  = link_to "EZJOB", ezjob_jobs_path, target: "_blank"
+                  ставит своей задачей зделать этот процесс чуточку легче.
+                  Присоединяйтесь
+
+          %li.timeline-inverted
+            .timeline-image
+              = link_to services_path, target: "_blank" do
+                = image_tag "about/about/5", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 Ноябрь 2015
+                %h4.subheading
+                  %span.orange EZ
+                  %span.blue SERVICE
+
+              .timeline-body
+                %p.text-muted
+                  Теперь у нас есть место, где вы можете рассказать всему комьюнити о вашем бизнесе
+                  На
+                  = link_to "EZSERVICE", services_path, target: "_blank"
+                  можно найти представителей всех услуг от А до Б :)
+
+          %li
+            .timeline-image
+              = link_to sales_path, target: "_blank" do
+                = image_tag "about/about/6", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 Декабрь 2015
+                %h4.subheading
+                  %span.orange EZ
+                  %span.blue SALE
+              .timeline-body
+                %p.text-muted
+                  Конечно, если мы хотим что-то продать или купить, мы вероятно
+                  воспользуемся американскими сайтами, однако - комьюнити портал ezpoisk
+                  был бы не полон без
+                  = link_to "EZSALE", sales_path, target: "_blank"
+                  Мы надеемся он найдет свой интерес у наших пользователей.
+
+          %li.timeline-inverted
+            .timeline-image
+              = link_to news_index_path, target: "_blank" do
+                = image_tag "about/about/7", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 Январь 2016
+                %h4.subheading
+                  %span.orange EZ
+                  %span.blue NEWS
+
+              .timeline-body
+                %p.text-muted
+                  Нам показалось, что на сайте несколько пустовато и скучновато. Нам хочется читать,
+                  поэтому мы с огромным удовольствием добавляем раздел
+                  = link_to "EZNEWS", news_index_path, target: "_blank"
+                  %br/
+                  Постараемся делать это интересно
+
+          %li
+            .timeline-image
+              = link_to questions_path, target: "_blank" do
+                = image_tag "about/about/8", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 Февраль 2016
+                %h4.subheading
+                  %span.orange EZ
+                  %span.blue ANSWER
+              .timeline-body
+                %p.text-muted
+                  Мы считаем, что будет целесообразным создать место, где мы сможем делиться опытом друг с другом.
+                  В разделе
+                  = link_to "EZANSWER", questions_path, target: "_blank"
+                  вы можете задавать вопросы на любые волнующие вас темы,
+                  мы приложим все усилия для того, что бы найти на них качесвтенные
+                  ответы от квалифицированных специалистов.
+                  Если же вы являтесь про в своем деле, мы призываем вас отвечать на вопросы комьюнити и помогать нашим.
+                  Мы надеемся что вместе мы сможем создать качесвтенный ресурс.
+
+          %li.timeline-inverted
+            .timeline-image
+              = image_tag "about/about/9", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 В процессе
+                %h4.subheading
+                  Почтовая рассылка
+
+              .timeline-body
+                %p.text-muted
+                  Порой бывает мы ищем что-либо, но этого нет на сайте и нам
+                  приходится возвращаться сюда снова и снова - выполняя тот же поиск,
+                  затрачивая на это наше время. Было бы здорово иметь возможность
+                  настроить рассылку таким образом, чтобы каждый раз когда на сайте
+                  появлялось интересное нам объявление, нам на почту приходило
+                  оповещение об этом. В данный момент мы работаем над этим.
+          %li
+            .timeline-image
+              = link_to "#contact", class: "page-scroll btn.btn-xl" do
+                = image_tag "about/about/10", class: "img-circle img-responsive"
+            .timeline-panel
+              .timeline-heading
+                %h4 есть идеи?
+                %h4.subheading Делитесь с нами
+
+
+              .timeline-body
+                %p.text-muted
+                  Мы стремимся делать этот ресурс лучше день ото дня просто потому, что мы делаем его для себя.
+                  Вся информаниция, которая здесь присутствует - полезна нам всем.
+                  Есть идеи о том, что можно добавить?
+                  Знаете как сделать сайт лучше?
+                  Пишите - мы будем искренне рады вашим замечаниям.
+
+          %li.timeline-inverted
+            .timeline-image
+              = link_to new_user_registration_path, class: "my-join" do
+                %h4
+                  Be Part
+                  %br
+                    Of Our
+                    %br Story!

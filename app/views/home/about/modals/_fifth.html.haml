@@ -1,0 +1,27 @@
+#portfolioModal5.portfolio-modal.modal.fade{"aria-hidden" => "true", :role => "dialog", :tabindex => "-1"}
+  .modal-content
+    .close-modal{"data-dismiss" => "modal"}
+      .lr
+        .rl
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2
+          .modal-body
+            / Project Details Go Here
+            %h2
+              %span.orange EZ
+              %span.blue SALE
+
+            %p.item-intro.text-muted  Купи / Продай / Подари
+            = link_to sales_path, target: "_blank" do
+              = image_tag "about/portfolio/startup-framework-preview", class: "img-responsive img-centered"
+            %p
+              Мы создали этот раздел что бы дополнить портал, так как нам кажется,
+              что было бы не целесообразно оставить его без внимания.
+            %p
+              На
+              = link_to "EZSALE", sales_path, target: "_blank"
+              вы можете продавать любые вещи без хлопот.
+            %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
+              %i.fa.fa-times
+              Закрыть

@@ -37,7 +37,7 @@
         = render "answers/voting_links", answer: answer
       - else
         = link_to "Войдите, чтобы голосовать", new_user_session_path
-      %a.text.text-muted.qa-links{href: "#answer-comments", "aria-expanded": "false", "data-toggle": "collapse"} коментарии
+      %a.text.text-muted.qa-links{href: "#answer-comments", "aria-expanded": "false", "data-toggle": "collapse"} Коментарии
       .pull-right.fb-like{"data-action": "like", "data-href": question_url(@question), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
       #answer-comments.collapse
         .fb-comments{"data-href" => question_url(@question, answer: answer.id), "data-numposts" => "5"}

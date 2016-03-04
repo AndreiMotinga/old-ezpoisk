@@ -1,36 +1,68 @@
-= title("ezpoisk (easy poisk, изипоиск)")
-.row
-  .col-sm-12
-    .about.white-block
-      = image_tag "logos/ezpoisk", class: "img-responsive center-block"
-      %hr/
-      %p
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        %strong.my-brand ezpoisk
-        \- совершенно новый портал, предназначенный для русскоговорящего
-        населения в Америке.  Здесь каждый может предложить или найти товар или
-        услугу. Кроме того, общайтесь на форуме, просматривайте интересные статьи,
-        задавайте вопросы и получайте ответы, читайте последние новости и
-        создавайте их.  Наша команда работает не покладая рук, придумывая
-        интересные проекты и ежедневно улучшая сайт. Мы только начинаем работу,
-        поэтому мы рады будем Вашим предложениям и замечаниям. Мы не остановимся
-        на достигнутом.
+= render "home/about/navbar"
+= render "home/about/header"
+= render "home/about/services"
+= render "home/about/portfolio"
+= render "home/about/about"
+= render "home/about/team"
+= render "home/about/contact"
+= render "home/about/footer"
 
-.row.hidden-xs
-  %hr/
-  - TEAM.each_pair do |member, props|
-    .col-sm-4
-      .col-sm-12
-        = image_tag "team/#{member}", class: "img-responsive"
-        .col-sm-12.white.team-block
-          %h5.text-center.text-muted #{props[:name]}
-          %hr.post-devider
-          %ul.list-unstyled.text-center
-            - if !props[:email].blank?
-              %li
-                %i.fa.fa-envelope-o
-                #{props[:email]}
-            - if !props[:skype].blank?
-              %li
-                %i.fa.fa-skype
-                  #{props[:skype]}
+
+/ jQuery
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.js"}
+/ Bootstrap Core JavaScript
+%script{src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity: "sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin: "anonymous"}
+/ Plugin JavaScript
+%script{:src => "http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"}
+
+= javascript_include_tag "about/classie"
+= javascript_include_tag "about/cbpAnimatedHeader"
+
+/ Contact Form JavaScript
+= javascript_include_tag "about/jqBootstrapValidation"
+= javascript_include_tag "about/contact_me"
+
+/ Custom Theme JavaScript
+= javascript_include_tag "about/agency"
+
+
+
+
+
+
+-# .row
+-#   .col-sm-12
+-#     .about.white-block
+-#       = image_tag "logos/ezpoisk", class: "img-responsive center-block"
+-#       %hr/
+-#       %p
+-#         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-#         %strong.my-brand ezpoisk
+-#         \- совершенно новый портал, предназначенный для русскоговорящего
+-#         населения в Америке.  Здесь каждый может предложить или найти товар или
+-#         услугу. Кроме того, общайтесь на форуме, просматривайте интересные статьи,
+-#         задавайте вопросы и получайте ответы, читайте последние новости и
+-#         создавайте их.  Наша команда работает не покладая рук, придумывая
+-#         интересные проекты и ежедневно улучшая сайт. Мы только начинаем работу,
+-#         поэтому мы рады будем Вашим предложениям и замечаниям. Мы не остановимся
+-#         на достигнутом.
+-#
+-# .row.hidden-xs
+-#   %hr/
+-#   - TEAM.each_pair do |member, props|
+-#     .col-sm-4
+-#       .col-sm-12
+-#         = image_tag "team/#{member}", class: "img-responsive"
+-#         .col-sm-12.white.team-block
+-#           %h5.text-center.text-muted #{props[:name]}
+-#           %hr.post-devider
+-#           %ul.list-unstyled.text-center
+-#             - if !props[:email].blank?
+-#               %li
+-#                 %i.fa.fa-envelope-o
+-#                 #{props[:email]}
+-#             - if !props[:skype].blank?
+-#               %li
+-#                 %i.fa.fa-skype
+-#                   #{props[:skype]}
+/ Navigation
