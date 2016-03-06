@@ -89,3 +89,11 @@ body {
 .fb-comments, .fb-comments iframe[style], .fb-comments span {
   width: 100% !important;
 }
+
+.social-share { font-size: 1px; }
+.social-share iframe { vertical-align: bottom; }
+.social-share table {
+  margin-right: 10px;
+  vertical-align: bottom;
+  display: inline !important;
+}

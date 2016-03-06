@@ -8,19 +8,21 @@
     .row
       .col-xs-12
         %h1.news-post-show-title= @post.title
-        - if @post.link.present?
-          .pull-right
-            = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
-        .fb-like{"data-action": "like", "data-href": news_url(@post), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
-        - if @current_user.try(:admin?)
-          = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
-        %br/
-        %br/
         -# todo change to large
         = image_tag @post.logo_url, class: "img-responsive center-block news-show-image"
 
         %p= sanitize @post.text
       // main body of the post
+
+    .row
+      .col-xs-12
+        - if @post.link.present?
+          .pull-right
+            - if @current_user.try(:admin?)
+              = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
+              %nbsp
+            = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
+        = render "shared/social", url: news_url(@post)
 
     .row
       .col-xs-12

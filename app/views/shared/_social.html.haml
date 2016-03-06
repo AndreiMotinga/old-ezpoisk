@@ -1,0 +1,27 @@
+.social-share
+
+  / facebook
+  #fb-root
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5&appId=1746983858848479";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  .fb-share-button{"data-action": "like", "data-href": url, "data-layout": "button_count", "data-show-faces": "true"}
+  // facebook
+
+  / vk
+  %a.vk{:href => "http://vk.com/share.php?url=http://mysite.com", :target => "_blank"} Поделиться ВКонтакте
+  %script{:charset => "windows-1251", :src => "http://vk.com/js/api/share.js?93", :type => "text/javascript"}
+  :javascript
+    document.write(VK.Share.button(false,{type: "round", text: "Поделиться", eng: 1}));
+  // vk
+
+  / google
+  %script{:async => "", :defer => "", :src => "https://apis.google.com/js/platform.js"}
+    {lang: 'ru'}
+  .g-plus{"data-action ": "share", "data-width": 200, "data-annotation": "bubble"}
+  // google
