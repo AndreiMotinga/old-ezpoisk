@@ -1,6 +1,0 @@
-- if current_user.try(:voted_for?, answer)
-  = voted_answer_btn(answer)
-- else
-  = upvote_answer_btn(answer)
-= link_to "Downvote", downvote_answer_path(answer), method: :put, remote: true,
-  class: "text text-muted qa-links"

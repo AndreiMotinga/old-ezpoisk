@@ -4,7 +4,7 @@ module AnswersHelper
       upvote_answer_path(answer),
       method: :put,
       remote: true,
-      class: "btn btn-success",
+      class: "btn btn-success btn-sm",
       id: "answer-upvote-#{answer.id}"
   end
 
@@ -13,7 +13,7 @@ module AnswersHelper
       unvote_answer_path(answer),
       method: :put,
       remote: true,
-      class: "btn btn-default",
+      class: "btn btn-default btn-sm",
       id: "answer-voted-#{answer.id}"
   end
 

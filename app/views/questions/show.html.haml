@@ -56,6 +56,11 @@
       .col-xs-12
         = render @question.answers.includes(:user).by_score
 
+    %br/
+    .row
+      .col-xs-12
+        = render "shared/social", url: question_url(@question)
+
   / partners
   .hidden-xs.hidden-sm.col-md-4
     .text-center
