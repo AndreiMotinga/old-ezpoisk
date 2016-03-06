@@ -58,4 +58,8 @@ class Question < ActiveRecord::Base
   def userslug
     return the_answer.user.slug if the_answer.try(:slug)
   end
+
+  def can_be_edited_by?(current_user)
+    user == current_user || current_user.admin?
+  end
 end

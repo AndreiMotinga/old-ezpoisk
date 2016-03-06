@@ -55,7 +55,11 @@ class QuestionsController < ApplicationController
   private
 
   def set_question
-    @question = current_user.questions.find(params[:id])
+    if current_user.admin?
+      @question = Question.find(params[:id])
+    else
+      @question = current_user.questions.find(params[:id])
+    end
   end
 
   def question_params
