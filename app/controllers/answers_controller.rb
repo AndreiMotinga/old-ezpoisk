@@ -15,6 +15,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
+      SlackNotifierJob.perform_async(@answer.id, "Answer")
       redirect_to question_path(@answer.question), notice: I18n.t(:answer_updated)
     else
       render :edit
@@ -43,8 +44,13 @@ class AnswersController < ApplicationController
   end
 
   private
+
     def set_answer
-      @answer = current_user.answers.find(params[:id])
+      if current_user.admin?
+        @answer = Answer.find(params[:id])
+      else
+        @answer = current_user.answers.find(params[:id])
+      end
     end
 
     def answer_params

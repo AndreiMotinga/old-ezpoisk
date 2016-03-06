@@ -14,8 +14,8 @@
   // facebook
 
   / vk
-  %a.vk{:href => "http://vk.com/share.php?url=http://mysite.com", :target => "_blank"} Поделиться ВКонтакте
-  %script{:charset => "windows-1251", :src => "http://vk.com/js/api/share.js?93", :type => "text/javascript"}
+  %a.vk{:href => "https://vk.com/share.php?url=#{url}", :target => "_blank"} Поделиться ВКонтакте
+  %script{:charset => "windows-1251", :src => "https://vk.com/js/api/share.js?93", :type => "text/javascript"}
   :javascript
     document.write(VK.Share.button(false,{type: "round", text: "Поделиться", eng: 1}));
   // vk

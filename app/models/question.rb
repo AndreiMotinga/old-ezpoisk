@@ -60,6 +60,6 @@ class Question < ActiveRecord::Base
   end
 
   def can_be_edited_by?(current_user)
-    user == current_user || current_user.admin?
+    user == current_user || current_user.try(:admin?)
   end
 end

@@ -23,6 +23,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @side_questions = Question.tagged_with(@question.tag_list).limit(30)
     IncreaseAnswersCountsJob.perform_async(@question.id) if @question
   end
 
@@ -46,6 +47,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
+      SlackNotifierJob.perform_async(@question.id, "Question")
       redirect_to @question, notice: I18n.t(:q_updated)
     else
       render :edit

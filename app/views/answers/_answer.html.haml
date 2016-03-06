@@ -7,7 +7,7 @@
         = image_tag answer.user.avatar.url(:thumb), alt: answer.user.name, class: "img-responsive img-circle center-block"
       .col-xs-12.col-sm-11
         %h3.text-muted.question-author
-          - if answer.user == current_user
+          - if answer.can_be_edited_by?(current_user)
             %i.fa.fa-cog.fa-lg.pull-right{"data-content" => "#{render 'questions/edit_answer', answer: answer}",
               "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", "data-placement" => "left"}
           = answer_name(answer)
@@ -15,7 +15,7 @@
         %p #{answer.impressions_count} просмотров
 
     / edit form
-    - if answer.user == current_user
+    - if answer.can_be_edited_by?(current_user)
       .col-xs-12
         .collapse{id: "editAnswer-#{answer.id}"}
           %br/
