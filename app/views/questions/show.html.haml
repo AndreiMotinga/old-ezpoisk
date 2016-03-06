@@ -24,9 +24,10 @@
           %p.text= sanitize @question.text
 
         / answer button/links
-        = current_user ? render("questions/new_answear") : link_to("Войдите, чтобы ответить", new_user_session_path)
+        %a.text.text-muted.qa-links{"aria-controls" => "collapseExample", "aria-expanded" => "false",
+          "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
+          Ответить
         %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"} коментарии
-        -# .pull-right.fb-like{"data-action": "like", "data-href": question_url(@question), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
         %br/
         %br/
         .q-social
@@ -57,3 +58,8 @@
 
   / partners
   .hidden-xs.hidden-sm.col-md-4
+    .text-center
+      %a.btn.btn-lg.btn-warning.btn-ez{"aria-controls" => "collapseExample", "aria-expanded" => "false",
+        "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
+        ОТВЕТИТЬ
+    %br/

@@ -80,12 +80,6 @@ body {
   min-height: 300px;
 }
 
-.btn-orange {
-  background-color: $orange;
-  border-color: $orange;
-  color: white;
-}
-
 .fb-comments, .fb-comments iframe[style], .fb-comments span {
   width: 100% !important;
 }
@@ -96,4 +90,8 @@ body {
   margin-right: 10px;
   vertical-align: bottom;
   display: inline !important;
+}
+.btn-ez {
+  font-family: 'calm';
+  letter-spacing: 1px;
 }

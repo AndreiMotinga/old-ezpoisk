@@ -1,10 +1,10 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :update, :destroy]
+  before_action :authenticate_user!, only: [:update, :destroy]
   before_action :set_answer, only: [:update, :destroy]
 
   def create
     @answer = Answer.new(answer_params)
-    @answer.user_id = current_user.id
+    @answer.user_id = current_user.try(:id) || 4 # anonymous user (yandex)
 
     if @answer.save
       @answer.question.increment!(:answers_count)
