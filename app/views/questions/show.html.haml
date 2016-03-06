@@ -26,7 +26,21 @@
         / answer button/links
         = current_user ? render("questions/new_answear") : link_to("Войдите, чтобы ответить", new_user_session_path)
         %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"} коментарии
-        .pull-right.fb-like{"data-action": "like", "data-href": question_url(@question), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
+        -# .pull-right.fb-like{"data-action": "like", "data-href": question_url(@question), "data-layout": "button_count", "data-share": "true", "data-show-faces": "true"}
+        %br/
+        %br/
+        .q-social
+          = render "shared/social", url: question_url(@question)
+
+        / collapsed answer
+        #collapseExample.collapse
+          %br/
+          = bootstrap_form_for Answer.new do |f|
+            = hidden_field_tag 'answer[question_id]', @question.id
+            .field= f.text_area :text, hide_label: true, class: "summernote"
+            .actions= f.submit 'Сохранить', class: 'btn btn-success btn-block'
+
+        / collapsed comments
         #comments.collapse
           .fb-comments{"data-href" => question_url(@question), "data-numposts" => "5"}
 

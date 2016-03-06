@@ -1,9 +1,3 @@
 %a.text.text-muted.qa-links{"aria-controls" => "collapseExample", "aria-expanded" => "false",
   "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
   Ответить
-#collapseExample.collapse
-  %br/
-  = bootstrap_form_for Answer.new do |f|
-    = hidden_field_tag 'answer[question_id]', @question.id
-    .field= f.text_area :text, hide_label: true, class: "summernote"
-    .actions= f.submit 'Сохранить', class: 'btn btn-success btn-block'
