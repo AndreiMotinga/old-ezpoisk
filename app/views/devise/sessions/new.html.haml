@@ -12,4 +12,8 @@
       = f.submit t('.sign_in', :default => "Sign in")
     .visible-xs
       = f.submit t('.sign_in', :default => "Sign in")
+
+  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary"
+
   = render "devise/shared/links"
+

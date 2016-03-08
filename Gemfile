@@ -64,6 +64,8 @@ gem "acts-as-taggable-on"
 gem "rack-mini-profiler", require: false
 gem 'rack-cors', :require => 'rack/cors'
 
+gem "omniauth-facebook"
+
 group :production do
   gem "rails_12factor"
   # gem 'heroku-deflater'

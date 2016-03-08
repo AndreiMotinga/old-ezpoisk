@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
   get "update_cities", to: "cities#update_cities"
   get "update_subcategory", to: "subcategories#update_subcategory"

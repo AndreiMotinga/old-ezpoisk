@@ -7,13 +7,10 @@
     = hidden_field_tag "user[lng]"
     %div
       = f.email_field :email
-
-    .field
       = f.password_field :password
-    .field
-      = f.password_field :password_confirmation
+    %div
+      = f.submit t('.sign_up', :default => "Sign up")
 
-    %div= f.submit t('.sign_up', :default => "Sign up")
   = render "devise/shared/links"
 
 :javascript

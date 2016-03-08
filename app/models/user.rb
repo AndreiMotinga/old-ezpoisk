@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable,  and :omniauthable
+  # :validatable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-    :trackable, :timeoutable, :validatable, :lockable, :async
+    :trackable, :timeoutable, :lockable, :async, :omniauthable,
+    :omniauth_providers => [:facebook]
   after_create :geolocate_user, :notify_admin
 
   acts_as_voter
@@ -27,6 +28,14 @@ class User < ActiveRecord::Base
                     styles: { thumb: "50x50#", medium: "200x200#" },
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.name = auth.info.name
+      user.password = Devise.friendly_token[0,20]
+    end
+  end
 
   def role?(val)
     role.to_sym == val
