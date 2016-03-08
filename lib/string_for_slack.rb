@@ -17,8 +17,8 @@ class StringForSlack
     string
   end
 
-  def feedback_string(feedback)
-    string = "Новое сообщение"
+  def feedback_string(record)
+    string = "Новое сообщение\n"
     string += "id         #{record.id}\n"
     string += "name     #{record.name}\n"
     string += "email   #{record.email}\n"
