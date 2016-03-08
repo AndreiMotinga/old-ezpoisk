@@ -8,6 +8,7 @@ SitemapGenerator::Sitemap.default_host = "https://www.ezpoisk.com"
 SitemapGenerator::Sitemap.create_index = true
 SitemapGenerator::Sitemap.public_path = 'tmp/'
 SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+SitemapGenerator::Sitemap.search_engines[:yandex] = "https://webmaster.yandex.ru/site/map.xml?url=%s"
 
 ##############################################################
 #
