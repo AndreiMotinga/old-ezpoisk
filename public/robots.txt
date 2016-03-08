@@ -3,6 +3,7 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 User-agent: *
 Disallow: /dashboard
-Disallow: /users
+Disallow: /dashboard/*
+Disallow: /users/*
 
 Sitemap: https://s3.amazonaws.com/ezpoisk/sitemaps/sitemap.xml.gz
