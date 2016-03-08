@@ -40,7 +40,6 @@
 .form-group
   = label_tag "Категория", nil,  class: "col-sm-3 control-label"
   .col-sm-5
-    -if params[:category]
-      = select_tag :subcategory,
-                   service_subcategories_options,
-                   class: "form-control subcategory-select"
+    = select_tag :subcategory,
+                 service_subcategories_options,
+                 class: "form-control subcategory-select"

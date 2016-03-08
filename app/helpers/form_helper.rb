@@ -39,10 +39,9 @@ module FormHelper
   end
 
   def service_subcategories_options
-    if params[:category].present?
-      options_for_select(SERVICE_CATEGORIES[params[:category].to_sym],
-                         params[:subcategory])
-    end
+    category = params[:category]
+    return unless category.present?
+    options_for_select(SERVICE_CATEGORIES[category], params[:subcategory])
   end
 
   def origin
