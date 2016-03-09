@@ -9,10 +9,10 @@
         .row.text-center
           %ul.list-inline.social-buttons
             %li
-              = link_to user_omniauth_authorize_path(:facebook), target: "_blank", class: "facebook-blue-bg" do
+              = link_to user_omniauth_authorize_path(:facebook), class: "facebook-blue-bg" do
                 %i.fa.fa-facebook
             %li
-              = link_to user_omniauth_authorize_path(:google_oauth2), target: "_blank", class: "google-red-bg" do
+              = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-red-bg" do
                 %i.fa.fa-google
             %li
               = link_to "#" do

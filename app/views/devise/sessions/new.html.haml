@@ -1,24 +1,22 @@
-.modal.fade#new_session_modal{:role => "dialog", :tabindex => "-1"}
+.modal.fade#new_session_modal_page{:role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-sm
     .modal-content
       .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} &times;
         %h4= t('.sign_in', :default => "Sign in")
       .modal-body
         .row.text-center
           %ul.list-inline.social-buttons
             %li
-              = link_to user_omniauth_authorize_path(:facebook), target: "_blank", class: "facebook-blue-bg" do
+              = link_to user_omniauth_authorize_path(:facebook), class: "facebook-blue-bg" do
                 %i.fa.fa-facebook
             %li
-              = link_to user_omniauth_authorize_path(:google_oauth2), target: "_blank", class: "google-red-bg" do
+              = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-red-bg" do
                 %i.fa.fa-google
             %li
               = link_to "#" do
                 %i.fa.fa-vk
         %hr/
-        = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
+        = bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
           = f.email_field :email, placeholder: "Email", hide_label: true
           = f.password_field :password, placeholder: "Пароль", hide_label: true
           = f.check_box :remember_me, label_class: 'text-muted'
@@ -26,6 +24,11 @@
           = f.submit t('.sign_in', :default => "Sign in"), class: "btn btn-lg btn-block btn-blue"
 
         %hr/
-        Жалаете
-        = link_to "Зарегистрироваться", new_user_registration_path
-        ?
+        .text-center
+          = render "devise/shared/links"
+
+:javascript
+  $("#new_session_modal_page").modal({
+      backdrop : "static",
+      keyboard: false
+  });
