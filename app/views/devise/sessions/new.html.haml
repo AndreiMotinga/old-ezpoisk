@@ -1,20 +1,35 @@
-.col-md-8
-  %h2= t('.sign_in', :default => "Sign in")
-  = bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-    %div
-      = f.email_field :email
-    %div
-      = f.password_field :password
-    - if devise_mapping.rememberable?
-      %div
-        = f.check_box :remember_me
-    .hidden-xs
-      = f.submit t('.sign_in', :default => "Sign in")
-    .visible-xs
-      = f.submit t('.sign_in', :default => "Sign in")
+.modal.fade#new_session_modal{:role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4= t('.sign_in', :default => "Sign in")
+      .modal-body
+        .row.text-center
+          %ul.list-inline.social-buttons
+            %li
+              = link_to user_omniauth_authorize_path(:facebook), target: "_blank", class: "facebook-blue-bg" do
+                %i.fa.fa-facebook
+            %li
+              = link_to user_omniauth_authorize_path(:google_oauth2), target: "_blank", class: "google-red-bg" do
+                %i.fa.fa-google
+            %li
+              = link_to "#" do
+                %i.fa.fa-vk
+        %hr/
+        = bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = f.email_field :email, placeholder: "Email", hide_label: true
+          = f.password_field :password, placeholder: "Пароль", hide_label: true
+          = f.check_box :remember_me, label_class: 'text-muted'
 
-  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-primary"
-  = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn btn-danger"
+          = f.submit t('.sign_in', :default => "Sign in"), class: "btn btn-lg btn-block btn-blue"
 
-  = render "devise/shared/links"
+        %hr/
+        = render "devise/shared/links"
 
+:javascript
+  $("#new_session_modal").modal({
+    backdrop : "static",
+    keyboard: false
+  });
