@@ -4,7 +4,7 @@ class Service < ActiveRecord::Base
   include Filterable
   include ViewHelpers
 
-  validates :title, presence: true, length: { maximum: 44, minimum: 5 }
+  validates :title, presence: true, length: { maximum: 44, minimum: 3 }
   validates :slug, length: { maximum: 110 }
   validates :phone, presence: true
   validates :category, presence: true
