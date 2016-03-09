@@ -36,6 +36,7 @@ module ApplicationHelper
     end
   end
 
+  # todo: remove?
   def async_js?
     params[:controller] == "home" ? "" : false
   end

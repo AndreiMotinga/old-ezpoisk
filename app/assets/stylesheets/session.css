@@ -1,24 +1,32 @@
-ul.social-buttons {
-  margin-bottom: 0;
-}
-ul.social-buttons li a {
-  display: block;
-  background-color: #222222;
-  height: 40px;
-  width: 40px;
-  border-radius: 100%;
-  font-size: 20px;
-  line-height: 40px;
-  color: white;
-  outline: none;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-}
-.btn-blue {
-  color: white;
-  background-color: $brightblue;
-}
-.hr-separator {
-  margin-top: 10px;
+.session {
+  min-height: 400px;
+
+  .nav-tabs > li {
+    width: 50%;
+  }
+
+  ul.social-buttons {
+    margin-bottom: 0;
+  }
+
+  ul.social-buttons li a {
+    display: block;
+    background-color: #222222;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    color: white;
+    outline: none;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .btn-blue {
+    color: white;
+    background-color: $brightblue;
+    border-radius: 0px;
+  }
 }

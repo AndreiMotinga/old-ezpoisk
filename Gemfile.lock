@@ -370,6 +370,8 @@ GEM
       remotipart (~> 1.0)
       safe_yaml (~> 1.0)
       sass-rails (>= 4.0, < 6)
+    rails_admin_tag_list (0.2.0)
+      rails_admin (>= 0.6)
     rails_best_practices (1.16.0)
       activesupport
       code_analyzer (>= 0.4.3)
@@ -554,6 +556,7 @@ DEPENDENCIES
   rails (= 4.2.5)
   rails_12factor
   rails_admin
+  rails_admin_tag_list
   rails_best_practices
   recaptcha
   rspec-rails

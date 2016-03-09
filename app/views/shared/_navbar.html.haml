@@ -107,7 +107,7 @@
             - if user_signed_in?
               %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
             - else
-              %li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", role: "button"
+              %li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", role: "button", id: "login_link"
 
         / dashboard
       / right links

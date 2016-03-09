@@ -1,30 +1,66 @@
-.modal.fade#new_session_modal{:role => "dialog", :tabindex => "-1"}
+.modal.fade.session#new_session_modal{:role => "dialog", :tabindex => "-1"}
   .modal-dialog.modal-sm
     .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} &times;
-        %h4= t('.sign_in', :default => "Sign in")
+
+      %ul.nav.nav-tabs.text-center{:role => "tablist"}
+        %li.active{:role => "presentation"}
+
+          %a{"aria-controls" => "sign_in", "data-toggle" => "tab", :href => "#sign_in", :role => "tab"}
+            %h4 Вход
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "sign_up", "data-toggle" => "tab", :href => "#sign_up", :role => "tab"}
+            %h4 Регистрация
+
+
       .modal-body
-        .row.text-center
-          %ul.list-inline.social-buttons
-            %li
-              = link_to user_omniauth_authorize_path(:facebook), class: "facebook-blue-bg" do
-                %i.fa.fa-facebook
-            %li
-              = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-red-bg" do
-                %i.fa.fa-google
-            %li
-              = link_to user_omniauth_authorize_path(:vkontakte), class: "facebook-blue-bg" do
-                %i.fa.fa-vk
-        %hr/
-        = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
-          = f.email_field :email, placeholder: "Email", hide_label: true
-          = f.password_field :password, placeholder: "Пароль", hide_label: true
-          = f.check_box :remember_me, label_class: 'text-muted'
+        .col-xs-12
+          - if notice
+            %p.alert.alert-success= notice
+          - if alert
+            %p.alert.alert-danger= alert
 
-          = f.submit t('.sign_in', :default => "Sign in"), class: "btn btn-lg btn-block btn-blue"
+        .tab-content
+          #sign_in.tab-pane.active{:role => "tabpanel"}
+            .row.text-center
+              %ul.list-inline.social-buttons
+                %li
+                  = link_to user_omniauth_authorize_path(:facebook), class: "facebook-bg" do
+                    %i.fa.fa-facebook
+                %li
+                  = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-bg" do
+                    %i.fa.fa-google
+                %li
+                  = link_to user_omniauth_authorize_path(:vkontakte), class: "vk-bg" do
+                    %i.fa.fa-vk
+            %hr/
+            = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
+              = f.email_field :email, placeholder: "Email", required: true , hide_label: true
+              = f.password_field :password, placeholder: "Пароль", required: true, hide_label: true
+              = f.check_box :remember_me, label: "Запомнить", label_class: 'text-muted'
 
-        %hr/
-        .text-center
-          = link_to "Зарегистрироваться", new_user_registration_path
+              = f.submit "Войти", class: "btn btn-lg btn-block btn-blue"
+
+            %br/
+            = render "devise/shared/links"
+          // sign_in
+          #sign_up.tab-pane{:role => "tabpanel"}
+            = bootstrap_form_for(:user, :url => registration_path(:user)) do |f|
+              -# = devise_error_messages!
+              = hidden_field_tag "user[lat]"
+              = hidden_field_tag "user[lng]"
+              %div
+                = f.email_field :email, required: true, placeholder: "Email", hide_label: true
+                = f.password_field :password, required: true, placeholder: "Password", hide_label: true
+              %div
+                = f.submit "Регистрация", class: "btn btn-lg btn-block btn-blue"
+
+            :javascript
+              $(document).ready(function(){
+                if(navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                    $("#user_lat").val(position.coords.latitude);
+                    $("#user_lng").val(position.coords.longitude);
+                  });
+                }
+              });
+          // sign_up

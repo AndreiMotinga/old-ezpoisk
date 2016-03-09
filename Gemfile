@@ -45,6 +45,9 @@ gem "underscore-rails"
 gem "summernote-rails"
 
 gem "rails_admin"
+gem "rails_admin_tag_list"
+
+# todo: delete?
 gem "bootstrap-wysihtml5-rails"
 
 gem 'impressionist'

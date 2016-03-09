@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include OmniLogin
   # Include default devise modules. Others available are:
-  # :validatable
+  # :validatable, :confirmable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :timeoutable, :lockable, :async, :omniauthable,
     :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
   has_many :answers
 
   validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
 
   has_attached_file(:avatar,
                     styles: { thumb: "50x50#", medium: "200x200#" },

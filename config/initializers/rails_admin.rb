@@ -28,4 +28,9 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model "Question" do
+    configure :tag_list  do
+      partial 'tag_list_with_autocomplete'
+    end
+  end
 end
