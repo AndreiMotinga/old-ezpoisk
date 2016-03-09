@@ -66,6 +66,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
+gem "omniauth-vkontakte"
 
 group :production do
   gem "rails_12factor"

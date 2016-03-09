@@ -15,7 +15,7 @@
               = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-red-bg" do
                 %i.fa.fa-google
             %li
-              = link_to "#" do
+              = link_to user_omniauth_authorize_path(:vkontakte), class: "facebook-blue-bg" do
                 %i.fa.fa-vk
         %hr/
         = bootstrap_form_for(:user, :url => session_path(:user)) do |f|

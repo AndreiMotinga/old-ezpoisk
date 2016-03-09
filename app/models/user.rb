@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
+  include OmniLogin
   # Include default devise modules. Others available are:
   # :validatable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :timeoutable, :lockable, :async, :omniauthable,
-    :omniauth_providers => [:facebook, :google_oauth2]
+    :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
   after_create :geolocate_user, :notify_admin
 
   acts_as_voter
@@ -24,33 +25,12 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
 
+  validates :email, presence: true, uniqueness: true
+
   has_attached_file(:avatar,
                     styles: { thumb: "50x50#", medium: "200x200#" },
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
-
-  # todo extract to some module
-  def self.from_omniauth(auth)
-    # user logged in previously thourgh this provider
-    user = User.where(provider: auth.provider, uid: auth.uid).first
-    return user if user
-
-    # user logged in previously thourgh other provider
-    user = User.find_by_email(auth.info.email)
-    return user if user
-
-    # create user if none of the above
-    User.create(name: name_from_omniauth(auth.info),
-                email: auth.info.email,
-                password: Devise.friendly_token[0, 20],
-                provider: auth.provider,
-                uid: auth.uid)
-  end
-
-  def self.name_from_omniauth(info)
-    return info.name if info.name.present? # facebook case
-    "#{info.first_name} #{info.last_name}" if info.first_name && info.last_name
-  end
 
   def role?(val)
     role.to_sym == val
