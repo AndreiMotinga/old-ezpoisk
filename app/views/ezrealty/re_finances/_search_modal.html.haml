@@ -10,7 +10,8 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = render 'ezrealty/re_finances/search_form'
+        = form_tag ezrealty_re_finances_path, method: :get, class: "form-horizontal"
+        = render "shared/search_by_address"
       / model body
 
       / footer

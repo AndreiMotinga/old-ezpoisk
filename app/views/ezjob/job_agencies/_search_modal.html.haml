@@ -10,7 +10,8 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = render 'ezjob/job_agencies/search_form'
+        = form_tag ezjob_job_agencies_path, method: :get, class: "form-horizontal"
+        = render "shared/search_by_address"
       / model body
 
       / footer

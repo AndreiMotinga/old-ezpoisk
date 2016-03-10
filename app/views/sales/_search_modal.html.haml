@@ -10,7 +10,22 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = render 'sales/search_form'
+        = form_tag sales_path, method: :get, class: "form-horizontal"
+        = render "shared/search_by_address"
+        %hr/
+        .form-group
+          = label_tag "Ключевое слово", nil,  class: "col-sm-3 control-label"
+          .col-sm-9
+            = text_field_tag :keyword,
+                             params[:keyword],
+                             class: "form-control"
+        .form-group
+          = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
+          .col-sm-9
+            = select_tag :category,
+              options_for_select(SALE_CATEGORIES, params[:category]),
+              include_blank: true,
+              class: "form-control"
       / model body
 
       / footer
