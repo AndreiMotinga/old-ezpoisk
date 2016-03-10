@@ -13,7 +13,7 @@
       = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-lg btn-warning btn-ez"
     %br/
     #tag_cloud
-      - tag_cloud Question.tag_counts, %w[s m l] do |tag, css_class|
+      - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
         %span= link_to "##{tag.name}", tag_path(tag), class: "tag-in-cloud #{css_class}"
 
 .row
