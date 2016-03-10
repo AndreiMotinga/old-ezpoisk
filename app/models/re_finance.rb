@@ -23,8 +23,7 @@ class ReFinance < ActiveRecord::Base
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
   def link
-    # todo change to rials link
-    "ezrealty/finance/#{id}"
+    ezrealty_re_finance_path(self)
   end
 
   def edit_link

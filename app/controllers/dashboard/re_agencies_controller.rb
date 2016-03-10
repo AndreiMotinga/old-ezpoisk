@@ -41,7 +41,6 @@ class Dashboard::ReAgenciesController < ApplicationController
   end
 
   def destroy
-    # todo remove this check
     @re_agency.destroy if @re_agency.user == current_user
     redirect_to dashboard_path,
                 notice: I18n.t(:post_removed)
