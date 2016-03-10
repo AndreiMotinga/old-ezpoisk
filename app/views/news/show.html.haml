@@ -41,7 +41,7 @@
     %br/
     .row
       - @side_posts.each_with_index do |post, i|
-        - if i < 9
+        - if i < 6
           .col-xs-6.col-md-4
             .white.article
               = link_to news_path(post) do
@@ -56,7 +56,7 @@
     .row
       .white-block
         - @side_posts.each_with_index do |post, i |
-          - if i > 8 && i < 13
+          - if i > 5 && i < 10
             = link_to news_path(post) do
               = image_tag post.logo_url, class: "image-responsive"
               %h3.news-posts-title= post.title
@@ -64,6 +64,7 @@
   // right side posts
 %br/
 
+%hr/
 .row
   .hidden-xs
     = render "news/carousel"

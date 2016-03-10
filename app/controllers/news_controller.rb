@@ -13,7 +13,7 @@ class NewsController < ApplicationController
   end
 
   def show
-    @side_posts = Post.by_category(@post.category).desc.with_logo.limit(20)
+    @side_posts = Post.by_category(@post.category).desc.with_logo.limit(17)
   end
 
   def edit
