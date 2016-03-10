@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   has_many :answers
 
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
 
   has_attached_file(:avatar,
                     styles: { thumb: "50x50#", medium: "200x200#" },
