@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    = content_for?(:head) ? yield(:head) : ''
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= yield(:title)
     %meta{:charset => "UTF-8"}/

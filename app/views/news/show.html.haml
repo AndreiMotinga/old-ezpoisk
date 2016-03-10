@@ -1,6 +1,15 @@
 = title("ezpoisk - #{@post.title}")
 - content_for :secondary_navbar do
   = render 'news/navbar'
+- content_for :head do
+  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
+  %meta{ property: "og:type", content: "article"}/
+  %meta{property: "og:url", content: news_url(@post) }/
+  %meta{property: "og:title", content: @post.title}/
+  %meta{property: "og:image", content: @post.logo_url}/
+  %meta{property: "og:description", content: @post.description || strip_tags(@post.text).truncate(200)}/
+
+
 = stylesheet_link_tag "shared/bootstrap-xl"
 
 .row
@@ -8,8 +17,7 @@
     .row
       .col-xs-12
         %h1.news-post-show-title= @post.title
-        -# todo change to large
-        = image_tag @post.logo_url, class: "img-responsive center-block news-show-image"
+        = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
 
         %p= sanitize @post.text
       // main body of the post
