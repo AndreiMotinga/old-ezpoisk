@@ -5,7 +5,7 @@
   %meta{property: "og:type", content: "article"}/
   %meta{property: "og:url", content: news_url(@post) }/
   %meta{property: "og:title", content: @post.title}/
-  %meta{property: "og:image", content: @post.logo_url}/
+  %meta{property: "og:image", content: @post.logo_url(:large)}/
   %meta{property: "og:description", content: @post.description || strip_tags(@post.text).truncate(200)}/
 
 = stylesheet_link_tag "shared/bootstrap-xl"
@@ -23,6 +23,7 @@
         %p= sanitize @post.text
       // main body of the post
 
+    %br/
     .row
       .col-xs-12
         - if @post.link.present?
@@ -37,6 +38,7 @@
       .col-xs-12
         .fb-comments{"data-href": news_url(@post), "data-numposts": "5"}
 
+    %br/
     .row
       - @side_posts.each_with_index do |post, i|
         - if i < 9
