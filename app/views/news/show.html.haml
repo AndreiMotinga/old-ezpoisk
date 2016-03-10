@@ -1,16 +1,17 @@
-= title("ezpoisk - #{@post.title}")
-- content_for :secondary_navbar do
-  = render 'news/navbar'
+= title("#{@post.title} - ezpoisk")
+= desc("EZPOISK - #{@post.description || @post.text.truncate(160)}")
 - content_for :head do
   %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
-  %meta{ property: "og:type", content: "article"}/
+  %meta{property: "og:type", content: "article"}/
   %meta{property: "og:url", content: news_url(@post) }/
   %meta{property: "og:title", content: @post.title}/
   %meta{property: "og:image", content: @post.logo_url}/
   %meta{property: "og:description", content: @post.description || strip_tags(@post.text).truncate(200)}/
 
-
 = stylesheet_link_tag "shared/bootstrap-xl"
+
+- content_for :secondary_navbar do
+  = render 'news/navbar'
 
 .row
   .col-md-8

@@ -1,5 +1,5 @@
-= title("ezpoisk - #{@question.title}")
-= desc("ezanswer - #{strip_tags(@question.text_to_show).truncate(200)}")
+= title("#{@question.title} - ezpoisk")
+= desc(strip_tags(@question.text_to_show).truncate(200))
 - content_for :secondary_navbar do
   = render "questions/navbar"
 - content_for :head do
