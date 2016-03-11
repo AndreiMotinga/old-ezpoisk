@@ -21,7 +21,9 @@
   .row
     .hidden-xs
       = render 'ezrealty/re_finances/search_modal_trigger'
-    %br/
+      %br/
+      = render "shared/search_params"
+  %br/
 
   .row
     - @re_finances.each do |re_finance|

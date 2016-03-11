@@ -20,8 +20,11 @@
   / total
   .row.hidden-xs
     %h4.pull-right
-      %a= "Всего #{@re_commercials.total_count}"
+      %span= "Всего #{@re_commercials.total_count}"
     = render 'ezrealty/re_commercials/search_modal_trigger'
+    %br/
+    = render "shared/search_params"
+  %br/
   / /total
 
   .row

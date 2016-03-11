@@ -20,8 +20,7 @@
   = label_tag "Категория", nil,  class: "col-sm-5 control-label"
   .col-sm-5
     = select_tag :category,
-                 options_for_select(RE_COMMERCIAL_CATEGORIES,
-                                    params[:cateogry]),
+                 options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
                  include_blank: true,
                  class: "form-control"
 

@@ -25,6 +25,9 @@
       %h4.pull-right
         %a= "Всего #{@sales.total_count}"
       = render 'sales/search_modal_trigger'
+      %br/
+      = render "shared/search_params"
+  %br/
   / /total
 
   .row

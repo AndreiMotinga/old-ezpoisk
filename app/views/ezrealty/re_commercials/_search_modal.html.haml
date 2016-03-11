@@ -10,15 +10,13 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = render 'ezrealty/re_commercials/search_form'
+        = render "ezrealty/re_commercials/search_form"
       / model body
 
       / footer
       .modal-footer
         .row
           .col-xs-6
-            = link_to "Сбросить",
-              ezrealty_re_commercials_path,
-              class: "btn btn-block mobile-btn"
+            = link_to "Сбросить", ezrealty_re_commercials_path, class: "btn btn-block mobile-btn"
           .col-xs-6
             = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"

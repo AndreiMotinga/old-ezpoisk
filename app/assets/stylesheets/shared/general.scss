@@ -95,3 +95,12 @@ body {
   font-family: 'calm';
   letter-spacing: 1px;
 }
+
+.search_param {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: $orange;
+  padding: 5px;
+  color: white;
+  margin-top: 2px;
+}
