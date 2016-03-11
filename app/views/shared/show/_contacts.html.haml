@@ -30,3 +30,5 @@
       %strong= record.email
   %li.list-group-item
     = link_to "GMap: #{record.address}", "https://maps.google.com/?q=#{record.address}", target: "_blank"
+  %li.list-group-item
+    = render "shared/social", url: record.link

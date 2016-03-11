@@ -1,5 +1,20 @@
 = title("#{@service.title} #{@service.city.name} #{@service.state.name}")
 = desc("#{@service.title}, #{@service.category} - #{@service.subcategory}, #{@service.address}")
+- content_for :head do
+  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
+  %meta{property: "og:type", content: "business.business"}/
+  %meta{property: "og:url", content: service_url(@service) }/
+  %meta{property: "og:title", content: @service.title}/
+  %meta{property: "og:image", content: @service.logo_url}/
+  %meta{property: "og:description", content: @service.description}/
+  %meta{property: "place:location:latitude", content: @service.lat}/
+  %meta{property: "place:location:longitude", content: @service.lng}/
+
+  %meta{property: "business:contact_data:street_address", content: @service.street}/
+  %meta{property: "business:contact_data:locality", content: "USA"}/
+  %meta{property: "business:contact_data:postal_code", content: @service.zip}/
+  %meta{property: "business:contact_data:country_name", content: "USA"}/
+
 - content_for :secondary_navbar do
   = render "services/navbar"
 

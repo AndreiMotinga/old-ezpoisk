@@ -1,5 +1,13 @@
 = title("#{@sale.title} #{@sale.state.name} - ezpoisk")
 = desc("EZPOISK - Продается #{@sale.category}, #{@sale.title}, #{@sale.address}")
+- content_for :head do
+  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
+  %meta{property: "og:type", content: "article"}/
+  %meta{property: "og:url", content: sale_url(@sale) }/
+  %meta{property: "og:title", content: @sale.title}/
+  %meta{property: "og:image", content: @sale.logo_url}/
+  %meta{property: "og:description", content: @sale.description}/
+
 - content_for :secondary_navbar do
   = render "sales/navbar"
 
