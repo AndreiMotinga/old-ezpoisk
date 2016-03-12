@@ -13,6 +13,8 @@ ru:
     confirmations:
       new:
         resend_confirmation_instructions: "Выслать повторно письмо с активацией"
+    failure:
+      unauthenticated: "Вам необходимо войти в систему"
     mailer:
       confirmation_instructions:
         action: "Активировать"

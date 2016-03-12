@@ -13,11 +13,10 @@
 
 
       .modal-body
-        .col-xs-12
-          - if notice
-            %p.alert.alert-success= notice
-          - if alert
-            %p.alert.alert-danger= alert
+        - if notice
+          %p.alert.alert-success= notice
+        - if alert
+          %p.alert.alert-danger= alert
 
         .tab-content
           #sign_in.tab-pane.active{:role => "tabpanel"}
