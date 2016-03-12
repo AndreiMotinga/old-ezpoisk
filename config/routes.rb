@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   end
 
   get "about", to: "home#about"
+  get "htmltagstrippingtool", to: "htmltagstrippingtool#index"
 
   root to: "home#index"
 end

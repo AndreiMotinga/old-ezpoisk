@@ -9,6 +9,9 @@ class HomeController < ApplicationController
     @feedback = Feedback.new
   end
 
+  def htmltagstrippingtool
+  end
+
   private
 
   def resolve_layout
