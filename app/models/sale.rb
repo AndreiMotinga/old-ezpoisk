@@ -24,14 +24,6 @@ class Sale < ActiveRecord::Base
     "Продается"
   end
 
-  def edit_link
-    edit_dashboard_sale_path(self)
-  end
-
-  def delete_link
-    dashboard_sale_path(self)
-  end
-
   def logo_url(style = :medium)
     logo.present? ? logo.image.url(style) : "missing.png"
   end

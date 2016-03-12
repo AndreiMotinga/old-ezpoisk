@@ -1,13 +1,12 @@
 .row.post-item
   .col-xs-4.col-sm-4.logo-js
     = link_to link_from_controller(record) do
-      = image_tag record.logo_url,
-                  alt: record.title,
-                  class: "img-responsive"
+      = image_tag record.logo_url, alt: record.title, class: "img-responsive"
   .col-xs-8.col-sm-8
     / line 1
     .hidden-xs
-      %h1.title= link_to record.title, link_from_controller(record)
+      %h1.title
+        = link_to record.title, link_from_controller(record)
     .visible-xs
       %h1.mob-title= link_to record.title, link_from_controller(record)
 
@@ -31,3 +30,5 @@
     .hidden-xs
       %span= time_ago_in_words record.created_at
       назад
+    .pull-right
+      = render "shared/favor_links", record: record

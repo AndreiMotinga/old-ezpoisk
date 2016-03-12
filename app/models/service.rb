@@ -31,14 +31,6 @@ class Service < ActiveRecord::Base
     "Услуги"
   end
 
-  def edit_link
-    edit_dashboard_service_path(self)
-  end
-
-  def delete_link
-    dashboard_service_path(self)
-  end
-
   def logo_url(style = :medium)
     logo.url(style)
   end

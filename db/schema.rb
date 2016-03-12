@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308215730) do
+ActiveRecord::Schema.define(version: 20160312193759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 20160308215730) do
   end
 
   add_index "companies", ["email"], name: "index_companies_on_email", unique: true, using: :btree
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "post_id"
+    t.string  "post_type"
+  end
+
+  add_index "favorites", ["user_id", "post_id", "post_type"], name: "index_favorites_on_user_id_and_post_id_and_post_type", unique: true, using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "name"
@@ -443,6 +452,7 @@ ActiveRecord::Schema.define(version: 20160308215730) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
+  add_foreign_key "favorites", "users"
   add_foreign_key "job_agencies", "cities"
   add_foreign_key "job_agencies", "states"
   add_foreign_key "job_agencies", "users"

@@ -26,14 +26,6 @@ class ReAgency < ActiveRecord::Base
     "/ezrealty/agencies/#{id}"
   end
 
-  def edit_link
-    edit_dashboard_re_agency_path(self)
-  end
-
-  def delete_link
-    dashboard_re_agency_path(self)
-  end
-
   def block
     "Недвижимости"
   end

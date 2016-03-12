@@ -24,4 +24,9 @@ module ViewHelpers
   def infowindow
     "<a href='https://maps.google.com/?q=#{address}' target='blank'>#{address}</a>"
   end
+
+  def favorite?(user)
+    return false unless user
+    Favorite.where(user_id: user.id, post_id: id, post_type: self.class.to_s).first
+  end
 end

@@ -25,14 +25,6 @@ class ReCommercial < ActiveRecord::Base
     "ezrealty/commercial/#{id}"
   end
 
-  def edit_link
-    edit_dashboard_re_commercial_path(self)
-  end
-
-  def delete_link
-    dashboard_re_commercial_path(self)
-  end
-
   def block
     "Недвижимость"
   end

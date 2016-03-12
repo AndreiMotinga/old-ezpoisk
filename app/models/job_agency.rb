@@ -22,14 +22,6 @@ class JobAgency < ActiveRecord::Base
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
-  def edit_link
-    edit_dashboard_job_agency_path(self)
-  end
-
-  def delete_link
-    dashboard_job_agency_path(self)
-  end
-
   def block
     "Трудоустройство"
   end

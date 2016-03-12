@@ -45,3 +45,5 @@
     .hidden-xs
       %span= time_ago_in_words record.updated_at
       назад
+    .pull-right
+      = render "shared/favor_links", record: record

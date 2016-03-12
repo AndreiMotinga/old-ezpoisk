@@ -19,12 +19,8 @@
         %h1.question-title
           = @question.title
           - if @question.can_be_edited_by?(current_user)
-            %i.fa.fa-cog.pull-right{"data-content" => "#{render "questions/edit_link"}",
-              "data-toggle" => "popover",
-              "data-placement" => "left",
-              "data-trigger" => "focus",
-              :role => "button",
-              :tabindex => "0"}
+            %i.fa.fa-cog.pull-right{"data-content": "#{render "questions/edit_link"}", "data-toggle": "popover", "data-placement": "left", "data-trigger": "focus",
+                                     role: "button", tabindex: "0"}
 
         / line 2 question text
         - if @question.text.present?

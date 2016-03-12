@@ -33,12 +33,4 @@ class Job < ActiveRecord::Base
   def logo_url(style = :medium)
     logo.url(style)
   end
-
-  def edit_link
-    edit_dashboard_job_path(self)
-  end
-
-  def delete_link
-    dashboard_job_path(self)
-  end
 end

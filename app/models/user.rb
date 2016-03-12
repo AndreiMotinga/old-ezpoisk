@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
 
+  has_many :favorites
+
   validates :email, presence: true, uniqueness: true
 
   has_attached_file(:avatar,

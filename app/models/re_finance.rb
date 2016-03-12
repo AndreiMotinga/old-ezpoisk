@@ -26,14 +26,6 @@ class ReFinance < ActiveRecord::Base
     ezrealty_re_finance_path(self)
   end
 
-  def edit_link
-    edit_dashboard_re_finance_path(self)
-  end
-
-  def delete_link
-    dashboard_re_finance_path(self)
-  end
-
   def block
     "Недвижимости"
   end
