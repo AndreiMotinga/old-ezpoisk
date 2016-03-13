@@ -1,5 +1,6 @@
 class FavoritesController < ApplicationController
   def create
+    # isn't relevant anymore
     if !user_signed_in?
       return render js: "window.location = '#{new_user_session_path}'"
     end

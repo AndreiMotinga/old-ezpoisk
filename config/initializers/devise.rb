@@ -1,5 +1,14 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+
+Warden::Manager.after_set_user do |user,auth,opts|
+  auth.cookies[:signed_in] = 1
+end
+
+Warden::Manager.before_logout do |user,auth,opts|
+  auth.cookies.delete :signed_in
+end
+
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -242,11 +251,11 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_SECRET_KEY"], { }
   config.omniauth :vkontakte, ENV["VK_APP_ID"], ENV["VK_SECRET_KEY"],
     {
-      scope: "email",
-      display: "popup",
-      lang: "ru",
-      image_size: "original"
-    }
+    scope: "email",
+    display: "popup",
+    lang: "ru",
+    image_size: "original"
+  }
 
     # ==> Warden configuration
     # If you want to use other strategies, that are not supported by Devise, or

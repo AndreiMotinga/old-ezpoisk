@@ -8,7 +8,6 @@ feature "User favors re_agency", js: true do
     page.find(".favor").click
     wait_for_ajax
 
-    expect(current_path).to eq new_user_session_path
     expect(Favorite.count).to eq 0
   end
 
