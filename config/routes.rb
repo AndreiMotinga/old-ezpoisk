@@ -42,6 +42,8 @@ Rails.application.routes.draw do
 
     resources :summernote, only: [:create]
     resources :pictures, only: [:index, :create, :update, :destroy]
+
+    resources :favorites, only: [:index]
   end
 
   resources :news, only: [:index, :show], path: :eznews

@@ -45,6 +45,8 @@
         %ul.list-group
           = link_to dashboard_path do
             %li.list-group-item.mobile-link Мои объявления
+          = link_to dashboard_favorites_path do
+            %li.list-group-item.mobile-link Избранное
           = link_to edit_user_registration_path do
             %li.list-group-item.mobile-link Личные данные
 

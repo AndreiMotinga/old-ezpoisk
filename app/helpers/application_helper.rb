@@ -21,6 +21,8 @@ module ApplicationHelper
     case record.class.to_s
     when "ReAgency"
       render "dashboard/shared/company", record: record
+    when "ReFinance"
+      render "dashboard/shared/company", record: record
     when "Service"
       render "dashboard/shared/company", record: record
     when "JobAgency"
