@@ -10,30 +10,27 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = form_tag sales_path, method: :get, class: "form-horizontal"
-        = render "shared/search_by_address"
-        %hr/
-        .form-group
-          = label_tag "Ключевое слово", nil,  class: "col-sm-3 control-label"
-          .col-sm-9
-            = text_field_tag :keyword,
-                             params[:keyword],
-                             class: "form-control"
-        .form-group
-          = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
-          .col-sm-9
-            = select_tag :category,
-              options_for_select(SALE_CATEGORIES, params[:category]),
-              include_blank: true,
-              class: "form-control"
-      / model body
-
-      / footer
-      .modal-footer
-        .row
-          .col-xs-6
-            = link_to "Сбросить",
-              sales_path,
-              class: "btn btn-block mobile-btn"
-          .col-xs-6
-            = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"
+        %form.form-horizontal{action: sales_path, method: :get}
+          = render "shared/search_by_address"
+          %hr/
+          .form-group
+            = label_tag "Ключевое слово", nil,  class: "col-sm-3 control-label"
+            .col-sm-9
+              = text_field_tag :keyword,
+                               params[:keyword],
+                               class: "form-control"
+          .form-group
+            = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
+            .col-sm-9
+              = select_tag :category,
+                options_for_select(SALE_CATEGORIES, params[:category]),
+                include_blank: true,
+                class: "form-control"
+          %hr/
+          .row
+            .col-xs-6
+              = link_to "Сбросить",
+                sales_path,
+                class: "btn btn-block mobile-btn"
+            .col-xs-6
+              = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"

@@ -10,31 +10,28 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = form_tag ezjob_jobs_path, method: :get, class: "form-horizontal"
-        = render "shared/search_by_address"
-        %hr/
-        .form-group
-          = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
-          .col-sm-5
-            = select_tag :post_type,
-              options_for_select(JOB_TYPES, params[:post_type]),
-              include_blank: true,
-              class: "form-control"
-        .form-group
-          = label_tag "Категория", nil,  class: "col-sm-3 control-label"
-          .col-sm-5
-            = select_tag :category,
-              options_for_select(JOB_CATEGORIES, params[:category]),
-              include_blank: true,
-              class: "form-control"
-      / model body
-
-      / footer
-      .modal-footer
-        .row
-          .col-xs-6
-            = link_to "Сбросить",
-              ezjob_jobs_path,
-              class: "btn btn-block mobile-btn"
-          .col-xs-6
-            = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"
+        %form.form-horizontal{action: ezjob_jobs_path, method: :get}
+          = render "shared/search_by_address"
+          %hr/
+          .form-group
+            = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
+            .col-sm-5
+              = select_tag :post_type,
+                options_for_select(JOB_TYPES, params[:post_type]),
+                include_blank: true,
+                class: "form-control"
+          .form-group
+            = label_tag "Категория", nil,  class: "col-sm-3 control-label"
+            .col-sm-5
+              = select_tag :category,
+                options_for_select(JOB_CATEGORIES, params[:category]),
+                include_blank: true,
+                class: "form-control"
+          %hr/
+          .row
+            .col-xs-6
+              = link_to "Сбросить",
+                ezjob_jobs_path,
+                class: "btn btn-block mobile-btn"
+            .col-xs-6
+              = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"

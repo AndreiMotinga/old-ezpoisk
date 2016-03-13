@@ -1,35 +1,42 @@
-= form_tag ezrealty_re_commercials_path, method: :get, class: "form-horizontal"
-= render "shared/search_by_address"
+%form.form-horizontal{action: ezrealty_re_commercials_path, method: :get}
+  = render "shared/search_by_address"
 
-%hr/
-%h5 Детали поиска
-.form-group
-  = label_tag "Сортировать", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
-    = sort_select
+  %hr/
+  %h5 Детали поиска
+  .form-group
+    = label_tag "Сортировать", nil,  class: "col-sm-5 control-label"
+    .col-sm-5
+      = sort_select
 
-.form-group
-  = label_tag "Тип объявления", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
-    = select_tag :post_type,
-                 options_for_select(RE_TYPES, params[:post_type]),
-                 include_blank: true,
-                 class: "form-control"
+  .form-group
+    = label_tag "Тип объявления", nil,  class: "col-sm-5 control-label"
+    .col-sm-5
+      = select_tag :post_type,
+                   options_for_select(RE_TYPES, params[:post_type]),
+                   include_blank: true,
+                   class: "form-control"
 
-.form-group
-  = label_tag "Категория", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
-    = select_tag :category,
-                 options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
-                 include_blank: true,
-                 class: "form-control"
+  .form-group
+    = label_tag "Категория", nil,  class: "col-sm-5 control-label"
+    .col-sm-5
+      = select_tag :category,
+                   options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
+                   include_blank: true,
+                   class: "form-control"
 
-.form-group
-  = label_tag "Минимальная цена", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
-    = text_field_tag :min_price, params[:min_price], class: "form-control"
+  .form-group
+    = label_tag "Минимальная цена", nil,  class: "col-sm-5 control-label"
+    .col-sm-5
+      = text_field_tag :min_price, params[:min_price], class: "form-control"
 
-.form-group
-  = label_tag "Максимальная цена", nil,  class: "col-sm-5 control-label"
-  .col-sm-5
-    = text_field_tag :max_price, params[:max_price], class: "form-control"
+  .form-group
+    = label_tag "Максимальная цена", nil,  class: "col-sm-5 control-label"
+    .col-sm-5
+      = text_field_tag :max_price, params[:max_price], class: "form-control"
+
+  %hr/
+  .row
+    .col-xs-6
+      = link_to "Сбросить", ezrealty_re_commercials_path, class: "btn btn-block mobile-btn"
+    .col-xs-6
+      = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"

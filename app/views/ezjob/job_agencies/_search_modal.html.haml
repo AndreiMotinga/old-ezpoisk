@@ -10,16 +10,13 @@
         %h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        = form_tag ezjob_job_agencies_path, method: :get, class: "form-horizontal"
-        = render "shared/search_by_address"
-      / model body
-
-      / footer
-      .modal-footer
-        .row
-          .col-xs-6
-            = link_to "Сбросить",
-              ezjob_job_agencies_path,
-              class: "btn btn-block mobile-btn"
-          .col-xs-6
-            = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"
+        %form.form-horizontal{action: ezjob_job_agencies_path, method: :get}
+          = render "shared/search_by_address"
+          %hr/
+          .row
+            .col-xs-6
+              = link_to "Сбросить",
+                ezjob_job_agencies_path,
+                class: "btn btn-block mobile-btn"
+            .col-xs-6
+              = submit_tag "Фильтроваить", name: nil, class: "btn btn-block mobile-btn"
