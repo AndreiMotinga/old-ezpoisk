@@ -21,6 +21,9 @@
         = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
 
         %p= sanitize @post.text
+        - if @post.video_url.present?
+          .embed-responsive.embed-responsive-16by9
+            = embed(@post.video_url)
       // main body of the post
 
     %br/

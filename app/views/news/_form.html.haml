@@ -13,6 +13,7 @@
                     class: "news-summernote"
     .col-md-4
       = f.text_field :image_remote_url, label: '* Лого (585x329)'
+      = f.text_field :video_url, label: "Video Url (youtube)"
       = f.check_box :main, label: 'Главная?'
       = f.check_box :show_on_homepage, label: 'В ленту?'
       = f.check_box :interesting, label: 'Выделить?'

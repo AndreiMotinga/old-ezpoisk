@@ -11,10 +11,7 @@
   .form-group
     = label_tag "Тип объявления", nil,  class: "col-sm-5 control-label"
     .col-sm-5
-      = select_tag :post_type,
-                   options_for_select(RE_TYPES, params[:post_type]),
-                   include_blank: true,
-                   class: "form-control"
+      = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), include_blank: true, class: "form-control"
 
   .form-group
     = label_tag "Минимальная цена", nil,  class: "col-sm-5 control-label"
@@ -29,25 +26,16 @@
   .form-group
     = label_tag "Квартира сдается", nil,  class: "col-sm-5 control-label"
     .col-sm-5
-      = select_tag :duration,
-                   options_for_select(RE_DURATION, params[:duration]),
-                   include_blank: true,
-                   class: "form-control"
+      = select_tag :duration, options_for_select(RE_DURATION, params[:duration]), include_blank: true, class: "form-control"
 
   .form-group
     = label_tag "Комнаты", nil,  class: "col-sm-5 control-label"
     .col-sm-5
-      = select_tag :rooms,
-                   options_for_select(ROOM_OPTIONS, params[:rooms]),
-                   include_blank: true,
-                   class: "form-control"
+      = select_tag :rooms, options_for_select(ROOM_OPTIONS, params[:rooms]), include_blank: true, class: "form-control"
   .form-group
     = label_tag "Ванные", nil,  class: "col-sm-5 control-label"
     .col-sm-5
-      = select_tag :baths,
-                   options_for_select((1..10).to_a, params[:baths]),
-                   include_blank: true,
-                   class: "form-control"
+      = select_tag :baths, options_for_select((1..10).to_a, params[:baths]), include_blank: true, class: "form-control"
 
   .form-group
     = label_tag :fee, "Без комиссии", class: "col-sm-5 control-label"
@@ -57,8 +45,6 @@
   %hr/
   .row
     .col-xs-6
-      = link_to "Сбросить",
-        ezrealty_re_privates_path,
-        class: "btn btn-block mobile-btn"
+      = link_to "Сбросить", ezrealty_re_privates_path, class: "btn btn-block mobile-btn"
     .col-xs-6
       = submit_tag "Фильтровать", name: nil, class: "btn btn-block mobile-btn"
