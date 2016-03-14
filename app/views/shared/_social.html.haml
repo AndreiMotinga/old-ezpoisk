@@ -1,30 +1,58 @@
 - unless Rails.env.test?
-  .social-share
 
-    / facebook
-    #fb-root
-      :javascript
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id; js.async=true;
-          js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5&appId=1746983858848479";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    .fb-share-button{"data-action": "like", "data-href": url, "data-layout": "button_count", "data-show-faces": "true"}
-    // facebook
+  / desktop
+  .hidden-xs
+    .social-share
+      %ul.list-unstyled.list-inline
+        %li.fb
+          .fb-share-button{"data-action": "like", "data-href": url, "data-layout": "button_count", "data-show-faces": "true"}
+        %li.vk
+          %a.vk
+        %li.my-g-plus
+          .g-plus{"data-action ": "share", "data-width": 200, "data-annotation": "bubble"}
+  / mobile
 
-    / vk
-    %a.vk
-    %script{:charset => "windows-1251", :src => "https://vk.com/js/api/share.js?93", :type => "text/javascript", async: "", defer: ""}
-    :javascript
-      $(document).ready(function(){
-        $("a.vk").html(VK.Share.button(false,{type: "round", text: "Поделиться", eng: 1}));
-      })
-    // vk
+  .visible-xs.hidden
+    / Button trigger modal
+    %i.fa.fa-share-square.fa-2x.text-muted.hidden{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+    / Modal
+    #myModal.modal.fade{"aria-labelledby": "shareModal", role: "dialog", tabindex: "-1"}
+      .modal-dialog{role: "document"}
+        .modal-content
+          .modal-body
+            %ul.list-unstyled.social-share-mobile
+              %li.fb
+                .fb-share-button{"data-action": "like", "data-href": url, "data-layout": "button_count", "data-show-faces": "true"}
+              %li.vk
+                %a.vk
+              %li.my-g-plus
+                .g-plus{"data-action ": "share", "data-width": 200, "data-annotation": "bubble"}
 
-    / google
-    %script{async: "", defer: "", src: "https://apis.google.com/js/platform.js"}
-      {lang: 'ru'}
-    .g-plus{"data-action ": "share", "data-width": 200, "data-annotation": "bubble"}
-    // google
+
+
+/ facebook
+#fb-root
+  :javascript
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.async=true;
+      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5&appId=1746983858848479";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+/ vk
+%script{:charset => "windows-1251", :src => "https://vk.com/js/api/share.js?93", :type => "text/javascript", async: "", defer: ""}
+:javascript
+  $(window).load(function(){
+    $("a.vk").html(VK.Share.button(false,{type: "round", text: "Поделиться", eng: 1}));
+  })
+
+/ google
+%script{async: "", defer: "", src: "https://apis.google.com/js/platform.js"}
+  {lang: 'ru'}
+
+:javascript
+  $(window).load(function(){
+    $(".fa-share-square").removeClass("hidden")
+  })
