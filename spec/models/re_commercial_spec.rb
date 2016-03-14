@@ -44,7 +44,7 @@ describe ReCommercial do
     it "return missing.png url when logo isn't set" do
       re_commercial = create(:re_commercial)
 
-      expect(re_commercial.logo_url(:thumb)).to eq "missing.png"
+      expect(re_commercial.logo_url(:thumb)).to eq "https://s3.amazonaws.com/ezpoisk/missing.png"
     end
   end
 

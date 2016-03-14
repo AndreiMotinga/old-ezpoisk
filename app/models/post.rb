@@ -8,7 +8,7 @@ class Post < ActiveRecord::Base
   attr_reader :image_remote_url
   has_attached_file(:image,
                     styles: { small: ["158x99#"], medium: ["585x329#", :jpg], large: ["755x425#", :jpg] },
-                    default_url: "missing.png")
+                    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   def image_remote_url=(url_value)
     if url_value.present?

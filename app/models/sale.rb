@@ -25,6 +25,6 @@ class Sale < ActiveRecord::Base
   end
 
   def logo_url(style = :medium)
-    logo.present? ? logo.image.url(style) : "missing.png"
+    logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
   end
 end

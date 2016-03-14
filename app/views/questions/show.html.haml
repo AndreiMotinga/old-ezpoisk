@@ -4,10 +4,10 @@
   = render "questions/navbar"
 - content_for :head do
   %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
-  %meta{ property: "og:type", content: "article"}/
+  %meta{property: "og:type", content: "article"}/
   %meta{property: "og:url", content: question_url(@question) }/
   %meta{property: "og:title", content: @question.title}/
-  %meta{property: "og:image", content: image_url("missing.png")}/
+  %meta{property: "og:image", content: image_url("missing")}/
   %meta{property: "og:description", content: strip_tags(@question.text_to_show).truncate(200)}/
 
 .row

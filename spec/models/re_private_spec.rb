@@ -43,7 +43,7 @@ describe RePrivate do
     it "return missing.png url when logo isn't set" do
       re_private = create(:re_private)
 
-      expect(re_private.logo_url(:thumb)).to eq "missing.png"
+      expect(re_private.logo_url(:thumb)).to eq "https://s3.amazonaws.com/ezpoisk/missing.png"
     end
   end
 
