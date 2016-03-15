@@ -3,7 +3,8 @@ class NewsCleanerJob
   include Sidetiq::Schedulable
 
   recurrence do
-    daily.hour_of_day([1])
+    # temp remove
+    # daily.hour_of_day([1])
   end
 
   def perform
