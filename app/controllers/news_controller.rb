@@ -2,7 +2,7 @@ class NewsController < ApplicationController
   before_action :set_post, only: [:edit, :show, :update, :destroy]
 
   def index
-    @questions = Question.answered.order("updated_at desc").page(params[:page]).per(41)
+    @questions = Question.order("updated_at desc").page(params[:page]).per(41)
     @news_posts = Post.by_category(params[:category]).for_homepage.desc.page(params[:page]).per(10)
     @main = Post.main_posts.by_category(params[:category]).desc.page(params[:page]).per(7)
   end
