@@ -28,7 +28,8 @@
     / answer text
     .row
       .col-xs-12
-        .text= sanitize answer.text
+        -# todo-question is this ok?
+        .text= raw answer.text
     %br/
 
     .col-xs-12
