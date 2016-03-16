@@ -6,8 +6,7 @@ class Ezrealty::ReAgenciesController < ApplicationController
   end
 
   def show
-    @re_agency = get_record ReAgency,
-      params[:id],
-      ezrealty_re_agencies_path
+    @re_agency = get_record(ReAgency, params[:id], ezrealty_re_agencies_path)
+    IncreaseImpressionsCountJob.perform_async(params[:id], "ReAgency")
   end
 end

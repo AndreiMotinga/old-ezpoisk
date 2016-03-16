@@ -7,5 +7,6 @@ class Ezrealty::ReFinancesController < ApplicationController
 
   def show
     @re_finance = get_record ReFinance, params[:id], ezrealty_re_finances_path
+    IncreaseImpressionsCountJob.perform_async(params[:id], "ReFinance")
   end
 end

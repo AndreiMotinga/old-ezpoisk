@@ -10,8 +10,7 @@ class SalesController < ApplicationController
   end
 
   def show
-    @sale = get_record Sale,
-                       params[:id],
-                       sales_path
+    @sale = get_record(Sale, params[:id], sales_path)
+    IncreaseImpressionsCountJob.perform_async(params[:id], "Sale")
   end
 end

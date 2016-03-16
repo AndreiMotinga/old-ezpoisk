@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316021123) do
+ActiveRecord::Schema.define(version: 20160316031702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,13 +113,14 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.string   "fax"
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "job_agencies", ["city_id"], name: "index_job_agencies_on_city_id", using: :btree
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "street"
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree
@@ -220,8 +222,8 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -230,6 +232,7 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.float    "lng"
     t.integer  "zip"
     t.string   "fax"
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "re_agencies", ["city_id"], name: "index_re_agencies_on_city_id", using: :btree
@@ -237,22 +240,23 @@ ActiveRecord::Schema.define(version: 20160316021123) do
   add_index "re_agencies", ["user_id"], name: "index_re_agencies_on_user_id", using: :btree
 
   create_table "re_commercials", force: :cascade do |t|
-    t.string   "category",    default: "",    null: false
-    t.string   "street",      default: "",    null: false
-    t.string   "post_type",   default: "",    null: false
-    t.string   "phone",       default: "",    null: false
-    t.integer  "price",                       null: false
+    t.string   "category",          default: "",    null: false
+    t.string   "street",            default: "",    null: false
+    t.string   "post_type",         default: "",    null: false
+    t.string   "phone",             default: "",    null: false
+    t.integer  "price",                             null: false
     t.integer  "space"
     t.integer  "zip"
     t.float    "lat"
     t.float    "lng"
-    t.boolean  "active",      default: false
+    t.boolean  "active",            default: false
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "description", default: ""
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "description",       default: ""
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "re_commercials", ["category"], name: "index_re_commercials_on_category", using: :btree
@@ -281,8 +285,9 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "re_finances", ["city_id"], name: "index_re_finances_on_city_id", using: :btree
@@ -290,25 +295,26 @@ ActiveRecord::Schema.define(version: 20160316021123) do
   add_index "re_finances", ["user_id"], name: "index_re_finances_on_user_id", using: :btree
 
   create_table "re_privates", force: :cascade do |t|
-    t.string   "street",      default: "",    null: false
-    t.string   "post_type",   default: "",    null: false
-    t.string   "duration",    default: "",    null: false
-    t.string   "phone",       default: "",    null: false
-    t.integer  "price",                       null: false
+    t.string   "street",            default: "",    null: false
+    t.string   "post_type",         default: "",    null: false
+    t.string   "duration",          default: "",    null: false
+    t.string   "phone",             default: "",    null: false
+    t.integer  "price",                             null: false
     t.integer  "baths"
     t.integer  "space"
-    t.string   "rooms",                       null: false
+    t.string   "rooms",                             null: false
     t.integer  "zip"
     t.float    "lat"
     t.float    "lng"
-    t.boolean  "active",      default: false
-    t.boolean  "fee",         default: false
-    t.text     "description", default: ""
+    t.boolean  "active",            default: false
+    t.boolean  "fee",               default: false
+    t.text     "description",       default: ""
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "re_privates", ["city_id"], name: "index_re_privates_on_city_id", using: :btree
@@ -329,11 +335,12 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "zip"
     t.string   "street"
     t.string   "price"
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "sales", ["city_id"], name: "index_sales_on_city_id", using: :btree
@@ -366,6 +373,7 @@ ActiveRecord::Schema.define(version: 20160316021123) do
     t.integer  "zip"
     t.string   "slug",              default: ""
     t.string   "fax"
+    t.integer  "impressions_count", default: 0
   end
 
   add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree

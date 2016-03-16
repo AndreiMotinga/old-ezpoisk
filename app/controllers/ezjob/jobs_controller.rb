@@ -9,5 +9,6 @@ class Ezjob::JobsController < ApplicationController
 
   def show
     @job = get_record(Job, params[:id], ezjob_jobs_path)
+    IncreaseImpressionsCountJob.perform_async(params[:id], "Job")
   end
 end

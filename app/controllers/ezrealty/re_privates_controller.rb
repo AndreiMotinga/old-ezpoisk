@@ -5,6 +5,7 @@ class Ezrealty::RePrivatesController < ApplicationController
 
   def show
     @re_private = get_record(RePrivate, params[:id], ezrealty_re_privates_path)
+    IncreaseImpressionsCountJob.perform_async(params[:id], "RePrivate")
   end
 
   private

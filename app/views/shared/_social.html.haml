@@ -8,8 +8,9 @@
         %a.vk
       %li.my-g-plus
         .g-plus{"data-action ": "share", "data-width": 200, "data-annotation": "bubble"}
-      %li.prosmotrov
-        %span просмотров #{count}
+      - if count
+        %li.prosmotrov
+          %span просмотров #{count}
 / mobile
 
 .visible-xs.hidden
