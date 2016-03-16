@@ -8,9 +8,8 @@
   .row
     .col-md-8
       = f.text_field :title
-      = f.text_area :text,
-                    label: 'Содержание',
-                    class: "news-summernote"
+      = f.text_area :description, label: 'Описание', rows: 4
+      = f.text_area :text, label: 'Содержание', class: "news-summernote"
     .col-md-4
       = f.text_field :image_remote_url, label: '* Лого (585x329)'
       = f.text_field :video_url, label: "Video Url (youtube)"
