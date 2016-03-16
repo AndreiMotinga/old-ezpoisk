@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :timeoutable, :lockable, :async, :omniauthable,
     :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
-  after_create :geolocate_user, :notify_admin
+  after_create :geolocate_user, :send_emails
 
   acts_as_voter
 
@@ -48,8 +48,9 @@ class User < ActiveRecord::Base
     GeolocateUserJob.perform_async(id)
   end
 
-  def notify_admin
+  def send_emails
     AdminMailerJob.perform_async(id, "User")
     SlackNotifierJob.perform_async(id, "User")
+    UserMailerJob.perform_async(id)
   end
 end
