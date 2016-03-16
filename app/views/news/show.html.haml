@@ -35,7 +35,7 @@
               = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
               %nbsp
             = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
-        = render "shared/social", url: news_url(@post)
+        = render "shared/social", url: news_url(@post), count: @post.impressions_count
 
     .row
       .col-xs-12

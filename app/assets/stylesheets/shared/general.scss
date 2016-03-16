@@ -92,8 +92,16 @@ body {
 // .social-share table {
 //   margin-right: 10px;
 //   vertical-align: bottom;
-//   display: inline !important;
+// display: inline !important;
 // }
+.social-share ul > li { vertical-align: middle; }
+.prosmotrov {
+  background-color: white;
+  font-size: 13px;
+  margin-left: 14px;
+  border-radius: 2px;
+  border: 1px solid lightgrey;
+}
 
 
 .btn-ez {

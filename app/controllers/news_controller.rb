@@ -14,6 +14,7 @@ class NewsController < ApplicationController
 
   def show
     @side_posts = Post.by_category(@post.category).desc.with_logo.limit(17)
+    NewsImpressionsCounterJob.perform_async(@post.id)
   end
 
   def edit

@@ -33,7 +33,7 @@
         %br/
         %br/
         .q-social
-          = render "shared/social", url: question_url(@question)
+          = render "shared/social", url: question_url(@question), count: @question.impressions_count
 
         / collapsed answer
         #collapseExample.collapse
@@ -61,7 +61,7 @@
     %br/
     .row
       .col-xs-12
-        = render "shared/social", url: question_url(@question)
+        = render "shared/social", url: question_url(@question), count: @question.impressions_count
 
   / partners
   .hidden-xs.hidden-sm.col-md-4
