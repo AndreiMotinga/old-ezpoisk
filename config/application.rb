@@ -34,6 +34,9 @@ module Ezpoisk
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # preview emails
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+
     # rspec doesn't pick up jobs without it
     config.autoload_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
 
