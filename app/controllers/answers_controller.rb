@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
   end
 
   def destroy
+    @answer.question.decrement!(:answers_count)
     @answer.destroy
     redirect_to question_path(@answer.question), notice: "answer removed"
   end
