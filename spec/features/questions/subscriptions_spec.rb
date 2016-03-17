@@ -33,5 +33,3 @@ end
 #     expect(subscription.user).to eq user
 #   end
 # end
-
-

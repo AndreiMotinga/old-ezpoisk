@@ -40,7 +40,11 @@ class User < ActiveRecord::Base
   end
 
   def timeout_in
-    admin? ? 2.hours : 7.days
+    2.hours if admin?
+  end
+
+  def subscribed?(q_id)
+    Subscription.exists?(user_id: id, question_id: q_id)
   end
 
   private

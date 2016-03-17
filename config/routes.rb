@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   resources :questions, except: [:destroy], path: :ezanswer do
     collection do
       get "unanswered"
-    end
-    collection do
       get "tag/:tag", to: "questions#tag"
+    end
+    member do
+      put "subscribe", to: "questions#subscribe"
+      put "unsubscribe", to: "questions#unsubscribe"
     end
   end
   resources :search_suggestions, only: [:index]

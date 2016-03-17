@@ -55,6 +55,16 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def subscribe
+    @question = Question.find(params[:id])
+    Subscription.create(user: current_user, question: @question)
+  end
+
+  def unsubscribe
+    @question = Question.find(params[:id])
+    Subscription.find_by(user: current_user, question: @question).destroy
+  end
+
   private
 
   def set_question

@@ -3,7 +3,8 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:update, :destroy]
 
   def create
-    @answer = current_user.answers.build(answer_params)
+    @answer = Answer.new(answer_params)
+    @answer.user_id = current_user.try(:id) || 4 # anonymous user (ex 'yandex')
 
     if @answer.save
       SlackNotifierJob.perform_async(@answer.id, "Answer")
