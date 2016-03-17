@@ -2,7 +2,7 @@ class IncreaseImpressionsCountJob
   include Sidekiq::Worker
 
   def perform(id, model)
-    return if Rails.env.test?
+    return unless Rails.env.production?
     post = model.constantize.find(id)
     return unless post.active
     post.increment!(:impressions_count)

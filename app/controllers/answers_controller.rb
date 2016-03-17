@@ -7,10 +7,8 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.try(:id) || 4 # anonymous user (ex 'yandex')
 
     if @answer.save
-      SlackNotifierJob.perform_async(@answer.id, "Answer")
-      QuestionNotificatorJob.perform_async(@answer.question.id)
+      run_backgound_jobs
       @answer.question.increment!(:answers_count)
-      Subscription.create(user: current_user, question: @answer.question)
       redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)
     end
   end
@@ -57,5 +55,13 @@ class AnswersController < ApplicationController
 
     def answer_params
       params.require(:answer).permit(:text, :question_id)
+    end
+
+    def run_backgound_jobs
+      SlackNotifierJob.perform_async(@answer.id, "Answer")
+      QuestionNotificatorJob.perform_async(@answer.question.id)
+      if current_user
+        CreateSubscriptionJob.perform_async(current_user.id, @answer.question.id)
+      end
     end
 end

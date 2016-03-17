@@ -6,7 +6,7 @@ class HoroscopeImporterJob
   recurrence { daily.hour_of_day(0) }
 
   def perform
-    return if Rails.env.development?
+    return unless Rails.env.production?
     HoroscopeImporter.new.import
   end
 end

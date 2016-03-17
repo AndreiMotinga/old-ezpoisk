@@ -3,6 +3,7 @@ class GeocodeJob
   include Sidekiq::Worker
 
   def perform(id, model)
+    return unless Rails.env.production?
     @post = model.constantize.find(id)
     update_post info
   end
