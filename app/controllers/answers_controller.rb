@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
 
     if @answer.save
       SlackNotifierJob.perform_async(@answer.id, "Answer")
+      QuestionNotificatorJob.perform_async(@answer.question.id)
       @answer.question.increment!(:answers_count)
       Subscription.create(user: current_user, question: @answer.question)
       redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)

@@ -1,0 +1,10 @@
+%h3 Новая активность на #{link_to "ezpoisk.com", "https://www.ezpoisk.com"}
+%h4= link_to @question.title, controller: "questions", action: "show", only_path: false, id: @question.id
+%p
+  = strip_tags(@question.text_to_show).truncate(200)
+  = link_to "читать дальше", controller: "questions", action: "show", only_path: false, id: @question.id
+
+%p
+  С уважением,
+  %br/
+  команда #{link_to "ezpoisk.com", "https://www.ezpoisk.com"}

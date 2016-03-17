@@ -37,6 +37,8 @@ module Ezpoisk
     # preview emails
     config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
 
+    config.action_mailer.default_url_options = { host: "ezpoisk.com" }
+
     # rspec doesn't pick up jobs without it
     config.autoload_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
 
