@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
   acts_as_taggable
   belongs_to :user
   has_many :answers
+  has_many :subscriptions
+  has_many :subscribers, through: :subscriptions, source: :user
 
   validates :title, presence: true
 
@@ -34,6 +36,7 @@ class Question < ActiveRecord::Base
       .map { |key| "%#{key.mb_chars.downcase}%" }
   end
 
+  # todo remove as not needed?
   def the_answer
     answers.last
   end
@@ -43,6 +46,7 @@ class Question < ActiveRecord::Base
     text
   end
 
+  # todo get rid of it
   def link
     "ezanswer/#{id}"
   end

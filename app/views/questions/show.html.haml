@@ -26,8 +26,8 @@
           %p.text= sanitize @question.text
 
         / answer button/links
-        %a.text.text-muted.qa-links{"aria-controls" => "collapseExample", "aria-expanded" => "false",
-          "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
+        %a.text.text-muted.qa-links{"aria-controls": "collapseExample", "aria-expanded": "false", id: "to_answer",
+          "data-toggle": "collapse", href: "#collapseExample", role: "button"}
           Ответить
         %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"} коментарии
         %br/

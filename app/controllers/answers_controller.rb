@@ -3,12 +3,12 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:update, :destroy]
 
   def create
-    @answer = Answer.new(answer_params)
-    @answer.user_id = current_user.try(:id) || 4 # anonymous user (yandex)
+    @answer = current_user.answers.build(answer_params)
 
     if @answer.save
-      @answer.question.increment!(:answers_count)
       SlackNotifierJob.perform_async(@answer.id, "Answer")
+      @answer.question.increment!(:answers_count)
+      Subscription.create(user: current_user, question: @answer.question)
       redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)
     end
   end
