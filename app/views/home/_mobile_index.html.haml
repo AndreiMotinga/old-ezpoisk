@@ -16,8 +16,6 @@
       %br/
       #home.tab-pane.active{:role => "tabpanel"}
         %ul.list-group
-          = link_to questions_path, class: "mobile-link" do
-            %li.list-group-item Ответы
           = link_to ezrealty_re_agencies_path, class: "mobile-link" do
             %li.list-group-item Агентства недвижимости
           = link_to ezrealty_re_finances_path, class: "mobile-link" do
@@ -37,10 +35,11 @@
 
       #profile.tab-pane{:role => "tabpanel"}
         %ul.list-group
-          - @homepage.news_posts(20).each do |p|
-            = link_to news_path(p) do
-              %li.list-group-item.mobile-link= p.title
-        = link_to 'Еще Новости', news_index_path, class: "mobile-btn btn-block text-center"
+          = link_to questions_path, class: "mobile-link" do
+            %li.list-group-item Ответы
+          = link_to news_index_path, class: "mobile-link" do
+            %li.list-group-item Новости
+
       #messages.tab-pane{:role => "tabpanel"}
         %ul.list-group
           = link_to dashboard_path do
