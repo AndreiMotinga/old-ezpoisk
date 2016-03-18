@@ -29,11 +29,11 @@
     %br/
     .row
       .col-xs-12
-        - if @post.link.present?
-          .pull-right
-            - if @current_user.try(:admin?)
-              = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
-              %nbsp
+        .pull-right
+          - if @current_user.try(:admin?)
+            = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
+            %nbsp
+          - if @post.link.present?
             = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
         = render "shared/social", url: news_url(@post), count: @post.impressions_count
 
