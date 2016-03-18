@@ -20,6 +20,6 @@ module AnswersHelper
   def answer_name(answer)
     return answer.user.email unless answer.user.name.present?
     return answer.user.name unless answer.user.site.present?
-    link_to answer.user.name, "//#{answer.user.site}", target: "_blank"
+    link_to answer.user.name, "#{answer.user.site}", target: "_blank"
   end
 end
