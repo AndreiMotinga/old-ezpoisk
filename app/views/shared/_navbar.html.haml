@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.navbar-fixed-top.navbar-main
+%nav.navbar.navbar-default.navbar-main
   .container-fluid
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-expanded" => "false",
@@ -15,12 +15,13 @@
 
       %ul.nav.navbar-nav.navbar-left
         %li= link_to 'О компании', main_app.about_path
-        %li= link_to 'Ответы', main_app.questions_path
         %li= link_to t(:news), main_app.news_index_path
+        %li= link_to 'Комьюнити', main_app.questions_path
         -# %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
 
       / right links
       %ul.nav.navbar-nav.navbar-right
+        %li= link_to "Подать объявление", "#new", "data-toggle": "modal"
 
         /ezrealty
         %li.dropdown

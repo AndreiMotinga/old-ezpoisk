@@ -13,6 +13,11 @@
   font-weight: 900;
 }
 
+.navbar-default .navbar-nav > li > a {
+  color: $link-blue;
+  font-weight: bold;
+}
+
 //  navbar breakpoint
 @media (max-width: 990px) {
     .navbar-header {

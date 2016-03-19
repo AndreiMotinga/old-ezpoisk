@@ -1,19 +1,4 @@
 .row
-  .col-md-12
-    = render "home/new_post_modal_trigger"
-    %br/
-    .col-md-12.white-block
-      %table.table.table-striped.margin-bottom-0
-        %thead
-          %tr
-            %td.users-post
-              %h5 Последние объявления
-            %td.users-post
-              %h5 Раздел
-            %td.users-post
-              %h5 Дата
-        - @homepage.users_posts(11).each do |p|
-          %tr
-            %td.users-post= link_to p.title.truncate(36), p.link, target: "_blank"
-            %td.users-post= p.block
-            %td.users-post #{time_ago_in_words p.created_at}
+  .col-sm-12
+    - @homepage.users_posts(5).each do |p|
+      = template_for(p)

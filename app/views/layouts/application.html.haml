@@ -16,8 +16,8 @@
     = csrf_meta_tags
 
   %body
-    .hidden-xs= render 'shared/navbar'
     .hidden-xs= yield :top_partner if content_for?(:top_partner)
+    .hidden-xs= render 'shared/navbar'
     .hidden-xs
       %br/
     .visible-xs= render 'shared/mobile_navbar'
