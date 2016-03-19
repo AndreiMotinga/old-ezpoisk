@@ -11,6 +11,8 @@ Rails.application.routes.draw do
       put "subscribe", to: "questions#subscribe"
       put "unsubscribe", to: "questions#unsubscribe"
     end
+
+    resources :answers, only: [:new, :edit]
   end
   resources :search_suggestions, only: [:index]
 

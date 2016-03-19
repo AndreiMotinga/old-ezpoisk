@@ -1,0 +1,19 @@
+- content_for :secondary_navbar do
+  .hidden-xs
+    = render "questions/navbar"
+
+.visible-xs
+  .row
+    .col-xs-3
+      = link_to '<', :back, class: "mobile-btn mobile-back-btn"
+
+.hidden-xs
+  .row
+    = link_to :back do
+      %span.glyphicon.glyphicon-triangle-left
+      %button.btn.btn-primary Назад
+
+%br/
+.row
+  .col-xs-12.col-md-8
+    = render "form"

@@ -2,15 +2,22 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_answer, only: [:update, :destroy]
 
+  def new
+    @answer = Question.find(params[:question_id]).answers.new
+  end
+
   def create
     @answer = Answer.new(answer_params)
-    @answer.user_id = current_user.try(:id) || 4 # anonymous user (ex 'yandex')
 
     if @answer.save
       run_backgound_jobs
       @answer.question.increment!(:answers_count)
       redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)
     end
+  end
+
+  def edit
+    @answer = Answer.find(params[:id])
   end
 
   def update
