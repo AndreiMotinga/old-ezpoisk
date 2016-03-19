@@ -4,7 +4,7 @@ class IncreaseImpressionsCountJob
   def perform(id, model)
     return unless Rails.env.production?
     post = model.constantize.find(id)
-    return unless post.active
+    return unless post.try(:active)
     post.increment!(:impressions_count)
   end
 end
