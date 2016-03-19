@@ -46,11 +46,6 @@ class Question < ActiveRecord::Base
     text
   end
 
-  # todo get rid of it
-  def link
-    "ezanswer/#{id}"
-  end
-
   def avatar
     return the_answer.user.avatar.url(:thumb) if the_answer.try(:user)
   end
@@ -61,9 +56,5 @@ class Question < ActiveRecord::Base
 
   def userslug
     return the_answer.user.slug if the_answer.try(:slug)
-  end
-
-  def can_be_edited_by?(current_user)
-    user == current_user || current_user.try(:admin?)
   end
 end

@@ -8,12 +8,4 @@ class Answer < ActiveRecord::Base
   def score
     get_upvotes.size - get_downvotes.size
   end
-
-  def link
-    "ezanswer/#{question_id}"
-  end
-
-  def can_be_edited_by?(current_user)
-    user == current_user || current_user.try(:admin?)
-  end
 end

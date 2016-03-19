@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:update, :destroy]
+  before_action :authenticate_user!
   before_action :set_answer, only: [:update, :destroy]
 
   def create

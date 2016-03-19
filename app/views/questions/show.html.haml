@@ -15,45 +15,26 @@
     / question
     .row
       .col-xs-12.question
-        / line 1 title & edit
-        %h1.question-title
-          = @question.title
-          - if @question.can_be_edited_by?(current_user)
-            %i.fa.fa-cog.pull-right{"data-content": "#{render "questions/edit_link"}", "data-toggle": "popover", "data-placement": "left", role: "button", tabindex: "0"}
-
-        / line 2 question text
-        - if @question.text.present?
-          %p.text= sanitize @question.text
+        %h1.question-title= @question.title
+        %p.text= sanitize @question.text if @question.text.present?
 
         / answer button/links
-        %a.text.text-muted.qa-links{"aria-controls": "collapseExample", "aria-expanded": "false", id: "to_answer",
-          "data-toggle": "collapse", href: "#collapseExample", role: "button"}
-          Ответить
-        %a.text.text-muted.qa-links{href: "#comments", "aria-expanded": "false", "data-toggle": "collapse"}
-          коментарии
-
+        = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
         = subscription_links
+        - if current_user == @question.user
+          = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links"
 
         %br/
         %br/
         .q-social
           = render "shared/social", url: question_url(@question), count: @question.impressions_count
 
-        / collapsed answer
-        #collapseExample.collapse
-          %br/
-          = bootstrap_form_for Answer.new do |f|
-            = hidden_field_tag 'answer[question_id]', @question.id
-            .field= f.text_area :text, hide_label: true, class: "summernote"
-            .actions= f.submit 'Сохранить', class: 'btn btn-success btn-block'
-
         / collapsed comments
         #comments.collapse
           .fb-comments{"data-href" => question_url(@question), "data-numposts" => "5"}
 
         %hr#lenta/
-        %p
-          = tag_links(@question)
+        %p= tag_links(@question)
 
     %br/
 
@@ -63,12 +44,8 @@
         = render @question.answers.includes(:user).by_score
 
     %br/
-    .row
-      .col-xs-12
-        = render "shared/social", url: question_url(@question), count: @question.impressions_count
-
   / partners
-  .hidden-xs.hidden-sm.col-md-4
+  .hidden-xs.col-md-4
     .text-center
       %a.btn.btn-lg.btn-warning.btn-ez{"aria-controls" => "collapseExample", "aria-expanded" => "false",
         "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}

@@ -7,22 +7,13 @@
         = image_tag answer.user.avatar.url(:thumb), alt: answer.user.name, class: "img-responsive img-circle center-block"
       .col-xs-12.col-sm-11
         %h3.text-muted.question-author
-          - if answer.can_be_edited_by?(current_user)
-            %i.fa.fa-cog.fa-lg.pull-right{"data-content" => "#{render 'questions/edit_answer', answer: answer}",
-              "data-toggle" => "popover", "data-trigger" => "focus", :role => "button", :tabindex => "0", "data-placement" => "left"}
           = answer_name(answer)
           = ", #{answer.user.slug}" if answer.user.slug.present?
         %p #{answer.impressions_count} просмотров
-
-    / edit form
-    - if answer.can_be_edited_by?(current_user)
-      .col-xs-12
-        .collapse{id: "editAnswer-#{answer.id}"}
-          %br/
-          = bootstrap_form_for answer do |f|
-            = hidden_field_tag 'answer[question_id]', @question.id
-            .field= f.text_area :text, hide_label: true, class: "summernote"
-            .actions= f.submit 'Сохранить', class: 'btn btn-block btn-success'
+        - if answer.user == current_user
+          %p
+            = link_to "редактировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
+            = link_to 'удалить', answer_path(answer), class: "text text-muted qa-links", method: :delete, data: { confirm: I18n.t(:confirm) }
 
     %br/
     / answer text
@@ -34,7 +25,9 @@
 
     .col-xs-12
       / voting_links
-      = render "answers/links", answer: answer
+      = current_user.voted_for?(answer) ? voted_answer_btn(answer) : upvote_answer_btn(answer)
+      = link_to "Downvote", downvote_answer_path(answer), method: :put, remote: true, class: "text text-muted qa-links"
+      = link_to "Коментарии", "#answer-comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
 
       / comments
       #answer-comments.collapse

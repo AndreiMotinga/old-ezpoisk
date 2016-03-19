@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   impressionist actions: [:show]
-  before_action :authenticate_user!, only: [:new, :create, :edit]
+  before_action :authenticate_user!, except: [:index]
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
