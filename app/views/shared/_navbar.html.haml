@@ -15,12 +15,12 @@
 
       %ul.nav.navbar-nav.navbar-left
         %li= link_to 'О компании', main_app.about_path
+        %li= link_to 'Ответы', main_app.questions_path
+        %li= link_to t(:news), main_app.news_index_path
+        -# %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
+
       / right links
       %ul.nav.navbar-nav.navbar-right
-
-        / answers
-        %li= link_to 'Ответы', main_app.questions_path
-        / answers
 
         /ezrealty
         %li.dropdown
@@ -74,40 +74,19 @@
         -#       %li= link_to category, main_app.sales_path(category: category)
         -# / sale
 
-        / news
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
-                             "data-toggle" => "dropdown", :role => "button"}
-            Новости
-            %span.caret
-          %ul.dropdown-menu
-
-            %li= link_to t(:news), main_app.news_index_path
-            %li= link_to "Гороскопы", main_app.horoscopes_path(title: "БЛИЗНЕЦЫ")
-        / news
 
         / dashboard
-        %li.dropdown
-          %a.dropdown-toggle{ "aria-expanded" => "false",
-                              "aria-haspopup" => "true",
-                              "data-toggle" => "dropdown",
-                              :href => "#",
-                              :role => "button" }
-            - if user_signed_in?
-              %strong= current_user.email
-            - else
-              = t(:dashboard)
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{ "data-target" => "#new", "data-toggle" => "modal", :role => "button" }
-                Новое объявление
-            %li= link_to "Панель управления", main_app.dashboard_path
-            %li.divider{:role => "separator"}
-            - if user_signed_in?
+        - if !user_signed_in?
+          %li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"
+        - else
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded": "false", "aria-haspopup": "true", "data-toggle": "dropdown", href: "#", role: "button"}
+              Аккаунт
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to "Панель управления", main_app.dashboard_path
+              %li.divider{role: "separator"}
               %li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
-            - else
-              %li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"
 
         / dashboard
       / right links
