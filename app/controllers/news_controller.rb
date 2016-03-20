@@ -13,8 +13,10 @@ class NewsController < ApplicationController
   end
 
   def show
-    @side_posts = Post.by_category(@post.category).desc.with_logo.limit(17)
-    IncreaseImpressionsCountJob.perform_async(@post.id, "Post")
+    if @post
+      @side_posts = Post.by_category(@post.category).desc.with_logo.limit(17)
+      impressionist @post
+    end
   end
 
   def edit
@@ -38,10 +40,12 @@ class NewsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text, :category, :interesting, :link,
-      :description, :video_url, :main, :show_on_homepage, :image_remote_url)
+      :description, :video_url, :main, :show_on_homepage, :image_remote_url,
+      :user_id)
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by_id(params[:id])
+    redirect_to news_index_path, alert: I18n.t(:news_post_not_found) unless @post
   end
 end

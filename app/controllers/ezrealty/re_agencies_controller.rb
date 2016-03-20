@@ -7,6 +7,6 @@ class Ezrealty::ReAgenciesController < ApplicationController
 
   def show
     @re_agency = get_record(ReAgency, params[:id], ezrealty_re_agencies_path)
-    IncreaseImpressionsCountJob.perform_async(params[:id], "ReAgency")
+    impressionist @re_agency if @re_agency.try(:active)
   end
 end

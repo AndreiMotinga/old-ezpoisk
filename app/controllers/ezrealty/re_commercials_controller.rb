@@ -7,7 +7,7 @@ class Ezrealty::ReCommercialsController < ApplicationController
     @re_commercial = get_record(ReCommercial,
                                 params[:id],
                                 ezrealty_re_commercials_path)
-    IncreaseImpressionsCountJob.perform_async(params[:id], "ReCommercial")
+    impressionist @re_commercial if @re_commercial.try(:active)
   end
 
   private

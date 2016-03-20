@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  is_impressionable :counter_cache => true
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates_uniqueness_of :title
   validates :category, presence: true

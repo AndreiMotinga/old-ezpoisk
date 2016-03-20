@@ -3,13 +3,17 @@ class NewsCleanerJob
   include Sidetiq::Schedulable
 
   recurrence do
-    # temp remove
-    # daily.hour_of_day([1])
+    temp remove
+    daily.hour_of_day([1])
   end
 
   def perform
-    return if Rails.env.development?
-    posts = Post.where("created_at < ?", 3.weeks.ago)
+    return unless Rails.env.production?
+    posts = User.find(4).posts
+      .where("created_at < ?", 1.week.ago)
+      .where(show_on_homepage: nil)
+      .where(main: nil)
+      .where(interesting: nil)
     Ez.ping("DESTROYING  #{posts.count} news posts")
     posts.destroy_all
   end

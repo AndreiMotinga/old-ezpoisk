@@ -1,4 +1,5 @@
 = bootstrap_form_for(@post, url: url) do |f|
+  = hidden_field_tag 'post[user_id]', current_user.id
   - if @post.errors.any?
     #error_explanation
       %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"

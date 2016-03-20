@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  include Rails.application.routes.url_helpers
+  is_impressionable :counter_cache => true
   acts_as_mappable
   include Filterable
   include ViewHelpers

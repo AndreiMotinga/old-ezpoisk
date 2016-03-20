@@ -8,6 +8,6 @@ class ServicesController < ApplicationController
 
   def show
     @service = get_record(Service, params[:id], services_path)
-    IncreaseImpressionsCountJob.perform_async(params[:id], "Service")
+    impressionist @service if @service.try(:active)
   end
 end

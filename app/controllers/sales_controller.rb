@@ -11,6 +11,6 @@ class SalesController < ApplicationController
 
   def show
     @sale = get_record(Sale, params[:id], sales_path)
-    IncreaseImpressionsCountJob.perform_async(params[:id], "Sale")
+    impressionist @sale if @sale.try(:active)
   end
 end
