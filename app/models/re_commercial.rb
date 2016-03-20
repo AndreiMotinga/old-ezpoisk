@@ -20,13 +20,4 @@ class ReCommercial < ActiveRecord::Base
   def title
     street
   end
-
-  def logo_url(style = :medium)
-    logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
-  end
-
-  # todo remove?
-  def email
-    user.email
-  end
 end

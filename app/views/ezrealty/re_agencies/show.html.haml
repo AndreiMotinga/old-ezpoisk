@@ -5,7 +5,7 @@
   %meta{property: "og:type", content: "business.business"}/
   %meta{property: "og:url", content: ezrealty_re_agency_url(@re_agency) }/
   %meta{property: "og:title", content: @re_agency.title}/
-  %meta{property: "og:image", content: @re_agency.logo_url}/
+  %meta{property: "og:image", content: @re_agency.logo.url(:medium)}/
   %meta{property: "og:description", content: @re_agency.description}/
   %meta{property: "place:location:latitude", content: @re_agency.lat}/
   %meta{property: "place:location:longitude", content: @re_agency.lng}/

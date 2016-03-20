@@ -22,8 +22,4 @@ class Service < ActiveRecord::Base
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
-
-  def logo_url(style = :medium)
-    logo.url(style)
-  end
 end

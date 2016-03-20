@@ -38,7 +38,7 @@ module ApplicationHelper
     end
   end
 
-  # todo: remove?
+  # todo-question: cant' remove because of vk
   def async_js?
     params[:controller] == "home" ? "" : false
   end

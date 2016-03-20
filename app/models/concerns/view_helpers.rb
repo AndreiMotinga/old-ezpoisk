@@ -5,6 +5,10 @@ module ViewHelpers
     pictures.find_by_logo(true)
   end
 
+  def logo_url(style = :medium)
+    logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
+  end
+
   def address
     if street.present?
       "#{street} #{city.name} #{state.name}, #{zip}"

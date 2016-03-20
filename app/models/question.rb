@@ -36,7 +36,6 @@ class Question < ActiveRecord::Base
       .map { |key| "%#{key.mb_chars.downcase}%" }
   end
 
-  # todo remove as not needed?
   def the_answer
     answers.last
   end

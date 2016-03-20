@@ -21,9 +21,4 @@ class Job < ActiveRecord::Base
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
-
-  # todo remove this to?
-  def logo_url(style = :medium)
-    logo.url(style)
-  end
 end

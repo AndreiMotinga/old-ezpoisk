@@ -21,8 +21,4 @@ class ReAgency < ActiveRecord::Base
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
-
-  def logo_url(style = :medium)
-    logo.url(style)
-  end
 end

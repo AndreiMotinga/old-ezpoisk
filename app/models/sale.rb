@@ -15,8 +15,4 @@ class Sale < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
   has_many :pictures, as: :imageable, dependent: :destroy
-
-  def logo_url(style = :medium)
-    logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
-  end
 end

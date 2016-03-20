@@ -5,7 +5,7 @@
   %meta{property: "og:type", content: "business.business"}/
   %meta{property: "og:url", content: ezrealty_re_finance_url(@re_finance) }/
   %meta{property: "og:title", content: @re_finance.title}/
-  %meta{property: "og:image", content: @re_finance.logo_url}/
+  %meta{property: "og:image", content: @re_finance.logo.url(:medium)}/
   %meta{property: "og:description", content: @re_finance.description}/
   %meta{property: "place:location:latitude", content: @re_finance.lat}/
   %meta{property: "place:location:longitude", content: @re_finance.lng}/
