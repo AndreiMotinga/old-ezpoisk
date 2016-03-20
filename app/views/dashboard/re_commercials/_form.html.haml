@@ -29,10 +29,6 @@
   .field
     = f.check_box :active, label: "Активно *"
 
-  .field
-    / TODO-question: move Rails.env to tests/ remove captcha?
-    - if @re_commercial.new_record? && !Rails.env.test?
-      = recaptcha_tags
   %br/
   .hidden-xs
     .actions

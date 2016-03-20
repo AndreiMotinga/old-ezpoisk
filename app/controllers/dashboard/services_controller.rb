@@ -16,7 +16,7 @@ class Dashboard::ServicesController < ApplicationController
   def create
     @service = current_user.services.build(service_params)
 
-    if verify_recaptcha && @service.save
+    if @service.save
       SlackNotifierJob.perform_async(@service.id, "Service")
       AdminMailerJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")

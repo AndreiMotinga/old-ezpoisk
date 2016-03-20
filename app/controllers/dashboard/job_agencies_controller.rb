@@ -16,7 +16,7 @@ class Dashboard::JobAgenciesController < ApplicationController
   def create
     @job_agency = current_user.job_agencies.build(job_agency_params)
 
-    if verify_recaptcha && @job_agency.save
+    if @job_agency.save
       SlackNotifierJob.perform_async(@job_agency.id, "JobAgency" )
       AdminMailerJob.perform_async(@job_agency.id, "JobAgency")
       GeocodeJob.perform_async(@job_agency.id, "JobAgency")

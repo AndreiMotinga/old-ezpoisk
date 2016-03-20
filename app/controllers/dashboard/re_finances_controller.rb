@@ -16,7 +16,7 @@ class Dashboard::ReFinancesController < ApplicationController
   def create
     @re_finance = current_user.re_finances.build(re_finance_params)
 
-    if verify_recaptcha && @re_finance.save
+    if @re_finance.save
       SlackNotifierJob.perform_async(@re_finance.id, "ReFinance")
       AdminMailerJob.perform_async(@re_finance.id, "ReFinance")
       GeocodeJob.perform_async(@re_finance.id, "ReFinance")
