@@ -3,6 +3,6 @@ class IncreaseAnswersCountsJob
 
   def perform(id)
     return if Rails.env.test?
-    Question.find(id).answers.each { |a| a.increment!(:impressions_count) }
+    Question.find(id).answers.find_each { |a| impressionist a }
   end
 end

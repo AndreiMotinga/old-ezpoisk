@@ -19,6 +19,7 @@
         %p.text= sanitize @question.text if @question.text.present?
 
         / answer button/links
+        = link_to "ответить", new_question_answer_path(@question), class: "text text-muted qa-links"
         = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
         = subscription_links
         - if current_user == @question.user

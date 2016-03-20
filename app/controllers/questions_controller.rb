@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @side_questions = Question.tagged_with(@question.tag_list).limit(30)
-    @question.answers.find_each{ |a| impressionist(a) }
+    IncreaseAnswersCountsJob.perform_async(@question.id)
   end
 
   def new

@@ -11,11 +11,8 @@ Rails.application.routes.draw do
       put "subscribe", to: "questions#subscribe"
       put "unsubscribe", to: "questions#unsubscribe"
     end
-
     resources :answers, only: [:new, :edit]
   end
-  resources :search_suggestions, only: [:index]
-
   resources :answers, only: [:create, :update, :destroy] do
     member do
       put "upvote", to: "answers#upvote"
@@ -24,6 +21,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :search_suggestions, only: [:index]
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
   get "update_cities", to: "cities#update_cities"
