@@ -22,14 +22,6 @@ class ReFinance < ActiveRecord::Base
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
-  def link
-    ezrealty_re_finance_path(self)
-  end
-
-  def block
-    "Недвижимости"
-  end
-
   def logo_url(style = :medium)
     logo.url(style)
   end

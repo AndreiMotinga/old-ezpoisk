@@ -23,14 +23,6 @@ class Service < ActiveRecord::Base
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :logo, matches: [/png\Z/, /jpe?g\Z/]
 
-  def link
-    "ezservice/#{id}"
-  end
-
-  def block
-    "Услуги"
-  end
-
   def logo_url(style = :medium)
     logo.url(style)
   end

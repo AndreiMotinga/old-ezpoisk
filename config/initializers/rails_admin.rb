@@ -29,8 +29,29 @@ RailsAdmin.config do |config|
   end
 
   config.model "Question" do
+    include_all_fields
     configure :tag_list  do
       partial 'tag_list_with_autocomplete'
+    end
+    edit do
+      field :text do
+        render do
+          bindings[:view].render partial: "text",
+            locals: { field: self, form: bindings[:form] }
+        end
+      end
+    end
+  end
+
+  config.model "Answer" do
+    include_all_fields
+    edit do
+      field :text do
+        render do
+          bindings[:view].render partial: "text",
+            locals: { field: self, form: bindings[:form] }
+        end
+      end
     end
   end
 end

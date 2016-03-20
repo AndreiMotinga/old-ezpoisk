@@ -16,14 +16,6 @@ class Sale < ActiveRecord::Base
   belongs_to :user
   has_many :pictures, as: :imageable, dependent: :destroy
 
-  def link
-    "ezsale/#{id}"
-  end
-
-  def block
-    "Продается"
-  end
-
   def logo_url(style = :medium)
     logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
   end

@@ -23,14 +23,6 @@ class RePrivate < ActiveRecord::Base
     street
   end
 
-  def link
-    "ezrealty/private/#{id}"
-  end
-
-  def block
-    "Недвижимость"
-  end
-
   def logo_url(style = :medium)
     logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
   end

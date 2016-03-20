@@ -3,7 +3,7 @@
   .social-share
     %ul.list-unstyled.list-inline
       %li.fb
-        .fb-share-button{"data-action": "like", "data-href": url, "data-layout": "button_count", "data-show-faces": "true"}
+        .fb-share-button{"data-action": "like", "data-href": request.original_url, "data-layout": "button_count", "data-show-faces": "true"}
       %li.vk
         %a.vk
       %li.my-g-plus
@@ -23,7 +23,7 @@
         .modal-body
           %ul.list-unstyled.social-share-mobile
             %li.fb
-              .fb-share-button{"data-action": "like", "data-href": url, "data-layout": "button_count", "data-show-faces": "true"}
+              .fb-share-button{"data-action": "like", "data-href": request.original_url, "data-layout": "button_count", "data-show-faces": "true"}
             %li.vk
               %a.vk
             %li.my-g-plus
