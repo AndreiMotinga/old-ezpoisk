@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  # conflict RailsAdmin and Impressionist
+  include Impressionist::IsImpressionable
   is_impressionable :counter_cache => true
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates_uniqueness_of :title
