@@ -38,8 +38,9 @@
   .hidden-xs.col-sm-12.col-md-8
     = render 'shared/show/map', record: @re_private
   .col-xs-12.col-md-4
-    %li.list-group-item
-      Продолжительность: #{@re_private.duration}
+    - if @re_private.duration.present?
+      %li.list-group-item
+        Продолжительность: #{@re_private.duration}
     %li.list-group-item
       Тип обьявления: #{@re_private.post_type}
     %li.list-group-item

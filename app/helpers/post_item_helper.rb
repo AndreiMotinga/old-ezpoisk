@@ -22,7 +22,8 @@ module PostItemHelper
 
   def path_for_service(record)
     if params[:controller] == "services" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       service_path(record)
     else
       edit_dashboard_service_path(record)
@@ -31,7 +32,8 @@ module PostItemHelper
 
   def path_for_sale(record)
     if params[:controller] == "sales" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       sale_path(record)
     else
       edit_dashboard_sale_path(record)
@@ -40,7 +42,8 @@ module PostItemHelper
 
   def path_for_re_commercial(record)
     if params[:controller] == "ezrealty/re_commercials" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       ezrealty_re_commercial_path(record)
     else
       edit_dashboard_re_commercial_path(record)
@@ -49,7 +52,8 @@ module PostItemHelper
 
   def path_for_re_private(record)
     if params[:controller] == "ezrealty/re_privates" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       ezrealty_re_private_path(record)
     else
       edit_dashboard_re_private_path(record)
@@ -58,7 +62,8 @@ module PostItemHelper
 
   def path_for_re_agency(record)
     if params[:controller] == "ezrealty/re_agencies" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       ezrealty_re_agency_path(record)
     else
       edit_dashboard_re_agency_path(record)
@@ -67,7 +72,8 @@ module PostItemHelper
 
   def path_for_re_finance(record)
     if params[:controller] == "ezrealty/re_finances" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       ezrealty_re_finance_path(record)
     else
       edit_dashboard_re_finance_path(record)
@@ -76,7 +82,8 @@ module PostItemHelper
 
   def path_for_job_agency(record)
     if params[:controller] == "ezjob/job_agencies" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       ezjob_job_agency_path(record)
     else
       edit_dashboard_job_agency_path(record)
@@ -85,7 +92,8 @@ module PostItemHelper
 
   def path_for_job(record)
     if params[:controller] == "ezjob/jobs" ||
-       params[:controller] == "dashboard/favorites"
+       params[:controller] == "dashboard/favorites" ||
+       params[:controller] == "home"
       ezjob_job_path(record)
     else
       edit_dashboard_job_path(record)
