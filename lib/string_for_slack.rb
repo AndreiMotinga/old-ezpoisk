@@ -75,6 +75,10 @@ class StringForSlack
       string = service_path(record)
     when "Sale"
       string = sale_path(record)
+    when "Question"
+      string = question_path(record)
+    when "Answer"
+      string = question_path(record.question)
     end
     string
   end
