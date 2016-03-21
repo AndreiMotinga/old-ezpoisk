@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  $(".summernote-lg").summernote({ height: 400 });
+
   $(".news-summernote").summernote({
     height: 400
   });

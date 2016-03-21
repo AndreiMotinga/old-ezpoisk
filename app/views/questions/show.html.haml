@@ -42,6 +42,7 @@
     / ANSWERS
     .row
       .col-xs-12
+        = render "questions/no_answers_message" if @question.answers.empty?
         = render @question.answers.includes(:user).by_score
 
     %br/
