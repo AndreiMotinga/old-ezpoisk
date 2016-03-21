@@ -1,4 +1,5 @@
 class StringForSlack
+  include Rails.application.routes.url_helpers
   attr_accessor :string
 
   def initialize(record)
@@ -44,13 +45,37 @@ class StringForSlack
   def post_string(record)
     string = "Регистрация нового  #{record.class.to_s}\n"
     string += "id         #{record.id}\n"
-    string += "url        www.ezpoisk.com/#{record.try(:link)}\n"
+    string += "url        www.ezpoisk.com/#{link(record)}\n"
     string += "title     #{record.title}\n" if record.try(:title)
     string += "category   #{record.category}\n" if record.try(:category)
     string += "text   #{record.body}\n" if record.try(:body)
     string += "\n"
     string += "Всего: #{record.class.count}\n"
     string += "==========================================================="
+    string
+  end
+
+  private
+
+  def link(record)
+    case record.class.to_s
+    when "ReAgency"
+      string = ezrealty_re_agency_path(record)
+    when "ReFinance"
+      string = ezrealty_re_finance_path(record)
+    when "RePrivate"
+      string = ezrealty_re_private_path(record)
+    when "ReCommercial"
+      string = ezrealty_re_commercial_path(record)
+    when "JobAgency"
+      string = ezjob_job_agency_path(record)
+    when "Job"
+      string = ezjob_job_path(record)
+    when "Service"
+      string = service_path(record)
+    when "Sale"
+      string = sale_path(record)
+    end
     string
   end
 end
