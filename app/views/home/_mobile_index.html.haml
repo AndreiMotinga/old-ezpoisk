@@ -18,8 +18,8 @@
         %ul.list-group
           = link_to ezrealty_re_agencies_path, class: "mobile-link" do
             %li.list-group-item Агентства недвижимости
-          = link_to ezrealty_re_finances_path, class: "mobile-link" do
-            %li.list-group-item Финансирование
+          -# = link_to ezrealty_re_finances_path, class: "mobile-link" do
+          -#   %li.list-group-item Финансирование
           = link_to ezrealty_re_privates_path, class: "mobile-link" do
             %li.list-group-item Частная недвижимость
           = link_to ezrealty_re_commercials_path, class: "mobile-link" do
@@ -46,6 +46,13 @@
             %li.list-group-item.mobile-link Мои объявления
           = link_to dashboard_favorites_path do
             %li.list-group-item.mobile-link Избранное
+
+        %ul.list-group
+          = link_to "#new" do
+            %li.list-group-item.mobile-link Подать объявление
+          -# reklama
+          -# = link_to dashboard_partners_path do
+          -#   %li.list-group-item.mobile-link Реклама
           = link_to edit_user_registration_path do
             %li.list-group-item.mobile-link Личные данные
 

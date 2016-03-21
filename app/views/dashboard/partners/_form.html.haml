@@ -1,0 +1,39 @@
+= bootstrap_form_for([:dashboard, @partner]) do |f|
+  / details
+  .field
+    = f.text_field :title, label: '* Название'
+
+  .field
+  = f.text_field :link, label: "Ссылка"
+
+  .field
+  = f.text_field :budget, label: "Баланс"
+
+  .field
+  = f.text_field :bid, label: "Максимальная цена/показ ( в центах )"
+
+  .field
+    = f.select :position, [["Вверху", :top], ["Внизу", :bottom], ["Сбоку", :side]], label: "Позиция"
+
+
+  .field
+    = f.file_field :image, label: "Картинка (Максимальный размер 1 Мб)"
+
+  .field
+    = f.collection_check_boxes :page_ids, Page.all, :id, :title, label: "Страницы" do |b|
+      = b.check_box
+
+  .field
+    = f.check_box :active, label: "Активно *"
+
+  %br/
+  .actions
+    = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
+
+-# - unless @re_agency.new_record?
+-#   %br/
+-#   = link_to 'Удалить',
+-#             dashboard_re_agency_path(@re_agency),
+-#             method: :delete,
+-#             data: { confirm: I18n.t(:confirm) },
+-#             class: "btn btn-block mobile-btn btn-danger"

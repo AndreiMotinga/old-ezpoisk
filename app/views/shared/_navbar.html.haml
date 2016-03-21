@@ -25,13 +25,12 @@
 
         /ezrealty
         %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true",
-                             "data-toggle" => "dropdown", :role => "button"}
+          %a.dropdown-toggle{"aria-expanded": "false", "aria-haspopup": "true", "data-toggle": "dropdown", role: "button"}
             = t(:ezrealty)
             %span.caret
           %ul.dropdown-menu
             %li= link_to t(:agencies), main_app.ezrealty_re_agencies_path
-            %li= link_to "Финансирование", main_app.ezrealty_re_finances_path
+            -# %li= link_to "Финансирование", main_app.ezrealty_re_finances_path
             %li= link_to t(:private), main_app.ezrealty_re_privates_path
             %li= link_to t(:commercial), main_app.ezrealty_re_commercials_path
         / ezrealty

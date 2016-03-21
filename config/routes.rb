@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     resources :pictures, only: [:index, :create, :update, :destroy]
 
     resources :favorites, only: [:index]
+    resources :partners
   end
 
   resources :news, only: [:index, :show], path: :eznews

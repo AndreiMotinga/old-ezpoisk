@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
 
   has_many :favorites
   has_many :subscriptions
+  has_many :partners
 
   validates :email, presence: true, uniqueness: true
 

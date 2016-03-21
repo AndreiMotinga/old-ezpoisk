@@ -11,33 +11,9 @@
 - content_for :secondary_navbar do
   = render "ezrealty/navbar"
 
-.row.show
-  .col-xs-12.col-md-7.white-block
-    %ul.pgwSlideshow.pictures
-      - @re_private.pictures.each do |pic|
-        %li
-          = link_to pic.image.url do
-            = image_tag pic.image.url(:large), alt: ""
-  /images
-
-  .col-xs-12.col-md-5
-    .visible-xs
-      %hr.black-line/
-    = render "shared/show/contacts", record: @re_private
-  / right block
-
-%hr.black-line/
-
-.row
-  .col-xs-12.col-md-8
-    = render "dashboard/re_privates/re_private", record: @re_private
-
-%hr.black-line/
-
-.row
-  .hidden-xs.col-sm-12.col-md-8
-    = render 'shared/show/map', record: @re_private
-  .col-xs-12.col-md-4
+- content_for :side do
+  = render "shared/show/contacts", record: @re_private
+  .col-xs-12
     - if @re_private.duration.present?
       %li.list-group-item
         Продолжительность: #{@re_private.duration}
@@ -56,10 +32,30 @@
     %li.list-group-item
       Подано: #{time_ago_in_words @re_private.created_at} назад
 
-%hr.black-line/
+.row.show
+  .white-block
+    %ul.pgwSlideshow.pictures
+      - @re_private.pictures.each do |pic|
+        %li
+          = link_to pic.image.url do
+            = image_tag pic.image.url(:large), alt: ""
+  /images
+
+.row
+  %hr.black-line/
+
+.row
+  .col-xs-12
+    = render "dashboard/re_privates/re_private", record: @re_private
+
+.row
+  %hr.black-line/
+
+.row
+  = render 'shared/show/map', record: @re_private
 
 - if @re_private.description.present?
   .row
-    .hidden-xs.col-sm-12
-      .white-block
-        = sanitize @re_private.description
+    .white-block
+      = sanitize @re_private.description
+    %hr.black-line/

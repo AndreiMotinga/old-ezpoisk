@@ -33,6 +33,10 @@ RSpec.configure do |config|
     Warden.test_mode!
   end
 
+  Capybara::Webkit.configure do |config|
+    config.block_unknown_urls
+  end
+
   config.before(:each) do
     DatabaseCleaner.strategy = :transaction
   end

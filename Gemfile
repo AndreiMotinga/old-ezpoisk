@@ -84,7 +84,7 @@ end
 group :development do
   gem "quiet_assets"
   gem "bullet"
-  gem "better_errors"
+  # gem "better_errors"
   gem "meta_request"
   gem "spring-commands-rspec"
   gem "spring"

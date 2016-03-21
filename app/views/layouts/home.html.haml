@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    = content_for?(:head) ? yield(:head) : ''
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title= yield(:title)
+    %meta{:charset => "UTF-8"}/
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    %meta{ name: "description", content: "#{yield(:description)}"}
+
+    = favicon_link_tag "favicon"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application", async: async_js?
+    = csrf_meta_tags
+
+  %body
+    = yield :partners_top if content_for?(:partners_top)
+    .hidden-xs= render 'shared/navbar'
+    .hidden-xs
+      %br/
+    .visible-xs= render 'shared/mobile_navbar'
+
+    / CONTENT
+    .container
+      .row
+        = yield :secondary_navbar if content_for?(:secondary_navbar)
+        .notice= render 'shared/notice' unless devise_controller?
+      = yield
+      %br/
+      = yield :partners_bottom if content_for?(:partners_bottom)
+    / CONTENT
+
+    .hidden-xs= render 'shared/footer'
+
+    / MODALS & services
+    = render "shared/new_post_modal"
+    = render "shared/new_session_modal"
+    = render "shared/services"

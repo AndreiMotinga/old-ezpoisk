@@ -6,6 +6,7 @@
   %meta{property: "og:url", content: ezjob_job_agency_url(@job_agency) }/
   %meta{property: "og:title", content: @job_agency.title}/
   %meta{property: "og:image", content: @job_agency.logo.url(:medium)}/
+  -# todo strip all such descriptions
   %meta{property: "og:description", content: @job_agency.description}/
   %meta{property: "place:location:latitude", content: @job_agency.lat}/
   %meta{property: "place:location:longitude", content: @job_agency.lng}/

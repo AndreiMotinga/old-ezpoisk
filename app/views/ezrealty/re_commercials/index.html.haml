@@ -4,22 +4,18 @@
   = render "ezrealty/navbar"
 = render 'ezrealty/re_commercials/search_modal'
 
-.col-md-8
-  / total
-  .row
-    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    -# %h4.pull-right
-    -#   %span= "Всего #{@re_commercials.total_count}"
-    = render 'ezrealty/re_commercials/search_modal_trigger'
-    %br/
-    .hidden-xs= render "shared/search_params"
-  %br/
-  / /total
+.row.search
+  .visible-xs.col-xs-3
+    = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+  -# %h4.pull-right
+  -#   %span= "Всего #{@re_commercials.total_count}"
+  = render 'ezrealty/re_commercials/search_modal_trigger'
+  .hidden-xs= render "shared/search_params"
 
-  .row
-    .col-xs-12
-      - @re_commercials.each do |record|
-        = render "dashboard/re_commercials/re_commercial", record: record
+.row
+  .col-xs-12
+    - @re_commercials.each do |record|
+      = render "dashboard/re_commercials/re_commercial", record: record
 
-    .col-xs-12
-      = render "shared/pagination", records: @re_commercials
+  .col-xs-12
+    = render "shared/pagination", records: @re_commercials

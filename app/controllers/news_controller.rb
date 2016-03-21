@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  layout "home"
   before_action :set_post, only: [:edit, :show, :update, :destroy]
 
   def index

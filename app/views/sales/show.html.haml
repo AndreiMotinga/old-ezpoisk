@@ -10,34 +10,9 @@
 
 - content_for :secondary_navbar do
   = render "sales/navbar"
-
-.row.show
-  .col-xs-12.col-md-7
-    %ul.pgwSlideshow
-      - @sale.pictures.each do |pic|
-        %li
-          = link_to pic.image.url do
-            = image_tag pic.image.url(:large), alt: ""
-  /images
-
-  .col-xs-12.col-md-5
-    .visible-xs
-      %hr.black-line/
-    = render "shared/show/contacts", record: @sale
-  / right block
-
-%hr.black-line/
-
-.row
-  .col-xs-12.col-md-8
-    = render "dashboard/sales/sale", record: @sale
-
-%hr.black-line/
-
-.row
-  .hidden-xs.col-sm-12.col-md-8
-    = render 'shared/show/map', record: @sale
-  .col-xs-12.col-md-4
+- content_for :side do
+  = render "shared/show/contacts", record: @sale
+  .col-xs-12
     %li.list-group-item
       Цена: #{@sale.price}
     %li.list-group-item
@@ -45,10 +20,24 @@
     %li.list-group-item
       Подано: #{time_ago_in_words @sale.created_at} назад
 
-%hr.black-line/
+.row.show
+  .white-block
+    %ul.pgwSlideshow
+      - @sale.pictures.each do |pic|
+        %li
+          = link_to pic.image.url do
+            = image_tag pic.image.url(:large), alt: ""
+.row
+  %hr.black-line/
+.row
+  .col-xs-12
+    = render "dashboard/sales/sale", record: @sale
+
+.row
+  = render 'shared/show/map', record: @sale
 
 - if @sale.description.present?
   .row
-    .hidden-xs.col-sm-12
-      .white-block
-        = sanitize @sale.description
+    .white-block
+      = sanitize @sale.description
+    %hr.black-line/

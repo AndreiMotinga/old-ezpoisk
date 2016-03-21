@@ -1,22 +1,18 @@
 = title("Агентства Недвижимости в США, где говорят по-русски - ezpoisk")
 = desc("EZPOISK - Русские Агентства Недвижимости в США, помощь в поиске недвижимости в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами")
-
+= render 'ezrealty/re_agencies/search_modal'
 - content_for :secondary_navbar do
   = render "ezrealty/navbar"
-= render 'ezrealty/re_agencies/search_modal'
 
-.col-md-8
-  .row
-    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    = render 'ezrealty/re_agencies/search_modal_trigger'
-    %br/
-    .hidden-xs= render "shared/search_params"
-  %br/
+.row.search
+  .visible-xs.col-xs-3
+    = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+  = render 'ezrealty/re_agencies/search_modal_trigger'
+  .hidden-xs= render "shared/search_params"
 
-  .row
+.row
+  .col-xs-12
     - @re_agencies.each do |re_agency|
-      .col-xs-12
-        = render 'dashboard/shared/company', record: re_agency
-
-    .col-xs-12
-      = render "shared/pagination", records: @re_agencies
+      = render 'dashboard/shared/company', record: re_agency
+  .col-xs-12
+    = render "shared/pagination", records: @re_agencies

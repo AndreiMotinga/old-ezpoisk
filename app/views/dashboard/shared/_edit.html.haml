@@ -5,49 +5,48 @@
     = link_to dashboard_path, class: "mobile-btn mobile-back-btn" do
       %i.fa.fa-arrow-left
       Назад
-= render template, record: record
+= template_for(record)
 %br/
 
 .row
-  .col-xs-12
-    / Nav tabs
-    %ul.nav.nav-tabs{:role => "tablist"}
-      %li.active{:role => "presentation"}
-        %a{ "aria-controls" => "form",
-            "data-toggle" => "tab",
-            :href => "#form",
-            :role => "tab" }
-          Детали
-      %li{ :role => "presentation" }
-        %a{ "aria-controls" => "messages",
-            "data-toggle" => "tab",
-            :href => "#description",
-            :role => "tab" }
-          Описание
-      %li{ :role => "presentation" }
-        %a{ "aria-controls" => "messages",
-            "data-toggle" => "tab",
-            :href => "#pictures",
-            :role => "tab" }
-          Фото
-    / Nav tabs
+  / Nav tabs
+  %ul.nav.nav-tabs{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{ "aria-controls" => "form",
+          "data-toggle" => "tab",
+          :href => "#form",
+          :role => "tab" }
+        Детали
+    %li{ :role => "presentation" }
+      %a{ "aria-controls" => "messages",
+          "data-toggle" => "tab",
+          :href => "#description",
+          :role => "tab" }
+        Описание
+    %li{ :role => "presentation" }
+      %a{ "aria-controls" => "messages",
+          "data-toggle" => "tab",
+          :href => "#pictures",
+          :role => "tab" }
+        Фото
+  / Nav tabs
 
-    %br/
+  %br/
 
-    / Tab panes
-    .tab-content
-      / form
-      #form.tab-pane.fade.in.active{:role => "tabpanel"}
-        = render 'form'
+  / Tab panes
+  .tab-content
+    / form
+    #form.tab-pane.fade.in.active{:role => "tabpanel"}
+      = render 'form'
 
-      / description
-      #description.tab-pane.fade{:role => "tabpanel"}
-        = render "dashboard/shared/description", record: record
+    / description
+    #description.tab-pane.fade{:role => "tabpanel"}
+      = render "dashboard/shared/description", record: record
 
-      / pictures
-      #pictures.tab-pane.fade{:role => "tabpanel"}
-        - if record.class.method_defined?(:pictures)
-          = render "dashboard/shared/pictures", record: record
-        - else
-          = render "dashboard/shared/logo", record: record
-    / Tab panes
+    / pictures
+    #pictures.tab-pane.fade{:role => "tabpanel"}
+      - if record.class.method_defined?(:pictures)
+        = render "dashboard/shared/pictures", record: record
+      - else
+        = render "dashboard/shared/logo", record: record
+  / Tab panes

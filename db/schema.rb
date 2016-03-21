@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160317040150) do
+ActiveRecord::Schema.define(version: 20160324003339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(version: 20160317040150) do
     t.string   "email"
     t.string   "category"
     t.string   "post_type"
-    t.text     "description"
+    t.string   "description",       default: ""
     t.boolean  "active"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -157,6 +157,45 @@ ActiveRecord::Schema.define(version: 20160317040150) do
   add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
+  create_table "pages", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "partner_pages", force: :cascade do |t|
+    t.integer  "page_id"
+    t.integer  "partner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "partner_pages", ["page_id"], name: "index_partner_pages_on_page_id", using: :btree
+  add_index "partner_pages", ["partner_id"], name: "index_partner_pages_on_partner_id", using: :btree
+
+  create_table "partners", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "link"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "title"
+    t.integer  "debits"
+    t.integer  "credits"
+    t.integer  "balance"
+    t.boolean  "active"
+    t.integer  "bid",                default: 0
+    t.integer  "impressions_count",  default: 0
+    t.integer  "budget",             default: 0
+    t.integer  "current_balance",    default: 0
+    t.string   "position",           default: ""
+  end
+
+  add_index "partners", ["user_id"], name: "index_partners_on_user_id", using: :btree
+
   create_table "pictures", force: :cascade do |t|
     t.integer  "imageable_id"
     t.string   "imageable_type"
@@ -177,7 +216,7 @@ ActiveRecord::Schema.define(version: 20160317040150) do
     t.string   "title"
     t.string   "category",           default: "Интересное"
     t.string   "subcategory"
-    t.text     "text"
+    t.text     "text",               default: ""
     t.integer  "user_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
@@ -217,13 +256,13 @@ ActiveRecord::Schema.define(version: 20160317040150) do
     t.string   "phone"
     t.string   "email"
     t.string   "site"
-    t.text     "description"
+    t.text     "description",       default: ""
     t.boolean  "active"
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -274,7 +313,7 @@ ActiveRecord::Schema.define(version: 20160317040150) do
     t.string   "site"
     t.string   "fax"
     t.boolean  "active"
-    t.text     "description"
+    t.text     "description",       default: ""
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "user_id"
@@ -285,8 +324,8 @@ ActiveRecord::Schema.define(version: 20160317040150) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "impressions_count", default: 0
   end
 
@@ -480,6 +519,9 @@ ActiveRecord::Schema.define(version: 20160317040150) do
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"
   add_foreign_key "jobs", "users"
+  add_foreign_key "partner_pages", "pages"
+  add_foreign_key "partner_pages", "partners"
+  add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"

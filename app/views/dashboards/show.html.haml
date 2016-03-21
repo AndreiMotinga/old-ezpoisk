@@ -3,30 +3,15 @@
 - content_for :secondary_navbar do
   = render "dashboards/navbar"
 
-/ Secondary navbar
-.visible-xs
-  .row.mobile-secondary
-    .col-xs-3
-      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    .col-xs-3
-      = @users_posts.total_count
-    .col-xs-6
-      = render 'dashboards/search_modal_trigger'
-/ /Secondary navbar
+.row.search
+  .visible-xs.col-xs-3
+    = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+  = render 'dashboards/search_modal_trigger'
 
-.col-md-8
-  / total
-  .row.hidden-xs
-    %h4.pull-right
-      %a= "Всего #{@users_posts.total_count}"
-    = render 'dashboards/search_modal_trigger'
-  / /total
-  %br/
+.row
+  .col-xs-12
+    - @users_posts.each do |p|
+      = template_for(p)
 
-  .row
-    .col-xs-12
-      - @users_posts.each do |p|
-        = template_for(p)
-
-    .col-xs-12
-      = render "shared/pagination", records: @users_posts
+  .col-xs-12
+    = render "shared/pagination", records: @users_posts

@@ -9,6 +9,6 @@ class Ezjob::JobsController < ApplicationController
 
   def show
     @job = get_record(Job, params[:id], ezjob_jobs_path)
-    impressionist @job_agency if @job_agency.try(:active)
+    impressionist @job if @job.try(:active)
   end
 end

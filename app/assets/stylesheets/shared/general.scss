@@ -130,14 +130,14 @@ span.favorite {
   color: $orange;
 }
 
-.partners {
-  height: 160px;
-  color: white;
-  background-color: black;
-  background-image: url("partners/black")
-}
-
 #recent-posts {
   background-color: white;
   margin-bottom: 5px;
+}
+
+.row.search {
+  margin-bottom: 10px;
+}
+.contacts-list {
+  margin-bottom: 10px;
 }

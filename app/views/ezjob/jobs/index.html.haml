@@ -4,18 +4,15 @@
   = render "ezjob/navbar"
 = render 'ezjob/jobs/search_modal'
 
-.col-md-8
-  .row
-    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    = render 'ezjob/jobs/search_modal_trigger'
-    %br/
-    .hidden-xs= render "shared/search_params"
-  %br/
+.row.search
+  .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+  = render 'ezjob/jobs/search_modal_trigger'
+  .hidden-xs= render "shared/search_params"
 
-  .row
-    .col-xs-12
-      - @jobs.each do |job|
-        = render 'dashboard/jobs/job', record: job
+.row
+  .col-xs-12
+    - @jobs.each do |job|
+      = render 'dashboard/jobs/job', record: job
 
-    .col-xs-12
-      = render "shared/pagination", records: @jobs
+  .col-xs-12
+    = render "shared/pagination", records: @jobs

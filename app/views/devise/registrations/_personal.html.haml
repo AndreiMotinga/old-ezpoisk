@@ -1,12 +1,10 @@
 = bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-  .row
-    .col-md-12
-      = f.text_field :name, label: "Ваше имя"
-      = f.text_field :phone, label: "Телефон"
-      = f.text_field :slug, label: "Коротко о себе", placeholder: "Пару слов о том, кто Вы"
-      = f.text_field :site, label: "Ваша страница"
-      = f.email_field :email
-      = form_state_select(f)
-      = form_city_select(f, @user)
-      = f.password_field :current_password, label: "Введите пароль, чтобы подтвердить изменения"
-      = f.submit t('.update', :default => "Обновить"), class: "btn btn-success"
+  = f.text_field :name, label: "Ваше имя"
+  = f.text_field :phone, label: "Телефон"
+  = f.text_field :slug, label: "Коротко о себе", placeholder: "Пару слов о том, кто Вы"
+  = f.text_field :site, label: "Ваша страница"
+  = f.email_field :email
+  = form_state_select(f)
+  = form_city_select(f, @user)
+  = f.password_field :current_password, label: "Введите пароль, чтобы подтвердить изменения"
+  = f.submit t('.update', :default => "Обновить"), class: "btn btn-success"

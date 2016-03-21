@@ -5,8 +5,6 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= yield(:title)
     %meta{:charset => "UTF-8"}/
-    -# %meta{ name: "msvalidate.01", content: "EAE9E1BC865C52CA068724F63495FF7B" }
-    -# %meta{:content => "51a7cc061bfa5774", :name => "yandex-verification"}/
     %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
     %meta{ name: "description", content: "#{yield(:description)}"}
 
@@ -16,19 +14,22 @@
     = csrf_meta_tags
 
   %body
-    .hidden-xs= yield :top_partner if content_for?(:top_partner)
+    = render "shared/partners/top"
     .hidden-xs= render 'shared/navbar'
     .hidden-xs
       %br/
     .visible-xs= render 'shared/mobile_navbar'
 
-    / CONTENT
     .container
       .row
         = yield :secondary_navbar if content_for?(:secondary_navbar)
         .notice= render 'shared/notice' unless devise_controller?
-      = yield
-    / CONTENT
+        .col-md-7
+          = yield
+        .col-md-5
+          = yield :side if content_for?(:side)
+          -# partners
+      = render "shared/partners/bottom"
 
     .hidden-xs= render 'shared/footer'
 

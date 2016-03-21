@@ -1,0 +1,8 @@
+%tr
+  %td= link_to partner.title, edit_dashboard_partner_path(partner)
+  %td.text-center= partner.active? ? "Активно" :  "Приостановлено"
+  %td.text-center #{partner.budget}/день
+  %td.text-center= partner.bid
+  %td.text-center= partner.impressions_count
+  %td.text-center= partner.avg_price
+  %td.text-center= partner.current_balance

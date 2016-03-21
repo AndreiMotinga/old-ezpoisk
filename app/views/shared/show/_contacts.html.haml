@@ -1,36 +1,37 @@
-.contacts-list
-  %li.list-group-item
-    - if record.try(:street).present?
-      Название:
-      %strong= record.title
-    - elsif record.try(:title).present?
-      Название:
-      %strong= record.title
+.col-xs-12
+  .contacts-list
+    %li.list-group-item
+      - if record.try(:street).present?
+        Название:
+        %strong= record.title
+      - elsif record.try(:title).present?
+        Название:
+        %strong= record.title
 
-  - if record.user.name.present?
+    - if record.user.name.present?
+      %li.list-group-item
+        автор:
+        %strong= record.user.name
+    - unless record.phone.blank?
+      %li.list-group-item
+        телефон:
+        %strong= record.phone
+    - unless record.try(:fax).blank?
+      %li.list-group-item
+        факс:
+        %strong= record.try(:fax)
+    - unless record.try(:site).blank?
+      %li.list-group-item
+        site:
+        %strong
+          = link_to record.site, "http://#{record.site}", target: "_blank"
+    - unless record.try(:email).blank?
+      %li.list-group-item
+        email:
+        %strong= record.email
     %li.list-group-item
-      автор:
-      %strong= record.user.name
-  - unless record.phone.blank?
+      = link_to "GMap: #{record.address}", "https://maps.google.com/?q=#{record.address}", target: "_blank"
     %li.list-group-item
-      телефон:
-      %strong= record.phone
-  - unless record.try(:fax).blank?
+      Просмотров: #{record.impressions_count}
     %li.list-group-item
-      факс:
-      %strong= record.try(:fax)
-  - unless record.try(:site).blank?
-    %li.list-group-item
-      site:
-      %strong
-        = link_to record.site, "http://#{record.site}", target: "_blank"
-  - unless record.try(:email).blank?
-    %li.list-group-item
-      email:
-      %strong= record.email
-  %li.list-group-item
-    = link_to "GMap: #{record.address}", "https://maps.google.com/?q=#{record.address}", target: "_blank"
-  %li.list-group-item
-    Просмотров: #{record.impressions_count}
-  %li.list-group-item
-    = render "shared/social", count: nil
+      = render "shared/social", count: nil

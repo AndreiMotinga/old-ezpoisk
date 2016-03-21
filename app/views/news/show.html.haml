@@ -19,6 +19,7 @@
       .col-xs-12
         %h1.news-post-show-title= @post.title
         = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
+        %br/
 
         %p= sanitize @post.text
         - if @post.video_url.present?

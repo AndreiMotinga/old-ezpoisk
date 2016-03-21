@@ -7,19 +7,19 @@
       = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
 
 / Nav tabs
-%ul.nav.nav-tabs{:role => "tablist"}
-  %li.active{:role => "presentation"}
-    %a{"aria-controls" => "personal", "data-toggle" => "tab", :href => "#personal", :role => "tab"} Личные данные
-  %li{:role => "presentation"}
-    %a{"aria-controls" => "avatar", "data-toggle" => "tab", :href => "#avatar", :role => "tab"} Аватар
-  %li{:role => "presentation"}
-    %a{"aria-controls" => "passwords", "data-toggle" => "tab", :href => "#passwords", :role => "tab"} Пароль
+%ul.nav.nav-tabs{role: "tablist"}
+  %li.active{role: "presentation"}
+    = link_to "Личные данные", "#personal", "aria-controls": "personal", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "Аватар", "#avatar", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "Пароль", "#passwords", "aria-controls": "passwords", "data-toggle": "tab", role: "tab"
+
 / Tab panes
 .tab-content
   %br/
   #personal.tab-pane.active{:role => "tabpanel"}
-    .col-md-8.col-xs-12
-      = render "devise/registrations/personal"
+    = render "devise/registrations/personal"
 
   #avatar.tab-pane{:role => "tabpanel"}
     = render "devise/registrations/avatar"

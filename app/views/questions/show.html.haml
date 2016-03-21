@@ -10,49 +10,41 @@
   %meta{property: "og:image", content: image_url("missing")}/
   %meta{property: "og:description", content: strip_tags(@question.text_to_show).truncate(200)}/
 
+- content_for :side do
+  .text-center
+    = link_to "ОТВЕТИТЬ", new_question_answer_path(@question), class: "btn btn-lg btn-warning btn-ez"
+
+  %br/
+  %h3 Похожие вопросы
+  - @side_questions.each do |q|
+    %h5= link_to q.title, q, target: "_blank"
+
 .row
-  .col-xs-12.col-md-8
-    / question
-    .row
-      .col-xs-12.question
-        %h1.question-title= @question.title
-        %p.text= sanitize @question.text if @question.text.present?
+  / question
+  .col-xs-12.question
+    %h1.question-title= @question.title
+    %p.text= sanitize @question.text if @question.text.present?
 
-        / answer button/links
-        = link_to "ответить", new_question_answer_path(@question), class: "text text-muted qa-links"
-        = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
-        = subscription_links
-        - if current_user == @question.user
-          = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links"
-
-        %br/
-        %br/
-        .q-social
-          = render "shared/social", url: question_url(@question), count: @question.impressions_count
-
-        / collapsed comments
-        #comments.collapse
-          .fb-comments{"data-href" => question_url(@question), "data-numposts" => "5"}
-
-        %hr#lenta/
-        %p= tag_links(@question)
+    / answer button/links
+    = link_to "ответить", new_question_answer_path(@question), class: "text text-muted qa-links"
+    = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
+    = subscription_links
+    - if current_user == @question.user
+      = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links"
 
     %br/
-
-    / ANSWERS
-    .row
-      .col-xs-12
-        = render "questions/no_answers_message" if @question.answers.empty?
-        = render @question.answers.includes(:user).by_score
-
     %br/
-  / partners
-  .hidden-xs.col-md-4
-    .text-center
-      = link_to "ОТВЕТИТЬ", new_question_answer_path(@question), class: "btn btn-lg btn-warning btn-ez"
+    .q-social
+      = render "shared/social", url: question_url(@question), count: @question.impressions_count
 
-    %br/
-    %h3 Похожие вопросы
-    %hr/
-    - @side_questions.each do |q|
-      %h5= link_to q.title, q, target: "_blank"
+    / collapsed comments
+    #comments.collapse
+      .fb-comments{"data-href" => question_url(@question), "data-numposts" => "5"}
+
+    %hr#lenta/
+    %p= tag_links(@question)
+
+/ ANSWERS
+.row
+  = render "questions/no_answers_message" if @question.answers.empty?
+  = render @question.answers.includes(:user).by_score

@@ -4,17 +4,19 @@
 - content_for :secondary_navbar do
   = render "questions/navbar"
 
-.row
-  .col-md-8
-    = render @questions
-
-  .hidden-xs.hidden-sm.col-md-4
-    .text-center
-      = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-lg btn-warning btn-ez"
+- content_for :side do
+  .text-center
+    = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-lg btn-warning btn-ez"
     %br/
+    %br/
+  .col-xs-12
     #tag_cloud
       - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
         %span= link_to "##{tag.name}", tag_path(tag), class: "tag-in-cloud #{css_class}"
+
+.row
+  .col-xs-12
+    = render @questions
 
 .row
   .col-xs-12
