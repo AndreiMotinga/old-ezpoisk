@@ -6,29 +6,14 @@
 = content_for :top_partner do
   = render "sales/partner"
 
-/ Secondary navbar
-.visible-xs
-  .row.mobile-secondary
-    .col-xs-3
-      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    .col-xs-3
-      = @sales.total_count
-    .col-xs-6
-      = render 'sales/search_modal_trigger'
-/ /Secondary navbar
-
-/ MAIN content
 .col-md-8
-  / total
-  .row.hidden-xs
-    .col-md-12
-      %h4.pull-right
-        %a= "Всего #{@sales.total_count}"
-      = render 'sales/search_modal_trigger'
-      %br/
-      = render "shared/search_params"
+  .row
+    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    = render 'sales/search_modal_trigger'
+    %br/
+    .hidden-xs= render "shared/search_params"
+
   %br/
-  / /total
 
   .row
     .col-xs-12

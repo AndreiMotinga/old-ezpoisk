@@ -4,27 +4,15 @@
   = render "ezrealty/navbar"
 = render 'ezrealty/re_commercials/search_modal'
 
-/ Secondary navbar
-.visible-xs
-  .row.mobile-secondary
-    .col-xs-3
-      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    .col-xs-3
-      = @re_commercials.total_count
-    .col-xs-6
-      = render 'ezrealty/re_commercials/search_modal_trigger'
-/ /Secondary navbar
-
-/ MAIN content
 .col-md-8
   / total
   .row
-    .hidden-xs
-      %h4.pull-right
-        %span= "Всего #{@re_commercials.total_count}"
-      = render 'ezrealty/re_commercials/search_modal_trigger'
-      %br/
-      = render "shared/search_params"
+    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    -# %h4.pull-right
+    -#   %span= "Всего #{@re_commercials.total_count}"
+    = render 'ezrealty/re_commercials/search_modal_trigger'
+    %br/
+    .hidden-xs= render "shared/search_params"
   %br/
   / /total
 

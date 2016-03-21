@@ -1,28 +1,15 @@
 = title("Агенства по трудоустройству в США. Помощь в поиске работы - ezpoisk")
 = desc("EZPOISK - Объявления о приеме на работу, кадровые агентства в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
 = render 'ezjob/job_agencies/search_modal'
+- content_for :secondary_navbar do
+  = render "ezjob/navbar"
 
-/ Secondary navbar
-.hidden-xs
-  - content_for :secondary_navbar do
-    = render "ezjob/navbar"
-.visible-xs
-  .row.mobile-secondary
-    .col-xs-3
-      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    .col-xs-3
-      -# = @job_agencies.total_count
-    .col-xs-6
-      = render 'ezjob/job_agencies/search_modal_trigger'
-/ /Secondary navbar
-
-/ MAIN content
 .col-md-8
   .row
-    .hidden-xs
-      = render 'ezjob/job_agencies/search_modal_trigger'
-      %br/
-      = render "shared/search_params"
+    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    = render 'ezjob/job_agencies/search_modal_trigger'
+    %br/
+    .hidden-xs= render "shared/search_params"
   %br/
 
   .row

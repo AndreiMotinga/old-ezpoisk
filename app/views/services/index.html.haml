@@ -5,24 +5,12 @@
   = render "services/navbar"
 = render 'services/search_modal'
 
-/ Secondary navbar
-.visible-xs
-  .row.mobile-secondary
-    .col-xs-3
-      = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-    .col-xs-3
-      -# = @services.total_count
-    .col-xs-6
-      = render 'services/search_modal_trigger'
-/  / Secondary navbar
-
-/ MAIN content
 .col-md-8
   .row
-    .hidden-xs
-      = render 'services/search_modal_trigger'
-      %br/
-      = render "shared/search_params"
+    .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
+    = render 'services/search_modal_trigger'
+    %br/
+    .hidden-xs= render "shared/search_params"
   %br/
 
   .row
