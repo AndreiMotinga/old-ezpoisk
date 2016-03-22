@@ -9,7 +9,7 @@ end
 
 feature "User browses job" do
   scenario "success" do
-    j = create :job, :active
+    j = create :job, :active, description: nil
 
     visit ezjob_job_path(j)
 
