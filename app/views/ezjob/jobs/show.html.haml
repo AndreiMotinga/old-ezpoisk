@@ -6,7 +6,7 @@
   %meta{property: "og:url", content: ezjob_job_url(@job) }/
   %meta{property: "og:title", content: "Требуется на работу" }/
   %meta{property: "og:image", content: @job.logo.url(:medium)}/
-  %meta{property: "og:description", content: "#{@job.title}. #{strip_tags(@job.description).truncate(200)}"}/
+  %meta{property: "og:description", content: "#{@job.title}. #{strip_tags(@job.description).try(:truncate, 200)}"}/
 
 - content_for :secondary_navbar do
   = render "ezjob/navbar"
