@@ -30,7 +30,8 @@
         email:
         %strong= record.email
     %li.list-group-item
-      = link_to "GMap: #{record.address}", "https://maps.google.com/?q=#{record.address}", target: "_blank"
+      GMap:
+      = link_to record.address, "https://maps.google.com/?q=#{record.address}", target: "_blank"
     %li.list-group-item
       Просмотров: #{record.impressions_count}
     %li.list-group-item

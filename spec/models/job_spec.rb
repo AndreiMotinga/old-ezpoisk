@@ -13,4 +13,44 @@ describe Job do
   it { should belong_to(:user) }
   it { should belong_to(:city) }
   it { should belong_to(:state) }
+
+  describe "address" do
+    context "full string" do
+      it "returns full address" do
+        state = create(:state, name: "New York")
+        city = create(:city, state: state, name: "Brooklyn")
+        job = build :job,
+                     state: state,
+                     city: city,
+                     zip: 11_229,
+                     street: "1970 East 18th"
+        address = "1970 East 18th Brooklyn New York, 11229"
+        expect(job.address).to eq address
+      end
+
+      it "returns address without street" do
+        state = create(:state, name: "New York")
+        city = create(:city, state: state, name: "Brooklyn")
+        job = build :job,
+                     state: state,
+                     city: city,
+                     zip: 11_229,
+                     street: ""
+        address = "Brooklyn New York, 11229"
+        expect(job.address).to eq address
+      end
+
+      it "returns address without street and zip" do
+        state = create(:state, name: "New York")
+        city = create(:city, state: state, name: "Brooklyn")
+        job = build :job,
+                     state: state,
+                     city: city,
+                     zip: 0,
+                     street: ""
+        address = "Brooklyn New York"
+        expect(job.address).to eq address
+      end
+    end
+  end
 end

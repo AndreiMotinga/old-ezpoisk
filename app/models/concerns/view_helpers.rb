@@ -12,8 +12,10 @@ module ViewHelpers
   def address
     if street.present?
       "#{street} #{city.name} #{state.name}, #{zip}"
-    else
+    elsif zip != 0 && zip
       "#{city.name} #{state.name}, #{zip}"
+    else
+      "#{city.name} #{state.name}"
     end
   end
 
