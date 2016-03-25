@@ -21,11 +21,7 @@
     %hr.post-devider/
 
     / line 3
+    .pull-right= render "shared/favor_links", record: record
     .hidden-xs
       - if record.try(:site).present?
         %strong= link_to record.site, "http://#{record.site}"
-        %hr.post-devider/
-
-    / line 4
-    .pull-right= render "shared/favor_links", record: record
-    %span= time_ago_in_words record.created_at
