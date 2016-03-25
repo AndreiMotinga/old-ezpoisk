@@ -8,67 +8,33 @@
   %meta{property: "og:image", content: @post.logo_url(:large)}/
   %meta{property: "og:description", content: @post.description || strip_tags(@post.text).truncate(200)}/
 
-= stylesheet_link_tag "shared/bootstrap-xl"
-
 - content_for :secondary_navbar do
   = render 'news/navbar'
 
+- content_for :side do
+  = render "news/show/side"
+
 .row
-  .col-md-8
-    .row
-      .col-xs-12
-        %h1.news-post-show-title= @post.title
-        = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
-        %br/
-
-        %p= sanitize @post.text
-        - if @post.video_url.present?
-          .embed-responsive.embed-responsive-16by9
-            = embed(@post.video_url)
-      // main body of the post
-
+  .white-block
+    %h1.news-post-show-title= @post.title
+    = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
     %br/
-    .row
-      .col-xs-12
-        .pull-right
-          - if @current_user.try(:admin?)
-            = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
-            %nbsp
-          - if @post.link.present?
-            = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
-        = render "shared/social", url: news_url(@post), count: @post.impressions_count
+    .news-post-show-text= sanitize @post.text
+    - if @post.video_url.present?
+      .embed-responsive.embed-responsive-16by9
+        = embed(@post.video_url)
+
+%br/
+.row
+  .col-xs-12
+    .pull-right
+      - if @current_user.try(:admin?)
+        = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
+        %nbsp
+      - if @post.link.present?
+        = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
+    = render "shared/social", url: news_url(@post), count: @post.impressions_count
 
     .row
       .col-xs-12
         .fb-comments{"data-href": news_url(@post), "data-numposts": "5"}
-
-    %br/
-    .row
-      - @side_posts.each_with_index do |post, i|
-        - if i < 6
-          .col-xs-6.col-md-4
-            .white.article
-              = link_to news_path(post) do
-                = image_tag post.logo_url, class: "image-responsive"
-                %h5.caption= post.title
-          / clearfix every 3 posts
-          - if (i+1) % 3 == 0
-            .clearfix
-  %br/
-
-  .col-md-4
-    .row
-      .white-block
-        - @side_posts.each_with_index do |post, i |
-          - if i > 5 && i < 10
-            = link_to news_path(post) do
-              = image_tag post.logo_url, class: "image-responsive"
-              %h3.news-posts-title= post.title
-              %br/
-  // right side posts
-%br/
-
-%hr/
-.row
-  .hidden-xs
-    = render "news/carousel"

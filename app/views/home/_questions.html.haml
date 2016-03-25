@@ -6,10 +6,10 @@
     %span.pull-right= l Date.current, format: :long
   %hr.lenta/
 
-  - @homepage.questions(5).map do |q|
+  - @homepage.questions(6).map do |q|
     .panel.panel-default.home-panel
       .panel-body
-        %h2.post-title= link_to q.title, q, target: "_blank"
+        %h2.q-title= link_to q.title, q, target: "_blank"
         %span #{q.impressions_count} просмотров,
         %span #{q.answers_count} ответов
 %br/

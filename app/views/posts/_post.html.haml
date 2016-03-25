@@ -1,19 +1,8 @@
-.row
-  = link_to news_path(post) do
-    -# - if post.interesting?
-    / Interesing post
-    .post-interesting
-      .col-sm-4
-        = image_tag post.logo_url(:small), class: "img-responsive"
-      .col-sm-8
-        %h2= post.title
-        %p.post-text= strip_tags(post.text).truncate(115)
-
-    -#   / Regular Post
-    -# - else
-    -#   .col-sm-12
-    -#     %h2.post-title
-    -#       %span.post-time.pull-right= post.created_at.strftime("%H:%M")
-    -#       = post.title
-    -#
-    -#     %p.post-text= strip_tags(post.text).truncate(200)
+-# HOME NEWS POST
+= link_to news_path(post) do
+  .row.home-news-post
+    .col-sm-4
+      = image_tag post.logo_url(:small), class: "img-responsive"
+    .col-sm-8
+      %h2= post.title
+      %p.text-muted= strip_tags(post.text).truncate(115)

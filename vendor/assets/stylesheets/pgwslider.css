@@ -7,10 +7,10 @@
  * Released under the GNU GPLv3 license - http://opensource.org/licenses/gpl-3.0
  */
 #pgwSlideshow-container {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
+
 .pgwSlideshow {
-  padding: 10px;
   width: 100%;
   display: none;
 }

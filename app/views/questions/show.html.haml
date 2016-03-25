@@ -13,15 +13,18 @@
 - content_for :side do
   .text-center
     = link_to "ОТВЕТИТЬ", new_question_answer_path(@question), class: "btn btn-lg btn-warning btn-ez"
-
   %br/
-  %h3 Похожие вопросы
-  - @side_questions.each do |q|
-    %h5= link_to q.title, q, target: "_blank"
+  .col-sm-11.col-sm-offset-1.white-block
+    - @question.side_questions.each do |q|
+      .panel.panel-default.home-panel
+        .panel-body
+          %h2.q-title= link_to q.title, q, target: "_blank"
+          %span #{q.impressions_count} просмотров,
+          %span #{q.answers_count} ответов
 
 .row
   / question
-  .col-xs-12.question
+  .col-xs-12.white-block
     %h1.question-title= @question.title
     %p.text= sanitize @question.text if @question.text.present?
 
@@ -44,6 +47,7 @@
     %hr#lenta/
     %p= tag_links(@question)
 
+%br/
 / ANSWERS
 .row
   = render "questions/no_answers_message" if @question.answers.empty?

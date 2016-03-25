@@ -21,6 +21,7 @@ class Post < ActiveRecord::Base
   end
 
   scope :desc, -> { order("created_at desc") }
+  scope :by_views, -> { order("impressions_count desc") }
   scope :for_homepage, -> { where(show_on_homepage: true) }
   scope :interesting, -> { where(interesting: true) }
   scope :main, -> { where(main: true).last }
@@ -31,8 +32,13 @@ class Post < ActiveRecord::Base
     return all unless category.present?
     where(category: category)
   end
+  scope :older, -> (id) { where("id < ?", id) }
 
   def logo_url(style = :medium)
     image.url(style)
+  end
+
+  def side_posts
+    Post.older(id).by_category(category).with_logo.by_views.limit(4)
   end
 end

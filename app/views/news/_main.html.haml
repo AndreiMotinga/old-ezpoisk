@@ -1,7 +1,7 @@
-- @main.each do |post|
-  .padding-top-10.news-main-image
-    = link_to news_path(post) do
-      = image_tag post.logo_url(:large), class: "image-responsive"
-      .news-main-caption.white
-        %h3= post.title
-    %p.news-main-caption-text= post.description
+.row
+  - @main.each do |post|
+    .post.white-block
+      = link_to news_path(post) do
+        %h2.news-main-post-title= post.title
+        = image_tag post.logo_url(:large), class: "image-responsive"
+      %p.news-main-caption-text= post.description

@@ -1,11 +1,11 @@
 class NewsController < ApplicationController
-  layout "home"
+  layout :resolve_layout
   before_action :set_post, only: [:edit, :show, :update, :destroy]
 
   def index
-    @questions = Question.order("updated_at desc").page(params[:page]).per(35)
-    @news_posts = Post.by_category(params[:category]).for_homepage.desc.page(params[:page]).per(10)
-    @main = Post.main_posts.by_category(params[:category]).desc.page(params[:page]).per(7)
+    @questions = Question.order("impressions_count desc").page(params[:page]).per(35)
+    @news_posts = Post.by_category(params[:category]).for_homepage.desc.page(params[:page]).per(9)
+    @main = Post.main_posts.by_category(params[:category]).desc.page(params[:page]).per(5)
   end
 
   def all
@@ -14,10 +14,8 @@ class NewsController < ApplicationController
   end
 
   def show
-    if @post
-      @side_posts = Post.by_category(@post.category).desc.with_logo.limit(17)
-      impressionist @post
-    end
+    @questions = Question.order("impressions_count desc").limit(10)
+    impressionist @post
   end
 
   def edit
@@ -38,6 +36,10 @@ class NewsController < ApplicationController
   end
 
   private
+
+  def resolve_layout
+    "home" if action_name == "all" || action_name == "edit"
+  end
 
   def post_params
     params.require(:post).permit(:title, :text, :category, :interesting, :link,

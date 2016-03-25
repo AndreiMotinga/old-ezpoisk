@@ -9,17 +9,14 @@
   padding-left: 10px;
 }
 
-.question {
-  background-color: white;
-  margin-bottom: 10px;
-}
-
 h1.question-title {
   font-size: 24px;
   letter-spacing: -0.5px;
   line-height: 1.25;
   font-weight: bold;
   margin-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   a {
     text-decoration: none;
     color: #333;
@@ -70,4 +67,12 @@ q.devider {
 a.tag { text-decoration: none; }
 .q-social {
   margin-left: 10px;
+}
+
+// index
+h2.q-title {
+  margin-bottom: 0px;
+  margin-top: 5px;
+  font-family: 'open Sans', arial, sans-serif;
+  font-size: 16px;
 }

@@ -21,9 +21,10 @@ body {
 }
 
 .white-block {
-  padding: 10px;
+  padding: 5px;
   background-color: white;
-  border-radius: 4px;
+  border-radius: 2px;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .fa-envelope-o {
@@ -53,6 +54,7 @@ body {
 }
 
 .secondary-navbar {
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   li.active {
     border-top: 5px solid blue;
     height: 50px;

@@ -8,6 +8,9 @@ class Question < ActiveRecord::Base
 
   validates :title, presence: true
 
+  scope :by_views, -> { order("impressions_count desc") }
+  scope :older, -> (id) { where("id > ?", id) }
+
   def self.by_keyword(keyword)
     return all if keyword.blank?
     keys = convert_keyword(keyword)
@@ -34,6 +37,13 @@ class Question < ActiveRecord::Base
     keyword.gsub(/[^0-9a-zа-я ]/i, "")
       .split(" ")
       .map { |key| "%#{key.mb_chars.downcase}%" }
+  end
+
+  def side_questions
+    qs = Question.tagged_with(tag_list, any: true)
+    older_qs = qs.older(id).by_views.limit(20) - [self]
+    return older_qs unless older_qs.size < 5
+    qs.by_views.limit(20) - [self]
   end
 
   def the_answer

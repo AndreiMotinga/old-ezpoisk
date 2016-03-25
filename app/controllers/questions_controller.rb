@@ -6,24 +6,25 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.includes(:answers => :user)
                          .by_keyword(params[:keyword])
+                         .by_views
                          .page(params[:page]).per(10)
   end
 
   def tag
-    @questions = Question.tagged_with(params[:tag]).page(params[:page])
+    @questions = Question.tagged_with(params[:tag]).by_views.page(params[:page])
     render :index
   end
 
   def unanswered
     @questions = Question.by_keyword(params[:keyword])
                          .unanswered
+                         .by_views
                          .page(params[:page])
     render :index
   end
 
   def show
     @question = Question.find(params[:id])
-    @side_questions = Question.tagged_with(@question.tag_list).limit(30)
     @question.answers.find_each { |a| impressionist a }
   end
 

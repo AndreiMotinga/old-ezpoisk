@@ -20,18 +20,21 @@
     %li.list-group-item
       Подано: #{time_ago_in_words @sale.created_at} назад
 
-.row.show
-  .white-block
-    %ul.pgwSlideshow
-      - @sale.pictures.each do |pic|
-        %li
-          = link_to pic.image.url do
-            = image_tag pic.image.url(:large), alt: ""
+- if @sale.pictures.any?
+  .row.show
+    .white-block
+      %ul.pgwSlideshow
+        - @sale.pictures.each do |pic|
+          %li
+            = link_to pic.image.url do
+              = image_tag pic.image.url(:large), alt: ""
 .row
   %hr.black-line/
 .row
   .col-xs-12
     = render "dashboard/sales/sale", record: @sale
+.row
+  %hr.black-line/
 
 .row
   = render 'shared/show/map', record: @sale

@@ -14,9 +14,7 @@
       - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
         %span= link_to "##{tag.name}", tag_path(tag), class: "tag-in-cloud #{css_class}"
 
-.row
-  .col-xs-12
-    = render @questions
+= render @questions
 
 .row
   .col-xs-12

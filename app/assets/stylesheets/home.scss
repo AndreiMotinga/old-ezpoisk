@@ -24,3 +24,19 @@ h1.lenta-title {
   margin-bottom: 0px;
   .panel-body { padding: 5px 10px; }
 }
+
+.home-news-post {
+  padding-top: 8px;
+  h2 {
+    color: black;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    font-family: 'open Sans', arial, sans-serif;
+    font-size: 16px;
+    a { color: black; }
+  }
+  img {
+    margin-top: 10px;
+    display: inline;
+  }
+}
