@@ -7,9 +7,9 @@ MODELS = [
   # ["Финансирование", "ReFinance" ],
   ["Частная", "RePrivate"],
   ["Коммерческая", "ReCommercial"],
+  ["Услуги", "Service"],
   ["Агентство по трудоустройству", "JobAgency"],
   ["Работа", "Job"],
-  ["Услуги", "Service"],
   ["Продается", "Sale" ]
 ]
 ROOM_OPTIONS  = [
