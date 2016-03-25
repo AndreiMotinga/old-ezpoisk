@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :timeoutable, :lockable, :async, :omniauthable,
     :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
-  after_create :geolocate_user, :send_emails
+
+  # after_create :geolocate_user, :send_emails
+  after_create :send_emails
 
   acts_as_voter
 
