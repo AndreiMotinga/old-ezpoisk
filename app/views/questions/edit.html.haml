@@ -1,22 +1,5 @@
-/ DESKTOP
-.hidden-xs
-  .row
-    = link_to :back do
-      %span.glyphicon.glyphicon-triangle-left
-      %button.btn.btn-primary Назад
-  %br/
-  .row
-    .col-md-8
-      = render "form"
-/ /DESKTOP
+- content_for :secondary_navbar do
+  .hidden-xs
+    = render "questions/navbar"
 
-/ MOBILE
-.visible-xs
-  .row
-    .col-xs-3
-      = link_to '<', :back, class: "mobile-btn mobile-back-btn"
-  %br/
-  .row
-    .col-xs-12
-      = render "form"
-/ /MOBILE
+= render "form"

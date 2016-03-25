@@ -1,10 +1,5 @@
 #pictures-data{ "data-id" => "#{record.id}", "data-type" => "#{record.class.to_s}" }
 
-.row
-  .col-xs-12.mobile-secondary
-    = link_to dashboard_path, class: "mobile-btn mobile-back-btn" do
-      %i.fa.fa-arrow-left
-      Назад
 = template_for(record)
 %br/
 
