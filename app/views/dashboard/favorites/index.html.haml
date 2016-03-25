@@ -1,13 +1,5 @@
-= render 'dashboards/search_modal'
-
 - content_for :secondary_navbar do
   = render "dashboards/navbar"
-
-.row.search
-  .visible-xs.col-xs-3
-    = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-  = render 'ezrealty/re_agencies/search_modal_trigger'
-  .hidden-xs= render "shared/search_params"
 
 .row
   .col-xs-12
