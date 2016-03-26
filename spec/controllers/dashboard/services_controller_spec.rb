@@ -33,7 +33,7 @@ describe Dashboard::ServicesController do
         edit_dashboard_service_path(service)
       )
       expect(service.title).to eq attrs[:title]
-      expect(service.slug).to eq attrs[:slug]
+      expect(service.short_description).to eq attrs[:short_description]
       expect(service.user).to eq @user
     end
   end

@@ -17,7 +17,7 @@ FactoryGirl.define do
     category { category }
     subcategory { subcategory }
 
-    slug "All aboard"
+    short_description "All aboard"
 
     association :user
     association :state

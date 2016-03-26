@@ -5,7 +5,7 @@ describe Service do
   it { should validate_presence_of :phone }
   it { should validate_presence_of :category }
   it { should validate_presence_of :subcategory }
-  it { should validate_length_of(:slug).is_at_most(110) }
+  it { should validate_length_of(:short_description).is_at_most(110) }
 
   it { should validate_presence_of :city_id }
   it { should validate_presence_of :state_id }

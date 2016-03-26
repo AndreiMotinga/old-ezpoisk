@@ -66,6 +66,6 @@ class Question < ActiveRecord::Base
 
   def userslug
     # todo WTF?
-    return the_answer.user.slug if the_answer.try(:slug)
+    return the_answer.user.slug if the_answer.try(:user)
   end
 end
