@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.find_by_slug(params[:id])
     @question.answers.find_each { |a| impressionist a }
   end
 
@@ -69,11 +69,7 @@ class QuestionsController < ApplicationController
   private
 
   def set_question
-    if current_user.admin?
-      @question = Question.find(params[:id])
-    else
-      @question = current_user.questions.find(params[:id])
-    end
+    @question = current_user.find_by_slug(params[:id])
   end
 
   def question_params
