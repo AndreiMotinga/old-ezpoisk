@@ -33,6 +33,6 @@ module ViewHelpers
 
   def favorite?(user)
     return false unless user
-    Favorite.where(user_id: user.id, post_id: id, post_type: self.class.to_s).first
+    Favorite.exists?(user_id: user.id, post_id: id, post_type: self.class.to_s)
   end
 end
