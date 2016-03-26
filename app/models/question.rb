@@ -21,7 +21,7 @@ class Question < ActiveRecord::Base
 
   def self.term_for(term)
     qs = where("LOWER(title) LIKE ?", "%#{term.mb_chars.downcase}%")
-    qs = qs.limit(10).pluck(:title, :id)
+    qs = qs.limit(10).pluck(:title, :slug)
     qs.map!{ |q| { value: "/ezanswer/#{q[1]}", label: q[0]}}
     qs << { value: "/ezanswer?keyword=#{term}", label: "Искать:  \"#{term}\"" }
   end

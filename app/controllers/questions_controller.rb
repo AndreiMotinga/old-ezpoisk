@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find_by_slug(params[:id])
+    @question = Question.includes(:user, :answers).find_by_slug(params[:id])
     @question.answers.find_each { |a| impressionist a }
   end
 
