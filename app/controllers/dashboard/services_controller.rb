@@ -63,7 +63,7 @@ class Dashboard::ServicesController < ApplicationController
                                     :state_id,
                                     :city_id,
                                     :logo,
-                                    :slug,
+                                    :short_description,
                                     :category,
                                     :subcategory)
   end
