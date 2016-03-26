@@ -1,0 +1,9 @@
+= bootstrap_form_for([:dashboard, @user]) do |f|
+  .row
+    .col-sm-3
+      = image_tag current_user.avatar.url(:medium), class: "img-responsive"
+    .col-sm-6
+      = f.file_field :avatar
+      -# = f.password_field :current_password, label: "Введите пароль, чтобы подтвердить изменения"
+      = f.submit t('.update', :default => "Обновить"), class: "btn btn-success"
+  %br/

@@ -27,7 +27,7 @@
           -# %li{class: cp(dashboard_partners_path)}
           -#   = link_to "Реклама", dashboard_partners_path,  "data-toggle": "modal"
           %li{class: cp(edit_user_registration_path)}
-            = link_to "Личные данные", edit_user_registration_path
+            = link_to "Личные данные", edit_dashboard_user_path(current_user)
       / /.navbar-collapse
     / /.container-fluid
   / /nav

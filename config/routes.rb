@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
   namespace :dashboard do
+    resources :users, only: [:edit, :update]
     resources :re_agencies, only: [:new, :create, :edit, :update, :destroy]
     resources :re_finances, only: [:new, :create, :edit, :update, :destroy]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]

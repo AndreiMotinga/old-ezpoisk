@@ -1,0 +1,18 @@
+- content_for :secondary_navbar do
+  = render "dashboards/navbar"
+
+/ Nav tabs
+%ul.nav.nav-tabs{role: "tablist"}
+  %li.active{role: "presentation"}
+    = link_to "Личные данные", "#personal", "aria-controls": "personal", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "Аватар", "#avatar", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
+
+/ Tab panes
+.tab-content
+  %br/
+  #personal.tab-pane.active{role: "tabpanel"}
+    = render "dashboard/users/personal"
+
+  #avatar.tab-pane{role: "tabpanel"}
+    = render "dashboard/users/avatar"
