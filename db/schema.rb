@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326144026) do
+ActiveRecord::Schema.define(version: 20160326164204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,9 +134,11 @@ ActiveRecord::Schema.define(version: 20160326144026) do
     t.datetime "logo_updated_at"
     t.string   "fax"
     t.integer  "impressions_count", default: 0
+    t.string   "slug"
   end
 
   add_index "job_agencies", ["city_id"], name: "index_job_agencies_on_city_id", using: :btree
+  add_index "job_agencies", ["slug"], name: "index_job_agencies_on_slug", unique: true, using: :btree
   add_index "job_agencies", ["state_id"], name: "index_job_agencies_on_state_id", using: :btree
   add_index "job_agencies", ["user_id"], name: "index_job_agencies_on_user_id", using: :btree
 
@@ -162,11 +164,13 @@ ActiveRecord::Schema.define(version: 20160326144026) do
     t.datetime "updated_at"
     t.string   "street"
     t.integer  "impressions_count", default: 0
+    t.string   "slug"
   end
 
   add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
   add_index "jobs", ["post_type"], name: "index_jobs_on_post_type", using: :btree
+  add_index "jobs", ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
   add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
@@ -289,9 +293,11 @@ ActiveRecord::Schema.define(version: 20160326144026) do
     t.integer  "zip"
     t.string   "fax"
     t.integer  "impressions_count", default: 0
+    t.string   "slug"
   end
 
   add_index "re_agencies", ["city_id"], name: "index_re_agencies_on_city_id", using: :btree
+  add_index "re_agencies", ["slug"], name: "index_re_agencies_on_slug", unique: true, using: :btree
   add_index "re_agencies", ["state_id"], name: "index_re_agencies_on_state_id", using: :btree
   add_index "re_agencies", ["user_id"], name: "index_re_agencies_on_user_id", using: :btree
 
@@ -344,9 +350,11 @@ ActiveRecord::Schema.define(version: 20160326144026) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "impressions_count", default: 0
+    t.string   "slug"
   end
 
   add_index "re_finances", ["city_id"], name: "index_re_finances_on_city_id", using: :btree
+  add_index "re_finances", ["slug"], name: "index_re_finances_on_slug", unique: true, using: :btree
   add_index "re_finances", ["state_id"], name: "index_re_finances_on_state_id", using: :btree
   add_index "re_finances", ["user_id"], name: "index_re_finances_on_user_id", using: :btree
 
@@ -397,10 +405,12 @@ ActiveRecord::Schema.define(version: 20160326144026) do
     t.string   "street"
     t.string   "price"
     t.integer  "impressions_count", default: 0
+    t.string   "slug"
   end
 
   add_index "sales", ["city_id"], name: "index_sales_on_city_id", using: :btree
   add_index "sales", ["description"], name: "index_sales_on_description", using: :btree
+  add_index "sales", ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
   add_index "sales", ["state_id"], name: "index_sales_on_state_id", using: :btree
   add_index "sales", ["title"], name: "index_sales_on_title", using: :btree
   add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
@@ -430,6 +440,7 @@ ActiveRecord::Schema.define(version: 20160326144026) do
     t.string   "slug",              default: ""
     t.string   "fax"
     t.integer  "impressions_count", default: 0
+    t.string   "short_description", default: ""
   end
 
   add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree

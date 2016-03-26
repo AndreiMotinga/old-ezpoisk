@@ -8,9 +8,9 @@ module MyFriendlyId
         text.to_slug.normalize(transliterations: :russian).to_s
       end
 
-      def should_generate_new_friendly_id?
-        title_changed?
-      end
+      # def should_generate_new_friendly_id?
+      #   title_changed?
+      # end
     end
   end
 end
