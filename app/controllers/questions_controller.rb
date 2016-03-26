@@ -24,8 +24,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    if Question.exists? (params[:id])
-      @question = Question.includes(:user, :answers).find_by_slug(params[:id])
+    if Question.exists?(params[:id])
+      @question = Question.includes(:user, :answers).find(params[:id])
       @question.answers.find_each { |a| impressionist a }
     else
       redirect_to questions_path, alert: I18n.t(:q_not_found)

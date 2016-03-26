@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_record(model, id, path)
-    record = model.find_by_id(id)
+    record = model.find(id) if model.exists?(id)
     return record if record && record.active
     redirect_to path, alert: I18n.t(:post_not_found)
   end
