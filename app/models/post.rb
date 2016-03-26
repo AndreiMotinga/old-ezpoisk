@@ -2,6 +2,8 @@ class Post < ActiveRecord::Base
   # conflict RailsAdmin and Impressionist
   include Impressionist::IsImpressionable
   is_impressionable :counter_cache => true
+  extend FriendlyId
+  friendly_id :title, use: [:slugged]
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates_uniqueness_of :title
   validates :category, presence: true
@@ -40,5 +42,13 @@ class Post < ActiveRecord::Base
 
   def side_posts
     Post.older(id).by_category(category).with_logo.by_views.limit(4)
+  end
+
+  def normalize_friendly_id(text)
+    text.to_slug.normalize(transliterations: :russian).to_s
+  end
+
+  def should_generate_new_friendly_id?
+    title_changed?
   end
 end

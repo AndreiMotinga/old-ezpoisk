@@ -68,6 +68,9 @@ gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 gem "omniauth-vkontakte"
 
+gem "friendly_id"
+gem "babosa" # handle russian
+
 group :production do
   gem "rails_12factor"
   # gem 'heroku-deflater'
