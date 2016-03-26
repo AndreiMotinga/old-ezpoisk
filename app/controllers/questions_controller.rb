@@ -24,8 +24,12 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.includes(:user, :answers).find_by_slug(params[:id])
-    @question.answers.find_each { |a| impressionist a }
+    if Question.exists? (params[:id])
+      @question = Question.includes(:user, :answers).find_by_slug(params[:id])
+      @question.answers.find_each { |a| impressionist a }
+    else
+      redirect_to questions_path, alert: I18n.t(:q_not_found)
+    end
   end
 
   def new
@@ -70,7 +74,7 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = current_user.questions.find_by_slug(params[:id])
-    redirect_to questions_path, alert: I18n.t(:news_post_not_found) unless @question
+    redirect_to questions_path, alert: I18n.t(:q_not_found) unless @question
   end
 
   def question_params

@@ -3,7 +3,7 @@ module MyFriendlyId
     klass.extend FriendlyId
 
     klass.class_eval do
-      friendly_id :title, use: :slugged
+      friendly_id :title, use: [:slugged, :finders]
       def normalize_friendly_id(text)
         text.to_slug.normalize(transliterations: :russian).to_s
       end
