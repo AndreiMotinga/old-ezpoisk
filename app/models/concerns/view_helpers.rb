@@ -33,6 +33,17 @@ module ViewHelpers
 
   def favorite?(user)
     return false unless user
-    Favorite.exists?(user_id: user.id, post_id: id, post_type: self.class.to_s)
+    Favorite.exists?(user_id: user.id,
+                     post_id: id,
+                     post_type: self.class.to_s,
+                     favorite: true)
+  end
+
+  def user_hidden?(user)
+    return false unless user
+    Favorite.exists?(user_id: user.id,
+                     post_id: id,
+                     post_type: self.class.to_s,
+                     hidden: true)
   end
 end

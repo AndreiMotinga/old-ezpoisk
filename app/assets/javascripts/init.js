@@ -5,6 +5,11 @@ $(document).ready(function() {
     trigger: is_touch_device ? "click" : "hover"
   });
 
+  $('.mute').popover({
+    html: true,
+    trigger: is_touch_device ? "click" : "hover"
+  });
+
   $('.fa-cog').popover({
     html: true,
     trigger: "click"

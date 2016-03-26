@@ -1,7 +1,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :favorites, only: [:create]
+  post "/favorites/create_favorite", to: "favorites#create_favorite"
+  post "/favorites/create_hidden", to: "favorites#create_hidden"
   resources :questions, except: [:destroy], path: :ezanswer do
     collection do
       get "unanswered"
