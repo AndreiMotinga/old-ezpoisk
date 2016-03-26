@@ -23,7 +23,7 @@ describe NewsController do
     it "assings @post" do
       post = create :post
 
-      get :show, id: post.id
+      get :show, id: post.slug
 
       expect(assigns(:post)).to eq post
     end

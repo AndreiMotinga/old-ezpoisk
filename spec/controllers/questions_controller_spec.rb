@@ -36,7 +36,7 @@ describe QuestionsController do
       question = create(:question)
       answer = create :answer, question: question
 
-      get :show, id: question.id
+      get :show, id: question.slug
 
       expect(response).to render_template(:show)
       # expect(assigns(:question)).to eq question
@@ -71,7 +71,7 @@ describe QuestionsController do
         sign_in(@user = create(:user))
         question = create :question, user: @user
 
-        get :edit, id: question.id
+        get :edit, id: question.slug
 
         expect(response).to render_template(:edit)
         expect(assigns(:question)).to eq question
@@ -83,8 +83,9 @@ describe QuestionsController do
         sign_in(create(:user))
         question = create :question
 
-        expect { get :edit, id: question.id }
-          .to raise_exception(ActiveRecord::RecordNotFound)
+        get :edit, id: question.slug
+
+        expect(response).to redirect_to(questions_path)
       end
     end
   end
@@ -110,7 +111,7 @@ describe QuestionsController do
       question = create(:question, user: @user)
       attrs = attributes_for(:question)
 
-      put :update, id: question.id, question: attrs
+      put :update, id: question.slug, question: attrs
       updated_q = assigns(:question)
 
       expect(response).to redirect_to(updated_q)

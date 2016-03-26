@@ -69,7 +69,8 @@ class QuestionsController < ApplicationController
   private
 
   def set_question
-    @question = current_user.find_by_slug(params[:id])
+    @question = current_user.questions.find_by_slug(params[:id])
+    redirect_to questions_path, alert: I18n.t(:news_post_not_found) unless @question
   end
 
   def question_params
