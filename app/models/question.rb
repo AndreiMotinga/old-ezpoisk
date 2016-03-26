@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   is_impressionable :counter_cache => true
   acts_as_taggable
+  include MyFriendlyId
   belongs_to :user
   has_many :answers
   has_many :subscriptions

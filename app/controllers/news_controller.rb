@@ -48,7 +48,8 @@ class NewsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find_by_slug(params[:id])
+    @post = Post.find(params[:id])
+    # @post = Post.find_by_slug(params[:id])
     redirect_to news_index_path, alert: I18n.t(:news_post_not_found) unless @post
   end
 end
