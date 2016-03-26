@@ -10,17 +10,23 @@
     .visible-xs
       %h1.mob-title= link_to record.title, link_from_controller(record)
 
-    /line 3
+    /line 2
     - if record.street.present?
       %h5= record.street
       %hr.post-devider/
 
     /line 3
+    - if record.try(:short_description).present?
+      .hidden-xs
+        %p.text-muted= record.short_description
+        %hr.post-devider/
+
+    /line 4
     %span.glyphicon.glyphicon-earphone
     %span.company-phone= record.phone
     %hr.post-devider/
 
-    / line 3
+    / line 5
     .pull-right= render "shared/favor_links", record: record
     .hidden-xs
       - if record.try(:site).present?
