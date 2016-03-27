@@ -1,0 +1,8 @@
+- if @side_questions.any?
+  .col-md-11.col-md-offset-1.white-block
+    - @side_questions.map do |q|
+      .panel.panel-default.home-panel
+        .panel-body
+          %h2.q-title= link_to q.title, q, target: "_blank"
+          %span #{q.impressions_count} просмотров,
+          %span #{q.answers_count} ответов

@@ -10,5 +10,22 @@
 
 - content_for :secondary_navbar do
   = render "ezjob/navbar"
+- content_for(:side) do
+  = render "shared/show/contacts", record: @job
 
-= render "dashboard/jobs/job", record: @job
+.row
+  .col-xs-12
+    = render "dashboard/jobs/job", record: @job
+
+.row
+  .hidden-xs
+    %hr.black-line/
+
+.row
+  = render 'shared/show/map', record: @job
+
+- if @job.description.present?
+  .row
+    .hidden-xs.col-sm-12
+      .white-block
+        = sanitize @job.description

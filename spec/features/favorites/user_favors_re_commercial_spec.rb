@@ -27,7 +27,8 @@ feature "User favors re_commercial", js: true do
     re_commercial = create :re_commercial, :active
     Favorite.create(user_id: user.id,
                     post_id: re_commercial.id,
-                    post_type: re_commercial.class.to_s)
+                    post_type: re_commercial.class.to_s,
+                    favorite: true)
 
     visit ezrealty_re_commercials_path
     page.find(".favor").click

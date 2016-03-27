@@ -27,7 +27,8 @@ feature "User favors job", js: true do
     job = create :job, :active
     Favorite.create(user_id: user.id,
                     post_id: job.id,
-                    post_type: job.class.to_s)
+                    post_type: job.class.to_s,
+                    favorite: true)
 
     visit ezjob_jobs_path
     page.find(".favor").click

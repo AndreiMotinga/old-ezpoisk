@@ -27,12 +27,13 @@ feature "User favors sales", js: true do
     sale = create :sale, :active
     Favorite.create(user_id: user.id,
                     post_id: sale.id,
-                    post_type: sale.class.to_s)
+                    post_type: sale.class.to_s,
+                    favorite: true)
 
     visit sales_path
     page.find(".favor").click
     wait_for_ajax
 
-    expect(Favorite.count).to eq 0
+    expect(Favorite.where(favorite: true).size).to eq 0
   end
 end

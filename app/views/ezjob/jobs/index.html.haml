@@ -2,6 +2,9 @@
 = desc("EZPOISK - Объявления о приеме на работу в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
 - content_for :secondary_navbar do
   = render "ezjob/navbar"
+- content_for :side do
+  = render "shared/side/questions"
+
 = render 'ezjob/jobs/search_modal'
 
 .row.search

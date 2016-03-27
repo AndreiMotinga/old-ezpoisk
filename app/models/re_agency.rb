@@ -1,5 +1,5 @@
 class ReAgency < ActiveRecord::Base
-  is_impressionable :counter_cache => true
+  is_impressionable counter_cache: true
   acts_as_mappable
   include MyFriendlyId
   include Filterable

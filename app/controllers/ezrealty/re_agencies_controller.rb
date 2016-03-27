@@ -1,5 +1,6 @@
 class Ezrealty::ReAgenciesController < ApplicationController
-  before_action :set_patners
+  # before_action :set_patners
+  before_action :set_questions, only: :index
 
   def index
     @re_agencies = ReAgency
@@ -9,12 +10,16 @@ class Ezrealty::ReAgenciesController < ApplicationController
 
   def show
     @re_agency = get_record(ReAgency, params[:id], ezrealty_re_agencies_path)
-    impressionist @re_agency if @re_agency.try(:active)
+    impressionist(@re_agency, nil, unique: [:session_hash]) if @re_agency.try(:active)
   end
 
   private
 
   def set_patners
     @partner_ads = PartnerAds.new("Недвижимость", 1, nil, 1)
+  end
+
+  def set_questions
+    @side_questions = Question.tagged_with("недвижимость").limit(10)
   end
 end

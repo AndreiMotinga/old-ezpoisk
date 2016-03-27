@@ -1,4 +1,6 @@
 class Ezrealty::ReCommercialsController < ApplicationController
+  before_action :set_questions, only: :index
+
   def index
     @re_commercials = filtered.page(params[:page])
   end
@@ -7,7 +9,7 @@ class Ezrealty::ReCommercialsController < ApplicationController
     @re_commercial = get_record(ReCommercial,
                                 params[:id],
                                 ezrealty_re_commercials_path)
-    impressionist @re_commercial if @re_commercial.try(:active)
+    impressionist(@re_commercial, nil, unique: [:session_hash]) if @re_commercial.try(:active)
   end
 
   private
@@ -21,5 +23,9 @@ class Ezrealty::ReCommercialsController < ApplicationController
                                      :min_price,
                                      :max_price,
                                      :sorted))
+  end
+
+  def set_questions
+    @side_questions = Question.tagged_with("недвижимость").limit(10)
   end
 end

@@ -8,10 +8,14 @@ class QuestionsController < ApplicationController
                          .by_keyword(params[:keyword])
                          .by_views
                          .page(params[:page]).per(10)
+    @unanswered = Question.by_keyword(params[:keyword])
+                          .unanswered
+                          .by_views
+                          .limit(10)
   end
 
   def tag
-    @questions = Question.tagged_with(params[:tag]).by_views.page(params[:page])
+    @questions = Question.tagged_with(params[:tag], any: true).by_views.page(params[:page])
     render :index
   end
 

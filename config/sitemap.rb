@@ -75,6 +75,12 @@ SitemapGenerator::Sitemap.create do
 
   add news_index_path, priority: 0.6, changefreq: "dayly"
 
+  Post.find_each do |post|
+    add news_path(post),
+        priority: 0.6,
+        lastmod: post.updated_at
+  end
+
   ##############################################################
   #
   #     NEWS ///
@@ -183,5 +189,4 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
   #
-
 end

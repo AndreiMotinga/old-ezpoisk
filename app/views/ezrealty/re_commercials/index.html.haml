@@ -2,6 +2,9 @@
 = desc("EZPOISK - Объявления о продаже и аренде коммерческой недвижимости - цены на офисы, склады и магазины в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
 - content_for :secondary_navbar do
   = render "ezrealty/navbar"
+- content_for :side do
+  = render "shared/side/questions"
+
 = render 'ezrealty/re_commercials/search_modal'
 
 .row.search

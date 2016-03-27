@@ -3,6 +3,9 @@
 
 - content_for :secondary_navbar do
   = render "services/navbar"
+- content_for :side do
+  = render "shared/side/questions"
+
 = render 'services/search_modal'
 
 .row.search

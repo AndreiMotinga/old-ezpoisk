@@ -27,7 +27,8 @@ feature "User favors re_agency", js: true do
     re_agency = create :re_agency, :active
     Favorite.create(user_id: user.id,
                     post_id: re_agency.id,
-                    post_type: re_agency.class.to_s)
+                    post_type: re_agency.class.to_s,
+                    favorite: true)
 
     visit ezrealty_re_agencies_path
     page.find(".favor").click
