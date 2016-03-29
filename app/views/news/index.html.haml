@@ -1,7 +1,7 @@
 = title("Новости, информация об иммиграции в США - ezpoisk")
 = desc("EZPOISK - полезная информация о русской иммиграции в США. Новости, статьи, полезные советы.")
 - content_for :secondary_navbar do
-  = render 'news/navbar'
+  = render "news/navbar"
 - content_for :side do
   = render "news/main"
 
@@ -11,6 +11,8 @@
   .col-sm-6
     = render "news/news_posts"
 
+%br/
+.col-xs-12= render "shared/partners/bottom"
 .row
   .text-center
-    = paginate @main, :theme => 'twitter-bootstrap-3'
+    = paginate @main, theme: "twitter-bootstrap-3"

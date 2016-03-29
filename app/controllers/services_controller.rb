@@ -6,11 +6,15 @@ class ServicesController < ApplicationController
       :state_id, :city_id, :category, :subcategory, :geo_scope)).
       order("updated_at desc").
       page(params[:page])
+    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
   end
 
   def show
     @service = get_record(Service, params[:id], services_path)
-    impressionist(@service, nil, unique: [:session_hash]) if @service.try(:active)
+    if @service.try(:active)
+      impressionist(@service, nil, unique: [:session_hash])
+      @partner_ads = PartnerAds.new("Недвижимость", 1, nil, nil)
+    end
   end
 
   private

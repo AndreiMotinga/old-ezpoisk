@@ -3,13 +3,17 @@ class Ezrealty::ReCommercialsController < ApplicationController
 
   def index
     @re_commercials = filtered.page(params[:page])
+    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
   end
 
   def show
     @re_commercial = get_record(ReCommercial,
                                 params[:id],
                                 ezrealty_re_commercials_path)
-    impressionist(@re_commercial, nil, unique: [:session_hash]) if @re_commercial.try(:active)
+    if @re_commercial.try(:active)
+      impressionist(@re_commercial, nil, unique: [:session_hash])
+      @partner_ads = PartnerAds.new("Недвижимость", 1, nil, nil)
+    end
   end
 
   private

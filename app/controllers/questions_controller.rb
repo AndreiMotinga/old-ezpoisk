@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   impressionist actions: [:show]
   before_action :authenticate_user!, except: [:index]
   before_action :set_question, only: [:edit, :update, :destroy]
+  before_action :set_partners, only: [:index, :show, :tag, :unanswered, :new, :edit]
 
   def index
     @questions = Question.includes(:answers => :user)
@@ -83,5 +84,10 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :text, tag_list: [])
+  end
+
+  def set_partners
+    # todo change page
+    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
   end
 end

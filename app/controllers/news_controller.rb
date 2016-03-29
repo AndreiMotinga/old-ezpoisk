@@ -1,5 +1,6 @@
 class NewsController < ApplicationController
   layout :resolve_layout
+  before_action :set_partners
   before_action :set_post, only: [:edit, :show, :update, :destroy]
 
   def index
@@ -50,5 +51,9 @@ class NewsController < ApplicationController
   def set_post
     return @post = Post.find(params[:id]) if Post.exists?(params[:id])
     redirect_to news_index_path, alert: I18n.t(:news_post_not_found)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Недвижимость", 1, nil, 1)
   end
 end

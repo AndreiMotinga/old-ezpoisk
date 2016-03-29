@@ -1,0 +1,4 @@
+- if @partner_ads.try(:side)
+  .partner
+    = link_to @partner_ads.side.link do
+      = image_tag @partner_ads.side.image.url, class: "img-responsive center-block shadow"

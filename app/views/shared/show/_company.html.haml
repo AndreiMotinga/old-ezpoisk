@@ -10,10 +10,9 @@
     %hr.black-line/
 
 .row
-  = render 'shared/show/map', record: record
+  = render "shared/show/map", record: record
 
 - if record.description.present?
   .row
-    .hidden-xs.col-sm-12
-      .white-block
-        = sanitize record.description
+    .col-xs-12.white-block
+      = sanitize record.description

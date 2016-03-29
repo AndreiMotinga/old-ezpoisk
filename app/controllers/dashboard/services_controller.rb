@@ -1,6 +1,7 @@
 class Dashboard::ServicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_service, only: [:edit, :update, :destroy]
+  before_action :set_partners, only: [:new, :edit]
 
   def new
     @service = Service.new state_id: current_user.state_id,
@@ -66,5 +67,9 @@ class Dashboard::ServicesController < ApplicationController
                                     :short_description,
                                     :category,
                                     :subcategory)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

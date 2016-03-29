@@ -14,23 +14,19 @@
     = csrf_meta_tags
 
   %body
-    = yield :partners_top if content_for?(:partners_top)
-    .hidden-xs= render 'shared/navbar'
-    .hidden-xs
-      %br/
-    .visible-xs= render 'shared/mobile_navbar'
-
+    = render "shared/navbar"
     / CONTENT
     .container
+      = render "shared/partners/top"
       .row
         = yield :secondary_navbar if content_for?(:secondary_navbar)
-        .notice= render 'shared/notice' unless devise_controller?
+        .notice= render "shared/notice" unless devise_controller?
       = yield
       %br/
       = yield :partners_bottom if content_for?(:partners_bottom)
     / CONTENT
 
-    .hidden-xs= render 'shared/footer'
+    .hidden-xs= render "shared/footer"
 
     / MODALS & services
     = render "shared/new_post_modal"

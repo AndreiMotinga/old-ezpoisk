@@ -2,6 +2,7 @@ class Dashboard::PartnersController < ApplicationController
   layout "home"
   before_action :authenticate_user!
   before_action :set_ad, only: [:edit, :update, :destroy]
+  before_action :set_partners, only: [:index, :new, :edit]
 
   def index
     @partners = current_user.partners.order("created_at")
@@ -51,5 +52,9 @@ class Dashboard::PartnersController < ApplicationController
   def ad_params
     params.require(:partner).permit(:title, :image, :link, :active, :bid,
                                     :budget, :position, page_ids:[])
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

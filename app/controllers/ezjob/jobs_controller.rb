@@ -1,4 +1,5 @@
 class Ezjob::JobsController < ApplicationController
+  before_action :set_partners
   before_action :set_questions, only: :index
 
   def index
@@ -16,5 +17,9 @@ class Ezjob::JobsController < ApplicationController
 
   def set_questions
     @side_questions = Question.tagged_with("работа").limit(10)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Работа", 1, 1, 1)
   end
 end

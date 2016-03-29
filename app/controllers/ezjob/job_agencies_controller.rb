@@ -5,11 +5,15 @@ class Ezjob::JobAgenciesController < ApplicationController
     @job_agencies = JobAgency
       .filter(params.slice(:state_id, :city_id, :geo_scope))
       .page(params[:page])
+    @partner_ads = PartnerAds.new("Работа", 1, 1, 1)
   end
 
   def show
     @job_agency = get_record(JobAgency, params[:id], ezrealty_re_agencies_path)
-    impressionist(@job_agency, nil, unique: [:session_hash]) if @job_agency.try(:active)
+    if @job_agency.try(:active)
+      impressionist(@job_agency, nil, unique: [:session_hash])
+      @partner_ads = PartnerAds.new("Работа", 1, nil, nil)
+    end
   end
 
   private

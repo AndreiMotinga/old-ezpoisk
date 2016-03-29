@@ -7,10 +7,8 @@
 
 = render 'sales/search_modal'
 
-.row.search
-  .visible-xs.col-xs-3
-    = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-  = render 'sales/search_modal_trigger'
+.col-sx-12.search
+  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#saleSearch", "data-toggle": :modal, role: :button
   .hidden-xs= render "shared/search_params"
 
 .row

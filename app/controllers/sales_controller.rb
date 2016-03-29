@@ -1,4 +1,5 @@
 class SalesController < ApplicationController
+  before_action :set_partners
   before_action :set_questions, only: :index
 
   def index
@@ -21,5 +22,10 @@ class SalesController < ApplicationController
   def set_questions
     tags = ["шопинг", params[:category]]
     @side_questions = Question.tagged_with(tags, any: true).limit(10)
+  end
+
+  def set_partners
+    # todo change to proper partner
+    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
   end
 end

@@ -3,11 +3,15 @@ class Ezrealty::RePrivatesController < ApplicationController
 
   def index
     @re_privates = filtered.page(params[:page])
+    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
   end
 
   def show
     @re_private = get_record(RePrivate, params[:id], ezrealty_re_privates_path)
-    impressionist(@re_private, nil, unique: [:session_hash]) if @re_private.try(:active)
+    if @re_private.try(:active)
+      impressionist(@re_private, nil, unique: [:session_hash])
+      @partner_ads = PartnerAds.new("Недвижимость", 1, nil, nil)
+    end
   end
 
   private
@@ -29,5 +33,9 @@ class Ezrealty::RePrivatesController < ApplicationController
 
   def set_questions
     @side_questions = Question.tagged_with("недвижимость").limit(10)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
   end
 end

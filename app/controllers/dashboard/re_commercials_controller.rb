@@ -1,6 +1,7 @@
 class Dashboard::ReCommercialsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_re_commercial, only: [:edit, :update, :destroy]
+  before_action :set_partners, only: [:new, :edit]
 
   def new
     @re_commercial = ReCommercial.new state_id: current_user.state_id,
@@ -62,5 +63,9 @@ class Dashboard::ReCommercialsController < ApplicationController
                                           :description,
                                           :state_id,
                                           :city_id)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

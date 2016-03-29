@@ -1,4 +1,5 @@
 class Dashboard::UsersController < ApplicationController
+  before_action :set_partners, only: [:edit]
   before_action :authenticate_user!
   before_action :ser_user, only: [:edit, :update]
 
@@ -30,5 +31,9 @@ class Dashboard::UsersController < ApplicationController
                                  :state_id,
                                  :city_id,
                                  :avatar)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

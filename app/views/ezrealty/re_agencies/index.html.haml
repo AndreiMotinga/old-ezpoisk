@@ -5,12 +5,10 @@
 - content_for :side do
   = render "shared/side/questions"
 
-= render 'ezrealty/re_agencies/search_modal'
+= render "ezrealty/re_agencies/search_modal"
 
-.row.search
-  .visible-xs.col-xs-3
-    = link_to '<', root_path, class: "mobile-btn mobile-back-btn"
-  = render 'ezrealty/re_agencies/search_modal_trigger'
+.col-sx-12.search
+  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#re-agency-search", "data-toggle": :modal, role: :button
   .hidden-xs= render "shared/search_params"
 
 .row

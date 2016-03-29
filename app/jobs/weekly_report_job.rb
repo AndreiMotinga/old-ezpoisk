@@ -3,7 +3,7 @@ class WeeklyReportJob
   include Sidetiq::Schedulable
 
   recurrence do
-    weekly.day(:sunday).hour_of_day(9)
+    weekly.day(:friday).hour_of_day(9)
   end
 
   def perform

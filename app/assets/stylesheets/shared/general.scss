@@ -19,8 +19,12 @@ body {
 
   li { padding: 2px; }
 }
+.shadow {
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
 .white-block {
+  margin-bottom: 10px;
   padding: 5px;
   background-color: white;
   border-radius: 2px;
@@ -100,7 +104,6 @@ body {
   border: 1px solid lightgrey;
 }
 
-
 .btn-ez {
   font-family: 'calm';
   letter-spacing: 1px;
@@ -123,7 +126,7 @@ span.favorite {
   margin-bottom: 5px;
 }
 
-.row.search {
+.search {
   margin-bottom: 10px;
 }
 .contacts-list {

@@ -1,6 +1,7 @@
 class Dashboard::JobAgenciesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_job_agency, only: [:edit, :update, :destroy]
+  before_action :set_partners, only: [:new, :edit]
 
   def new
     @job_agency = JobAgency.new state_id: current_user.state_id,
@@ -64,5 +65,9 @@ class Dashboard::JobAgenciesController < ApplicationController
                                        :city_id,
                                        :logo,
                                        :user_id)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

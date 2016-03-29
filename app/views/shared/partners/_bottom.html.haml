@@ -1,5 +1,4 @@
-- if @partner_ads9.try(:bottom)
-  .container-fluid
-    .row
-      = link_to @partner_ads.bottom.link do
-        = image_tag @partner_ads.bottom.image.url, class: "img-responsive center-block"
+- if @partner_ads.try(:bottom)
+  .row.partner
+    = link_to @partner_ads.bottom.link do
+      = image_tag @partner_ads.bottom.image.url, class: "img-responsive center-block shadow"
