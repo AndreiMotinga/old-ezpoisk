@@ -5,23 +5,7 @@
   = render "questions/navbar"
 
 - content_for :side do
-  .text-center
-    = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-lg btn-warning btn-ez"
-    %br/
-    %br/
-  .col-xs-12.white-block#tag_cloud
-    .panel.panel-default.home-panel
-      .panel-body
-        - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
-          %span= link_to "##{tag.name}", tag_path(tag), class: "tag-in-cloud #{css_class}"
-  - if @unanswered.try(:any?)
-    .col-xs-12.white-block
-      - @unanswered.map do |q|
-        .panel.panel-default.home-panel
-          .panel-body
-            %h2.q-title= link_to q.title, q, target: "_blank"
-            %span #{q.impressions_count} просмотров,
-            %span #{q.answers_count} ответов
+  = render "questions/side"
 
 = render @questions
 
