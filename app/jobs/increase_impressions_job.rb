@@ -21,7 +21,8 @@ class IncreaseImpressionsJob
   def increase_records_of(model)
     model.find_each do |record|
       bool = [true, true, false].sample
-      record.increment!(:impressions_count) if bool
+      return unless bool
+      record.update_column(:impressions_count, record.impressions_count+1)
     end
   end
 
