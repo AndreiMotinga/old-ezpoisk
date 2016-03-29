@@ -2,15 +2,15 @@ class WeeklyReport
   def initialize
     @data_aggregator = DataAggregator.new
     @post_count = @data_aggregator.total_users_posts
-    @post_goal = (@post_count * 0.07).round
+    @post_goal = (@post_count * 0.1).round
     @post_week = @data_aggregator.this_week_posts
 
     @user_count = User.count
-    @users_goal = (@user_count * 0.07).round
+    @users_goal = (@user_count * 0.1).round
     @user_week = this_week_users
 
     @answer_count = Answer.count
-    @answer_goal = (@answer_count * 0.07).round
+    @answer_goal = (@answer_count * 0.1).round
     @answer_week = this_week_answers
   end
 
