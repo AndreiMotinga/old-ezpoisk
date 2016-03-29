@@ -14,7 +14,7 @@
 .rubocop.yml
 notes
 foo
-bar
+bar.rb
 tags
 brakeman
 

@@ -20,4 +20,12 @@ class DataAggregator
     string += "==============================================\n"
     string
   end
+
+  def this_week_posts
+    count = RePrivate.where("created_at > ?", 1.week.ago).count
+    [ReAgency, ReCommercial, ReFinance, Service, JobAgency, Job, Sale].each do |model|
+      count += model.where("created_at > ?", 1.week.ago).count
+    end
+    count
+  end
 end
