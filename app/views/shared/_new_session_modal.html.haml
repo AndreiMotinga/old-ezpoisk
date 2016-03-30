@@ -44,22 +44,8 @@
           // sign_in
           #sign_up.tab-pane{:role => "tabpanel"}
             = bootstrap_form_for(:user, :url => registration_path(:user)) do |f|
-              -# = devise_error_messages!
-              = hidden_field_tag "user[lat]"
-              = hidden_field_tag "user[lng]"
               %div
                 = f.email_field :email, required: true, placeholder: "Email", hide_label: true
                 = f.password_field :password, required: true, placeholder: "Password", hide_label: true
               %div
                 = f.submit "Регистрация", class: "btn btn-lg btn-block btn-blue"
-
-            :javascript
-              $(document).ready(function(){
-                if(navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition(function(position) {
-                    $("#user_lat").val(position.coords.latitude);
-                    $("#user_lng").val(position.coords.longitude);
-                  });
-                }
-              });
-          // sign_up
