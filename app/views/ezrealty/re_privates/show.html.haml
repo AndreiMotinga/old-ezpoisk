@@ -13,7 +13,7 @@
 
 - content_for :side do
   = render "shared/show/contacts", record: @re_private
-  .col-xs-12
+  .col-xs-12.white-block
     - if @re_private.duration.present?
       %li.list-group-item
         Продолжительность: #{@re_private.duration}

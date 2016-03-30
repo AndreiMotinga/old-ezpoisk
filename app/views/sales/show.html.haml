@@ -12,7 +12,7 @@
   = render "sales/navbar"
 - content_for :side do
   = render "shared/show/contacts", record: @sale
-  .col-xs-12
+  .col-xs-12.white-block
     %li.list-group-item
       Цена: #{@sale.price}
     %li.list-group-item
