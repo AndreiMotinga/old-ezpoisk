@@ -3,7 +3,6 @@ class HomeController < ApplicationController
   before_action :set_partners, only: [:index]
 
   def index
-    GeolocateUserJob.perform_async(request.remote_ip)
     @homepage = Homepage.new
   end
 

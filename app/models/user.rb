@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
 
   after_create :send_emails
+  after_create :geolocate_user
 
   acts_as_voter
 
@@ -50,6 +51,10 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def geolocate_user
+    GeolocateUserJob.perform_async(id)
+  end
 
   def send_emails
     AdminMailerJob.perform_async(id, "User")

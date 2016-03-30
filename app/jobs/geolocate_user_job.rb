@@ -1,19 +1,10 @@
-# get users state and city
 class GeolocateUserJob
   include Sidekiq::Worker
 
-  def perform(ip)
-    string = Geokit::Geocoders::MultiGeocoder.geocode(ip).to_s
-    Ez.ping(string)
+  def perform(id)
+    user = User.find(id)
+    user.state_id = session[:state_id]
+    user.city_id = session[:city_id]
+    user.save
   end
-
-  private
-
-  # def update_user(info)
-  #   state = State.find_by_name(info.state_name)
-  #   city = state.cities.find_by_name(info.city)
-  #   @user.state_id = state.id
-  #   @user.city_id = city.id
-  #   @user.save
-  # end
 end
