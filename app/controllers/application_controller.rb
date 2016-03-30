@@ -10,7 +10,17 @@ class ApplicationController < ActionController::Base
   private
 
   def set_location
-    GeolocateSessionJob.perform_async(request.remote_ip)
+    return if session[:state_id]
+    data = Geokit::Geocoders::MultiGeocoder.geocode("67.80.0.147")
+    # data = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
+    state = State.find_by_abbr(data.state)
+    if state
+      city = state.cities.find_by_name(data.city)
+      session[:state_id] = state.id
+      session[:city_id] = city.id
+    else
+      session[:state_id] = 0
+    end
   end
 
 
