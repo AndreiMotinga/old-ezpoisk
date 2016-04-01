@@ -1,7 +1,6 @@
 class Dashboard::ReAgenciesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_re_agency, only: [:edit, :update, :destroy]
-  before_action :set_partners, only: [:new, :edit]
 
   def new
     @re_agency = ReAgency.new state_id: current_user.state_id,
@@ -67,9 +66,5 @@ class Dashboard::ReAgenciesController < ApplicationController
                                       :logo,
                                       :user_id )
     # prms[:phone] = prms[:phone].gsub(/\D/, '') if prms[:phone].present?
-  end
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

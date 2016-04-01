@@ -12,4 +12,8 @@ $(document).ready(function() {
       multiple: true
     });
   }
+
+  $("#page_list").select2({
+    placeholder: "Выберите cтраницы"
+  });
 });

@@ -3,11 +3,11 @@ class IncreaseImpressionsJob
   include Sidetiq::Schedulable
 
   recurrence do
-    daily.hour_of_day([1, 4, 6, 10, 13, 15, 18, 19, 20, 21, 23])
+    # daily.hour_of_day([1, 4, 6, 10, 13, 15, 18, 19, 20, 21, 23])
   end
 
   def perform
-    return unless Rails.env.production?
+    # return unless Rails.env.production?
     increase_models
     increase_qs
   end
@@ -22,7 +22,10 @@ class IncreaseImpressionsJob
     model.find_each do |record|
       bool = [true, true, false].sample
       return unless bool
-      record.update_column(:impressions_count, record.impressions_count+1)
+      updated_at = record.updated_at
+      record.increment(:impressions_count)
+      record.updated_at = updated_at
+      record.save
     end
   end
 

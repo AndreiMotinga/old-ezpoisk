@@ -20,20 +20,27 @@
     = f.file_field :image, label: "Картинка (Максимальный размер 1 Мб)"
 
   .field
-    = f.collection_check_boxes :page_ids, Page.all, :id, :title, label: "Страницы" do |b|
-      = b.check_box
+    = collection_select :partner,
+      :page_list,
+      Page.all, :title, :title,
+      { :selected => @partner.page_list },
+      { :multiple => true, :name => 'partner[page_list][]', id: "page_list" }
+  - if @partner.errors[:page_list].any?
+    %ul.list-group-item-danger
+      %li Добавьте тэги, чтобы пользователи могли найти ваш вопрос
 
   .field
     = f.check_box :active, label: "Активно *"
 
+  .field
+    = form_state_select(f)
+  .field
+    - if @partner.state_id
+      = f.collection_select :city_ids, City.where(state_id: 32), :id, :name, {},
+                            { :multiple => true, class: "city-select" }
+    - else
+      = f.collection_select :city_ids, [], :id, :name, {}, { class: "city-select" }
+
   %br/
   .actions
     = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
-
--# - unless @re_agency.new_record?
--#   %br/
--#   = link_to 'Удалить',
--#             dashboard_re_agency_path(@re_agency),
--#             method: :delete,
--#             data: { confirm: I18n.t(:confirm) },
--#             class: "btn btn-block mobile-btn btn-danger"

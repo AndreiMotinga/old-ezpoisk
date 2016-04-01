@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
+  # before_action :set_partners, only: [:new, :edit]
   before_action :set_answer, only: [:update, :destroy]
 
   def new
@@ -71,5 +72,10 @@ class AnswersController < ApplicationController
       if current_user
         CreateSubscriptionJob.perform_async(current_user.id, @answer.question.id)
       end
+    end
+
+    def set_partners
+      # todo change page
+      @partner_ads = PartnerAds.new("Недвижимость", session)
     end
 end

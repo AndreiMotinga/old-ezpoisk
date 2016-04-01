@@ -1,9 +1,11 @@
 class Ezrealty::ReCommercialsController < ApplicationController
   before_action :set_questions, only: :index
+  # before_action :set_partners
 
   def index
-    @re_commercials = filtered.page(params[:page])
-    @partner_ads = PartnerAds.new("Недвижимость", 1, 1, 1)
+    @re_commercials = ReCommercial.filter(params.slice(:state_id, :city_id,
+                        :geo_scope, :post_type, :space, :min_price, :max_price,
+                        :sorted)).page(params[:page])
   end
 
   def show
@@ -12,24 +14,16 @@ class Ezrealty::ReCommercialsController < ApplicationController
                                 ezrealty_re_commercials_path)
     if @re_commercial.try(:active)
       impressionist(@re_commercial, nil, unique: [:session_hash])
-      @partner_ads = PartnerAds.new("Недвижимость", 1, nil, nil)
     end
   end
 
   private
 
-  def filtered
-    ReCommercial.filter(params.slice(:state_id,
-                                     :city_id,
-                                     :geo_scope,
-                                     :post_type,
-                                     :space,
-                                     :min_price,
-                                     :max_price,
-                                     :sorted))
-  end
-
   def set_questions
     @side_questions = Question.tagged_with("недвижимость").limit(10)
+  end
+
+  def set_partners
+    @partner_ads = PartnerAds.new("Недвижимость", session)
   end
 end

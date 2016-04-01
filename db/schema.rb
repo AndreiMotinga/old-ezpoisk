@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330212728) do
+ActiveRecord::Schema.define(version: 20160401231737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -183,15 +183,15 @@ ActiveRecord::Schema.define(version: 20160330212728) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "partner_pages", force: :cascade do |t|
-    t.integer  "page_id"
+  create_table "partner_cities", force: :cascade do |t|
     t.integer  "partner_id"
+    t.integer  "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "partner_pages", ["page_id"], name: "index_partner_pages_on_page_id", using: :btree
-  add_index "partner_pages", ["partner_id"], name: "index_partner_pages_on_partner_id", using: :btree
+  add_index "partner_cities", ["city_id"], name: "index_partner_cities_on_city_id", using: :btree
+  add_index "partner_cities", ["partner_id"], name: "index_partner_cities_on_partner_id", using: :btree
 
   create_table "partners", force: :cascade do |t|
     t.integer  "user_id"
@@ -212,8 +212,10 @@ ActiveRecord::Schema.define(version: 20160330212728) do
     t.integer  "budget",             default: 0
     t.integer  "current_balance",    default: 0
     t.string   "position",           default: ""
+    t.integer  "state_id"
   end
 
+  add_index "partners", ["state_id"], name: "index_partners_on_state_id", using: :btree
   add_index "partners", ["user_id"], name: "index_partners_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
@@ -553,8 +555,9 @@ ActiveRecord::Schema.define(version: 20160330212728) do
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"
   add_foreign_key "jobs", "users"
-  add_foreign_key "partner_pages", "pages"
-  add_foreign_key "partner_pages", "partners"
+  add_foreign_key "partner_cities", "cities"
+  add_foreign_key "partner_cities", "partners"
+  add_foreign_key "partners", "states"
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"

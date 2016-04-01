@@ -8,8 +8,10 @@ FactoryGirl.define do
     current_balance 0
     impressions_count 0
     position :top
+    page_list ["Домашняя"]
 
     association :user
+    association :state
   end
 end
 

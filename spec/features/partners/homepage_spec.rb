@@ -1,12 +1,10 @@
 require "rails_helper"
 
-feature "partner is charged" do
+xfeature "partner is charged" do
   scenario "when visited once" do
     partner_top = create :partner
     partner_bottom = create :partner, position: :bottom
     page = create :page
-    PartnerPage.create(partner: partner_top, page: page)
-    PartnerPage.create(partner: partner_bottom, page: page)
 
     visit root_path
 
@@ -21,10 +19,7 @@ feature "partner is charged" do
     partner_top = create :partner
     partner_bottom = create :partner, position: :bottom
     page = create :page
-    PartnerPage.create(partner: partner_top, page: page)
-    PartnerPage.create(partner: partner_bottom, page: page)
 
-    visit root_path
     visit root_path
 
     partner_top.reload

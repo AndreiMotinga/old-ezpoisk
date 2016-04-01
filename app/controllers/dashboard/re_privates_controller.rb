@@ -1,5 +1,4 @@
 class Dashboard::RePrivatesController < ApplicationController
-  before_action :set_partners
   before_action :authenticate_user!
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
@@ -66,9 +65,5 @@ class Dashboard::RePrivatesController < ApplicationController
                                        :description,
                                        :state_id,
                                        :city_id)
-  end
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end

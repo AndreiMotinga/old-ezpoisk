@@ -48,7 +48,6 @@ Rails.application.routes.draw do
     resources :pictures, only: [:index, :create, :update, :destroy]
 
     resources :favorites, only: [:index]
-    resources :partners
   end
 
   resources :news, only: [:index, :show], path: :eznews
@@ -78,6 +77,10 @@ Rails.application.routes.draw do
       constraints BlacklistConstraint.new do
         mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
       end
+    end
+
+    namespace :dashboard do
+      resources :partners
     end
   end
 

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   layout :resolve_layout
-  before_action :set_partners, only: [:index]
+  # before_action :set_partners, only: [:index]
 
   def index
     @homepage = Homepage.new
@@ -16,7 +16,7 @@ class HomeController < ApplicationController
   private
 
   def set_partners
-    @partner_ads = PartnerAds.new("Домашняя", 1, nil, 1)
+    @partner_ads = PartnerAds.new("Домашняя", session)
   end
 
   def resolve_layout

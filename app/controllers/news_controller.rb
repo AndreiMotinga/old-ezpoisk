@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   layout :resolve_layout
-  before_action :set_partners
+  # before_action :set_partners
   before_action :set_post, only: [:edit, :show, :update, :destroy]
 
   def index
@@ -54,6 +54,6 @@ class NewsController < ApplicationController
   end
 
   def set_partners
-    @partner_ads = PartnerAds.new("Недвижимость", 1, nil, 1)
+    @partner_ads = PartnerAds.new("Недвижимость", session)
   end
 end

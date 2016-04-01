@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe Partner do
   it { should validate_presence_of :title }
+  it { should validate_presence_of :state_id }
   it { should belong_to(:user) }
-  it { should have_many(:partner_pages) }
-  it { should have_many(:pages).through(:partner_pages)}
+  it { should belong_to(:state) }
 
   describe ".active" do
     it "returns only active partners" do
@@ -26,10 +26,13 @@ describe Partner do
 
   describe ".by_position" do
     it "return partners of certain position" do
-      the_one = create :partner, position: :top
-      create :partner, position: :bottom
+      top = create :partner, position: :top
+      bottom = create :partner, position: :bottom
+      side = create :partner, position: :side
 
-      expect(Partner.by_position(:top)).to eq [the_one]
+      expect(Partner.by_position(:top)).to eq [top]
+      expect(Partner.by_position(:bottom)).to eq [bottom]
+      expect(Partner.by_position(:side)).to eq [side]
     end
   end
 
@@ -43,31 +46,32 @@ describe Partner do
     end
   end
 
-  describe ".by_page" do
-    it "sorts partners by bids highest first" do
-      partner = create :partner
-      page = create :page
+  describe ".by_state" do
+    it "returns partners by state" do
+      state = create :state
+      partner = create :partner, state: state
+      create :partner, state: create(:state)
 
-      wrong = create :partner
-      wrong_page = create :page, :ezrealty
-      PartnerPage.create(page: page, partner: partner)
-      PartnerPage.create(page: wrong_page, partner: wrong)
-
-      expect(Partner.by_page(page.title)).to eq [partner]
+      expect(Partner.by_state(state.id).size).to eq 1
+      expect(Partner.by_state(state.id).first).to eq partner
     end
   end
 
   describe ".filter" do
     it "return correct partner" do
-      partner = create :partner, bid: 10, position: :top
+      state = create(:state)
+      city = create :city, state: state
+      page = create :page
+      position = :top
+      partner = create(:partner, bid: 10, position: position, state: state,
+                       page_list: [page.title])
       create :partner, bid: 5
       create :partner, bid: 15, position: :bottom
       create :partner, bid: 20, active: false
       create :partner, bid: 20, current_balance: 2000, budget: 1000
-      page = create :page, title: "Домашняя"
-      PartnerPage.create(page: page, partner: partner)
+      PartnerCity.create(partner_id: partner.id, city: city)
 
-      expect(Partner.filter(:top, "Домашняя")).to eq [partner]
+      expect(Partner.filter(position, page.title, state.id, city.id)).to eq [partner]
     end
   end
 

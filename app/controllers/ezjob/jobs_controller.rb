@@ -1,5 +1,5 @@
 class Ezjob::JobsController < ApplicationController
-  before_action :set_partners
+  # before_action :set_partners
   before_action :set_questions, only: :index
 
   def index
@@ -20,6 +20,6 @@ class Ezjob::JobsController < ApplicationController
   end
 
   def set_partners
-    @partner_ads = PartnerAds.new("Работа", 1, 1, 1)
+    @partner_ads = PartnerAds.new("Работа", session)
   end
 end

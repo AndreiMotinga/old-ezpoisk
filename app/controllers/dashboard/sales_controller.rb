@@ -1,7 +1,6 @@
 class Dashboard::SalesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_sale, only: [:edit, :update, :destroy]
-  before_action :set_partners, only: [:new, :edit]
 
   def new
     @sale = Sale.new state_id: current_user.state_id,
@@ -64,9 +63,5 @@ class Dashboard::SalesController < ApplicationController
                                  :city_id,
                                  :logo,
                                  :category)
-  end
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Панель Управления", 1, nil, nil)
   end
 end
