@@ -3,8 +3,6 @@ class HomeController < ApplicationController
   before_action :set_partners, only: [:index]
 
   def index
-    @city = session[:city_id]
-    @state = session[:state_id]
     @homepage = Homepage.new
   end
 
