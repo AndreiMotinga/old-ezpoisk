@@ -6,10 +6,10 @@
 .col-sx-12.search
   = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#dashboard-search", "data-toggle": :modal, role: :button
 
-.row
-  .col-xs-12
-    - @users_posts.each do |p|
-      = template_for(p)
+.col-xs-12
+  - @users_posts.each do |p|
+    = template_for(p)
 
+.row
   .col-xs-12
     = render "shared/pagination", records: @users_posts

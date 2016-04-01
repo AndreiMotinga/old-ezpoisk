@@ -1,18 +1,12 @@
 - content_for(:side) do
   = render "shared/show/contacts", record: record
 
-.row
-  .col-xs-12
-    = render "dashboard/shared/company", record: record
-
-.row
-  .hidden-xs
-    %hr.black-line/
-
-.row
-  = render "shared/show/map", record: record
+.col-xs-12
+  = render "dashboard/shared/company", record: record
 
 - if record.description.present?
-  .row
-    .col-xs-12.white-block
-      = sanitize record.description
+  .col-xs-12.white-block
+    = sanitize record.description
+
+.col-xs-12
+  = render "shared/show/map", record: record

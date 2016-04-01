@@ -21,11 +21,12 @@ class QuestionsController < ApplicationController
   end
 
   def unanswered
-    @questions = Question.by_keyword(params[:keyword])
-                         .unanswered
-                         .by_views
-                         .page(params[:page])
-    render :index
+    if params[:tag].present?
+      @questions = Question.tagged_with(params[:tag]).unanswered
+    else
+      @questions = Question.unanswered
+    end
+    @questions = @questions.by_views.page(params[:page])
   end
 
   def show

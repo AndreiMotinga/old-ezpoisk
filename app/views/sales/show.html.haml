@@ -12,35 +12,30 @@
   = render "sales/navbar"
 - content_for :side do
   = render "shared/show/contacts", record: @sale
-  .col-xs-12.white-block
-    %li.list-group-item
-      Цена: #{@sale.price}
-    %li.list-group-item
-      Категория: #{@sale.category}
-    %li.list-group-item
-      Подано: #{time_ago_in_words @sale.created_at} назад
+  .row
+    .col-xs-12.white-block
+      %li.list-group-item
+        Цена: #{@sale.price}
+      %li.list-group-item
+        Категория: #{@sale.category}
+      %li.list-group-item
+        Подано: #{time_ago_in_words @sale.created_at} назад
 
 - if @sale.pictures.any?
-  .row.show
+  .show
     .white-block
       %ul.pgwSlideshow
         - @sale.pictures.each do |pic|
           %li
             = link_to pic.image.url do
               = image_tag pic.image.url(:large), alt: ""
-.row
-  %hr.black-line/
-.row
-  .col-xs-12
-    = render "dashboard/sales/sale", record: @sale
-.row
-  %hr.black-line/
 
-.row
-  = render 'shared/show/map', record: @sale
+.col-xs-12
+  = render "dashboard/sales/sale", record: @sale
 
 - if @sale.description.present?
-  .row
-    .white-block
-      = sanitize @sale.description
-    %hr.black-line/
+  .col-xs-12.white-block
+    = sanitize @sale.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @sale

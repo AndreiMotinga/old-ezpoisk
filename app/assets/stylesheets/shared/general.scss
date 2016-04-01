@@ -109,12 +109,17 @@ body {
   letter-spacing: 1px;
 }
 
+#search_params {
+  display: inline;
+  margin-left: 15px;
+}
 .search_param {
   cursor: pointer;
-  border-radius: 3px;
-  background-color: $orange;
-  padding: 5px;
-  color: white;
+  border-radius: 0px;
+  background-color: white;
+  border-color: $orange;
+  padding: 3px 10px;
+  color: $orange;
   margin-top: 2px;
 }
 span.favorite {

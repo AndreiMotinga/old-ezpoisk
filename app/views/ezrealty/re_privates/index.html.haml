@@ -1,20 +1,19 @@
 = title("Недвижимость в США. Снять сдать, купить продать квартиру - ezpoisk")
 = desc("EZPOISK - Объявления о продаже, покупке и аренде квартир без посредников в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render 'ezrealty/re_privates/search_modal'
 - content_for :secondary_navbar do
   = render "ezrealty/navbar"
 - content_for :side do
   = render "shared/side/questions"
+- content_for :search do
+  .col-sx-12.search
+    = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#pirvateSearch", "data-toggle": :modal, role: :button
+    .hidden-xs#search_params= render "shared/search_params"
 
-= render 'ezrealty/re_privates/search_modal'
-
-.col-sx-12.search
-  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#pirvateSearch", "data-toggle": :modal, role: :button
-  .hidden-xs= render "shared/search_params"
+.col-xs-12
+  - @re_privates.each do |re_private|
+    = render 'dashboard/re_privates/re_private', record: re_private
 
 .row
-  .col-xs-12
-    - @re_privates.each do |re_private|
-      = render 'dashboard/re_privates/re_private', record: re_private
-
   .col-xs-12
     = render "shared/pagination", records: @re_privates

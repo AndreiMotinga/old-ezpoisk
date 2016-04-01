@@ -3,5 +3,6 @@ FactoryGirl.define do
     title { Faker::Name.title }
     text { Faker::Lorem.paragraph(20) }
     association :user
+    tag_list ["auto"]
   end
 end

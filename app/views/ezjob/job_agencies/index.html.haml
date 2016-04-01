@@ -5,15 +5,15 @@
   = render "ezjob/navbar"
 - content_for :side do
   = render "shared/side/questions"
+- content_for :search do
+  .col-sx-12.search
+    = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#jobAgenciesSearch", "data-toggle": :modal, role: :button
+    .hidden-xs#search_params= render "shared/search_params"
 
-.col-sx-12.search
-  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#jobAgenciesSearch", "data-toggle": :modal, role: :button
-  .hidden-xs= render "shared/search_params"
+.col-xs-12
+  - @job_agencies.each do |job_agency|
+    = render 'dashboard/shared/company', record: job_agency
 
 .row
-  .col-xs-12
-    - @job_agencies.each do |job_agency|
-      = render 'dashboard/shared/company', record: job_agency
-
   .col-xs-12
     = render "shared/pagination", records: @job_agencies

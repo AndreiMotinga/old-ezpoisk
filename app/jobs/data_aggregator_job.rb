@@ -7,7 +7,7 @@ class DataAggregatorJob
   end
 
   def perform
-    return if Rails.env.development?
+    return unless Rails.env.production?
     Ez.ping(DataAggregator.new.message)
   end
 end

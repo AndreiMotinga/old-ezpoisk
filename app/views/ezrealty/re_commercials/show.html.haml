@@ -12,19 +12,20 @@
   = render "ezrealty/navbar"
 - content_for :side do
   = render "shared/show/contacts", record: @re_commercial
-  .col-xs-12.white-block
-    %li.list-group-item
-      Категория: #{@re_commercial.category}
-    %li.list-group-item
-      Тип обьявления: #{@re_commercial.post_type}
-    %li.list-group-item
-      Цена: #{@re_commercial.price}
-    %li.list-group-item
-      Площадь: #{@re_commercial.space}
-    %li.list-group-item
-      Подано: #{time_ago_in_words @re_commercial.created_at} назад
+  .row
+    .col-xs-12.white-block
+      %li.list-group-item
+        Категория: #{@re_commercial.category}
+      %li.list-group-item
+        Тип обьявления: #{@re_commercial.post_type}
+      %li.list-group-item
+        Цена: #{@re_commercial.price}
+      %li.list-group-item
+        Площадь: #{@re_commercial.space}
+      %li.list-group-item
+        Подано: #{time_ago_in_words @re_commercial.created_at} назад
 
-.row.show
+.show
   - if @re_commercial.pictures.any?
     .white-block
       %ul.pgwSlideshow
@@ -34,18 +35,12 @@
               = image_tag pic.image.url(:large), alt: ""
     %hr.black-line/
 
-.row
-  .col-xs-12
-    = render "dashboard/re_commercials/re_commercial", record: @re_commercial
-.row
-  .hidden-xs
-    %hr.black-line/
-
-.row
-  = render 'shared/show/map', record: @re_commercial
+.col-xs-12
+  = render "dashboard/re_commercials/re_commercial", record: @re_commercial
 
 - if @re_commercial.description.present?
-  .row
-    .white-block
-      = sanitize @re_commercial.description
-    %hr.black-line/
+  .col-xs-12.white-block
+    = sanitize @re_commercial.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @re_commercial

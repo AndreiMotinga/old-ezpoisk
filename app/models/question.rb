@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   has_many :subscribers, through: :subscriptions, source: :user
 
   validates :title, presence: true
+  validates_presence_of :tag_list
 
   scope :by_views, -> { order("impressions_count desc") }
   scope :older, -> (id) { where("id > ?", id) }
@@ -24,14 +25,15 @@ class Question < ActiveRecord::Base
     qs = qs.limit(10).pluck(:title, :slug)
     qs.map!{ |q| { value: "/ezanswer/#{q[1]}", label: q[0]}}
     qs << { value: "/ezanswer?keyword=#{term}", label: "Искать:  \"#{term}\"" }
+    qs << { value: "/ezanswer/new?question=#{term}", label: "Спросить:  \"#{term}\"" }
   end
 
   def self.unanswered
-    where('id NOT IN (SELECT DISTINCT(question_id) FROM answers)')
+    where('questions.id NOT IN (SELECT DISTINCT(question_id) FROM answers)')
   end
 
   def self.answered
-    where('id IN (SELECT DISTINCT(question_id) FROM answers)')
+    where('questions.id IN (SELECT DISTINCT(question_id) FROM answers)')
   end
 
   def self.convert_keyword(keyword)

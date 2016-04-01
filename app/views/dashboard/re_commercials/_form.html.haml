@@ -20,11 +20,11 @@
                 include_blank: true,
                 label: "* Категория"
   .field
-    = f.text_field :price, label: '* Цена'
+    = f.number_field :price, label: '* Цена'
   .field
     = f.text_field :phone, label: '* Телефон'
   .field
-    = f.text_field :space, label: 'Площадь'
+    = f.number_field :space, label: 'Площадь'
 
   .field
     = f.check_box :active, label: "Активно *"

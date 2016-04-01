@@ -92,6 +92,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-select2 (1.0.1)
+      capybara
+      rspec
     capybara-webkit (1.8.0)
       capybara (>= 2.3.0, < 2.7.0)
       json
@@ -514,6 +517,7 @@ DEPENDENCIES
   bullet
   cancancan
   capybara
+  capybara-select2
   capybara-webkit
   coffee-rails (~> 4.1.0)
   database_cleaner

@@ -13,26 +13,27 @@
 
 - content_for :side do
   = render "shared/show/contacts", record: @re_private
-  .col-xs-12.white-block
-    - if @re_private.duration.present?
+  .row
+    .col-xs-12.white-block
+      - if @re_private.duration.present?
+        %li.list-group-item
+          Продолжительность: #{@re_private.duration}
       %li.list-group-item
-        Продолжительность: #{@re_private.duration}
-    %li.list-group-item
-      Тип обьявления: #{@re_private.post_type}
-    %li.list-group-item
-      Цена: #{@re_private.price}
-    %li.list-group-item
-      Комиссия: #{@re_private.fee ? 'да' : 'нет'}
-    %li.list-group-item
-      Коматы: #{@re_private.rooms}
-    %li.list-group-item
-      Ванные коматы: #{@re_private.baths}
-    %li.list-group-item
-      Площадь: #{@re_private.space}
-    %li.list-group-item
-      Подано: #{time_ago_in_words @re_private.created_at} назад
+        Тип обьявления: #{@re_private.post_type}
+      %li.list-group-item
+        Цена: #{@re_private.price}
+      %li.list-group-item
+        Комиссия: #{@re_private.fee ? 'да' : 'нет'}
+      %li.list-group-item
+        Коматы: #{@re_private.rooms}
+      %li.list-group-item
+        Ванные коматы: #{@re_private.baths}
+      %li.list-group-item
+        Площадь: #{@re_private.space}
+      %li.list-group-item
+        Подано: #{time_ago_in_words @re_private.created_at} назад
 
-.row.show
+.show
   .white-block
     %ul.pgwSlideshow.pictures
       - @re_private.pictures.each do |pic|
@@ -41,21 +42,12 @@
             = image_tag pic.image.url(:large), alt: ""
   /images
 
-.row
-  %hr.black-line/
-
-.row
-  .col-xs-12
-    = render "dashboard/re_privates/re_private", record: @re_private
-
-.row
-  %hr.black-line/
-
-.row
-  = render 'shared/show/map', record: @re_private
+.col-xs-12
+  = render "dashboard/re_privates/re_private", record: @re_private
 
 - if @re_private.description.present?
-  .row
-    .col-xs-12.white-block
-      = sanitize @re_private.description
-    %hr.black-line/
+  .col-xs-12.white-block
+    = sanitize @re_private.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @re_private

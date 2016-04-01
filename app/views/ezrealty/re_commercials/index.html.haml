@@ -1,20 +1,19 @@
 = title("Аренда, продажа коммерческой недвижимости в США - ezpoisk")
 = desc("EZPOISK - Объявления о продаже и аренде коммерческой недвижимости - цены на офисы, склады и магазины в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render 'ezrealty/re_commercials/search_modal'
 - content_for :secondary_navbar do
   = render "ezrealty/navbar"
 - content_for :side do
   = render "shared/side/questions"
+- content_for :search do
+  .col-sx-12.search
+    = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#commercialSearch", "data-toggle": :modal, role: :button
+    .hidden-xs#search_params= render "shared/search_params"
 
-= render 'ezrealty/re_commercials/search_modal'
-
-.col-sx-12.search
-  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#commercialSearch", "data-toggle": :modal, role: :button
-  .hidden-xs= render "shared/search_params"
+.col-xs-12
+  - @re_commercials.each do |record|
+    = render "dashboard/re_commercials/re_commercial", record: record
 
 .row
-  .col-xs-12
-    - @re_commercials.each do |record|
-      = render "dashboard/re_commercials/re_commercial", record: record
-
   .col-xs-12
     = render "shared/pagination", records: @re_commercials

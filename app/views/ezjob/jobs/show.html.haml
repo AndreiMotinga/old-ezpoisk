@@ -13,19 +13,12 @@
 - content_for(:side) do
   = render "shared/show/contacts", record: @job
 
-.row
-  .col-xs-12
-    = render "dashboard/jobs/job", record: @job
-
-.row
-  .hidden-xs
-    %hr.black-line/
-
-.row
-  = render 'shared/show/map', record: @job
+.col-xs-12
+  = render "dashboard/jobs/job", record: @job
 
 - if @job.description.present?
-  .row
-    .col-xs-12
-      .white-block
-        = sanitize @job.description
+  .col-xs-12.white-block
+    = sanitize @job.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @job

@@ -1,20 +1,19 @@
 = title("Продажа, Автомобили, Электроника, Одежда, Магазины, Распродажи в США - ezpoisk")
 = desc("EZPOISK - Обьявления о продаже в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render 'sales/search_modal'
 - content_for :secondary_navbar do
   = render "sales/navbar"
 - content_for :side do
   = render "shared/side/questions"
+- content_for :search do
+  .col-sx-12.search
+    = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#saleSearch", "data-toggle": :modal, role: :button
+    .hidden-xs#search_params= render "shared/search_params"
 
-= render 'sales/search_modal'
-
-.col-sx-12.search
-  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#saleSearch", "data-toggle": :modal, role: :button
-  .hidden-xs= render "shared/search_params"
+.col-xs-12
+  - @sales.each do |sale|
+    = render 'dashboard/sales/sale', record: sale
 
 .row
-  .col-xs-12
-    - @sales.each do |sale|
-      = render 'dashboard/sales/sale', record: sale
-
   .col-xs-12
     = render "shared/pagination", records: @sales

@@ -107,6 +107,7 @@ group :test do
   gem "webmock" # stub external connections
   gem "capybara"
   gem "capybara-webkit"
+  gem "capybara-select2"
   gem "shoulda-matchers"
   gem "database_cleaner"
 end

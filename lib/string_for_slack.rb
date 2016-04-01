@@ -44,6 +44,7 @@ class StringForSlack
 
   def post_string(record)
     string = "Регистрация нового  #{record.class.to_s}\n"
+    string += "author     #{record.try(:user).try(:email)}\n"
     string += "id         #{record.id}\n"
     string += "url        www.ezpoisk.com#{link(record)}\n"
     string += "title     #{record.title}\n" if record.try(:title)
