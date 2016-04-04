@@ -12,7 +12,6 @@ class Ezjob::JobsController < ApplicationController
 
   def show
     @job = get_record(Job, params[:id], ezjob_jobs_path)
-    impressionist(@job, nil, unique: [:session_hash]) if @job.try(:active)
   end
 
   def set_questions

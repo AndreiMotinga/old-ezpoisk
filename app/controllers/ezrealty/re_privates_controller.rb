@@ -11,9 +11,6 @@ class Ezrealty::RePrivatesController < ApplicationController
 
   def show
     @re_private = get_record(RePrivate, params[:id], ezrealty_re_privates_path)
-    if @re_private.try(:active)
-      impressionist(@re_private, nil, unique: [:session_hash])
-    end
   end
 
   private

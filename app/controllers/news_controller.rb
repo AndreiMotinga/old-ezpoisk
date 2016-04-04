@@ -16,7 +16,6 @@ class NewsController < ApplicationController
 
   def show
     @questions = Question.order("impressions_count desc").limit(10)
-    impressionist @post
   end
 
   def edit

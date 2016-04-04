@@ -30,6 +30,15 @@ describe Ezrealty::ReAgenciesController do
       expect(flash[:alert]).to be nil
     end
 
+    it "increasese counts" do
+      re_agency = create(:re_agency, :active)
+
+      get :show, id: re_agency.id
+      get :show, id: re_agency.id
+
+      expect(assigns(:re_agency).impressions_count).to eq 2
+    end
+
     it "redirects to 404 if it's inactive" do
       re_agency = create(:re_agency, active: false)
 

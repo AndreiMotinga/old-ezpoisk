@@ -47,8 +47,6 @@ gem "summernote-rails"
 gem "rails_admin"
 gem "rails_admin_tag_list"
 
-gem 'impressionist'
-
 gem "puma"
 
 gem "sitemap_generator"

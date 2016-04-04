@@ -11,9 +11,6 @@ class ServicesController < ApplicationController
 
   def show
     @service = get_record(Service, params[:id], services_path)
-    if @service.try(:active)
-      impressionist(@service, nil, unique: [:session_hash])
-    end
   end
 
   private

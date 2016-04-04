@@ -14,7 +14,6 @@ class SalesController < ApplicationController
 
   def show
     @sale = get_record(Sale, params[:id], sales_path)
-    impressionist(@sale, nil, unique: [:session_hash]) if @sale.try(:active)
   end
 
   private

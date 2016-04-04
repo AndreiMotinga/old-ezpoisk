@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-  impressionist actions: [:show]
   before_action :authenticate_user!, except: [:index]
   before_action :set_question, only: [:edit, :update, :destroy]
   # before_action :set_partners, only: [:index, :show, :tag, :unanswered, :new, :edit]
@@ -32,7 +31,8 @@ class QuestionsController < ApplicationController
   def show
     if Question.exists?(params[:id])
       @question = Question.includes(:user, :answers).find(params[:id])
-      @question.answers.find_each { |a| impressionist a }
+      @question.increment!(:impressions_count)
+      @question.answers.find_each { |a| a.increment!(:impressions_count) }
     else
       redirect_to questions_path, alert: I18n.t(:q_not_found)
     end

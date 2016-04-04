@@ -30,13 +30,12 @@ describe QuestionsController do
   end
 
   describe "GET @show" do
-    render_views
     it "renders the show template and assigns @question" do
       sign_in(create(:user))
       question = create(:question)
-      answer = create :answer, question: question
+      create :answer, question: question
 
-      get :show, id: question.slug
+     get :show, id: question.slug
 
       expect(response).to render_template(:show)
       # expect(assigns(:question)).to eq question

@@ -9,7 +9,6 @@ class Ezrealty::ReAgenciesController < ApplicationController
 
   def show
     @re_agency = get_record(ReAgency, params[:id], ezrealty_re_agencies_path)
-    impressionist(@re_agency, nil, unique: [:session_hash]) if @re_agency.try(:active)
   end
 
   private

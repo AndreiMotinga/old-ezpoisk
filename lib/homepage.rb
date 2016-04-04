@@ -1,6 +1,6 @@
 class Homepage
   def questions(num)
-    Question.by_views.limit(num)
+    Question.order("created_at desc").limit(num)
   end
 
   def news_posts(num)

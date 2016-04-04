@@ -9,12 +9,7 @@ class Ezrealty::ReCommercialsController < ApplicationController
   end
 
   def show
-    @re_commercial = get_record(ReCommercial,
-                                params[:id],
-                                ezrealty_re_commercials_path)
-    if @re_commercial.try(:active)
-      impressionist(@re_commercial, nil, unique: [:session_hash])
-    end
+    @re_commercial = get_record(ReCommercial, params[:id], ezrealty_re_commercials_path)
   end
 
   private

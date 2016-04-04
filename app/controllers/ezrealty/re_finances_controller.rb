@@ -9,7 +9,6 @@ class Ezrealty::ReFinancesController < ApplicationController
 
   def show
     @re_finance = get_record ReFinance, params[:id], ezrealty_re_finances_path
-    impressionist(@re_finance, nil, unique: [:session_hash]) if @re_finance.try(:active)
   end
 
   private

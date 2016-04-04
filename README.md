@@ -1,5 +1,4 @@
 performance notes
-  impressionist cahche
   acts_as_votable cahche
 
 

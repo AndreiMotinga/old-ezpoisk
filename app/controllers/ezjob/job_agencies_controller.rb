@@ -10,9 +10,6 @@ class Ezjob::JobAgenciesController < ApplicationController
 
   def show
     @job_agency = get_record(JobAgency, params[:id], ezrealty_re_agencies_path)
-    if @job_agency.try(:active)
-      impressionist(@job_agency, nil, unique: [:session_hash])
-    end
   end
 
   private
