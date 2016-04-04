@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401231737) do
+ActiveRecord::Schema.define(version: 20160404234337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20160401231737) do
     t.string   "street"
     t.integer  "impressions_count", default: 0
     t.string   "slug"
+    t.string   "source"
   end
 
   add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree
@@ -384,6 +385,7 @@ ActiveRecord::Schema.define(version: 20160401231737) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "impressions_count", default: 0
+    t.string   "source"
   end
 
   add_index "re_privates", ["city_id"], name: "index_re_privates_on_city_id", using: :btree

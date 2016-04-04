@@ -1,4 +1,8 @@
 = bootstrap_form_for([:dashboard, @job]) do |f|
+  - if current_user.admin?
+    .field
+      = f.text_field :source, label: 'источник'
+
   / details
   .field
     = f.text_field :title, label: '* Заголовок'

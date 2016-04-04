@@ -64,6 +64,7 @@ class Dashboard::RePrivatesController < ApplicationController
                                        :fee,
                                        :description,
                                        :state_id,
+                                       :source,
                                        :city_id)
   end
 end
