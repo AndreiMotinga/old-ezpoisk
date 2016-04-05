@@ -9,7 +9,6 @@ class ReCommercial < ActiveRecord::Base
   validates :city_id, presence: true
   validates :street, presence: true
   validates :user_id, presence: true
-  validates :phone, presence: true
 
   belongs_to :user
   belongs_to :state

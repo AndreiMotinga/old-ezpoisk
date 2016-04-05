@@ -6,7 +6,6 @@ class RePrivate < ActiveRecord::Base
   validates :price, presence: true,
                     numericality: { greater_than_or_equal_to: 0 }
   validates :rooms, presence: true
-  validates :phone, presence: true
   validates :post_type, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true

@@ -13,7 +13,7 @@
         %li.list-group-item
           автор:
           %strong= record.user.name
-      - unless record.phone.blank?
+      - if record.try(:phone).present?
         %li.list-group-item
           телефон:
           %strong= record.phone

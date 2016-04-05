@@ -7,7 +7,6 @@ describe RePrivate do
   it { should validate_presence_of :user_id }
   it { should validate_presence_of :street }
   it { should validate_presence_of :rooms }
-  it { should validate_presence_of :phone }
 
   it { should belong_to(:user) }
   it { should belong_to(:state) }
