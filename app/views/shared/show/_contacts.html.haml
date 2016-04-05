@@ -30,13 +30,12 @@
         %li.list-group-item
           email:
           %strong= record.email
-      - unless record.try(:source).blank?
-        %li.list-group-item
-          Источник:
-          %strong= record.source
       %li.list-group-item
         GMap:
         = link_to record.address, "https://maps.google.com/?q=#{record.address}", target: "_blank"
+      - unless record.try(:source).blank?
+        %li.list-group-item
+          = link_to "Источник объявления", record.source, target: "_blank"
       %li.list-group-item
         Просмотров: #{record.impressions_count}
       %li.list-group-item

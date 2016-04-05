@@ -43,13 +43,17 @@ class NewsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text, :category, :interesting, :link,
-      :description, :video_url, :main, :show_on_homepage, :image_remote_url,
-      :user_id)
+                                 :description, :video_url, :main, :show_on_homepage, :image_remote_url,
+                                 :user_id)
   end
 
   def set_post
-    return @post = Post.find(params[:id]) if Post.exists?(params[:id])
-    redirect_to news_index_path, alert: I18n.t(:news_post_not_found)
+    if Post.exists?(params[:id])
+      @post = Post.find(params[:id])
+      @post.update_column(:impressions_count, @post.impressions_count+1)
+    else
+      redirect_to news_index_path, alert: I18n.t(:news_post_not_found)
+    end
   end
 
   def set_partners
