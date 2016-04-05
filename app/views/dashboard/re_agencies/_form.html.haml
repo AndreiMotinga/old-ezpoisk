@@ -19,18 +19,16 @@
   .field
     = form_city_select(f, @re_agency)
 
-
   .field
     = f.check_box :active, label: "Активно *"
 
+  .field
+    = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+
   %br/
-  .hidden-xs
-    .actions
-      = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
-      %i.fa.fa-question.my-q{"data-toggle" => "tooltip", "data-placement" => "right" , title: (t :save_tooltip) }
-  .visible-xs
-    .actions
-      = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn btn-block"
+  .actions
+    = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+    %i.fa.fa-question.my-q{"data-toggle": "tooltip", "data-placement": "right" , title: (t :save_tooltip) }
 
 - unless @re_agency.new_record?
   %br/

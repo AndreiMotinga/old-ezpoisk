@@ -6,6 +6,7 @@ feature "user deletes job_agency" do
     job_a = create :job_agency, user: user
 
     visit edit_dashboard_job_agency_path(job_a)
+    click_on "Детали"
     click_on "Удалить"
     page.driver.browser.accept_js_confirms
 

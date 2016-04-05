@@ -8,6 +8,7 @@ feature "User updates re_commercial" do
     attrs = build :re_commercial
 
     visit edit_dashboard_re_commercial_path re_commercial
+    click_on "Детали"
     fill_in "Улица", with: attrs.street
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
@@ -37,7 +38,7 @@ feature "User updates re_commercial" do
 
     visit edit_dashboard_re_commercial_path re_commercial
     fill_in "Описание", with: "New description"
-    click_on "description-save-btn"
+    click_on "details-save-btn"
     re_commercial.reload
 
     expect(re_commercial.description).to eq "New description"

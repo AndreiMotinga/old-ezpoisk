@@ -7,6 +7,7 @@ feature "user updates job_agency" do
     job_agency = create(:job_agency, user: user)
 
     visit edit_dashboard_job_agency_path job_agency
+    click_on "Детали"
     attrs = build(:job_agency)
 
     fill_in "Название", with: attrs.title

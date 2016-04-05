@@ -7,6 +7,7 @@ feature "user updates job" do
     job = create(:job, user: user)
 
     visit edit_dashboard_job_path job
+    click_on "Детали"
     attrs = build(:job)
 
     fill_in "Заголовок", with: attrs.title
@@ -38,7 +39,7 @@ feature "user updates job" do
 
     visit edit_dashboard_job_path job
     fill_in "Описание", with: "New description"
-    click_on "description-save-btn"
+    click_on "details-save-btn"
     job.reload
 
     expect(job.description).to eq "New description"

@@ -8,6 +8,7 @@ feature "user updates sale" do
     attrs = build(:sale)
 
     visit edit_dashboard_sale_path sale
+    click_on "Детали"
     fill_in "Заголовок", with: attrs.title
     fill_in "Телефон", with: attrs.phone
     fill_in "Email", with: attrs.email
@@ -34,7 +35,7 @@ feature "user updates sale" do
 
     visit edit_dashboard_sale_path sale
     fill_in "Описание", with: "New description"
-    click_on "description-save-btn"
+    click_on "details-save-btn"
     sale.reload
 
     expect(sale.description).to eq "New description"

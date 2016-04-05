@@ -8,6 +8,7 @@ feature "user creates re_private" do
     attrs = build :re_private
 
     visit edit_dashboard_re_private_path re_private
+    click_on "Детали"
 
     fill_in "Улица", with: attrs.street
     select(attrs.post_type, from: "Тип объявления")
@@ -47,7 +48,7 @@ feature "user creates re_private" do
 
     visit edit_dashboard_re_private_path re_private
     fill_in "Описание", with: "New description"
-    click_on "description-save-btn"
+    click_on "details-save-btn"
     re_private.reload
 
     expect(re_private.description).to eq "New description"

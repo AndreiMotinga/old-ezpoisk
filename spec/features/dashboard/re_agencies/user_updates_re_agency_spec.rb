@@ -8,6 +8,7 @@ feature "user updates re_agency" do
     re_agency = create :re_agency, user: user
 
     visit edit_dashboard_re_agency_path re_agency
+    click_on "Детали"
     fill_in "Название", with: "New title"
     fill_in "Улица", with: "New street"
     fill_in "Телефон", with: "999 999 999"
@@ -39,7 +40,7 @@ feature "user updates re_agency" do
 
     visit edit_dashboard_re_agency_path re_agency
     fill_in "Описание", with: "New description"
-    click_on "description-save-btn"
+    click_on "details-save-btn"
     re_agency.reload
 
     expect(re_agency.description).to eq "New description"

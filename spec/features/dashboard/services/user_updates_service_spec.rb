@@ -8,6 +8,7 @@ feature "user updates service" do
     attrs = build(:service)
 
     visit edit_dashboard_service_path service
+    click_on "Детали"
     fill_in "Заголовок", with: attrs.title
     fill_in "Улица", with: attrs.street
     fill_in "Телефон", with: attrs.phone
@@ -41,7 +42,7 @@ feature "user updates service" do
 
     visit edit_dashboard_service_path service
     fill_in "Описание", with: "New description"
-    click_on "description-save-btn"
+    click_on "details-save-btn"
     service.reload
 
     expect(service.description).to eq "New description"
