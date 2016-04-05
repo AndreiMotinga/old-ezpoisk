@@ -8,6 +8,7 @@ class DataAggregator
 
     @answer_count = Answer.count
     @answer_goal = (@answer_count * 0.1).round
+    @beginning_of_week = Date.today.at_beginning_of_week
   end
 
   def message
@@ -22,17 +23,17 @@ class DataAggregator
   end
 
   def this_week_users
-    User.where("created_at > ?", 1.week.ago).count
+    User.where("created_at > ?", @beginning_of_week).count
   end
 
   def this_week_answers
-    Answer.where("created_at > ?", 1.week.ago).count
+    Answer.where("created_at > ?", @beginning_of_week).count
   end
 
   def this_week_posts
-    count = RePrivate.where("created_at > ?", 1.week.ago).count
+    count = RePrivate.where("created_at > ?", @beginning_of_week).count
     [ReAgency, ReCommercial, ReFinance, Service, JobAgency, Job, Sale].each do |model|
-      count += model.where("created_at > ?", 1.week.ago).count
+      count += model.where("created_at > ?", @beginning_of_week).count
     end
     count
   end
