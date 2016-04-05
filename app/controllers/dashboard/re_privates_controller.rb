@@ -6,6 +6,7 @@ class Dashboard::RePrivatesController < ApplicationController
     @re_private = RePrivate.new state_id: current_user.state_id,
                                 city_id: current_user.city_id,
                                 active: true,
+                                email: current_user.email,
                                 phone: current_user.phone
   end
 
@@ -65,6 +66,7 @@ class Dashboard::RePrivatesController < ApplicationController
                                        :description,
                                        :state_id,
                                        :source,
+                                       :email,
                                        :city_id)
   end
 end

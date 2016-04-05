@@ -21,8 +21,4 @@ class RePrivate < ActiveRecord::Base
   def title
     street
   end
-
-  def email
-    user.email
-  end
 end

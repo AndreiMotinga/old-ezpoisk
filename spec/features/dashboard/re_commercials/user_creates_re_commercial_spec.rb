@@ -3,7 +3,7 @@ require "rails_helper"
 feature "User create re_commercial" do
   scenario "success", js: true do
     create_alabama_and_abbeville
-    create_and_login_user
+    user = create_and_login_user
     re_commercial = build(:re_commercial)
 
     visit new_dashboard_re_commercial_path
@@ -30,6 +30,7 @@ feature "User create re_commercial" do
     re_commercial_saved = ReCommercial.last
     expect(re_commercial_saved.active).to be true
     expect(re_commercial_saved.phone).to eq re_commercial_saved.phone
+    expect(re_commercial_saved.email).to eq user.email
     expect(re_commercial_saved.state_id).to_not be nil
     expect(re_commercial_saved.city_id).to_not be nil
     expect(re_commercial_saved.user_id).to_not be nil

@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User create re_private" do
   scenario "success", js: true do
-    create_and_login_user
+    user = create_and_login_user
     re_private = build(:re_private)
     state = State.create(name: "Alabama")
     City.create(name: "Abbeville", state: state)
@@ -34,6 +34,7 @@ feature "User create re_private" do
     expect(re_private_save.active).to be true
     expect(re_private_save.fee).to be true
     expect(re_private_save.phone).to eq re_private.phone
+    expect(re_private_save.email).to eq user.email
     expect(re_private_save.state_id).to_not be nil
     expect(re_private_save.city_id).to_not be nil
     expect(re_private_save.user_id).to_not be nil

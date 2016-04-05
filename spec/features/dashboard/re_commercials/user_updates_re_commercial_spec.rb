@@ -13,6 +13,7 @@ feature "User updates re_commercial" do
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
     fill_in "Площадь", with: attrs.space
+    fill_in "Email", with: "foo@bar.com"
     select(attrs.post_type, from: "Тип объявления")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
@@ -25,6 +26,7 @@ feature "User updates re_commercial" do
     expect(re_commercial.phone).to eq attrs.phone
     expect(re_commercial.price).to eq attrs.price
     expect(re_commercial.space).to eq attrs.space
+    expect(re_commercial.email).to eq "foo@bar.com"
     expect(re_commercial.post_type).to eq attrs.post_type
     expect(re_commercial.category).to eq attrs.category
     expect(re_commercial.active).to be true

@@ -6,6 +6,7 @@ class Dashboard::ReCommercialsController < ApplicationController
     @re_commercial = ReCommercial.new state_id: current_user.state_id,
                                       city_id: current_user.city_id,
                                       active: true,
+                                      email: current_user.email,
                                       phone: current_user.phone
   end
 
@@ -60,6 +61,7 @@ class Dashboard::ReCommercialsController < ApplicationController
                                           :space,
                                           :active,
                                           :description,
+                                          :email,
                                           :state_id,
                                           :city_id)
   end
