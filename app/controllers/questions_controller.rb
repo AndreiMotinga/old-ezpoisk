@@ -84,7 +84,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :text, tag_list: [])
+    params.require(:question).permit(:title, :text, :image_url, tag_list: [])
   end
 
   def set_partners

@@ -1,5 +1,9 @@
 .white-block
   = bootstrap_form_for @question do |f|
+    - if current_user.admin?
+      .field
+        = f.text_field :image_url, label: "Картинка"
+
     .field
       = f.text_field :title, label: "Ваш вопрос", value: @question.title || params[:question]
 

@@ -7,7 +7,7 @@
   %meta{property: "og:type", content: "article"}/
   %meta{property: "og:url", content: question_url(@question) }/
   %meta{property: "og:title", content: @question.title}/
-  %meta{property: "og:image", content: image_url("missing")}/
+  %meta{property: "og:image", content: @question.image_url}/
   %meta{property: "og:description", content: strip_tags(@question.text_to_show).truncate(200)}/
 
 - content_for :side do
