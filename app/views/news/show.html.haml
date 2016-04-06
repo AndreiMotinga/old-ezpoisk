@@ -33,7 +33,7 @@
         %nbsp
       - if @post.link.present?
         = link_to "Источник", "http://#{@post.link}", class: "text-muted", target: "blank", :rel => 'nofollow'
-    = render "shared/social", url: news_url(@post), count: @post.impressions_count
+    = render "shared/social", count: @post.impressions_count
 
     .row
       .col-xs-12

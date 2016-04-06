@@ -7,7 +7,7 @@
   %meta{property: "og:type", content: "article"}/
   %meta{property: "og:url", content: question_url(@question) }/
   %meta{property: "og:title", content: @question.title}/
-  %meta{property: "og:image", content: @question.image_url}/
+  %meta{property: "og:image", content: @question.image}/
   %meta{property: "og:description", content: strip_tags(@question.text_to_show).truncate(200)}/
 
 - content_for :side do
@@ -36,6 +36,7 @@
     %br/
     %br/
     .q-social
+      -# todo: url is not needed
       = render "shared/social", url: question_url(@question), count: @question.impressions_count
 
     / collapsed comments

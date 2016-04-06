@@ -69,4 +69,9 @@ class Question < ActiveRecord::Base
     # todo WTF?
     return the_answer.user.slug if the_answer.try(:user)
   end
+
+  def image
+    return image_url if image_url.present?
+    "https://s3.amazonaws.com/ezpoisk/missing.png"
+  end
 end

@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_question, only: [:edit, :update, :destroy]
   # before_action :set_partners, only: [:index, :show, :tag, :unanswered, :new, :edit]
 

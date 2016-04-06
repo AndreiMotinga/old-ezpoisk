@@ -12,17 +12,6 @@ feature "User browses questions" do
 end
 
 feature "User browses question" do
-  scenario "redirects if user's not logged in" do
-    q = create :question
-    a = create :answer, question: q
-
-    visit question_path(q)
-
-    expect(current_path).to eq "/users/sign_in"
-  end
-end
-
-feature "User browses question" do
   scenario "success when user logged in" do
     create_and_login_user
     q = create :question
