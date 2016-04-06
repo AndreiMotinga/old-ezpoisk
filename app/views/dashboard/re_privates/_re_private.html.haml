@@ -37,9 +37,10 @@
       %hr.post-devider/
 
     / line 4
-    %span.glyphicon.glyphicon-earphone
-    %span.company-phone= record.phone
-    %hr.post-devider/
+    - if record.phone.present?
+      %span.glyphicon.glyphicon-earphone
+      %span.company-phone= record.phone
+      %hr.post-devider/
 
     / line 5
     .pull-right= render "shared/favor_links", record: record

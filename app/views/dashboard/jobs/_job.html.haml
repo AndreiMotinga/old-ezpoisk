@@ -16,9 +16,10 @@
     %hr.post-devider/
 
     / line 3
-    %span.glyphicon.glyphicon-earphone
-    %span.company-phone= record.phone
-    %hr.post-devider/
+    - if record.phone.present?
+      %span.glyphicon.glyphicon-earphone
+      %span.company-phone= record.phone
+      %hr.post-devider/
 
     / line 4
     - if record.email.present?
