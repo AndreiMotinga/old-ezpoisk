@@ -73,7 +73,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add news_index_path, priority: 0.6, changefreq: "dayly"
+  add news_index_path, priority: 0.6, changefreq: "daily"
 
   Post.find_each do |post|
     add news_path(post),
@@ -93,7 +93,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add sales_path, priority: 0.6, changefreq: "dayly"
+  add sales_path, priority: 0.6, changefreq: "daily"
   Sale.find_each do |post|
     add sale_path(post),
         priority: 0.6,
@@ -176,7 +176,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add questions_path, priority: 0.8, changefreq: "dayly"
+  add questions_path, priority: 0.8, changefreq: "daily"
   Question.find_each do |question|
     add question_path(question),
         priority: 0.7,
