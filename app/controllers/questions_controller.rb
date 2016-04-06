@@ -6,11 +6,11 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.includes(:answers => :user)
                          .by_keyword(params[:keyword])
-                         .by_views
+                         .order("created_at desc")
                          .page(params[:page]).per(10)
     @unanswered = Question.by_keyword(params[:keyword])
                           .unanswered
-                          .by_views
+                          .order("created_at desc")
                           .limit(10)
   end
 
