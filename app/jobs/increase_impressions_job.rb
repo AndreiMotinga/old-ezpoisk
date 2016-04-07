@@ -21,7 +21,7 @@ class IncreaseImpressionsJob
     model.find_each do |record|
       bool = [true, true, false].sample
       if bool && record.active
-        record.update_attribute(:impressions_count, record.impressions_count+1)
+        record.update_column(:impressions_count, record.impressions_count+1)
       end
     end
   end
@@ -30,9 +30,9 @@ class IncreaseImpressionsJob
     Question.find_each do |question|
       bool = [true, true, false].sample
       if bool
-        question.increment!(:impressions_count)
+        question.update_column(:impressions_count, question.impressions_count+1)
         question.answers.find_each do |answer|
-          answer.increment!(:impressions_count)
+          answer.update_column(:impressions_count, answer.impressions_count+1)
         end
       end
     end
