@@ -5,8 +5,7 @@
   = render "questions/navbar"
 
 - content_for :search do
-  .div
-    = link_to "Задать вопрос", new_question_path, class: "btn btn-warning search-block"
+  = render "questions/search"
 
 - content_for :side do
   = render "questions/side"

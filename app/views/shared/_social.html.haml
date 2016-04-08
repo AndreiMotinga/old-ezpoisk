@@ -13,9 +13,10 @@
           %span просмотров #{count}
 / mobile
 
-.visible-xs.hidden
-  / Button trigger modal
-  %i.fa.fa-share-square.fa-2x.text-muted.hidden{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+.visible-xs
+  %button.btn.mobile-btn.btn-block{"data-target": "#myModal", "data-toggle": "modal", type: "button"}
+    поделиться
+
   / Modal
   #myModal.modal.fade{"aria-labelledby": "shareModal", role: "dialog", tabindex: "-1"}
     .modal-dialog{role: "document"}

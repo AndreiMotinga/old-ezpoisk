@@ -2,22 +2,20 @@
   .panel.panel-default
     .panel-heading
       .row
-        .col-xs-12
-          .hidden-xs.col-sm-1.qa-avatar
-            = image_tag answer.user.avatar.url(:thumb), alt: answer.user.name, class: "img-responsive img-circle center-block"
-          .col-xs-12.col-sm-11
-            %h3.text-muted.question-author
-              = answer_name(answer)
-              = ", #{answer.user.slug}" if answer.user.slug.present?
-            %p #{answer.impressions_count} просмотров
-            - if answer.user == current_user
-              %p
-                = link_to "редактировать", edit_question_answer_path(@question, answer), class: "text text-muted qa-links"
-                = link_to 'удалить', answer_path(answer), class: "text text-muted qa-links", method: :delete, data: { confirm: I18n.t(:confirm) }
+        .hidden-xs.col-sm-1.qa-avatar
+          = image_tag answer.user.avatar.url(:thumb), alt: answer.user.name, class: "img-responsive img-circle center-block"
+        .col-sm-11
+          %h3.text-muted.question-author
+            = answer_name(answer)
+            = " #{answer.user.slug}" if answer.user.slug.present?
+          %p #{answer.impressions_count} просмотров
+          - if answer.user == current_user
+            = link_to "редактировать", edit_question_answer_path(@question, answer), class: "text text-muted qa-links"
+            = link_to 'удалить', answer_path(answer), class: "text text-muted qa-links", method: :delete, data: { confirm: I18n.t(:confirm) }
 
     .panel-body
       -# todo-question is this ok?
-      .text= raw answer.text
+      .text.answer= raw answer.text
 
       - if user_signed_in?
         .col-xs-12

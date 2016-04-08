@@ -8,7 +8,7 @@
       = f.text_field :title, label: "Ваш вопрос", value: @question.title || params[:question]
 
     .field
-      = f.text_area :text, label: "Подробности", class: "summernote"
+      = f.text_area :text, label: "Подробности"
 
     .field
       = collection_select :question,

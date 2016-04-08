@@ -5,7 +5,7 @@
       %li.text-center.active{:role => "presentation"}
         %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Объявления
       %li.text-center{:role => "presentation"}
-        %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Новости
+        %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Инфа
       %li.text-center{:role => "presentation"}
         - if user_signed_in?
           %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Аккаунт
@@ -36,7 +36,7 @@
       #profile.tab-pane{:role => "tabpanel"}
         %ul.list-group
           = link_to questions_path, class: "mobile-link" do
-            %li.list-group-item Ответы
+            %li.list-group-item Комьюнити
           = link_to news_index_path, class: "mobile-link" do
             %li.list-group-item Новости
 

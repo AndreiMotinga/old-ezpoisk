@@ -1,0 +1,11 @@
+.visible-xs.col-xs-12
+  %form.navbar-form.navbar-left#qa-search-mobile{:role => "search", method: "get", action: questions_path}
+    .input-group
+      %input.q-search.form-control{:placeholder => "Поиск вопросов по ключевым словам",
+        :type => "text", name: "keyword", value: params[:keyword]}
+        %span.input-group-btn
+          = submit_tag 'Искать', class: "button btn btn-default", name: nil
+.row
+  .col-xs-12
+    .col-xs-12.search
+      = link_to "Задать вопрос", new_question_path, class: "btn btn-warning"

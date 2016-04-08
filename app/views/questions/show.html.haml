@@ -11,23 +11,20 @@
   %meta{property: "og:description", content: strip_tags(@question.text_to_show).truncate(200)}/
 
 - content_for :side do
-  - if @question.side_questions.any?
-    .white-block
-      - @question.side_questions.each do |q|
-        .panel.panel-default.home-panel
-          .panel-body
-            %h2.q-title= link_to q.title, q, target: "_blank"
-            %span #{q.impressions_count} просмотров,
-            %span #{q.answers_count} ответов
+  = render "questions/show/side"
 
-.row.white-block
-  / question
+- content_for :search do
+  = render "questions/show/search"
+
+/ question
+.col-xs-12.white-block
   .col-xs-12
-    %h1.question-title= @question.title
+    .hidden-xs
+      %h3.question-title= @question.title
+    .visible-xs
+      %h4.question-title= @question.title
     %p.text= sanitize @question.text if @question.text.present?
 
-    / answer button/links
-    = link_to "ответить", new_question_answer_path(@question), class: "text text-muted qa-links"
     = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
     = subscription_links
     - if current_user == @question.user
@@ -35,22 +32,22 @@
 
     %br/
     %br/
-    .q-social
-      -# todo: url is not needed
-      = render "shared/social", url: question_url(@question), count: @question.impressions_count
+  .col-xs-12
+    = render "shared/social", count: @question.impressions_count
+    %br/
 
-    / collapsed comments
-    #comments.collapse
-      .fb-comments{"data-href" => question_url(@question), "data-numposts" => "5"}
+  #comments.collapse
+    .fb-comments{"data-href": question_url(@question), "data-numposts": "5"}
 
-    %hr#lenta/
-    %p= tag_links(@question)
+  %hr#lenta/
+  %p= tag_links(@question)
 
 %br/
 / ANSWERS
-.row
-  = render "questions/no_answers_message" if @question.answers.empty?
-  = render @question.answers.includes(:user).by_score
+.col-xs-12
+  .row
+    = render "questions/no_answers_message" if @question.answers.empty?
+    = render @question.answers.includes(:user).by_score
 
 %br/
 .row

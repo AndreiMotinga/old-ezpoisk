@@ -1,7 +1,7 @@
-.row.white-block
+.col-xs-12.white-block
   / line 1  title and User
   .col-xs-12
-    %h1.question-title
+    %h4.question-title
       = link_to question.title, question, target: "_blank"
     .row
       .col-xs-12
@@ -15,11 +15,10 @@
           %p= "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
 
   / line 2 question text
-  .col-xs-12
+  .hidden-xs.col-sm-12
     %p.text
       = strip_tags(question.text_to_show).truncate(200)
       - if strip_tags(question.text_to_show).size > 200
         = link_to "читать дальше", question, target: "_blank"
   .col-xs-12
     %p= tag_links(question)
-%br/
