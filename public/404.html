@@ -5,47 +5,181 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta charset="UTF-8">
 
-    <!-- Bootstrap  -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-          integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
-          crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
-                           integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX"
-                           crossorigin="anonymous">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-            integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
-            crossorigin="anonymous"></script>
-    <!-- Bootstrap  -->
-
+    <link href='http://fonts.googleapis.com/css?family=Condiment' rel='stylesheet' type='text/css'>
+    <style>
+      /* reset */
+      html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+      article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+      ol,ul{list-style:none;margin:0px;padding:0px;}
+      blockquote,q{quotes:none;}
+      blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+      table{border-collapse:collapse;border-spacing:0;}
+      /* start editing from here */
+      a{text-decoration:none;}
+      .txt-rt{text-align:right;}/* text align right */
+      .txt-lt{text-align:left;}/* text align left */
+      .txt-center{text-align:center;}/* text align center */
+      .float-rt{float:right;}/* float right */
+      .float-lt{float:left;}/* float left */
+      .clear{clear:both;}/* clear float */
+      .pos-relative{position:relative;}/* Position Relative */
+      .pos-absolute{position:absolute;}/* Position Absolute */
+      .vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+      .vertical-top{	vertical-align:top;}/* vertical align top */
+      .underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+      nav.vertical ul li{	display:block;}/* vertical menu */
+      nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+      img{max-width:100%;}
+      /*end reset*/
+      body{
+        font-family: "Century Gothic" Helvetica, sans-serif;
+        background-size:50px 50px;
+      }
+      .wrap{
+        margin:0 auto;
+        width: 96%;
+      }
+      .main{
+        text-align:center;
+        margin:4% 0 0%;
+      }
+      h1{
+        font-family: 'Condiment', cursive;
+        margin-top:20px;
+        color: #EA3C4D;
+        font-size: 2.4em;
+        text-transform:capitalize;
+        font-weight: bold;
+      }
+      h2 a {
+        font-family: 'Condiment', cursive;
+        margin-top:20px;
+        color: #EA3C4D;
+        text-transform:capitalize;
+        font-weight: bold;
+      }
+      p{
+        color:#999;
+        font-size: 0.9em;
+        line-height: 1.8em;
+      }
+      /*footer*/
+      .footer{
+        font-family: "Century Gothic";
+        position: absolute;
+        right: 20px;
+        bottom:20px;
+      }
+      .footer p{
+        font-size:1em;
+        color: #999;
+      }
+      .footer a{
+        color: #EA3C4D;
+      }
+      .footer a:hover{
+        text-decoration:underline;
+      }
+      /*media queries*/
+      @media all and (max-width:1366px) and (min-width:1280px){
+        .wrap{
+          width: 90%;
+        }
+      }
+      @media all and (max-width:1280px) and (min-width:1024px){
+        .wrap{
+          width: 90%;
+        }
+        .page{
+          font-size:1.4em;
+        }
+      }
+      @media all and (max-width:1024px) and (min-width:800px){
+        .wrap{
+          width: 90%;
+        }
+        .main{
+          margin: 6% 0 0%;
+        }
+      }
+      @media all and (max-width:800px) and (min-width:640px){
+        .wrap{
+          width: 90%;
+        }
+        .main{
+          margin: 8% 0 0%;
+        }
+      }
+      @media all and (max-width:640px) and (min-width:480px){
+        .wrap{
+          width: 90%;
+        }
+        h1{
+          text-align: left;
+          font-size: 1.8em;
+        }
+        .main{
+          margin: 4% 0 0%;
+        }
+      }
+      @media all and (max-width:480px) and (min-width:320px){
+        .wrap{
+          width: 90%;
+        }
+        h1{
+          text-align: left;
+          font-size: 1.4em;
+        }
+        .main{
+          margin: 3% 0 0%;
+        }
+      }
+      @media all and (max-width:320px){
+        .wrap{
+          width: 90%;
+        }
+        h1{
+          text-align: left;
+          font-size: 1.0em;
+        }
+        .main{
+          margin: 3% 0 0%;
+        }
+        p{
+          margin-top:2%;
+          line-height: 1.4em;
+        }
+        .footer{
+          position: relative;
+          text-align:right;
+          right: 0;
+          bottom:0;
+        }
+        .footer p{
+          font-size: 0.9em;
+        }
+      }
+    </style>
   </head>
-
   <body>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <hr>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h1> Oops! 404 Not Found</h1>
-          <p> Простите, запарашиваемся вами старница не доступна</p>
+    <div class="wrap">
+      <div class="main">
+        <div class="banner">
+          <img src="https://s3.amazonaws.com/ezpoisk/404.png" alt="" />
+        </div>
+        <div class="text">
+          <h1>The requested url was not found !...</h1>
+          <p>Извините! Запрашиваемая вами страница либо не активна, либо удалена</p>
           <br>
-          <a href="/" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-home"></span> Вернуться на главную
-          </a>
+          <br>
+          <h2><a href="https://www.ezpoisk.com"> Вернуться на главную </a></h2>
         </div>
       </div>
+      <div class="footer">
+        <p>Design by <a href="http://w3layouts.com">w3layouts</a></p>
+      </div>
     </div>
-    <hr>
 
   </body>
 </html>
