@@ -2,7 +2,15 @@ class Dashboard::FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @favorites = UserFavorites.new(current_user).favorite_posts
-    @favorites = Kaminari.paginate_array(@favorites).page(params[:page])
+    @favorites = Kaminari.paginate_array(favorite_posts).page(params[:page])
+  end
+
+  private
+
+  def favorite_posts
+    current_user.favorites.map do |favorite|
+      model = favorite.post_type.constantize
+      model.find_by_id(favorite.post_id)
+    end
   end
 end

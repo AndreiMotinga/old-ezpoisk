@@ -20,7 +20,7 @@ body {
   li { padding: 2px; }
 }
 .shadow {
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
 }
 
 .white-block {
@@ -58,7 +58,7 @@ body {
 }
 
 .secondary-navbar {
-  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
   li.active {
     border-top: 5px solid blue;
     height: 50px;
