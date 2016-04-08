@@ -30,13 +30,13 @@ class Post < ActiveRecord::Base
     return all unless category.present?
     where(category: category)
   end
-  scope :older, -> (id) { where("id < ?", id) }
+  scope :older, -> (created_at) { where("created_at < ?", created_at) }
 
   def logo_url(style = :medium)
     image.url(style)
   end
 
   def side_posts
-    Post.older(id).by_category(category).with_logo.by_views.limit(4)
+    Post.older(created_at).by_category(category).with_logo.by_views.limit(4)
   end
 end

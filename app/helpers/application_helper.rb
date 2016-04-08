@@ -37,9 +37,4 @@ module ApplicationHelper
       render "dashboard/sales/sale", record: record
     end
   end
-
-  # todo-question: cant' remove because of vk
-  def async_js?
-    params[:controller] == "home" ? "" : false
-  end
 end
