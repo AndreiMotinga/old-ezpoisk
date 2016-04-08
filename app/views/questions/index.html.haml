@@ -4,6 +4,10 @@
 - content_for :secondary_navbar do
   = render "questions/navbar"
 
+- content_for :search do
+  .div
+    = link_to "Задать вопрос", new_question_path, class: "btn btn-warning search-block"
+
 - content_for :side do
   = render "questions/side"
 
