@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe Sale do
   it { should validate_presence_of :title }
-  it { should validate_presence_of :phone }
   it { should validate_presence_of :category }
 
   it { should validate_presence_of :city_id }

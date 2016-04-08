@@ -1,0 +1,5 @@
+.row
+  .col-xs-12
+    .col-xs-12.search
+      = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#re-agency-search", "data-toggle": :modal, role: :button
+      .hidden-xs#search_params= render "shared/search_params"

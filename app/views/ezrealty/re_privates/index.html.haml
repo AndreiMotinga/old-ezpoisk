@@ -6,9 +6,7 @@
 - content_for :side do
   = render "shared/side/questions"
 - content_for :search do
-  .col-sx-12.search
-    = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#pirvateSearch", "data-toggle": :modal, role: :button
-    .hidden-xs#search_params= render "shared/search_params"
+  = render "ezrealty/re_privates/search"
 
 .col-xs-12
   - @re_privates.each do |re_private|

@@ -45,15 +45,6 @@ describe Ezjob::JobsController do
         expect(assigns(:jobs).size).to eq 2
       end
 
-      it "filters by post_type" do
-        2.times { create :job, :active, post_type: "ищу" }
-        create :job, :active, post_type: "требуется"
-
-        get :index, post_type: "ищу"
-
-        expect(assigns(:jobs).size).to eq 2
-      end
-
       it "filters by category" do
         2.times { create :job, :active, category: JOB_CATEGORIES.first }
         create :job, :active, category: JOB_CATEGORIES.second

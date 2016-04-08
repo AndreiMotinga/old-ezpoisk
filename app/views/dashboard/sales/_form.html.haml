@@ -1,31 +1,27 @@
 = bootstrap_form_for([:dashboard, @sale]) do |f|
-  .field
-    = f.text_field :title, label: '* Заголовок'
-  .field
-    = f.number_field :price, label: 'Цена'
+  .row
+    .col-sm-8
+      = f.text_field :title, label: '* Заголовок'
+    .col-sm-4
+      = f.number_field :price, label: 'Цена'
 
-  .field
-    = f.select :category,
-                SALE_CATEGORIES,
-                include_blank: true,
-                label: '* Категория'
+  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
 
-  .field
-    = form_state_select(f)
-  .field
-    = form_city_select(f, @sale)
-  .field
-    = f.text_field :street, label: 'Улица'
+  .row
+    .col-sm-4
+      = f.select :category, SALE_CATEGORIES, include_blank: true, label: '* Категория'
+    .col-sm-4
+      = f.text_field :phone, label: 'Телефон'
+    .col-sm-4
+      = f.email_field :email
 
-
-  .field
-    = f.text_field :phone, label: '* Телефон'
-
-  .field
-    = f.email_field :email
-
-  .field
-    = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  .row
+    .col-sm-4
+      = f.text_field :street, label: 'Улица'
+    .col-sm-4
+      = form_state_select(f)
+    .col-sm-4
+      = form_city_select(f, @sale)
 
   .field
     = f.check_box :active, label: "Активно *"

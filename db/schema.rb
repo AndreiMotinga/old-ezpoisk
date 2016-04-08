@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406151701) do
+ActiveRecord::Schema.define(version: 20160409001705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,7 +150,6 @@ ActiveRecord::Schema.define(version: 20160406151701) do
     t.string   "phone"
     t.string   "email"
     t.string   "category"
-    t.string   "post_type"
     t.string   "description",       default: ""
     t.boolean  "active"
     t.integer  "state_id"
@@ -173,7 +172,6 @@ ActiveRecord::Schema.define(version: 20160406151701) do
 
   add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree
   add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
-  add_index "jobs", ["post_type"], name: "index_jobs_on_post_type", using: :btree
   add_index "jobs", ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
   add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree

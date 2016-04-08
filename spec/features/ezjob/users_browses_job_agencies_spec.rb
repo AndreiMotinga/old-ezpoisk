@@ -3,7 +3,7 @@ require "rails_helper"
 feature "User browses job_agencies" do
   scenario "success" do
     visit ezjob_job_agencies_path
-    expect(page).to have_content("Расширенный поиск")
+    expect(page).to have_content("Настроить фильтр")
   end
 end
 

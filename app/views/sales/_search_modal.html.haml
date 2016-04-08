@@ -1,31 +1,26 @@
 / Modal
-#saleSearch.modal.fade{ "aria-labelledby" => "myModalLabel",
-                           :role => "dialog",
-                           :tabindex => "-1" }
-  .modal-dialog{:role => "document"}
+#saleSearch.modal.fade{"aria-labelledby": "myModalLabel", role: "dialog", tabindex: "-1"}
+  .modal-dialog{role: "document"}
     .modal-content
       .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title Расширенный поиск
+        %button.close{"aria-label": "Close", "data-dismiss": "modal", type: "button"}
+          %span{"aria-hidden": "true"} ×
+        %h4#myModalLabel.modal-title.text-center Настроить фильтр
 
       .modal-body
         %form.form-horizontal{action: sales_path, method: :get}
           = render "shared/search_by_address"
           %hr/
-          .form-group
-            = label_tag "Ключевое слово", nil,  class: "col-sm-3 control-label"
-            .col-sm-9
-              = text_field_tag :keyword,
-                               params[:keyword],
-                               class: "form-control"
-          .form-group
-            = label_tag "Раздел", nil,  class: "col-sm-3 control-label"
-            .col-sm-9
+          .row
+            .col-sm-6
+              = label_tag "Ключевое слово", nil
+              = text_field_tag :keyword, params[:keyword], class: "form-control"
+            .col-sm-6
+              = label_tag "Раздел", nil
               = select_tag :category,
-                options_for_select(SALE_CATEGORIES, params[:category]),
-                include_blank: true,
-                class: "form-control"
+                            options_for_select(SALE_CATEGORIES, params[:category]),
+                            include_blank: true,
+                            class: "form-control"
           %hr/
           .row
             .col-xs-6

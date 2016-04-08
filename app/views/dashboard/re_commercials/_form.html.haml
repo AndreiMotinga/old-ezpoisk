@@ -1,38 +1,34 @@
 = bootstrap_form_for([:dashboard, @re_commercial]) do |f|
-  / address
-  .field
-    = f.text_field :street, label: '* Улица'
+  .row
+    .col-sm-8
+      = f.text_field :street, label: '* Улица'
+    .col-sm-4
+      = f.number_field :price, label: '* Цена'
+  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
 
-  .field
-    = form_state_select(f)
-  .field
-    = form_city_select(f, @re_commercial)
+  .row
+    .col-sm-6
+      = f.text_field :phone, label: 'Телефон'
+    .col-sm-6
+      = f.email_field :email, label: 'Email'
 
-  / details
-  .field
-    = f.select :post_type,
-               RE_TYPES,
-               include_blank: true,
-               label: '* Тип объявления'
-  .field
-    = f.select :category,
-                RE_COMMERCIAL_CATEGORIES,
-                include_blank: true,
-                label: "* Категория"
-  .field
-    = f.number_field :price, label: '* Цена'
-  .field
-    = f.text_field :phone, label: 'Телефон'
-  .field
-    = f.email_field :email, label: 'Email'
-  .field
-    = f.number_field :space, label: 'Площадь'
+  .row
+    .col-sm-6
+      = f.select :post_type, RE_TYPES, include_blank: true, label: '* Тип объявления'
+    .col-sm-6
+      = f.select :category, RE_COMMERCIAL_CATEGORIES, include_blank: true, label: "* Категория"
 
-  .field
-    = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  .row
+    .col-sm-6
+      = form_state_select(f)
+    .col-sm-6
+      = form_city_select(f, @re_commercial)
 
-  .field
-    = f.check_box :active, label: "Активно *"
+  .row
+    .col-sm-6
+      = f.number_field :space, label: 'Площадь'
+    .col-sm-6
+      = f.check_box :active, label: "Активно *"
 
   %br/
   .actions

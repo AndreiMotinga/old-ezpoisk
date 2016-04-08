@@ -63,7 +63,6 @@ class Dashboard::JobsController < ApplicationController
                                 :city_id,
                                 :logo,
                                 :category,
-                                :source,
-                                :post_type)
+                                :source)
   end
 end

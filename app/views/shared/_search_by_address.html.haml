@@ -1,19 +1,17 @@
 .form-group
-  .col-sm-10
-    %label Введите адрес и радиус поиска
+  .col-sm-9
+    %label Введите адрес
     = origin_text_field_param
-  .col-sm-2
-    %label миль
+  .col-sm-3
+    %label радиус (миль)
     = within_text_field_param
 
 %hr
-%h5 Либо выберите штат и город
-.form-group
-  = label_tag "Штат", nil,  class: "col-xs-1 control-label"
-  .col-xs-12
+%h5.text-center Либо выберите штат и город
+.row
+  .col-sm-6
     = select_tag :state_id, options_for_select(STATES, state_id), multiple: true, class: "form-control state-select"
-
-.form-group
-  = label_tag "Город", nil,  class: "col-xs-1 control-label"
-  .col-xs-12
+  .visible-xs
+    %br/
+  .col-sm-6
     = select_tag :city_id, options_from_collection_for_select(state_cities, :id, :name, city_id), multiple: true,  class: "form-control city-select"

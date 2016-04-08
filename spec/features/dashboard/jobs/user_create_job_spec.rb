@@ -11,7 +11,6 @@ feature "user creates job" do
     fill_in "Заголовок", with: job.title
     fill_in "Телефон", with: job.phone
     fill_in "Email", with: job.email
-    select(job.post_type, from: "Тип объявлния")
     select(job.category, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
@@ -23,7 +22,6 @@ feature "user creates job" do
 
     saved_job = Job.last
     expect(saved_job.active).to be true
-    expect(saved_job.post_type).to eq job.post_type
     expect(saved_job.category).to eq job.category
     expect(saved_job.state_id).to_not be nil
     expect(saved_job.city_id).to_not be nil

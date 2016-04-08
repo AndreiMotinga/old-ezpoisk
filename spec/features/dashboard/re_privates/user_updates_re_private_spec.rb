@@ -12,7 +12,7 @@ feature "user creates re_private" do
 
     fill_in "Улица", with: attrs.street
     select(attrs.post_type, from: "Тип объявления")
-    select(attrs.duration, from: "Квартира сдается")
+    select(attrs.duration, from: "Продолжительность")
     select(attrs.rooms, from: "Комнат")
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
@@ -49,7 +49,7 @@ feature "user creates re_private" do
     re_private = create :re_private, user: user
 
     visit edit_dashboard_re_private_path re_private
-    fill_in "Описание", with: "New description"
+    find(:css, "#description").set("New description")
     click_on "details-save-btn"
     re_private.reload
 

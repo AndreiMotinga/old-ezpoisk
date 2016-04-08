@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe Job do
   it { should validate_presence_of :title }
-  it { should validate_presence_of :post_type }
   it { should validate_presence_of :category }
 
   it { should validate_presence_of :city_id }

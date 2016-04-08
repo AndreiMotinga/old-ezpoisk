@@ -1,48 +1,56 @@
 = bootstrap_form_for([:dashboard, @re_private]) do |f|
-  - if current_user.admin?
-    .field
-      = f.text_field :source, label: 'источник'
-
-  / address
-  .field
-    = f.text_field :street, label: '* Улица'
-  .field
-    = form_state_select(f)
-  .field
-    = form_city_select(f, @re_private)
-
-  / details
-  .field
-    = f.select :post_type,
-                RE_TYPES,
-                include_blank: true,
-                label: '* Тип объявления'
-  .field
-    = f.select :duration,
-               RE_DURATION,
-               include_blank: true,
-               label: '* Квартира сдается'
-  .field
-    = f.number_field :price, label: '* Цена (без пробелов)'
-  .field
-    = f.number_field :baths, label: 'Ванные'
-  .field
-    = f.number_field :space, label: "Площадь (sq. feet)"
-  .field
-    = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
-  .field
-    = f.text_field :phone, label: 'Телефон'
-  .field
-    = f.email_field :email, label: 'Email'
+  = f.text_field :source, label: "источник" if current_user.admin?
+  .row
+    .col-sm-8
+      = f.text_field :street, label: '* Улица'
+    .col-sm-4
+      = f.number_field :price, label: '* Цена'
 
   .field
-    = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+    .hidden-xs
+      = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+    .visible-xs
+      = f.text_area :description, rows: 5, label: 'Описание', id: "description"
 
-  .field
-    = f.check_box :active, label: "Активно *"
+  .row
+    .col-sm-6
+      .field
+        = f.text_field :phone, label: 'Телефон'
+    .col-sm-6
+      .field
+        = f.email_field :email, label: 'Email'
 
-  .field
-    = f.check_box :fee, label: "Комиссия *"
+  .row
+    .col-sm-6
+      .field
+        = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
+    .col-sm-6
+      .field
+        = f.select :post_type, RE_TYPES, include_blank: true, label: '* Тип объявления'
+
+  .row
+    .col-sm-6
+      .field
+        = form_state_select(f)
+    .col-sm-6
+      .field
+        = form_city_select(f, @re_private)
+
+  .row
+    .col-sm-4
+      .field
+        = f.select :duration, RE_DURATION, include_blank: true, label: "Продолжительность"
+    .col-sm-4
+      .field
+        = f.number_field :baths, label: 'Ванные'
+    .col-sm-4
+      .field
+        = f.number_field :space, label: "Площадь (sq. feet)"
+
+  .row
+    .col-xs-12
+      = f.check_box :active, label: "Активно *"
+      = f.check_box :fee, label: "Комиссия *"
 
   %br/
   .actions

@@ -3,7 +3,7 @@ require "rails_helper"
 feature "User browses sales" do
   scenario "success" do
     visit sales_path
-    expect(page).to have_content("Расширенный поиск")
+    expect(page).to have_content("Настроить фильтр")
   end
 end
 

@@ -1,38 +1,31 @@
 %form.form-horizontal{action: ezrealty_re_commercials_path, method: :get}
   = render "shared/search_by_address"
-
   %hr/
-  %h5 Детали поиска
-  .form-group
-    = label_tag "Сортировать", nil,  class: "col-sm-5 control-label"
-    .col-sm-5
+  .row
+    .col-sm-4
+      = label_tag "Минимальная цена", nil
+      = number_field_tag :min_price, params[:min_price], class: "form-control"
+    .col-sm-4
+      = label_tag "Максимальная цена", nil
+      = number_field_tag :max_price, params[:max_price], class: "form-control"
+    .col-sm-4
+      = label_tag "Сортировать", nil
       = sort_select
+  %br
 
-  .form-group
-    = label_tag "Тип объявления", nil,  class: "col-sm-5 control-label"
-    .col-sm-5
+  .row
+    .col-sm-6
+      = label_tag "Тип объявления", nil
       = select_tag :post_type,
                    options_for_select(RE_TYPES, params[:post_type]),
                    include_blank: true,
                    class: "form-control"
-
-  .form-group
-    = label_tag "Категория", nil,  class: "col-sm-5 control-label"
-    .col-sm-5
+    .col-sm-6
+      = label_tag "Категория", nil
       = select_tag :category,
                    options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
                    include_blank: true,
                    class: "form-control"
-
-  .form-group
-    = label_tag "Минимальная цена", nil,  class: "col-sm-5 control-label"
-    .col-sm-5
-      = text_field_tag :min_price, params[:min_price], class: "form-control"
-
-  .form-group
-    = label_tag "Максимальная цена", nil,  class: "col-sm-5 control-label"
-    .col-sm-5
-      = text_field_tag :max_price, params[:max_price], class: "form-control"
 
   %hr/
   .row

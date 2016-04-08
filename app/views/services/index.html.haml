@@ -6,9 +6,7 @@
 - content_for :side do
   = render "shared/side/questions"
 - content_for :search do
-  .col-sx-12.search
-    = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#serviceSearch", "data-toggle": :modal, role: :button
-    .hidden-xs#search_params= render "shared/search_params"
+  = render "services/search"
 
 .col-xs-12
   - @services.each do |service|

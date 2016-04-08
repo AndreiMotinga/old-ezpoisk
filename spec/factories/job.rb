@@ -9,7 +9,6 @@ FactoryGirl.define do
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
 
-    post_type { JOB_TYPES.sample }
     category { JOB_CATEGORIES.first }
 
     association :user
