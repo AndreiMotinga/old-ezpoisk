@@ -47,8 +47,6 @@ gem "summernote-rails"
 gem "rails_admin"
 gem "rails_admin_tag_list"
 
-gem "puma"
-
 gem "sitemap_generator"
 gem "slack-notifier"
 
@@ -70,11 +68,13 @@ gem "friendly_id"
 gem "babosa" # handle russian
 
 group :production do
+  gem "puma"
   gem "rails_12factor"
   # gem 'heroku-deflater'
 end
 
 group :development, :test do
+  gem "thin"
   gem "pry-byebug"
   gem "factory_girl_rails"
   gem "faker"
