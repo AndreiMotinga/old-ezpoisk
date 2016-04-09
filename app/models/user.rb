@@ -49,6 +49,11 @@ class User < ActiveRecord::Base
     Subscription.exists?(user_id: id, question_id: q_id)
   end
 
+  def name_to_show
+    return name if name.present?
+    email
+  end
+
   private
 
   def send_emails

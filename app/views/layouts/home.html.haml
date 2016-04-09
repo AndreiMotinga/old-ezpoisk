@@ -22,6 +22,7 @@
       .row
         = yield :secondary_navbar if content_for?(:secondary_navbar)
         .notice= render "shared/notice" unless devise_controller?
+      = render "shared/sidebar"
       = yield
       %br/
       = yield :partners_bottom if content_for?(:partners_bottom)

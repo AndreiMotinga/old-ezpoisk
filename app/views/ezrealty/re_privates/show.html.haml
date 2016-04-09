@@ -34,12 +34,13 @@
         Подано: #{time_ago_in_words @re_private.created_at} назад
 
 .show
-  .white-block
-    %ul.pgwSlideshow.pictures
-      - @re_private.pictures.each do |pic|
-        %li
-          = link_to pic.image.url do
-            = image_tag pic.image.url(:large), alt: ""
+  - if @re_private.pictures.any?
+    .white-block
+      %ul.pgwSlideshow.pictures
+        - @re_private.pictures.each do |pic|
+          %li
+            = link_to pic.image.url do
+              = image_tag pic.image.url(:large), alt: ""
   /images
 
 .col-xs-12

@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_rack_mini_profiler
-    Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    # Rack::MiniProfiler.authorize_request if current_user.try(:admin)
   end
 
   def get_record(model, id, path)

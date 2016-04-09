@@ -1,6 +1,6 @@
 / Desktop
 .hidden-xs
-  %nav.navbar.navbar-default.secondary-navbar.white
+  %nav.navbar.secondary-navbar.white
     .container-fluid
       / Brand and toggle get grouped for better mobile display
       .navbar-header
@@ -16,13 +16,10 @@
           = image_tag "logos/ezprofile", class: "img-responsive", id: 'brand-image'
       / Collect the nav links, forms, and other content for toggling
       #dashboard-nav-bar.collapse.navbar-collapse
-        %ul.nav.navbar-nav.navbar-left
+        %ul.nav.navbar-nav.navbar-right
           %li= link_to "Мои объявления", dashboard_path
           %li{class: cp(dashboard_favorites_path)}
             = link_to "Избранное", dashboard_favorites_path
-
-        %ul.nav.navbar-nav.navbar-right
-          %li= link_to "Подать объявление", "#new",  "data-toggle": "modal"
           -# reklama
           - if current_user.try(:admin)
             %li{class: cp(dashboard_partners_path)}

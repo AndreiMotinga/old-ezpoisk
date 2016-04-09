@@ -1,6 +1,0 @@
-.fixed
-  %ul.nav.white-block
-    - SERVICE_CATEGORIES.keys.each do |category|
-      %li{:class => ("active" if cp(category: category))}
-        = link_to category, services_path(category: category)
-

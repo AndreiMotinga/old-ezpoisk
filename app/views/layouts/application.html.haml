@@ -23,6 +23,7 @@
         .notice= render 'shared/notice' unless devise_controller?
         = yield :search if content_for?(:search)
         .col-md-7
+          = render "shared/sidebar"
           = yield
         .col-md-5
           .col-md-11.col-md-offset-1
