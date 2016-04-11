@@ -28,7 +28,7 @@
 .row
   .col-xs-12
     .pull-right
-      - if @current_user.try(:admin?)
+      - if current_user.try(:admin?)
         = link_to "Редактировать ", edit_news_path(@post), class: "text-muted"
         %nbsp
       - if @post.link.present?
