@@ -17,7 +17,7 @@
   %body
     = render "shared/navbar"
     / CONTENT
-    .container
+    .container-fluid
       = render "shared/partners/top"
       .row
         = yield :secondary_navbar if content_for?(:secondary_navbar)

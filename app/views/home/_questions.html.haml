@@ -3,10 +3,9 @@
     = link_to questions_path, target: "_blank", class: "ez" do
       %span.ez.orange ez
       %span.ez.blue answer
-    %span.pull-right= l Date.current, format: :long
   %hr.lenta/
 
-  - @homepage.questions(6).map do |q|
+  - @homepage.questions(14).map do |q|
     .panel.panel-default.home-panel
       .panel-body
         %h2.q-title= link_to q.title, q, target: "_blank"

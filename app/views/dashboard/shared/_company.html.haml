@@ -5,8 +5,10 @@
   .col-xs-8.col-sm-8
     / line 1
     .hidden-xs
-      %h1.title
-        = link_to record.title, link_from_controller(record)
+      - if home_controller?
+        %h5.title= link_to record.title, link_from_controller(record)
+      - else
+        %h1.title= link_to record.title, link_from_controller(record)
     .visible-xs
       %h1.mob-title= link_to record.title, link_from_controller(record)
 
@@ -26,8 +28,11 @@
     %span.company-phone= record.phone
     %hr.post-devider/
 
-    / line 5
-    .pull-right= render "shared/favor_links", record: record
+    / line 6
     .hidden-xs
       - if record.try(:site).present?
         %strong= link_to record.site, "http://#{record.site}"
+
+    / line 7
+    .pull-right= render "shared/favor_links", record: record
+    %span= time_ago_in_words record.updated_at

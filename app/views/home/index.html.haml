@@ -6,19 +6,11 @@
 / DESKTOP
 .hidden-xs
   .row
-    .col-md-6.home-left
+    .col-md-6.col-lg-4
       = render "home/questions"
-    .col-md-6
-      = render "home/main_post"
-
-  .row
-    .col-md-7.home-left.hidden-sm
-      .col-md-12#recent-posts
-        %h4 Последние объявления
-      .col-sm-12
-        = render "home/users_posts"
-    .col-md-5
-      = render "shared/partners/side"
+    .col-md-6.col-lg-4
+      = render "home/users_posts"
+    .hidden-md.col-lg-4
       = render "home/news_posts"
 
 / MOBILE

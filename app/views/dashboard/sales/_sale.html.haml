@@ -7,12 +7,15 @@
   .col-xs-8.col-sm-8
     / line 1
     .hidden-xs
-      %h1.title= link_to record.title, link_from_controller(record)
+      - if home_controller?
+        %h5.title= link_to record.title, link_from_controller(record)
+      - else
+        %h1.title= link_to record.title, link_from_controller(record)
     .visible-xs
       %h1.mob-title= link_to record.title, link_from_controller(record)
 
     /line 2
-    - if record.street.present?
+    - if record.street.present? && !home_controller?
       = record.street
       %hr.post-devider/
 

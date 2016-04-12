@@ -37,4 +37,8 @@ module ApplicationHelper
       render "dashboard/sales/sale", record: record
     end
   end
+
+  def home_controller?
+    "hidden" if params[:controller] == "home"
+  end
 end
