@@ -4,7 +4,8 @@
       %input.q-search.form-control{:placeholder => "Поиск вопросов по ключевым словам",
         :type => "text", name: "keyword", value: params[:keyword]}
         %span.input-group-btn
-          = submit_tag 'Искать', class: "button btn btn-default", name: nil
+          %button.btn.btn-default{type: "submit"}
+            %i.fa.fa-search
 .row
   .col-xs-12
     .col-xs-12.search
