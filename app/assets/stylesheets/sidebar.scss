@@ -71,6 +71,7 @@
 .sidebar-icon {
   margin-right: 10px;
   .fa { max-width: 15px; }
+  .fa-heart { color: red; }
 }
 
 .sidebar-nav li a {
@@ -141,6 +142,16 @@
   -webkit-transform: translate3d(0,0,0);
   -webkit-transition: all .35s ease-in-out;
 }
+.hamb-menu {
+  position: fixed;
+  top: 16px;
+  z-index: 999;
+  display: block;
+  margin-left: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  color: $blue;
+}
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
 .hamburger.is-closed .hamb-bottom,
@@ -155,7 +166,7 @@
 .hamburger.is-closed .hamb-top,
 .hamburger.is-closed .hamb-middle,
 .hamburger.is-closed .hamb-bottom {
-  background-color: $grey2;
+  background-color: $orange;
 }
 .hamburger.is-closed .hamb-top {
   top: 5px;
@@ -181,7 +192,7 @@
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-middle,
 .hamburger.is-open .hamb-bottom {
-  background-color: $grey2;
+  background-color: $orange;
 }
 .hamburger.is-open .hamb-top,
 .hamburger.is-open .hamb-bottom {
