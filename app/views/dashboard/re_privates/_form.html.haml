@@ -15,26 +15,10 @@
   .row
     .col-sm-6
       .field
-        = f.text_field :phone, label: 'Телефон'
-    .col-sm-6
-      .field
-        = f.email_field :email, label: 'Email'
-
-  .row
+        = f.select :post_type, RE_TYPES, include_blank: true, label: '* Тип объявления'
     .col-sm-6
       .field
         = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
-    .col-sm-6
-      .field
-        = f.select :post_type, RE_TYPES, include_blank: true, label: '* Тип объявления'
-
-  .row
-    .col-sm-6
-      .field
-        = form_state_select(f)
-    .col-sm-6
-      .field
-        = form_city_select(f, @re_private)
 
   .row
     .col-sm-4
@@ -46,6 +30,22 @@
     .col-sm-4
       .field
         = f.number_field :space, label: "Площадь (sq. feet)"
+
+  .row
+    .col-sm-6
+      .field
+        = f.text_field :phone, label: 'Телефон'
+    .col-sm-6
+      .field
+        = f.email_field :email, label: 'Email'
+
+  .row
+    .col-sm-6
+      .field
+        = form_state_select(f)
+    .col-sm-6
+      .field
+        = form_city_select(f, @re_private)
 
   .row
     .col-xs-12

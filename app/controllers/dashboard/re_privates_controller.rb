@@ -7,6 +7,9 @@ class Dashboard::RePrivatesController < ApplicationController
                                 city_id: current_user.city_id,
                                 active: true,
                                 email: current_user.email,
+                                fee: true,
+                                baths: 1,
+                                duration: "помесячно",
                                 phone: current_user.phone
   end
 
