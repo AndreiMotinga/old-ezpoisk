@@ -11,14 +11,14 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        = link_to main_app.ezjob_job_agencies_path do
+        = link_to main_app.ezjob_jobs_path do
           = image_tag "logos/ezjob", class: "img-responsive", id: 'brand-image'
       / Collect the nav links, forms, and other content for toggling
       #dashboard-nav-bar.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
-          %li{:class => ("active" if cp(ezjob_job_agencies_path))}
-            = link_to "Агентства", ezjob_job_agencies_path
           %li{:class => ("active" if cp(ezjob_jobs_path))}
             = link_to "Работа", ezjob_jobs_path
+          %li{:class => ("active" if cp(ezjob_job_agencies_path))}
+            = link_to "Агентства", ezjob_job_agencies_path
       / /.navbar-collapse
     / /.container-fluid
