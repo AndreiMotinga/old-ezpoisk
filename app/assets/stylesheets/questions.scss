@@ -2,7 +2,8 @@
 @media (min-width: 1200px) { .qa-search { width: 665px; } }
 
 .qa-avatar {
-  padding: 0px
+  padding: 0px;
+  img { margin-left: 5px; }
 }
 
 #qa-search-mobile {

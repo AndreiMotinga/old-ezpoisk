@@ -1,0 +1,10 @@
+- content_for :secondary_navbar do
+  = render "shared/navbars/profile"
+
+.col-xs-12
+  - @posts.each do |post|
+    = render "posts/post", post: post
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @posts

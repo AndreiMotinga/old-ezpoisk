@@ -7,11 +7,10 @@
       .col-xs-12
         -if question.avatar.present?
           .hidden-xs.col-sm-1.qa-avatar
-            = image_tag question.avatar, alt: question.username,  class: "img-responsive img-circle center-block"
+            = link_to profile_path(question.the_answer.user.profile) do
+              = image_tag question.avatar, alt: question.username,  class: "img-responsive img-circle center-block"
         .col-xs-12.col-sm-11
-          %h3.text-muted.question-author
-            = question.username
-            = ", #{question.userslug}" if question.userslug.present?
+          %h3.text-muted.question-author= link_to question.username, profile_path(question.profile) if question.the_answer
           %p= "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
 
   / line 2 question text

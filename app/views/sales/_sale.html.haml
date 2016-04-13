@@ -1,0 +1,35 @@
+.row.post-item.white-block{ class: ("user-hidden" if sale.user_hidden?(current_user)), "data-hidden": sale.id }
+  .col-xs-4.col-sm-4.logo-js
+    = link_to link_to_show_page(sale) do
+      = image_tag sale.logo_url, class: "img-responsive",
+        alt: "Продается #{sale.title}"
+
+  .col-xs-8.col-sm-8
+    / line 1
+    .hidden-xs
+      - if home_controller?
+        %h5.title= link_to sale.title, link_to_show_page(sale)
+      - else
+        %h4.title= link_to sale.title, link_to_show_page(sale)
+    .visible-xs
+      %h5.title= link_to sale.title, link_to_show_page(sale)
+
+    /line 2
+    .hidden-xs
+      - if sale.street.present? && !home_controller?
+        = sale.street
+        %hr.post-devider/
+
+    /line 2
+    - if sale.price.present?
+      %strong $ #{sale.price}
+      %hr.post-devider/
+
+    / line 3
+    %span.glyphicon.glyphicon-earphone
+    %span.company-phone= sale.phone
+    %hr.post-devider/
+
+    / line 4
+    .pull-right= render "shared/favor_links", record: sale
+    %span= time_ago_in_words sale.updated_at

@@ -1,0 +1,16 @@
+= title("Недвижимость в США. Снять сдать, купить продать квартиру - ezpoisk")
+= desc("EZPOISK - Объявления о продаже, покупке и аренде квартир без посредников в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render "re_privates/search_modal"
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezrealty"
+- content_for :side do
+  = render "shared/side/questions"
+- content_for :search do
+  = render "re_privates/search"
+
+.col-xs-12
+  = render @re_privates
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @re_privates

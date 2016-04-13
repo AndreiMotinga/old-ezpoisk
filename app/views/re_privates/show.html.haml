@@ -1,0 +1,57 @@
+= title("#{@re_private.address} #{@re_private.post_type} частной недвижимости в США - ezpoisk")
+= desc("#{@re_private.post_type}, #{@re_private.address}, #{@re_private.phone} . EZPOISK - снять/продать квартиру, дом, недвижимоть.")
+- content_for :head do
+  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
+  %meta{property: "og:type", content: "article"}/
+  %meta{property: "og:url", content: re_private_url(@re_private) }/
+  %meta{property: "og:title", content: @re_private.title}/
+  %meta{property: "og:image", content: @re_private.logo_url}/
+  %meta{property: "og:description", content: stripped_200(@re_private.description)}/
+
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezrealty"
+
+- content_for :side do
+  = render "shared/show/contacts", record: @re_private
+  .row
+    .col-xs-12.white-block
+      - if @re_private.duration.present?
+        %li.list-group-item
+          Продолжительность: #{@re_private.duration}
+      %li.list-group-item
+        Тип обьявления: #{@re_private.post_type}
+      %li.list-group-item
+        Цена: #{@re_private.price}
+      %li.list-group-item
+        Комиссия: #{@re_private.fee ? 'да' : 'нет'}
+      %li.list-group-item
+        Комнаты: #{@re_private.rooms}
+      %li.list-group-item
+        Ванные комнаты: #{@re_private.baths}
+      %li.list-group-item
+        Площадь: #{@re_private.space}
+      %li.list-group-item
+        Подано: #{time_ago_in_words @re_private.created_at} назад
+
+.show
+  - if @re_private.pictures.any?
+    .white-block
+      %ul.pgwSlideshow.pictures
+        - @re_private.pictures.each do |pic|
+          %li
+            = link_to pic.image.url do
+              = image_tag pic.image.url(:large), alt: ""
+  /images
+
+.col-xs-12
+  = render @re_private
+
+- if @re_private.description.present?
+  .col-xs-12.white-block
+    = sanitize @re_private.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @re_private
+
+.col-xs-12
+= render "shared/partners/bottom"

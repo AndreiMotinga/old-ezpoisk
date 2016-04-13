@@ -8,4 +8,8 @@ class Answer < ActiveRecord::Base
   def score
     get_upvotes.size - get_downvotes.size
   end
+
+  def user_avatar
+    user.profile.avatar.url(:thumb)
+  end
 end

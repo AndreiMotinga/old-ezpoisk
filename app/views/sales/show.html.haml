@@ -6,10 +6,10 @@
   %meta{property: "og:url", content: sale_url(@sale) }/
   %meta{property: "og:title", content: @sale.title}/
   %meta{property: "og:image", content: @sale.logo_url}/
-  %meta{property: "og:description", content: @sale.description}/
+  %meta{property: "og:description", content: stripped_200(@sale.description)}/
 
 - content_for :secondary_navbar do
-  = render "sales/navbar"
+  = render "shared/navbars/sale"
 - content_for :side do
   = render "shared/show/contacts", record: @sale
   .row
@@ -31,7 +31,7 @@
               = image_tag pic.image.url(:large), alt: ""
 
 .col-xs-12
-  = render "dashboard/sales/sale", record: @sale
+  = render @sale
 
 - if @sale.description.present?
   .col-xs-12.white-block

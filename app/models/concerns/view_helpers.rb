@@ -12,7 +12,7 @@ module ViewHelpers
   def address
     if street.present?
       "#{street} #{city.name} #{state.name}, #{zip}"
-    elsif zip != 0 && zip
+    elsif zip && zip != 0
       "#{city.name} #{state.name}, #{zip}"
     else
       "#{city.name} #{state.name}"
@@ -21,8 +21,8 @@ module ViewHelpers
 
   def map_marker
     Gmaps4rails.build_markers(self) do |post, marker|
-      marker.lat post.lat
-      marker.lng post.lng
+      marker.lat post.try(:lat)
+      marker.lng post.try(:lng)
       marker.infowindow post.infowindow
     end
   end

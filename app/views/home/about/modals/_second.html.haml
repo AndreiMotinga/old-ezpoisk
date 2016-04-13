@@ -11,10 +11,10 @@
               %span.orange EZ
               %span.blue REALTY
             %p.item-intro.text-muted Цель - облегчить поиск жилья для русских в америке
-            = link_to ezrealty_re_agencies_path, target: "_blank" do
-              = image_tag "about/portfolio/escape-preview", class: "img-responsive img-centered"
+            -# = link_to re_privates_path, target: "_blank" do
+            -#   = image_tag "about/portfolio/escape-preview", class: "img-responsive img-centered"
             %p
-              = link_to "EZREALTY", ezrealty_re_agencies_path, target: "_blank"
+              = link_to "EZREALTY", re_privates_path, target: "_blank"
               \- это место, где все желающие могут размещать
               свои объявления о сдаче жилья в аренду, продаже, или его поисках.
               Здесь можно найти хорошее агентство недвижимости в вашем городе, где
@@ -24,7 +24,7 @@
               пожалуйста пишите нам, мы будем очень рады вашему участию.
             %p
               Перейти в раздел можно
-              = link_to "сюдой.", ezrealty_re_agencies_path, target: "_blank"
+              = link_to "сюдой.", re_privates_path, target: "_blank"
             %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
               %i.fa.fa-times
               Закрыть

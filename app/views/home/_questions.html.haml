@@ -1,14 +1,15 @@
 .white-block
-  %h1.lenta-title
-    = link_to questions_path, target: "_blank", class: "ez" do
-      %span.ez.orange ez
-      %span.ez.blue answer
-  %hr.lenta/
+  %form{role: :search, method: :get, action: questions_path}
+    .input-group
+      %input.q-search.form-control{placeholder: "Поиск вопросов по ключевым словам", type: :text, name: :keyword, value: params[:keyword]}
+        %span.input-group-btn
+          %button.btn.btn-default{type: "submit"}
+            %i.fa.fa-search
 
+.white-block
   - @homepage.questions(14).map do |q|
     .panel.panel-default.home-panel
       .panel-body
         %h2.q-title= link_to q.title, q, target: "_blank"
         %span #{q.impressions_count} просмотров,
         %span #{q.answers_count} ответов
-%br/

@@ -2,7 +2,6 @@ class Partner < ActiveRecord::Base
   acts_as_taggable_on :pages
   belongs_to :user
   belongs_to :state
-  # todo tests
   has_many :partner_cities
   has_many :cities, through: :partner_cities
 

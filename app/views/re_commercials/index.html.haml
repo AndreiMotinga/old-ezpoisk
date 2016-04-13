@@ -1,0 +1,16 @@
+= title("Аренда, продажа коммерческой недвижимости в США - ezpoisk")
+= desc("EZPOISK - Объявления о продаже и аренде коммерческой недвижимости - цены на офисы, склады и магазины в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render 're_commercials/search_modal'
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezrealty"
+- content_for :side do
+  = render "shared/side/questions"
+- content_for :search do
+  = render "re_commercials/search"
+
+.col-xs-12
+  = render @re_commercials
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @re_commercials

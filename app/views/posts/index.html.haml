@@ -1,0 +1,14 @@
+= title("Новости, информация об иммиграции в США - ezpoisk")
+= desc("EZPOISK - полезная информация о русской иммиграции в США. Новости, статьи, полезные советы.")
+- content_for :secondary_navbar do
+  = render "shared/navbars/post"
+
+- content_for :side do
+  = render "posts/show/side"
+
+.col-xs-12
+  = render @posts
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @posts

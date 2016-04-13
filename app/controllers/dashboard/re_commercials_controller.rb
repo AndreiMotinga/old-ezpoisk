@@ -3,11 +3,11 @@ class Dashboard::ReCommercialsController < ApplicationController
   before_action :set_re_commercial, only: [:edit, :update, :destroy]
 
   def new
-    @re_commercial = ReCommercial.new state_id: current_user.state_id,
-                                      city_id: current_user.city_id,
+    @re_commercial = ReCommercial.new(state_id: current_user.profile.state_id,
+                                      city_id: current_user.profile.city_id,
                                       active: true,
-                                      email: current_user.email,
-                                      phone: current_user.phone
+                                      phone: current_user.profile.phone,
+                                      email: current_user.email)
   end
 
   def edit

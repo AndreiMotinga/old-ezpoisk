@@ -1,0 +1,49 @@
+= title("#{@re_commercial.address} #{@re_commercial.post_type} коммерческой недвижимости в США - ezpoisk")
+= desc("#{@re_commercial.post_type}, #{@re_commercial.address}, #{@re_commercial.phone}. EZPOISK - снять/продать коммерческую недвижимость в США")
+- content_for :head do
+  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
+  %meta{property: "og:type", content: "article"}/
+  %meta{property: "og:url", content: re_commercial_url(@re_commercial) }/
+  %meta{property: "og:title", content: @re_commercial.title}/
+  %meta{property: "og:image", content: @re_commercial.logo_url}/
+  %meta{property: "og:description", content: stripped_200(@re_commercial.description)}/
+
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezrealty"
+- content_for :side do
+  = render "shared/show/contacts", record: @re_commercial
+  .row
+    .col-xs-12.white-block
+      %li.list-group-item
+        Категория: #{@re_commercial.category}
+      %li.list-group-item
+        Тип обьявления: #{@re_commercial.post_type}
+      %li.list-group-item
+        Цена: #{@re_commercial.price}
+      %li.list-group-item
+        Площадь: #{@re_commercial.space}
+      %li.list-group-item
+        Подано: #{time_ago_in_words @re_commercial.created_at} назад
+
+.show
+  - if @re_commercial.pictures.any?
+    .white-block
+      %ul.pgwSlideshow
+        - @re_commercial.pictures.each do |pic|
+          %li
+            = link_to pic.image.url do
+              = image_tag pic.image.url(:large), alt: ""
+    %hr.black-line/
+
+.col-xs-12
+  = render @re_commercial
+
+- if @re_commercial.description.present?
+  .col-xs-12.white-block
+    = sanitize @re_commercial.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @re_commercial
+
+.col-xs-12
+= render "shared/partners/bottom"

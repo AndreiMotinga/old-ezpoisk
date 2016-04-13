@@ -1,0 +1,21 @@
+.container.profile
+  = render "profiles/cover"
+
+  .row
+    .col-lg-6
+      .column
+        - @answers.each_with_index do |answer, i|
+          = render "profiles/answer", answer: answer if i < 5
+
+    .col-lg-6
+      .column
+        - @answers.each_with_index do |answer, i|
+          = render "profiles/answer", answer: answer if i > 4
+
+  .row
+    .col-xs-12
+      .text-center
+        - if @answers.any?
+          = paginate @answers, theme: "twitter-bootstrap-3"
+        - else
+          = link_to "добавить ответ", unanswered_questions_path, class: "btn btn-lg btn-warning"

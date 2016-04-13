@@ -12,15 +12,15 @@ module FormHelper
   end
 
   def sort_select
-    select_tag :sorted,
-               options_for_select({ "Цена вверх" => "price asc",
-                                    "Цена вниз" => "price desc",
-                                    "Площадь вверх" => "space asc",
-                                    "Площадь вниз" => "space desc",
-                                    "По дате" => "updated_at desc" },
-                                  params[:sorted]),
+    select_tag(:sorted,
+               options_for_select({"Подешевле": "price asc",
+                                   "Подороже": "price desc",
+                                   "Поменьше": "space asc",
+                                   "Побольше": "space desc",
+                                   "Поновее": "updated_at desc"},
+                                    params[:sorted]),
                include_blank: true,
-               class: "form-control"
+               class: "form-control")
   end
 
   def service_categories_options
@@ -71,10 +71,5 @@ module FormHelper
     else
       f.select :city_id, [], { label: "* Город" }, class: "city-select"
     end
-  end
-
-  def news_options(post = nil)
-    return NEWS_CATEGORIES.keys unless post.category
-    options_for_select(NEWS_CATEGORIES.keys, @post.category.split(" "))
   end
 end

@@ -1,7 +1,7 @@
 = title("#{@question.title} - ezpoisk")
 = desc(strip_tags(@question.text_to_show).truncate(200))
 - content_for :secondary_navbar do
-  = render "questions/navbar"
+  = render "shared/navbars/question"
 - content_for :head do
   %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
   %meta{property: "og:type", content: "article"}/
@@ -19,17 +19,11 @@
 / question
 .col-xs-12.white-block
   .col-xs-12
-    .hidden-xs
-      %h3.question-title= @question.title
-    .visible-xs
-      %h4.question-title= @question.title
+    %h4.question-title= @question.title
     %p.text= sanitize @question.text if @question.text.present?
-
     = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
     = subscription_links
-    - if current_user == @question.user
-      = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links"
-
+    = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links" if current_user == @question.user
     %br/
     %br/
   .col-xs-12
@@ -38,18 +32,16 @@
 
   #comments.collapse
     .fb-comments{"data-href": question_url(@question), "data-numposts": "5"}
-
-  %hr#lenta/
   %p= tag_links(@question)
-
 %br/
+
 / ANSWERS
 .col-xs-12
   .row
     = render "questions/no_answers_message" if @question.answers.empty?
-    = render @question.answers.includes(:user).by_score
-
+    = render @question.answers.includes(user: :profile).by_score
 %br/
+
 .row
   .col-xs-12
     = render "shared/partners/bottom"

@@ -4,7 +4,7 @@ feature "User favors re_agency", js: true do
   scenario "user is not logged in" do
     create :re_agency, :active
 
-    visit ezrealty_re_agencies_path
+    visit re_agencies_path
     page.find(".favor").click
     wait_for_ajax
 
@@ -15,7 +15,7 @@ feature "User favors re_agency", js: true do
     create_and_login_user
     create :re_agency, :active
 
-    visit ezrealty_re_agencies_path
+    visit re_agencies_path
     page.find(".favor").click
     wait_for_ajax
 
@@ -30,7 +30,7 @@ feature "User favors re_agency", js: true do
                     post_type: re_agency.class.to_s,
                     favorite: true)
 
-    visit ezrealty_re_agencies_path
+    visit re_agencies_path
     page.find(".favor").click
     wait_for_ajax
 

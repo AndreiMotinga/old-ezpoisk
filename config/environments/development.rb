@@ -69,5 +69,4 @@ Rails.application.configure do
   end
 
   config.assets.image_optim = {pngout: false, svgo: false}
-
 end

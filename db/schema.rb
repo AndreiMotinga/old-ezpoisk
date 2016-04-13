@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409001705) do
+ActiveRecord::Schema.define(version: 20160416150441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,18 +35,6 @@ ActiveRecord::Schema.define(version: 20160409001705) do
 
   add_index "cities", ["name"], name: "index_cities_on_name", using: :btree
   add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
-
-  create_table "companies", force: :cascade do |t|
-    t.string   "email"
-    t.string   "name"
-    t.string   "phone"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text     "notes"
-    t.boolean  "success"
-  end
-
-  add_index "companies", ["email"], name: "index_companies_on_email", unique: true, using: :btree
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -121,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.string   "phone"
     t.string   "email"
     t.string   "site"
-    t.text     "description"
+    t.text     "description",       default: "", null: false
     t.boolean  "active"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -129,8 +117,8 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -150,7 +138,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.string   "phone"
     t.string   "email"
     t.string   "category"
-    t.string   "description",       default: ""
+    t.text     "description",       default: "", null: false
     t.boolean  "active"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -235,30 +223,54 @@ ActiveRecord::Schema.define(version: 20160409001705) do
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
-    t.string   "category",           default: "Интересное"
-    t.string   "subcategory"
-    t.text     "text",               default: ""
+    t.text     "text",               default: "", null: false
     t.integer  "user_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "link"
-    t.boolean  "show_on_homepage"
-    t.boolean  "main"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.text     "image_remote_url"
-    t.string   "description"
-    t.boolean  "interesting"
-    t.string   "video_url"
     t.integer  "impressions_count",  default: 0
     t.string   "slug"
   end
 
-  add_index "posts", ["category"], name: "index_posts_on_category", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name",                default: ""
+    t.string   "phone",               default: ""
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "site",                default: ""
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.integer  "impressions_count",   default: 0,  null: false
+    t.text     "about",               default: "", null: false
+    t.text     "work",                default: "", null: false
+    t.string   "street",              default: "", null: false
+    t.string   "facebook",            default: "", null: false
+    t.string   "google",              default: "", null: false
+    t.string   "vk",                  default: "", null: false
+    t.string   "ok",                  default: "", null: false
+    t.string   "twitter",             default: "", null: false
+    t.string   "motto",               default: "", null: false
+  end
+
+  add_index "profiles", ["city_id"], name: "index_profiles_on_city_id", using: :btree
+  add_index "profiles", ["state_id"], name: "index_profiles_on_state_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
@@ -282,7 +294,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.string   "phone"
     t.string   "email"
     t.string   "site"
-    t.text     "description",       default: ""
+    t.text     "description",       default: "", null: false
     t.boolean  "active"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -322,7 +334,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.integer  "city_id"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.string   "description",       default: ""
+    t.text     "description",       default: "",    null: false
     t.integer  "impressions_count", default: 0
     t.string   "email"
   end
@@ -342,7 +354,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.string   "site"
     t.string   "fax"
     t.boolean  "active"
-    t.text     "description",       default: ""
+    t.text     "description",       default: "", null: false
     t.integer  "state_id"
     t.integer  "city_id"
     t.integer  "user_id"
@@ -378,7 +390,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.float    "lng"
     t.boolean  "active",            default: false
     t.boolean  "fee",               default: false
-    t.text     "description",       default: ""
+    t.text     "description",       default: "",    null: false
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -400,15 +412,15 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.string   "category"
     t.string   "phone"
     t.string   "email"
-    t.text     "description"
+    t.text     "description",       default: "", null: false
     t.boolean  "active"
     t.float    "lat"
     t.float    "lng"
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "zip"
     t.string   "street"
     t.string   "price"
@@ -431,7 +443,7 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.string   "site"
     t.string   "category"
     t.string   "subcategory"
-    t.text     "description"
+    t.text     "description",       default: "", null: false
     t.boolean  "active"
     t.integer  "user_id"
     t.integer  "city_id"
@@ -507,30 +519,17 @@ ActiveRecord::Schema.define(version: 20160409001705) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
-    t.string   "name"
-    t.string   "phone"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.string   "role",                   default: ""
     t.integer  "failed_attempts",        default: 0
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "slug"
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "site"
     t.string   "provider"
     t.string   "uid"
   end
 
-  add_index "users", ["city_id"], name: "index_users_on_city_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["state_id"], name: "index_users_on_state_id", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
@@ -564,6 +563,9 @@ ActiveRecord::Schema.define(version: 20160409001705) do
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "profiles", "cities"
+  add_foreign_key "profiles", "states"
+  add_foreign_key "profiles", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "re_agencies", "cities"
   add_foreign_key "re_agencies", "states"
@@ -585,6 +587,4 @@ ActiveRecord::Schema.define(version: 20160409001705) do
   add_foreign_key "services", "users"
   add_foreign_key "subscriptions", "questions"
   add_foreign_key "subscriptions", "users"
-  add_foreign_key "users", "cities"
-  add_foreign_key "users", "states"
 end

@@ -6,7 +6,7 @@
   //   width: 100%; /* for IE 6 */
   background-color: white;
   padding-bottom: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   .capture {
     color: white;
     position: absolute;
@@ -16,19 +16,7 @@
     padding: 5px 10px;
     background-color: rgba(0, 0, 0, 0.6);
   }
-  h5 {
-    margin: 0px;
-  }
-
-  h1.title {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 24px;
-  }
-  h1.mob-title {
-    font-size: 14px;
-    margin: 0;
-  }
+  .title { margin: 0 0 3px 0; }
 }
 
 .logo-js {
@@ -58,3 +46,4 @@
 #contacts {
   margin-bottom: 10px;
 }
+.author { margin: 10px; }

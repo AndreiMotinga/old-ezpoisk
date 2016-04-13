@@ -1,0 +1,20 @@
+.container.profile
+  = render "profiles/cover"
+  .row
+    .col-lg-6
+      .column
+        - @listings.each_with_index do |p, i|
+          = render p if i < 5
+
+    .col-lg-6
+      .column
+        - @listings.each_with_index do |p, i|
+          = render p if i > 4
+
+  .row
+    .col-xs-12
+      .text-center
+        - if @listings.any?
+          = paginate @listings, theme: "twitter-bootstrap-3"
+        - else
+          = link_to "подать объявление", "#new", "data-toggle": "modal", class: "btn btn-lg btn-warning"

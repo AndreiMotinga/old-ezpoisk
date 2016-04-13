@@ -1,0 +1,13 @@
+.white-block
+  %form{role: :search, method: :get, action: questions_path}
+    .input-group
+      %input.form-control{placeholder: "Поиск Новостей по ключевым словам", type: :text, name: :keyword, value: params[:keyword]}
+        %span.input-group-btn
+          %button.btn.btn-default{type: "submit"}
+            %i.fa.fa-search
+          = link_to new_dashboard_post_path, class: "btn btn-default" do
+            %i.fa.fa-pencil
+
+.raw
+  .col-xs-12
+    = render @homepage.news_posts(7)

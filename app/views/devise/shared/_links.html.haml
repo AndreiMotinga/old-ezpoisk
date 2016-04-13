@@ -1,9 +1,6 @@
 - if controller_name != 'passwords'
-  %br/
   = link_to t(".forgot_your_password", :default => "Forgot your password?"), new_password_path(:user), class: "text-muted"
 
 - if User.unlock_strategy_enabled?(:email) && controller_name != 'unlocks'
   %br/
   = link_to t('.didn_t_receive_unlock_instructions', :default => "Didn't receive unlock instructions?"), new_unlock_path(:user), class: "text-muted"
-  %br/
-  = link_to "Вернуться на главную", root_path, class: "text-muted"

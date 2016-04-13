@@ -3,6 +3,13 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   post "/favorites/create_favorite", to: "favorites#create_favorite"
   post "/favorites/create_hidden", to: "favorites#create_hidden"
+
+  get "profiles/:id", to: "profiles#show", as: :profile
+  get "profiles/:id/posts", to: "profiles#posts", as: :profile_posts
+  get "profiles/:id/listings", to: "profiles#listings", as: :profile_listings
+  get "profiles/:id/answers", to: "profiles#answers", as: :profile_answers
+  get "profiles/:id/reviews", to: "profiles#reviews", as: :profile_reviews
+
   resources :questions, except: [:destroy], path: :ezanswer do
     collection do
       get "unanswered"
@@ -32,11 +39,13 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
   namespace :dashboard do
-    resources :users, only: [:edit, :update]
+    resources :profiles, only: [:edit, :update]
+    resources :users, only: [:update]
     resources :re_agencies, only: [:new, :create, :edit, :update, :destroy]
     resources :re_finances, only: [:new, :create, :edit, :update, :destroy]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
     resources :re_commercials, only: [:new, :create, :edit, :update, :destroy]
+    resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
 
     resources :job_agencies, only: [:new, :create, :edit, :update, :destroy]
     resources :jobs, only: [:new, :create, :edit, :update, :destroy]
@@ -50,25 +59,18 @@ Rails.application.routes.draw do
     resources :favorites, only: [:index]
   end
 
-  resources :news, only: [:index, :show], path: :eznews
+  resources :posts, only: [:index, :show], path: :eznews
   resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice
-
-  namespace :ezrealty do
-    resources :re_agencies, only: [:index, :show], path: :agencies
-    resources :re_finances, only: [:index, :show], path: :finance
-    resources :re_privates, only: [:index, :show], path: :private
-    resources :re_commercials, only: [:index, :show], path: :commercial
-  end
-
-  namespace :ezjob do
-    resources :job_agencies, only: [:index, :show], path: :agencies
-    resources :jobs, only: [:index, :show]
-  end
+  resources :re_agencies, only: [:index, :show]
+  resources :re_finances, only: [:index, :show]
+  resources :re_privates, only: [:index, :show]
+  resources :re_commercials, only: [:index, :show]
+  resources :job_agencies, only: [:index, :show]
+  resources :jobs, only: [:index, :show]
 
   authenticate :user, ->(u) { u.admin? } do
-    resources :companies
     mount Sidekiq::Web => "/sidekiq_monstro"
     resources :news, only: [:edit, :update, :destroy], path: :eznews
     get "all_news", to: "news#all"

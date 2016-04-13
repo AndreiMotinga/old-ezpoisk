@@ -1,102 +1,47 @@
 module PostItemHelper
-  def link_from_controller(record)
+  def edit_link(record)
     case record.class.to_s
     when "ReAgency"
-      path_for_re_agency(record)
-    when "ReFinance"
-      path_for_re_finance(record)
-    when "JobAgency"
-      path_for_job_agency(record)
-    when "Job"
-      path_for_job(record)
-    when "RePrivate"
-      path_for_re_private(record)
-    when "ReCommercial"
-      path_for_re_commercial(record)
-    when "Sale"
-      path_for_sale(record)
-    when "Service"
-      path_for_service(record)
-    end
-  end
-
-  def path_for_service(record)
-    if params[:controller] == "services" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      service_path(record)
-    else
-      edit_dashboard_service_path(record)
-    end
-  end
-
-  def path_for_sale(record)
-    if params[:controller] == "sales" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      sale_path(record)
-    else
-      edit_dashboard_sale_path(record)
-    end
-  end
-
-  def path_for_re_commercial(record)
-    if params[:controller] == "ezrealty/re_commercials" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      ezrealty_re_commercial_path(record)
-    else
-      edit_dashboard_re_commercial_path(record)
-    end
-  end
-
-  def path_for_re_private(record)
-    if params[:controller] == "ezrealty/re_privates" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      ezrealty_re_private_path(record)
-    else
-      edit_dashboard_re_private_path(record)
-    end
-  end
-
-  def path_for_re_agency(record)
-    if params[:controller] == "ezrealty/re_agencies" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      ezrealty_re_agency_path(record)
-    else
       edit_dashboard_re_agency_path(record)
-    end
-  end
-
-  def path_for_re_finance(record)
-    if params[:controller] == "ezrealty/re_finances" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      ezrealty_re_finance_path(record)
-    else
+    when "ReFinance"
       edit_dashboard_re_finance_path(record)
-    end
-  end
-
-  def path_for_job_agency(record)
-    if params[:controller] == "ezjob/job_agencies" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      ezjob_job_agency_path(record)
-    else
+    when "JobAgency"
       edit_dashboard_job_agency_path(record)
+    when "Job"
+      edit_dashboard_job_path(record)
+    when "RePrivate"
+      edit_dashboard_re_private_path(record)
+    when "ReCommercial"
+      edit_dashboard_re_commercial_path(record)
+    when "Sale"
+      edit_dashboard_sale_path(record)
+    when "Service"
+      edit_dashboard_service_path(record)
+    when "Post"
+      edit_dashboard_post_path(record)
     end
   end
 
-  def path_for_job(record)
-    if params[:controller] == "ezjob/jobs" ||
-       params[:controller] == "dashboard/favorites" ||
-       params[:controller] == "home"
-      ezjob_job_path(record)
-    else
-      edit_dashboard_job_path(record)
+  def link_to_show_page(record)
+    case record.class.to_s
+    when "ReAgency"
+      re_agency_path(record)
+    when "ReFinance"
+      re_finance_path(record)
+    when "JobAgency"
+      job_agency_path(record)
+    when "Job"
+      job_path(record)
+    when "RePrivate"
+      re_private_path(record)
+    when "ReCommercial"
+      re_commercial_path(record)
+    when "Sale"
+      sale_path(record)
+    when "Service"
+      service_path(record)
+    when "Post"
+      post_path(record)
     end
   end
 end

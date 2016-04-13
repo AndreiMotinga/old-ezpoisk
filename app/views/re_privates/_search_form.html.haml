@@ -1,0 +1,44 @@
+%form.form-horizontal{action: re_privates_path, method: :get}
+  = render "shared/search_by_address"
+  %hr/
+
+  .row
+    .col-sm-4
+      = label_tag "Минимальная цена", nil
+      = number_field_tag :min_price, params[:min_price], class: "form-control"
+    .col-sm-4
+      = label_tag "Максимальная цена", nil
+      = number_field_tag :max_price, params[:max_price], class: "form-control"
+    .col-sm-4
+      = label_tag "Сортировать", nil
+      = sort_select
+  %br/
+  .row
+    .col-sm-4
+      = label_tag "Тип объявления", nil
+      = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), include_blank: true, class: "form-control"
+    .col-sm-4
+      = label_tag "Комнаты", nil
+      = select_tag :rooms, options_for_select(ROOM_OPTIONS, params[:rooms]), include_blank: true, class: "form-control"
+    .col-sm-4
+      = label_tag "Ванные", nil
+      = select_tag :baths, options_for_select((1..10).to_a, params[:baths]), include_blank: true, class: "form-control"
+  %br/
+
+  .row
+    .col-sm-6
+      = label_tag "Продолжительность", nil
+      = select_tag :duration, options_for_select(RE_DURATION, params[:duration]), include_blank: true, class: "form-control"
+    .visible-xs
+      %br/
+    .col-sm-6
+      = label_tag :fee, "Без комиссии"
+      = check_box_tag :fee, '0',  params[:fee], class: "checkbox-inline"
+  %br/
+
+  %hr/
+  .row
+    .col-xs-6
+      = link_to "Сбросить", re_privates_path, class: "btn btn-block mobile-btn"
+    .col-xs-6
+      = submit_tag "Фильтровать", name: nil, class: "btn btn-block mobile-btn"

@@ -9,10 +9,10 @@
           Название:
           %strong= record.title
 
-      - if record.user.name.present?
-        %li.list-group-item
-          автор:
-          %strong= record.user.name
+      %li.list-group-item
+        автор:
+        %strong= link_to record.user.name_to_show, profile_path(record.user.profile)
+
       - if record.try(:phone).present?
         %li.list-group-item
           телефон:

@@ -1,5 +1,5 @@
 class UsersPostsAggregator
-  def initialize(user, keyword, model)
+  def initialize(user, keyword = nil, model = nil)
     @user = user
     @keyword = keyword
     @model = model

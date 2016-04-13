@@ -1,14 +1,6 @@
 .row
   .col-xs-12
-    / Button trigger modal
-    -# todo make one button
-    .hidden-xs
-      %button.btn.btn-primary{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-        Загрузить фотографии
-
-    .visible-xs
-      %button.btn.mobile-btn{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-        Загрузить фотографии
+    %button.btn.mobile-btn{"data-target":"#myModal", "data-toggle": "modal", type: "button"} Загрузить фотографии
 
     / Modal
     #myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

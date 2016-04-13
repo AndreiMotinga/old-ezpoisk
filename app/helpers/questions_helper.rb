@@ -26,7 +26,6 @@ module QuestionsHelper
     "/ezanswer/tag/#{tag_id}"
   end
 
-  # todo I dont need to pass vars in method here - see where else I can update code
   def subscription_links
     return log_in_trigger if !current_user
     return unsubscribe_link if current_user.subscribed?(@question.id)

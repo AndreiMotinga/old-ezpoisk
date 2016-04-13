@@ -1,0 +1,81 @@
+.container.profile
+  = render "profiles/cover"
+  .row
+    .col-xs-12.col-sm-6
+      .white-block
+        .panel.panel-default
+          .panel-heading
+            %h4.text-muted ...
+          .panel-body
+            .row
+              .col-lg-4
+                = image_tag @profile.avatar.url(:medium), class: "center-block"
+              .col-lg-8
+                %h2.text-muted= @profile.name
+                %h4.text.answer= user_motto
+                -# member for #{time_ago_in_words @user.created_at}
+
+      - if profile_has_contacts?
+        .white-block
+          .panel.panel-default
+            .panel-heading
+              %h4.text-muted Контакты
+            .panel-body
+              %ul.list-group
+                - if @profile.phone.present?
+                  %li.list-group-item
+                    телефон
+                    .pull-right= @profile.phone
+                - if @profile.site.present?
+                  %li.list-group-item
+                    Вебсайт
+                    .pull-right= link_to @profile.site, @profile.site
+
+
+      - if profile_has_any_links?
+        .white-block
+          .panel.panel-default
+            .panel-heading
+              %h4.text-muted Online
+            .panel-body
+              %ul.list-group
+                - if @profile.facebook.present?
+                  %li.list-group-item
+                    = link_to @profile.facebook do
+                      %i.fa.fa-facebook
+                      Facebook
+                - if @profile.google.present?
+                  %li.list-group-item
+                    = link_to @profile.google do
+                      %i.fa.fa-google-plus
+                      Google
+                - if @profile.twitter.present?
+                  %li.list-group-item
+                    = link_to @profile.twitter do
+                      %i.fa.fa-twitter
+                      Twitter
+                - if @profile.vk.present?
+                  %li.list-group-item
+                    = link_to @profile.vk do
+                      %i.fa.fa-vk
+                      Vkontakte
+                - if @profile.ok.present?
+                  %li.list-group-item
+                    = link_to @profile.ok do
+                      %i.fa.fa-odnoklassniki
+                      Odnoklassniki
+
+    .col-xs-12.col-sm-6
+      .white-block
+        .panel.panel-default
+          .panel-heading
+            %h4.text-muted О работе
+          .panel-body
+            .text.answer= simple_format work_to_show
+
+      .white-block
+        .panel.panel-default
+          .panel-heading
+            %h4.text-muted О себе
+          .panel-body
+            .text.answer= simple_format about_to_show

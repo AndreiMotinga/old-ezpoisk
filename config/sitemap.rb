@@ -41,24 +41,24 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add ezrealty_re_agencies_path, priority: 0.6, changefreq: "weekly"
+  add re_agencies_path, priority: 0.6, changefreq: "weekly"
   ReAgency.find_each do |post|
-    add ezrealty_re_agency_path(post), priority: 0.6, lastmod: post.updated_at
+    add re_agency_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
-  add ezrealty_re_finances_path, priority: 0.6, changefreq: "weekly"
+  add re_finances_path, priority: 0.6, changefreq: "weekly"
   ReFinance.find_each do |post|
-    add ezrealty_re_finance_path(post), priority: 0.6, lastmod: post.updated_at
+    add re_finance_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
-  add ezrealty_re_privates_path, priority: 0.6, changefreq: "weekly"
+  add re_privates_path, priority: 0.6, changefreq: "weekly"
   RePrivate.find_each do |post|
-    add ezrealty_re_private_path(post), priority: 0.6, lastmod: post.updated_at
+    add re_private_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
-  add ezrealty_re_commercials_path, priority: 0.6, changefreq: "weekly"
+  add re_commercials_path, priority: 0.6, changefreq: "weekly"
   ReCommercial.find_each do |post|
-    add ezrealty_re_commercial_path(post), priority: 0.6, lastmod: post.updated_at
+    add re_commercial_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
   ##############################################################
@@ -73,10 +73,10 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add news_index_path, priority: 0.6, changefreq: "daily"
+  add posts_path, priority: 0.6, changefreq: "daily"
 
   Post.find_each do |post|
-    add news_path(post),
+    add post_path(post),
         priority: 0.6,
         lastmod: post.updated_at
   end
@@ -131,16 +131,16 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add ezjob_job_agencies_path, priority: 0.6, changefreq: "weekly"
+  add job_agencies_path, priority: 0.6, changefreq: "weekly"
   JobAgency.find_each do |post|
-    add ezjob_job_agency_path(post),
+    add job_agency_path(post),
         priority: 0.6,
         lastmod: post.updated_at
   end
 
-  add ezjob_jobs_path, priority: 0.6, changefreq: "weekly"
+  add jobs_path, priority: 0.6, changefreq: "weekly"
   Job.find_each do |post|
-    add ezjob_jobs_path(post),
+    add jobs_path(post),
         priority: 0.6,
         lastmod: post.updated_at
   end

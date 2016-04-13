@@ -1,0 +1,16 @@
+= bootstrap_form_for([:dashboard, current_user.profile]) do |f|
+  .row
+    .col-sm-3
+      = f.file_field :avatar
+    .col-sm-9
+      = image_tag current_user.profile.avatar.url(:medium), class: "pull-right thumbnail "
+
+  %br/
+  .row
+    .col-sm-3
+      = f.file_field :cover
+    .col-sm-8.col-sm-offset-1
+      = image_tag current_user.profile.cover.url(:large), class: "pull-right thumbnail"
+  %br/
+  .row
+    .actions= f.submit "Обновить", class: "btn btn-success"

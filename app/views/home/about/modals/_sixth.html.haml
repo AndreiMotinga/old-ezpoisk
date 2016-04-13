@@ -12,15 +12,16 @@
               %span.orange EZ
               %span.blue NEWS
             %p.item-intro.text-muted Всегда что-то новеньке почитать
-            = link_to news_index_path, target: "_blank" do
-              = image_tag "about/portfolio/dreams-preview", class: "img-responsive img-centered"
+            -# = link_to posts_path, target: "_blank" do
+            -#   = image_tag "about/portfolio/dreams-preview", class: "img-responsive img-centered"
             %p
-              Мы постараемся каждый день рассказывать обо всем, что проиходит в мире.
-              Публиковать интересные открытия из мира науки и технологий,
-              делиться событиями в обществе. Рассказывать самое интересное из мира кино и музыки.
-              И многое многое другое.
+              Раздел новости призван дать возможность всем нам объявлять на всю
+              общину обо всем, что нам кажется, того стоит.
+              Ваша компания проводит акцию? Вы проводите гараж-сэил?
+              Запускаете интересный проект и ищете единомышленников?
+              Объявите об этом на главной странице и тысячи пользователей узнают об этом.
             %p
-              = link_to "EZNEWS", news_index_path, target: "_blank"
+              = link_to "EZNEWS", posts_path, target: "_blank"
               \- Будет интересно !
             %button.btn.btn-primary{"data-dismiss" => "modal", :type => "button"}
               %i.fa.fa-times

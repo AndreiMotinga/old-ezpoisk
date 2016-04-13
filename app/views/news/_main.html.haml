@@ -1,7 +1,0 @@
-.row
-  - @main.each do |post|
-    .post.white-block
-      = link_to news_path(post) do
-        %h2.news-main-post-title= post.title
-        = image_tag post.logo_url(:large), class: "image-responsive"
-      %p.news-main-caption-text= post.description

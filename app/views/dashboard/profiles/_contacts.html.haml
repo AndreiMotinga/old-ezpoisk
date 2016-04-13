@@ -1,0 +1,9 @@
+= bootstrap_form_for([:dashboard, current_user.profile]) do |f|
+  .field= f.number_field :phone, label: "Телефон"
+  .field= f.text_field :site, label: "Ваш сайт"
+  .field= f.text_field :facebook, label: "Facebook"
+  .field= f.text_field :google, label: "Google+"
+  .field= f.text_field :vk, label: "Vkontakte"
+  .field= f.text_field :ok, label: "Odnoklassniki"
+  .field= f.text_field :twitter, label: "Twitter"
+  .actions= f.submit "Обновить", class: "btn btn-success", id: "contacts-save-btn"

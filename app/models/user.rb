@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   include OmniLogin
+  # todo do you need this ?
+  acts_as_voter
   # Include default devise modules. Others available are:
   # :validatable, :confirmable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -7,11 +9,7 @@ class User < ActiveRecord::Base
     :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
 
   after_create :send_emails
-
-  acts_as_voter
-
-  belongs_to :state
-  belongs_to :city
+  after_create :create_user_profile
 
   has_many :re_agencies, dependent: :destroy
   has_many :re_finances, dependent: :destroy
@@ -21,21 +19,17 @@ class User < ActiveRecord::Base
   has_many :jobs, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy
-  has_many :posts
-  has_many :pictures
+  has_many :posts, dependent: :destroy
+  has_many :pictures, dependent: :destroy
   has_many :questions
   has_many :answers
+  has_one  :profile, dependent: :destroy
 
   has_many :favorites
   has_many :subscriptions
   has_many :partners
 
   validates :email, presence: true, uniqueness: true
-
-  has_attached_file(:avatar,
-                    styles: { thumb: "50x50#", medium: "200x200#" },
-                    default_url: "default-avatar.png")
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   def role?(val)
     role.to_sym == val
@@ -50,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def name_to_show
-    return name if name.present?
+    return profile.name if profile.name.present?
     email
   end
 
@@ -60,5 +54,10 @@ class User < ActiveRecord::Base
     AdminMailerJob.perform_async(id, "User")
     SlackNotifierJob.perform_async(id, "User")
     UserMailerJob.perform_async(id)
+  end
+
+  def create_user_profile
+    # user.create_profile rails built in method
+    create_profile
   end
 end

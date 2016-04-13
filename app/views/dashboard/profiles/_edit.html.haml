@@ -1,0 +1,35 @@
+- content_for :secondary_navbar do
+  = render "shared/navbars/profile"
+
+%ul.nav.nav-tabs{role: "tablist"}
+  %li.active{role: "presentation"}
+    = link_to "Контакты", "#contacts", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "Адрес", "#address", "aria-controls": "personal", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "Фотографии", "#avatar", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "О себе", "#about", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
+  %li{role: "presentation"}
+    = link_to "Email", "#email", "aria-controls": "personal", "data-toggle": "tab", role: "tab"
+
+.tab-content
+  #contacts.tab-pane.active{role: "tabpanel"}
+    %br/
+    = render "dashboard/profiles/contacts"
+
+  #address.tab-pane{role: "tabpanel"}
+    %br/
+    = render "dashboard/profiles/address"
+
+  #avatar.tab-pane{role: "tabpanel"}
+    %br/
+    = render "dashboard/profiles/images"
+
+  #about.tab-pane{role: "tabpanel"}
+    %br/
+    = render "dashboard/profiles/about"
+
+  #email.tab-pane{role: "tabpanel"}
+    %br/
+    = render "dashboard/profiles/email"

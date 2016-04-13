@@ -1,0 +1,6 @@
+= bootstrap_form_for([:dashboard, current_user.profile]) do |f|
+  .field= f.text_field :name, label: "Ваше имя"
+  .field= f.text_field :motto, label: "Ваше лично мотто", placeholder: "Других легко понять, если поставить себя на их место"
+  .field= f.text_area :work, rows: 5, label: "Расскажите о вашей работе"
+  .field= f.text_area :about, rows: 5, label: "Расскажите о себе"
+  .actions= f.submit "Обновить", class: "btn btn-success", id: "about-save-btn"

@@ -58,20 +58,19 @@ class Question < ActiveRecord::Base
   end
 
   def avatar
-    return the_answer.user.avatar.url(:thumb) if the_answer.try(:user)
+    return the_answer.user.profile.avatar.url(:thumb) if the_answer.try(:user)
   end
 
   def username
-    return the_answer.user.name if the_answer.try(:user)
-  end
-
-  def userslug
-    # todo WTF?
-    return the_answer.user.slug if the_answer.try(:user)
+    return the_answer.user.profile.name if the_answer.try(:user)
   end
 
   def image
     return image_url if image_url.present?
     "https://s3.amazonaws.com/ezpoisk/missing.png"
+  end
+
+  def profile
+    the_answer.user.profile
   end
 end

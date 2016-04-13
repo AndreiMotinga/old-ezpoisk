@@ -4,7 +4,7 @@ feature "User favors job", js: true do
   scenario "user is not logged in" do
     create :job, :active
 
-    visit ezjob_jobs_path
+    visit jobs_path
     page.find(".favor").click
     wait_for_ajax
 
@@ -15,7 +15,7 @@ feature "User favors job", js: true do
     create_and_login_user
     create :job, :active
 
-    visit ezjob_jobs_path
+    visit jobs_path
     page.find(".favor").click
     wait_for_ajax
 
@@ -30,7 +30,7 @@ feature "User favors job", js: true do
                     post_type: job.class.to_s,
                     favorite: true)
 
-    visit ezjob_jobs_path
+    visit jobs_path
     page.find(".favor").click
     wait_for_ajax
 

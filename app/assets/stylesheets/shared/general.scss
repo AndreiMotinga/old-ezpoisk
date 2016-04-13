@@ -28,18 +28,13 @@ body {
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.fa-envelope-o {
-  color: red;
-}
-.fa-phone {
-  color: green;
-}
-.fa-skype {
-  color: $blue;
-}
-.fa-comment {
-  color: $grey2;
-}
+.fa-envelope-o { color: red; }
+.fa-phone { color: green; }
+.fa-skype { color: $blue; }
+.fa-comment { color: $grey2; }
+.fa-google-plus { color: $google; }
+.fa-twitter { color: $blue; }
+.fa-odnoklassniki { color: $orange; }
 
 .my-q {
   color: white;
@@ -74,9 +69,7 @@ body {
     padding: 5px 10px;
   }
 }
-.seaarch-without-results {
-  min-height: 300px;
-}
+.search-without-results { min-height: 300px; }
 
 .fb-comments, .fb-comments iframe[style], .fb-comments span {
   width: 100% !important;
@@ -119,19 +112,11 @@ body {
   color: $orange;
   margin-top: 2px;
 }
-span.favorite {
-  color: $orange;
-}
-
-.search {
-  margin-bottom: 10px;
-}
-.contacts-list {
-  margin-bottom: 10px;
-}
-.select2-dropdown {
-  top: 25px;
-}
-.select2-container .select2-selection--single {
-  height: 34px;
-}
+span.favorite { color: $orange; }
+.search { margin-bottom: 10px; }
+.contacts-list { margin-bottom: 10px; }
+// .select2-dropdown { top: 25px; }
+// .select2-container .select2-selection--single { height: 34px; }
+span.ez.blue { margin-left: -3px; }
+span.ez.blue.a { margin-left: -5px; }
+.panel { margin-bottom: 0px; }

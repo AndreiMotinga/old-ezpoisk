@@ -1,0 +1,16 @@
+= title("Агентства Недвижимости в США, где говорят по-русски - ezpoisk")
+= desc("EZPOISK - Русские Агентства Недвижимости в США, помощь в поиске недвижимости в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами")
+= render "re_agencies/search_modal"
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezrealty"
+- content_for :side do
+  = render "shared/side/questions"
+- content_for :search do
+  = render "re_agencies/search"
+
+.col-xs-12
+  = render @re_agencies
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @re_agencies

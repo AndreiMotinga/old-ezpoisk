@@ -20,25 +20,35 @@ module ApplicationHelper
   def template_for(record)
     case record.class.to_s
     when "ReAgency"
-      render "dashboard/shared/company", record: record
+      render "re_agencies/re_agency", re_agency: record
     when "ReFinance"
-      render "dashboard/shared/company", record: record
+      render "re_finances/re_finance", re_finance: record
     when "Service"
-      render "dashboard/shared/company", record: record
+      render "services/service", service: record
     when "JobAgency"
-      render "dashboard/shared/company", record: record
+      render "job_agencies/job_agency", job_agency: record
     when "ReCommercial"
-      render "dashboard/re_commercials/re_commercial", record: record
+      render "re_commercials/re_commercial", re_commercial: record
     when "RePrivate"
-      render "dashboard/re_privates/re_private", record: record
+      render "re_privates/re_private", re_private: record
     when "Job"
-      render "dashboard/jobs/job", record: record
+      render "jobs/job", job: record
     when "Sale"
-      render "dashboard/sales/sale", record: record
+      render "sales/sale", sale: record
+    when "Post"
+      render "posts/post", post: record
     end
   end
 
   def home_controller?
-    "hidden" if params[:controller] == "home"
+    params[:controller] == "home"
+  end
+
+  def profiles_controller?
+    params[:controller] == "profiles"
+  end
+
+  def stripped_200(desc)
+    strip_tags(desc).truncate(200)
   end
 end

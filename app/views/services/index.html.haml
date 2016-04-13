@@ -2,15 +2,14 @@
 = desc("EZPOISK - Бесплатные обьявления, реклама. Все виды услуг в США. Найти сервис, рекламировать бизнес, получить помощь.")
 = render 'services/search_modal'
 - content_for :secondary_navbar do
-  = render "services/navbar"
+  = render "shared/navbars/service"
 - content_for :side do
   = render "shared/side/questions"
 - content_for :search do
   = render "services/search"
 
 .col-xs-12
-  - @services.each do |service|
-    = render 'dashboard/shared/company', record: service
+  = render @services
 
 .row
   .col-xs-12

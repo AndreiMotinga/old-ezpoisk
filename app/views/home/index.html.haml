@@ -6,12 +6,22 @@
 / DESKTOP
 .hidden-xs
   .row
-    .col-md-6.col-lg-4
-      = render "home/questions"
+    .visible-sm
+      .col-sm-12.partner
+        = link_to about_path(anchor: "portfolio"), target: "_blank" do
+          = image_tag "partners/blue", class: "image-responsive shadow center-block"
+
     .col-md-6.col-lg-4
       = render "home/users_posts"
-    .hidden-md.col-lg-4
-      = render "home/news_posts"
+    .col-md-6.col-lg-8
+      .hidden-sm.partner
+        = link_to about_path(anchor: "portfolio"), target: "_blank" do
+          = image_tag "partners/blue", class: "image-responsive shadow center-block"
+      .row
+        .col-md-12.col-lg-6
+          = render "home/questions"
+        .hidden-md.col-lg-6
+          = render "home/posts"
 
 / MOBILE
 = render "home/mobile_index"

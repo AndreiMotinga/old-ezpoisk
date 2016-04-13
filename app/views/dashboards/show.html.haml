@@ -1,7 +1,7 @@
 = render 'dashboards/search_modal'
 
 - content_for :secondary_navbar do
-  = render "dashboards/navbar"
+  = render "shared/navbars/profile"
 
 .col-sx-12.search
   = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "#dashboard-search", "data-toggle": :modal, role: :button

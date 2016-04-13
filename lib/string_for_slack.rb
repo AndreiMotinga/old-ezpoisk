@@ -61,17 +61,17 @@ class StringForSlack
   def link(record)
     case record.class.to_s
     when "ReAgency"
-      string = ezrealty_re_agency_path(record)
+      string = re_agency_path(record)
     when "ReFinance"
-      string = ezrealty_re_finance_path(record)
+      string = re_finance_path(record)
     when "RePrivate"
-      string = ezrealty_re_private_path(record)
+      string = re_private_path(record)
     when "ReCommercial"
-      string = ezrealty_re_commercial_path(record)
+      string = re_commercial_path(record)
     when "JobAgency"
-      string = ezjob_job_agency_path(record)
+      string = job_agency_path(record)
     when "Job"
-      string = ezjob_job_path(record)
+      string = job_path(record)
     when "Service"
       string = service_path(record)
     when "Sale"

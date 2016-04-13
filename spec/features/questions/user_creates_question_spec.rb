@@ -1,7 +1,6 @@
 require "rails_helper"
 
 feature "user creates question" do
-  # todo - figure how to set select2
   # scenario "successfully", js: true do
   #   create_and_login_user
   #   visit new_question_path

@@ -6,7 +6,7 @@
   %meta{property: "og:url", content: service_url(@service) }/
   %meta{property: "og:title", content: @service.title}/
   %meta{property: "og:image", content: @service.logo.url(:medium)}/
-  %meta{property: "og:description", content: @service.description}/
+  %meta{property: "og:description", content: stripped_200(@service.description)}/
   %meta{property: "place:location:latitude", content: @service.lat}/
   %meta{property: "place:location:longitude", content: @service.lng}/
 
@@ -16,6 +16,6 @@
   %meta{property: "business:contact_data:country_name", content: "USA"}/
 
 - content_for :secondary_navbar do
-  = render "services/navbar"
+  = render "shared/navbars/service"
 
 = render 'shared/show/company', record: @service

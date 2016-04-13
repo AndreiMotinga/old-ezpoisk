@@ -1,0 +1,16 @@
+= title("Агенства по трудоустройству в США. Помощь в поиске работы - ezpoisk")
+= desc("EZPOISK - Объявления о приеме на работу, кадровые агентства в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render "job_agencies/search_modal"
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezjob"
+- content_for :side do
+  = render "shared/side/questions"
+- content_for :search do
+  = render "job_agencies/search"
+
+.col-xs-12
+  = render  @job_agencies
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @job_agencies

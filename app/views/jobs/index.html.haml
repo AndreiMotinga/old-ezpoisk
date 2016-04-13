@@ -1,0 +1,16 @@
+= title("Работа в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами - ezpoisk")
+= desc("EZPOISK - Объявления о приеме на работу в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
+= render "jobs/search_modal"
+- content_for :secondary_navbar do
+  = render "shared/navbars/ezjob"
+- content_for :side do
+  = render "shared/side/questions"
+- content_for :search do
+  = render "jobs/search"
+
+.col-xs-12
+  = render @jobs
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @jobs
