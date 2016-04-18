@@ -28,10 +28,14 @@
 
   .panel-heading {
     padding: 1px 15px;
+    background-color: white;
   }
 
   .fa {
     padding-right: 15px;
     max-width: 25px;
+  }
+  .title {
+    color: $orange;
   }
 }

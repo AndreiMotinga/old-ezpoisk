@@ -24,4 +24,8 @@ class Profile < ActiveRecord::Base
   def address
     "#{city.name} #{state.name}"
   end
+
+  def name_to_show
+    user.name_to_show
+  end
 end

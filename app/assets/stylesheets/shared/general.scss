@@ -120,3 +120,35 @@ span.favorite { color: $orange; }
 span.ez.blue { margin-left: -3px; }
 span.ez.blue.a { margin-left: -5px; }
 .panel { margin-bottom: 0px; }
+.close {
+  color: $orange;
+  font-size: 30px;
+  opacity: 1;
+}
+
+
+.footer {
+  .fa { color: white; }
+  ul.social-buttons {
+    margin-bottom: 0;
+  }
+  ul.social-buttons li a {
+    display: block;
+    background-color: $grey3;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    font-size: 20px;
+    line-height: 40px;
+    color: white;
+    outline: none;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  ul.social-buttons li a:hover,
+  ul.social-buttons li a:focus,
+  ul.social-buttons li a:active {
+    background-color: $orange;
+  }
+}

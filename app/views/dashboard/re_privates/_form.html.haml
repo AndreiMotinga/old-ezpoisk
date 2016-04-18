@@ -7,10 +7,7 @@
       = f.number_field :price, label: '* Цена'
 
   .field
-    .hidden-xs
-      = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
-    .visible-xs
-      = f.text_area :description, rows: 5, label: 'Описание', id: "description"
+    = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
 
   .row
     .col-sm-6

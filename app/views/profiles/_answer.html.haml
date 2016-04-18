@@ -6,14 +6,11 @@
         = link_to answer.question.title, answer.question, target: "_blank"
       .row
         .col-xs-12
-          -if @profile.avatar.present?
-            .hidden-xs.col-sm-1.qa-avatar
-              = link_to profile_path(@profile) do
-                = image_tag @profile.avatar, alt: @profile.name,  class: "img-responsive img-circle center-block"
+          .hidden-xs.col-sm-1.qa-avatar
+            = link_to profile_path(@profile) do
+              = image_tag @profile.avatar.url(:thumb), alt: @profile.name,  class: "img-responsive img-circle center-block"
           .col-xs-12.col-sm-11
-            %h3.text-muted.question-author
-              -# todo update userslug
-              = link_to "#{@profile.name} #{@profile.motto}", profile_path(@profile)
+            %h3.text-muted.question-author= link_to @profile.name_to_show, profile_path(@profile)
             %p= "#{answer.question.impressions_count} просмотров"
 
     / line 2 question text

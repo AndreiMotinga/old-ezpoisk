@@ -20,11 +20,21 @@
       своем бизнесе - все это Вы можете сделать здесь. Если у Вас есть идеи о
       том, как можно сделать этот сайт лучше, пожалуйста, пишите нам.
       Мы действительно ценим Ваш отзыв.
-    %p.pull-right
-      = link_to "Facebook", "https://www.facebook.com/ezpoisk", target: "_blank"
-      = link_to "Google", "https://plus.google.com/communities/107591116080815357420", target: "_blank"
-      = link_to "Vkontakte",  "https://vk.com/ezpoiskusa", target: "_blank"
-    %br/
-
-    %h4
+    %h5
       Copyright © ezpoisk #{Time.now.year}
+    %ul.list-inline.social-buttons.pull-right
+      %li.text-center
+        = link_to "https://vk.com/ezpoiskusa", target: "_blank" do
+          %i.fa.fa-vk
+      %li.text-center
+        = link_to "https://plus.google.com/communities/107591116080815357420", target: "_blank" do
+          %i.fa.fa-google-plus
+      %li.text-center
+        = link_to "https://www.facebook.com/ezpoisk", target: "_blank" do
+          %i.fa.fa-facebook
+      %li.text-center
+        = link_to "https://twitter.com/ezpoisk", target: "_blank" do
+          %i.fa.fa-twitter
+      %li.text-center
+        %a{:href => "#"}
+          %i.fa.fa-linkedin

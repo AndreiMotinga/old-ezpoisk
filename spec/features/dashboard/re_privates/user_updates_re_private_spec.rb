@@ -49,7 +49,7 @@ feature "user creates re_private" do
     re_private = create :re_private, user: user
 
     visit edit_dashboard_re_private_path re_private
-    find(:css, "#description").set("New description")
+    fill_in "Описание", with: "New description"
     click_on "details-save-btn"
     re_private.reload
 

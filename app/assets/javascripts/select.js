@@ -8,7 +8,6 @@ $(document).ready(function() {
 
   if (state) {
     $(".city-select").select2({
-      allowClear: true,
       multiple: true
     });
   }
