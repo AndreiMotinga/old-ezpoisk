@@ -1,3 +1,6 @@
+%br/
 = bootstrap_form_for([:dashboard, current_user]) do |f|
-  .field= f.email_field :email, id: "profile_user_email"
+  .white-block
+    .field= f.email_field :email, id: "profile_user_email"
+  %br/
   .actions= f.submit "Обновить", class: "btn btn-success", id: "email-save-btn"

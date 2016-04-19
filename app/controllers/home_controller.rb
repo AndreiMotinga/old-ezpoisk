@@ -13,6 +13,12 @@ class HomeController < ApplicationController
   def htmltagstrippingtool
   end
 
+  def really
+    GrumpyDog.create
+    @count = GrumpyDog.count
+    Ez.ping("really?:  #{@count}")
+  end
+
   private
 
   def set_partners

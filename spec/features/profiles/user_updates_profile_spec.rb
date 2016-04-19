@@ -14,8 +14,12 @@ feature "user updates profile" do
     fill_in "Vkontakte", with: attrs.vk
     fill_in "Odnoklassniki", with: attrs.ok
     fill_in "Twitter", with: attrs.twitter
-    click_on "contacts-save-btn"
+    fill_in "Ваше имя", with: attrs.name
+    fill_in "Ваше лично мотто", with: attrs.motto
+    fill_in "Расскажите о себе", with: attrs.about
+    fill_in "Расскажите о вашей работе", with: attrs.work
 
+    click_on "contacts-save-btn"
     expect(page).to have_content I18n.t(:profile_updated)
     profile.reload
 
@@ -26,6 +30,11 @@ feature "user updates profile" do
     expect(profile.vk).to eq attrs.vk
     expect(profile.ok).to eq attrs.ok
     expect(profile.twitter).to eq attrs.twitter
+    expect(page).to have_content I18n.t(:profile_updated)
+    expect(profile.name).to eq attrs.name
+    expect(profile.motto).to eq attrs.motto
+    expect(profile.about).to eq attrs.about
+    expect(profile.work).to eq attrs.work
   end
 
   # scenario "updates address", js: true do
@@ -47,26 +56,6 @@ feature "user updates profile" do
   #   # expect(profile.state).to eq ny
   #   expect(profile.city.name).to eq "Brooklyn"
   # end
-
-  scenario "user updates personal info" do
-    user = create_and_login_user
-    profile = user.profile
-
-    visit edit_dashboard_profile_path profile
-    attrs = build(:profile)
-    fill_in "Ваше имя", with: attrs.name
-    fill_in "Ваше лично мотто", with: attrs.motto
-    fill_in "Расскажите о себе", with: attrs.about
-    fill_in "Расскажите о вашей работе", with: attrs.work
-    click_on "about-save-btn"
-    profile.reload
-
-    expect(page).to have_content I18n.t(:profile_updated)
-    expect(profile.name).to eq attrs.name
-    expect(profile.motto).to eq attrs.motto
-    expect(profile.about).to eq attrs.about
-    expect(profile.work).to eq attrs.work
-  end
 
   scenario "user updates email" do
     user = create_and_login_user

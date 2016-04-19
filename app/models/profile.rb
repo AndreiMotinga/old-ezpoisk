@@ -1,6 +1,6 @@
 class Profile < ActiveRecord::Base
+  acts_as_mappable
   include ViewHelpers
-  # todo test the shit out of it
   belongs_to :user
   belongs_to :state
   belongs_to :city
@@ -19,10 +19,6 @@ class Profile < ActiveRecord::Base
 
   def email
     user.email
-  end
-
-  def address
-    "#{city.name} #{state.name}"
   end
 
   def name_to_show

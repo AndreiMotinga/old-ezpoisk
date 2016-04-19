@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416150441) do
+ActiveRecord::Schema.define(version: 20160419195319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 20160416150441) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "grumpy_dogs", force: :cascade do |t|
+  end
 
   create_table "horoscopes", force: :cascade do |t|
     t.string   "title"
@@ -266,6 +269,9 @@ ActiveRecord::Schema.define(version: 20160416150441) do
     t.string   "ok",                  default: "", null: false
     t.string   "twitter",             default: "", null: false
     t.string   "motto",               default: "", null: false
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
   end
 
   add_index "profiles", ["city_id"], name: "index_profiles_on_city_id", using: :btree

@@ -37,17 +37,41 @@
                     = link_to @profile.ok do
                       %i.fa.fa-odnoklassniki
 
-      .white-block
-        .panel.panel-default
-          .panel-heading
-            %h4 О себе
-          .panel-body
-            .text.answer= simple_format about_to_show
+      - if @profile.about.present?
+        .white-block
+          .panel.panel-default
+            .panel-heading
+              %h4 О себе
+            .panel-body
+              .text.answer= simple_format @profile.about
 
-    .col-xs-12.col-sm-6
-      .white-block
-        .panel.panel-default
-          .panel-heading
-            %h4 О работе
-          .panel-body
-            .text.answer= simple_format work_to_show
+    - if @profile.work.present?
+      .col-xs-12.col-sm-6
+        .white-block
+          .panel.panel-default
+            .panel-heading
+              %h4 О работе
+            .panel-body
+              .text.answer= simple_format @profile.work
+
+        - if @profile.street.present?
+          .white-block
+            .panel.panel-default
+              .panel-heading
+                %h4 Адрес
+              .panel-body
+                #map.google-maps
+
+                :javascript
+                  $(document).ready(function(){
+                    handler = Gmaps.build('Google');
+                    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+                      markers = handler.addMarkers(#{raw @profile.map_marker.to_json});
+                      handler.bounds.extendWith(markers);
+                      handler.fitMapToBounds();
+                      handler.getMap().setZoom(12);
+                    });
+                  });
+
+%script{ :src => "//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry", type: "text/javascript" }
+%script{ :src => "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js", type: "text/javascript" }
