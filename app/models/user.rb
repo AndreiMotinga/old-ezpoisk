@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
   has_many :answers
   has_one  :profile, dependent: :destroy
 
-  has_many :favorites
-  has_many :subscriptions
-  has_many :partners
+  has_many :favorites, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :partners, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 
