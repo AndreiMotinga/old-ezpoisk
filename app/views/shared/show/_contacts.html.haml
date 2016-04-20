@@ -2,12 +2,8 @@
   .col-xs-12.white-block#contacts
     .contacts-list
       %li.list-group-item
-        - if record.try(:street).present?
-          Название:
-          %strong= record.title
-        - elsif record.try(:title).present?
-          Название:
-          %strong= record.title
+        Название:
+        %strong= record.title
 
       %li.list-group-item
         автор:
@@ -17,6 +13,9 @@
         %li.list-group-item
           телефон:
           %strong= record.phone
+      %li.list-group-item
+        %span * Укажите, что нашли объявление на ezpoisk.com
+
       - unless record.try(:fax).blank?
         %li.list-group-item
           факс:
