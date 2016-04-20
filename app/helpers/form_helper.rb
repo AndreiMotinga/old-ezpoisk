@@ -58,7 +58,7 @@ module FormHelper
   def form_state_select(f)
     f.select :state_id,
              State.all.collect {|s| [ s.name, s.id ] },
-             { include_blank: true , label: '* Штат'},
+             { label: '* Штат'},
              { class: "state-select" }
   end
 

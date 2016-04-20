@@ -1,8 +1,17 @@
 %tr
-  %td= link_to partner.title, edit_dashboard_partner_path(partner)
-  %td.text-center= partner.active? ? "Активно" :  "Приостановлено"
-  %td.text-center #{partner.budget}/день
-  %td.text-center= partner.bid
-  %td.text-center= partner.impressions_count
-  %td.text-center= partner.avg_price
-  %td.text-center= partner.current_balance
+  %td= link_to partner.title, dashboard_partner_path(partner)
+  %td.text-center
+    - if partner.active?
+      Активно
+    - else
+      = link_to "Активировать", new_dashboard_partner_charge_path(partner)
+  %td.text-center= partner.start_date
+  %td.text-center= partner.active_until
+  %td.text-center= partner.position
+  %td.text-center= partner.state.name
+  %td.text-center= partner.page
+  %td.text-center= link_to 'Удалить',
+            dashboard_partner_path(partner),
+            method: :delete,
+            data: { confirm: I18n.t(:confirm) },
+            class: "mobile-btn btn-danger"

@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  # before_action :set_partners
+  before_action :set_partners
   before_action :set_questions, only: :index
 
   def index
@@ -24,7 +24,8 @@ class SalesController < ApplicationController
   end
 
   def set_partners
-    # todo change to proper partner
-    @partner_ads = PartnerAds.new("Недвижимость", session)
+    state_id = session[:state_id]
+    return if state_id == 0
+    @partner_ads = PartnerAds.new(state_id, "Продается")
   end
 end

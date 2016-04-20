@@ -1,6 +1,5 @@
 - if @partner_ads.try(:top)
-  .row.partner
-    = link_to @partner_ads.top.link do
-      = image_tag @partner_ads.top.image.url, class: "img-responsive center-block shadow"
-- else
-  %br/
+  .row
+    .col-xs-12.partner
+      = link_to @partner_ads.top.link do
+        = image_tag @partner_ads.top.image.url, class: "img-responsive center-block shadow"

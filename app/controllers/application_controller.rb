@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  # before_action :set_location
+  before_action :set_location
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_rack_mini_profiler
   before_action :redirect_to_https
@@ -10,21 +10,25 @@ class ApplicationController < ActionController::Base
   private
 
   def set_location
-    return if Rails.env.test?
+    return unless Rails.env.production?
     return if session[:state_id]
-    data = Geokit::Geocoders::MultiGeocoder.geocode("67.80.0.147")
-    # data = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
+    data = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
     state = State.find_by_abbr(data.state)
+    # todo remove
+    p "============================================================"
+    p data.state
+    p "============================================================"
+    p "============================================================"
+    p "============================================================"
+    p "============================================================"
+    p "============================================================"
+    p "============================================================"
     if state
-      city = state.cities.find_by_name(data.city)
       session[:state_id] = state.id
-      session[:city_id] = city.id
     else
       session[:state_id] = 0
-      session[:city_id] = 0
     end
   end
-
 
   def redirect_to_https
     return unless Rails.env.production?

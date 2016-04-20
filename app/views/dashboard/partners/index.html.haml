@@ -1,29 +1,25 @@
 - content_for :secondary_navbar do
   = render "shared/navbars/profile"
 
--# .col-md-8
--#   .visible-xs.col-xs-3= link_to '<', root_path, class: "mobile-btn mobile-back-btn"
--#   %br/
+.container
+  .row
+    .col-xs-12
+      %h3= link_to  "Создать Рекламный Блок", new_dashboard_partner_path, class: "btn btn-warning"
+      %br/
+      %table.table.table-striped.table-condensed.table-bordered
+        %thead.text-center
+          %tr
+            %td Название
+            %td Статус
+            %td Начало
+            %td Активен до
+            %td Позиция
+            %td Штат
+            %td Страница
+            %td
+        %tbody
+          = render @partners
 
-%h3= link_to  "Создать Рекламный Блок", new_dashboard_partner_path, class: "btn btn-lg btn-warning"
-%br/
-
-.row
-  .col-xs-12
-    - if @partners.empty?
-      = render "dashboard/no_ads_message"
-    - else
-
-
-    %table.table.table-striped.table-condensed.table-bordered
-      %thead.text-center
-        %tr
-          %td Название
-          %td Статус
-          %td Бюджет
-          %td $ Макс. цена/показ
-          %td Показов
-          %td $ Средняя цена/показ
-          %td Общая Стоймость
-      %tbody
-        = render @partners
+  .row
+    .col-xs-12
+      = render "shared/pagination", records: @partners

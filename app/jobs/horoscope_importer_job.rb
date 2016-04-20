@@ -3,7 +3,7 @@ class HoroscopeImporterJob
   include Sidetiq::Schedulable
   sidekiq_options queue: :low
 
-  recurrence { daily.hour_of_day(0) }
+  # recurrence { daily.hour_of_day(0) }
 
   def perform
     return unless Rails.env.production?

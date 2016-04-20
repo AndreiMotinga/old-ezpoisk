@@ -19,8 +19,9 @@
     .container
       = render "shared/partners/top"
       .row
-        = yield :secondary_navbar if content_for?(:secondary_navbar)
-        .notice= render 'shared/notice' unless devise_controller?
+        .col-sm-12
+          = yield :secondary_navbar if content_for?(:secondary_navbar)
+          .notice= render 'shared/notice' unless devise_controller?
         = yield :search if content_for?(:search)
         .col-md-7
           = render "shared/sidebar"

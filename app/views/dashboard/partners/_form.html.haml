@@ -1,46 +1,21 @@
+%h5.danger * Все поля являются обязательными
+%br/
 = bootstrap_form_for([:dashboard, @partner]) do |f|
-  / details
-  .field
-    = f.text_field :title, label: '* Название'
+  .row
+    .col-xs-12.col-sm-6
+      = f.text_field :title, label: 'Название'
+    .col-xs-12.col-sm-6
+      = f.text_field :link, label: "Ссылка"
+  .row
+    .col-xs-12.col-sm-4
+      = f.select :position, ["Вверху", "Внизу", "Сбоку"], label: "Позиция"
+    .col-xs-12.col-sm-4
+      = f.select :page, PAGES, { include_blank: true , label: "Страница" }
+    .col-xs-12.col-sm-4
+      = form_state_select(f)
 
-  .field
-  = f.text_field :link, label: "Ссылка"
+  .row
+    .col-xs-12
+      = f.file_field :image, label: "Банер"
 
-  .field
-  = f.text_field :budget, label: "Баланс"
-
-  .field
-  = f.text_field :bid, label: "Максимальная цена/показ ( в центах )"
-
-  .field
-    = f.select :position, [["Вверху", :top], ["Внизу", :bottom], ["Сбоку", :side]], label: "Позиция"
-
-
-  .field
-    = f.file_field :image, label: "Картинка (Максимальный размер 1 Мб)"
-
-  .field
-    = collection_select :partner,
-      :page_list,
-      Page.all, :title, :title,
-      { :selected => @partner.page_list },
-      { :multiple => true, :name => 'partner[page_list][]', id: "page_list" }
-  - if @partner.errors[:page_list].any?
-    %ul.list-group-item-danger
-      %li Добавьте тэги, чтобы пользователи могли найти ваш вопрос
-
-  .field
-    = f.check_box :active, label: "Активно *"
-
-  .field
-    = form_state_select(f)
-  .field
-    - if @partner.state_id
-      = f.collection_select :city_ids, City.where(state_id: 32), :id, :name, {},
-                            { :multiple => true, class: "city-select" }
-    - else
-      = f.collection_select :city_ids, [], :id, :name, {}, { class: "city-select" }
-
-  %br/
-  .actions
-    = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"
+  = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-primary"

@@ -1,40 +1,65 @@
 class Partner < ActiveRecord::Base
-  acts_as_taggable_on :pages
   belongs_to :user
   belongs_to :state
-  has_many :partner_cities
-  has_many :cities, through: :partner_cities
 
-  has_attached_file(:image) # todo replace this
+  has_attached_file(:image,
+                    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :image, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with AttachmentSizeValidator, attributes: :image, less_than: 1.megabyte
+  validates :image, presence: true
+  validates :image, dimensions: {}
 
   validates :title, presence: true
+  validates :image, presence: true
   validates :state_id, presence: true
+  validates_with PositionValidator
 
-  scope :active, -> { where(active: true) }
   scope :by_state, ->(id) { where(state_id: id) }
-  scope :with_balance, -> { where("current_balance < budget") }
-  scope :by_bid, -> { order("bid desc") }
   scope :by_position, -> (pos) { where(position: pos) }
+  scope :by_page, -> (page) { where(page: page) }
+  scope :active, -> { where("start_date < ? AND active_until > ?",
+                            Date.tomorrow, Date.today) }
 
-  def self.by_city(city_id)
-    includes(:partner_cities).where(partner_cities: {city_id: city_id})
-  end
-
-  def self.filter(position, page, state_id, city_id)
-    active
-      .by_state(state_id)
-      .by_city(city_id)
-      .with_balance
+  def self.current(state_id, page, position)
+    by_state(state_id)
+      .by_page(page)
       .by_position(position)
-      .tagged_with(page)
-      .by_bid
+      .active
+      .first
   end
 
-  def avg_price
-    return unless impressions_count > 0
-    current_balance / impressions_count
+  def available_start_date
+    self.class
+      .by_state(state.id)
+      .by_page(page)
+      .by_position(position)
+      .where.not(active_until: nil)
+      .order("active_until desc").first
+      .try(:active_until) || Date.today
+  end
+
+  def activate(weeks_prm)
+    self.start_date = available_start_date
+    self.active_until = available_start_date + weeks_prm.to_i.weeks
+    self.amount = amount_to_pay(weeks_prm.to_i)
+    self.save
+  end
+
+  def amount_to_pay(weeks, user = nil)
+    return 100 if user.try(:admin?)
+    case weeks
+    when 1
+      # price * days * num_of_weeks * 100 cents
+      20 * 7 * 1 * 100
+    when 2
+      17 * 7 * 2 * 100
+    when 4
+      14 * 7 * 4 * 100
+    end
+  end
+
+  def active?
+    active_until.try(:future?)
   end
 end

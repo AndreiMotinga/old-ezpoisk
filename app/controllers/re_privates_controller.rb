@@ -1,6 +1,6 @@
 class RePrivatesController < ApplicationController
   before_action :set_questions, only: :index
-  # before_action :set_partners
+  before_action :set_partners, only: :index
 
   def index
     @re_privates = RePrivate.filter(params.slice(:state_id, :city_id,
@@ -20,6 +20,8 @@ class RePrivatesController < ApplicationController
   end
 
   def set_partners
-    @partner_ads = PartnerAds.new("Недвижимость", session)
+    state_id = session[:state_id]
+    return if state_id == 0
+    @partner_ads = PartnerAds.new(state_id, "Недвижимость")
   end
 end

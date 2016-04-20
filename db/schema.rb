@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419195319) do
+ActiveRecord::Schema.define(version: 20160423173321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,22 +167,6 @@ ActiveRecord::Schema.define(version: 20160419195319) do
   add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
   add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
-  create_table "pages", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "partner_cities", force: :cascade do |t|
-    t.integer  "partner_id"
-    t.integer  "city_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "partner_cities", ["city_id"], name: "index_partner_cities_on_city_id", using: :btree
-  add_index "partner_cities", ["partner_id"], name: "index_partner_cities_on_partner_id", using: :btree
-
   create_table "partners", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "link"
@@ -193,16 +177,12 @@ ActiveRecord::Schema.define(version: 20160419195319) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "title"
-    t.integer  "debits"
-    t.integer  "credits"
-    t.integer  "balance"
-    t.boolean  "active"
-    t.integer  "bid",                default: 0
-    t.integer  "impressions_count",  default: 0
-    t.integer  "budget",             default: 0
-    t.integer  "current_balance",    default: 0
     t.string   "position",           default: ""
     t.integer  "state_id"
+    t.string   "page"
+    t.date     "start_date"
+    t.date     "active_until"
+    t.integer  "amount"
   end
 
   add_index "partners", ["state_id"], name: "index_partners_on_state_id", using: :btree
@@ -563,8 +543,6 @@ ActiveRecord::Schema.define(version: 20160419195319) do
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"
   add_foreign_key "jobs", "users"
-  add_foreign_key "partner_cities", "cities"
-  add_foreign_key "partner_cities", "partners"
   add_foreign_key "partners", "states"
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"

@@ -1,26 +1,22 @@
 = title("EZPOISK - Информационный портал русскоговорящих людей в США")
 = desc("EZPOISK (easy poisk) - Портал русскоговорящих людей в Америке. Обьявления, Квартиры, Работа, Адвокаты, Услуги. Полезная информация об иммиграции в США")
-- content_for :partners_top do
-  = render "shared/partners/top"
+
+.row
+  .visible-xs.visible-sm.col-md-12
+    = render "shared/partners/top"
 
 / DESKTOP
 .hidden-xs
   .row
-    .visible-sm
-      .col-sm-12.partner
-        = link_to about_path(anchor: "portfolio"), target: "_blank" do
-          = image_tag "partners/blue", class: "image-responsive shadow center-block"
-
-    .col-md-6.col-lg-4
+    .col-sm-6.col-lg-4
       = render "home/users_posts"
-    .col-md-6.col-lg-8
-      .hidden-sm.partner
-        = link_to about_path(anchor: "portfolio"), target: "_blank" do
-          = image_tag "partners/blue", class: "image-responsive shadow center-block"
+    .col-sm-6.col-lg-8
+      .hidden-sm
+        = render "shared/partners/top"
       .row
         .col-md-12.col-lg-6
           = render "home/questions"
-        .hidden-md.col-lg-6
+        .hidden-sm.hidden-md.col-lg-6
           = render "home/posts"
 
 / MOBILE

@@ -12,9 +12,28 @@ class StringForSlack
       string = user_string(record)
     when "Feedback"
       string = feedback_string(record)
+    when "Partner"
+      string = partner_string(record)
     else
       string = post_string(record)
     end
+    string
+  end
+
+  def partner_string(record)
+    string = "Новый Банер\n"
+    string += "id         #{record.id}\n"
+    string += "title      #{record.title}\n"
+    string += "user       #{record.user.email}\n"
+    string += "amount     #{record.amount / 100}\n"
+    string += "\n"
+    string += "state      #{record.state.name}\n"
+    string += "position   #{record.position}\n"
+    string += "page       #{record.page}\n"
+    string += "link       #{record.link}\n"
+    string += "start_date       #{record.start_date}\n"
+    string += "active_until     #{record.active_until}\n"
+    string += "image        #{record.image.url}\n"
     string
   end
 
@@ -34,8 +53,8 @@ class StringForSlack
   def user_string(user)
     string = "Регистрация нового пользователя\n"
     string += "id     #{user.id}\n"
-    string += "name   #{user.name}\n email  #{user.email}\n"
-    string += "phone  #{user.phone}\n"
+    string += "name   #{user.profile.name}\n email  #{user.email}\n"
+    string += "phone  #{user.profile.phone}\n"
     string += "\n"
     string += "Всего: #{User.count}\n"
     string += "==========================================================="

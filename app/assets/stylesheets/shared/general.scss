@@ -1,7 +1,7 @@
 html,
 body {
   background-color: $grey1;
-  padding-top: 25px;
+  padding-top: 30px;
 }
 
 .footer {
@@ -51,11 +51,11 @@ body {
 
 .secondary-navbar {
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
   li.active {
-    border-top: 5px solid blue;
-    height: 50px;
     a {
       background-color: white !important;
+      border-bottom: 2px solid blue;
     }
   }
 }

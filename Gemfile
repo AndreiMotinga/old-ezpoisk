@@ -67,6 +67,8 @@ gem "omniauth-vkontakte"
 gem "friendly_id"
 gem "babosa" # handle russian
 
+gem "stripe-rails"
+
 group :production do
   gem "puma"
   gem "rails_12factor"

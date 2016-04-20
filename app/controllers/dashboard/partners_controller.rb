@@ -1,14 +1,17 @@
 class Dashboard::PartnersController < ApplicationController
-  layout "home"
   before_action :authenticate_user!
-  before_action :set_ad, only: [:edit, :update, :destroy]
+  before_action :set_ad, only: [:show, :edit, :destroy]
 
   def index
-    @partners = current_user.partners.order("created_at")
+    @partners = current_user.partners.includes(:state).order("created_at")
+    @partners = @partners.page(params[:page])
   end
 
   def new
     @partner = Partner.new
+  end
+
+  def show
   end
 
   def edit
@@ -18,8 +21,6 @@ class Dashboard::PartnersController < ApplicationController
     @partner = current_user.partners.build(ad_params)
 
     if @partner.save
-      SlackNotifierJob.perform_async(@partner.id, "Patner")
-      AdminMailerJob.perform_async(@partner.id, "Patner")
       redirect_to dashboard_partners_path, notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -27,20 +28,10 @@ class Dashboard::PartnersController < ApplicationController
     end
   end
 
-  def update
-    if @partner.update(ad_params)
-      redirect_to dashboard_partners_path, notice: I18n.t(:post_saved)
-    else
-      flash.now[:alert] = I18n.t(:post_not_saved)
-      render :edit
-    end
+  def destroy
+    @partner.destroy
+    redirect_to dashboard_partners_path, notice: I18n.t(:post_removed)
   end
-
-  # def destroy
-  #   @re_agency.destroy if @re_agency.user == current_user
-  #   redirect_to dashboard_path,
-  #               notice: I18n.t(:post_removed)
-  # end
 
   private
 
@@ -49,8 +40,7 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def ad_params
-    params.require(:partner).permit(:title, :image, :link, :active, :bid,
-                                    :budget, :position, :state_id,
-                                    page_list:[], city_ids: [])
+    params.require(:partner).permit(:title, :image, :link,
+                                    :state_id, :position, :page)
   end
 end

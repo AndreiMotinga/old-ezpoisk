@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_question, only: [:edit, :update, :destroy]
-  # before_action :set_partners, only: [:index, :show, :tag, :unanswered, :new, :edit]
+  before_action :set_partners, only: [:index, :show, :tag, :unanswered]
 
   def index
     @questions = Question.includes(:answers => :user)
@@ -88,7 +88,8 @@ class QuestionsController < ApplicationController
   end
 
   def set_partners
-    # todo change page
-    @partner_ads = PartnerAds.new("Недвижимость", session)
+    state_id = session[:state_id]
+    return if state_id == 0
+    @partner_ads = PartnerAds.new(state_id, "Вопросы")
   end
 end

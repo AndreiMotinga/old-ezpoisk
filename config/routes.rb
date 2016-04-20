@@ -57,6 +57,16 @@ Rails.application.routes.draw do
     resources :pictures, only: [:index, :create, :update, :destroy]
 
     resources :favorites, only: [:index]
+
+    resources :partners, except: [:edit, :update] do
+      resources :charges, only: [:new] do
+        collection do
+          post 'week', :action => 'week', as: "week"
+          post 'biweek', :action => 'biweek', as: "biweek"
+          post 'quadroweek', :action => 'quadroweek', as: "quadroweek"
+        end
+      end
+    end
   end
 
   resources :posts, only: [:index, :show], path: :eznews
@@ -79,10 +89,6 @@ Rails.application.routes.draw do
       constraints BlacklistConstraint.new do
         mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
       end
-    end
-
-    namespace :dashboard do
-      resources :partners
     end
   end
 

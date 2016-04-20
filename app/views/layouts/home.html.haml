@@ -18,7 +18,6 @@
     = render "shared/navbar"
     / CONTENT
     .container-fluid
-      = render "shared/partners/top"
       .row
         = yield :secondary_navbar if content_for?(:secondary_navbar)
         .notice= render "shared/notice" unless devise_controller?

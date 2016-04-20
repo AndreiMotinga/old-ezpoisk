@@ -1,0 +1,25 @@
+.col-xs-12.col-md-8.col-md-offset-2
+  %h4.text-center #{@partner.title}
+  %br/
+  = link_to @partner.link do
+    = image_tag @partner.image.url, class: "img-responsive shadow"
+  %br/
+  %table.table.table-striped
+    %tr
+      %td Страница
+      %td= @partner.page
+    %tr
+      %td Позиция
+      %td= @partner.position
+    %tr
+      %td Штат
+      %td= @partner.state.name
+    %tr
+      %td Ссылка
+      %td= @partner.link
+    %tr
+      %td День начала показов
+      %td= @partner.start_date
+    %tr
+      %td Активен до
+      %td= @partner.active_until
