@@ -1,3 +1,14 @@
+= title("#{@profile.name} #{@profile.work}")
+= desc("#{@profile.about.truncate(160)}")
+
+- content_for :head do
+  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
+  %meta{property: "og:type", content: "article"}/
+  %meta{property: "og:url", content: profile_url(@profile) }/
+  %meta{property: "og:title", content: @profile.name}/
+  %meta{property: "og:image", content: @profile.cover.url(:large)}/
+  %meta{property: "og:description", content: @profile.about.truncate(200)}/
+
 .container.profile
   = render "profiles/cover"
   .row
