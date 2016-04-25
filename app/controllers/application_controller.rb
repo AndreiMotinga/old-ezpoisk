@@ -10,9 +10,10 @@ class ApplicationController < ActionController::Base
   private
 
   def set_location
-    return unless Rails.env.production?
+    return if Rails.env.test?
     return if session[:state_id]
-    data = Geokit::Geocoders::MultiGeocoder.geocode(request.remote_ip)
+    ip = Rails.env.development? ? "67.80.0.147" : request.remote_ip
+    data = Geokit::Geocoders::MultiGeocoder.geocode(ip)
     state = State.find_by_abbr(data.state)
     # todo remove
     p "============================================================"

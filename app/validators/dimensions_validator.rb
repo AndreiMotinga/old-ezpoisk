@@ -39,7 +39,7 @@ class DimensionsValidator < ActiveModel::EachValidator
     when "Сбоку"
       160
     when "Внизу"
-      140
+      160
     end
   end
 end

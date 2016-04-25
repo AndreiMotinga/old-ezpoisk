@@ -13,7 +13,7 @@
       %script.stripe-button{"data-amount" => @partner.amount_to_pay(weeks),
                             "data-description" => "#{weeks} #{word}",
                             "data-image" => image_url("logos/ezpoisk"),
-                            "data-key" => "pk_test_ut2ByhDVTYUPTtKSINCiDgN3",
+                            "data-key" => ENV["STRIPE_PUBLISHABLE_KEY"],
                             "data-locale" => "auto",
                             "data-name" => @partner.title,
                             "data-allow-remember-me" => "false",

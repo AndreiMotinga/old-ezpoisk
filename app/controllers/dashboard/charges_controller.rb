@@ -38,7 +38,7 @@ class Dashboard::ChargesController < ApplicationController
       currency: "usd",
       receipt_email: current_user.email,
       source: token,
-      description: "Partner charge - #{weeks} weeks"
+      description: "Оплата банера."
     )
   end
 
