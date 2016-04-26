@@ -5,7 +5,7 @@ class PartnerAds
     @state_id = state_id
     @page ||= page
     @top ||= partner_for("Вверху")
-    @side ||= partner_for("Сбоку")
+    @side ||= partner_for("Справа")
     @bottom ||= partner_for("Внизу")
   end
 

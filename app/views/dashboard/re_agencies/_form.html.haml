@@ -28,15 +28,8 @@
   %br/
   .actions
     = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-    %i.fa.fa-question.my-q{"data-toggle": "tooltip", "data-placement": "right" , title: (t :save_tooltip) }
-
-- unless @re_agency.new_record?
-  %br/
-  = link_to 'Удалить',
-            dashboard_re_agency_path(@re_agency),
-            method: :delete,
-            data: { confirm: I18n.t(:confirm) },
-            class: "btn btn-block mobile-btn btn-danger"
+    - unless @re_agency.new_record?
+      = link_to "Удалить", dashboard_re_agency_path(@re_agency), method: :delete, data: { confirm: I18n.t(:confirm) }, class: "btn mobile-btn btn-danger"
 
 %br/
 %p

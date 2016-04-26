@@ -24,6 +24,48 @@
 #   plan.trial_period_days = 30
 # end
 
+Stripe.plan :basic_monthly do |plan|
+  plan.name = "Basic Monthly Plan"
+  plan.amount = 80_00
+  plan.currency = "usd"
+  plan.interval = "month"
+end
+
+Stripe.plan :basic_yearly do |plan|
+  plan.name = "Basic Yearly Plan"
+  plan.amount = 600_00 # 50 a month
+  plan.currency = "usd"
+  plan.interval = "year"
+end
+
+# Stripe.plan :business_monthly do |plan|
+#   plan.name = "Business Monthly Plan"
+#   plan.amount = 100_00
+#   plan.currency = "usd"
+#   plan.interval = "month"
+# end
+#
+# Stripe.plan :business_yearly do |plan|
+#   plan.name = "Business Yearly Plan"
+#   plan.amount = 960_00 # 80 a month
+#   plan.currency = "usd"
+#   plan.interval = "year"
+# end
+#
+# Stripe.plan :golden_monthly do |plan|
+#   plan.name = "Golden Monthly Plan"
+#   plan.amount = 150_00
+#   plan.currency = "usd"
+#   plan.interval = "month"
+# end
+#
+# Stripe.plan :golden_yearly do |plan|
+#   plan.name = "Golden Yearly Plan"
+#   plan.amount = 1560_00 # 130 a month
+#   plan.currency = "usd"
+#   plan.interval = "year"
+# end
+
 # Once you have your plans defined, you can run
 #
 #   rake stripe:prepare

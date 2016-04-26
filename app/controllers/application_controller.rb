@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
   def get_record(model, id, path)
     record = model.find(id) if model.exists?(id)
-    if record && record.active
+    if record && record.active?
       record.update_column(:impressions_count, record.impressions_count+1)
       return record
     end

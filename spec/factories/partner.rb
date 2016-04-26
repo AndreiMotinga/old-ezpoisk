@@ -11,7 +11,7 @@ FactoryGirl.define do
     association :state
 
     trait :side do
-      position "Сбоку"
+      position "Справа"
       image { File.new("#{Rails.root}/spec/support/fixtures/side.jpg") }
     end
 

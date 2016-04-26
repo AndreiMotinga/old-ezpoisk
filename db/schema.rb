@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423173321) do
+ActiveRecord::Schema.define(version: 20160429161655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,16 @@ ActiveRecord::Schema.define(version: 20160423173321) do
 
   add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
   add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
+
+  create_table "plans", force: :cascade do |t|
+    t.string   "title"
+    t.string   "name"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "interval"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -430,7 +440,6 @@ ActiveRecord::Schema.define(version: 20160423173321) do
     t.string   "category"
     t.string   "subcategory"
     t.text     "description",       default: "", null: false
-    t.boolean  "active"
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "state_id"
@@ -446,7 +455,7 @@ ActiveRecord::Schema.define(version: 20160423173321) do
     t.string   "slug",              default: ""
     t.string   "fax"
     t.integer  "impressions_count", default: 0
-    t.string   "short_description", default: ""
+    t.date     "active_until"
   end
 
   add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree
@@ -459,6 +468,16 @@ ActiveRecord::Schema.define(version: 20160423173321) do
   end
 
   add_index "states", ["abbr"], name: "index_states_on_abbr", unique: true, using: :btree
+
+  create_table "stripe_subscriptions", force: :cascade do |t|
+    t.string   "stripe_id"
+    t.integer  "payable_id"
+    t.string   "payable_type"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "stripe_subscriptions", ["payable_type", "payable_id"], name: "index_stripe_subscriptions_on_payable_type_and_payable_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"

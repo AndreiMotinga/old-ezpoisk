@@ -33,7 +33,6 @@ describe Dashboard::ServicesController do
         edit_dashboard_service_path(service)
       )
       expect(service.title).to eq attrs[:title]
-      expect(service.short_description).to eq attrs[:short_description]
       expect(service.user).to eq @user
     end
   end
@@ -54,7 +53,6 @@ describe Dashboard::ServicesController do
       expect(updated_agency.phone).to eq attrs[:phone]
       expect(updated_agency.email).to eq attrs[:email]
       expect(updated_agency.description).to eq attrs[:description]
-      expect(updated_agency.active).to eq attrs[:active]
 
       expect(updated_agency.city_id).to eq attrs[:city_id]
       expect(updated_agency.state_id).to eq attrs[:state_id]
@@ -63,13 +61,57 @@ describe Dashboard::ServicesController do
   end
 
   describe "DELETE #destroy" do
-    it "removes record" do
+    before { StripeMock.start }
+    after { StripeMock.stop }
+
+    it "removes record and destroys customer" do
+      cus = Stripe::Customer.create
       service = create(:service, user: @user)
+      sub = service.create_stripe_subscription(stripe_id: cus.id)
 
       delete :destroy, id: service.id
+      cus = Stripe::Customer.retrieve(cus.id)
 
       expect(response).to redirect_to(dashboard_path)
       expect(Service.count).to be 0
+      expect(StripeSubscription.count).to be 0
+      expect(cus.deleted).to be true
+    end
+  end
+
+  describe "POST #payment" do
+    let!(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
+    let(:basic) { create :plan, :basic_monthly }
+
+    it "processes payment successfully" do
+      service = create(:service, active_until: nil, user: @user)
+      plan = stripe_helper.create_plan(id: basic.title)
+      card_token = StripeMock.generate_card_token(last4: "9191", exp_year: 2020)
+
+      post :payment, id: service.id, plan: plan.id, stripeToken: card_token
+      sub = StripeSubscription.last
+      service.reload
+
+      expect(response).to redirect_to edit_dashboard_service_path(service)
+      expect(sub).to_not be nil
+      expect(sub.stripe_id).to_not be nil
+      expect(service.active_until).to_not be nil
+    end
+
+    it "catches error" do
+      service = create(:service, active_until: nil, user: @user)
+      plan = stripe_helper.create_plan(id: basic.title)
+      card_token = "invalid_token"
+
+      post :payment, id: service.id, plan: plan.id, stripeToken: card_token
+      sub = StripeSubscription.last
+      service.reload
+
+      expect(response).to redirect_to edit_dashboard_service_path(service)
+      expect(sub).to be nil
+      expect(service.active_until).to be nil
     end
   end
 end

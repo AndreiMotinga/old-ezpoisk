@@ -51,7 +51,11 @@ Rails.application.routes.draw do
     resources :jobs, only: [:new, :create, :edit, :update, :destroy]
 
     resources :sales, only: [:new, :create, :edit, :update, :destroy]
-    resources :services, only: [:new, :create, :edit, :update, :destroy]
+    resources :services, only: [:new, :create, :edit, :update, :destroy] do
+      member do
+        post "payment", to: "services#payment"
+      end
+    end
 
     resources :summernote, only: [:create]
     resources :pictures, only: [:index, :create, :update, :destroy]
@@ -94,6 +98,7 @@ Rails.application.routes.draw do
 
   get "about", to: "home#about"
   get "really", to: "home#really"
+  # todo remove
   get "htmltagstrippingtool", to: "htmltagstrippingtool#index"
 
   root to: "home#index"

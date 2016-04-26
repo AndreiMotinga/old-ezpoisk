@@ -1,0 +1,19 @@
+%h1
+  Payment for
+  = @record.title
+
+= form_tag dashboard_subscriptions_path, method: :post do
+  = hidden_field_tag :id, params[:id]
+  = hidden_field_tag :m, params[:m]
+  = select_tag :plan, options_from_collection_for_select(Plan.all, "title", "name")
+  %br/
+  %br/
+
+  %script.stripe-button{"data-description" => "plan name",
+                        "data-image" => image_url("logos/ezpoisk"),
+                        "data-key" => ENV["STRIPE_PUBLISHABLE_KEY"],
+                        "data-locale" => "auto",
+                        "data-name" => "plan smtn",
+                        "data-allow-remember-me" => "false",
+                        "data-email" => current_user.email,
+                        :src => "https://checkout.stripe.com/checkout.js"}

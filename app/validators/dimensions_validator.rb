@@ -25,7 +25,7 @@ class DimensionsValidator < ActiveModel::EachValidator
     case record.position
     when "Вверху"
       1170
-    when "Сбоку"
+    when "Справа"
       420
     when "Внизу"
       680
@@ -36,7 +36,7 @@ class DimensionsValidator < ActiveModel::EachValidator
     case record.position
     when "Вверху"
       160
-    when "Сбоку"
+    when "Справа"
       160
     when "Внизу"
       160

@@ -18,7 +18,6 @@ feature "user updates service" do
     select(attrs.subcategory, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно")
     click_on "details-save-btn"
 
     expect(page).to have_content I18n.t(:post_saved)
@@ -30,7 +29,6 @@ feature "user updates service" do
     expect(service.email).to eq attrs.email
     expect(service.category).to eq attrs.category
     expect(service.subcategory).to eq attrs.subcategory
-    expect(service.active).to be true
     expect(service.state.name).to eq "Alabama"
     expect(service.city.name).to eq "Abbeville"
     expect(service.user_id).to_not be nil

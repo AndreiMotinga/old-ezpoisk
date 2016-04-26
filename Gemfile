@@ -105,6 +105,7 @@ end
 group :test do
   gem "rspec-rails"
   gem "webmock" # stub external connections
+  gem "stripe-ruby-mock", :require => 'stripe_mock'
   gem "capybara"
   gem "capybara-webkit"
   gem "capybara-select2"

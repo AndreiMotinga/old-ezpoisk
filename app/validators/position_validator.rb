@@ -7,6 +7,6 @@ class PositionValidator < ActiveModel::Validator
 
   def wrong_postition?(partner)
     return unless partner.page == "Домашняя"
-    true if %w(Сбоку Внизу).include? partner.position
+    true if %w(Справа Внизу).include? partner.position
   end
 end

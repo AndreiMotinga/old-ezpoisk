@@ -20,4 +20,8 @@ class RePrivate < ActiveRecord::Base
   def title
     street
   end
+
+  def paid?
+    false
+  end
 end

@@ -29,4 +29,8 @@ class Post < ActiveRecord::Base
   def logo_url(style = :medium)
     image.url(style)
   end
+
+  def paid?
+    false
+  end
 end

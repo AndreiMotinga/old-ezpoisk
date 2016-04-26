@@ -1,28 +1,29 @@
 #pictures-data{ "data-id" => "#{record.id}", "data-type" => "#{record.class.to_s}" }
 .col-xs-12
   = template_for(record)
-  %br/
 
+  %br/
   .row
-    / Nav tabs
     %ul.nav.nav-tabs{role: "tablist"}
-      %li.active{ role: "presentation" }
-        = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      %li{role: "presentation"}
+      %li.active{role: "presentation"}
         = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-    / Nav tabs
+      %li{ role: "presentation" }
+        = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      - if record.try(:paid?)
+        %li{role: "presentation"}
+          = link_to "Оплата", "#activate", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
     %br/
-
-    / Tab panes
     .tab-content
-      #pictures.tab-pane.fade.in.active{:role => "tabpanel"}
+      #form.tab-pane.fade.in.active{:role => "tabpanel"}
+        = render 'form'
+
+      #pictures.tab-pane.fade{:role => "tabpanel"}
         - if record.class.method_defined?(:pictures)
           = render "dashboard/shared/pictures", record: record
         - else
           = render "dashboard/shared/logo", record: record
-      / pictures
 
-      #form.tab-pane.fade{:role => "tabpanel"}
-        = render 'form'
-    / Tab panes
+      - if record.paid?
+        #activate.tab-pane.fade{:role => "tabpanel"}
+          = render "dashboard/shared/payment", record: record

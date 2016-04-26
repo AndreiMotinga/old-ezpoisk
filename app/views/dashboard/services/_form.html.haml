@@ -3,9 +3,6 @@
     = f.text_field :title, label: '* Заголовок / Название'
 
   .field
-    = f.text_field :short_description, label: 'Краткое описание'
-
-  .field
     = f.select :category,
                 SERVICE_CATEGORIES.keys,
                 { include_blank: true, label: '* Раздел' },
@@ -43,23 +40,9 @@
   .field
     = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
 
-  .field
-    = f.check_box :active, label: "Активно *"
-
   %br/
   .actions
     = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-    %i.fa.fa-question.my-q{"data-toggle": "tooltip", "data-placement": "right" , title: (t :save_tooltip) }
-
-- unless @service.new_record?
+    - unless @service.new_record?
+      = link_to "Удалить", dashboard_service_path(@service), method: :delete, data: { confirm: I18n.t(:confirm) }, class: "btn mobile-btn btn-danger"
   %br/
-  = link_to 'Удалить',
-            dashboard_service_path(@service),
-            method: :delete,
-            data: { confirm: I18n.t(:confirm) },
-            class: "btn btn-block mobile-btn btn-danger"
-
-%br/
-%p
-  %strong Активно * -
-  = t :active_tooltip

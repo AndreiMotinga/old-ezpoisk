@@ -5,13 +5,8 @@
   = f.file_field :image
   = f.text_field :title, label: '* Заголовок'
   = f.text_area :text, rows: 3, label: 'Краткое описание (100-160 символов)', class: "summernote"
-  .actions= f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-
-- unless @post.new_record?
-  %br/
-  = link_to 'Удалить',
-            dashboard_post_path(@post),
-            method: :delete,
-            data: { confirm: I18n.t(:confirm) },
-            class: "btn btn-block mobile-btn btn-danger"
+  .actions
+    = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+    - unless @post.new_record?
+      = link_to 'Удалить', dashboard_post_path(@post), method: :delete, data: { confirm: I18n.t(:confirm) }, class: "btn mobile-btn btn-danger"
 %br/

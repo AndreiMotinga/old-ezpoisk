@@ -96,3 +96,51 @@
 #   description: "pLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
 #   text: "pLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. ",
 # )
+
+Plan.create(
+  title: "basic_monthly",
+  name: "Basic Monthly Plan",
+  amount: 80_00,
+  currency: "usd",
+  interval: "month"
+)
+
+Plan.create(
+  title: "basic_yearly",
+  name: "Basic Yearly Plan",
+  amount: 600_00, # 50 a month
+  currency: "usd",
+  interval: "year"
+)
+
+# Plan.create(
+#   title: "business_monthly",
+#   name: "Business Monthly Plan",
+#   amount: 100_00,
+#   currency: "usd",
+#   interval: "month"
+# )
+#
+# Plan.create(
+#   title: "business_yearly",
+#   name: "Business Yearly Plan",
+#   amount: 960_00, # 80 a month
+#   currency: "usd",
+#   interval: "year"
+# )
+#
+# Plan.create(
+#   title: "golden_monthly",
+#   name: "Golden Monthly Plan",
+#   amount: 150_00,
+#   currency: "usd",
+#   interval: "month"
+# )
+#
+# Plan.create(
+#   title: "golden_yearly",
+#   name: "Golden Yearly Plan",
+#   amount: 1560_00, # 130 a month
+#   currency: "usd",
+#   interval: "year"
+# )

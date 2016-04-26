@@ -13,18 +13,13 @@ FactoryGirl.define do
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
+    active_until { 1.months.from_now }
 
     category { category }
     subcategory { subcategory }
 
-    short_description "All aboard"
-
     association :user
     association :state
     association :city
-
-    trait :active do
-      active true
-    end
   end
 end

@@ -21,4 +21,8 @@ class JobAgency < ActiveRecord::Base
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
+
+  def paid?
+    false
+  end
 end

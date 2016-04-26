@@ -9,7 +9,7 @@ feature "User favors different posts", js: true do
     re_commercial = create :re_commercial, :active
     job_agency = create :job_agency, :active
     job = create :job, :active
-    service = create :service, :active
+    service = create :service
     sale = create :sale, :active
     post = create :post
 
