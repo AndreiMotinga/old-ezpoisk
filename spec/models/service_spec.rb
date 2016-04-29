@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe Service do
   it { should validate_presence_of :title }
+  it { should validate_presence_of :street }
   it { should validate_presence_of :phone }
   it { should validate_presence_of :category }
   it { should validate_presence_of :subcategory }

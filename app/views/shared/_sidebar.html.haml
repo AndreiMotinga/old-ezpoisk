@@ -4,44 +4,56 @@
     / Sidebar
     %nav#sidebar-wrapper.navbar.navbar-inverse.navbar-fixed-top.shadow{role: "navigation"}
       %ul.nav.sidebar-nav
-        %li.active
+        %li
           = link_to root_path do
             %span.sidebar-icon
               %i.fa.fa-home
             Домашняя
 
-        %li
-          %hr.post-devider
+        -# %li
+        -#   %hr.post-devider
 
-        /ezrealty
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle": "dropdown", href: "#"}
+        %li
+          = link_to re_privates_path do
             %span.sidebar-icon
               %i.fa.fa-hospital-o
             = t(:ezrealty)
-            .pull-right
-              %span.caret
-          %ul.dropdown-menu{role: "menu"}
-            -# %li= link_to "Финансирование", main_app.re_finances_path
-            %li= link_to t(:private), main_app.re_privates_path
-            %li= link_to t(:commercial), main_app.re_commercials_path
-            %li= link_to t(:agencies), main_app.re_agencies_path
+
+        -# /ezrealty
+        -# %li.dropdown
+        -#   %a.dropdown-toggle{"data-toggle": "dropdown", href: "#"}
+        -#     %span.sidebar-icon
+        -#       %i.fa.fa-hospital-o
+        -#     = t(:ezrealty)
+        -#     .pull-right
+        -#       %span.caret
+        -#   %ul.dropdown-menu{role: "menu"}
+        -#     %li= link_to t(:private), main_app.re_privates_path
+        -#     %li= link_to t(:commercial), main_app.re_commercials_path
+        -#     %li= link_to t(:agencies), main_app.re_agencies_path
+        -#     %li= link_to "Финансирование", main_app.re_finances_path
 
 
         / jobs
-        %li.dropdown
-          %a.dropdown-toggle{"data-toggle": "dropdown", href: "#"}
+        %li
+          = link_to jobs_path do
             %span.sidebar-icon
               %i.fa.fa-list-ul
             Работа
-            .pull-right
-              %span.caret
-          %ul.dropdown-menu{role: "menu"}
-            %li= link_to "Работа", main_app.jobs_path
-            %li= link_to t(:agencies), main_app.job_agencies_path
+
+        -# %li.dropdown
+        -#   %a.dropdown-toggle{"data-toggle": "dropdown", href: "#"}
+        -#     %span.sidebar-icon
+        -#       %i.fa.fa-list-ul
+        -#     Работа
+        -#     .pull-right
+        -#       %span.caret
+        -#   %ul.dropdown-menu{role: "menu"}
+        -#     %li= link_to "Работа", main_app.jobs_path
+        -#     %li= link_to t(:agencies), main_app.job_agencies_path
 
         %li
-          = link_to services_path do
+          = link_to all_services_path do
             %span.sidebar-icon
               %i.fa.fa-balance-scale
             Услуги
@@ -63,7 +75,7 @@
           = link_to main_app.posts_path do
             %span.sidebar-icon
               %i.fa.fa-globe
-            Новости
+            Наши Новости
 
         %li
           %hr.post-devider

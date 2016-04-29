@@ -28,7 +28,6 @@ describe ProfilesController do
   describe "#listings" do
     it "is success and assigns listings" do
       user = create :user
-      create :re_agency, user: user
       create :re_private, user: user
       create :sale, user: user
 
@@ -36,7 +35,7 @@ describe ProfilesController do
       listings = assigns(:listings)
 
       expect(response).to be_success
-      expect(listings.size).to eq 3
+      expect(listings.size).to eq 2
     end
   end
 

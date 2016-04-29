@@ -1,44 +1,46 @@
 = bootstrap_form_for([:dashboard, @service]) do |f|
   .field
     = f.text_field :title, label: '* Заголовок / Название'
-
-  .field
-    = f.select :category,
-                SERVICE_CATEGORIES.keys,
-                { include_blank: true, label: '* Раздел' },
-                class: "category-select"
-
-  .field
-    - if @service.category
-      = f.select :subcategory,
-                 SERVICE_CATEGORIES,
-                 { include_blank: true , label: '* Категория' },
-                 class: "subcategory-select"
-    - else
-      = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
-
-  /address
-  .field
-    = f.text_field :street, label: 'Улица'
-  .field
-    = form_state_select(f)
-  .field
-    = form_city_select(f, @service)
-
-  .field
-    = f.text_field :phone, label: '* Телефон'
-
-  .field
-    = f.text_field :fax, label: 'Факс'
-
-  .field
-    = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
-
-  .field
-    = f.email_field :email
-
   .field
     = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  %hr.white/
+  .row
+    .col-sm-6
+      = f.select :category,
+                  SERVICE_CATEGORIES.keys,
+                  { include_blank: true, label: '* Раздел' },
+                  class: "category-select"
+    .col-sm-6
+      - if @service.category
+        = f.select :subcategory,
+                   SERVICE_CATEGORIES,
+                   { include_blank: true , label: '* Категория' },
+                   class: "subcategory-select"
+      - else
+        = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
+  %hr.white/
+
+  .field
+    = f.text_field :street, label: 'Улица *'
+  .row
+    .col-sm-6
+      = form_state_select(f)
+    .col-sm-6
+      = form_city_select(f, @service)
+
+  %hr.white/
+
+  .row
+    .col-sm-6
+      = f.text_field :phone, label: '* Телефон'
+    .col-sm-6
+      = f.text_field :fax, label: 'Факс'
+
+  .row
+    .col-sm-6
+      = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
+    .col-sm-6
+      = f.email_field :email
 
   %br/
   .actions

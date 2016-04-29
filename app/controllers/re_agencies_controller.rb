@@ -3,12 +3,13 @@ class ReAgenciesController < ApplicationController
   before_action :set_questions, only: :index
 
   def index
-    @re_agencies = ReAgency.filter(params.slice(:state_id, :city_id, :geo_scope))
-                           .page(params[:page])
+    @re_agencies = Service.re_agencies.filter(
+      params.slice(:state_id, :city_id, :geo_scope)
+    ).order("updated_at desc").page(params[:page])
   end
 
   def show
-    @re_agency = get_record(ReAgency, params[:id], re_agencies_path)
+    @re_agency = get_record(Service, params[:id], re_agencies_path)
   end
 
   private

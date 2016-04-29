@@ -1,0 +1,36 @@
+= title("Услуги: Адвокаты, Медицина, Образование, Ремонтные и др. в США - ezpoisk")
+= desc("EZPOISK - Бесплатные обьявления, реклама. Все виды услуг в США. Найти сервис, рекламировать бизнес, получить помощь.")
+
+.container.all_services
+  .col-xs-12.col-sm-6.col-md-4
+    - ["Автоуслуги", "Адвокаты", "Красота", "Строительство"].each do |category|
+      .panel.panel-default.shadow
+        .panel-heading
+          %h3.panel-title= category
+        .panel-body
+          %ul.list-unstyled
+            - SERVICE_CATEGORIES[category].each do |subcategory|
+              %li= link_to subcategory, services_path(category: category, subcategory: subcategory)
+  / 1 column
+
+  .col-xs-12.col-sm-6.col-md-4
+    - ["Медицина", "Недвижимость", "Ремонт", "Работа"].each do |category|
+      .panel.panel-default.shadow
+        .panel-heading
+          %h3.panel-title= category
+        .panel-body
+          %ul.list-unstyled
+            - SERVICE_CATEGORIES[category].each do |subcategory|
+              %li= link_to subcategory, services_path(category: category, subcategory: subcategory)
+  / 2 column
+
+  .col-xs-12.col-sm-6.col-md-4
+    - ["Магазины", "Другие услуги", "Образование"].each do |category|
+      .panel.panel-default.shadow
+        .panel-heading
+          %h3.panel-title= category
+        .panel-body
+          %ul.list-unstyled
+            - SERVICE_CATEGORIES[category].each do |subcategory|
+              %li= link_to subcategory, services_path(category: category, subcategory: subcategory)
+  / 3 column

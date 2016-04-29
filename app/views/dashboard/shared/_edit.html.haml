@@ -2,6 +2,15 @@
 .col-xs-12
   = template_for(record)
 
+- if record.is_a?(Service) && !record.active?
+  .col-xs-12
+    %p.alert.alert-danger
+      Объявления в разделе "Услуги" являются платными.
+      На данный момент пользователи не видят ваше объявление.
+      -# Что бы посетители сайт увидели ваше объявление его нужно
+      -# = link_to "активировать", "#activate", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+
+.col-xs-12
   %br/
   .row
     %ul.nav.nav-tabs{role: "tablist"}
@@ -9,7 +18,7 @@
         = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       %li{ role: "presentation" }
         = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      - if record.try(:paid?)
+      - if record.is_a? Service
         %li{role: "presentation"}
           = link_to "Оплата", "#activate", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
@@ -24,6 +33,6 @@
         - else
           = render "dashboard/shared/logo", record: record
 
-      - if record.paid?
+      - if record.is_a? Service
         #activate.tab-pane.fade{:role => "tabpanel"}
           = render "dashboard/shared/payment", record: record

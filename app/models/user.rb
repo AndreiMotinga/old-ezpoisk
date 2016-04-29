@@ -11,11 +11,8 @@ class User < ActiveRecord::Base
   after_create :send_emails
   after_create :create_user_profile
 
-  has_many :re_agencies, dependent: :destroy
-  has_many :re_finances, dependent: :destroy
   has_many :re_privates, dependent: :destroy
   has_many :re_commercials, dependent: :destroy
-  has_many :job_agencies, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy

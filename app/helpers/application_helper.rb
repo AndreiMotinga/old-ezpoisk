@@ -19,14 +19,8 @@ module ApplicationHelper
 
   def template_for(record)
     case record.class.to_s
-    when "ReAgency"
-      render "re_agencies/re_agency", re_agency: record
-    when "ReFinance"
-      render "re_finances/re_finance", re_finance: record
     when "Service"
       render "services/service", service: record
-    when "JobAgency"
-      render "job_agencies/job_agency", job_agency: record
     when "ReCommercial"
       render "re_commercials/re_commercial", re_commercial: record
     when "RePrivate"

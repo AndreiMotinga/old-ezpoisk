@@ -32,15 +32,14 @@ class DataAggregator
 
   def this_week_posts
     count = RePrivate.where("created_at > ?", @beginning_of_week).count
-    [ReAgency, ReCommercial, ReFinance, Service, JobAgency, Job, Sale].each do |model|
+    [ReCommercial, Service, Job, Sale].each do |model|
       count += model.where("created_at > ?", @beginning_of_week).count
     end
     count
   end
 
   def total_users_posts
-    ReAgency.count + RePrivate.count + ReFinance.count + ReCommercial.count +
-      JobAgency.count + Job.count + Service.count
+    RePrivate.count + ReCommercial.count + Job.count + Service.count
   end
 
   def total_qa

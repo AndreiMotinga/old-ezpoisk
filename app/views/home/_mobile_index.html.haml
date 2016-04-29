@@ -16,16 +16,8 @@
       %br/
       #home.tab-pane.active{:role => "tabpanel"}
         %ul.list-group
-          = link_to re_agencies_path, class: "mobile-link" do
-            %li.list-group-item Агентства недвижимости
-          -# = link_to re_finances_path, class: "mobile-link" do
-          -#   %li.list-group-item Финансирование
           = link_to re_privates_path, class: "mobile-link" do
-            %li.list-group-item Частная недвижимость
-          = link_to re_commercials_path, class: "mobile-link" do
-            %li.list-group-item Коммерческая недвижимость
-          = link_to job_agencies_path, class: "mobile-link" do
-            %li.list-group-item Агентства по трудоустройству
+            %li.list-group-item Недвижимость
           = link_to jobs_path, class: "mobile-link" do
             %li.list-group-item Работа
           = link_to services_path, class: "mobile-link" do

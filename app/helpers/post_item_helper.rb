@@ -1,12 +1,6 @@
 module PostItemHelper
   def edit_link(record)
     case record.class.to_s
-    when "ReAgency"
-      edit_dashboard_re_agency_path(record)
-    when "ReFinance"
-      edit_dashboard_re_finance_path(record)
-    when "JobAgency"
-      edit_dashboard_job_agency_path(record)
     when "Job"
       edit_dashboard_job_path(record)
     when "RePrivate"
@@ -24,12 +18,6 @@ module PostItemHelper
 
   def link_to_show_page(record)
     case record.class.to_s
-    when "ReAgency"
-      re_agency_path(record)
-    when "ReFinance"
-      re_finance_path(record)
-    when "JobAgency"
-      job_agency_path(record)
     when "Job"
       job_path(record)
     when "RePrivate"

@@ -9,8 +9,8 @@ describe JobAgenciesController do
   end
 
   it "return only active models" do
-    2.times { create :job_agency, :active }
-    create :job_agency, active: false
+    2.times { create :service, :job_agency }
+    create :service, :job_agency, active_until: nil
 
     get :index
 
@@ -21,8 +21,8 @@ describe JobAgenciesController do
     it "filters by state_id" do
       new_york = create(:state, name: "New York")
       alabama = create(:state, name: "Alabama")
-      2.times { create :job_agency, :active, state_id: alabama.id }
-      create :job_agency, :active,  state_id: new_york.id
+      2.times { create :service, :job_agency, state_id: alabama.id }
+      create :service, :job_agency, state_id: new_york.id
 
       get :index, state_id: new_york.id
 
@@ -33,9 +33,9 @@ describe JobAgenciesController do
       brooklyn = create(:city, name: "Brooklyn")
       bronx = create(:city, name: "Bronx")
       queens  = create(:city, name: "Queens")
-      2.times { create :job_agency, :active, city_id: queens.id }
-      create :job_agency, :active,  city_id: brooklyn.id
-      create :job_agency, :active, city_id: bronx.id
+      2.times { create :service, :job_agency, city_id: queens.id }
+      create :service, :job_agency, city_id: brooklyn.id
+      create :service ,:job_agency, city_id: bronx.id
 
       get :index, city_id: [brooklyn.id, bronx.id]
 
@@ -45,7 +45,7 @@ describe JobAgenciesController do
 
   describe "GET @show" do
     it "renders the show template and assigns @job_agency if its active" do
-      job_agency = create(:job_agency, :active)
+      job_agency = create(:service, :job_agency)
 
       get :show, id: job_agency.id
 
@@ -55,7 +55,7 @@ describe JobAgenciesController do
     end
 
     it "redirects to 404 if it's inactive" do
-      job_agency = create(:job_agency, active: false)
+      job_agency = create(:service, :job_agency, active_until: nil)
 
       get :show, id: job_agency.id
 

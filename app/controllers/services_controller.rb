@@ -2,6 +2,9 @@ class ServicesController < ApplicationController
   before_action :set_questions, only: :index
   before_action :set_partners
 
+  def all
+  end
+
   def index
     @services = Service.filter(params.slice(
       :state_id, :city_id, :category, :subcategory, :geo_scope)).

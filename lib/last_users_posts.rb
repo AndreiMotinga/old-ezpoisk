@@ -1,7 +1,7 @@
 class LastUsersPosts
   def last_posts(num)
     posts = RePrivate.active.last(num)
-    [ReAgency, ReCommercial, ReFinance, Service, JobAgency, Job, Sale].each do |model|
+    [ReCommercial, Service, Job, Sale].each do |model|
       posts += model.active.last(num)
     end
     posts.sort_by(&:created_at).last(num).reverse

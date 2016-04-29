@@ -2,10 +2,10 @@
   = render "shared/show/contacts", record: record
 
 .col-xs-12
-  = render "shared/company", record: record
+  = render record
 
 - if record.description.present?
-  .col-xs-12.white-block
+  .col-xs-12.white-block.description
     = sanitize record.description
 
 .col-xs-12

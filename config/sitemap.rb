@@ -41,16 +41,6 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add re_agencies_path, priority: 0.6, changefreq: "weekly"
-  ReAgency.find_each do |post|
-    add re_agency_path(post), priority: 0.6, lastmod: post.updated_at
-  end
-
-  add re_finances_path, priority: 0.6, changefreq: "weekly"
-  ReFinance.find_each do |post|
-    add re_finance_path(post), priority: 0.6, lastmod: post.updated_at
-  end
-
   add re_privates_path, priority: 0.6, changefreq: "weekly"
   RePrivate.find_each do |post|
     add re_private_path(post), priority: 0.6, lastmod: post.updated_at
@@ -130,13 +120,6 @@ SitemapGenerator::Sitemap.create do
   #     JOBS
   #
   ##############################################################
-
-  add job_agencies_path, priority: 0.6, changefreq: "weekly"
-  JobAgency.find_each do |post|
-    add job_agency_path(post),
-        priority: 0.6,
-        lastmod: post.updated_at
-  end
 
   add jobs_path, priority: 0.6, changefreq: "weekly"
   Job.find_each do |post|

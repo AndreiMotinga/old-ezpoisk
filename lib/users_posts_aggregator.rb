@@ -11,7 +11,7 @@ class UsersPostsAggregator
     elsif @model.present?
       @posts = find_by_model(@model.constantize)
     else
-      @posts = re_a + re_p + re_c + job_a + jobs + services + sales
+      @posts = re_p + re_c + jobs + services + sales
     end
     @posts.sort_by(&:updated_at).reverse
   end
@@ -28,15 +28,6 @@ class UsersPostsAggregator
     model.where(user: @user)
   end
 
-  def re_a
-    if @keyword.present?
-      posts = @user.re_agencies.filter(keyword: @keyword)
-    else
-      posts = @user.re_agencies
-    end
-    posts
-  end
-
   def re_p
     if @keyword.present?
       posts = @user.re_privates.filter(street: @keyword)
@@ -51,15 +42,6 @@ class UsersPostsAggregator
       posts = @user.re_commercials.filter(street: @keyword)
     else
       posts = @user.re_commercials
-    end
-    posts
-  end
-
-  def job_a
-    if @keyword.present?
-      posts = @user.job_agencies.filter(keyword: @keyword)
-    else
-      posts = @user.job_agencies
     end
     posts
   end

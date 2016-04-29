@@ -41,15 +41,10 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :profiles, only: [:edit, :update]
     resources :users, only: [:update]
-    resources :re_agencies, only: [:new, :create, :edit, :update, :destroy]
-    resources :re_finances, only: [:new, :create, :edit, :update, :destroy]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
     resources :re_commercials, only: [:new, :create, :edit, :update, :destroy]
     resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
-
-    resources :job_agencies, only: [:new, :create, :edit, :update, :destroy]
     resources :jobs, only: [:new, :create, :edit, :update, :destroy]
-
     resources :sales, only: [:new, :create, :edit, :update, :destroy]
     resources :services, only: [:new, :create, :edit, :update, :destroy] do
       member do
@@ -76,7 +71,9 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show], path: :eznews
   resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
-  resources :services, only: [:index, :show], path: :ezservice
+  resources :services, only: [:index, :show], path: :ezservice do
+    get "all", on: :collection
+  end
   resources :re_agencies, only: [:index, :show]
   resources :re_finances, only: [:index, :show]
   resources :re_privates, only: [:index, :show]

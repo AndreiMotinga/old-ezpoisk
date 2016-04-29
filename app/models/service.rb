@@ -6,6 +6,7 @@ class Service < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 44, minimum: 3 }
   validates :phone, presence: true
+  validates :street, presence: true
   validates :category, presence: true
   validates :subcategory, presence: true
   validates :state_id, presence: true
@@ -18,6 +19,10 @@ class Service < ActiveRecord::Base
   has_one :stripe_subscription, as: :payable, dependent: :destroy
 
   scope :active, -> { where("active_until > ?", Date.today) }
+  scope :re_agencies, -> { where(subcategory: "Агентства Недвижимости") }
+  scope :re_finances, -> { where(subcategory: "Финансирование") }
+  scope :job_agencies, -> { where(subcategory: "Агентства по Трудоустройству") }
+
 
   has_attached_file(:logo,
                     styles: { medium: ["300x170>", :jpg] },
@@ -28,10 +33,6 @@ class Service < ActiveRecord::Base
 
   def active?
     active_until.try(:future?)
-  end
-
-  def paid?
-    true
   end
 
   def extend(period)

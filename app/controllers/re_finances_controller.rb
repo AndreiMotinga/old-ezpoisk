@@ -2,18 +2,18 @@ class ReFinancesController < ApplicationController
   before_action :set_questions, only: :index
 
   def index
-    @re_finances = ReFinance
-      .filter(params.slice(:state_id, :city_id, :geo_scope))
-      .page(params[:page])
+    @re_finances = Service.re_finances.filter(
+      params.slice(:state_id, :city_id, :geo_scope)
+    ).order("updated_at desc").page(params[:page])
   end
 
   def show
-    @re_finance = get_record ReFinance, params[:id], re_finances_path
+    @re_finance = get_record(Service, params[:id], re_finances_path)
   end
 
   private
 
   def set_questions
-    @side_questions = Question.tagged_with("недвижимость").limit(10)
+    @side_questions = Question.tagged_with("Недвижимость").limit(10)
   end
 end

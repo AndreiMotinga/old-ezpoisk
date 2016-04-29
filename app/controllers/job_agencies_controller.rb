@@ -3,13 +3,13 @@ class JobAgenciesController < ApplicationController
   before_action :set_partners, only: :index
 
   def index
-    @job_agencies = JobAgency
-      .filter(params.slice(:state_id, :city_id, :geo_scope))
-      .page(params[:page])
+    @job_agencies = Service.job_agencies.filter(
+      params.slice(:state_id, :city_id, :geo_scope)
+    ).page(params[:page])
   end
 
   def show
-    @job_agency = get_record(JobAgency, params[:id], job_agencies_path)
+    @job_agency = get_record(Service, params[:id], job_agencies_path)
   end
 
   private

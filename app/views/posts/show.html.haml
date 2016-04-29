@@ -14,30 +14,31 @@
 - content_for :side do
   = render "posts/show/side"
 
-.row
-  .white-block
-    %h1.news-post-show-title= @post.title
-    = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
-    %br/
-    -# todo-question ok?
-    .news-post-show-text= raw @post.text
+.col-xs-12
+  .row
+    .white-block
+      %h1.news-post-show-title= @post.title
+      = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
+      %br/
+      -# todo-question ok?
+      .news-post-show-text= raw @post.text
 
-    %span.author
-      %strong
-        автор
-        = link_to @post.user.name_to_show, profile_path(@post.user.profile)
+      %span.author
+        %strong
+          автор
+          = link_to @post.user.name_to_show, profile_path(@post.user.profile)
 
-%br/
-.row
-  .col-xs-12
-    .pull-right
-      - if current_user.try(:admin?)
-        = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
-    = render "shared/social", count: @post.impressions_count
+  %br/
+  .row
+    .col-xs-12
+      .pull-right
+        - if current_user.try(:admin?)
+          = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
+      = render "shared/social", count: @post.impressions_count
 
-    .row
-      .col-xs-12
-        .fb-comments{"data-href": news_url(@post), "data-numposts": "5"}
-%br/
-%br/
-= render "shared/partners/bottom"
+      .row
+        .col-xs-12
+          .fb-comments{"data-href": news_url(@post), "data-numposts": "5"}
+  %br/
+  %br/
+  = render "shared/partners/bottom"

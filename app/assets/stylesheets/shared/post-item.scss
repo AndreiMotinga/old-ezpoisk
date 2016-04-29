@@ -21,9 +21,7 @@
 
 .logo-js {
   padding: 0px;
-  img {
-    max-height: 150px;
-  }
+  img { max-height: 130px; }
 }
 .google-maps {
   position: relative;
@@ -47,3 +45,4 @@
   margin-bottom: 10px;
 }
 .author { margin: 10px; }
+.description { padding: 10px; }
