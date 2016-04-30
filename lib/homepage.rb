@@ -4,7 +4,7 @@ class Homepage
   end
 
   def news_posts(num)
-    Post.desc.limit(num)
+    Post.desc.visible.limit(num)
   end
 
   def users_posts(num)

@@ -259,22 +259,24 @@ STATES = [
   [ "Wyoming", 50 ]
 ]
 
-NEWS_CATEGORIES = HashWithIndifferentAccess.new(
-  "Авто": ["https://news.yandex.ru/auto.rss"],
-  "Общество": ["https://news.yandex.ru/world.rss", "https://news.yandex.ru/internet.rss"],
-  "Искусство": ["https://news.yandex.ru/movies.rss", "https://news.yandex.ru/fashion.rss", "https://news.yandex.ru/music.rss"],
-  "Технологии": ["https://news.yandex.ru/science.rss", "https://news.yandex.ru/computers.rss"],
-  "Политика": [
-    "https://news.yandex.ru/politics.rss",
-    "https://news.yandex.ru/finances.rss",
-    "https://news.yandex.ru/Belarus/index.rss",
-    "https://news.yandex.ru/Israel/index.rss",
-    "https://news.yandex.ru/Kazakhstan/index.rss",
-    "https://news.yandex.ru/Moldova/index.rss",
-    "https://news.yandex.ru/USA/index.rss",
-    "https://news.yandex.ua/index.rss"
-  ]
-)
+NEWS_CATEGORIES = [
+  "https://news.yandex.ru/auto.rss",
+  "https://news.yandex.ru/world.rss",
+  "https://news.yandex.ru/internet.rss",
+  "https://news.yandex.ru/movies.rss",
+  "https://news.yandex.ru/fashion.rss",
+  "https://news.yandex.ru/music.rss",
+  "https://news.yandex.ru/science.rss",
+  "https://news.yandex.ru/computers.rss",
+   "https://news.yandex.ru/politics.rss",
+   "https://news.yandex.ru/finances.rss",
+   "https://news.yandex.ru/Belarus/index.rss",
+   "https://news.yandex.ru/Israel/index.rss",
+   "https://news.yandex.ru/Kazakhstan/index.rss",
+   "https://news.yandex.ru/Moldova/index.rss",
+   "https://news.yandex.ru/USA/index.rss",
+   "https://news.yandex.ua/index.rss"
+]
 
 HOROSCOPE_CATEGORIES = %w(БЛИЗНЕЦЫ ВЕСЫ ВОДОЛЕЙ ДЕВА КОЗЕРОГ ЛЕВ ОВЕН РАК
                           РЫБЫ СКОРПИОН СТРЕЛЕЦ ТЕЛЕЦ)

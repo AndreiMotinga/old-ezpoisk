@@ -68,7 +68,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :posts, only: [:index, :show], path: :eznews
   resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice do
@@ -83,8 +82,10 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq_monstro"
-    resources :news, only: [:edit, :update, :destroy], path: :eznews
-    get "all_news", to: "news#all"
+    resources :posts, only: [:edit, :update] do
+      get "all", on: :collection
+      delete :destroy_all, on: :collection
+    end
     resource :admin, only: [:show], constraints: { subdomain: 'www' }
     constraints subdomain: "godzilla" do
       constraints BlacklistConstraint.new do
@@ -92,11 +93,10 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :posts, only: [:index, :show]
 
   get "about", to: "home#about"
   get "really", to: "home#really"
-  # todo remove
   get "htmltagstrippingtool", to: "htmltagstrippingtool#index"
-
   root to: "home#index"
 end

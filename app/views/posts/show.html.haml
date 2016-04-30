@@ -3,7 +3,7 @@
 - content_for :head do
   %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
   %meta{property: "og:type", content: "article"}/
-  %meta{property: "og:url", content: news_url(@post) }/
+  %meta{property: "og:url", content: post_url(@post) }/
   %meta{property: "og:title", content: @post.title}/
   %meta{property: "og:image", content: @post.logo_url(:large)}/
   %meta{property: "og:description", content: @post.text.truncate(200)}/
@@ -33,12 +33,12 @@
     .col-xs-12
       .pull-right
         - if current_user.try(:admin?)
-          = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
+          = link_to "Редактировать ", edit_post_path(@post), class: "text-muted"
       = render "shared/social", count: @post.impressions_count
 
       .row
         .col-xs-12
-          .fb-comments{"data-href": news_url(@post), "data-numposts": "5"}
+          .fb-comments{"data-href": post_url(@post), "data-numposts": "5"}
   %br/
   %br/
   = render "shared/partners/bottom"

@@ -1,24 +1,22 @@
 class NewsImporter
   def initialize
-    @user_id = 4 # Yandex user
+    @user_id = 181 # ez
   end
 
   def import
-    NEWS_CATEGORIES.each_pair do |category, links|
-      links.each do |link|
-        xml = Nokogiri::XML(open(link))
-        create_post(xml, category)
-      end
+    NEWS_CATEGORIES.each do |link|
+      xml = Nokogiri::XML(open(link))
+      create_post(xml)
     end
   end
 
-  def create_post(xml, category)
+  def create_post(xml)
     xml.xpath("//item").each do |item|
       Post.create(user_id: @user_id,
-                  category: category,
                   title: item.at("title").text,
                   link: convert_link(item.at("link").text),
-                  description: item.at("description").text,
+                  text: item.at("description").text,
+                  visible: false,
                   created_at: item.at("pubDate").text)
     end
   end

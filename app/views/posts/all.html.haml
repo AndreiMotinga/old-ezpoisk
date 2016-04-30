@@ -1,0 +1,6 @@
+%ul
+  - @posts.each do |post|
+    %li= link_to post.title, edit_post_path(post)
+
+%br/
+= link_to "Очистить", destroy_all_posts_path, method: :delete, class: "btn btn-danger btn-lg"

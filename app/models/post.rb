@@ -10,8 +10,18 @@ class Post < ActiveRecord::Base
                     styles: { small: ["158x99#"], medium: ["585x329#", :jpg], large: ["755x425#", :jpg] },
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  attr_reader :image_remote_url
+  def image_remote_url=(url_value)
+    if url_value.present?
+      self.image = URI.parse(url_value)
+      @image_remote_url = url_value
+    end
+  end
 
   scope :desc, -> { order("created_at desc") }
+  scope :visible, -> { where(visible: true) }
+  scope :invisible, -> { where(visible: false) }
+  scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
 
   def self.by_keyword(keyword)
     return all if keyword.blank?
