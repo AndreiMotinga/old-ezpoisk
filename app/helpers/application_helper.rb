@@ -45,4 +45,8 @@ module ApplicationHelper
   def stripped_200(desc)
     strip_tags(desc).truncate(200)
   end
+
+  def path_from_site(site)
+    site.match(/http/).present? ? site : "http://#{site}"
+  end
 end

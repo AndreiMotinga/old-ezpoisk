@@ -28,7 +28,8 @@
     / line 6
     .hidden-xs
       - if service.try(:site).present?
-        %strong= link_to service.site, "http://#{service.site}", target: "_blank"
+        %strong
+          = link_to service.site, path_from_site(service.site), target: "_blank"
 
     / line 7
     .pull-right= render "shared/favor_links", record: service

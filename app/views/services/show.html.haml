@@ -15,7 +15,4 @@
   %meta{property: "business:contact_data:postal_code", content: @service.zip}/
   %meta{property: "business:contact_data:country_name", content: "USA"}/
 
-- content_for :secondary_navbar do
-  = render "shared/navbars/service"
-
 = render 'shared/show/service', record: @service
