@@ -98,9 +98,17 @@
 # )
 
 Plan.create(
+  title: "basic_weekly",
+  name: "Basic Weekly Plan",
+  amount: 16_00,
+  currency: "usd",
+  interval: "month"
+)
+
+Plan.create(
   title: "basic_monthly",
   name: "Basic Monthly Plan",
-  amount: 80_00,
+  amount: 50_00,
   currency: "usd",
   interval: "month"
 )
@@ -108,7 +116,7 @@ Plan.create(
 Plan.create(
   title: "basic_yearly",
   name: "Basic Yearly Plan",
-  amount: 600_00, # 50 a month
+  amount: 520_00, # 50 a month
   currency: "usd",
   interval: "year"
 )

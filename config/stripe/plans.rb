@@ -24,16 +24,23 @@
 #   plan.trial_period_days = 30
 # end
 
+Stripe.plan :basic_weekly do |plan|
+  plan.name = "Basic Weekly Plan"
+  plan.amount = 16_00
+  plan.currency = "usd"
+  plan.interval = "month"
+end
+
 Stripe.plan :basic_monthly do |plan|
   plan.name = "Basic Monthly Plan"
-  plan.amount = 80_00
+  plan.amount = 50_00
   plan.currency = "usd"
   plan.interval = "month"
 end
 
 Stripe.plan :basic_yearly do |plan|
   plan.name = "Basic Yearly Plan"
-  plan.amount = 600_00 # 50 a month
+  plan.amount = 520_00
   plan.currency = "usd"
   plan.interval = "year"
 end
