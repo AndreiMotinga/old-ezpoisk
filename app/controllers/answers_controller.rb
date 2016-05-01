@@ -75,7 +75,6 @@ class AnswersController < ApplicationController
     end
 
     def set_partners
-      # todo change page
-      @partner_ads = PartnerAds.new("Недвижимость", session)
+      @partner_ads = PartnerAds.new("Вопросы", session)
     end
 end

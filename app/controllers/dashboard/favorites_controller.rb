@@ -11,6 +11,6 @@ class Dashboard::FavoritesController < ApplicationController
     current_user.favorites.where(favorite: true).map do |favorite|
       model = favorite.post_type.constantize
       model.find_by_id(favorite.post_id)
-    end.reject { |v| v.nil? } # todo take care of favorites with non -existent models
+    end.reject { |v| v.nil? }
   end
 end

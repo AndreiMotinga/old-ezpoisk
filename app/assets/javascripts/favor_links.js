@@ -48,7 +48,6 @@ $(document).ready(function(){
     // toggle color of the star glyphicon
     var id = $(el).data("id");
     var selector = $("[data-hidden=" + id + "]");
-    // todo fade it out
     selector.toggleClass("user-hidden");
 
     $.ajax({

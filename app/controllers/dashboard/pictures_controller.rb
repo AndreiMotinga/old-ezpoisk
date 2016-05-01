@@ -1,6 +1,5 @@
 class Dashboard::PicturesController < ApplicationController
   def index
-    #todo - write test for picture upload
     @pictures = record_class.find(params["id"]).pictures
   end
 

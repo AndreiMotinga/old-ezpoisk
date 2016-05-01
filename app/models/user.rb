@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   include OmniLogin
-  # todo do you need this ?
   acts_as_voter
   # Include default devise modules. Others available are:
   # :validatable, :confirmable
