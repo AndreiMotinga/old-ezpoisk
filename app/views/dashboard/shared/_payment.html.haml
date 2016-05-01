@@ -14,10 +14,6 @@
       = form_tag payment_dashboard_service_path(record), method: :post do
         = select_tag :plan, options_from_collection_for_select(Plan.all, "title", "name"), class: "form-control"
         %br/
-        %br/
-        %p.amount $80 / месяц
-        %br/
-
         %script.stripe-button{"data-image" => image_url("logos/ez"),
                               "data-key" => ENV["STRIPE_PUBLISHABLE_KEY"],
                               "data-locale" => "auto",
