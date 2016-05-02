@@ -43,7 +43,8 @@ class Dashboard::ServicesController < ApplicationController
   def payment
     begin
       process_payment
-      flash[:notice] = "Good job"
+      Ez.ping("!!!!!!!!!!!!! вам заплатили")
+      flash[:notice] = "Объявление успешно оплачено"
     rescue => error
       flash[:alert] = error.message
     end
