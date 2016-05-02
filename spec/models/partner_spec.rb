@@ -115,9 +115,9 @@ describe Partner do
       it "returns 14000" do
         partner = create :partner
 
-        expect(partner.amount_to_pay(1)).to eq 14000
-        expect(partner.amount_to_pay(2)).to eq 23800
-        expect(partner.amount_to_pay(4)).to eq 39200
+        expect(partner.amount_to_pay(1)).to eq (14 * 1 * 7 * 100)
+        expect(partner.amount_to_pay(2)).to eq (11 * 2 * 7 * 100)
+        expect(partner.amount_to_pay(4)).to eq (9 * 4 * 7 * 100)
       end
     end
   end

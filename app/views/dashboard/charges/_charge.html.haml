@@ -1,4 +1,4 @@
-.col-xs-12.col-sm-4
+.col-xs-12.col-sm-4.col-lg-3.col-lg-offset-1
   .white-block.text-center
     .price
       .fa.fa-icon.fa-dollar
@@ -12,7 +12,7 @@
     = form_tag link, method: :post do
       %script.stripe-button{"data-amount" => @partner.amount_to_pay(weeks),
                             "data-description" => "#{weeks} #{word}",
-                            "data-image" => image_url("logos/ezpoisk"),
+                            "data-image" => image_url("logos/ez"),
                             "data-key" => ENV["STRIPE_PUBLISHABLE_KEY"],
                             "data-locale" => "auto",
                             "data-name" => @partner.title,

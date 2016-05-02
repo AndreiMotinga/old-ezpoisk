@@ -39,6 +39,6 @@ class IncreaseImpressionsJob
   end
 
   def models
-    [ReAgency, RePrivate, Job, Service, Sale]
+    [RePrivate, Job, Service, Sale, Post]
   end
 end

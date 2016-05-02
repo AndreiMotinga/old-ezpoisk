@@ -53,15 +53,15 @@
         -#     %li= link_to t(:agencies), main_app.job_agencies_path
 
         %li
-          = link_to all_services_path do
-            %span.sidebar-icon
-              %i.fa.fa-balance-scale
-            Услуги
-        %li
           = link_to sales_path do
             %span.sidebar-icon
               %i.fa.fa-shopping-bag
             Продается
+        %li
+          = link_to all_services_path do
+            %span.sidebar-icon
+              %i.fa.fa-balance-scale
+            Услуги
 
         %li
           %hr.post-devider
@@ -76,6 +76,15 @@
             %span.sidebar-icon
               %i.fa.fa-globe
             Наши Новости
+
+        %li
+          %hr.post-devider
+
+        %li
+          = link_to dashboard_partners_path do
+            %span.sidebar-icon
+              %i.fa.fa-dollar
+            Реклама
 
         %li
           %hr.post-devider

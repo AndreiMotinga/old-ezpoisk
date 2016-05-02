@@ -21,6 +21,6 @@ class JobAgenciesController < ApplicationController
   def set_partners
     state_id = session[:state_id]
     return if state_id == 0
-    @partner_ads = PartnerAds.new(state_id, "Работа")
+    @partner_ads = PartnerAds.new(state_id, "Агентства по Трудоустройству")
   end
 end

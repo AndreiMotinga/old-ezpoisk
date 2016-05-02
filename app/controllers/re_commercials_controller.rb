@@ -21,6 +21,6 @@ class ReCommercialsController < ApplicationController
   def set_partners
     state_id = session[:state_id]
     return if state_id == 0
-    @partner_ads = PartnerAds.new(state_id, "Недвижимость")
+    @partner_ads = PartnerAds.new(state_id, "Коммерческая")
   end
 end

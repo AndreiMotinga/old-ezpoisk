@@ -4,9 +4,9 @@
 %br/
 .container.charge
   .row
-    = render "dashboard/charges/charge", amount: 14, weeks: 4, word: "недели", link:  quadroweek_dashboard_partner_charges_path(@partner)
-    = render "dashboard/charges/charge", amount: 17, weeks: 2, word: "недели", link:  biweek_dashboard_partner_charges_path(@partner)
-    = render "dashboard/charges/charge", amount: 20, weeks: 1, word: "неделя", link:  week_dashboard_partner_charges_path(@partner)
+    = render "dashboard/charges/charge", amount: 14, weeks: 1, word: "неделя", link:  week_dashboard_partner_charges_path(@partner)
+    = render "dashboard/charges/charge", amount: 11, weeks: 2, word: "недели", link:  biweek_dashboard_partner_charges_path(@partner)
+    = render "dashboard/charges/charge", amount: 9, weeks: 4, word: "недели", link:  quadroweek_dashboard_partner_charges_path(@partner)
   %br/
   .row
     = render "dashboard/partners/show"

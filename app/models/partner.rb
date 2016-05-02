@@ -12,6 +12,7 @@ class Partner < ActiveRecord::Base
 
   validates :title, presence: true
   validates :image, presence: true
+  validates :page, presence: true
   validates :state_id, presence: true
   validates_with PositionValidator
 
@@ -50,12 +51,12 @@ class Partner < ActiveRecord::Base
     return 100 if user.try(:admin?)
     case weeks
     when 1
-      # price * days * num_of_weeks * 100 cents
-      20 * 7 * 1 * 100
+      # price * num_of_weeks* days  * 100 cents
+      14 * 1 * 7 * 100
     when 2
-      17 * 7 * 2 * 100
+      11 * 2 * 7 * 100
     when 4
-      14 * 7 * 4 * 100
+      9 * 4 * 7 * 100
     end
   end
 
