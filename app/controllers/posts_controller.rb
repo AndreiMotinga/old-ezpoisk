@@ -6,6 +6,12 @@ class PostsController < ApplicationController
     @posts = Post.invisible.today
   end
 
+  def import
+    NewsImporter.new.import
+    @posts = Post.invisible.today
+    render :all
+  end
+
   def index
     @questions = Question.order("updated_at desc").page(params[:page]).per(25)
     @posts = Post.visible.by_keyword(params[:keyword]).desc.page(params[:page]).per(10)
@@ -28,6 +34,7 @@ class PostsController < ApplicationController
 
   def destroy_all
     Post.invisible.destroy_all
+    redirect_to root_path
   end
 
   private

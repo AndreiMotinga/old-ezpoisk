@@ -83,7 +83,8 @@ Rails.application.routes.draw do
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq_monstro"
     resources :posts, only: [:edit, :update] do
-      get "all", on: :collection
+      get :all, on: :collection
+      get :import, on: :collection
       delete :destroy_all, on: :collection
     end
     resource :admin, only: [:show], constraints: { subdomain: 'www' }
