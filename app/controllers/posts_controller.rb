@@ -7,9 +7,8 @@ class PostsController < ApplicationController
   end
 
   def import
-    NewsImporter.new.import
-    @posts = Post.invisible.today
-    render :all
+    NewsImporterJob.perform_async
+    redirect_to all_posts_path
   end
 
   def index
@@ -33,8 +32,8 @@ class PostsController < ApplicationController
   end
 
   def destroy_all
-    Post.invisible.destroy_all
-    redirect_to root_path
+    NewsCleanerJob.perform_async
+    redirect_to all_posts_path
   end
 
   private
