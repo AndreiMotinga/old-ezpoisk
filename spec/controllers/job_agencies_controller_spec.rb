@@ -14,7 +14,7 @@ describe JobAgenciesController do
 
     get :index
 
-    expect(assigns(:job_agencies).size).to eq 2
+    expect(assigns(:job_agencies).size).to eq 3
   end
 
   describe "#filter" do
@@ -54,13 +54,14 @@ describe JobAgenciesController do
       expect(flash[:alert]).to be nil
     end
 
-    it "redirects to 404 if it's inactive" do
-      job_agency = create(:service, :job_agency, active_until: nil)
-
-      get :show, id: job_agency.id
-
-      expect(response).to redirect_to job_agencies_path
-      expect(flash[:alert]).to eq I18n.t(:post_not_found)
-    end
+    # uncomment when services are paid
+    # it "redirects to 404 if it's inactive" do
+    #   job_agency = create(:service, :job_agency, active_until: nil)
+    #
+    #   get :show, id: job_agency.id
+    #
+    #   expect(response).to redirect_to job_agencies_path
+    #   expect(flash[:alert]).to eq I18n.t(:post_not_found)
+    # end
   end
 end

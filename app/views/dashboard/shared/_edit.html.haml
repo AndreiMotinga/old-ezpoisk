@@ -18,9 +18,9 @@
         = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       %li{ role: "presentation" }
         = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      - if record.is_a? Service
-        %li{role: "presentation"}
-          = link_to "Оплата", "#activate", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      -# - if record.is_a? Service
+      -#   %li{role: "presentation"}
+      -#     = link_to "Оплата", "#activate", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
     %br/
     .tab-content

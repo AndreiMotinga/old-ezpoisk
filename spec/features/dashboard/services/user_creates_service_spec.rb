@@ -30,15 +30,16 @@ feature "user creates service" do
     expect(record.user_id).to_not be nil
   end
 
-  scenario "there is a payment button", js: true do
-    user = create_and_login_user
-    service = create :service, active_until: nil, user: user
-
-    visit edit_dashboard_service_path(service)
-    click_on "Оплата"
-
-    expect(page).to have_css("select#plan")
-  end
+  # uncomment when services are paid
+  # scenario "there is a payment button", js: true do
+  #   user = create_and_login_user
+  #   service = create :service, active_until: nil, user: user
+  #
+  #   visit edit_dashboard_service_path(service)
+  #   click_on "Оплата"
+  #
+  #   expect(page).to have_css("select#plan")
+  # end
 
   scenario "it display active_until when user has paid for it", js: true do
     user = create_and_login_user

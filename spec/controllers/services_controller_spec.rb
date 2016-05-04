@@ -17,7 +17,7 @@ describe ServicesController do
 
       get :index
 
-      expect(assigns(:services).size).to eq 2
+      expect(assigns(:services).size).to eq 3
     end
 
     describe "#filter" do
@@ -76,13 +76,14 @@ describe ServicesController do
       expect(flash[:alert]).to be nil
     end
 
-    it "redirects to 404 if it's inactive" do
-      service = create(:service, active_until: nil)
-
-      get :show, id: service.id
-
-      expect(response).to redirect_to services_path
-      expect(flash[:alert]).to eq I18n.t(:post_not_found)
-    end
+    # uncomment when services are paid
+    # it "redirects to 404 if it's inactive" do
+    #   service = create(:service, active_until: nil)
+    #
+    #   get :show, id: service.id
+    #
+    #   expect(response).to redirect_to services_path
+    #   expect(flash[:alert]).to eq I18n.t(:post_not_found)
+    # end
   end
 end

@@ -18,11 +18,12 @@ class Service < ActiveRecord::Base
   belongs_to :user
   has_one :stripe_subscription, as: :payable, dependent: :destroy
 
-  scope :active, -> { where("active_until > ?", Date.today) }
+  # scope :active, -> { where("active_until > ?", Date.today) }
+  scope :active, -> { all } # while all listings here are free
+
   scope :re_agencies, -> { where(subcategory: "Агентства Недвижимости") }
   scope :re_finances, -> { where(subcategory: "Финансирование") }
   scope :job_agencies, -> { where(subcategory: "Агентства по Трудоустройству") }
-
 
   has_attached_file(:logo,
                     styles: { medium: ["300x170>", :jpg] },
@@ -32,7 +33,8 @@ class Service < ActiveRecord::Base
   validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
 
   def active?
-    active_until.try(:future?)
+    # active_until.try(:future?)
+    true
   end
 
   def extend(period)
