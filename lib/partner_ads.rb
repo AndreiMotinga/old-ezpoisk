@@ -10,6 +10,7 @@ class PartnerAds
   end
 
   def partner_for(position)
-    Partner.current(@state_id, @page, position)
+    # Partner.current(@state_id, @page, position)
+    Partner.current(@page, position)
   end
 end

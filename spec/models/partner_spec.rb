@@ -3,7 +3,7 @@ require "rails_helper"
 describe Partner do
   it { should validate_presence_of :title }
   it { should validate_presence_of :image }
-  it { should validate_presence_of :state_id }
+  # it { should validate_presence_of :state_id }
   it { should belong_to(:user) }
   it { should belong_to(:state) }
 
@@ -53,14 +53,26 @@ describe Partner do
   end
 
   describe ".current" do
-    it "return correct partner" do
-      state = create(:state)
-      create(:partner, :past, state: state)
-      create(:partner, :future, state: state)
-      create(:partner, :bottom, :current, state: state)
-      partner = create(:partner, :current, state: state)
+    # uncomment when use states again
+    # it "return correct partner" do
+    #   state = create(:state)
+    #   create(:partner, :past, state: state)
+    #   create(:partner, :future, state: state)
+    #   create(:partner, :bottom, :current, state: state)
+    #   partner = create(:partner, :current, state: state)
+    #
+    #   p = Partner.current(state.id, partner.page, partner.position)
+    #
+    #   expect(p).to eq partner
+    # end
 
-      p = Partner.current(state.id, partner.page, partner.position)
+    it "returns correct partner" do
+      create(:partner, :past)
+      create(:partner, :future)
+      create(:partner, :bottom, :current)
+      partner = create(:partner, :current)
+
+      p = Partner.current(partner.page, partner.position)
 
       expect(p).to eq partner
     end

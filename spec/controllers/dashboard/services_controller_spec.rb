@@ -86,6 +86,7 @@ describe Dashboard::ServicesController do
     let(:basic) { create :plan, :basic_monthly }
 
     it "processes payment successfully" do
+      stub_post_to_slack
       service = create(:service, active_until: nil, user: @user)
       plan = stripe_helper.create_plan(id: basic.title)
       card_token = StripeMock.generate_card_token(last4: "9191", exp_year: 2020)
@@ -114,4 +115,11 @@ describe Dashboard::ServicesController do
       expect(service.active_until).to be nil
     end
   end
+end
+
+def stub_post_to_slack
+  stub_request(:post, "https://hooks.slack.com/services/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").
+           with(:body => {"payload"=>"{\"text\":\"!!!!!!!!!!!!! вам заплатили\"}"},
+                :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
+     to_return(:status => 200, :body => "", :headers => {})
 end

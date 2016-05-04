@@ -3,7 +3,8 @@ class Dashboard::PartnersController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :destroy]
 
   def index
-    @partners = current_user.partners.includes(:state).order("created_at")
+    # @partners = current_user.partners.includes(:state).order("created_at")
+    @partners = current_user.partners.order("created_at")
     @partners = @partners.page(params[:page])
   end
 

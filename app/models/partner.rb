@@ -13,7 +13,7 @@ class Partner < ActiveRecord::Base
   validates :title, presence: true
   validates :image, presence: true
   validates :page, presence: true
-  validates :state_id, presence: true
+  # validates :state_id, presence: true
   validates_with PositionValidator
 
   scope :by_state, ->(id) { where(state_id: id) }
@@ -22,17 +22,18 @@ class Partner < ActiveRecord::Base
   scope :active, -> { where("start_date < ? AND active_until > ?",
                             Date.tomorrow, Date.today) }
 
-  def self.current(state_id, page, position)
-    by_state(state_id)
-      .by_page(page)
+  # def self.current(state_id, page, position)
+  def self.current(page, position)
+    # by_state(state_id)
+    by_page(page)
       .by_position(position)
       .active
       .first
   end
 
   def available_start_date
+      # .by_state(state.id)
     self.class
-      .by_state(state.id)
       .by_page(page)
       .by_position(position)
       .where.not(active_until: nil)
