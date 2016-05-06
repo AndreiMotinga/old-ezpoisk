@@ -1,8 +1,7 @@
 class PartnerAds
   attr_reader :top, :side, :bottom
 
-  def initialize(state_id, page)
-    @state_id = state_id
+  def initialize(page)
     @page ||= page
     @top ||= partner_for("Вверху")
     @side ||= partner_for("Справа")
@@ -10,7 +9,6 @@ class PartnerAds
   end
 
   def partner_for(position)
-    # Partner.current(@state_id, @page, position)
     Partner.current(@page, position)
   end
 end

@@ -29,26 +29,4 @@ feature "user creates service" do
     expect(record.city.name).to eq "Abbeville"
     expect(record.user_id).to_not be nil
   end
-
-  # uncomment when services are paid
-  # scenario "there is a payment button", js: true do
-  #   user = create_and_login_user
-  #   service = create :service, active_until: nil, user: user
-  #
-  #   visit edit_dashboard_service_path(service)
-  #   click_on "Оплата"
-  #
-  #   expect(page).to have_css("select#plan")
-  # end
-
-  scenario "it display active_until when user has paid for it", js: true do
-    user = create_and_login_user
-    service = create :service, user: user
-
-    visit edit_dashboard_service_path(service)
-    click_on "Оплата"
-
-    string = "Объявление активно до #{service.active_until}"
-    expect(page).to have_content(string)
-  end
 end

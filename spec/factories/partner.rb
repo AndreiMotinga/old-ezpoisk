@@ -8,7 +8,6 @@ FactoryGirl.define do
     image { File.new("#{Rails.root}/spec/support/fixtures/top.jpg") }
 
     association :user
-    association :state
 
     trait :side do
       position "Справа"

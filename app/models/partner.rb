@@ -1,6 +1,5 @@
 class Partner < ActiveRecord::Base
   belongs_to :user
-  belongs_to :state
 
   has_attached_file(:image,
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
@@ -13,18 +12,16 @@ class Partner < ActiveRecord::Base
   validates :title, presence: true
   validates :image, presence: true
   validates :page, presence: true
-  # validates :state_id, presence: true
   validates_with PositionValidator
 
-  scope :by_state, ->(id) { where(state_id: id) }
   scope :by_position, -> (pos) { where(position: pos) }
   scope :by_page, -> (page) { where(page: page) }
-  scope :active, -> { where("start_date < ? AND active_until > ?",
-                            Date.tomorrow, Date.today) }
 
-  # def self.current(state_id, page, position)
+  def self.active
+    where("start_date < ? AND active_until > ?", Date.tomorrow, Date.today)
+  end
+
   def self.current(page, position)
-    # by_state(state_id)
     by_page(page)
       .by_position(position)
       .active
@@ -32,20 +29,20 @@ class Partner < ActiveRecord::Base
   end
 
   def available_start_date
-      # .by_state(state.id)
     self.class
-      .by_page(page)
-      .by_position(position)
-      .where.not(active_until: nil)
-      .order("active_until desc").first
-      .try(:active_until) || Date.today
+        .by_page(page)
+        .by_position(position)
+        .where.not(active_until: nil)
+        .order("active_until desc").first
+        .try(:active_until) || Date.today
   end
 
   def activate(weeks_prm)
+    num_of_weeks = weeks_prm.to_i
     self.start_date = available_start_date
-    self.active_until = available_start_date + weeks_prm.to_i.weeks
-    self.amount = amount_to_pay(weeks_prm.to_i)
-    self.save
+    self.active_until = available_start_date + num_of_weeks.weeks
+    self.amount = amount_to_pay(num_of_weeks)
+    save
   end
 
   def amount_to_pay(weeks, user = nil)

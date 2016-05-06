@@ -3,7 +3,6 @@ class Dashboard::PartnersController < ApplicationController
   before_action :set_ad, only: [:show, :edit, :destroy]
 
   def index
-    # @partners = current_user.partners.includes(:state).order("created_at")
     @partners = current_user.partners.order("created_at")
     @partners = @partners.page(params[:page])
   end
@@ -41,7 +40,6 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def ad_params
-    params.require(:partner).permit(:title, :image, :link,
-                                    :state_id, :position, :page)
+    params.require(:partner).permit(:title, :image, :link, :position, :page)
   end
 end

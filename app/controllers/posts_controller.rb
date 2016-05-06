@@ -48,9 +48,7 @@ class PostsController < ApplicationController
   end
 
   def set_partners
-    state_id = session[:state_id]
-    return if state_id == 0
-    @partner_ads = PartnerAds.new(state_id, "Новости")
+    @partner_ads = PartnerAds.new("Новости")
   end
 
   def post_params

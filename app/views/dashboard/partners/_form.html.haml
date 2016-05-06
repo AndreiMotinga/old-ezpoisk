@@ -13,6 +13,5 @@
       = f.select :page, grouped_options_for_select(page_grouped_options), class: "form-control",include_blank: true , label: "Страница"
     .col-xs-12.col-sm-4
       = f.file_field :image, label: "Банер"
-    -#   = form_state_select(f)
 
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"

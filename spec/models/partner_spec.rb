@@ -3,9 +3,7 @@ require "rails_helper"
 describe Partner do
   it { should validate_presence_of :title }
   it { should validate_presence_of :image }
-  # it { should validate_presence_of :state_id }
   it { should belong_to(:user) }
-  it { should belong_to(:state) }
 
   it "should validate position for side" do
     partner = build :partner, :side, page: "Домашняя"
@@ -20,10 +18,9 @@ describe Partner do
 
   describe ".active" do
     it "returns only active partners" do
-      state = create :state
-      create(:partner, :past, state: state)
-      create(:partner, :future, state: state)
-      p = create(:partner, :current, state: state)
+      create(:partner, :past)
+      create(:partner, :future)
+      p = create(:partner, :current)
 
       expect(Partner.active).to eq [p]
     end
@@ -41,31 +38,7 @@ describe Partner do
     end
   end
 
-  describe ".by_state" do
-    it "returns partners by state" do
-      state = create :state
-      partner = create :partner, state: state
-      create :partner, state: create(:state)
-
-      expect(Partner.by_state(state.id).size).to eq 1
-      expect(Partner.by_state(state.id).first).to eq partner
-    end
-  end
-
   describe ".current" do
-    # uncomment when use states again
-    # it "return correct partner" do
-    #   state = create(:state)
-    #   create(:partner, :past, state: state)
-    #   create(:partner, :future, state: state)
-    #   create(:partner, :bottom, :current, state: state)
-    #   partner = create(:partner, :current, state: state)
-    #
-    #   p = Partner.current(state.id, partner.page, partner.position)
-    #
-    #   expect(p).to eq partner
-    # end
-
     it "returns correct partner" do
       create(:partner, :past)
       create(:partner, :future)
@@ -88,12 +61,10 @@ describe Partner do
 
     context "existing active partner" do
       it "returns end date of currently active similar partner" do
-        state = create :state
         create(:partner,
-               state: state,
                start_date: Date.today,
                active_until: Date.today + 1.week)
-        partner = create(:partner, state: state)
+        partner = create(:partner)
 
         expect(partner.available_start_date).to eq Date.today + 1.week
       end
@@ -101,10 +72,9 @@ describe Partner do
 
     context "active partner and next one waiting" do
       it "returns end date of latest active similar partner" do
-        state = create :state
-        create(:partner, :current, state: state)
-        future = create(:partner, :future, state: state)
-        partner = create(:partner, state: state)
+        create(:partner, :current)
+        future = create(:partner, :future)
+        partner = create(:partner)
 
         expect(partner.available_start_date).to eq future.active_until
       end
@@ -146,9 +116,8 @@ describe Partner do
 
     context "with existing current_partner" do
       it "it sets start and active_until dates when where is active partner" do
-        state = create(:state)
-        create(:partner, :current, state: state)
-        next_partner = create(:partner, state: state)
+        create(:partner, :current)
+        next_partner = create(:partner)
 
         next_partner.activate("1")
 
@@ -159,10 +128,9 @@ describe Partner do
 
     context "with current partner and one in the future" do
       it "it sets start and active_until dates" do
-        state = create(:state)
-        create(:partner, :current, state: state)
-        future = create(:partner, :future, state: state)
-        partner = create(:partner, state: state)
+        create(:partner, :current)
+        future = create(:partner, :future)
+        partner = create(:partner)
 
         partner.activate("1")
 

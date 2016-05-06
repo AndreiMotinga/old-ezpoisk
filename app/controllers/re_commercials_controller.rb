@@ -19,8 +19,6 @@ class ReCommercialsController < ApplicationController
   end
 
   def set_partners
-    state_id = session[:state_id]
-    return if state_id == 0
-    @partner_ads = PartnerAds.new(state_id, "Коммерческая")
+    @partner_ads = PartnerAds.new("Коммерческая")
   end
 end

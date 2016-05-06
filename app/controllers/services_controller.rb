@@ -24,8 +24,6 @@ class ServicesController < ApplicationController
   end
 
   def set_partners
-    state_id = session[:state_id]
-    return if state_id == 0
-    @partner_ads = PartnerAds.new(state_id, params[:subcategory])
+    @partner_ads = PartnerAds.new(params[:subcategory])
   end
 end
