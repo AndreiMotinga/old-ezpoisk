@@ -37,9 +37,9 @@ $(document).ready(function(){
       url: "/favorites/create_favorite",
       type: 'POST',
       data: {
-        "favorite[post_id]": $(el).data("id"),
-        "favorite[post_type]": $(el).data("type"),
-        "favorite[favorite]": true
+        "post_id": $(el).data("id"),
+        "post_type": $(el).data("type"),
+        "favorite": true
       }
     });
   }
@@ -54,9 +54,9 @@ $(document).ready(function(){
       url: "/favorites/create_hidden",
       type: 'POST',
       data: {
-        "favorite[post_id]": $(el).data("id"),
-        "favorite[post_type]": $(el).data("type"),
-        "favorite[hidden]": true
+        "post_id": $(el).data("id"),
+        "post_type": $(el).data("type"),
+        "hidden": true
       }
     });
   }

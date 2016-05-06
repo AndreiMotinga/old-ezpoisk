@@ -31,10 +31,6 @@ class Question < ActiveRecord::Base
     where('questions.id NOT IN (SELECT DISTINCT(question_id) FROM answers)')
   end
 
-  def self.answered
-    where('questions.id IN (SELECT DISTINCT(question_id) FROM answers)')
-  end
-
   def self.convert_keyword(keyword)
     keyword.gsub(/[^0-9a-zа-я ]/i, "")
       .split(" ")
@@ -62,7 +58,7 @@ class Question < ActiveRecord::Base
   end
 
   def username
-    return the_answer.user.profile.name if the_answer.try(:user)
+    return the_answer.user.profile_name if the_answer.try(:user)
   end
 
   def image

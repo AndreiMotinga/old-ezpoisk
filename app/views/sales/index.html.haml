@@ -4,7 +4,7 @@
 - content_for :secondary_navbar do
   = render "shared/navbars/sale"
 - content_for :side do
-  = render "shared/side/questions"
+  = render "shared/side/questions", qs: @questions
 - content_for :search do
   = render "sales/search"
 

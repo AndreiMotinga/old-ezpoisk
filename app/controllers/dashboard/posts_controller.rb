@@ -19,7 +19,6 @@ class Dashboard::PostsController < ApplicationController
 
     if @post.save
       SlackNotifierJob.perform_async(@post.id, "Post")
-      AdminMailerJob.perform_async(@post.id, "Post")
       redirect_to edit_dashboard_post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)

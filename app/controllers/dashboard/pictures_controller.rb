@@ -33,13 +33,11 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def unset_current_logo
-    current_logo = @picture.imageable.logo
-    return unless current_logo
-    current_logo.logo = false
-    current_logo.save
+    current_image = @picture.imageable_logo
+    return unless current_image
+    current_image.logo = false
+    current_image.save
   end
-
-  private
 
   def record_class
     [RePrivate, ReCommercial, Sale].find do |class_name|

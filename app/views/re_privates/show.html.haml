@@ -15,7 +15,7 @@
   = render "shared/show/contacts", record: @re_private
   .row
     .col-xs-12.white-block
-      - if @re_private.duration.present?
+      - if @re_private.duration?
         %li.list-group-item
           Продолжительность: #{@re_private.duration}
       %li.list-group-item
@@ -46,7 +46,7 @@
 .col-xs-12
   = render @re_private
 
-- if @re_private.description.present?
+- if @re_private.description?
   .col-xs-12.white-block
     = sanitize @re_private.description
 

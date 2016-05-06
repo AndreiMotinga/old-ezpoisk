@@ -27,8 +27,8 @@ feature "user updates job" do
     expect(job.email).to eq attrs.email
     expect(job.category).to eq attrs.category
     expect(job.active).to be true
-    expect(job.state.name).to eq "Alabama"
-    expect(job.city.name).to eq "Abbeville"
+    expect(job.state_name).to eq "Alabama"
+    expect(job.city_name).to eq "Abbeville"
   end
 
   scenario "updates description" do

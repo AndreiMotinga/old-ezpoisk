@@ -44,7 +44,7 @@
         %hr.post-devider/
 
     / line 4
-    - if re_private.phone.present?
+    - if re_private.phone?
       %span.glyphicon.glyphicon-earphone
       %span.company-phone= re_private.phone
       %hr.post-devider/

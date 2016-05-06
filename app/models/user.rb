@@ -27,12 +27,13 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
 
+  delegate :name, to: :profile, prefix: true
+  delegate :phone, to: :profile, prefix: true
+  delegate :state_id, to: :profile, prefix: true
+  delegate :city_id, to: :profile, prefix: true
+
   def role?(val)
     role.to_sym == val
-  end
-
-  def timeout_in
-    2.hours if admin?
   end
 
   def subscribed?(q_id)
@@ -40,14 +41,13 @@ class User < ActiveRecord::Base
   end
 
   def name_to_show
-    return profile.name if profile.name.present?
+    return profile.name if profile.name?
     email
   end
 
   private
 
   def send_emails
-    AdminMailerJob.perform_async(id, "User")
     SlackNotifierJob.perform_async(id, "User")
     UserMailerJob.perform_async(id)
   end

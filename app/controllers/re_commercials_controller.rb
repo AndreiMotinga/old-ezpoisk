@@ -3,9 +3,7 @@ class ReCommercialsController < ApplicationController
   before_action :set_partners, only: :index
 
   def index
-    @re_commercials = ReCommercial.filter(params.slice(:state_id, :city_id,
-                        :geo_scope, :post_type, :space, :min_price, :max_price,
-                        :sorted)).page(params[:page])
+    @re_commercials = ReCommercial.filter(sliced_params).page(params[:page])
   end
 
   def show
@@ -15,10 +13,15 @@ class ReCommercialsController < ApplicationController
   private
 
   def set_questions
-    @side_questions = Question.tagged_with("недвижимость").limit(10)
+    @questions = Question.tagged_with("недвижимость").limit(10)
   end
 
   def set_partners
     @partner_ads = PartnerAds.new("Коммерческая")
+  end
+
+  def sliced_params
+    params.slice(:state_id, :city_id, :geo_scope, :post_type, :space,
+                 :min_price, :max_price, :sorted)
   end
 end

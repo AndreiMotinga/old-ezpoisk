@@ -1,6 +1,5 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_partners, only: [:new, :edit]
   before_action :set_answer, only: [:update, :destroy]
 
   def new
@@ -13,7 +12,8 @@ class AnswersController < ApplicationController
     if @answer.save
       run_backgound_jobs
       @answer.question.increment!(:answers_count)
-      redirect_to question_path(@answer.question), notice: I18n.t(:answer_created)
+      redirect_to(question_path(@answer.question),
+                  notice: I18n.t(:answer_created))
     end
   end
 
@@ -24,16 +24,18 @@ class AnswersController < ApplicationController
   def update
     if @answer.update(answer_params)
       SlackNotifierJob.perform_async(@answer.id, "Answer")
-      redirect_to question_path(@answer.question), notice: I18n.t(:answer_updated)
+      redirect_to(question_path(@answer.question),
+                  notice: I18n.t(:answer_updated))
     else
       render :edit
     end
   end
 
   def destroy
-    @answer.question.decrement!(:answers_count)
+    question = @answer.question
+    question.decrement!(:answers_count)
     @answer.destroy
-    redirect_to question_path(@answer.question), notice: "answer removed"
+    redirect_to question_path(question), notice: "Ответ удален"
   end
 
   def upvote
@@ -54,27 +56,20 @@ class AnswersController < ApplicationController
 
   private
 
-    def set_answer
-      if current_user.admin?
-        @answer = Answer.find(params[:id])
-      else
-        @answer = current_user.answers.find(params[:id])
-      end
-    end
+  def set_answer
+    id = params[:id]
+    return @answer = Answer.find(id) if current_user.admin?
+    @answer = current_user.answers.find(id)
+  end
 
-    def answer_params
-      params.require(:answer).permit(:text, :question_id)
-    end
+  def answer_params
+    params.require(:answer).permit(:text, :question_id)
+  end
 
-    def run_backgound_jobs
-      SlackNotifierJob.perform_async(@answer.id, "Answer")
-      QuestionNotificatorJob.perform_async(@answer.question.id)
-      if current_user
-        CreateSubscriptionJob.perform_async(current_user.id, @answer.question.id)
-      end
-    end
-
-    def set_partners
-      @partner_ads = PartnerAds.new("Вопросы", session)
-    end
+  def run_backgound_jobs
+    SlackNotifierJob.perform_async(@answer.id, "Answer")
+    q_id = @answer.question.id
+    QuestionNotificatorJob.perform_async(q_id)
+    CreateSubscriptionJob.perform_async(current_user.id, q_id) if current_user
+  end
 end

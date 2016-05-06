@@ -10,7 +10,7 @@ class Dashboard::RePrivatesController < ApplicationController
                                 fee: true,
                                 baths: 1,
                                 duration: "помесячно",
-                                phone: current_user.profile.phone)
+                                phone: current_user.profile_phone)
   end
 
   def edit
@@ -21,7 +21,6 @@ class Dashboard::RePrivatesController < ApplicationController
 
     if @re_private.save
       SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
-      AdminMailerJob.perform_async(@re_private.id, "RePrivate")
       GeocodeJob.perform_async(@re_private.id, "RePrivate")
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
@@ -44,9 +43,8 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def destroy
-    @re_private.destroy if @re_private.user == current_user
-    redirect_to dashboard_path,
-                notice: I18n.t(:post_removed)
+    @re_private.destroy
+    redirect_to dashboard_path, notice: I18n.t(:post_removed)
   end
 
   private

@@ -15,7 +15,7 @@ class ReFinancesController < ApplicationController
   private
 
   def set_questions
-    @side_questions = Question.tagged_with("").limit(10)
+    @questions = Question.tagged_with("").limit(10)
   end
 
   def set_partners

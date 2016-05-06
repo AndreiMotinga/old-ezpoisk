@@ -24,31 +24,31 @@
               .col-lg-8
                 %p.text.answer= user_motto
                 %p
-                  - if @profile.phone.present?
+                  - if @profile.phone?
                     phone
                     %span.pull-right= @profile.phone
                 %p
-                  %span.pull-right= link_to @profile.site, "http://#{@profile.site}" if @profile.site.present?
+                  %span.pull-right= link_to @profile.site, "http://#{@profile.site}" if @profile.site?
                   %br/
                 %hr/
                 .span.social
-                  - if @profile.facebook.present?
+                  - if @profile.facebook?
                     = link_to @profile.facebook do
                       %i.fa.fa-facebook
-                  - if @profile.google.present?
+                  - if @profile.google?
                     = link_to @profile.google do
                       %i.fa.fa-google-plus
-                  - if @profile.twitter.present?
+                  - if @profile.twitter?
                     = link_to @profile.twitter do
                       %i.fa.fa-twitter
-                  - if @profile.vk.present?
+                  - if @profile.vk?
                     = link_to @profile.vk do
                       %i.fa.fa-vk
-                  - if @profile.ok.present?
+                  - if @profile.ok?
                     = link_to @profile.ok do
                       %i.fa.fa-odnoklassniki
 
-      - if @profile.about.present?
+      - if @profile.about?
         .white-block
           .panel.panel-default
             .panel-heading
@@ -56,7 +56,7 @@
             .panel-body
               .text.answer= simple_format @profile.about
 
-    - if @profile.work.present?
+    - if @profile.work?
       .col-xs-12.col-sm-6
         .white-block
           .panel.panel-default
@@ -65,7 +65,7 @@
             .panel-body
               .text.answer= simple_format @profile.work
 
-        - if @profile.street.present?
+        - if @profile.street?
           .white-block
             .panel.panel-default
               .panel-heading

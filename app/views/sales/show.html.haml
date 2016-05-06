@@ -1,4 +1,4 @@
-= title("#{@sale.title} #{@sale.state.name} - ezpoisk")
+= title("#{@sale.title} #{@sale.state_name} - ezpoisk")
 = desc("EZPOISK - Продается #{@sale.category}, #{@sale.title}, #{@sale.address}")
 - content_for :head do
   %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
@@ -33,7 +33,7 @@
 .col-xs-12
   = render @sale
 
-- if @sale.description.present?
+- if @sale.description?
   .col-xs-12.white-block
     = sanitize @sale.description
 

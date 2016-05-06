@@ -37,7 +37,7 @@ feature "User browses profile" do
     answer = create :answer, user: user, question: q
 
     visit profile_answers_path(profile)
-    expect(page).to have_content answer.question.title
+    expect(page).to have_content answer.question_title
   end
 
   scenario "visits his own profile" do

@@ -18,7 +18,7 @@ namespace :sitemap do
       begin
         object = bucket.objects[path]
         object.write(file: file, acl: :public_read)
-      rescue Exception => e
+      rescue => e
         raise e
       end
       puts "Saved #{file_name} to S3"

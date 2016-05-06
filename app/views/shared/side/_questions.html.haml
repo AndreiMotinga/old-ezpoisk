@@ -1,7 +1,7 @@
 .row
-  - if @side_questions.any?
+  - if qs.any?
     .white-block
-      - @side_questions.map do |q|
+      - qs.map do |q|
         .panel.panel-default.home-panel
           .panel-body
             %h2.q-title= link_to q.title, q, target: "_blank"

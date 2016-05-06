@@ -3,10 +3,10 @@ class Dashboard::JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :destroy]
 
   def new
-    @job = Job.new(state_id: current_user.profile.state_id,
-                   city_id: current_user.profile.city_id,
+    @job = Job.new(state_id: current_user.profile_state_id,
+                   city_id: current_user.profile_city_id,
                    active: true,
-                   phone: current_user.profile.phone,
+                   phone: current_user.profile_phone,
                    email: current_user.email)
   end
 
@@ -15,16 +15,12 @@ class Dashboard::JobsController < ApplicationController
 
   def create
     @job = current_user.jobs.build(job_params)
-
     if @job.save
       SlackNotifierJob.perform_async(@job.id, "Job")
-      AdminMailerJob.perform_async(@job.id, "Job")
       GeocodeJob.perform_async(@job.id, "Job")
-      redirect_to edit_dashboard_job_path(@job),
-                  notice: I18n.t(:post_saved)
+      redirect_to edit_dashboard_job_path(@job), notice: I18n.t(:post_saved)
     else
-      flash.now[:alert] = I18n.t(:post_not_saved)
-      render :new
+      render :new, alert: I18n.t(:post_not_saved)
     end
   end
 
@@ -42,8 +38,7 @@ class Dashboard::JobsController < ApplicationController
 
   def destroy
     @job.destroy
-    redirect_to dashboard_path,
-                notice: I18n.t(:post_removed)
+    redirect_to dashboard_path, notice: I18n.t(:post_removed)
   end
 
   private
@@ -53,17 +48,8 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def job_params
-    # todo rewrite it nices
-    params.require(:job).permit(:title,
-                                :phone,
-                                :email,
-                                :description,
-                                :active,
-                                :street,
-                                :state_id,
-                                :city_id,
-                                :logo,
-                                :category,
-                                :source)
+    params.require(:job).permit(:title, :phone, :email, :description,
+                                :active, :street, :state_id, :city_id,
+                                :logo, :category, :source)
   end
 end

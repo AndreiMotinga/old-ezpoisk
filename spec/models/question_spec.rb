@@ -50,19 +50,6 @@ describe Question do
     end
   end
 
-  describe ".answered" do
-    it "returns only questions where is at least one answer" do
-      unanswered = create :question
-      answered = create :question
-      answer = create :answer, question: answered
-
-      qs = Question.answered
-
-      expect(qs.size).to eq 1
-      expect(qs.first).to eq answered
-    end
-  end
-
   describe ".unanswered" do
     it "returns only questions where is at least one answer" do
       unanswered = create :question

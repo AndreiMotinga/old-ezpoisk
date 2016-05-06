@@ -29,8 +29,8 @@ feature "user updates service" do
     expect(service.email).to eq attrs.email
     expect(service.category).to eq attrs.category
     expect(service.subcategory).to eq attrs.subcategory
-    expect(service.state.name).to eq "Alabama"
-    expect(service.city.name).to eq "Abbeville"
+    expect(service.state_name).to eq "Alabama"
+    expect(service.city_name).to eq "Abbeville"
     expect(service.user_id).to_not be nil
   end
 

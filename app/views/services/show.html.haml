@@ -1,4 +1,4 @@
-= title("#{@service.title} #{@service.city.name} #{@service.state.name}")
+= title("#{@service.title} #{@service.city_name} #{@service.state_name}")
 = desc("#{@service.title}, #{@service.category} - #{@service.subcategory}, #{@service.address}")
 - content_for :head do
   %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/

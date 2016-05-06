@@ -14,7 +14,7 @@
 
     /line 2
     .hidden-xs
-      - if service.street.present? && !home_controller?
+      - if service.street? && !home_controller?
         %span= service.street
         %hr.post-devider/
 

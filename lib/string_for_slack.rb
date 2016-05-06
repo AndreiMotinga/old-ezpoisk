@@ -53,8 +53,8 @@ class StringForSlack
   def user_string(user)
     string = "Регистрация нового пользователя\n"
     string += "id     #{user.id}\n"
-    string += "name   #{user.profile.name}\n email  #{user.email}\n"
-    string += "phone  #{user.profile.phone}\n"
+    string += "name   #{user.profile_name}\n email  #{user.email}\n"
+    string += "phone  #{user.profile_phone}\n"
     string += "\n"
     string += "Всего: #{User.count}\n"
     string += "==========================================================="

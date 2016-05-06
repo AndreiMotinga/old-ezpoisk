@@ -83,7 +83,6 @@ Rails.application.routes.draw do
       get :import, on: :collection
       delete :destroy_all, on: :collection
     end
-    resource :admin, only: [:show], constraints: { subdomain: 'www' }
     constraints subdomain: "godzilla" do
       constraints BlacklistConstraint.new do
         mount RailsAdmin::Engine => "/teacup", as: "rails_admin"

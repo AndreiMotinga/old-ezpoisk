@@ -6,10 +6,9 @@ class ServicesController < ApplicationController
   end
 
   def index
-    @services = Service.filter(params.slice(
-      :state_id, :city_id, :category, :subcategory, :geo_scope)).
-      order("updated_at desc").
-      page(params[:page])
+    @services = Service.filter(sliced_params)
+                       .order("updated_at desc")
+                       .page(params[:page])
   end
 
   def show
@@ -20,10 +19,14 @@ class ServicesController < ApplicationController
 
   def set_questions
     tags = [params[:category], params[:subcategory]]
-    @side_questions = Question.tagged_with(tags, any: true).limit(10)
+    @questions = Question.tagged_with(tags, any: true).limit(10)
   end
 
   def set_partners
     @partner_ads = PartnerAds.new(params[:subcategory])
+  end
+
+  def sliced_params
+    params.slice(:state_id, :city_id, :category, :subcategory, :geo_scope)
   end
 end

@@ -19,8 +19,4 @@ class ReCommercial < ActiveRecord::Base
   def title
     street
   end
-
-  def paid?
-    false
-  end
 end

@@ -1,9 +1,0 @@
-.row
-  - if @questions.any?
-    .col-xs-12.white-block
-      - @questions.each do |q|
-        .panel.panel-default.home-panel
-          .panel-body
-            %h2.q-title= link_to q.title, q, target: "_blank"
-            %span #{q.impressions_count} просмотров,
-            %span #{q.answers_count} ответов

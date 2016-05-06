@@ -3,7 +3,7 @@
     / line 1  title and User
     .col-xs-12
       %h4.question-title
-        = link_to answer.question.title, answer.question, target: "_blank"
+        = link_to answer.question_title, answer.question, target: "_blank"
       .row
         .col-xs-12
           .hidden-xs.col-sm-1.qa-avatar
@@ -11,7 +11,7 @@
               = image_tag @profile.avatar.url(:thumb), alt: @profile.name,  class: "img-responsive img-circle center-block"
           .col-xs-12.col-sm-11
             %h3.text-muted.question-author= link_to @profile.name_to_show, profile_path(@profile)
-            %p= "#{answer.question.impressions_count} просмотров"
+            %p= "#{answer.impressions_count} просмотров"
 
     / line 2 question text
     .hidden-xs.col-sm-12

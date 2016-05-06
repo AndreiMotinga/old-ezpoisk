@@ -38,7 +38,7 @@
 .col-xs-12
   = render @re_commercial
 
-- if @re_commercial.description.present?
+- if @re_commercial.description?
   .col-xs-12.white-block
     = sanitize @re_commercial.description
 

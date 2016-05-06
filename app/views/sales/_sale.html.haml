@@ -16,17 +16,17 @@
 
     /line 2
     .hidden-xs
-      - if sale.street.present? && !home_controller?
+      - if sale.street? && !home_controller?
         = sale.street
         %hr.post-devider/
 
     /line 2
-    - if sale.price.present?
+    - if sale.price?
       %strong $ #{sale.price}
       %hr.post-devider/
 
     / line 3
-    - if sale.phone.present?
+    - if sale.phone?
       %span.glyphicon.glyphicon-earphone
       %span.company-phone= sale.phone
       %hr.post-devider/

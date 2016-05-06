@@ -12,7 +12,7 @@
   = render "shared/navbars/post"
 
 - content_for :side do
-  = render "posts/show/side"
+  = render "shared/side/questions", qs: @questions
 
 .col-xs-12
   .row
@@ -20,8 +20,7 @@
       %h1.news-post-show-title= @post.title
       = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
       %br/
-      -# todo-question ok?
-      .news-post-show-text= raw @post.text
+      .news-post-show-text= sanitize @post.text
 
       %span.author
         %strong

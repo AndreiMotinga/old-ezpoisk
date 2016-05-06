@@ -11,7 +11,7 @@
   %meta{property: "og:description", content: strip_tags(@question.text_to_show).truncate(200)}/
 
 - content_for :side do
-  = render "questions/show/side"
+  = render "shared/side/questions", qs: @question.side_questions
 
 - content_for :search do
   = render "questions/show/search"
@@ -20,7 +20,7 @@
 .col-xs-12.white-block
   .col-xs-12
     %h4.question-title= @question.title
-    %p.text= sanitize @question.text if @question.text.present?
+    %p.text= sanitize @question.text if @question.text?
     = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
     = subscription_links
     = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links" if current_user == @question.user

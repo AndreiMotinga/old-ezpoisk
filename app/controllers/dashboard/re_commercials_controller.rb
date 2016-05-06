@@ -6,7 +6,7 @@ class Dashboard::ReCommercialsController < ApplicationController
     @re_commercial = ReCommercial.new(state_id: current_user.profile.state_id,
                                       city_id: current_user.profile.city_id,
                                       active: true,
-                                      phone: current_user.profile.phone,
+                                      phone: current_user.profile_phone,
                                       email: current_user.email)
   end
 

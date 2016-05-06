@@ -2,6 +2,9 @@ module Filterable
   extend ActiveSupport::Concern
 
   included do
+    delegate :name, to: :state, prefix: true
+    delegate :name, to: :city, prefix: true
+
     scope :active, -> { where(active: true) }
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, -> (id) { where(city_id: id) }

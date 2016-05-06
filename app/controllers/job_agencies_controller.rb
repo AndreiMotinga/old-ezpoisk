@@ -15,7 +15,7 @@ class JobAgenciesController < ApplicationController
   private
 
   def set_questions
-    @side_questions = Question.tagged_with("работа").limit(10)
+    @questions = Question.tagged_with("работа").limit(10)
   end
 
   def set_partners

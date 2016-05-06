@@ -20,7 +20,7 @@ class SalesController < ApplicationController
 
   def set_questions
     tags = ["шопинг", params[:category]]
-    @side_questions = Question.tagged_with(tags, any: true).limit(10)
+    @questions = Question.tagged_with(tags, any: true).limit(10)
   end
 
   def set_partners

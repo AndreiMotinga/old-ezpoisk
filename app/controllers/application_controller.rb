@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_https
     return unless Rails.env.production?
-    redirect_to protocol: "https://" unless (request.ssl? || request.local?)
+    redirect_to protocol: "https://" unless request.ssl? || request.local?
   end
 
   def check_rack_mini_profiler
@@ -28,7 +28,6 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # todo-new extract to new class
   def address_changed?(record, prms)
     return true if record.try(:street) != prms[:street]
     return true if record.state_id != prms[:state_id].to_i

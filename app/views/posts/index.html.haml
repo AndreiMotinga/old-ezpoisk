@@ -4,7 +4,7 @@
   = render "shared/navbars/post"
 
 - content_for :side do
-  = render "posts/show/side"
+  = render "shared/side/questions", qs: @questions
 
 .col-xs-12
   = render @posts

@@ -5,7 +5,7 @@ class Dashboard::SalesController < ApplicationController
   def new
     @sale = Sale.new(state_id: current_user.profile.state_id,
                      city_id: current_user.profile.city_id,
-                     phone: current_user.profile.phone,
+                     phone: current_user.profile_phone,
                      active: true,
                      email: current_user.email)
   end
@@ -18,7 +18,6 @@ class Dashboard::SalesController < ApplicationController
 
     if @sale.save
       SlackNotifierJob.perform_async(@sale.id, "Sale")
-      AdminMailerJob.perform_async(@sale.id, "Sale")
       GeocodeJob.perform_async(@sale.id, "Sale")
       redirect_to edit_dashboard_sale_path(@sale),
                   notice: I18n.t(:post_saved)

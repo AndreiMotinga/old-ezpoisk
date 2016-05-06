@@ -12,8 +12,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.visible.by_keyword(params[:keyword]).desc.page(params[:page]).per(10)
-    @questions = Question.order("updated_at desc").page(params[:page]).per(25)
+    page = params[:page]
+    @posts = Post.visible.by_keyword(params[:keyword]).desc.page(page).per(10)
+    @questions = Question.order("updated_at desc").page(page).per(25)
   end
 
   def show

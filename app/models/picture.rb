@@ -1,6 +1,8 @@
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true
 
+  delegate :logo, to: :imageable, prefix: true
+
   has_attached_file(:image,
                     styles: { medium: ["300x170#", :jpg], large: ["x450", :jpg] },
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")

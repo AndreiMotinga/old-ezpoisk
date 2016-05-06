@@ -2,7 +2,7 @@
 = desc("EZPOISK - Бесплатные обьявления, реклама. Все виды услуг в США. Найти сервис, рекламировать бизнес, получить помощь.")
 = render 'services/search_modal'
 - content_for :side do
-  = render "shared/side/questions"
+  = render "shared/side/questions", qs: @questions
 - content_for :search do
   = render "services/search"
 

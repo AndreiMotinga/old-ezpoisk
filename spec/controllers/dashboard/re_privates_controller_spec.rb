@@ -85,7 +85,7 @@ describe Dashboard::RePrivatesController do
       delete :destroy, id: re_private.id
 
       expect(response).to redirect_to(dashboard_path)
-      expect(RePrivate.count).to be 0
+      expect(RePrivate.count).to eq 0
       expect(flash[:notice]).to eq I18n.t(:post_removed)
     end
   end

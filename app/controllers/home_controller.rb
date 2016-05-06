@@ -10,9 +10,6 @@ class HomeController < ApplicationController
     @feedback = Feedback.new
   end
 
-  def htmltagstrippingtool
-  end
-
   def really
     GrumpyDog.create
     @count = GrumpyDog.count

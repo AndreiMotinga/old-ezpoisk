@@ -19,13 +19,13 @@
     %hr.post-devider/
 
     / line 3
-    - if job.phone.present?
+    - if job.phone?
       %span.glyphicon.glyphicon-earphone
       %span.company-phone= job.phone
       %hr.post-devider/
 
     / line 4
-    - if job.email.present? && !home_controller?
+    - if job.email? && !home_controller?
       %span= job.email
       %hr.post-devider/
 

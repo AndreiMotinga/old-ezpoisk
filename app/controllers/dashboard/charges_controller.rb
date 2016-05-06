@@ -26,9 +26,9 @@ class Dashboard::ChargesController < ApplicationController
       @partner.activate(weeks)
       SlackNotifierJob.perform_async(@partner.id, "Partner")
       redirect_to dashboard_partners_path
-    rescue Stripe::CardError => e
-      flash[:alert] = "Платеж не удался, попробуйте другую карту. Ошибка: #{e.message}"
-      render :new
+    rescue Stripe::CardError => error
+      render :new, alert: "Платеж не удался, попробуйте другую карту.
+                           Ошибка: #{error.message}"
     end
   end
 
