@@ -13,7 +13,7 @@ FactoryGirl.define do
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
-    active_until { 1.months.from_now }
+    active true
 
     category { category }
     subcategory { subcategory }
