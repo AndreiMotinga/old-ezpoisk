@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506181845) do
+ActiveRecord::Schema.define(version: 20160506190517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -366,6 +366,7 @@ ActiveRecord::Schema.define(version: 20160506181845) do
     t.string   "fax"
     t.integer  "impressions_count", default: 0
     t.date     "active_until"
+    t.boolean  "active"
   end
 
   add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree
@@ -378,16 +379,6 @@ ActiveRecord::Schema.define(version: 20160506181845) do
   end
 
   add_index "states", ["abbr"], name: "index_states_on_abbr", unique: true, using: :btree
-
-  create_table "stripe_subscriptions", force: :cascade do |t|
-    t.string   "stripe_id"
-    t.integer  "payable_id"
-    t.string   "payable_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "stripe_subscriptions", ["payable_type", "payable_id"], name: "index_stripe_subscriptions_on_payable_type_and_payable_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"

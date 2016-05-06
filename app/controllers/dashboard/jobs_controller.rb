@@ -53,6 +53,7 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def job_params
+    # todo rewrite it nices
     params.require(:job).permit(:title,
                                 :phone,
                                 :email,

@@ -46,11 +46,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :jobs, only: [:new, :create, :edit, :update, :destroy]
     resources :sales, only: [:new, :create, :edit, :update, :destroy]
-    resources :services, only: [:new, :create, :edit, :update, :destroy] do
-      member do
-        post "payment", to: "services#payment"
-      end
-    end
+    resources :services, only: [:new, :create, :edit, :update, :destroy]
 
     resources :summernote, only: [:create]
     resources :pictures, only: [:index, :create, :update, :destroy]
@@ -60,9 +56,9 @@ Rails.application.routes.draw do
     resources :partners, except: [:edit, :update] do
       resources :charges, only: [:new] do
         collection do
-          post 'week', :action => 'week', as: "week"
-          post 'biweek', :action => 'biweek', as: "biweek"
-          post 'quadroweek', :action => 'quadroweek', as: "quadroweek"
+          post "week", action: "week", as: "week"
+          post "biweek", action: "biweek", as: "biweek"
+          post "quadroweek", action: "quadroweek", as: "quadroweek"
         end
       end
     end

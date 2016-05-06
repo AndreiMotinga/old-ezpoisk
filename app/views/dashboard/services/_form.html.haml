@@ -42,6 +42,10 @@
     .col-sm-6
       = f.email_field :email
 
+  .row
+    .col-xs-12
+      = f.check_box :active, label: "Активно *"
+
   %br/
   .actions
     = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"

@@ -12,11 +12,12 @@ class PostsController < ApplicationController
   end
 
   def index
-    @questions = Question.order("updated_at desc").page(params[:page]).per(25)
     @posts = Post.visible.by_keyword(params[:keyword]).desc.page(params[:page]).per(10)
+    @questions = Question.order("updated_at desc").page(params[:page]).per(25)
   end
 
   def show
+    @post.update_column(:impressions_count, @post.impressions_count + 1)
     @questions = Question.order("updated_at desc").limit(10)
   end
 
@@ -39,12 +40,7 @@ class PostsController < ApplicationController
   private
 
   def set_post
-    if Post.exists?(params[:id])
-      @post = Post.find(params[:id])
-      @post.update_column(:impressions_count, @post.impressions_count+1)
-    else
-      redirect_to posts_path, alert: I18n.t(:news_post_not_found)
-    end
+    @post = Post.find(params[:id])
   end
 
   def set_partners

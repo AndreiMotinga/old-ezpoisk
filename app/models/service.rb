@@ -16,10 +16,6 @@ class Service < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   belongs_to :user
-  has_one :stripe_subscription, as: :payable, dependent: :destroy
-
-  # scope :active, -> { where("active_until > ?", Date.today) }
-  scope :active, -> { all } # while all listings here are free
 
   scope :re_agencies, -> { where(subcategory: "Агентства Недвижимости") }
   scope :re_finances, -> { where(subcategory: "Финансирование") }
@@ -30,16 +26,5 @@ class Service < ActiveRecord::Base
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
-  validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
-
-  def active?
-    # active_until.try(:future?)
-    true
-  end
-
-  def extend(period)
-    self.active_until = active_until? ? active_until : Date.today
-    self.active_until += period
-    self.save
-  end
+  validates_with AttachmentSizeValidator, attributes: :logo, less_than: 1.megabytes
 end

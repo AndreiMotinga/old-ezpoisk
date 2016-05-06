@@ -61,65 +61,13 @@ describe Dashboard::ServicesController do
   end
 
   describe "DELETE #destroy" do
-    before { StripeMock.start }
-    after { StripeMock.stop }
-
     it "removes record and destroys customer" do
-      cus = Stripe::Customer.create
       service = create(:service, user: @user)
-      sub = service.create_stripe_subscription(stripe_id: cus.id)
 
       delete :destroy, id: service.id
-      cus = Stripe::Customer.retrieve(cus.id)
 
       expect(response).to redirect_to(dashboard_path)
       expect(Service.count).to be 0
-      expect(StripeSubscription.count).to be 0
-      expect(cus.deleted).to be true
     end
   end
-
-  describe "POST #payment" do
-    let!(:stripe_helper) { StripeMock.create_test_helper }
-    before { StripeMock.start }
-    after { StripeMock.stop }
-    let(:basic) { create :plan, :basic_monthly }
-
-    it "processes payment successfully" do
-      stub_post_to_slack
-      service = create(:service, active_until: nil, user: @user)
-      plan = stripe_helper.create_plan(id: basic.title)
-      card_token = StripeMock.generate_card_token(last4: "9191", exp_year: 2020)
-
-      post :payment, id: service.id, plan: plan.id, stripeToken: card_token
-      sub = StripeSubscription.last
-      service.reload
-
-      expect(response).to redirect_to edit_dashboard_service_path(service)
-      expect(sub).to_not be nil
-      expect(sub.stripe_id).to_not be nil
-      expect(service.active_until).to_not be nil
-    end
-
-    it "catches error" do
-      service = create(:service, active_until: nil, user: @user)
-      plan = stripe_helper.create_plan(id: basic.title)
-      card_token = "invalid_token"
-
-      post :payment, id: service.id, plan: plan.id, stripeToken: card_token
-      sub = StripeSubscription.last
-      service.reload
-
-      expect(response).to redirect_to edit_dashboard_service_path(service)
-      expect(sub).to be nil
-      expect(service.active_until).to be nil
-    end
-  end
-end
-
-def stub_post_to_slack
-  stub_request(:post, "https://hooks.slack.com/services/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").
-           with(:body => {"payload"=>"{\"text\":\"!!!!!!!!!!!!! вам заплатили\"}"},
-                :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
-     to_return(:status => 200, :body => "", :headers => {})
 end

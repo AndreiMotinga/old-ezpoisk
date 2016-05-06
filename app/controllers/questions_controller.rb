@@ -29,13 +29,9 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    if Question.exists?(params[:id])
-      @question = Question.includes(:user, :answers).find(params[:id])
-      @question.increment!(:impressions_count)
-      @question.answers.find_each { |a| a.increment!(:impressions_count) }
-    else
-      redirect_to questions_path, alert: I18n.t(:q_not_found)
-    end
+    @question = Question.includes(:user, :answers).find(params[:id])
+    @question.increment!(:impressions_count)
+    @question.answers.find_each { |a| a.increment!(:impressions_count) }
   end
 
   def new
