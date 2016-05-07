@@ -16,7 +16,6 @@ class Dashboard::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-
     if @post.save
       SlackNotifierJob.perform_async(@post.id, "Post")
       redirect_to edit_dashboard_post_path(@post), notice: I18n.t(:post_saved)

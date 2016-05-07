@@ -8,9 +8,6 @@ class Dashboard::FavoritesController < ApplicationController
   private
 
   def favorite_posts
-    current_user.favorites.where(favorite: true).map do |favorite|
-      model = favorite.post_type.constantize
-      model.find_by_id(favorite.post_id)
-    end.reject { |v| v.nil? }
+    current_user.favorites.where(favorite: true).map { |f| f.favorable}
   end
 end

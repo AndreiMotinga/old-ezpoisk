@@ -10,7 +10,7 @@
     .col-xs-12.col-sm-4
       = f.select :position, ["Вверху", "Внизу", "Справа"], label: "Позиция"
     .col-xs-12.col-sm-4
-      = f.select :page, grouped_options_for_select(page_grouped_options), class: "form-control",include_blank: true , label: "Страница"
+      = f.select :page, grouped_options_for_select(PARTNER_PAGES), class: "form-control",include_blank: true , label: "Страница"
     .col-xs-12.col-sm-4
       = f.file_field :image, label: "Банер"
 

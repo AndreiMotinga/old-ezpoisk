@@ -10,12 +10,12 @@ feature "User favors different posts", js: true do
     sale = create :sale, :active
     post = create :post
 
-    Favorite.create(user_id: user.id, post_id: re_private.id, post_type: re_private.class.to_s, favorite: true)
-    Favorite.create(user_id: user.id, post_id: re_commercial.id, post_type: re_commercial.class.to_s, favorite: true)
-    Favorite.create(user_id: user.id, post_id: job.id, post_type: job.class.to_s, favorite: true)
-    Favorite.create(user_id: user.id, post_id: service.id, post_type: service.class.to_s, favorite: true)
-    Favorite.create(user_id: user.id, post_id: sale.id, post_type: sale.class.to_s, favorite: true)
-    Favorite.create(user_id: user.id, post_id: post.id, post_type: post.class.to_s, favorite: true)
+    Favorite.create(user_id: user.id, favorable_id: re_private.id, favorable_type: re_private.class.to_s, favorite: true)
+    Favorite.create(user_id: user.id, favorable_id: re_commercial.id, favorable_type: re_commercial.class.to_s, favorite: true)
+    Favorite.create(user_id: user.id, favorable_id: job.id, favorable_type: job.class.to_s, favorite: true)
+    Favorite.create(user_id: user.id, favorable_id: service.id, favorable_type: service.class.to_s, favorite: true)
+    Favorite.create(user_id: user.id, favorable_id: sale.id, favorable_type: sale.class.to_s, favorite: true)
+    Favorite.create(user_id: user.id, favorable_id: post.id, favorable_type: post.class.to_s, favorite: true)
     visit dashboard_favorites_path
 
     expect(page).to have_selector('.post-item', count: 6)

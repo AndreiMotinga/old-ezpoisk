@@ -7,21 +7,17 @@ class Profile < ActiveRecord::Base
   has_many :posts, through: :user
   has_many :answers, through: :user
 
+  delegate :email, to: :user, prefix: true
+  delegate :name_to_show, to: :user, prefix: true
+
   has_attached_file(:avatar,
                     styles: { thumb: "50x50#", medium: "160x160#" },
                     default_url: "default-avatar.png")
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
 
-  has_attached_file(:cover,
-                    styles: { large: "1140x325#" },
-                    default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
-  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
-
-  def email
-    user.email
-  end
-
-  def name_to_show
-    user.name_to_show
-  end
+  has_attached_file(
+    :cover,
+    styles: { large: "1140x325#" },
+    default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
+  validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 end

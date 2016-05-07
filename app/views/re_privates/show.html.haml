@@ -6,7 +6,7 @@
   %meta{property: "og:url", content: re_private_url(@re_private) }/
   %meta{property: "og:title", content: @re_private.title}/
   %meta{property: "og:image", content: @re_private.logo_url}/
-  %meta{property: "og:description", content: stripped_200(@re_private.description)}/
+  %meta{property: "og:description", content: strip_tags(@re_private.description).truncate(200)}/
 
 - content_for :secondary_navbar do
   = render "shared/navbars/ezrealty"

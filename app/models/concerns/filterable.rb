@@ -20,6 +20,10 @@ module Filterable
     scope :max_price, -> (num) { where("price <= ?", num.to_i) }
     scope :sorted, ->(type) { order type }
 
+    def self.this_week
+      where("created_at > ?", Date.today.at_beginning_of_week).count
+    end
+
     scope(:geo_scope, lambda do |geo_scope|
       return if geo_scope[:within].blank? || geo_scope[:origin].blank?
       within(geo_scope[:within], origin: geo_scope[:origin])

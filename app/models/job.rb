@@ -14,9 +14,13 @@ class Job < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
 
+  has_many :favorites, as: :favorable, dependent: :destroy
+
   has_attached_file(:logo,
                     styles: { medium: ["300x170>", :jpg] },
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
-  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\Z/
-  validates_with AttachmentSizeValidator, attributes: :logo, less_than: 5.megabytes
+  validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
+  validates_with AttachmentSizeValidator,
+                 attributes: :logo,
+                 less_than: 1.megabytes
 end

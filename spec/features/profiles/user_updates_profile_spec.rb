@@ -67,6 +67,6 @@ feature "user updates profile" do
     profile.reload
 
     expect(page).to have_content I18n.t(:profile_updated)
-    expect(profile.email).to eq "foo@bar.com"
+    expect(profile.user_email).to eq "foo@bar.com"
   end
 end

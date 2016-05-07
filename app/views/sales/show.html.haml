@@ -6,7 +6,7 @@
   %meta{property: "og:url", content: sale_url(@sale) }/
   %meta{property: "og:title", content: @sale.title}/
   %meta{property: "og:image", content: @sale.logo_url}/
-  %meta{property: "og:description", content: stripped_200(@sale.description)}/
+  %meta{property: "og:description", content: strip_tags(@sale.description).truncate(200)}/
 
 - content_for :secondary_navbar do
   = render "shared/navbars/sale"

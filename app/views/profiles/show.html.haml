@@ -22,7 +22,7 @@
               .col-lg-4
                 = image_tag @profile.avatar.url(:medium), class: "center-block"
               .col-lg-8
-                %p.text.answer= user_motto
+                %p.text.answer= @profile.motto
                 %p
                   - if @profile.phone?
                     phone

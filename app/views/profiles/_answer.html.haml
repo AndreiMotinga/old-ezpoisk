@@ -10,7 +10,7 @@
             = link_to profile_path(@profile) do
               = image_tag @profile.avatar.url(:thumb), alt: @profile.name,  class: "img-responsive img-circle center-block"
           .col-xs-12.col-sm-11
-            %h3.text-muted.question-author= link_to @profile.name_to_show, profile_path(@profile)
+            %h3.text-muted.question-author= link_to @profile.user_name_to_show, profile_path(@profile)
             %p= "#{answer.impressions_count} просмотров"
 
     / line 2 question text

@@ -9,20 +9,35 @@ module QuestionsHelper
   end
 
   def subscription_links
-    return log_in_trigger if !current_user
-    return unsubscribe_link if current_user.subscribed?(@question.id)
-    subscribe_link
+    return log_in_trigger unless current_user
+    return unsubscribe_link(@question) if current_user.subscribed?(@question.id)
+    subscribe_link(@question)
   end
 
-  def subscribe_link(q = @question)
-    link_to "подписаться", subscribe_question_path(q), method: "put", remote: true, id: "subscribe", class: "text text-muted qa-links"
+  def subscribe_link(question)
+    link_to "подписаться",
+            subscribe_question_path(question),
+            method: "put",
+            remote: true,
+            id: "subscribe",
+            class: "text text-muted qa-links"
   end
 
-  def unsubscribe_link(q = @question)
-    link_to "отписаться", unsubscribe_question_path(q), method: "put", remote: true, id: "unsubscribe", class: "text text-muted qa-links"
+  def unsubscribe_link(question)
+    link_to "отписаться",
+            unsubscribe_question_path(question),
+            method: "put",
+            remote: true,
+            id: "unsubscribe",
+            class: "text text-muted qa-links"
   end
 
   def log_in_trigger
-    link_to "подписаться", "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", class: "text text-muted qa-links"
+    link_to "подписаться",
+            "",
+            "data-target" => "#new_session_modal",
+            "data-toggle" => "modal",
+            id: "login_link",
+            class: "text text-muted qa-links"
   end
 end

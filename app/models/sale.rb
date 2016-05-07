@@ -14,4 +14,5 @@ class Sale < ActiveRecord::Base
   belongs_to :city
   belongs_to :user
   has_many :pictures, as: :imageable, dependent: :destroy
+  has_many :favorites, as: :favorable, dependent: :destroy
 end

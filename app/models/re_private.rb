@@ -16,6 +16,7 @@ class RePrivate < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   has_many :pictures, as: :imageable, dependent: :destroy
+  has_many :favorites, as: :favorable, dependent: :destroy
 
   def title
     street

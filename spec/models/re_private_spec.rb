@@ -13,6 +13,7 @@ describe RePrivate do
   it { should belong_to(:state) }
   it { should belong_to(:city) }
   it { should have_many(:pictures).dependent(:destroy) }
+  it { should have_many(:favorites).dependent(:destroy) }
 
   describe "#logo" do
     it "returns logo image of the re_private" do

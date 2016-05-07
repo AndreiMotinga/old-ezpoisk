@@ -5,11 +5,14 @@ class Post < ActiveRecord::Base
   validates :text, presence: true # , length: { maximum: 160, minimum: 100 }
 
   belongs_to :user
+  has_many :favorites, as: :favorable, dependent: :destroy
 
   has_attached_file(:image,
-                    styles: { small: ["158x99#"], medium: ["585x329#", :jpg], large: ["755x425#", :jpg] },
+                    styles: { small: ["158x99#"],
+                              medium: ["585x329#", :jpg],
+                              large: ["755x425#", :jpg] },
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
   def image_remote_url=(url_value)
     if url_value.present?
@@ -32,8 +35,8 @@ class Post < ActiveRecord::Base
 
   def self.convert_keyword(keyword)
     keyword.gsub(/[^0-9a-zа-я ]/i, "")
-      .split(" ")
-      .map { |key| "%#{key.mb_chars.downcase}%" }
+           .split(" ")
+           .map { |key| "%#{key.mb_chars.downcase}%" }
   end
 
   def logo_url(style = :medium)

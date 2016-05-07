@@ -8,7 +8,7 @@ class Dashboard::SummernoteController < ApplicationController
                      url: @picture.image.url }
     else
       render json: { error: @picture.errors.full_messages.join(",") },
-                     status: 400
+             status: 400
     end
   end
 

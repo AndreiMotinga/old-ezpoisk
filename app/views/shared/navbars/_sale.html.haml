@@ -15,7 +15,7 @@
       #dashboard-nav-bar.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-left
           - SALE_CATEGORIES.each do |category|
-            %li{class: (category_active?(category, @sale))}
+            %li{class: ("active" if category_active?(category, @sale))}
               = link_to category, sales_path(category: category)
       / /.navbar-collapse
     / /.container-fluid

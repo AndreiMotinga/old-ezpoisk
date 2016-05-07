@@ -3,7 +3,7 @@ class Ez
     Slack::Notifier.new ENV["SLACK_URL"]
   end
 
-  def self.ping(message) # DO NOT DELETE / change
+  def self.ping(message)
     notifier.ping message
   end
 

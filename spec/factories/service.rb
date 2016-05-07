@@ -1,5 +1,5 @@
 category = SERVICE_CATEGORIES.keys.sample
-subcategory = SERVICE_CATEGORIES[category].second
+subcategory = SERVICE_CATEGORIES[category].sample
 
 FactoryGirl.define do
   factory :service do

@@ -81,34 +81,11 @@ describe Partner do
     end
   end
 
-  describe "#amount_to_pay" do
-    context "user is admin" do
-      it "return 100" do
-        admin = create :user, :admin
-        partner = create :partner, user: admin
-
-        expect(partner.amount_to_pay(1, admin)).to eq 100
-        expect(partner.amount_to_pay(2, admin)).to eq 100
-        expect(partner.amount_to_pay(4, admin)).to eq 100
-      end
-    end
-
-    context "for 1 week" do
-      it "returns 14000" do
-        partner = create :partner
-
-        expect(partner.amount_to_pay(1)).to eq (14 * 1 * 7 * 100)
-        expect(partner.amount_to_pay(2)).to eq (11 * 2 * 7 * 100)
-        expect(partner.amount_to_pay(4)).to eq (9 * 4 * 7 * 100)
-      end
-    end
-  end
-
   describe "#activate" do
     context "no current partners" do
       it "it sets start and active_until dates" do
         partner = create :partner
-        partner.activate("2")
+        partner.activate("2", 20)
         expect(partner.start_date).to eq Date.today
         expect(partner.active_until).to eq Date.today + 2.weeks
       end
@@ -119,7 +96,7 @@ describe Partner do
         create(:partner, :current)
         next_partner = create(:partner)
 
-        next_partner.activate("1")
+        next_partner.activate("1", 1)
 
         expect(next_partner.start_date).to eq 1.week.from_now.to_date
         expect(next_partner.active_until).to eq 2.weeks.from_now.to_date
@@ -132,7 +109,7 @@ describe Partner do
         future = create(:partner, :future)
         partner = create(:partner)
 
-        partner.activate("1")
+        partner.activate("1", 1)
 
         expect(partner.start_date).to eq future.active_until
         expect(partner.active_until).to eq(future.active_until + 1.week)

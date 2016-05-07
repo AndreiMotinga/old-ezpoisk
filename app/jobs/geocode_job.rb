@@ -15,9 +15,8 @@ class GeocodeJob
   end
 
   def update_post(info)
-    @post.lat= info.lat
-    @post.lng= info.lng
-    @post.zip = info.zip.to_i
-    @post.save
+    @post.update_attribute(:lat, info.lat)
+    @post.update_attribute(:lng, info.lng)
+    @post.update_attribute(:zip, info.zip)
   end
 end

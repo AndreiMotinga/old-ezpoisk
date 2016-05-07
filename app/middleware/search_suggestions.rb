@@ -7,7 +7,7 @@ class SearchSuggestions
     if env["PATH_INFO"] == "/search_suggestions"
       request = Rack::Request.new(env)
       terms = Question.term_for(request.params["term"])
-      [200, {"Content-Type" => "application/json"}, [terms.to_json]]
+      [200, { "Content-Type" => "application/json" }, [terms.to_json]]
     else
       @app.call(env)
     end

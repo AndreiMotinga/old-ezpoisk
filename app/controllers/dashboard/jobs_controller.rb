@@ -20,7 +20,8 @@ class Dashboard::JobsController < ApplicationController
       GeocodeJob.perform_async(@job.id, "Job")
       redirect_to edit_dashboard_job_path(@job), notice: I18n.t(:post_saved)
     else
-      render :new, alert: I18n.t(:post_not_saved)
+      flash.now[:alert] = I18n.t(:post_not_saved)
+      render :new
     end
   end
 

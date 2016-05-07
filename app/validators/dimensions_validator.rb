@@ -1,21 +1,20 @@
 # validates partners image dimensions
 class DimensionsValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    return unless value.queued_for_write[:original]
+    val = value.queued_for_write[:original]
+    return unless val
     width = get_width(record)
     height = get_height(record)
-    dimensions = Paperclip::Geometry.from_file(
-      value.queued_for_write[:original].path
-    )
+    dimensions = Paperclip::Geometry.from_file(val.path)
+    position = record.position
+    errors = record.errors[attribute]
 
-    unless dimensions.width == width
-      msg = "Для позиции #{record.position} ширина банера должна быть #{width}px"
-      record.errors[attribute] << msg
+    if dimensions.width != width
+      errors << "Для позиции #{position} ширина банера должна быть #{width}px"
     end
 
-    unless dimensions.height == height
-      msg = "Для позиции #{record.position} высота банера должна быть #{height}px"
-      record.errors[attribute] << msg
+    if dimensions.height != height
+      errors << "Для позиции #{position} высота банера должна быть #{height}px"
     end
   end
 

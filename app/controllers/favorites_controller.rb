@@ -24,8 +24,8 @@ class FavoritesController < ApplicationController
   def favorite_post
     Favorite.where(
       user_id: current_user.id,
-      post_id: params[:post_id],
-      post_type: params[:post_type],
+      favorable_id: params[:favorable_id],
+      favorable_type: params[:favorable_type],
       favorite: true
     ).first
   end
@@ -33,13 +33,13 @@ class FavoritesController < ApplicationController
   def hidden_post
     Favorite.where(
       user_id: current_user.id,
-      post_id: params[:post_id],
-      post_type: params[:post_type],
+      favorable_id: params[:favorable_id],
+      favorable_type: params[:favorable_type],
       hidden: true
     ).first
   end
 
   def favorite_params
-    params.permit(:post_id, :post_type, :favorite, :hidden)
+    params.permit(:favorable_id, :favorable_type, :favorite, :hidden)
   end
 end

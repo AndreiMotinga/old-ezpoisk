@@ -21,58 +21,47 @@ class StringForSlack
   end
 
   def partner_string(record)
-    string = "Новый Банер\n"
-    string += "id         #{record.id}\n"
-    string += "title      #{record.title}\n"
-    string += "user       #{record.user.email}\n"
-    string += "amount     #{record.amount / 100}\n"
-    string += "\n"
-    string += "state      #{record.state.name}\n"
-    string += "position   #{record.position}\n"
-    string += "page       #{record.page}\n"
-    string += "link       #{record.link}\n"
-    string += "start_date       #{record.start_date}\n"
-    string += "active_until     #{record.active_until}\n"
-    string += "image        #{record.image.url}\n"
-    string
+    "Новый Банер
+    id               #{record.id}
+    title            #{record.title}
+    user             #{record.user.email}
+    amount           #{record.amount / 100}
+    position         #{record.position}
+    page             #{record.page}
+    link             #{record.link}
+    start_date       #{record.start_date}
+    active_until     #{record.active_until}
+    image            #{record.image.url}\n"
   end
 
   def feedback_string(record)
-    string = "Новое сообщение\n"
-    string += "id         #{record.id}\n"
-    string += "name     #{record.name}\n"
-    string += "email   #{record.email}\n"
-    string += "phone   #{record.phone}\n"
-    string += "message   #{record.message}\n"
-    string += "\n"
-    string += "Всего: #{record.class.count}\n"
-    string += "==========================================================="
-    string
+    "Новое сообщение
+    id         #{record.id}
+    name       #{record.name}
+    email      #{record.email}
+    phone      #{record.phone}
+    message    #{record.message}
+    Всего:     #{record.class.count}"
   end
 
   def user_string(user)
-    string = "Регистрация нового пользователя\n"
-    string += "id     #{user.id}\n"
-    string += "name   #{user.profile_name}\n email  #{user.email}\n"
-    string += "phone  #{user.profile_phone}\n"
-    string += "\n"
-    string += "Всего: #{User.count}\n"
-    string += "==========================================================="
-    string
+    "Регистрация нового пользователя
+    id         #{user.id}
+    name       #{user.profile_name}
+    email      #{user.email}
+    phone      #{user.profile_phone}
+    Всего      #{User.count}"
   end
 
   def post_string(record)
-    string = "Регистрация нового  #{record.class.to_s}\n"
-    string += "author     #{record.try(:user).try(:email)}\n"
-    string += "id         #{record.id}\n"
-    string += "url        www.ezpoisk.com#{link(record)}\n"
-    string += "title     #{record.title}\n" if record.try(:title)
-    string += "category   #{record.category}\n" if record.try(:category)
-    string += "text   #{record.body}\n" if record.try(:body)
-    string += "\n"
-    string += "Всего: #{record.class.count}\n"
-    string += "==========================================================="
-    string
+    "Регистрация нового  #{record.class.to_s}
+    author     #{record.try(:user).try(:email)}
+    id         #{record.id}
+    url        www.ezpoisk.com#{link(record)}
+    title      #{record.try(:title)}
+    category   #{record.try(:category)}
+    text       #{record.try(:body)}
+    Всего      #{record.class.count}"
   end
 
   private
@@ -80,20 +69,19 @@ class StringForSlack
   def link(record)
     case record.class.to_s
     when "RePrivate"
-      string = re_private_path(record)
+      re_private_path(record)
     when "ReCommercial"
-      string = re_commercial_path(record)
+      re_commercial_path(record)
     when "Job"
-      string = job_path(record)
+      job_path(record)
     when "Service"
-      string = service_path(record)
+      service_path(record)
     when "Sale"
-      string = sale_path(record)
+      sale_path(record)
     when "Question"
-      string = question_path(record)
+      question_path(record)
     when "Answer"
-      string = question_path(record.question)
+      question_path(record.question)
     end
-    string
   end
 end

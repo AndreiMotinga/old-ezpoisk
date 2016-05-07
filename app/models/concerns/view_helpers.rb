@@ -9,6 +9,11 @@ module ViewHelpers
     logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
   end
 
+  def unset_logo
+    return unless logo
+    logo.update_attribute(:logo, false)
+  end
+
   def address
     if street.present?
       "#{street} #{city.name} #{state.name}, #{zip}"
@@ -33,17 +38,11 @@ module ViewHelpers
 
   def favorite?(user)
     return false unless user
-    Favorite.exists?(user_id: user.id,
-                     post_id: id,
-                     post_type: self.class.to_s,
-                     favorite: true)
+    favorites.where(user_id: user.id, favorite: true).exists?
   end
 
   def user_hidden?(user)
     return false unless user
-    Favorite.exists?(user_id: user.id,
-                     post_id: id,
-                     post_type: self.class.to_s,
-                     hidden: true)
+    favorites.where(user_id: user.id, hidden: true).exists?
   end
 end

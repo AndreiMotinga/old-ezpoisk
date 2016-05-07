@@ -26,8 +26,8 @@ feature "User favors sales", js: true do
     user = create_and_login_user
     sale = create :sale, :active
     Favorite.create(user_id: user.id,
-                    post_id: sale.id,
-                    post_type: sale.class.to_s,
+                    favorable_id: sale.id,
+                    favorable_type: sale.class.to_s,
                     favorite: true)
 
     visit sales_path

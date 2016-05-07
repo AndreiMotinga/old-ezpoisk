@@ -3,10 +3,8 @@ module ApplicationHelper
     "active" if request.url.include?(path)
   end
 
-  def category_active?(category, record = nil)
-    if params[:category] == category || category == record.try(:category)
-      "active"
-    end
+  def category_active?(category, record)
+    params[:category] == category || category == record.try(:category)
   end
 
   def title(page_title)
@@ -40,13 +38,5 @@ module ApplicationHelper
 
   def profiles_controller?
     params[:controller] == "profiles"
-  end
-
-  def stripped_200(desc)
-    strip_tags(desc).truncate(200)
-  end
-
-  def path_from_site(site)
-    site.match(/http/).present? ? site : "http://#{site}"
   end
 end

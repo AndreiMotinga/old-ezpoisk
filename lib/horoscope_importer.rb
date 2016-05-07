@@ -5,24 +5,15 @@ class HoroscopeImporter
   end
 
   def import
-    update_days
-    update_months
+    update(@day_xml, :day_description)
+    update(@month_xml, :month_description)
   end
 
-  def update_days
-    @day_xml.xpath("//item").each_with_index do |item, i|
+  def update(xml, attr)
+    xml.xpath("//item").each_with_index do |item, i|
       next if i == 0
-      record = Horoscope.find_or_create_by(title: item.at("title").text)
-      record.day_description = item.at("description").text
-      record.save
-    end
-  end
-
-  def update_months
-    @month_xml.xpath("//item").each do |item|
-      record = Horoscope.find_or_create_by(title: item.at("title").text)
-      record.month_description = item.at("description").text
-      record.save
+      record = Horoscope.find_by(title: item.at("title").text)
+      record.update_attribute(attr, item.at("description").text)
     end
   end
 end

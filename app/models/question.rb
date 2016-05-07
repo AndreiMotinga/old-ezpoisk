@@ -21,20 +21,21 @@ class Question < ActiveRecord::Base
 
   def self.term_for(term)
     qs = where("LOWER(title) LIKE ?", "%#{term.mb_chars.downcase}%")
-    qs = qs.limit(10).pluck(:title, :slug)
+         .limit(10).pluck(:title, :slug)
     qs.map!{ |q| { value: "/ezanswer/#{q[1]}", label: q[0]}}
     qs << { value: "/ezanswer?keyword=#{term}", label: "Искать:  \"#{term}\"" }
-    qs << { value: "/ezanswer/new?question=#{term}", label: "Спросить:  \"#{term}\"" }
+    qs << { value: "/ezanswer/new?question=#{term}",
+            label: "Спросить:  \"#{term}\"" }
   end
 
   def self.unanswered
-    where('questions.id NOT IN (SELECT DISTINCT(question_id) FROM answers)')
+    where("questions.id NOT IN (SELECT DISTINCT(question_id) FROM answers)")
   end
 
   def self.convert_keyword(keyword)
     keyword.gsub(/[^0-9a-zа-я ]/i, "")
-      .split(" ")
-      .map { |key| "%#{key.mb_chars.downcase}%" }
+           .split(" ")
+           .map { |key| "%#{key.mb_chars.downcase}%" }
   end
 
   def side_questions

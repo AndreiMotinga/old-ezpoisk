@@ -14,4 +14,6 @@ describe Service do
   it { should belong_to(:user) }
   it { should belong_to(:city) }
   it { should belong_to(:state) }
+
+  it { should have_many(:favorites).dependent(:destroy) }
 end

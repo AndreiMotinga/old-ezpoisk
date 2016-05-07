@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
   include OmniLogin
   acts_as_voter
   # Include default devise modules. Others available are:
-  # :validatable, :confirmable
+  # :validatable, :confirmable, :timeoutable,
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-    :trackable, :timeoutable, :lockable, :async, :omniauthable,
-    :omniauth_providers => [:facebook, :google_oauth2, :vkontakte]
+         :trackable, :lockable, :async, :omniauthable,
+         omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
   after_create :send_emails
   after_create :create_user_profile
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   delegate :state_id, to: :profile, prefix: true
   delegate :city_id, to: :profile, prefix: true
 
+  def self.this_week
+    where("created_at > ?", Date.today.at_beginning_of_week).count
+  end
+
   def role?(val)
     role.to_sym == val
   end
@@ -53,7 +57,6 @@ class User < ActiveRecord::Base
   end
 
   def create_user_profile
-    # user.create_profile rails built in method
     create_profile
   end
 end

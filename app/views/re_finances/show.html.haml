@@ -6,7 +6,7 @@
   %meta{property: "og:url", content: re_finance_url(@re_finance) }/
   %meta{property: "og:title", content: @re_finance.title}/
   %meta{property: "og:image", content: @re_finance.logo.url(:medium)}/
-  %meta{property: "og:description", content: stripped_200(@re_finance.description)}/
+  %meta{property: "og:description", content: strip_tags(@re_finance.description).truncate(200)}/
   %meta{property: "place:location:latitude", content: @re_finance.lat}/
   %meta{property: "place:location:longitude", content: @re_finance.lng}/
 

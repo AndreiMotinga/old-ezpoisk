@@ -13,6 +13,7 @@ describe Sale do
   it { should belong_to(:state) }
 
   it { should have_many(:pictures).dependent(:destroy) }
+  it { should have_many(:favorites).dependent(:destroy) }
 
   describe "#address" do
     it "returns properly formatted address" do

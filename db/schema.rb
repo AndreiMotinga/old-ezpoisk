@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160506215029) do
+ActiveRecord::Schema.define(version: 20160507160839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 20160506215029) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.string  "post_id"
-    t.string  "post_type"
+    t.string  "favorable_id"
+    t.string  "favorable_type"
     t.boolean "favorite"
     t.boolean "hidden"
   end
 
-  add_index "favorites", ["user_id", "post_id", "post_type", "favorite"], name: "quadro_index_on_favorite", unique: true, using: :btree
-  add_index "favorites", ["user_id", "post_id", "post_type", "hidden"], name: "quadro_index_on_hidden", unique: true, using: :btree
+  add_index "favorites", ["user_id", "favorable_id", "favorable_type", "favorite"], name: "quadro_index_on_favorite", unique: true, using: :btree
+  add_index "favorites", ["user_id", "favorable_id", "favorable_type", "hidden"], name: "quadro_index_on_hidden", unique: true, using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
@@ -199,8 +199,8 @@ ActiveRecord::Schema.define(version: 20160506215029) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.string   "site",                default: ""
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                                                              null: false
+    t.datetime "updated_at",                                                              null: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -209,16 +209,16 @@ ActiveRecord::Schema.define(version: 20160506215029) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.integer  "impressions_count",   default: 0,  null: false
-    t.text     "about",               default: "", null: false
-    t.text     "work",                default: "", null: false
-    t.string   "street",              default: "", null: false
-    t.string   "facebook",            default: "", null: false
-    t.string   "google",              default: "", null: false
-    t.string   "vk",                  default: "", null: false
-    t.string   "ok",                  default: "", null: false
-    t.string   "twitter",             default: "", null: false
-    t.string   "motto",               default: "", null: false
+    t.integer  "impressions_count",   default: 0,                                         null: false
+    t.text     "about",               default: "",                                        null: false
+    t.text     "work",                default: "",                                        null: false
+    t.string   "street",              default: "",                                        null: false
+    t.string   "facebook",            default: "",                                        null: false
+    t.string   "google",              default: "",                                        null: false
+    t.string   "vk",                  default: "",                                        null: false
+    t.string   "ok",                  default: "",                                        null: false
+    t.string   "twitter",             default: "",                                        null: false
+    t.string   "motto",               default: "Пользователь не продавставил информации", null: false
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"

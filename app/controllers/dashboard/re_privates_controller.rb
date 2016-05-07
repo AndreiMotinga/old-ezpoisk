@@ -3,8 +3,8 @@ class Dashboard::RePrivatesController < ApplicationController
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
   def new
-    @re_private = RePrivate.new(state_id: current_user.profile.state_id,
-                                city_id: current_user.profile.city_id,
+    @re_private = RePrivate.new(state_id: current_user.profile_state_id,
+                                city_id: current_user.profile_city_id,
                                 active: true,
                                 email: current_user.email,
                                 fee: true,
@@ -18,7 +18,6 @@ class Dashboard::RePrivatesController < ApplicationController
 
   def create
     @re_private = current_user.re_privates.build(re_private_params)
-
     if @re_private.save
       SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
       GeocodeJob.perform_async(@re_private.id, "RePrivate")
@@ -54,20 +53,9 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def re_private_params
-    params.require(:re_private).permit(:street,
-                                       :post_type,
-                                       :duration,
-                                       :phone,
-                                       :price,
-                                       :baths,
-                                       :space,
-                                       :rooms,
-                                       :active,
-                                       :fee,
-                                       :description,
-                                       :state_id,
-                                       :source,
-                                       :email,
-                                       :city_id)
+    params.require(:re_private).permit(
+      :street, :post_type, :duration, :phone, :price, :baths, :space,
+      :rooms, :active, :fee, :description, :state_id, :source, :email, :city_id
+    )
   end
 end

@@ -16,9 +16,8 @@ class Dashboard::PicturesController < ApplicationController
 
   def update
     @picture = current_user.pictures.find(params[:id])
-    unset_current_logo
-    @picture.logo = true
-    @picture.save
+    @picture.imageable.unset_logo
+    @picture.update_attribute(:logo, true)
   end
 
   def destroy
@@ -30,13 +29,6 @@ class Dashboard::PicturesController < ApplicationController
 
   def picture_params
     params.require(:picture).permit(:image, :imageable_id, :imageable_type)
-  end
-
-  def unset_current_logo
-    current_image = @picture.imageable_logo
-    return unless current_image
-    current_image.logo = false
-    current_image.save
   end
 
   def record_class

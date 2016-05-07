@@ -3,8 +3,8 @@ class Dashboard::SalesController < ApplicationController
   before_action :set_sale, only: [:edit, :update, :destroy]
 
   def new
-    @sale = Sale.new(state_id: current_user.profile.state_id,
-                     city_id: current_user.profile.city_id,
+    @sale = Sale.new(state_id: current_user.profile_state_id,
+                     city_id: current_user.profile_city_id,
                      phone: current_user.profile_phone,
                      active: true,
                      email: current_user.email)
@@ -15,12 +15,10 @@ class Dashboard::SalesController < ApplicationController
 
   def create
     @sale = current_user.sales.build(sale_params)
-
     if @sale.save
       SlackNotifierJob.perform_async(@sale.id, "Sale")
       GeocodeJob.perform_async(@sale.id, "Sale")
-      redirect_to edit_dashboard_sale_path(@sale),
-                  notice: I18n.t(:post_saved)
+      redirect_to edit_dashboard_sale_path(@sale), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -31,10 +29,8 @@ class Dashboard::SalesController < ApplicationController
     address_changed = address_changed?(@sale, sale_params)
     if @sale.update(sale_params)
       GeocodeJob.perform_async(@sale.id, "Sale") if address_changed
-      redirect_to edit_dashboard_sale_path(@sale),
-                  notice: I18n.t(:post_saved)
+      redirect_to edit_dashboard_sale_path(@sale), notice: I18n.t(:post_saved)
     else
-      flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
     end
   end
@@ -51,16 +47,9 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def sale_params
-    params.require(:sale).permit(:title,
-                                 :price,
-                                 :street,
-                                 :phone,
-                                 :email,
-                                 :description,
-                                 :active,
-                                 :state_id,
-                                 :city_id,
-                                 :logo,
-                                 :category)
+    params.require(:sale).permit(
+      :title, :price, :street, :phone, :email, :description, :active,
+      :state_id, :city_id, :logo, :category
+    )
   end
 end

@@ -13,7 +13,7 @@ describe Profile do
       user = create :user
       profile = Profile.first
 
-      expect(profile.email).to eq user.email
+      expect(profile.user_email).to eq user.email
     end
   end
 end

@@ -7,6 +7,10 @@ class Answer < ActiveRecord::Base
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
 
+  def self.this_week
+    where("created_at > ?", Date.today.at_beginning_of_week).count
+  end
+
   def score
     get_upvotes.size - get_downvotes.size
   end

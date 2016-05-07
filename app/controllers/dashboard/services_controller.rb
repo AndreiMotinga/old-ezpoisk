@@ -3,8 +3,8 @@ class Dashboard::ServicesController < ApplicationController
   before_action :set_service, only: [:edit, :update, :destroy]
 
   def new
-    @service = Service.new(state_id: current_user.profile.state_id,
-                           city_id: current_user.profile.city_id,
+    @service = Service.new(state_id: current_user.profile_state_id,
+                           city_id: current_user.profile_city_id,
                            phone: current_user.profile_phone,
                            active: true,
                            email: current_user.email)
@@ -15,7 +15,6 @@ class Dashboard::ServicesController < ApplicationController
 
   def create
     @service = current_user.services.build(service_params)
-
     if @service.save
       SlackNotifierJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")
@@ -51,18 +50,9 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def service_params
-    params.require(:service).permit(:title,
-                                    :street,
-                                    :phone,
-                                    :fax,
-                                    :email,
-                                    :site,
-                                    :description,
-                                    :state_id,
-                                    :city_id,
-                                    :logo,
-                                    :category,
-                                    :active,
-                                    :subcategory)
+    params.require(:service).permit(
+      :title, :street, :phone, :fax, :email, :site, :description, :state_id,
+      :city_id, :logo, :category, :active, :subcategory
+    )
   end
 end

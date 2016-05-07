@@ -6,7 +6,7 @@
   %meta{property: "og:url", content: service_url(@service) }/
   %meta{property: "og:title", content: @service.title}/
   %meta{property: "og:image", content: @service.logo.url(:medium)}/
-  %meta{property: "og:description", content: stripped_200(@service.description)}/
+  %meta{property: "og:description", content: strip_tags(@service.description).truncate(200)}/
   %meta{property: "place:location:latitude", content: @service.lat}/
   %meta{property: "place:location:longitude", content: @service.lng}/
 

@@ -25,7 +25,7 @@ class Dashboard::ProfilesController < ApplicationController
 
   def profile_params
     params.require(:profile).permit(:avatar, :cover, :about, :work, :facebook,
-                                   :google, :vk, :ok, :site, :twitter, :name,
-                                   :motto, :phone, :state_id, :city_id, :street)
+                                    :google, :vk, :ok, :site, :twitter, :street,
+                                    :motto, :phone, :state_id, :city_id, :name)
   end
 end

@@ -12,6 +12,8 @@ describe Job do
   it { should belong_to(:city) }
   it { should belong_to(:state) }
 
+  it { should have_many(:favorites).dependent(:destroy) }
+
   describe "address" do
     context "full string" do
       it "returns full address" do

@@ -12,13 +12,13 @@ module FormHelper
   end
 
   def sort_select
+    sort_opts = { "Подешевле" => "price asc",
+                  "Подороже"  => "price desc",
+                  "Поменьше"  => "space asc",
+                  "Побольше"  => "space desc",
+                  "Поновее"   => "updated_at desc" }
     select_tag(:sorted,
-               options_for_select({"Подешевле": "price asc",
-                                   "Подороже": "price desc",
-                                   "Поменьше": "space asc",
-                                   "Побольше": "space desc",
-                                   "Поновее": "updated_at desc"},
-                                    params[:sorted]),
+               options_for_select(sort_opts, params[:sorted]),
                include_blank: true,
                class: "form-control")
   end
@@ -34,11 +34,11 @@ module FormHelper
   end
 
   def origin
-    params[:geo_scope][:origin] unless params[:geo_scope].blank?
+    params[:geo_scope][:origin] if params[:geo_scope].present?
   end
 
   def within
-    params[:geo_scope][:within] unless params[:geo_scope].blank?
+    params[:geo_scope][:within] if params[:geo_scope].present?
   end
 
   def origin_text_field_param
@@ -57,15 +57,16 @@ module FormHelper
 
   def form_state_select(f)
     f.select :state_id,
-             State.all.collect {|s| [ s.name, s.id ] },
-             { label: '* Штат'},
-             { class: "state-select" }
+             State.all.collect { |state| [state.name, state.id] },
+             { label: "* Штат" },
+             class: "state-select"
   end
 
   def form_city_select(f, record)
-    if record.state
+    state = record.state
+    if state
       f.select :city_id,
-               record.state.cities.collect { |city| [city.name, city.id] },
+               state.cities.collect { |city| [city.name, city.id] },
                { label: "* Город" },
                class: "city-select"
     else
