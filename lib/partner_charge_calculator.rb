@@ -1,4 +1,7 @@
 class PartnerChargeCalculator
+  DAYS_IN_WEEK = 7
+  CENTS = 100
+
   def initialize(weeks, user = nil)
     @weeks = weeks
     @user = user
@@ -6,8 +9,7 @@ class PartnerChargeCalculator
 
   def amount_to_pay
     return 100 if @user.try(:admin?)
-    # num_of_weeksprice * price * days * 100 cents
-    @weeks * price * 7 * 100
+    @weeks * price * DAYS_IN_WEEK * CENTS
   end
 
   def price
