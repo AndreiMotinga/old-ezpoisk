@@ -455,7 +455,7 @@ GEM
       builder
     slack-notifier (1.5.1)
     slop (3.6.0)
-    spring (1.6.4)
+    spring (1.7.1)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
     sprockets (3.6.0)
@@ -577,7 +577,7 @@ DEPENDENCIES
   sinatra
   sitemap_generator
   slack-notifier
-  spring
+  spring (~> 1.7.1)
   spring-commands-rspec
   stripe-rails
   stripe-ruby-mock

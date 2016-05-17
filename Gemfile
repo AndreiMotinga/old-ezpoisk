@@ -90,7 +90,7 @@ group :development do
   # gem "better_errors"
   gem "meta_request"
   gem "spring-commands-rspec"
-  gem "spring"
+  gem "spring", "~> 1.7.1"
   gem "guard-rspec", require: false
   gem "terminal-notifier-guard"
   gem "launchy-rails"

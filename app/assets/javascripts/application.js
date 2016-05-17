@@ -24,8 +24,7 @@
 
 //= require select2
 //
-// google map
+// map fix
 //= require markerclustererplus/src/markerclusterer_packed.js
-//= require infobox/src/infobox_packed.js
 
 //= require_tree .
