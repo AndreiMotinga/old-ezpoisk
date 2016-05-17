@@ -18,3 +18,8 @@ Rails.application.config.assets.precompile += %w( about/cbpAnimatedHeader.js )
 Rails.application.config.assets.precompile += %w( about/jqBootstrapValidation )
 Rails.application.config.assets.precompile += %w( about/contact_me )
 Rails.application.config.assets.precompile += %w( about/agency )
+
+# google maps markerclusterer
+Rails.application.config.assets.paths += %W(
+  #{Rails.root}/vendor/assets/google-maps-utility-library-v3
+)

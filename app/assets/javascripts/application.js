@@ -23,5 +23,9 @@
 //= require touchTouch
 
 //= require select2
+//
+// google map
+//= require markerclustererplus/src/markerclusterer_packed.js
+//= require infobox/src/infobox_packed.js
 
 //= require_tree .
