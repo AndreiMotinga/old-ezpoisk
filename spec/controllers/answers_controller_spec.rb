@@ -15,6 +15,17 @@ describe AnswersController do
       expect(answer.text).to eq attrs[:text]
       expect(answer.user).to eq @user
     end
+
+    it "subscribes answer's author for answer's question" do
+      sign_in(@user = create(:user))
+      question = create :question
+      attrs = attributes_for(:answer)
+      attrs[:question_id] = question.id
+
+      post :create, answer: attrs
+
+      expect(Subscription.count).to eq 1
+    end
   end
 
   describe "PUT #update" do

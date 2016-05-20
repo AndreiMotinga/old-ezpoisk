@@ -11,9 +11,9 @@ class AnswersController < ApplicationController
 
     if @answer.save
       run_backgound_jobs
-      @answer.question.increment!(:answers_count)
-      redirect_to(question_path(@answer.question),
-                  notice: I18n.t(:answer_created))
+      question.increment!(:answers_count)
+      Subscription.create(user: current_user, question: question)
+      redirect_to(question_path(question), notice: I18n.t(:answer_created))
     end
   end
 
@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
   def update
     if @answer.update(answer_params)
       SlackNotifierJob.perform_async(@answer.id, "Answer")
-      redirect_to(question_path(@answer.question),
+      redirect_to(question_path(question),
                   notice: I18n.t(:answer_updated))
     else
       render :edit
@@ -32,7 +32,6 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    question = @answer.question
     question.decrement!(:answers_count)
     @answer.destroy
     redirect_to question_path(question), notice: "Ответ удален"
@@ -68,8 +67,12 @@ class AnswersController < ApplicationController
 
   def run_backgound_jobs
     SlackNotifierJob.perform_async(@answer.id, "Answer")
-    q_id = @answer.question.id
+    q_id = question.id
     QuestionNotificatorJob.perform_async(q_id)
     CreateSubscriptionJob.perform_async(current_user.id, q_id) if current_user
+  end
+
+  def question
+    @answer.question
   end
 end
