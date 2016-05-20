@@ -1,20 +1,6 @@
 require "rails_helper"
 
 feature "Subscription is created upon creation of question" do
-  # todo - select2
-  # scenario "" do
-  #   user = create_and_login_user
-  #   title = "Как полететь в космос?"
-  #
-  #   visit new_question_path
-  #   fill_in "Ваш вопрос", with: title
-  #   click_on "Сохранить"
-  #
-  #   subscription = Subscription.last
-  #
-  #   expect(subscription.question.title).to eq title
-  #   expect(subscription.user).to eq user
-  # end
 end
 
 # feature "Subscription is created upon creation of answer" do

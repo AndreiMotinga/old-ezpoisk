@@ -102,6 +102,14 @@ describe QuestionsController do
       expect(question.text).to eq attrs[:text]
       expect(question.user).to eq @user
     end
+
+    it "creates subscription" do
+      sign_in(@user = create(:user))
+      attrs = attributes_for(:question)
+
+      post :create, question: attrs
+      expect(Subscription.count).to eq 1
+    end
   end
 
   describe "PUT #update" do
