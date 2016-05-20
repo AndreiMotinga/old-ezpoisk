@@ -110,4 +110,5 @@ group :test do
   gem "capybara-select2"
   gem "shoulda-matchers"
   gem "database_cleaner"
+  gem "simplecov", require: false
 end
