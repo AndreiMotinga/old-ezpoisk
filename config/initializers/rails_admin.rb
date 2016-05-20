@@ -14,7 +14,7 @@ RailsAdmin.config do |config|
     show_in_app
 
   end
-  config.excluded_models = ["State", "City", "Horoscope", "User"]
+  config.excluded_models = ["State", "City", "User"]
 
   config.model Post do
     include_all_fields

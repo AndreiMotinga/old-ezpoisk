@@ -64,7 +64,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :horoscopes, only: [:index], path: :ezscope
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice do
     get "all", on: :collection

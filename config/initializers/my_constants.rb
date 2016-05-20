@@ -278,9 +278,6 @@ NEWS_CATEGORIES = [
    "https://news.yandex.ua/index.rss"
 ]
 
-HOROSCOPE_CATEGORIES = %w(БЛИЗНЕЦЫ ВЕСЫ ВОДОЛЕЙ ДЕВА КОЗЕРОГ ЛЕВ ОВЕН РАК
-                          РЫБЫ СКОРПИОН СТРЕЛЕЦ ТЕЛЕЦ)
-
 PARTNER_PAGES = HashWithIndifferentAccess.new(
       "Домашняя" => ["Домашняя"],
       "- Раздел Недвижимость" => [
