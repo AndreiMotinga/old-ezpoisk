@@ -3,16 +3,16 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:update, :destroy]
 
   def new
-    @answer = Question.find(params[:question_id]).answers.new
+    question = Question.find(params[:question_id])
+    @answer = question.answers.new
   end
 
   def create
     @answer = current_user.answers.build(answer_params)
-
     if @answer.save
-      run_backgound_jobs
+      run_notifications
       question.increment!(:answers_count)
-      Subscription.create(user: current_user, question: question)
+      create_subscription
       redirect_to(question_path(question), notice: I18n.t(:answer_created))
     end
   end
@@ -23,9 +23,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
-      SlackNotifierJob.perform_async(@answer.id, "Answer")
-      redirect_to(question_path(question),
-                  notice: I18n.t(:answer_updated))
+      redirect_to(question_path(question), notice: I18n.t(:answer_updated))
     else
       render :edit
     end
@@ -65,11 +63,17 @@ class AnswersController < ApplicationController
     params.require(:answer).permit(:text, :question_id)
   end
 
-  def run_backgound_jobs
+  def run_notifications
     SlackNotifierJob.perform_async(@answer.id, "Answer")
-    q_id = question.id
-    QuestionNotificatorJob.perform_async(q_id)
-    CreateSubscriptionJob.perform_async(current_user.id, q_id) if current_user
+    QuestionNotificatorJob.perform_async(question.id)
+  end
+
+  def create_subscription
+    return if Subscription.exists?(
+      user_id: current_user.id,
+      question_id: question.id
+    )
+    Subscription.create(user: current_user, question: question)
   end
 
   def question
