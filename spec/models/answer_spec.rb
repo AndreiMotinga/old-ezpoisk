@@ -30,4 +30,22 @@ describe Answer do
       expect(result).to eq 3
     end
   end
+
+  describe "#avatar" do
+    it "returns author's avatar" do
+      answer = build(:answer)
+      url = "www.google.com/images/foo"
+      user = double(:user)
+      allow(answer).to receive(:user).and_return(user)
+      allow(user)
+        .to receive(:avatar)
+        .with(:thumb)
+        .and_return(url)
+
+      result = answer.avatar
+
+      expect(result).to eq url
+      expect(user).to have_received(:avatar).with(:thumb)
+    end
+  end
 end

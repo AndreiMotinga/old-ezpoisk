@@ -15,7 +15,7 @@ class Answer < ActiveRecord::Base
     get_upvotes.count - get_downvotes.count
   end
 
-  def user_avatar
-    user.profile.avatar.url(:thumb)
+  def avatar
+    user.avatar(:thumb)
   end
 end

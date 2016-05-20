@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
     email
   end
 
+  def avatar(style = :thumb)
+    profile.avatar.url(style)
+  end
+
   private
 
   def send_emails

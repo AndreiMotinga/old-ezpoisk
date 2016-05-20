@@ -4,7 +4,7 @@
       .row
         .hidden-xs.col-sm-1.qa-avatar
           = link_to profile_path(answer.user.profile) do
-            = image_tag answer.user_avatar, alt: answer.user.profile_name, class: "img-responsive img-circle center-block"
+            = image_tag answer.avatar, alt: answer.user.profile_name, class: "img-responsive img-circle center-block"
         .col-sm-11
           %h3.text-muted.question-author= link_to answer.user.name_to_show, profile_path(answer.user.profile)
           %p #{answer.impressions_count} просмотров
