@@ -3,7 +3,7 @@ require "rails_helper"
 feature "user updates job" do
   scenario "successfully", js: true do
     create_alabama_and_abbeville
-    user = create_and_login_user
+   user = create_and_login_user
     job = create(:job, user: user)
 
     visit edit_dashboard_job_path job

@@ -39,12 +39,10 @@ describe SalesController do
 
     describe "#filter" do
       it "filters by state_id" do
-        new_york = create(:state, name: "New York")
-        alabama = create(:state, name: "Alabama")
-        2.times { create :sale, :active, state_id: alabama.id }
-        create :sale, :active,  state_id: new_york.id
+        2.times { create :sale, :active, state_id: 1 }
+        create :sale, :active,  state_id: 32
 
-        get :index, state_id: new_york.id
+        get :index, state_id: 32
 
         expect(assigns(:sales).size).to eq 1
       end

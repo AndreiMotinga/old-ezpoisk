@@ -20,6 +20,10 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   Capybara.javascript_driver = :webkit
+  Capybara::Webkit.configure do |conf|
+    conf.block_unknown_urls
+  end
+
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers
   config.include FactoryGirl::Syntax::Methods
@@ -28,12 +32,8 @@ RSpec.configure do |config|
   config.include Helpers
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with(:truncation, except: %w(states))
     Warden.test_mode!
-  end
-
-  Capybara::Webkit.configure do |config|
-    config.block_unknown_urls
   end
 
   config.before(:each) do
@@ -41,7 +41,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :truncation, { except: %w(states) }
   end
 
   config.before(:each) do

@@ -12,9 +12,6 @@
 !/log/.keep
 /tmp
 .rubocop.yml
-notes
-foo
-bar.rb
 tags
 brakeman
 
@@ -25,3 +22,8 @@ ngrok
 /config/application.yml
 public/system/**/*
 coverage
+
+notes
+setup_notes
+foo
+bar.rb

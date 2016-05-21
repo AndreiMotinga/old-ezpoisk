@@ -17,10 +17,9 @@ describe Job do
   describe "address" do
     context "full string" do
       it "returns full address" do
-        state = create(:state, name: "New York")
-        city = create(:city, state: state, name: "Brooklyn")
+        city = create(:city, name: "Brooklyn")
         job = build :job,
-                     state: state,
+                     state_id: 32,
                      city: city,
                      zip: 11_229,
                      street: "1970 East 18th"
@@ -29,10 +28,9 @@ describe Job do
       end
 
       it "returns address without street" do
-        state = create(:state, name: "New York")
-        city = create(:city, state: state, name: "Brooklyn")
+        city = create(:city, name: "Brooklyn")
         job = build :job,
-                     state: state,
+                     state_id: 32,
                      city: city,
                      zip: 11_229,
                      street: ""
@@ -41,10 +39,9 @@ describe Job do
       end
 
       it "returns address without street and zip" do
-        state = create(:state, name: "New York")
-        city = create(:city, state: state, name: "Brooklyn")
+        city = create(:city, name: "Brooklyn")
         job = build :job,
-                     state: state,
+                     state_id: 32,
                      city: city,
                      zip: 0,
                      street: ""

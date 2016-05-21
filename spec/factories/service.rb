@@ -5,8 +5,9 @@ FactoryGirl.define do
   factory :service do
     title { Faker::Name.title }
     street { Faker::Address.street_name }
-    phone '1234567890'
+    phone "1234567890"
     email { Faker::Internet.email }
+    state_id 32
 
     site { Faker::Internet.url("example.com") }
     description { Faker::Lorem.paragraph(5) }
@@ -19,7 +20,6 @@ FactoryGirl.define do
     subcategory { subcategory }
 
     association :user
-    association :state
     association :city
 
     trait :re_agency do

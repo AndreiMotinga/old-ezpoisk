@@ -2,10 +2,9 @@ require "rails_helper"
 
 feature "User create re_private" do
   scenario "success", js: true do
+    create_alabama_and_abbeville
     user = create_and_login_user
     re_private = build(:re_private)
-    state = State.create(name: "Alabama")
-    City.create(name: "Abbeville", state: state)
 
     visit new_dashboard_re_private_path
     fill_in "Улица", with: re_private.street

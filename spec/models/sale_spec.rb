@@ -17,11 +17,10 @@ describe Sale do
 
   describe "#address" do
     it "returns properly formatted address" do
-      state = create :state, :alabama
       city = create :city, :brooklyn
       sale = create :sale,
-                    state: state,
-                    city: city,
+                    state_id: 1,
+                    city_id: city.id,
                     zip: 123
 
       expect(sale.address).to eq "Brooklyn Alabama, 123"

@@ -11,6 +11,7 @@ FactoryGirl.define do
     post_type { RE_TYPES.sample }
     duration { RE_DURATION.sample }
     fee { [true, false].sample }
+    state_id 32
 
     trait :with_geolocation do
       lat { Faker::Address.latitude }
@@ -22,7 +23,6 @@ FactoryGirl.define do
       active true
     end
 
-    state
     city
     user
   end

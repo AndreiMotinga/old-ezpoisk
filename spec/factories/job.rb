@@ -4,6 +4,7 @@ FactoryGirl.define do
     phone '1234567890'
     email { Faker::Internet.email }
     description { Faker::Lorem.paragraph(5) }
+    state_id 32
 
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
@@ -12,7 +13,6 @@ FactoryGirl.define do
     category { JOB_CATEGORIES.first }
 
     association :user
-    association :state
     association :city
 
     trait :active do

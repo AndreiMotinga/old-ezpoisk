@@ -13,7 +13,7 @@ FactoryGirl.define do
     twitter "twitter link"
     motto "It will work out"
 
-    association :state
+    state_id 32
     association :city
   end
 end

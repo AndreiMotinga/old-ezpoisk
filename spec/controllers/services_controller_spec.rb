@@ -22,12 +22,10 @@ describe ServicesController do
 
     describe "#filter" do
       it "filters by state_id" do
-        new_york = create(:state, name: "New York")
-        alabama = create(:state, name: "Alabama")
-        2.times { create :service, state_id: alabama.id }
-        create :service, state_id: new_york.id
+        2.times { create :service, state_id: 1 }
+        create :service, state_id: 32
 
-        get :index, state_id: new_york.id
+        get :index, state_id: 32
 
         expect(assigns(:services).size).to eq 1
       end

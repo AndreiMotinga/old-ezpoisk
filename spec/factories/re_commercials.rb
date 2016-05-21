@@ -11,9 +11,9 @@ FactoryGirl.define do
     post_type { RE_TYPES.sample }
     zip { Faker::Address.zip }
     phone '1234567890'
+    state_id 32
 
     association :user
-    association :state
     association :city
 
     trait :active do

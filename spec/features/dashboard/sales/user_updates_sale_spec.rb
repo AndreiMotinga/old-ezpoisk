@@ -28,16 +28,4 @@ feature "user updates sale" do
     expect(sale.state_name).to eq "Alabama"
     expect(sale.city.name).to eq "Abbeville"
   end
-
-  scenario "updates description" do
-    user = create_and_login_user
-    sale = create :sale, user: user
-
-    visit edit_dashboard_sale_path sale
-    fill_in "Описание", with: "New description"
-    click_on "details-save-btn"
-    sale.reload
-
-    expect(sale.description).to eq "New description"
-  end
 end

@@ -50,11 +50,10 @@ describe RePrivate do
 
   describe "#address" do
     it "returns address string" do
-      state = create(:state, name: "New York")
-      city = create(:city, state: state, name: "Brooklyn")
+      city = create(:city, name: "Brooklyn")
       re_private = build :re_private,
-                         state: state,
-                         city: city,
+                         state_id: 32,
+                         city_id: city.id,
                          zip: 11_229,
                          street: "1970 East 18th"
       address = "1970 East 18th Brooklyn New York, 11229"
