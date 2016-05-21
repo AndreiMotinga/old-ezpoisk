@@ -14,8 +14,4 @@ describe UserMailer do
       expect(delivery.subject).to eq "Добро пожаловать на EZPOISK"
     end
   end
-
-  def deliveries
-    ActionMailer::Base.deliveries
-  end
 end

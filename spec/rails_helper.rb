@@ -51,6 +51,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    ActionMailer::Base.deliveries.clear
     Warden.test_reset!
   end
 end

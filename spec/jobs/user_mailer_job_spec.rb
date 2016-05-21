@@ -3,7 +3,7 @@ require "rails_helper"
 describe UserMailerJob do
   it "sends welcome_email to user" do
     user = build_stubbed(:user)
-    mailer = instance_double("UserMailer")
+    mailer = double("UserMailer")
     allow(User).to receive(:find).with(user.id).and_return(user)
     allow(UserMailer).to receive(:welcome_email).with(user).and_return(mailer)
     allow(mailer).to receive(:deliver_now)

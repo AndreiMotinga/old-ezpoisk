@@ -16,4 +16,8 @@ module Helpers
   def url_helpers
     Rails.application.routes.url_helpers
   end
+
+  def deliveries
+    ActionMailer::Base.deliveries
+  end
 end

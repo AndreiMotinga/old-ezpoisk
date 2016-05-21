@@ -1,3 +1,4 @@
+# notifies user of new activity on question
 class QuestionMailer < ApplicationMailer
   def new_activity(question, email)
     @question = question
