@@ -1,3 +1,4 @@
+# methods commonly used in specs
 module Helpers
   def create_and_login_user
     user = create :user

@@ -1,12 +1,8 @@
+# todo refactor to user class methods instead of instance
 class StringForSlack
   include Rails.application.routes.url_helpers
-  attr_accessor :string
 
-  def initialize(record)
-    @string = string_from_record(record)
-  end
-
-  def string_from_record(record)
+  def self.string_for(record)
     case record.class.to_s
     when "User"
       string = user_string(record)
