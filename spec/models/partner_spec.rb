@@ -5,15 +5,29 @@ describe Partner do
   it { should validate_presence_of :image }
   it { should belong_to(:user) }
 
-  it "should validate position for side" do
-    partner = build :partner, :side, page: "Домашняя"
-    expect(partner.valid?).to be false
-    expect(partner.errors[:position]).to be
-  end
-  it "should validate position for side for bottom" do
-    partner = build :partner, :bottom, page: "Домашняя"
-    expect(partner.valid?).to be false
-    expect(partner.errors[:position]).to be
+  describe "validations" do
+    it "should validate position for side" do
+      partner = build :partner, :side, page: "Домашняя"
+      expect(partner.valid?).to be false
+      expect(partner.errors[:position]).to be
+    end
+
+    it "should validate position for bottom" do
+      partner = build :partner, :bottom, page: "Домашняя"
+      expect(partner.valid?).to be false
+      expect(partner.errors[:position]).to be
+    end
+
+    context "validates dimensions" do
+      it "verifies image size for top position" do
+        invalid_image = File.new("#{Rails.root}/spec/support/fixtures/side.jpg")
+        partner = build(:partner, image: invalid_image)
+
+        partner.valid?
+
+        expect(partner.errors.count).to eq 1
+      end
+    end
   end
 
   describe ".active" do
