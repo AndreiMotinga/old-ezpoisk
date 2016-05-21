@@ -24,7 +24,7 @@ describe Dashboard::JobsController do
 
   describe "POST #create" do
     it "creates job" do
-      attrs = attrs_with_state_and_city(:job)
+      attrs = attributes_for(:job)
 
       post :create, job: attrs
       job = assigns(:job)
@@ -40,7 +40,7 @@ describe Dashboard::JobsController do
   describe "PUT #update" do
     it "updates job" do
       job = create(:job, user: @user)
-      attrs = attrs_with_state_and_city(:job)
+      attrs = attributes_for(:job)
 
       put :update, id: job.id,  job: attrs
       updated_agency = assigns(:job)

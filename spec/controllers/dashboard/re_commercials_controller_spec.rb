@@ -33,7 +33,7 @@ describe Dashboard::ReCommercialsController do
 
   describe "POST #create" do
     it "creates new record" do
-      attrs = attrs_with_state_and_city(:re_commercial)
+      attrs = attributes_for(:re_commercial)
 
       post :create, re_commercial: attrs
       re_commercial = assigns(:re_commercial)
@@ -57,7 +57,7 @@ describe Dashboard::ReCommercialsController do
   describe "PUT #update" do
     it "updates the record" do
       re_commercial = create :re_commercial, user: @user
-      attrs = attrs_with_state_and_city(:re_commercial)
+      attrs = attributes_for(:re_commercial)
 
       put :update, id: re_commercial.id, re_commercial: attrs
 

@@ -24,7 +24,7 @@ describe Dashboard::SalesController do
 
   describe "POST #create" do
     it "creates sale" do
-      attrs = attrs_with_state_and_city(:sale)
+      attrs = attributes_for(:sale)
 
       post :create, sale: attrs
       sale = assigns(:sale)
@@ -40,7 +40,7 @@ describe Dashboard::SalesController do
   describe "PUT #update" do
     it "updates sale" do
       sale = create(:sale, user: @user)
-      attrs = attrs_with_state_and_city(:sale)
+      attrs = attributes_for(:sale)
 
       put :update, id: sale.id, sale: attrs
       updated_sale = assigns(:sale)

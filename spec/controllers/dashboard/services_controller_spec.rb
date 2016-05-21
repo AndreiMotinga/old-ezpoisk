@@ -24,7 +24,7 @@ describe Dashboard::ServicesController do
 
   describe "POST #create" do
     it "creates service" do
-      attrs = attrs_with_state_and_city(:service)
+      attrs = attributes_for(:service)
 
       post :create, service: attrs
       service = assigns(:service)
@@ -40,7 +40,7 @@ describe Dashboard::ServicesController do
   describe "PUT #update" do
     it "updates service" do
       service = create(:service, user: @user)
-      attrs = attrs_with_state_and_city(:service)
+      attrs = attributes_for(:service)
 
       put :update, id: service.id, service: attrs
       updated_agency = assigns(:service)

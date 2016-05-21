@@ -33,7 +33,7 @@ describe Dashboard::RePrivatesController do
 
   describe "POST #create" do
     it "creates new record" do
-      attrs = attrs_with_state_and_city(:re_private)
+      attrs = attributes_for(:re_private)
 
       post :create, re_private: attrs
       re_private = assigns(:re_private)
