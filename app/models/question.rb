@@ -70,4 +70,8 @@ class Question < ActiveRecord::Base
   def profile
     the_answer.user.profile
   end
+
+  def subscribers_emails
+    subscribers.pluck(:emails)
+  end
 end
