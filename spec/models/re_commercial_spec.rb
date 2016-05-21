@@ -51,9 +51,9 @@ describe ReCommercial do
 
   describe "#address" do
     it "returns address string" do
-      city = create(:city, name: "Brooklyn")
       re_commercial = build :re_commercial,
-                         city: city,
+                         state_id: 32,
+                         city_id: 18_031,
                          zip: 11_229,
                          street: "1970 East 18th"
       address = "1970 East 18th Brooklyn New York, 11229"

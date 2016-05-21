@@ -5,6 +5,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     category { SALE_CATEGORIES.sample }
     state_id 32
+    city_id 18031
 
     description { Faker::Lorem.paragraph(5) }
     lat { Faker::Address.latitude }
@@ -12,7 +13,6 @@ FactoryGirl.define do
     zip { Faker::Address.zip }
 
     association :user
-    association :city
 
     trait :active do
       active true

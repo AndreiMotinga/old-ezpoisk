@@ -12,6 +12,7 @@ FactoryGirl.define do
     duration { RE_DURATION.sample }
     fee { [true, false].sample }
     state_id 32
+    city_id 18031
 
     trait :with_geolocation do
       lat { Faker::Address.latitude }
@@ -23,7 +24,6 @@ FactoryGirl.define do
       active true
     end
 
-    city
     user
   end
 end

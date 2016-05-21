@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "user creates re_private" do
   scenario "successfully", js: true do
-    create_alabama_and_abbeville
     user = create_and_login_user
     re_private = create :re_private, user: user
     attrs = build :re_private

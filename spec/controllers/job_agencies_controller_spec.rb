@@ -28,14 +28,11 @@ describe JobAgenciesController do
     end
 
     it "filters by city_id" do
-      brooklyn = create(:city, name: "Brooklyn")
-      bronx = create(:city, name: "Bronx")
-      queens  = create(:city, name: "Queens")
-      2.times { create :service, :job_agency, city_id: queens.id }
-      create :service, :job_agency, city_id: brooklyn.id
-      create :service ,:job_agency, city_id: bronx.id
+      2.times { create :service, :job_agency, city_id: 18_030 }
+      create :service, :job_agency, city_id: 18_031
+      create :service, :job_agency, city_id: 18_032
 
-      get :index, city_id: [brooklyn.id, bronx.id]
+      get :index, city_id: [18_031, 18_032]
 
       expect(assigns(:job_agencies).size).to eq 2
     end

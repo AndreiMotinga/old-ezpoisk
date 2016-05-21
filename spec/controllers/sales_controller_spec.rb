@@ -48,14 +48,11 @@ describe SalesController do
       end
 
       it "filters by city_id" do
-        brooklyn = create(:city, name: "Brooklyn")
-        bronx = create(:city, name: "Bronx")
-        queens  = create(:city, name: "Queens")
-        2.times { create :sale, :active, city_id: queens.id }
-        create :sale, :active,  city_id: brooklyn.id
-        create :sale, :active, city_id: bronx.id
+        2.times { create :sale, :active, city_id: 18_030 }
+        create :sale, :active,  city_id: 18_031
+        create :sale, :active, city_id: 18_032
 
-        get :index, city_id: [brooklyn.id, bronx.id]
+        get :index, city_id: [18_031, 18_032]
 
         expect(assigns(:sales).size).to eq 2
       end

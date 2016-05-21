@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "user creates sale" do
   scenario "successfully", js: true do
-    create_alabama_and_abbeville
     create_and_login_user
     sale = build(:sale)
     visit new_dashboard_sale_path

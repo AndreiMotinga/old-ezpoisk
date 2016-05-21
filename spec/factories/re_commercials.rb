@@ -12,9 +12,9 @@ FactoryGirl.define do
     zip { Faker::Address.zip }
     phone '1234567890'
     state_id 32
+    city_id 18031
 
     association :user
-    association :city
 
     trait :active do
       active true

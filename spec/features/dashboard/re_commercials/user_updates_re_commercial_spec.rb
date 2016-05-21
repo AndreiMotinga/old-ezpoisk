@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "User updates re_commercial" do
   scenario "success", js: true do
-    create_alabama_and_abbeville
     user = create_and_login_user
     re_commercial = create :re_commercial, user: user
     attrs = build :re_commercial

@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "user creates service" do
   scenario "successfully", js: true do
-    create_alabama_and_abbeville
     create_and_login_user
     service = build(:service)
 

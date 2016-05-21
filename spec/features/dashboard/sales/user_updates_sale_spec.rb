@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "user updates sale" do
   scenario "successfully", js: true do
-    create_alabama_and_abbeville
     user = create_and_login_user
     sale = create :sale, user: user
     attrs = build(:sale)

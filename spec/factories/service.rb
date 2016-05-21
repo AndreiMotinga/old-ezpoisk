@@ -8,6 +8,7 @@ FactoryGirl.define do
     phone "1234567890"
     email { Faker::Internet.email }
     state_id 32
+    city_id 18031
 
     site { Faker::Internet.url("example.com") }
     description { Faker::Lorem.paragraph(5) }
@@ -20,7 +21,6 @@ FactoryGirl.define do
     subcategory { subcategory }
 
     association :user
-    association :city
 
     trait :re_agency do
       category "Недвижимость"

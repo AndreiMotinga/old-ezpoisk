@@ -2,7 +2,6 @@ require "rails_helper"
 
 feature "user updates service" do
   scenario "successfully", js: true do
-    create_alabama_and_abbeville
     user = create_and_login_user
     service = create(:service, user: user)
     attrs = build(:service)

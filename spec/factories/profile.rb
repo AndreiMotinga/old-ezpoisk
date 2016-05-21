@@ -14,6 +14,6 @@ FactoryGirl.define do
     motto "It will work out"
 
     state_id 32
-    association :city
+    city_id 18031
   end
 end
