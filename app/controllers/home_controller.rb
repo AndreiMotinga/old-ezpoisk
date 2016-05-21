@@ -23,13 +23,6 @@ class HomeController < ApplicationController
   end
 
   def resolve_layout
-    case action_name
-    when "index"
-      "home"
-    when "about"
-      "about"
-    else
-      "application"
-    end
+    action_name == "index" ? "home" : "about"
   end
 end
