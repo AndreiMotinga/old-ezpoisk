@@ -7,7 +7,7 @@ class QuestionNotificatorJob
     question = Question.find(id)
     emails = question.subscribers_emails
     emails.each do |email|
-      QuestionMailer.new_activity(question, email).deliver
+      QuestionMailer.new_activity(question, email).deliver_now
     end
   end
 end
