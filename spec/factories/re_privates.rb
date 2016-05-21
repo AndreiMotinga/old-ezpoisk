@@ -18,15 +18,12 @@ FactoryGirl.define do
       zip { Faker::Address.zip }
     end
 
-    trait :with_user do
-      user
-    end
-
     trait :active do
       active true
     end
 
     state
     city
+    user
   end
 end
