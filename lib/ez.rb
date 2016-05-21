@@ -10,7 +10,7 @@ class Ez
   end
 
   def self.notify_about(record)
-    string = StringForSlack.string_for(record)
+    string = "Регистрация нового  #{record.class}\n id #{record.id}"
     notifier.ping(string)
   end
 end
