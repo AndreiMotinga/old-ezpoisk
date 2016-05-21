@@ -45,4 +45,8 @@ module ViewHelpers
     return false unless user
     favorites.where(user_id: user.id, hidden: true).exists?
   end
+
+  def url_helpers
+    Rails.application.routes.url_helpers
+  end
 end

@@ -44,6 +44,6 @@ class Post < ActiveRecord::Base
   end
 
   def edit_link
-    Rails.application.routes.url_helpers.edit_dashboard_post_path(self)
+    url_helpers.edit_dashboard_post_path(self)
   end
 end

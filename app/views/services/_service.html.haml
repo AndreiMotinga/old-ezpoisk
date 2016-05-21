@@ -1,16 +1,16 @@
 .row.post-item.white-block{ class: ("user-hidden" if service.user_hidden?(current_user)), "data-hidden": service.id }
   .col-xs-4.col-sm-4.logo-js
-    = link_to link_to_show_page(service) do
+    = link_to service_path(service) do
       = image_tag service.logo.url(:medium), alt: service.title, class: "img-responsive"
   .col-xs-8.col-sm-8
     / line 1
     .hidden-xs
       - if home_controller?
-        %h5.title= link_to service.title, link_to_show_page(service)
+        %h5.title= link_to service.title, service_path(service)
       - else
-        %h4.title= link_to service.title, link_to_show_page(service)
+        %h4.title= link_to service.title, service_path(service)
     .visible-xs
-      %h5.title= link_to service.title, link_to_show_page(service)
+      %h5.title= link_to service.title, service_path(service)
 
     /line 2
     .hidden-xs

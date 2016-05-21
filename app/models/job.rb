@@ -27,6 +27,6 @@ class Job < ActiveRecord::Base
   )
 
   def edit_link
-    Rails.application.routes.url_helpers.edit_dashboard_job_path(self)
+    url_helpers.edit_dashboard_job_path(self)
   end
 end

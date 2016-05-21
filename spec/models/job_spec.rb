@@ -49,7 +49,7 @@ describe Job do
   end
 
   describe "#edit_link" do
-    it "returns path to edit job" do
+    it "returns path to edit record" do
       job = build_stubbed(:job)
       edit_path = url_helpers.edit_dashboard_job_path(job)
 

@@ -1,17 +1,17 @@
 .row.post-item.white-block{ class: ("user-hidden" if post.user_hidden?(current_user)), "data-hidden": post.id }
   .col-xs-4.col-sm-4.logo-js
-    = link_to link_to_show_page(post) do
+    = link_to post_path(post) do
       = image_tag post.logo_url, class: "img-responsive",
                   alt: "Новости комьюнити"
 
   .col-xs-8.col-sm-8
     .hidden-xs
       - if home_controller? || profiles_controller?
-        %h5.title= link_to post.title, link_to_show_page(post)
+        %h5.title= link_to post.title, post_path(post)
       - else
-        %h4.title= link_to post.title, link_to_show_page(post)
+        %h4.title= link_to post.title, post_path(post)
     .visible-xs
-      %h5.title= link_to post.title, link_to_show_page(post)
+      %h5.title= link_to post.title, post_path(post)
 
     .hidden-xs
       %p= strip_tags(post.text).truncate(160) unless home_controller?

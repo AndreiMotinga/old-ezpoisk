@@ -1,6 +1,6 @@
 .row.post-item.white-block{ class: ("user-hidden" if re_private.user_hidden?(current_user)), "data-hidden": re_private.id }
   .col-xs-4.col-sm-4.logo-js
-    = link_to link_to_show_page(re_private) do
+    = link_to re_private_path(re_private) do
       = image_tag re_private.logo_url, class: "img-responsive",
                   alt: "#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}"
 

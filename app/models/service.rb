@@ -33,8 +33,7 @@ class Service < ActiveRecord::Base
     less_than: 1.megabytes
   )
 
-
   def edit_link
-    Rails.application.routes.url_helpers.edit_dashboard_service_path(self)
+    url_helpers.edit_dashboard_service_path(self)
   end
 end

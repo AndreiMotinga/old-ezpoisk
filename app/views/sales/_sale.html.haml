@@ -1,6 +1,6 @@
 .row.post-item.white-block{ class: ("user-hidden" if sale.user_hidden?(current_user)), "data-hidden": sale.id }
   .col-xs-4.col-sm-4.logo-js
-    = link_to link_to_show_page(sale) do
+    = link_to sale_path(sale) do
       = image_tag sale.logo_url, class: "img-responsive",
         alt: "Продается #{sale.title}"
 
@@ -8,11 +8,11 @@
     / line 1
     .hidden-xs
       - if home_controller?
-        %h5.title= link_to sale.title, link_to_show_page(sale)
+        %h5.title= link_to sale.title, sale_path(sale)
       - else
-        %h4.title= link_to sale.title, link_to_show_page(sale)
+        %h4.title= link_to sale.title, sale_path(sale)
     .visible-xs
-      %h5.title= link_to sale.title, link_to_show_page(sale)
+      %h5.title= link_to sale.title, sale_path(sale)
 
     /line 2
     .hidden-xs
