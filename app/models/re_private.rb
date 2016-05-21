@@ -21,4 +21,8 @@ class RePrivate < ActiveRecord::Base
   def title
     street
   end
+
+  def edit_link
+    Rails.application.routes.url_helpers.edit_dashboard_re_private_path(self)
+  end
 end

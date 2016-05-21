@@ -60,4 +60,15 @@ describe ReCommercial do
       expect(re_commercial.address).to eq address
     end
   end
+
+  describe "#edit_link" do
+    it "returns path to edit record" do
+      re_commercial = build_stubbed(:re_commercial)
+      edit_path = url_helpers.edit_dashboard_re_commercial_path(re_commercial)
+
+      result = re_commercial.edit_link
+
+      expect(result).to eq edit_path
+    end
+  end
 end

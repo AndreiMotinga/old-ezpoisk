@@ -47,4 +47,15 @@ describe Job do
       end
     end
   end
+
+  describe "#edit_link" do
+    it "returns path to edit job" do
+      job = build_stubbed(:job)
+      edit_path = url_helpers.edit_dashboard_job_path(job)
+
+      result = job.edit_link
+
+      expect(result).to eq edit_path
+    end
+  end
 end

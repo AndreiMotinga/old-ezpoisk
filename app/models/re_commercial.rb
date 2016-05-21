@@ -20,4 +20,12 @@ class ReCommercial < ActiveRecord::Base
   def title
     street
   end
+
+  def edit_link
+    Rails
+      .application
+      .routes
+      .url_helpers
+      .edit_dashboard_re_commercial_path(self)
+  end
 end

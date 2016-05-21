@@ -16,4 +16,15 @@ describe Service do
   it { should belong_to(:state) }
 
   it { should have_many(:favorites).dependent(:destroy) }
+
+  describe "#edit_link" do
+    it "returns path to edit record" do
+      service = build_stubbed(:service)
+      edit_path = url_helpers.edit_dashboard_service_path(service)
+
+      result = service.edit_link
+
+      expect(result).to eq edit_path
+    end
+  end
 end

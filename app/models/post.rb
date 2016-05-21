@@ -42,4 +42,8 @@ class Post < ActiveRecord::Base
   def logo_url(style = :medium)
     image.url(style)
   end
+
+  def edit_link
+    Rails.application.routes.url_helpers.edit_dashboard_post_path(self)
+  end
 end

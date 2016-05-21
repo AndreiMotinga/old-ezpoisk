@@ -25,4 +25,15 @@ describe Sale do
       expect(sale.address).to eq "Brooklyn New York, 123"
     end
   end
+
+  describe "#edit_link" do
+    it "returns path to edit record" do
+      sale = build_stubbed(:sale)
+      edit_path = url_helpers.edit_dashboard_sale_path(sale)
+
+      result = sale.edit_link
+
+      expect(result).to eq edit_path
+    end
+  end
 end

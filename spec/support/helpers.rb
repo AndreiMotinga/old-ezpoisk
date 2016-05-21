@@ -12,4 +12,8 @@ module Helpers
     attrs[:city_id] = 18031
     attrs
   end
+
+  def url_helpers
+    Rails.application.routes.url_helpers
+  end
 end

@@ -20,7 +20,13 @@ class Job < ActiveRecord::Base
                     styles: { medium: ["300x170>", :jpg] },
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
-  validates_with AttachmentSizeValidator,
-                 attributes: :logo,
-                 less_than: 1.megabytes
+  validates_with(
+    AttachmentSizeValidator,
+    attributes: :logo,
+    less_than: 1.megabytes
+  )
+
+  def edit_link
+    Rails.application.routes.url_helpers.edit_dashboard_job_path(self)
+  end
 end

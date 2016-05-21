@@ -61,4 +61,15 @@ describe RePrivate do
       expect(re_private.address).to eq address
     end
   end
+
+  describe "#edit_link" do
+    it "returns path to edit record" do
+      re_private = build_stubbed(:re_private)
+      edit_path = url_helpers.edit_dashboard_re_private_path(re_private)
+
+      result = re_private.edit_link
+
+      expect(result).to eq edit_path
+    end
+  end
 end

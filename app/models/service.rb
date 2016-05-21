@@ -27,7 +27,14 @@ class Service < ActiveRecord::Base
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
-  validates_with AttachmentSizeValidator,
-                 attributes: :logo,
-                 less_than: 1.megabytes
+  validates_with(
+    AttachmentSizeValidator,
+    attributes: :logo,
+    less_than: 1.megabytes
+  )
+
+
+  def edit_link
+    Rails.application.routes.url_helpers.edit_dashboard_service_path(self)
+  end
 end

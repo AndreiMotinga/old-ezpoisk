@@ -15,7 +15,7 @@
 
 - if record.user_id == current_user.try(:id)
   %npbs
-  = link_to edit_link(record), class: "btn btn-sm btn-default",
+  = link_to record.edit_link, class: "btn btn-sm btn-default",
           "data-content": "Редактировать",
           "data-toggle": "popover",
           role: "button", tabindex: "0", "data-placement": "top" do
