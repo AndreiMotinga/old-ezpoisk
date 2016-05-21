@@ -1,22 +1,22 @@
 # perfroms geolocation
+# updates latitude, longitute and zipcode on listings
 class GeocodeJob
   include Sidekiq::Worker
 
   def perform(id, model)
-    return unless Rails.env.production?
+    return if Rails.env.development?
     @post = model.constantize.find(id)
-    update_post info
+    @info = Geokit::Geocoders::GoogleGeocoder.geocode(@post.address)
+    @post.update_attributes(info_hash)
   end
 
   private
 
-  def info
-    Geokit::Geocoders::GoogleGeocoder.geocode @post.address
-  end
-
-  def update_post(info)
-    @post.update_attribute(:lat, info.lat)
-    @post.update_attribute(:lng, info.lng)
-    @post.update_attribute(:zip, info.zip)
+  def info_hash
+    {
+      lat: @info.lat,
+      lng: @info.lng,
+      zip: @info.zip
+    }
   end
 end

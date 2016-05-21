@@ -10,17 +10,23 @@ FactoryGirl.define do
     rooms { ROOM_OPTIONS.sample }
     post_type { RE_TYPES.sample }
     duration { RE_DURATION.sample }
-    lat { Faker::Address.latitude }
-    lng { Faker::Address.longitude }
-    zip { Faker::Address.zip }
     fee { [true, false].sample }
 
-    association :user
-    association :state
-    association :city
+    trait :with_geolocation do
+      lat { Faker::Address.latitude }
+      lng { Faker::Address.longitude }
+      zip { Faker::Address.zip }
+    end
+
+    trait :with_user do
+      user
+    end
 
     trait :active do
       active true
     end
+
+    state
+    city
   end
 end
