@@ -20,9 +20,8 @@
         %li{class: cp(dashboard_favorites_path)}
           = link_to "Избранное", dashboard_favorites_path
       %ul.nav.navbar-nav.navbar-right
-        - if current_user.admin?
-          %li{class: cp(dashboard_partners_path)}
-            = link_to "Реклама", dashboard_partners_path,  "data-toggle": "modal"
+        %li{class: cp(dashboard_partners_path)}
+          = link_to "Реклама", dashboard_partners_path,  "data-toggle": "modal"
         %li{class: cp(edit_user_registration_path)}
           = link_to "Личные данные", edit_dashboard_profile_path(current_user)
     / /.navbar-collapse

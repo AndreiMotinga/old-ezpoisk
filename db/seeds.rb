@@ -74,7 +74,7 @@ states = [
   %w(Vermont	VT),
   %w(Virginia	VA),
   %w(Washington	WA),
-  %w("West Virginia",	"WV"),
+  ["West Virginia",	"WV"],
   %w(Wisconsin	WI),
   %w(Wyoming	WY)
 ]
