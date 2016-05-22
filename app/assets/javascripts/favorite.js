@@ -34,12 +34,15 @@ $(document).ready(function(){
     $(el).find("span").toggleClass("favorite");
 
     $.ajax({
-      url: "/favorites/create_favorite",
+      url: "/favorites",
       type: 'POST',
       data: {
-        "favorable_id": $(el).data("id"),
-        "favorable_type": $(el).data("type"),
-        "favorite": true
+        favorite: {
+          "favorable_id": $(el).data("id"),
+          "favorable_type": $(el).data("type"),
+          "favorite": true,
+          "hidden": false
+        }
       }
     });
   }
@@ -51,12 +54,15 @@ $(document).ready(function(){
     selector.toggleClass("user-hidden");
 
     $.ajax({
-      url: "/favorites/create_hidden",
+      url: "/favorites",
       type: 'POST',
       data: {
-        "favorable_id": $(el).data("id"),
-        "favorable_type": $(el).data("type"),
-        "hidden": true
+        favorite : {
+          "favorable_id": $(el).data("id"),
+          "favorable_type": $(el).data("type"),
+          "favorite": false,
+          "hidden": true
+        }
       }
     });
   }
