@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522000911) do
+ActiveRecord::Schema.define(version: 20160522155211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 20160522000911) do
     t.integer "user_id"
     t.integer "favorable_id"
     t.string  "favorable_type"
-    t.boolean "favorite"
-    t.boolean "hidden"
+    t.boolean "favorite",       default: false, null: false
+    t.boolean "hidden",         default: false, null: false
   end
 
   add_index "favorites", ["user_id", "favorable_id", "favorable_type", "favorite"], name: "quadro_index_on_favorite", unique: true, using: :btree
