@@ -71,5 +71,35 @@ various parts of the stack. Here's a short summary:
 
 16. Application is heavily tested using [**Rspec**](https://github.com/rspec/rspec-rails)
 
-### TODO…
-steps to pull, seed, and run.
+
+### To run app locally
+
+```
+git clone https://github.com/AndreiMotinga/ezpoisk.git
+cd ezpoisk
+bundle install
+```
+
+create `config/application.yml` and provide your keys,
+otherwise various parts of app will fail
+
+```
+AWS_ACCESS_KEY_ID:
+AWS_SECRET_ACCESS_KEY:
+S3_BUCKET_DEV:
+FACEBOOK_APP_ID:
+FACEBOOK_APP_SECRET:
+VK_APP_ID:
+VK_SECRET_KEY:
+GOOGLE_CLIENT_ID:
+GOOGLE_SECRET_KEY:
+GOOGLE_MAPS_API_KEY:
+SLACK_URL: ""
+STRIPE_PUBLISHABLE_KEY:
+STRIPE_SECRET_KEY:
+```
+```
+spring rake db:create
+spring rake db:schema:load
+spring rake db:seed_states_and_cities
+```
