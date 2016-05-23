@@ -6,8 +6,8 @@ describe Answer do
 
   describe ".this_week" do
     it "returns amount of answers created during current week" do
-      create(:answer, created_at: Date.current)
-      create(:answer, created_at: 1.week.ago)
+      create(:answer, created_at: Time.current)
+      create(:answer, created_at: 8.days.ago)
 
       result = Answer.this_week
 
