@@ -23,8 +23,5 @@
 //= require touchTouch
 
 //= require select2
-//
-// map fix
-//= require markerclustererplus/src/markerclusterer_packed.js
 
 //= require_tree .
