@@ -36,4 +36,8 @@ class Service < ActiveRecord::Base
   def edit_link
     url_helpers.edit_dashboard_service_path(self)
   end
+
+  def site_link
+    site.match(/http/).present? ? site : "http://#{site}"
+  end
 end
