@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe HomeController do
   describe "GET index" do
-    render_views
     it "renders home page and assigns @homepage" do
       get :index
 
@@ -12,7 +11,6 @@ describe HomeController do
   end
 
   describe "GET about" do
-    render_views
     it "renders home page and assigns @homepage" do
       get :about
 

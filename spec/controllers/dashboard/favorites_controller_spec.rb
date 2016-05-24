@@ -2,8 +2,6 @@ require "rails_helper"
 
 describe Dashboard::FavoritesController do
   describe "GET #index" do
-    render_views
-
     it "returns user's favorites" do
       user = create(:user)
       sign_in(user)
