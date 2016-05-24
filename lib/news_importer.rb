@@ -1,16 +1,16 @@
+# imports news from Yander Rss Feed
+# frozen_string_literal: true
 class NewsImporter
-  def initialize
-    @user_id = 181 # ez
-  end
+  USER_ID = 181 # ez
 
-  def import
+  def self.import
     NEWS_CATEGORIES.each do |link|
       xml = Nokogiri::XML(open(link))
       create_post(xml)
     end
   end
 
-  def create_post(xml)
+  def self.create_post(xml)
     xml.xpath("//item").each do |item|
       Post.create(user_id: @user_id,
                   title: item.at("title").text,
@@ -21,7 +21,7 @@ class NewsImporter
     end
   end
 
-  def convert_link(url)
+  def self.convert_link(url)
     url = url.gsub("https://news.yandex.ru/yandsearch?cl4url=", "")
     url = url.gsub("https://news.yandex.ua/yandsearch?cl4url=", "")
     URI.decode(url)
