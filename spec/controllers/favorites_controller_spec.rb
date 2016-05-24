@@ -1,4 +1,3 @@
-# todo rename favorite to save on favorite model
 require "rails_helper"
 
 describe FavoritesController do

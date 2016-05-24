@@ -53,6 +53,15 @@ class User < ActiveRecord::Base
     profile.avatar.url(style)
   end
 
+  def favorite(prms)
+    favorites.where(
+      favorable_id: prms[:favorable_id],
+      favorable_type: prms[:favorable_type],
+      favorite: prms[:favorite],
+      hidden: prms[:hidden]
+    ).first
+  end
+
   private
 
   def send_emails
