@@ -6,8 +6,7 @@ feature "user browses partner" do
     create :partner, user: user
 
     visit dashboard_partners_path
-    click_on "Удалить"
-    page.driver.browser.accept_js_confirms
+    accept_confirm { click_on "Удалить" }
 
     expect(Partner.count).to eq 0
   end

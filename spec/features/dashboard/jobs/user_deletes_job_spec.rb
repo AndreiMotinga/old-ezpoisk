@@ -6,8 +6,7 @@ feature "user deletes job" do
     job = create :job, user: user
 
     visit edit_dashboard_job_path(job)
-    click_on "Удалить"
-    page.driver.browser.accept_js_confirms
+    accept_confirm { click_link("Удалить") }
 
     expect(Job.count).to eq 0
   end
