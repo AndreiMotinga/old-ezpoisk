@@ -6,4 +6,6 @@ class Favorite < ActiveRecord::Base
   validates :user, presence: true
   validates :favorable_id, presence: true
   validates :favorable_type, presence: true
+
+  scope :saved, -> { where(saved: true) }
 end
