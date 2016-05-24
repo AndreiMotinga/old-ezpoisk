@@ -8,6 +8,7 @@ class Dashboard::FavoritesController < ApplicationController
   private
 
   def favorite_posts
-    current_user.favorites.where(favorite: true).map { |f| f.favorable}
+    # todo create saved scope
+    current_user.favorites.where(saved: true).map { |f| f.favorable}
   end
 end

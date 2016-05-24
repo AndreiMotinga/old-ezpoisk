@@ -38,7 +38,7 @@ module ViewHelpers
 
   def favorite?(user)
     return false unless user
-    favorites.where(user_id: user.id, favorite: true).exists?
+    favorites.where(user_id: user.id, saved: true).exists?
   end
 
   def user_hidden?(user)

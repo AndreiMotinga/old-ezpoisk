@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     favorites.where(
       favorable_id: prms[:favorable_id],
       favorable_type: prms[:favorable_type],
-      favorite: prms[:favorite],
+      saved: prms[:saved],
       hidden: prms[:hidden]
     ).first
   end

@@ -14,7 +14,7 @@ class FavoritesController < ApplicationController
 
   def favorite_params
     params.require(:favorite).permit(
-      :favorable_id, :favorable_type, :favorite, :hidden
+      :favorable_id, :favorable_type, :saved, :hidden
     )
   end
 end

@@ -28,7 +28,7 @@ feature "User favors re_private", js: true do
     Favorite.create(user_id: user.id,
                     favorable_id: re_private.id,
                     favorable_type: re_private.class.to_s,
-                    favorite: true)
+                    saved: true)
 
     visit re_privates_path
     page.find(".favor").click

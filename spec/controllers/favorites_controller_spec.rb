@@ -24,14 +24,12 @@ describe FavoritesController do
           user = create(:user)
           sign_in(user)
           re_private = create(:re_private)
-          create(
-            :favorite,
-            user_id: user.id,
-            favorable_id: re_private.id,
-            favorable_type: re_private.class.to_s,
-            favorite: true,
-            hidden: false
-          )
+          create(:favorite,
+                 user_id: user.id,
+                 favorable_id: re_private.id,
+                 favorable_type: re_private.class.to_s,
+                 saved: true,
+                 hidden: false)
 
           post :create, favorite: favorite_attrs(re_private)
           result = user.favorites.count
@@ -74,13 +72,13 @@ describe FavoritesController do
             user_id: user.id,
             favorable_id: re_private.id,
             favorable_type: re_private.class.to_s,
-            favorite: false,
+            saved: false,
             hidden: true
           )
           attrs = {
             favorable_id: re_private.id,
             favorable_type: re_private.class,
-            favorite: false,
+            saved: false,
             hidden: true
           }
 
@@ -97,7 +95,7 @@ describe FavoritesController do
     {
       favorable_id: record.id,
       favorable_type: record.class,
-      favorite: true,
+      saved: true,
       hidden: false
     }
   end

@@ -40,7 +40,7 @@ $(document).ready(function(){
         favorite: {
           "favorable_id": $(el).data("id"),
           "favorable_type": $(el).data("type"),
-          "favorite": true,
+          "saved": true,
           "hidden": false
         }
       }
@@ -60,7 +60,7 @@ $(document).ready(function(){
         favorite : {
           "favorable_id": $(el).data("id"),
           "favorable_type": $(el).data("type"),
-          "favorite": false,
+          "saved": false,
           "hidden": true
         }
       }

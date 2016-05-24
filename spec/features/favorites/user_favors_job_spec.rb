@@ -28,7 +28,7 @@ feature "User favors job", js: true do
     Favorite.create(user_id: user.id,
                     favorable_id: job.id,
                     favorable_type: job.class.to_s,
-                    favorite: true)
+                    saved: true)
 
     visit jobs_path
     page.find(".favor").click

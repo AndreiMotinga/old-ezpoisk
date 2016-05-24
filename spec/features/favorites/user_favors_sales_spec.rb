@@ -28,12 +28,13 @@ feature "User favors sales", js: true do
     Favorite.create(user_id: user.id,
                     favorable_id: sale.id,
                     favorable_type: sale.class.to_s,
-                    favorite: true)
+                    saved: true,
+                    hidden: false)
 
     visit sales_path
     page.find(".favor").click
     wait_for_ajax
 
-    expect(Favorite.where(favorite: true).size).to eq 0
+    expect(Favorite.where(saved: true).size).to eq 0
   end
 end
