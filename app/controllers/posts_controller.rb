@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post.update_column(:impressions_count, @post.impressions_count + 1)
+    @post.increment!(:impressions_count)
     @questions = Question.order("updated_at desc").limit(10)
   end
 

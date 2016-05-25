@@ -2,23 +2,27 @@ require "rails_helper"
 
 describe PostsController do
   describe "GET #index" do
-    render_views
     it "assigns @posts" do
-      first = create :post
-      second = create :post
+      2.times { create :post }
+
       get :index
-      expect(assigns(:posts)).to eq([second, first])
+      result = Post.all
+
+      expect(result.size).to eq 2
     end
   end
 
   describe "GET #show" do
-    render_views
     it "assings @post" do
-      post = create :post
+      post = double(:post, slug: "foo-bar")
+      allow(Post).to receive(:find).with(post.slug).and_return(post)
+      allow(post).to receive(:increment!).with(:impressions_count)
 
       get :show, id: post.slug
 
       expect(assigns(:post)).to eq post
+      expect(Post).to have_received(:find).with(post.slug)
+      expect(post).to have_received(:increment!).with(:impressions_count)
     end
   end
 end
