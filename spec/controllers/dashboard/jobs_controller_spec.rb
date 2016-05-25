@@ -1,7 +1,10 @@
 require "rails_helper"
 
 describe Dashboard::JobsController do
-  before { sign_in(@user = create(:user)) }
+  before do
+    @user = create(:user)
+    sign_in(@user)
+  end
 
   describe "GET #new" do
     it "renders the new template and assigns @job" do
@@ -15,7 +18,6 @@ describe Dashboard::JobsController do
   describe "GET #edit" do
     it "only shows record that belongs to user" do
       job = create :job
-      create :job, user: @user
 
       expect { get :edit, id: job.id }
         .to raise_exception(ActiveRecord::RecordNotFound)

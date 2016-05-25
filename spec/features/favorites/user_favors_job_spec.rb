@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User favors job", js: true do
   scenario "user is not logged in" do
-    create :job, :active
+    create :job
 
     visit jobs_path
     page.find(".favor").click
@@ -13,7 +13,7 @@ feature "User favors job", js: true do
 
   scenario "creates favorite when user is logged in", js: true do
     create_and_login_user
-    create :job, :active
+    create :job
 
     visit jobs_path
     page.find(".favor").click
@@ -24,7 +24,7 @@ feature "User favors job", js: true do
 
   scenario "destroys favorite when user is logged in", js: true do
     user = create_and_login_user
-    job = create :job, :active
+    job = create :job
     Favorite.create(user_id: user.id,
                     favorable_id: job.id,
                     favorable_type: job.class.to_s,

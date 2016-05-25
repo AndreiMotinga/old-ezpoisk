@@ -3,7 +3,7 @@ require "rails_helper"
 describe JobsController do
   describe "GET #index" do
     it "renders the index template and assigns @jobs" do
-      2.times { create :job, :active }
+      create_pair(:job)
 
       get :index
 
@@ -12,7 +12,7 @@ describe JobsController do
     end
 
     it "return only active models" do
-      2.times { create :job, :active }
+      create_pair(:job, active: true)
       create :job, active: false
 
       get :index
@@ -22,8 +22,8 @@ describe JobsController do
 
     describe "#filter" do
       it "filters by state_id" do
-        2.times { create :job, :active, state_id: 1 }
-        create :job, :active,  state_id: 32
+        create_pair(:job, state_id: 1)
+        create :job,  state_id: 32
 
         get :index, state_id: 32
 
@@ -31,9 +31,9 @@ describe JobsController do
       end
 
       it "filters by city_id" do
-        2.times { create :job, :active, city_id: 18_030 }
-        create :job, :active,  city_id: 18_031
-        create :job, :active, city_id: 18_032
+        create_pair(:job, city_id: 18_030)
+        create :job, city_id: 18_031
+        create :job, city_id: 18_032
 
         get :index, city_id: [18_031, 18_032]
 
@@ -41,8 +41,8 @@ describe JobsController do
       end
 
       it "filters by category" do
-        2.times { create :job, :active, category: JOB_CATEGORIES.first }
-        create :job, :active, category: JOB_CATEGORIES.second
+        create_pair(:job, category: JOB_CATEGORIES.first)
+        create :job, category: JOB_CATEGORIES.second
 
         get :index, category: JOB_CATEGORIES.first
 
@@ -53,13 +53,12 @@ describe JobsController do
 
   describe "GET @show" do
     it "renders the show template and assigns @job if its active" do
-      job = create(:job, :active)
+      job = create(:job)
 
       get :show, id: job.id
 
       expect(response).to render_template(:show)
       expect(assigns(:job)).to eq job
-      expect(flash[:alert]).to be nil
     end
 
     it "redirects to 404 if it's inactive" do

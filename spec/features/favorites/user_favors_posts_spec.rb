@@ -5,7 +5,7 @@ feature "User favors different posts", js: true do
     user = create_and_login_user
     re_private = create :re_private, :active
     re_commercial = create :re_commercial, :active
-    job = create :job, :active
+    job = create :job
     service = create :service
     sale = create :sale, :active
     post = create :post
