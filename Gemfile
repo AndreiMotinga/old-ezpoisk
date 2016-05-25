@@ -102,6 +102,7 @@ group :development do
 end
 
 group :test do
+  gem "fuubar"
   gem "rspec-rails"
   gem "webmock" # stub external connections
   gem "stripe-ruby-mock", :require => 'stripe_mock'

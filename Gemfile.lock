@@ -171,6 +171,9 @@ GEM
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     fspath (2.1.1)
+    fuubar (2.0.0)
+      rspec (~> 3.0)
+      ruby-progressbar (~> 1.4)
     geokit (1.10.0)
     git-version-bump (0.15.1)
     globalid (0.3.6)
@@ -546,6 +549,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   friendly_id
+  fuubar
   geokit-rails!
   gmaps4rails
   guard-livereload (~> 2.4)
