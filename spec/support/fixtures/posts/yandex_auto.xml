@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Яндекс.Новости: Авто</title>
+    <link>https://news.yandex.ru/auto.html</link>
+    <description>
+      Первая в России служба автоматической обработки и систематизации новостей. Сообщения ведущих российских и мировых СМИ. Обновление в режиме реального времени 24 часа в сутки.
+    </description>
+    <image>
+      <url>https://company.yandex.ru/i/50x23.gif</url>
+      <link>https://news.yandex.ru/auto.html</link>
+      <title>Яндекс.Новости: Авто</title>
+    </image>
+    <lastBuildDate>27 May 2016 20:14:57 +0300</lastBuildDate>
+    <item>
+      <title>Fiat приступил к российским испытаниям седана Tipo</title>
+      <link>https://news.yandex.ru/yandsearch?cl4url=www.autonews.ru%2Fautomarket_news%2Findex.shtml%3F2016%2F05%2F27%2F1831166</link>
+      <description>Fiat приступил к российским испытаниям седана Tipo, который продается на мировом рынке с прошлого года. В распоряжении Autonews.ru оказалась фотография закамуфлированного автомобиля, который был замечен на севере Москвы.</description>
+      <pubDate>27 May 2016 16:09:49 +0300</pubDate>
+      <guid>https://news.yandex.ru/yandsearch?cl4url=www.autonews.ru%2Fautomarket_news%2Findex.shtml%3F2016%2F05%2F27%2F1831166</guid>
+    </item>
+    <item>
+      <title>Появилась информация о новом Mercedes-Benz CLA</title>
+      <link>https://news.yandex.ru/yandsearch?cl4url=avto.kazanfirst.ru%2Ffeed%2F26506</link>
+      <description>Новый CLA будет построен на общей с новым А-классом платформе MFA2, что позволит сделать автомобиль легче и больше. Таким образом модель станет привлекательнее для покупателей с семьей, кроме того, новинка будет выпускаться в кузове универсал Shooting Brake.</description>
+      <pubDate>27 May 2016 17:01:42 +0300</pubDate>
+      <guid>https://news.yandex.ru/yandsearch?cl4url=avto.kazanfirst.ru%2Ffeed%2F26506</guid>
+    </item>
+  </channel>
+</rss>
