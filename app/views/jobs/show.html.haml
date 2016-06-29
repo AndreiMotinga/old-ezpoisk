@@ -8,10 +8,7 @@
   %meta{property: "og:image", content: @job.logo.url(:medium)}/
   %meta{property: "og:description", content: strip_tags(@job.description).truncate(200)}/
 
-- content_for :secondary_navbar do
-  = render "shared/navbars/ezjob"
-- content_for(:side) do
-  = render "shared/show/contacts", record: @job
+= content_for :sidebar, render("shared/show/contacts", record: @job)
 
 .col-xs-12
   = render @job
@@ -22,5 +19,8 @@
 
 .col-xs-12
   = render 'shared/show/map', record: @job
+
+.visible-xs
+  = render "shared/show/contacts", record: @job
 
 = render "shared/partners/bottom"

@@ -1,5 +1,4 @@
 class ReCommercialsController < ApplicationController
-  before_action :set_questions, only: :index
   before_action :set_partners, only: :index
 
   def index
@@ -11,10 +10,6 @@ class ReCommercialsController < ApplicationController
   end
 
   private
-
-  def set_questions
-    @questions = Question.tagged_with("недвижимость").limit(10)
-  end
 
   def set_partners
     @partner_ads = PartnerAds.new("Коммерческая")

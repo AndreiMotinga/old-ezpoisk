@@ -1,0 +1,57 @@
+.modal.fade.session#new_session_modal role="dialog" tabindex="-1"
+  .modal-dialog.modal-sm
+    .modal-content
+
+      ul.nav.nav-tabs.text-center role="tablist"
+        li.active role="presentation"
+          a aria-controls="sign_in" data-toggle="tab" href="#sign_in" role="tab"
+            h4 Вход
+        li role="presentation"
+          a aria-controls="sign_up" data-toggle="tab" href="#sign_up" role="tab"
+            h4 Регистрация
+
+      .modal-body
+        - if notice
+          p.alert.alert-success= notice
+        - if alert
+          p.alert.alert-danger= alert
+        - if controller_name == "sessions" || controller_name == "registrations"
+          = devise_error_messages!
+
+        .tab-content
+          #sign_in.tab-pane.active role="tabpanel"
+            .row.text-center
+              ul.list-inline.social-buttons
+                li
+                  = link_to user_omniauth_authorize_path(:facebook), class: "facebook-bg" do
+                    i.fa.fa-facebook
+                li
+                  = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-bg" do
+                    i.fa.fa-google
+                li
+                  = link_to user_omniauth_authorize_path(:vkontakte), class: "vk-bg" do
+                    i.fa.fa-vk
+            hr/
+            = bootstrap_form_for(:user, :url => session_path(:user)) do |f|
+              = f.email_field :email, placeholder: "Email", hide_label: true
+              = f.password_field :password, placeholder: "Пароль", hide_label: true
+              = f.check_box :remember_me, label: "Запомнить", label_class: 'text-muted'
+
+              = f.submit "Войти", class: "btn btn-lg btn-block btn-blue"
+              - unless controller_name == "sessions" || controller_name == "registrations"
+                button.btn.btn-lg.btn-block.btn-blue aria-label="Close" data-dismiss="modal" type="button" Закрыть
+
+
+              - else
+                = link_to "Закрыть", root_path, class: "btn btn-lg btn-block btn-blue"
+
+            br/
+            = render "devise/shared/links"
+          /!/ sign_in
+          #sign_up.tab-pane role="tabpanel"
+            = bootstrap_form_for(:user, :url => registration_path(:user)) do |f|
+              div
+                = f.email_field :email, required: true, placeholder: "Email", hide_label: true
+                = f.password_field :password, required: true, placeholder: "Password", hide_label: true
+              div
+                = f.submit "Вливайся !!!", class: "btn btn-lg btn-block btn-blue"

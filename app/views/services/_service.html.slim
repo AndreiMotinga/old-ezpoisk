@@ -1,0 +1,31 @@
+.row.white-block class=("user-hidden" if service.user_hidden?(current_user)) data-hidden=service.id
+  .listing
+    .col-xs-4.logo-js
+      = link_to service_path(service) do
+        = image_tag service.logo.url(:medium), alt: service.title, class: "img-responsive center-block"
+
+    .col-xs-8
+      / line 1
+      h5.title.visible-xs= link_to service.title, service_path(service)
+      h4.title.hidden-xs= link_to service.title, service_path(service)
+
+      /line 2
+      .hidden-xs
+        - if service.street?
+          span= service.street
+          hr.post-devider/
+
+      /line 3
+      span.glyphicon.glyphicon-earphone
+      span.company-phone= " " + service.phone
+      hr.post-devider/
+
+      / line 4
+      .hidden-xs
+        - if service.try(:site).present?
+          strong= link_to service.site, service.site_link, target: "_blank"
+          hr.post-devider/
+
+      / line 5
+      .favor-links.pull-right= render "shared/favor_links", record: service
+      span.hidden-xs= time_ago_in_words service.updated_at

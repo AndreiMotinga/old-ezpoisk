@@ -1,9 +1,10 @@
 %h3= @answer.question_title
+%br
 = bootstrap_form_for @answer do |f|
   = hidden_field_tag 'answer[question_id]', @answer.question.id
   .field= f.text_area :text, label: "Ваш ответ", class: "summernote"
 
   %br/
   .actions
-    = f.submit 'Сохранить', class: "btn btn-success"
+    = f.submit 'Сохранить', class: "btn mobile-btn"
 %br/

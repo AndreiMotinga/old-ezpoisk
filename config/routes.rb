@@ -64,14 +64,12 @@ Rails.application.routes.draw do
   end
 
   resources :sales, only: [:index, :show], path: :ezsale
-  resources :services, only: [:index, :show], path: :ezservice do
-    get "all", on: :collection
-  end
-  resources :re_agencies, only: [:index, :show]
-  resources :re_finances, only: [:index, :show]
+  resources :services, only: [:index, :show], path: :ezservice
+  resources :re_agencies, only: [:index]
+  resources :re_finances, only: [:index]
   resources :re_privates, only: [:index, :show]
   resources :re_commercials, only: [:index, :show]
-  resources :job_agencies, only: [:index, :show]
+  resources :job_agencies, only: [:index]
   resources :jobs, only: [:index, :show]
 
   authenticate :user, ->(u) { u.admin? } do
@@ -89,8 +87,6 @@ Rails.application.routes.draw do
   end
   resources :posts, only: [:index, :show]
 
-  get "about", to: "home#about"
-  get "really", to: "home#really"
   get "htmltagstrippingtool", to: "htmltagstrippingtool#index"
   root to: "home#index"
 end

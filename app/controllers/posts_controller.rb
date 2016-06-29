@@ -14,12 +14,10 @@ class PostsController < ApplicationController
   def index
     page = params[:page]
     @posts = Post.visible.by_keyword(params[:keyword]).desc.page(page).per(10)
-    @questions = Question.order("updated_at desc").page(page).per(25)
   end
 
   def show
-    @post.increment!(:impressions_count)
-    @questions = Question.order("updated_at desc").limit(10)
+    @post.update_column(:impressions_count, @post.impressions_count + 1)
   end
 
   def edit

@@ -10,13 +10,3 @@ feature "User browses job_agencies" do
     expect(page).to have_content ja.title
   end
 end
-
-feature "User browses job_agency" do
-  scenario "success" do
-    ja = create :service, :job_agency
-
-    visit job_agency_path(ja)
-
-    expect(page).to have_content ja.title
-  end
-end

@@ -4,10 +4,12 @@ FactoryGirl.define do
     password "password"
     password_confirmation "password"
 
-    association :profile
-
     trait :admin do
       admin true
+    end
+
+    after(:create) do |user|
+      create(:profile, user: user)
     end
   end
 end

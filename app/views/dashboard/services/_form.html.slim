@@ -1,0 +1,37 @@
+= bootstrap_form_for([:dashboard, @service]) do |f|
+  = form_state_select(f)
+  = form_city_select(f, @service)
+  = f.text_field :street, label: 'Улица *'
+  hr.white-hr
+
+  = f.text_field :title, label: '* Заголовок / Название'
+  = f.select :category,
+              SERVICE_CATEGORIES.keys,
+              { include_blank: true, label: '* Раздел' },
+              class: "category-select"
+  - if @service.category
+    = f.select :subcategory,
+               SERVICE_CATEGORIES,
+               { include_blank: true , label: '* Категория' },
+               class: "subcategory-select"
+  - else
+    = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
+  hr.white-hr
+
+  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  hr.white-hr
+
+  = f.text_field :phone, label: '* Телефон'
+  = f.text_field :fax, label: 'Факс'
+  = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
+  = f.email_field :email
+  = f.check_box :active, label: "Активно *"
+  hr.white-hr
+
+  = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+  - unless @service.new_record?
+    = link_to "Удалить",
+              dashboard_service_path(@service),
+              method: :delete,
+              data: { confirm: I18n.t(:confirm) },
+              class: "btn mobile-btn btn-danger pull-right"

@@ -1,0 +1,58 @@
+.visible-xs
+  div
+
+    /! Nav tabs
+    ul.nav.nav-tabs.mobile-nav-tabs.text-center role="tablist"
+      li.text-center.active role="presentation"
+        a aria-controls="listings" data-toggle="tab" href="#listings" role="tab" Объявления
+      li.text-center role="presentation"
+        - if user_signed_in?
+          a aria-controls="profile" data-toggle="tab" href="#profile" role="tab" Аккаунт
+        - else
+          = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", role: "button", id: "login_link"
+
+    /! Tab panes
+    .tab-content
+      br/
+      #listings.tab-pane.active role="tabpanel"
+        .panel.list-group
+          a.list-group-item.mobile-link[data-parent="#menu" data-target="#real_estate" data-toggle="collapse" href="#"]
+            .pull-right: span.caret
+            | Недвижимость
+          #real_estate.sublinks.collapse
+            = link_to "Агенства", re_agencies_path, class: "list-group-item indented"
+            = link_to "Частная", re_privates_path, class: "list-group-item indented"
+            = link_to "Коммерческая", re_commercials_path, class: "list-group-item indented"
+
+          a.list-group-item.mobile-link[data-parent="#menu" data-target="#jobs" data-toggle="collapse" href="#"]
+            .pull-right
+              span.caret
+            | Работа
+          #jobs.sublinks.collapse
+            = link_to "Агенства", job_agencies_path, class: "list-group-item indented"
+            = link_to "Объявления", jobs_path, class: "list-group-item indented"
+
+          = link_to "Продается", sales_path, class: "list-group-item mobile-link"
+          = link_to "Услуги", services_path, class: "list-group-item mobile-link"
+
+          = link_to posts_path, class: "mobile-link" do
+            li.list-group-item Новости
+          = link_to questions_path, class: "mobile-link" do
+            li.list-group-item Вопросы
+
+      #profile.tab-pane role="tabpanel"
+        - if user_signed_in?
+          ul.list-group
+            = link_to profile_path(current_user.profile) do
+              li.list-group-item.mobile-link Моя страница
+            = link_to dashboard_path do
+              li.list-group-item.mobile-link Мои объявления
+            = link_to dashboard_posts_path do
+              li.list-group-item.mobile-link Мои новости
+            = link_to dashboard_favorites_path do
+              li.list-group-item.mobile-link Избранное
+            = link_to edit_dashboard_profile_path(current_user) do
+              li.list-group-item.mobile-link Мои настройки
+          ul.list-group
+            = link_to main_app.destroy_user_session_path, method: :delete do
+              li.list-group-item.mobile-link Выйти

@@ -1,5 +1,4 @@
 class ServicesController < ApplicationController
-  before_action :set_questions, only: :index
   before_action :set_partners
 
   def all
@@ -16,11 +15,6 @@ class ServicesController < ApplicationController
   end
 
   private
-
-  def set_questions
-    tags = [params[:category], params[:subcategory]]
-    @questions = Question.tagged_with(tags, any: true).limit(10)
-  end
 
   def set_partners
     @partner_ads = PartnerAds.new(params[:subcategory])

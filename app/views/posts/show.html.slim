@@ -1,0 +1,39 @@
+= title("#{@post.title} - ezpoisk")
+= desc("#{@post.text.truncate(160)}")
+- content_for :head do
+  meta property="fb:app_id"      content=ENV["FACEBOOK_APP_ID"]
+  meta property="og:type"        content="article"
+  meta property="og:url"         content=post_url(@post)
+  meta property="og:title"       content=@post.title
+  meta property="og:image"       content=@post.logo_url(:large)
+  meta property="og:description" content=@post.text.truncate(200)
+
+= content_for :mobile_search, render("shared/mobile_search_modal", id: "posts")
+= content_for :sidebar, render("shared/filters", t: "posts")
+
+.col-xs-12
+  .row
+    .white-block
+      h1.news-post-show-title= @post.title
+      = image_tag @post.logo_url(:large), class: "img-responsive center-block news-show-image"
+      br/
+      .news-post-show-text= sanitize @post.text
+
+      span.author
+        strong
+          | автор #{" "}
+          = link_to @post.user.name_to_show, profile_path(@post.user.profile)
+
+  br/
+  .row
+    .col-xs-12
+      = render "shared/social", count: @post.impressions_count
+      - if current_user.try(:admin?)
+        = link_to "Редактировать ", edit_post_path(@post), class: "text-muted"
+
+      .row
+        .col-xs-12
+          .fb-comments data-href=post_url(@post) data-numposts="5"
+  br/
+  br/
+  = render "shared/partners/bottom"

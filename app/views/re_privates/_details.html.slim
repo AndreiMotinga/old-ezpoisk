@@ -1,0 +1,26 @@
+.col-xs-12.white-block
+  - if @re_private.duration?
+    li.list-group-item
+      | Продолжительность
+      span.pull-right #{@re_private.duration}
+  li.list-group-item
+    | Тип обьявления
+    span.pull-right #{@re_private.post_type}
+  li.list-group-item
+    | Цена
+    span.pull-right #{@re_private.price}
+  li.list-group-item
+    | Комиссия
+    span.pull-right #{@re_private.fee ? 'да' : 'нет'}
+  li.list-group-item
+    | Комнаты
+    span.pull-right #{@re_private.rooms}
+  li.list-group-item
+    | Ванные комнаты
+    span.pull-right #{@re_private.baths}
+  li.list-group-item
+    | Площадь
+    span.pull-right #{@re_private.space}
+  li.list-group-item
+    | Подано
+    span.pull-right #{time_ago_in_words @re_private.created_at} назад

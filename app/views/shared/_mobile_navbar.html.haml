@@ -1,0 +1,11 @@
+%nav.navbar.navbar-fixed-top.mobile-navbar.shadow
+  .container-fluid
+    .row
+      .col-xs-4
+        = link_to main_app.root_path do
+          = image_tag "logos/ezpoisk", class: "img-responsive mobile-brand-image"
+      .col-xs-7.pull-right
+        %button.mobile-btn.mobile-btn-new.btn-block.pull-right{ "data-target" => "#new",
+                                                      "data-toggle" => "modal",
+                                                      :role => "button" }
+          + Подать объявление

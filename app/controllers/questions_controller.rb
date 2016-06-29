@@ -5,8 +5,8 @@ class QuestionsController < ApplicationController
 
   def index
     qs = Question.by_keyword(params[:keyword])
-    @questions = qs.order("created_at desc").page(params[:page]).per(10)
-    @unanswered = qs.unanswered.order("created_at desc").limit(10)
+    @questions = qs.order("updated_at desc").page(params[:page]).per(10)
+    @unanswered = qs.unanswered.order("updated_at desc").limit(10)
   end
 
   def tag
@@ -24,8 +24,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.includes(:user, :answers).find(params[:id])
-    @question.increment!(:impressions_count)
-    @question.answers.find_each { |a| a.increment!(:impressions_count) }
+    IncreaseQuestionImpressionsJob.perform_async(@question.id)
   end
 
   def new

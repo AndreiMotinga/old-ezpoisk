@@ -15,4 +15,21 @@
   %meta{property: "business:contact_data:postal_code", content: @service.zip}/
   %meta{property: "business:contact_data:country_name", content: "USA"}/
 
-= render 'shared/show/service', record: @service
+= content_for :sidebar, render("shared/show/contacts", record: @service)
+
+.col-xs-12
+  = render @service
+
+- if @service.description.present?
+  .col-xs-12.white-block.description
+    = sanitize @service.description
+
+.col-xs-12
+  = render "shared/show/map", record: @service
+
+.visible-xs
+  = render "shared/show/contacts", record: @service
+
+%br/
+%br/
+= render "shared/partners/bottom"

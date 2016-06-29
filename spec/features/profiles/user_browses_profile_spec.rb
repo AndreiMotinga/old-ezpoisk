@@ -42,9 +42,8 @@ feature "User browses profile" do
 
   scenario "visits his own profile" do
     user = create_and_login_user
-    profile = create :profile, user: user
 
-    visit profile_path(profile)
-    expect(page).to have_content "Редактировать"
+    visit profile_path(user.profile)
+    expect(page).to have_content "Настройки"
   end
 end

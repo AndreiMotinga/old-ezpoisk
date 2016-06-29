@@ -1,16 +1,12 @@
 = title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
 = desc("EZANSWER - здесь можно находить полезную информацию, спрашить и делиться своим мнением, получать качетвенные ответы на любые вопросы")
 
-- content_for :secondary_navbar do
-  = render "shared/navbars/question"
+= content_for :sidebar, render("questions/sidebar")
 
-- content_for :search do
-  = render "questions/search"
+= render "questions/search_form"
 
-- content_for :side do
-  = render "shared/side/questions", qs: @unanswered
-
-= render @questions
+.col-xs-12
+  = render @questions
 
 .row
   .col-xs-12

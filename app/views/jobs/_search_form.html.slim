@@ -1,0 +1,11 @@
+form.form-horizontal action=jobs_path method="get"
+  = render "shared/search_by_address"
+  hr/
+  = label_tag "Категория", nil
+  = select_tag :category,
+               options_for_select(JOB_CATEGORIES, params[:category]),
+               include_blank: true,
+               class: "form-control"
+
+  hr
+  = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

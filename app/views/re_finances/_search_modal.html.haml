@@ -12,12 +12,7 @@
       .modal-body
         %form.form-horizontal{action: re_finances_path, method: "get"}
           = render "shared/search_by_address"
-
           %hr/
           .row
-            .col-xs-6
-              = link_to "Сбросить",
-                re_agencies_path,
-                class: "btn btn-block mobile-btn"
-            .col-xs-6
+            .col-xs-12
               = submit_tag "Фильтровать", name: nil, class: "btn btn-block mobile-btn"

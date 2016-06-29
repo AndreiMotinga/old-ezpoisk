@@ -1,0 +1,47 @@
+doctype html
+html
+  head
+    = content_for?(:head) ? yield(:head) : ''
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    title= yield(:title)
+    meta charset="UTF-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="description" content="#{yield(:description)}"
+    meta content="68788c457c2622fc" name="yandex-verification"
+
+    = favicon_link_tag "favicon"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  body
+    = render "shared/navbar"
+
+    .container.page-wrap
+      .row
+        = render "shared/partners/top"
+        = yield :profile_cover if content_for?(:profile_cover)
+        /todo 'remove secondary navbar'
+        = yield :secondary_navbar if content_for?(:secondary_navbar)
+        = render "shared/notice" unless devise_controller?
+        .visible-xs= yield :mobile_search if content_for?(:mobile_search)
+
+      .row
+        .hidden-xs.col-sm-4.col-md-3
+          = yield :sidebar
+        .col-sm-8.col-md-6
+          = yield
+        .hidden-xs.hidden-sm.col-md-3
+          /| ads
+
+      .row
+        = yield :partners_bottom if content_for?(:partners_bottom)
+
+    .hidden-xs
+      = render "shared/footer"
+
+    / MODALS & services
+    = render "shared/new_post_modal"
+    = render "shared/new_session_modal"
+    = render "shared/main_sidebar"
+    = render "shared/services"

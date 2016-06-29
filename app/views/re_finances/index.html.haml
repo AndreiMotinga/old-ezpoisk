@@ -1,8 +1,12 @@
 = title("Финансирование Недвижимости в США - ezpoisk")
 = desc("EZPOISK - Финансирование Недвижимости в США, помощь в поиске недвижимости в Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами")
 
-- content_for :secondary_navbar do
-  = render "shared/navbars/ezrealty"
+- content_for :sidebar do
+  = render "re_finances/sidebar"
+
+- content_for :search do
+  = render "re_finances/search"
+
 = render "re_finances/search_modal"
 
 .col-md-8

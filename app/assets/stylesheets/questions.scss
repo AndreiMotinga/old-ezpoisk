@@ -14,9 +14,7 @@
   letter-spacing: -0.5px;
   line-height: 1.25;
   font-weight: bold;
-  margin-top: 5px;
-  // padding-left: 10px;
-  // padding-right: 10px;
+  margin: 5px;
   a {
     text-decoration: none;
     color: #333;
@@ -60,7 +58,7 @@ q.devider {
 
 .tag {
   font-family: Georgia,Times,"Times New Roman",serif;
-  background-color: $grey1;
+  background-color: $body_background_color;
   padding: 1px 10px;
   border-radius: 10px;
   color: black;
@@ -72,5 +70,5 @@ h2.q-title {
   margin-bottom: 0px;
   margin-top: 5px;
   font-family: 'open Sans', arial, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 }

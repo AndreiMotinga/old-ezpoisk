@@ -1,5 +1,4 @@
 class ProfilesController < ApplicationController
-  layout "home"
   before_action :set_profile
 
   def show

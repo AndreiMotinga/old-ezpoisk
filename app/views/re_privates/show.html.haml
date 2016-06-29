@@ -8,30 +8,9 @@
   %meta{property: "og:image", content: @re_private.logo_url}/
   %meta{property: "og:description", content: strip_tags(@re_private.description).truncate(200)}/
 
-- content_for :secondary_navbar do
-  = render "shared/navbars/ezrealty"
-
-- content_for :side do
+- content_for :sidebar do
   = render "shared/show/contacts", record: @re_private
-  .row
-    .col-xs-12.white-block
-      - if @re_private.duration?
-        %li.list-group-item
-          Продолжительность: #{@re_private.duration}
-      %li.list-group-item
-        Тип обьявления: #{@re_private.post_type}
-      %li.list-group-item
-        Цена: #{@re_private.price}
-      %li.list-group-item
-        Комиссия: #{@re_private.fee ? 'да' : 'нет'}
-      %li.list-group-item
-        Комнаты: #{@re_private.rooms}
-      %li.list-group-item
-        Ванные комнаты: #{@re_private.baths}
-      %li.list-group-item
-        Площадь: #{@re_private.space}
-      %li.list-group-item
-        Подано: #{time_ago_in_words @re_private.created_at} назад
+  = render "re_privates/details"
 
 .show
   - if @re_private.pictures.any?
@@ -52,6 +31,11 @@
 
 .col-xs-12
   = render 'shared/show/map', record: @re_private
+
+.visible-xs
+  = render "shared/show/contacts", record: @re_private
+  = render "re_privates/details"
+
 
 .col-xs-12
 = render "shared/partners/bottom"

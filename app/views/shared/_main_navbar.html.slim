@@ -1,0 +1,38 @@
+nav.navbar.navbar-fixed-top.navbar-main.shadow
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed[aria-expanded="false" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"]
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to main_app.root_path do
+        = image_tag "logos/ezpoisk", class: "img-responsive"
+      - unless controller_name == "home"
+        button.hamburger.is-closed data-toggle="offcanvas" type="button"
+          span.hamb-top
+          span.hamb-middle
+          span.hamb-bottom
+          span.hamb-menu MENU
+
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        li= link_to "Подать объявление", "#new", "data-toggle": "modal"
+
+        /! dashboard
+        - if user_signed_in?
+          li.dropdown
+            a.dropdown-toggle.avatar aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              = image_tag current_user.avatar, class: "img-circle"
+              = "#{current_user.name_to_show} "
+              span.caret
+            ul.dropdown-menu
+              li= link_to "Моя страница", profile_path(current_user.profile)
+              li= link_to "Мои объявления", main_app.dashboard_path
+              li= link_to "Мои новости", main_app.dashboard_posts_path
+              li= link_to "Избранное", main_app.dashboard_favorites_path
+              li= link_to "Mои настройки", main_app.edit_dashboard_profile_path(current_user.profile)
+              li.divider role: "separator"
+              li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
+        - else
+          li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"

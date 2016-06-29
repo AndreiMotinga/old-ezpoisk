@@ -1,12 +1,8 @@
 = title("Продажа, Автомобили, Электроника, Одежда, Магазины, Распродажи в США - ezpoisk")
 = desc("EZPOISK - Обьявления о продаже в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
-= render 'sales/search_modal'
-- content_for :secondary_navbar do
-  = render "shared/navbars/sale"
-- content_for :side do
-  = render "shared/side/questions", qs: @questions
-- content_for :search do
-  = render "sales/search"
+
+= content_for :mobile_search, render("shared/mobile_search_modal", id: "sales")
+= content_for :sidebar, render("shared/filters", t: "sales")
 
 .col-xs-12
   = render @sales

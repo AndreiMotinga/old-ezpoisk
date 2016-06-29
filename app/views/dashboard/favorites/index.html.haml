@@ -1,9 +1,0 @@
-- content_for :secondary_navbar do
-  = render "shared/navbars/profile"
-
-.col-xs-12
-  - @favorites.each do |p|
-    = template_for(p)
-
-  .col-xs-12
-    = render "shared/pagination", records: @favorites

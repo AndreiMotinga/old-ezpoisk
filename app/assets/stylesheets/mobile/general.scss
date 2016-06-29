@@ -1,65 +1,49 @@
 // navbar
 .mobile-navbar {
-  background-color: white;
-  #mobile-brand-image {
+  background-color: $white;
+
+  .mobile-brand-image {
+    margin-top: 8px;
     max-width: 110px;
   }
 }
 
-#mobile-brand-image {
-  margin-top: 8px;
-}
-// / navbar
-
 // tabs
-.mobile-nav-tabs > li { width: 33%; }
-.mobile-nav-tabs > li > a{ padding: 5px; }
-// /tabs
+.mobile-nav-tabs > li {
+  width: 50%;
 
-.mobile-secondary {
-  padding-bottom: 10px;
-  border-bottom: 2px solid $grey2;
-  margin-bottom: 5px;
+  a { padding: 5px; }
 }
 
 .mobile-btn {
-  border-radius: 0px;
-  height: 30px;
-  font-size: 12px;
-  padding: 4px 12px;
   background-color: transparent;
-  color: $blue;
   border: 2px solid $blue;
+  border-radius: 0;
+  color: $blue;
+  font-size: 12px;
+  height: 30px;
+  padding: 4px 12px;
 }
-.mobile-btn-new {
-  margin-top: 8px;
-}
+
 
 .mobile-back-btn {
   padding-left: 10px;
   padding-right: 10px;
 }
-.mobile-search {
-  text-align: right;
-}
-.float-right{
-  float: right;
-}
 
-h6.mobile-category {
-  margin-top: 0px;
-}
+.mobile-btn-new { margin-top: 8px; }
+.mobile-search { text-align: right; }
+.float-right { float: right; }
+.indented { padding-left: 30px; }
 
 .mobile-footer {
-  padding-top: 50px;
-  padding-bottom: 50px;
+  background-color: $body_background_color;
   margin-top: 10px;
-  background-color: $grey1;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 .mobile-link {
   color: $grey3;
-  li:active {
-    background-color: $grey1;
-  }
+  li:active { background-color: $body_background_color; }
 }

@@ -1,0 +1,41 @@
+= title("#{@sale.title} #{@sale.state_name} - ezpoisk")
+= desc("EZPOISK - Продается #{@sale.category}, #{@sale.title}, #{@sale.address}")
+
+- content_for :head do
+  meta property="fb:app_id"      content=ENV["FACEBOOK_APP_ID"]
+  meta property="og:type"        content="article"
+  meta property="og:url"         content=sale_url(@sale)
+  meta property="og:title"       content=@sale.title
+  meta property="og:image"       content=@sale.logo_url
+  meta property="og:description" content=strip_tags(@sale.description).truncate(200)
+
+= content_for :mobile_search, render("shared/mobile_search_modal", id: "sales")
+
+- content_for :sidebar do
+  = render "shared/show/contacts", record: @sale
+  = render "sales/details"
+
+- if @sale.pictures.any?
+  .show
+    .white-block
+      ul.pgwSlideshow
+        - @sale.pictures.each do |pic|
+          li
+            = link_to pic.image.url do
+              = image_tag pic.image.url(:large), alt: ""
+
+.col-xs-12
+  = render @sale
+
+- if @sale.description?
+  .col-xs-12.white-block
+    = sanitize @sale.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @sale
+
+.visible-xs
+  = render "shared/show/contacts", record: @sale
+  = render "sales/details"
+
+= render "shared/partners/bottom"

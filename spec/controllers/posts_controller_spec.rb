@@ -14,15 +14,11 @@ describe PostsController do
 
   describe "GET #show" do
     it "assings @post" do
-      post = double(:post, slug: "foo-bar")
-      allow(Post).to receive(:find).with(post.slug).and_return(post)
-      allow(post).to receive(:increment!).with(:impressions_count)
+      post = create(:post)
 
       get :show, id: post.slug
 
       expect(assigns(:post)).to eq post
-      expect(Post).to have_received(:find).with(post.slug)
-      expect(post).to have_received(:increment!).with(:impressions_count)
     end
   end
 end

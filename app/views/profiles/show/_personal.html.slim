@@ -1,0 +1,34 @@
+.white-block
+  .panel.panel-default
+    .panel-heading
+      h4.title= @profile.name || "..."
+    .panel-body
+      .row
+        .col-lg-4
+          = image_tag @profile.avatar.url(:medium), class: "center-block"
+        .col-lg-8
+          p.text.answer= @profile.motto
+          p
+            - if @profile.phone?
+              | phone
+              span.pull-right= @profile.phone
+          p
+            span.pull-right= link_to @profile.site, "http://# @profile.site " if @profile.site?
+            br
+          hr
+          .span.social
+            - if @profile.facebook?
+              = link_to @profile.facebook do
+                i.fa.fa-facebook
+            - if @profile.google?
+              = link_to @profile.google do
+                i.fa.fa-google-plus
+            - if @profile.twitter?
+              = link_to @profile.twitter do
+                i.fa.fa-twitter
+            - if @profile.vk?
+              = link_to @profile.vk do
+                i.fa.fa-vk
+            - if @profile.ok?
+              = link_to @profile.ok do
+                i.fa.fa-odnoklassniki

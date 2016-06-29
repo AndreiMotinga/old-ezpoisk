@@ -1,0 +1,64 @@
+li.dropdown
+  a.dropdown-toggle data-toggle="dropdown" href="#"
+    span.sidebar-icon
+      i.fa.fa-hospital-o
+    = t(:ezrealty)
+    .pull-right
+      span.caret
+  ul.dropdown-menu role="menu"
+    li= link_to t(:agencies), main_app.re_agencies_path
+    li= link_to t(:private), main_app.re_privates_path
+    li= link_to t(:commercial), main_app.re_commercials_path
+    /li= link_to "Финансирование", main_app.re_finances_path
+
+li.dropdown
+  a.dropdown-toggle data-toggle="dropdown" href="#"
+    span.sidebar-icon
+      i.fa.fa-list-ul
+    | Работа
+    .pull-right
+      span.caret
+  ul.dropdown-menu role="menu"
+    li= link_to t(:agencies), main_app.job_agencies_path
+    li= link_to "Объявления", main_app.jobs_path
+
+li.dropdown
+  a.dropdown-toggle data-toggle="dropdown" href="#"
+    span.sidebar-icon
+      i.fa.fa-shopping-bag
+    | Продается
+    .pull-right
+      span.caret
+  ul.dropdown-menu role="menu"
+    - SALE_CATEGORIES.each do |category|
+      li= link_to category, main_app.sales_path(category: category)
+
+li
+  = link_to services_path do
+    span.sidebar-icon
+      i.fa.fa-balance-scale
+    | Услуги
+
+li
+  = link_to main_app.posts_path do
+    span.sidebar-icon
+      i.fa.fa-globe
+    | Новости
+
+li
+  = link_to main_app.questions_path do
+    span.sidebar-icon
+      i.fa.fa-question
+    | Вопросы
+
+li
+  = link_to "http://ezworks.online", target: "_blank" do
+    span.sidebar-icon
+      i.fa.fa-heart
+    | О компании
+
+/li
+/  = link_to dashboard_partners_path do
+/    span.sidebar-icon
+/      i.fa.fa-dollar
+/    | Реклама

@@ -49,10 +49,10 @@ module FormHelper
   end
 
   def within_text_field_param
-    select_tag "geo_scope[within]",
-               options_for_select(DISTANCE, within),
-               include_blank: true,
-               class: "form-control"
+    text_field_tag "geo_scope[within]",
+                   within,
+                   placeholder: "10",
+                   class: "form-control"
   end
 
   def form_state_select(f)

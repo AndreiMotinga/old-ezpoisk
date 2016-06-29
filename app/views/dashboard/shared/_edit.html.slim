@@ -1,0 +1,23 @@
+#pictures-data data-id=record.id data-type=record.class.to_s
+.col-xs-12
+  = template_for(record)
+
+.col-xs-12
+  br
+  .row
+    ul.nav.nav-tabs role="tablist"
+      li.active role="presentation"
+        = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      li role="presentation"
+        = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+
+    br
+    .tab-content
+      #form.tab-pane.fade.in.active role="tabpanel"
+        = render 'form'
+
+      #pictures.tab-pane.fade role="tabpanel"
+        - if record.class.method_defined?(:pictures)
+          = render "dashboard/shared/pictures", record: record
+        - else
+          = render "dashboard/shared/logo", record: record

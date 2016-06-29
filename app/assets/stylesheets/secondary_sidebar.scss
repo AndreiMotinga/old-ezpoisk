@@ -1,0 +1,54 @@
+.home-sidebar-nav {
+  margin: 0 22px;
+
+  li {
+    display: inline-block;
+    line-height: 10px;
+    position: relative;
+    width: 100%;
+
+    a {
+      color: $grey4;
+      display: block;
+      padding: 10px 15px 10px 10px;
+      text-decoration: none;
+    }
+  }
+
+  li.active {
+    a {
+      background-color: $blue;
+      color: $white;
+    }
+  }
+
+  .dropdown-menu {
+    border: 1px solid $body_background_color;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0 0 15px;
+    padding: 0;
+    position: relative;
+    width: 100%;
+
+
+    li > a {
+      line-height: 10px;
+    }
+  }
+
+  .fa {
+    min-width: 25px;
+  }
+}
+
+.home-sidebar-nav li a:hover,
+.home-sidebar-nav li a:active,
+.home-sidebar-nav li a:focus,
+.home-sidebar-nav li.open a:hover,
+.home-sidebar-nav li.open a:active,
+.home-sidebar-nav li.open a:focus {
+  background-color: $orange;
+  color: $white;
+  text-decoration: none;
+}

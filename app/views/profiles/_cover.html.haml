@@ -1,13 +1,1 @@
-= image_tag @profile.cover.url(:large), class: "shadow"
-
-.row
-  .col-sm-12
-    .white-block
-      .nav-center
-        %ul.nav.nav-tabs
-          %li= link_to "Контакты", profile_path(@profile)
-          %li= link_to "Новости", profile_posts_path(@profile)
-          %li= link_to "Объявления", profile_listings_path(@profile)
-          %li= link_to "Ответы", profile_answers_path(@profile)
-          -  if @profile.user == current_user
-            %li= link_to "Редактировать", edit_dashboard_profile_path(@profile)
+= image_tag @profile.cover.url(:large), class: "shadow center-block margin-bottom-10"

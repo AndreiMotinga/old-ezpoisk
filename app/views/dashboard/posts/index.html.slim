@@ -1,0 +1,9 @@
+- content_for :sidebar do
+  foo
+
+.col-xs-12
+  - @posts.each do |post|
+    = render "posts/post", post: post
+
+.col-xs-12
+  = render "shared/pagination", records: @posts

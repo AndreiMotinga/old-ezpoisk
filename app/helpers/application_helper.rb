@@ -29,6 +29,8 @@ module ApplicationHelper
       render "sales/sale", sale: record
     when "Post"
       render "posts/post", post: record
+    when "Question"
+      render "questions/question", question: record
     end
   end
 

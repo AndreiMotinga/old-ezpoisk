@@ -33,6 +33,7 @@ gem "figaro"
 gem "aws-sdk", "< 2.0"
 
 gem "haml-rails"
+gem "slim-rails"
 
 gem "sidekiq"
 gem "sinatra", require: nil
@@ -78,7 +79,7 @@ end
 group :development, :test do
   gem "thin"
   gem "pry-byebug"
-  gem "factory_girl_rails"
+  gem "factory_girl_rails", "~> 4.7"
   gem "faker"
   gem "awesome_print"
   gem "guard-livereload", "~> 2.4", require: false

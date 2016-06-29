@@ -1,0 +1,13 @@
+form.form-horizontal action=services_path method="get"
+  = render "shared/search_by_address"
+  hr/
+
+  = label_tag "Раздел", nil
+  = select_tag :category, service_categories_options, include_blank: true, class: "form-control category-select"
+  br
+
+  = label_tag "Категория", nil
+  = select_tag :subcategory, service_subcategories_options, class: "form-control subcategory-select"
+
+  hr/
+  = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

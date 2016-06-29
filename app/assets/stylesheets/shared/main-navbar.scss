@@ -1,13 +1,26 @@
 .navbar-main {
-  margin-bottom: 0px;
-  background-color: white;
-}
+  background-color: $white;
+  margin-bottom: 0;
 
-.navbar-main .navbar-brand {
-  float: left;
-  font-size: 25px;
-  font-family: "Lucida Grande", Times, serif;
-  font-weight: 900;
+  .navbar-brand {
+    float: left;
+    font-family: "Lucida Grande", Times, serif;
+    font-size: 25px;
+    font-weight: 900;
+  }
+
+  .avatar {
+    // bottom(5) + top(5) + img(40) = navbar height(50)
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+
+    img {
+      display: inline;
+      margin-right: 10px;
+      max-height: 40px;
+    }
+  }
 }
 
 .navbar-nav > li > a {

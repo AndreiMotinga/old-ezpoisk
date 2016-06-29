@@ -1,12 +1,8 @@
 = title("Аренда, продажа коммерческой недвижимости в США - ezpoisk")
 = desc("EZPOISK - Объявления о продаже и аренде коммерческой недвижимости - цены на офисы, склады и магазины в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами и др.")
-= render 're_commercials/search_modal'
-- content_for :secondary_navbar do
-  = render "shared/navbars/ezrealty"
-- content_for :side do
-  = render "shared/side/questions", qs: @questions
-- content_for :search do
-  = render "re_commercials/search"
+
+= content_for :mobile_search, render("shared/mobile_search_modal", id: "re_commercials")
+= content_for :sidebar, render("shared/filters", t: "re_commercials")
 
 .col-xs-12
   = render @re_commercials

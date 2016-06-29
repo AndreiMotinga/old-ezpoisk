@@ -18,6 +18,7 @@ feature "User favors different posts", js: true do
     Favorite.create(user_id: user.id, favorable_id: post.id, favorable_type: post.class.to_s, saved: true)
     visit dashboard_favorites_path
 
-    expect(page).to have_selector('.post-item', count: 6)
+    expect(page).to have_selector('.listing', count: 5)
+    expect(page).to have_selector('.post', count: 1)
   end
 end

@@ -1,23 +1,12 @@
 = title("EZPOISK - Информационный портал русскоговорящих людей в США")
 = desc("EZPOISK (easy poisk) - Портал русскоговорящих людей в Америке. Обьявления, Квартиры, Работа, Адвокаты, Услуги. Полезная информация об иммиграции в США")
-
-.row
-  .visible-xs.visible-sm.col-md-12
-    = render "shared/partners/top"
+- content_for(:sidebar) do
+  = render "home/sidebar"
 
 / DESKTOP
-.hidden-xs
-  .row
-    .col-sm-6.col-lg-4
-      = render "home/users_posts"
-    .col-sm-6.col-lg-8
-      .hidden-sm
-        = render "shared/partners/top"
-      .row
-        .col-md-12.col-lg-6
-          = render "home/questions"
-        .hidden-sm.hidden-md.col-lg-6
-          = render "home/posts"
+.hidden-xs.col-sm-12
+  - @listings.each do |p|
+    = template_for(p)
 
 / MOBILE
 = render "home/mobile_index"

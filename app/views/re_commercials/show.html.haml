@@ -8,22 +8,9 @@
   %meta{property: "og:image", content: @re_commercial.logo_url}/
   %meta{property: "og:description", content: strip_tags(@re_commercial.description).truncate(200)}/
 
-- content_for :secondary_navbar do
-  = render "shared/navbars/ezrealty"
-- content_for :side do
+- content_for :sidebar do
   = render "shared/show/contacts", record: @re_commercial
-  .row
-    .col-xs-12.white-block
-      %li.list-group-item
-        Категория: #{@re_commercial.category}
-      %li.list-group-item
-        Тип обьявления: #{@re_commercial.post_type}
-      %li.list-group-item
-        Цена: #{@re_commercial.price}
-      %li.list-group-item
-        Площадь: #{@re_commercial.space}
-      %li.list-group-item
-        Подано: #{time_ago_in_words @re_commercial.created_at} назад
+  = render "re_commercials/details"
 
 .show
   - if @re_commercial.pictures.any?
@@ -44,6 +31,10 @@
 
 .col-xs-12
   = render 'shared/show/map', record: @re_commercial
+
+.visible-xs
+  = render "shared/show/contacts", record: @re_commercial
+  = render "re_commercials/details"
 
 .col-xs-12
 = render "shared/partners/bottom"

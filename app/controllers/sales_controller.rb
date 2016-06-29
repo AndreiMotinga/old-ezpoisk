@@ -1,6 +1,5 @@
 class SalesController < ApplicationController
   before_action :set_partners
-  before_action :set_questions, only: :index
 
   def index
     sales = Sale.filter(params.slice(:state_id,
@@ -17,11 +16,6 @@ class SalesController < ApplicationController
   end
 
   private
-
-  def set_questions
-    tags = ["шопинг", params[:category]]
-    @questions = Question.tagged_with(tags, any: true).limit(10)
-  end
 
   def set_partners
     @partner_ads = PartnerAds.new(params[:category])

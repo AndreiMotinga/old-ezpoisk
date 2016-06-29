@@ -1,0 +1,49 @@
+= title("#{@question.title} - ezpoisk")
+= desc(strip_tags(@question.text_to_show).truncate(200))
+
+- content_for :head do
+  meta property="fb:app_id"      content=ENV["FACEBOOK_APP_ID"]
+  meta property="og:type"        content="article"
+  meta property="og:url"         content=question_url(@question)
+  meta property="og:title"       content=@question.title
+  meta property="og:image"       content=@question.image
+  meta property="og:description" content=strip_tags(@question.text_to_show).truncate(200)
+
+- content_for :mobile_search do
+  .col-xs-12.search-modal-trigger
+    = link_to "Добавьте свой ответ", new_question_answer_path(@question), class: "btn mobile-btn"
+
+= content_for :sidebar do
+  = link_to "Добавьте свой ответ", new_question_answer_path(@question), class: "btn btn-block mobile-btn margin-bottom-10"
+  = render("questions/sidebar")
+
+= render "questions/search_form"
+
+.col-xs-12.white-block
+  .col-xs-12
+    h4.question-title= @question.title
+    p.text= sanitize @question.text if @question.text?
+    = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
+    = subscription_links
+    = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links" if current_user == @question.user
+    br/
+    br/
+  .col-xs-12
+    = render "shared/social", count: @question.impressions_count
+    br/
+
+  #comments.collapse
+    .fb-comments data-href=question_url(@question) data-numposts="5"
+  p= tag_links(@question)
+br/
+
+/ ANSWERS
+.col-xs-12
+  .row
+    = render "questions/no_answers_message" if @question.answers.empty?
+    = render @question.answers.includes(user: :profile).by_score
+br/
+
+.row
+  .col-xs-12
+    = render "shared/partners/bottom"

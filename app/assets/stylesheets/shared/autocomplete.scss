@@ -1,3 +1,5 @@
+// Question autocomplete styles
+
 .ui-autocomplete {
   position: absolute;
   top: 100%;
@@ -6,9 +8,9 @@
   float: left;
   display: none;
   min-width: 160px;
-  _width: 160px;
+  width: 160px;
   padding: 4px 0;
-  margin: 2px 0 0 0;
+  margin: 2px 0 0;
   list-style: none;
   background-color: #ffffff;
   border-color: #ccc;
@@ -47,24 +49,21 @@
     }
   }
 }
+
 li.ui-menu-item {
-  padding: 10px 20px;
   border-bottom: 1px solid #ddd;
   font-family: Georgia,Times,"Times New Roman",serif;
   font-size: 18px;
+  padding: 10px 20px;
 }
 
 // searched term
 .ui-state-highlight {
-  font-weight: bold;
   color: $blue;
+  font-weight: bold;
 }
 
-li.ui-menu-item:hover {
-  background-color: $blue0;
-}
+li.ui-menu-item:hover { background-color: $blue0; }
 
 //  some weird div on the bottom of the page
-.ui-helper-hidden-accessible {
-  display: none;
-}
+.ui-helper-hidden-accessible { display: none; }

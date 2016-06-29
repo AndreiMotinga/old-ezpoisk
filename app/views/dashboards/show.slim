@@ -1,0 +1,9 @@
+= content_for :mobile_search, render("shared/mobile_search_modal", id: "dashboards")
+= content_for :sidebar, render("shared/filters", t: "dashboards")
+
+.col-xs-12
+  - @users_posts.each do |p|
+    = template_for(p)
+
+.col-xs-12
+  = render "shared/pagination", records: @users_posts

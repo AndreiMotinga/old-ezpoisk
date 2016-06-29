@@ -1,0 +1,29 @@
+.session {
+  min-height: 400px;
+
+  .nav-tabs > li { width: 50%; }
+  ul.social-buttons {
+    margin-bottom: 0;
+
+    li a {
+      // background-color: #222;
+      border-radius: 100%;
+      color: $white;
+      display: block;
+      font-size: 20px;
+      height: 40px;
+      line-height: 40px;
+      outline: none;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all .3s;
+      width: 40px;
+    }
+  }
+
+  .btn-blue {
+    background-color: $brightblue;
+    border-radius: 0;
+    color: $white;
+  }
+}

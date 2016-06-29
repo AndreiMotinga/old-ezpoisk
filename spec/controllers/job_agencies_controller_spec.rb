@@ -37,26 +37,4 @@ describe JobAgenciesController do
       expect(assigns(:job_agencies).size).to eq 2
     end
   end
-
-  describe "GET @show" do
-    it "renders the show template and assigns @job_agency if its active" do
-      job_agency = create(:service, :job_agency)
-
-      get :show, id: job_agency.id
-
-      expect(response).to render_template(:show)
-      expect(assigns(:job_agency)).to eq job_agency
-      expect(flash[:alert]).to be nil
-    end
-
-    # uncomment when services are paid
-    # it "redirects to 404 if it's inactive" do
-    #   job_agency = create(:service, :job_agency, active_until: nil)
-    #
-    #   get :show, id: job_agency.id
-    #
-    #   expect(response).to redirect_to job_agencies_path
-    #   expect(flash[:alert]).to eq I18n.t(:post_not_found)
-    # end
-  end
 end

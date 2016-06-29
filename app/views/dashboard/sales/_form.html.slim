@@ -1,0 +1,30 @@
+= bootstrap_form_for([:dashboard, @sale]) do |f|
+  = form_state_select(f)
+  = form_city_select(f, @sale)
+  = f.text_field :street, label: 'Улица'
+  hr.white-hr
+
+  = f.text_field :title, label: '* Заголовок'
+  = f.select :category, SALE_CATEGORIES, include_blank: true, label: '* Категория'
+  = f.number_field :price, label: 'Цена'
+  hr.white-hr
+
+  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  hr.white-hr
+
+  = f.text_field :phone, label: 'Телефон'
+  = f.email_field :email
+  = f.check_box :active, label: "Активно *"
+
+  = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+  - unless @sale.new_record?
+    = link_to "Удалить",
+              dashboard_sale_path(@sale),
+              method: :delete,
+              data: { confirm: I18n.t(:confirm) },
+              class: "btn mobile-btn btn-danger pull-right"
+
+br
+p
+  strong Активно * - #{" "}
+  = t :active_tooltip

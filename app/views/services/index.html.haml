@@ -1,10 +1,8 @@
 = title("Услуги: Адвокаты, Медицина, Образование, Ремонтные и др. в США - ezpoisk")
 = desc("EZPOISK - Бесплатные обьявления, реклама. Все виды услуг в США. Найти сервис, рекламировать бизнес, получить помощь.")
-= render 'services/search_modal'
-- content_for :side do
-  = render "shared/side/questions", qs: @questions
-- content_for :search do
-  = render "services/search"
+
+= content_for :mobile_search, render("shared/mobile_search_modal", id: "services")
+= content_for :sidebar, render("shared/filters", t: "services")
 
 .col-xs-12
   = render @services
