@@ -1,0 +1,6 @@
+$("[data-id='listings']").append("<%= j render(@posts) %>");
+<% if @posts.next_page %>
+  $(".pagination").replaceWith("<%= j paginate(@posts, :theme => 'twitter-bootstrap-3') %>")
+<% else  %>
+  $(".pagination").remove();
+<% end %>

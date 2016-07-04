@@ -4,7 +4,7 @@
 = content_for :mobile_search, render("shared/mobile_search_modal", id: "posts")
 = content_for :sidebar, render("shared/filters", t: "posts")
 
-.col-xs-12
+.col-xs-12 data-id="listings"
   = render @posts
 
 .row

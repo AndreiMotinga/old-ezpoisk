@@ -1,19 +1,18 @@
 = title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
 = desc("EZANSWER - здесь можно находить полезную информацию, спрашить и делиться своим мнением, получать качетвенные ответы на любые вопросы")
 
--# - content_for :secondary_navbar do
--#   = render "shared/navbars/question"
-
 - content_for :sidebar do
   .white-block#tag_cloud
     .panel.panel-default.home-panel
       .panel-heading
-        Неотвеченные вопросы
+        | Неотвеченные вопросы
       .panel-body
         - tag_cloud Question.unanswered.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
-          %span= link_to "##{tag.name}", unanswered_questions_path(tag: tag.name), class: "tag-in-cloud #{css_class}"
+          span= link_to " ##{tag.name}", unanswered_questions_path(tag: tag.name), class: "tag-in-cloud #{css_class}"
 
-= render @questions
+
+.col-xs-12 data-id="listings"
+  = render @questions
 
 .row
   .col-xs-12
