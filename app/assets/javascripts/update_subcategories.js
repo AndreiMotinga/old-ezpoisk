@@ -5,7 +5,7 @@ $(document).ready(function(){
       type: 'GET',
       dataType: 'script',
       data: {
-        category: $(".category-select :selected").val()
+        category: $(".category-select :selected").last().val()
       }
     });
   });
