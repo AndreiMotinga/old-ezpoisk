@@ -20,22 +20,19 @@
 = render "questions/search_form"
 
 .col-xs-12.white-block
-  .col-xs-12
-    h4.question-title= @question.title
-    p.text= sanitize @question.text if @question.text?
-    = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
-    = subscription_links
-    = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links" if current_user == @question.user
-    br/
-    br/
-  .col-xs-12
-    = render "shared/social", count: @question.impressions_count
-    br/
-
-  #comments.collapse
-    .fb-comments data-href=question_url(@question) data-numposts="5"
-  p= tag_links(@question)
-br/
+  .panel.panel-default
+    .panel-body
+      h4.question-title= @question.title
+      p.text= sanitize @question.text if @question.text?
+      = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
+      = subscription_links
+      = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links" if current_user == @question.user
+      br/
+      br/
+      = render "shared/social", count: @question.impressions_count
+      #comments.collapse
+        .fb-comments data-href=question_url(@question) data-numposts="5"
+      p= tag_links(@question)
 
 / ANSWERS
 .col-xs-12

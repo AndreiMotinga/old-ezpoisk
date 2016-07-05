@@ -6,7 +6,6 @@ class Dashboard::ServicesController < ApplicationController
     @service = Service.new(state_id: current_user.profile_state_id,
                            city_id: current_user.profile_city_id,
                            phone: current_user.profile_phone,
-                           active: true,
                            email: current_user.email)
   end
 
@@ -18,6 +17,7 @@ class Dashboard::ServicesController < ApplicationController
     if @service.save
       SlackNotifierJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")
+      @service.create_entry
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else
@@ -39,6 +39,7 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def destroy
+    @service.cancel
     @service.destroy
     redirect_to dashboard_path, notice: I18n.t(:post_removed)
   end

@@ -18,9 +18,25 @@ class Service < ActiveRecord::Base
   belongs_to :user
   has_many :favorites, as: :favorable, dependent: :destroy
 
+  has_one :stripe_subscription, dependent: :destroy
+  has_one :entry, as: :enterable, dependent: :destroy
+
   scope :re_agencies, -> { where(subcategory: "Агентства Недвижимости") }
   scope :re_finances, -> { where(subcategory: "Финансирование") }
   scope :job_agencies, -> { where(subcategory: "Агентства по Трудоустройству") }
+
+  delegate :active?, to: :stripe_subscription, allow_nil: true
+  delegate :activated?, to: :stripe_subscription, allow_nil: true
+  delegate :active_until, to: :stripe_subscription, allow_nil: true
+  delegate :expired?, to: :stripe_subscription, allow_nil: true
+  delegate :cancelled?, to: :stripe_subscription, allow_nil: true
+  delegate :cancel, to: :stripe_subscription, allow_nil: true
+
+  def self.active
+    joins(:stripe_subscription).where(
+      "stripe_subscriptions.active_until > ?", Date.current
+    )
+  end
 
   has_attached_file(:logo,
                     styles: { medium: ["300x170>", :jpg] },
@@ -39,5 +55,10 @@ class Service < ActiveRecord::Base
 
   def site_link
     site.match(/http/).present? ? site : "http://#{site}"
+  end
+
+  def trial?
+    return false unless stripe_subscription
+    stripe_subscription.status == "trial"
   end
 end

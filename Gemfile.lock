@@ -59,6 +59,10 @@ GEM
       nokogiri (>= 1.4.4)
     babosa (1.0.2)
     bcrypt (3.1.10)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     blankslate (3.1.3)
@@ -488,10 +492,10 @@ GEM
     stripe-rails (0.3.1)
       rails (>= 3)
       stripe
-    stripe-ruby-mock (2.2.0)
+    stripe-ruby-mock (2.2.4)
       dante (>= 0.2.0)
       jimson-temp
-      stripe (>= 1.27.0)
+      stripe (>= 1.31.0, < 1.42)
     summernote-rails (0.8.1.1)
       railties (>= 3.1)
     temple (0.7.7)
@@ -503,6 +507,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.2)
+    timecop (0.8.1)
     timers (4.1.1)
       hitimes
     tzinfo (1.2.2)
@@ -538,6 +543,7 @@ DEPENDENCIES
   awesome_print
   aws-sdk (< 2.0)
   babosa
+  better_errors
   bootstrap-kaminari-views
   bootstrap-sass
   bootstrap_form
@@ -601,11 +607,12 @@ DEPENDENCIES
   slim-rails
   spring (~> 1.7.1)
   spring-commands-rspec
-  stripe-rails
-  stripe-ruby-mock
+  stripe-rails (~> 0.3.1)
+  stripe-ruby-mock (~> 2.2.4)
   summernote-rails
   terminal-notifier-guard
   thin
+  timecop
   uglifier (>= 1.3.0)
   underscore-rails
   web-console

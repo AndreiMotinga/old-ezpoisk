@@ -1,5 +1,5 @@
 class ServicesController < ApplicationController
-  before_action :set_partners
+  # before_action :set_partners
 
   def all
   end

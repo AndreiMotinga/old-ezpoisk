@@ -34,6 +34,11 @@ describe Dashboard::SalesController do
       )
       expect(sale.title).to eq attrs[:title]
       expect(sale.user).to eq @user
+
+      entry = Entry.last
+      expect(Entry.count).to eq 1
+      expect(entry.enterable_id).to eq sale.id
+      expect(entry.enterable_type).to eq sale.class.to_s
     end
   end
 
@@ -68,6 +73,7 @@ describe Dashboard::SalesController do
 
       expect(response).to redirect_to(dashboard_path)
       expect(Sale.count).to be 0
+      expect(Entry.count).to be 0
     end
   end
 end

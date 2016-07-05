@@ -32,7 +32,7 @@ describe Dashboard::RePrivatesController do
   end
 
   describe "POST #create" do
-    it "creates new record" do
+    it "creates new record and entry" do
       attrs = attributes_for(:re_private)
 
       post :create, re_private: attrs
@@ -48,6 +48,11 @@ describe Dashboard::RePrivatesController do
       expect(flash[:notice]).to eq I18n.t(:post_saved)
 
       expect(GeocodeJob.jobs.size).to eq 1
+
+      entry = Entry.last
+      expect(Entry.count).to eq 1
+      expect(entry.enterable_id).to eq re_private.id
+      expect(entry.enterable_type).to eq re_private.class.to_s
     end
 
     it "renders form and displays alert when record isn't saved" do
@@ -79,14 +84,16 @@ describe Dashboard::RePrivatesController do
   end
 
   describe "DELETE #destroy" do
-    it "removes record" do
+    it "removes record and entry" do
       re_private = create(:re_private, user: @user)
+      re_private.create_entry
 
       delete :destroy, id: re_private.id
 
       expect(response).to redirect_to(dashboard_path)
       expect(RePrivate.count).to eq 0
       expect(flash[:notice]).to eq I18n.t(:post_removed)
+      expect(Entry.count).to eq 0
     end
   end
 end

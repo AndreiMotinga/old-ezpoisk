@@ -4,9 +4,15 @@
   = render "home/sidebar"
 
 / DESKTOP
-.hidden-xs.col-sm-12
-  - @listings.each do |p|
-    = template_for(p)
+
+.hidden-xs.col-sm-12 data-id="listings"
+  = render @entries
+
+
+.row
+  .hidden-xs.col-sm-12
+    = render "shared/pagination", records: @entries
+
 
 / MOBILE
 = render "home/mobile_index"

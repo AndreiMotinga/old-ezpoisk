@@ -14,8 +14,20 @@ describe Service do
   it { should belong_to(:user) }
   it { should belong_to(:city) }
   it { should belong_to(:state) }
+  it { should have_one(:stripe_subscription).dependent(:destroy) }
 
   it { should have_many(:favorites).dependent(:destroy) }
+
+  describe ".active" do
+    it "returns path to edit record" do
+      5.times { create :service, :active }
+      create :service
+      # will also create service
+      create :stripe_subscription, active_until: 3.days.ago
+
+      expect(Service.active.count).to eq 5
+    end
+  end
 
   describe "#edit_link" do
     it "returns path to edit record" do

@@ -1,54 +1,46 @@
-.home-sidebar-nav {
-  margin: 0 22px;
+.home-sidebar {
+  .col-xs-12 {
+    padding-right: 0;
+  }
 
-  li {
-    display: inline-block;
-    line-height: 10px;
-    position: relative;
-    width: 100%;
+  .accordion {
+    margin: 0 0 0 22px;
 
-    a {
-      color: $grey4;
-      display: block;
-      padding: 10px 15px 10px 10px;
+    li {
+      background-color: $body_background_color;
+      display: inline-block;
+      line-height: 10px;
+      position: relative;
+      width: 100%;
+
+      a {
+        color: $grey4;
+        display: block;
+        padding: 10px 15px 10px 10px;
+        text-decoration: none;
+      }
+    }
+
+    li.active {
+      a {
+        background-color: $blue;
+        color: $white;
+      }
+    }
+
+    .fa {
+      min-width: 25px;
+    }
+
+    li a:hover,
+    li a:active,
+    li a:focus,
+    li.open a:hover,
+    li.open a:active,
+    li.open a:focus {
+      background-color: $orange;
+      color: $white;
       text-decoration: none;
     }
   }
-
-  li.active {
-    a {
-      background-color: $blue;
-      color: $white;
-    }
-  }
-
-  .dropdown-menu {
-    border: 1px solid $body_background_color;
-    border-radius: 0;
-    box-shadow: none;
-    margin: 0 0 15px;
-    padding: 0;
-    position: relative;
-    width: 100%;
-
-
-    li > a {
-      line-height: 10px;
-    }
-  }
-
-  .fa {
-    min-width: 25px;
-  }
-}
-
-.home-sidebar-nav li a:hover,
-.home-sidebar-nav li a:active,
-.home-sidebar-nav li a:focus,
-.home-sidebar-nav li.open a:hover,
-.home-sidebar-nav li.open a:active,
-.home-sidebar-nav li.open a:focus {
-  background-color: $orange;
-  color: $white;
-  text-decoration: none;
 }

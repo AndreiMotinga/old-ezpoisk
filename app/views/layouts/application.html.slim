@@ -21,8 +21,6 @@ html
       .row
         = render "shared/partners/top"
         = yield :profile_cover if content_for?(:profile_cover)
-        /todo 'remove secondary navbar'
-        = yield :secondary_navbar if content_for?(:secondary_navbar)
         = render "shared/notice" unless devise_controller?
         .visible-xs= yield :mobile_search if content_for?(:mobile_search)
 

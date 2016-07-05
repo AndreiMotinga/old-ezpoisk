@@ -1,8 +1,6 @@
-/ todo remove when definitely not needed
-.hidden-xs
-  #wrapper
-    .overlay
-    /! Sidebar
-    nav#sidebar-wrapper.navbar.navbar-inverse.navbar-fixed-top.shadow role="navigation"
-      ul.nav.sidebar-nav
-        = render "shared/sidebar_links"
+#wrapper
+  .overlay
+  /! Sidebar
+  nav#sidebar-wrapper.navbar.navbar-inverse.navbar-fixed-top.shadow role="navigation"
+    ul.nav.sidebar-nav.accordion
+      = render "shared/sidebar_links"

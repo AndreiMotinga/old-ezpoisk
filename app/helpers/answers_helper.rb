@@ -4,7 +4,7 @@ module AnswersHelper
             upvote_answer_path(answer),
             method: :put,
             remote: true,
-            class: "btn btn-success btn-sm",
+            class: "btn btn-sm mobile-btn",
             id: "answer-upvote-#{answer.id}")
   end
 

@@ -10,8 +10,10 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     if @answer.save
+      # todo ??
       run_notifications
       question.increment!(:answers_count)
+      question.entry.touch
       create_subscription
       redirect_to(question_path(question), notice: I18n.t(:answer_created))
     end

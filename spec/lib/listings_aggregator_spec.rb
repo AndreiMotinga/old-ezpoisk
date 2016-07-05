@@ -30,7 +30,7 @@ describe ListingsAggregator do
   it "filters listings by keyword" do
     user = create :user
     re_p = create :re_private, :active, user: user, street: "keyword"
-    service = create :service, user: user, title: "keyword"
+    service = create :service, :active, user: user, title: "keyword"
     create :re_commercial, :active, user: user
     create :job, user: user
 

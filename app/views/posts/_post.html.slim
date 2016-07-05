@@ -1,23 +1,9 @@
 .row.white-block class=("user-hidden" if post.user_hidden?(current_user)) data-hidden=post.id
   .post
-
-    .hidden-xs.col-sm-12
-      h4.title= link_to post.title, post_path(post)
-
-      div.summary class=(post.image? ? "col-sm-8" : "col-sm-12")
-        p= strip_tags(post.text).truncate(180)
-
-      - if post.image?
-        .col-sm-4.logo-js
-          = link_to post_path(post) do
-            = image_tag post.logo_url, class: "img-responsive center-block",
-                        alt: "Новости комьюнити"
-
-    .visible-xs
-      .thumbnail
-        = link_to post_path(post) do
-          = image_tag post.logo_url, class: "img-responsive center-block",
-                      alt: "Новости комьюнити"
-        .caption
-          h5.title= link_to post.title, post_path(post)
-          p= strip_tags(post.text).truncate(120)
+    .thumbnail
+      = link_to post_path(post) do
+        = image_tag post.logo_url, class: "img-responsive center-block",
+                    alt: "Новости комьюнити"
+      .caption
+        h4.title= link_to post.title, post_path(post)
+        p= strip_tags(post.text).truncate(300)

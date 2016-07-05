@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User browses job_agencies" do
   scenario "success" do
-    ja = create :service, :job_agency
+    ja = create :service, :job_agency, :active
 
     visit job_agencies_path
 

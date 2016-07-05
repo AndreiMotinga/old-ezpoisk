@@ -32,7 +32,7 @@ describe Dashboard::ReCommercialsController do
   end
 
   describe "POST #create" do
-    it "creates new record" do
+    it "creates new record and entry" do
       attrs = attributes_for(:re_commercial)
 
       post :create, re_commercial: attrs
@@ -51,6 +51,11 @@ describe Dashboard::ReCommercialsController do
       expect(re_commercial.city.id).to eq attrs[:city_id]
       expect(re_commercial.state.id).to eq attrs[:state_id]
       expect(re_commercial.user).to eq @user
+
+      entry = Entry.last
+      expect(Entry.count).to eq 1
+      expect(entry.enterable_id).to eq re_commercial.id
+      expect(entry.enterable_type).to eq re_commercial.class.to_s
     end
   end
 
@@ -86,6 +91,7 @@ describe Dashboard::ReCommercialsController do
 
       expect(response).to redirect_to(dashboard_path)
       expect(ReCommercial.count).to be 0
+      expect(Entry.count).to be 0
     end
   end
 end

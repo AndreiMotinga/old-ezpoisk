@@ -36,6 +36,11 @@ describe Dashboard::JobsController do
       )
       expect(job.title).to eq attrs[:title]
       expect(job.user).to eq @user
+
+      entry = Entry.last
+      expect(Entry.count).to eq 1
+      expect(entry.enterable_id).to eq job.id
+      expect(entry.enterable_type).to eq job.class.to_s
     end
   end
 
@@ -70,6 +75,7 @@ describe Dashboard::JobsController do
 
       expect(response).to redirect_to(dashboard_path)
       expect(Job.count).to be 0
+      expect(Entry.count).to be 0
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160629232602) do
+ActiveRecord::Schema.define(version: 20160708011159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20160629232602) do
 
   add_index "cities", ["name"], name: "index_cities_on_name", using: :btree
   add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "enterable_id"
+    t.string   "enterable_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "entries", ["enterable_type", "enterable_id"], name: "index_entries_on_enterable_type_and_enterable_id", using: :btree
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -344,8 +353,6 @@ ActiveRecord::Schema.define(version: 20160629232602) do
     t.string   "slug",              default: ""
     t.string   "fax"
     t.integer  "impressions_count", default: 0
-    t.date     "active_until"
-    t.boolean  "active"
   end
 
   add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree
@@ -358,6 +365,18 @@ ActiveRecord::Schema.define(version: 20160629232602) do
   end
 
   add_index "states", ["abbr"], name: "index_states_on_abbr", unique: true, using: :btree
+
+  create_table "stripe_subscriptions", force: :cascade do |t|
+    t.integer  "service_id"
+    t.string   "customer_id"
+    t.string   "sub_id"
+    t.datetime "active_until"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "status"
+  end
+
+  add_index "stripe_subscriptions", ["service_id"], name: "index_stripe_subscriptions_on_service_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
@@ -458,6 +477,7 @@ ActiveRecord::Schema.define(version: 20160629232602) do
   add_foreign_key "services", "cities"
   add_foreign_key "services", "states"
   add_foreign_key "services", "users"
+  add_foreign_key "stripe_subscriptions", "services"
   add_foreign_key "subscriptions", "questions"
   add_foreign_key "subscriptions", "users"
 end

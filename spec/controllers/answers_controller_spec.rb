@@ -2,9 +2,10 @@ require "rails_helper"
 
 describe AnswersController do
   describe "POST #create" do
-    it "creates answer" do
+    it "creates answer and touches entry" do
       sign_in(@user = create(:user))
-      question = create :question
+      question = create :question, updated_at: 1.month.ago
+      entry = question.create_entry(updated_at: question.updated_at)
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
@@ -14,11 +15,15 @@ describe AnswersController do
       expect(response).to redirect_to(question)
       expect(answer.text).to eq attrs[:text]
       expect(answer.user).to eq @user
+
+      entry.reload
+      expect(entry.updated_at).to eq Time.zone.now
     end
 
     it "subscribes answer's author for answer's question" do
       sign_in(@user = create(:user))
       question = create :question
+      question.create_entry
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 

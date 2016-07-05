@@ -13,7 +13,9 @@
 = content_for :mobile_search, render("shared/mobile_search_modal", id: "profiles")
 - content_for :sidebar, render("profiles/sidebar")
 
-- @answers.each do |answer|
-  = render "profiles/answer", answer: answer
+
+.col-xs-12 data-id="listings"
+  - @answers.each do |answer|
+    = render "profiles/answer", answer: answer
 
 = render "shared/pagination", records: @answers

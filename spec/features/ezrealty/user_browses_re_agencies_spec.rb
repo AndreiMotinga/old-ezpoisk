@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User browses re_agencies" do
   scenario "success" do
-    re_agency = create :service, :re_agency
+    re_agency = create :service, :re_agency, :active
 
     visit re_agencies_path
 

@@ -18,6 +18,7 @@ class Dashboard::JobsController < ApplicationController
     if @job.save
       SlackNotifierJob.perform_async(@job.id, "Job")
       GeocodeJob.perform_async(@job.id, "Job")
+      @job.create_entry
       redirect_to edit_dashboard_job_path(@job), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)

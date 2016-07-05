@@ -9,7 +9,7 @@ end
 
 feature "User browses service" do
   scenario "success" do
-    s = create :service
+    s = create :service, :active
 
     visit service_path(s)
 

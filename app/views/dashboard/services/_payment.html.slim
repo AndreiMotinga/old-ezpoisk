@@ -1,0 +1,22 @@
+- if !@service.stripe_subscription || @service.expired? || @service.trial?
+  = render "dashboard/services/payment/form"
+
+- elsif @service.activated?
+  .well.well-lg
+    p Объявление активно до #{@service.active_until.strftime("%d %B %Y")}.
+    p Следующий платеж будет произведен автоматически.
+    br
+    p
+      = link_to "Отменить подписку ",
+                stripe_subscription_path(@service.stripe_subscription),
+                method: :delete,
+                data: { confirm: "Вы уверены?" }
+
+- elsif @service.cancelled?
+  p Объявление активно до #{@service.active_until.strftime("%d %B %Y")}.
+  p Подписка отменена.
+  br
+  p
+    = link_to("Активировать подписку",
+              stripe_subscription_path(@service.stripe_subscription),
+              method: :put)

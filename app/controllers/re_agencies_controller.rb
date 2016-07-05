@@ -1,5 +1,5 @@
 class ReAgenciesController < ApplicationController
-  before_action :set_partners, only: :index
+  # before_action :set_partners, only: :index
 
   def index
     @re_agencies = Service.re_agencies.filter(

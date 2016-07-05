@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :jobs, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy
+  has_many :stripe_subscriptions, through: :services
   has_many :posts, dependent: :destroy
   has_many :pictures, dependent: :destroy
   has_many :questions

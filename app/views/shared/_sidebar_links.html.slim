@@ -1,58 +1,63 @@
-li.dropdown
-  a.dropdown-toggle data-toggle="dropdown" href="#"
+ul.list-group.panel
+  a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav"
     span.sidebar-icon
       i.fa.fa-hospital-o
     = t(:ezrealty)
     .pull-right
       span.caret
-  ul.dropdown-menu role="menu"
+  #realty-nav.collapse
     li= link_to t(:agencies), main_app.re_agencies_path
     li= link_to t(:private), main_app.re_privates_path
     li= link_to t(:commercial), main_app.re_commercials_path
     /li= link_to "Финансирование", main_app.re_finances_path
 
-li.dropdown
-  a.dropdown-toggle data-toggle="dropdown" href="#"
+  a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#jobs-nav"
     span.sidebar-icon
       i.fa.fa-list-ul
     | Работа
     .pull-right
       span.caret
-  ul.dropdown-menu role="menu"
+  #jobs-nav.collapse
     li= link_to t(:agencies), main_app.job_agencies_path
     li= link_to "Объявления", main_app.jobs_path
 
-li.dropdown
-  a.dropdown-toggle data-toggle="dropdown" href="#"
+  a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#sales-nav"
     span.sidebar-icon
       i.fa.fa-shopping-bag
     | Продается
     .pull-right
       span.caret
-  ul.dropdown-menu role="menu"
+  #sales-nav.collapse
     - SALE_CATEGORIES.each do |category|
       li= link_to category, main_app.sales_path(category: category)
 
-li
-  = link_to services_path do
+  / when you have lots of services, so there aren't empty categories
+  /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#services"
+  /  span.sidebar-icon
+  /    i.fa.fa-shopping-bag
+  /  | Услуги
+  /  .pull-right
+  /    span.caret
+  /#services.collapse
+  /  - SERVICE_CATEGORIES.each do |category|
+  /    li= link_to category[0], main_app.sales_path(category: category[0])
+
+  a.list-group-item href=services_path
     span.sidebar-icon
       i.fa.fa-balance-scale
     | Услуги
 
-li
-  = link_to main_app.posts_path do
+  a.list-group-item href=posts_path
     span.sidebar-icon
       i.fa.fa-globe
     | Новости
 
-li
-  = link_to main_app.questions_path do
+  a.list-group-item href=questions_path
     span.sidebar-icon
       i.fa.fa-question
     | Вопросы
 
-li
-  = link_to "http://ezworks.online", target: "_blank" do
+  a.list-group-item href="http://ezworks.online" target="_blank"
     span.sidebar-icon
       i.fa.fa-heart
     | О компании

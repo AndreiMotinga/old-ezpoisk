@@ -1,0 +1,18 @@
+.panel.panel-danger
+  .panel-heading Внимание
+  .panel-body
+    p
+      | Объявления в разделе “Услуги” являются платными. Для того,
+      | чтобы посетители сайта могли видеть ваше объявление, пожалуйста,
+      = " "
+      = link_to "оплатите его.", "#", id: "outter-payment"
+
+javascript:
+  $(document).ready(function () {
+      $("#outter-payment").on('click', function() {
+        $('.nav-tabs a[href="#payment"]').click();
+        $(".stripe-button-el").click();
+      });
+  });
+
+br

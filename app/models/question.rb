@@ -12,6 +12,8 @@ class Question < ActiveRecord::Base
   scope :by_views, -> { order("impressions_count desc") }
   scope :older, -> (id) { where("id > ?", id) }
 
+  has_one :entry, as: :enterable
+
   def self.by_keyword(keyword)
     return all if keyword.blank?
     keys = convert_keyword(keyword)

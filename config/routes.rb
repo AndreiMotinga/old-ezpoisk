@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :stripe_subscriptions, only: [:create, :update, :destroy]
   resources :favorites, only: [:create]
 
   get "profiles/:id", to: "profiles#show", as: :profile

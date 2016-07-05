@@ -15,12 +15,11 @@ FactoryGirl.define do
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
-    active true
 
     category { category }
     subcategory { subcategory }
 
-    association :user
+    user
 
     trait :re_agency do
       category "Недвижимость"
@@ -36,5 +35,9 @@ FactoryGirl.define do
       category "Работа"
       subcategory "Агентства по Трудоустройству"
     end
+  end
+
+  trait :active do
+    stripe_subscription
   end
 end

@@ -15,6 +15,7 @@ class Sale < ActiveRecord::Base
   belongs_to :user
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :favorites, as: :favorable, dependent: :destroy
+  has_one :entry, as: :enterable, dependent: :destroy
 
   def edit_link
     Rails.application.routes.url_helpers.edit_dashboard_sale_path(self)

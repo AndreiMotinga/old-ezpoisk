@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :set_partners
+  # before_action :set_partners
 
   def index
     sales = Sale.filter(params.slice(:state_id,

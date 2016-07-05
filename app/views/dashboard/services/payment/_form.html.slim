@@ -1,0 +1,12 @@
+= form_for StripeSubscription.new do |f|
+  input type="hidden" name="plan" value="monthly"
+  input type="hidden" name="service_id" value=@service.id
+  script.stripe-button[
+  data-amount="6000"
+  data-email=current_user.email
+  data-description="Monthly Plan"
+  data-image=image_path("logos/ez")
+  data-key=ENV["STRIPE_PUBLISHABLE_KEY"]
+  data-locale="auto"
+  data-name=("EZPOISK CORP")
+  src="https://checkout.stripe.com/checkout.js"]

@@ -47,11 +47,13 @@ RSpec.configure do |config|
   config.before(:each) do
     Sidekiq::Worker.clear_all
     DatabaseCleaner.start
+    Timecop.freeze(Time.now)
   end
 
   config.after(:each) do
     DatabaseCleaner.clean
     ActionMailer::Base.deliveries.clear
     Warden.test_reset!
+    Timecop.return
   end
 end

@@ -25,6 +25,7 @@ class Post < ActiveRecord::Base
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
+  has_one :entry, as: :enterable, dependent: :destroy
 
   def self.by_keyword(keyword)
     return all if keyword.blank?
@@ -45,5 +46,9 @@ class Post < ActiveRecord::Base
 
   def edit_link
     url_helpers.edit_dashboard_post_path(self)
+  end
+
+  def active?
+    true
   end
 end

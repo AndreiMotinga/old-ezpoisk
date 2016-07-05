@@ -34,6 +34,11 @@ describe Dashboard::ServicesController do
       )
       expect(service.title).to eq attrs[:title]
       expect(service.user).to eq @user
+
+      entry = Entry.last
+      expect(Entry.count).to eq 1
+      expect(entry.enterable_id).to eq service.id
+      expect(entry.enterable_type).to eq service.class.to_s
     end
   end
 
@@ -61,13 +66,51 @@ describe Dashboard::ServicesController do
   end
 
   describe "DELETE #destroy" do
-    it "removes record and destroys customer" do
+    it "removes record" do
       service = create(:service, user: @user)
 
       delete :destroy, id: service.id
 
       expect(response).to redirect_to(dashboard_path)
+      expect(flash[:notice]).to eq I18n.t(:post_removed)
       expect(Service.count).to be 0
+      expect(Entry.count).to be 0
+    end
+
+    context "removes subscriptions" do
+      before do
+        @stripe_helper = StripeMock.create_test_helper
+        StripeMock.start
+      end
+      after { StripeMock.stop }
+
+      it "cancels stripe_subscription" do
+        @stripe_helper.create_plan(id: "monthly")
+        service = create :service, user: @user
+        customer = Stripe::Customer.create(
+          source: @stripe_helper.generate_card_token,
+          plan: "monthly"
+        )
+        sub = create(:stripe_subscription,
+                     service: service,
+                     customer_id: customer.id,
+                     sub_id: customer.subscriptions.data[0].id,
+                     active_until: 1.month.from_now,
+                     status: "activated")
+
+        delete :destroy, id: service.id
+
+        expect(response).to redirect_to(dashboard_path)
+        expect(flash[:notice]).to eq I18n.t(:post_removed)
+        expect(Service.count).to be 0
+
+        expect(remote_sub(sub).cancel_at_period_end).to eq true
+      end
     end
   end
+end
+
+def remote_sub(sub)
+  customer = Stripe::Customer.retrieve(sub.customer_id)
+  customer.subscriptions.retrieve(sub.sub_id)
 end

@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_partners, only: :index
+  # before_action :set_partners, only: :index
 
   def index
     @jobs = Job.filter(sliced_params).page(params[:page])

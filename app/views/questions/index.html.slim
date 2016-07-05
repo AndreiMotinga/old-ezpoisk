@@ -9,7 +9,7 @@
         | Неотвеченные вопросы
       .panel-body
         - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
-          span= link_to " ##{tag.name}", unanswered_questions_path(tag: tag.name), class: "tag-in-cloud #{css_class}"
+          span= link_to " ##{tag.name}", "/ezanswer/tag/#{tag.name}", class: "tag-in-cloud #{css_class}"
 
 = render "questions/search_form"
 

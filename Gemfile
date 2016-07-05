@@ -68,7 +68,7 @@ gem "omniauth-vkontakte"
 gem "friendly_id"
 gem "babosa" # handle russian
 
-gem "stripe-rails"
+gem "stripe-rails", "~> 0.3.1"
 
 group :production do
   gem "puma"
@@ -88,7 +88,7 @@ end
 group :development do
   gem "quiet_assets"
   gem "bullet"
-  # gem "better_errors"
+  gem "better_errors"
   gem "meta_request"
   gem "spring-commands-rspec"
   gem "spring", "~> 1.7.1"
@@ -105,12 +105,13 @@ end
 group :test do
   gem "fuubar"
   gem "rspec-rails"
-  gem "webmock" # stub external connections
-  gem "stripe-ruby-mock", :require => 'stripe_mock'
+  gem "webmock"
+  gem "stripe-ruby-mock", "~> 2.2.4", require: "stripe_mock"
   gem "capybara"
   gem "capybara-webkit"
   gem "capybara-select2"
   gem "shoulda-matchers"
   gem "database_cleaner"
   gem "simplecov", require: false
+  gem "timecop"
 end

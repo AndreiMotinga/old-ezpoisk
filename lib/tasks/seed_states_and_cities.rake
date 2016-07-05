@@ -2,7 +2,7 @@ require "csv"
 
 desc "Seeds db with states and cities"
 namespace :db do
-  task seed_states_and_cities: :environment do
+  task load: :environment do
     create_states
     create_cities
     puts "All Done"

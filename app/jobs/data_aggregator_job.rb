@@ -3,7 +3,7 @@ class DataAggregatorJob
   include Sidetiq::Schedulable
 
   recurrence do
-    hourly(4)
+    hourly(12)
   end
 
   def perform

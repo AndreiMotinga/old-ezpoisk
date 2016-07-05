@@ -1,5 +1,5 @@
 class ReFinancesController < ApplicationController
-  before_action :set_partners, only: :index
+  # before_action :set_partners, only: :index
 
   def index
     @re_finances = Service.re_finances.filter(

@@ -1,5 +1,5 @@
 class JobAgenciesController < ApplicationController
-  before_action :set_partners, only: :index
+  # before_action :set_partners, only: :index
 
   def index
     @job_agencies = Service.job_agencies.filter(

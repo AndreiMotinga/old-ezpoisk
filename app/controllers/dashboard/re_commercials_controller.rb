@@ -18,6 +18,7 @@ class Dashboard::ReCommercialsController < ApplicationController
     if @re_commercial.save
       SlackNotifierJob.perform_async(@re_commercial.id, "ReCommercial")
       GeocodeJob.perform_async(@re_commercial.id, "ReCommercial")
+      @re_commercial.create_entry
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
                   notice: I18n.t(:post_saved)
     else

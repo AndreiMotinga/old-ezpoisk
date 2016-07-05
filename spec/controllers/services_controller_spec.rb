@@ -3,7 +3,7 @@ require "rails_helper"
 describe ServicesController do
   describe "GET #index" do
     it "renders the index template and assigns @services" do
-      2.times { create :service }
+      2.times { create :service, :active }
 
       get :index
 
@@ -12,18 +12,18 @@ describe ServicesController do
     end
 
     it "return only active models" do
-      2.times { create :service }
-      create :service, active_until: nil
+      2.times { create :service, :active }
+      create :service
 
       get :index
 
-      expect(assigns(:services).size).to eq 3
+      expect(assigns(:services).size).to eq 2
     end
 
     describe "#filter" do
       it "filters by state_id" do
-        2.times { create :service, state_id: 1 }
-        create :service, state_id: 32
+        2.times { create :service, :active, state_id: 1 }
+        create :service, :active, state_id: 32
 
         get :index, state_id: 32
 
@@ -31,9 +31,9 @@ describe ServicesController do
       end
 
       it "filters by city_id" do
-        2.times { create :service, city_id: 18_030 }
-        create :service, city_id: 18_031
-        create :service, city_id: 18_032
+        2.times { create :service, :active, city_id: 18_030 }
+        create :service, :active, city_id: 18_031
+        create :service, :active, city_id: 18_032
 
         get :index, city_id: [18_031, 18_032]
 
@@ -41,7 +41,7 @@ describe ServicesController do
       end
 
       it "filters by category" do
-        2.times { create :service, category: SERVICE_CATEGORIES.keys.first }
+        2.times { create :service, :active, category: SERVICE_CATEGORIES.keys.first }
         create :service, category: SERVICE_CATEGORIES.keys.second
 
         get :index, category: SERVICE_CATEGORIES.keys.first
@@ -50,7 +50,7 @@ describe ServicesController do
       end
 
       it "filters by subcategory" do
-        2.times { create :service, subcategory: "Салоны красоты" }
+        2.times { create :service, :active, subcategory: "Салоны красоты" }
         create :service, subcategory: "other"
 
         get :index, subcategory: "Салоны красоты"
@@ -62,7 +62,7 @@ describe ServicesController do
 
   describe "GET @show" do
     it "renders the show template and assigns @service if its active" do
-      service = create(:service)
+      service = create(:service, :active)
 
       get :show, id: service.id
 
@@ -71,14 +71,13 @@ describe ServicesController do
       expect(flash[:alert]).to be nil
     end
 
-    # uncomment when services are paid
-    # it "redirects to 404 if it's inactive" do
-    #   service = create(:service, active_until: nil)
-    #
-    #   get :show, id: service.id
-    #
-    #   expect(response).to redirect_to services_path
-    #   expect(flash[:alert]).to eq I18n.t(:post_not_found)
-    # end
+    it "redirects to 404 if it's inactive" do
+      service = create(:service)
+
+      get :show, id: service.id
+
+      expect(response).to redirect_to services_path
+      expect(flash[:alert]).to eq I18n.t(:post_not_found)
+    end
   end
 end

@@ -1,12 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_question, only: [:edit, :update, :destroy]
-  before_action :set_partners, only: [:index, :show, :tag, :unanswered]
+  # before_action :set_partners, only: [:index, :show, :tag, :unanswered]
 
   def index
     qs = Question.by_keyword(params[:keyword])
     @questions = qs.order("updated_at desc").page(params[:page]).per(10)
-    @unanswered = qs.unanswered.order("updated_at desc").limit(10)
   end
 
   def tag
@@ -40,6 +39,7 @@ class QuestionsController < ApplicationController
     if @question.save
       SlackNotifierJob.perform_async(@question.id, "Question")
       Subscription.create(user: current_user, question: @question)
+      @question.create_entry
       redirect_to @question, notice: I18n.t(:q_created)
     else
       render :new
