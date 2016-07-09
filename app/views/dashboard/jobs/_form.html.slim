@@ -9,7 +9,19 @@
   hr.white-hr
 
   = f.text_field :title, label: '* Заголовок'
-  = f.select :category, JOB_CATEGORIES, include_blank: true, label: '* Категория'
+  = f.select :category,
+              JOB_CATEGORIES.keys,
+              { include_blank: true, label: '* Раздел' },
+              class: "category-select",
+              "data-type": "Job"
+
+  - if @job.category
+    = f.select :subcategory,
+               JOB_CATEGORIES,
+               { include_blank: true , label: '* Категория' },
+               class: "subcategory-select"
+  - else
+    = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
   hr.white-hr
 
   = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"

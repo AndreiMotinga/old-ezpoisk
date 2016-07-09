@@ -5,7 +5,10 @@ $(document).ready(function(){
       type: 'GET',
       dataType: 'script',
       data: {
-        category: $(".category-select :selected").last().val()
+        attrs: {
+          type: $(".category-select").data().type,
+          category: $(".category-select :selected").last().val()
+        }
       }
     });
   });

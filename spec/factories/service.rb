@@ -1,6 +1,3 @@
-category = SERVICE_CATEGORIES.keys.sample
-subcategory = SERVICE_CATEGORIES[category].sample
-
 FactoryGirl.define do
   factory :service do
     title { Faker::Name.title }
@@ -16,8 +13,8 @@ FactoryGirl.define do
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
 
-    category { category }
-    subcategory { subcategory }
+    category { SERVICE_CATEGORIES.keys.sample }
+    subcategory { SERVICE_CATEGORIES[category].sample }
 
     user
 

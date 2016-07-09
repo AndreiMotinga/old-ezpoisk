@@ -8,7 +8,8 @@
   = f.select :category,
               SERVICE_CATEGORIES.keys,
               { include_blank: true, label: '* Раздел' },
-              class: "category-select"
+              class: "category-select",
+              "data-type": "Service"
   - if @service.category
     = f.select :subcategory,
                SERVICE_CATEGORIES,

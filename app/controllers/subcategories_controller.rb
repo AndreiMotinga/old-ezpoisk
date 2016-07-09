@@ -1,12 +1,14 @@
 class SubcategoriesController < ApplicationController
   def update_subcategory
-    category = subcategory_params
-    @subcategories = SERVICE_CATEGORIES[category]
+    category = attrs[:category]
+    type = attrs[:type]
+    @subcategories = SERVICE_CATEGORIES[category] if type == "Service"
+    @subcategories = JOB_CATEGORIES[category] if type == "Job"
   end
 
   private
 
-  def subcategory_params
-    params.require(:category).to_sym
+  def attrs
+    params.require(:attrs)
   end
 end

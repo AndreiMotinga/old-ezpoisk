@@ -12,7 +12,8 @@ feature "user updates job" do
     fill_in "Заголовок", with: attrs.title
     fill_in "Телефон", with: attrs.phone
     fill_in "Email", with: attrs.email
-    select(attrs.category, from: "Категория")
+    select(attrs.category, from: "Раздел")
+    select(attrs.subcategory, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     check("Активно")

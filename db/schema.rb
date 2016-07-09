@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160708011159) do
+ActiveRecord::Schema.define(version: 20160709191136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20160708011159) do
     t.integer  "impressions_count", default: 0
     t.string   "slug"
     t.string   "source"
+    t.string   "subcategory"
   end
 
   add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree

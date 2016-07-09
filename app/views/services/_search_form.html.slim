@@ -3,7 +3,7 @@ form.form-horizontal action=services_path method="get"
   hr/
 
   = label_tag "Раздел", nil
-  = select_tag :category, service_categories_options, include_blank: true, class: "form-control category-select"
+  = select_tag :category, service_categories_options, include_blank: true, class: "form-control category-select", "data-type": "Service"
   br
 
   = label_tag "Категория", nil

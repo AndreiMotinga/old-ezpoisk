@@ -33,6 +33,12 @@ module FormHelper
     options_for_select(SERVICE_CATEGORIES[category], params[:subcategory])
   end
 
+  def job_subcategory_options
+    category = params[:category]
+    return unless category.present?
+    options_for_select(JOB_CATEGORIES[category], params[:subcategory])
+  end
+
   def origin
     params[:geo_scope][:origin] if params[:geo_scope].present?
   end

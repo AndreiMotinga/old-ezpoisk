@@ -10,7 +10,8 @@ feature "user creates job" do
     fill_in "Заголовок", with: job.title
     fill_in "Телефон", with: job.phone
     fill_in "Email", with: job.email
-    select(job.category, from: "Категория")
+    select(job.category, from: "Раздел")
+    select(job.subcategory, from: "Категория")
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     check("Активно")

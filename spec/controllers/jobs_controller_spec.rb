@@ -39,15 +39,6 @@ describe JobsController do
 
         expect(assigns(:jobs).size).to eq 2
       end
-
-      it "filters by category" do
-        create_pair(:job, category: JOB_CATEGORIES.first)
-        create :job, category: JOB_CATEGORIES.second
-
-        get :index, category: JOB_CATEGORIES.first
-
-        expect(assigns(:jobs).size).to eq 2
-      end
     end
   end
 

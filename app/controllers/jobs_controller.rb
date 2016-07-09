@@ -12,7 +12,7 @@ class JobsController < ApplicationController
   private
 
   def sliced_params
-    params.slice(:state_id, :city_id, :category, :geo_scope)
+    params.slice(:state_id, :city_id, :category, :subcategory, :geo_scope)
   end
 
   def set_partners

@@ -52,6 +52,6 @@ class Dashboard::JobsController < ApplicationController
   def job_params
     params.require(:job).permit(:title, :phone, :email, :description,
                                 :active, :street, :state_id, :city_id,
-                                :logo, :category, :source)
+                                :logo, :category, :subcategory, :source)
   end
 end
