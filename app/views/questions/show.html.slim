@@ -18,29 +18,8 @@
   = render("questions/sidebar")
 
 = render "questions/search_form"
-
-.col-xs-12.white-block
-  .panel.panel-default
-    .panel-body
-      h4.question-title= @question.title
-      p.text= sanitize @question.text if @question.text?
-      = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
-      = subscription_links
-      = link_to 'редактировать', edit_question_path(@question), class: "text text-muted qa-links" if current_user == @question.user
-      br/
-      br/
-      = render "shared/social", count: @question.impressions_count
-      #comments.collapse
-        .fb-comments data-href=question_url(@question) data-numposts="5"
-      p= tag_links(@question)
+= render "questions/show/question"
 
 / ANSWERS
-.col-xs-12
-  .row
-    = render "questions/no_answers_message" if @question.answers.empty?
-    = render @question.answers.includes(user: :profile).by_score
-br/
-
-.row
-  .col-xs-12
-    = render "shared/partners/bottom"
+= render "questions/no_answers_message" if !@question.has_answer?
+= render @question.answers.includes(user: :profile).by_score

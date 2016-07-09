@@ -3,7 +3,7 @@
 
 .col-xs-12
   - @favorites.each do |p|
-    = template_for(p)
+    = template_for(p.favorable)
 
   .col-xs-12
     = render "shared/pagination", records: @favorites

@@ -1,74 +1,67 @@
-@media (min-width: 992px) { .qa-search { width: 465px; } }
-@media (min-width: 1200px) { .qa-search { width: 665px; } }
+.question {
+  .panel-heading {
+    background-color: $white;
+    border: 0;
+    padding: 10px 15px 0;
+  }
 
-.qa-avatar {
-  padding: 0px;
-  img { margin-left: 5px; }
-}
+  .author {
+    margin: 10px;
 
-#qa-search-mobile {
-  padding: 0px 10px;
-}
+    .name {
+      margin: 0;
+    }
+  }
 
-.question-title {
-  letter-spacing: -0.5px;
-  line-height: 1.25;
-  font-weight: bold;
-  margin: 5px;
-  a {
-    text-decoration: none;
-    color: #333;
+  .title {
+    font-weight: bold;
+    letter-spacing: -.5px;
+    line-height: 1.25;
+    margin: 0 0 10px;
+
+    a {
+      color: #333;
+      text-decoration: none;
+    }
   }
 }
-h3.question-author {
-  font-size: 19px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
 
-.text {
-  font-family: Georgia,Times,"Times New Roman",serif;
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-q.devider {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-// .answer {
-//   background-color: white;
-//   padding-top: 10px;
-//   padding-bottom: 10px;
-//   margin-bottom: 20px;
-// }
 
 #tag_cloud {
   line-height: 18px;
+  margin-bottom: 20px;
+
   .s { font-size: 12px; }
   .m { font-size: 16px; }
   .l { font-size: 20px; }
+
   .tag-in-cloud {
-    font-family: Georgia,Times,"Times New Roman",serif;
     color: $grey3;
+    font-family: Georgia,Times,"Times New Roman",serif;
   }
-  margin-bottom: 20px;
 }
 
-.tag {
-  font-family: Georgia,Times,"Times New Roman",serif;
-  background-color: $body_background_color;
-  padding: 1px 10px;
-  border-radius: 10px;
-  color: black;
-}
-a.tag { text-decoration: none; }
+.tags {
+  margin: 10px 0 0;
 
-// index
-h2.q-title {
-  margin-bottom: 0px;
-  margin-top: 5px;
+  .tag {
+    background-color: $body_background_color;
+    border-radius: 10px;
+    color: $black;
+    font-family: Georgia,Times,"Times New Roman",serif;
+    padding: 1px 10px;
+  }
+
+  a { text-decoration: none; }
+}
+
+.side_question_title {
   font-family: 'open Sans', arial, sans-serif;
   font-size: 14px;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+
+.qa-link {
+  margin: 5px;
 }

@@ -22,7 +22,9 @@
 
 - if @service.description.present?
   .col-xs-12.white-block.description
-    = sanitize @service.description
+    .panel.panel-default
+      .panel-body
+        = sanitize @service.description
 
 .col-xs-12
   = render "shared/show/map", record: @service

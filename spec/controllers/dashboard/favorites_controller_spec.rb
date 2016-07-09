@@ -20,7 +20,7 @@ describe Dashboard::FavoritesController do
       result = assigns(:favorites)
 
       expect(response).to render_template(:index)
-      expect(result).to match [re_private, sale]
+      expect(result.size).to eq 2
     end
   end
 end

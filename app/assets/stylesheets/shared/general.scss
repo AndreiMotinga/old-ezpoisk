@@ -130,18 +130,13 @@ footer {
 
 .my-g-plus { width: 110px; }
 
-.social-share-mobile li { margin-top: 10px; }
-// .social-share iframe { vertical-align: bottom; }
-// .social-share table {
-//   margin-right: 10px;
-//   vertical-align: bottom;
-// display: inline !important;
-// }
-
 .social-share {
   font-size: 1px;
 
-  ul > li { vertical-align: middle; }
+  li {
+    margin-top: 10px;
+    vertical-align: middle;
+  }
 }
 
 .prosmotrov {

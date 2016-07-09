@@ -3,7 +3,8 @@ class HomeController < ApplicationController
 
   def index
     @entries = Entry.includes(:enterable)
-                    .order("updated_at desc").page(params[:page])
+                    .order("updated_at desc")
+                    .page(params[:page])
   end
 
   private

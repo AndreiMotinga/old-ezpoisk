@@ -1,25 +1,23 @@
-.row
-  .col-xs-12.white-block
+.row.white-block
+  .question
     .panel.panel-default
-      .panel-body
-        / line 1  title
-        h4.question-title
+      .panel-heading
+        h4.title
           = link_to question.title, question
-
-        / line 2 user
-        - if question.avatar.present?
-          .hidden-xs.col-sm-1.qa-avatar
-            = link_to profile_path(question.the_answer.user.profile) do
-              = image_tag question.avatar, alt: question.username,  class: "img-responsive img-circle center-block"
-        .col-xs-12.col-sm-11
-          h3.text-muted.question-author= link_to question.username, profile_path(question.profile) if question.the_answer
-          p= "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
-
-        / line 2 question text
-        .col-sm-12
-          p.text
-            = strip_tags(question.text_to_show).truncate(400)
-            - if strip_tags(question.text_to_show).size > 400
-              = link_to " читать дальше", question, target: "_blank"
-        .col-xs-12
-          p= tag_links(question)
+        - if question.has_answer?
+          .row.author
+            .col-xs-3.col-sm-2
+              = link_to profile_path(question.profile) do
+                = image_tag question.avatar, alt: question.username,  class: "img-responsive img-circle center-block"
+            .col-xs-9.col-sm-10
+              /p.text-muted.pull-right
+              /  = question.the_answer.created_at.strftime("%d %B %Y")
+              h4.name= question.username
+              p.text-muted
+                = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
+      .panel-body
+        = strip_tags(question.text_to_show).truncate(380)
+        - if strip_tags(question.text_to_show).size > 380
+          = " "
+          = link_to "дальше", question
+        p.tags= tag_links(question)

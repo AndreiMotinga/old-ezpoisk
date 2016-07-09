@@ -5,7 +5,9 @@ $(document).ready(function() {
       var scrollTop = $(window).scrollTop();
       var bottom = $(document).height() - $(window).height() - 400;
       if(url && scrollTop > bottom) {
-        $(".pagination").text("Fetching more listings...");
+        $(".pagination").html(
+            "<img src=<%= asset_path 'downloading' %> class='img-responsive center-block downloading'>"
+          );
         $.getScript(url);
       }
     });

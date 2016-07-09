@@ -16,4 +16,5 @@
         p
           = strip_tags(post.text).truncate(380)
           - if strip_tags(post.text).size > 380
-            = link_to " читать дальше", post, target: "_blank"
+            = " "
+            = link_to "дальше", post, target: "_blank"

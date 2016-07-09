@@ -27,7 +27,9 @@
 
 - if @re_private.description?
   .col-xs-12.white-block
-    = sanitize @re_private.description
+    .panel.panel-default
+      .panel-body
+        = sanitize @re_private.description
 
 .col-xs-12
   = render 'shared/show/map', record: @re_private

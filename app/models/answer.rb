@@ -4,6 +4,8 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   delegate :title, to: :question, prefix: true
+  delegate :profile, to: :user
+  delegate :name_to_show, to: :user
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
 

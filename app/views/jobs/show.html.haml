@@ -15,7 +15,9 @@
 
 - if @job.description?
   .col-xs-12.white-block
-    = sanitize @job.description
+    .panel.panel-default
+      .panel-body
+        = sanitize @job.description
 
 .col-xs-12
   = render 'shared/show/map', record: @job

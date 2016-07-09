@@ -27,7 +27,9 @@
 
 - if @re_commercial.description?
   .col-xs-12.white-block
-    = sanitize @re_commercial.description
+    .panel.panel-default
+      .panel-body
+        = sanitize @re_commercial.description
 
 .col-xs-12
   = render 'shared/show/map', record: @re_commercial

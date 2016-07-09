@@ -47,3 +47,7 @@
   color: $grey3;
   li:active { background-color: $body_background_color; }
 }
+
+.downloading {
+  max-height: 200px;
+}

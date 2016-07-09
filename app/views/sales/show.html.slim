@@ -29,7 +29,9 @@
 
 - if @sale.description?
   .col-xs-12.white-block
-    = sanitize @sale.description
+    .panel.panel-default
+      .panel-body
+        = sanitize @sale.description
 
 .col-xs-12
   = render 'shared/show/map', record: @sale

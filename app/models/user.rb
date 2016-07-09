@@ -63,10 +63,6 @@ class User < ActiveRecord::Base
     ).first
   end
 
-  def saved_listings
-    favorites.saved.map(&:favorable)
-  end
-
   private
 
   def send_emails
