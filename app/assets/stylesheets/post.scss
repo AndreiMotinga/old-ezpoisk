@@ -1,23 +1,14 @@
 .post {
-  .title {
-    margin: 10px 0 5px;
-    overflow: hidden;
+  .panel-heading {
+    background-color: $white;
+    border: 0;
+  }
 
-    a {
-      color: $black;
-      text-decoration: none;
-      font-family: "Calibre", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  .author {
+    margin: 10px;
+
+    .name {
+      margin: 0;
     }
-  }
-
-  p {
-    overflow: hidden;
-  }
-  .thumbnail {
-    margin: 0;
-  }
-
-  .summary {
-    padding-left: 0;
   }
 }

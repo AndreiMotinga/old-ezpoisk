@@ -13,7 +13,11 @@ class PostsController < ApplicationController
 
   def index
     page = params[:page]
-    @posts = Post.visible.by_keyword(params[:keyword]).desc.page(page).per(10)
+    @posts = Post.includes(:profile)
+                 .visible
+                 .by_keyword(params[:keyword])
+                 .desc
+                 .page(page).per(10)
   end
 
   def show
