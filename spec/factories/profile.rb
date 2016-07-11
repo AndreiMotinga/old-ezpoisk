@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :profile do
-    name { Faker::Name.name }
     phone "1234567890"
     site "ezpoisk.com"
     about "info about"

@@ -6,8 +6,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   has_many :favorites, as: :favorable, dependent: :destroy
-  has_one :profile, through: :user
-  delegate :avatar, to: :profile
+  delegate :avatar, to: :user
 
   has_attached_file(:image,
                     styles: { small: ["158x99#"],

@@ -4,9 +4,9 @@ feature "user updates profile" do
   scenario "user updates contacts", js: true do
     user = create_and_login_user
     profile = user.profile
+    attrs = build(:profile)
 
     visit edit_dashboard_profile_path profile
-    attrs = build(:profile)
     fill_in "Телефон", with: attrs.phone
     fill_in "Ваш сайт", with: attrs.site
     fill_in "Facebook", with: attrs.facebook
@@ -14,7 +14,6 @@ feature "user updates profile" do
     fill_in "Vkontakte", with: attrs.vk
     fill_in "Odnoklassniki", with: attrs.ok
     fill_in "Twitter", with: attrs.twitter
-    fill_in "Ваше имя", with: attrs.name
     fill_in "Ваше лично мотто", with: attrs.motto
     fill_in "Расскажите о себе", with: attrs.about
     fill_in "Расскажите о вашей работе", with: attrs.work
@@ -31,7 +30,6 @@ feature "user updates profile" do
     expect(profile.ok).to eq attrs.ok
     expect(profile.twitter).to eq attrs.twitter
     expect(page).to have_content I18n.t(:profile_updated)
-    expect(profile.name).to eq attrs.name
     expect(profile.motto).to eq attrs.motto
     expect(profile.about).to eq attrs.about
     expect(profile.work).to eq attrs.work

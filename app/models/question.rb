@@ -57,11 +57,11 @@ class Question < ActiveRecord::Base
   end
 
   def avatar
-    return the_answer.user.profile.avatar.url(:thumb) if the_answer.try(:user)
+    return the_answer.user.avatar.url(:thumb) if the_answer.try(:user)
   end
 
   def username
-    return the_answer.user.profile_name if the_answer.try(:user)
+    return the_answer.user.name if the_answer.try(:user)
   end
 
   def image

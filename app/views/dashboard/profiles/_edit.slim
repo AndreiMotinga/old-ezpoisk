@@ -1,8 +1,8 @@
 ul.nav.nav-tabs role="tablist"
   li.active role="presentation"
-    = link_to "Инофрмация", "#info", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
+    = link_to "Profile Info", "#info", "aria-controls": "avatar", "data-toggle": "tab", role: "tab"
   li role="presentation"
-    = link_to "Email", "#email", "aria-controls": "personal", "data-toggle": "tab", role: "tab"
+    = link_to "Personal Info", "#email", "aria-controls": "personal", "data-toggle": "tab", role: "tab"
 
 .tab-content
   #info.tab-pane.active role="tabpanel"
@@ -11,12 +11,22 @@ ul.nav.nav-tabs role="tablist"
       .white-block
         .panel.panel-default
           .panel-heading
+            h4.title Обложка
+          .panel-body
+            .row
+              .col-sm-3
+                = f.file_field :cover
+                p.text-muted 800 x 400px
+              .col-sm-8.col-sm-offset-1
+                = image_tag current_user.profile.cover.url(:large), class: "pull-right thumbnail img-responsive"
+
+      .white-block
+        .panel.panel-default
+          .panel-heading
             h4.title Контакты
           .panel-body
             .row
-              .col-sm-6
-                = f.text_field :name, label: "Ваше имя"
-              .col-sm-6
+              .col-sm-12
                 = f.number_field :phone, label: "Телефон"
             .row
               .col-sm-6
@@ -56,27 +66,9 @@ ul.nav.nav-tabs role="tablist"
             .field= f.text_field :motto, label: "Ваше лично мотто", placeholder: "Других легко понять, если поставить себя на их место"
             .field= f.text_area :work, rows: 5, label: "Расскажите о вашей работе"
             .field= f.text_area :about, rows: 5, label: "Расскажите о себе"
-
-      .white-block
-        .panel.panel-default
-          .panel-heading
-            h4.title Фотографии
-          .panel-body
-            .row
-              .col-sm-3
-                = f.file_field :avatar
-              .col-sm-9
-                = image_tag current_user.profile.avatar.url(:medium), class: "pull-right thumbnail img-responsive"
-            br
-            .row
-              .col-sm-3
-                = f.file_field :cover
-                p.text-muted 800 x 400px
-              .col-sm-8.col-sm-offset-1
-                = image_tag current_user.profile.cover.url(:large), class: "pull-right thumbnail img-responsive"
       br
 
       .actions= f.submit "Обновить", class: "btn mobile-btn", id: "contacts-save-btn"
 
   #email.tab-pane role="tabpanel"
-    = render "dashboard/profiles/email"
+    = render "dashboard/profiles/personal"

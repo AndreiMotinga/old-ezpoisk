@@ -28,10 +28,15 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
 
-  delegate :name, to: :profile, prefix: true
   delegate :phone, to: :profile, prefix: true
   delegate :state_id, to: :profile, prefix: true
   delegate :city_id, to: :profile, prefix: true
+
+  has_attached_file(:avatar,
+                    styles: { thumb: "50x50#", medium: "160x160#" },
+                    default_url: "default-avatar.png")
+  validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
+
 
   def self.this_week
     where("created_at > ?", Date.today.at_beginning_of_week).count
@@ -46,12 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def name_to_show
-    return profile.name if profile.name?
-    email
-  end
-
-  def avatar(style = :thumb)
-    profile.avatar.url(style)
+    name.present? ? name : email
   end
 
   def favorite(prms)

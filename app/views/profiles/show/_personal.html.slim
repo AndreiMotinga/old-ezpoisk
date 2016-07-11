@@ -5,7 +5,7 @@
     .panel-body
       .row
         .col-lg-4
-          = image_tag @profile.avatar.url(:medium), class: "center-block"
+          = image_tag @profile.user.avatar.url(:medium), class: "center-block"
         .col-lg-8
           p.text.answer= @profile.motto
           p

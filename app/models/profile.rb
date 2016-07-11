@@ -9,11 +9,7 @@ class Profile < ActiveRecord::Base
 
   delegate :email, to: :user, prefix: true
   delegate :name_to_show, to: :user, prefix: true
-
-  has_attached_file(:avatar,
-                    styles: { thumb: "50x50#", medium: "160x160#" },
-                    default_url: "default-avatar.png")
-  validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
+  delegate :name, to: :user
 
   has_attached_file(
     :cover,
