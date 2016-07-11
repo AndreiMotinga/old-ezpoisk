@@ -1,0 +1,9 @@
+.row.cover.margin-bottom-10
+  .left.col-sm-4
+    .background style="background-image: url(#{@profile.cover.url(:large)})"
+    .content
+      = image_tag @profile.avatar.url(:medium), class: "img-circle center-block"
+      .name.text-center= @profile.name
+
+  .col-sm-8.right
+    = image_tag @profile.cover.url(:large), class: ""

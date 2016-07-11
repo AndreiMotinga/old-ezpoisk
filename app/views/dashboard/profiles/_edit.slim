@@ -66,13 +66,14 @@ ul.nav.nav-tabs role="tablist"
               .col-sm-3
                 = f.file_field :avatar
               .col-sm-9
-                = image_tag current_user.profile.avatar.url(:medium), class: "pull-right thumbnail "
+                = image_tag current_user.profile.avatar.url(:medium), class: "pull-right thumbnail img-responsive"
             br
             .row
               .col-sm-3
                 = f.file_field :cover
+                p.text-muted 800 x 400px
               .col-sm-8.col-sm-offset-1
-                = image_tag current_user.profile.cover.url(:large), class: "pull-right thumbnail"
+                = image_tag current_user.profile.cover.url(:large), class: "pull-right thumbnail img-responsive"
       br
 
       .actions= f.submit "Обновить", class: "btn mobile-btn", id: "contacts-save-btn"

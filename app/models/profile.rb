@@ -17,7 +17,7 @@ class Profile < ActiveRecord::Base
 
   has_attached_file(
     :cover,
-    styles: { large: "1140x325#" },
+    styles: { large: "800x400#" },
     default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 end
