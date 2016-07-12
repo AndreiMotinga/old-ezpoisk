@@ -1,12 +1,14 @@
 .col-xs-12.white-block.contacts
   .contacts-list
-    li.list-group-item
-      strong= record.title
+    - unless record.user.id == 181
+      li.list-group-item
+        | автор #{" "}
+        strong
+          = link_to record.user.name_to_show, profile_path(record.user.profile)
 
-    li.list-group-item
-      | автор #{" "}
-      strong
-        = link_to record.user.name_to_show, profile_path(record.user.profile)
+    - unless record.try(:source).blank?
+      li.list-group-item
+        = link_to "Источник объявления", record.source, target: "_blank"
 
     - if record.try(:phone).present?
       li.list-group-item
@@ -28,10 +30,6 @@
 
     li.list-group-item
       = link_to record.address, "https://maps.google.com/?q=#{record.address}", target: "_blank"
-
-    - unless record.try(:source).blank?
-      li.list-group-item
-        = link_to "Источник объявления", record.source, target: "_blank"
 
     li.list-group-item
       | Просмотров #{record.impressions_count}
