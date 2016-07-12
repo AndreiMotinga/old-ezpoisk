@@ -1,9 +1,11 @@
-.row.cover.margin-bottom-10
+.row.cover
   .left.col-sm-4
     .background style="background-image: url(#{@profile.cover.url(:large)})"
     .content
-      = image_tag @profile.user.avatar.url(:medium), class: "img-circle center-block"
+      = link_to profile_path(@profile) do
+        = image_tag @profile.user.avatar.url(:medium), class: "img-circle center-block"
       .name.text-center= @profile.name
+      .views.text-center= "#{@profile.impressions_count} просмотров"
 
-  .col-sm-8.right
+  .hidden-xs.col-sm-8.right
     = image_tag @profile.cover.url(:large), class: ""

@@ -14,9 +14,6 @@ feature "user updates profile" do
     fill_in "Vkontakte", with: attrs.vk
     fill_in "Odnoklassniki", with: attrs.ok
     fill_in "Twitter", with: attrs.twitter
-    fill_in "Ваше лично мотто", with: attrs.motto
-    fill_in "Расскажите о себе", with: attrs.about
-    fill_in "Расскажите о вашей работе", with: attrs.work
 
     click_on "contacts-save-btn"
     expect(page).to have_content I18n.t(:profile_updated)
@@ -30,9 +27,6 @@ feature "user updates profile" do
     expect(profile.ok).to eq attrs.ok
     expect(profile.twitter).to eq attrs.twitter
     expect(page).to have_content I18n.t(:profile_updated)
-    expect(profile.motto).to eq attrs.motto
-    expect(profile.about).to eq attrs.about
-    expect(profile.work).to eq attrs.work
   end
 
   # scenario "updates address", js: true do

@@ -1,11 +1,17 @@
-ul.nav.home-sidebar-nav
-  li
-    = link_to "Контакты", profile_path(@profile)
-  li class= cp(profile_listings_path)
-    = link_to "Объявления", profile_listings_path(@profile)
-  li class= cp(profile_answers_path)
-    = link_to "Ответы", profile_answers_path(@profile)
-  li class= cp(profile_posts_path)
-    = link_to "Новости", profile_posts_path(@profile)
-  - if @profile.user == current_user
-    li= link_to "Настройки", edit_dashboard_profile_path(@profile)
+.profile-sidebar
+  .white-block
+    .panel.panel-default
+      .panel-body
+        ul.list-group
+          li.list-group-item
+            = link_to "About", profile_path(@profile)
+          li.list-group-item
+            = link_to "Контакты", profile_contacts_path(@profile)
+          li.list-group-item
+            = link_to "Объявления", profile_listings_path(@profile)
+          li.list-group-item
+            = link_to "Ответы", profile_answers_path(@profile)
+          li.list-group-item
+            = link_to "Новости", profile_posts_path(@profile)
+          - if @profile.user == current_user
+            li.list-group-item= link_to "Настройки", edit_dashboard_profile_path(@profile)

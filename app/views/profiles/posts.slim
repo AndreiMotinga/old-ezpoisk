@@ -1,5 +1,5 @@
 = title("#{@profile.name} Новости")
-= desc("#{@profile.work.truncate(160)}")
+= desc("#{@profile.about.truncate(160)}")
 
 - content_for :head do
   meta property="fb:app_id"      content=ENV["FACEBOOK_APP_ID"]

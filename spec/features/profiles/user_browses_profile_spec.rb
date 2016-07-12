@@ -7,9 +7,7 @@ feature "User browses profile" do
 
     visit profile_path(profile)
     expect(page).to have_content profile.name
-    expect(page).to have_content profile.motto
     expect(page).to have_content profile.about
-    expect(page).to have_content profile.work
   end
 
   scenario "visits posts" do

@@ -22,6 +22,11 @@ ul.nav.nav-tabs role="tablist"
 
       .white-block
         .panel.panel-default
+          .panel-body
+            .field= f.text_area :about, label: "Расскажите о себе", class: "summernote"
+
+      .white-block
+        .panel.panel-default
           .panel-heading
             h4.title Контакты
           .panel-body
@@ -57,15 +62,6 @@ ul.nav.nav-tabs role="tablist"
               .col-sm-6
                 .field
                   = form_city_select(f, current_user.profile)
-
-      .white-block
-        .panel.panel-default
-          .panel-heading
-            h4.title О себе
-          .panel-body
-            .field= f.text_field :motto, label: "Ваше лично мотто", placeholder: "Других легко понять, если поставить себя на их место"
-            .field= f.text_area :work, rows: 5, label: "Расскажите о вашей работе"
-            .field= f.text_area :about, rows: 5, label: "Расскажите о себе"
       br
 
       .actions= f.submit "Обновить", class: "btn mobile-btn", id: "contacts-save-btn"

@@ -2,18 +2,9 @@ class PostsController < ApplicationController
   # before_action :set_partners
   before_action :set_post, only: [:show, :edit, :update]
 
-  def all
-    @posts = Post.invisible.today
-  end
-
-  def import
-    NewsImporterJob.perform_async
-    redirect_to all_posts_path
-  end
-
   def index
     page = params[:page]
-    @posts = Post.includes(:profile)
+    @posts = Post.includes(:user)
                  .visible
                  .by_keyword(params[:keyword])
                  .desc
@@ -39,6 +30,16 @@ class PostsController < ApplicationController
     NewsCleanerJob.perform_async
     redirect_to all_posts_path
   end
+
+  def all
+    @posts = Post.invisible.today
+  end
+
+  def import
+    NewsImporterJob.perform_async
+    redirect_to all_posts_path
+  end
+
 
   private
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create]
 
   get "profiles/:id", to: "profiles#show", as: :profile
+  get "profiles/:id/contacts", to: "profiles#contacts", as: :profile_contacts
   get "profiles/:id/posts", to: "profiles#posts", as: :profile_posts
   get "profiles/:id/listings", to: "profiles#listings", as: :profile_listings
   get "profiles/:id/answers", to: "profiles#answers", as: :profile_answers

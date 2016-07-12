@@ -5,6 +5,9 @@ class ProfilesController < ApplicationController
     @profile.increment!(:impressions_count)
   end
 
+  def contacts
+  end
+
   def posts
     @posts = @profile.user.posts
     @posts = @posts.page(params[:page])

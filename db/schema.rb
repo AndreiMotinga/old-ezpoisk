@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160711161458) do
+ActiveRecord::Schema.define(version: 20160712155242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,22 +197,20 @@ ActiveRecord::Schema.define(version: 20160711161458) do
     t.integer  "state_id"
     t.integer  "city_id"
     t.string   "site",               default: ""
-    t.datetime "created_at",                                                             null: false
-    t.datetime "updated_at",                                                             null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.integer  "impressions_count",  default: 0,                                         null: false
-    t.text     "about",              default: "",                                        null: false
-    t.text     "work",               default: "",                                        null: false
-    t.string   "street",             default: "",                                        null: false
-    t.string   "facebook",           default: "",                                        null: false
-    t.string   "google",             default: "",                                        null: false
-    t.string   "vk",                 default: "",                                        null: false
-    t.string   "ok",                 default: "",                                        null: false
-    t.string   "twitter",            default: "",                                        null: false
-    t.string   "motto",              default: "Пользователь не продавставил информации", null: false
+    t.integer  "impressions_count",  default: 0,  null: false
+    t.text     "about",              default: "", null: false
+    t.string   "street",             default: "", null: false
+    t.string   "facebook",           default: "", null: false
+    t.string   "google",             default: "", null: false
+    t.string   "vk",                 default: "", null: false
+    t.string   "ok",                 default: "", null: false
+    t.string   "twitter",            default: "", null: false
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"

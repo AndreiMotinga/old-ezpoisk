@@ -1,4 +1,21 @@
+.profile {
+  .panel-heading {
+    background-color: $white;
+  }
+
+  .social {
+    i {
+      margin: 14px;
+    }
+  }
+  .map {
+    padding: 0
+  }
+}
+
 .cover {
+  margin-bottom: 30px;
+
   .left {
     padding: 0;
     position: relative;
@@ -35,10 +52,30 @@
         font-size: 22px;
         letter-spacing: 1px;
       }
+      .views {
+        color: $white;
+        font-family: Roboto, arial, sans-serif;
+        font-size: 14px;
+      }
     }
   }
 
   .right {
     padding: 0;
+  }
+}
+
+.profile-sidebar {
+  .panel-body {
+    padding: 0;
+  }
+
+  .list-group {
+    margin: 0;
+  }
+
+  a {
+    color: $grey3;
+    text-decoration: none;
   }
 }

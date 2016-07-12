@@ -7,6 +7,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :favorites, as: :favorable, dependent: :destroy
   delegate :avatar, to: :user
+  has_one :entry, as: :enterable, dependent: :destroy
 
   has_attached_file(:image,
                     styles: { small: ["158x99#"],
@@ -26,7 +27,6 @@ class Post < ActiveRecord::Base
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
-  has_one :entry, as: :enterable, dependent: :destroy
 
   def self.by_keyword(keyword)
     return all if keyword.blank?
