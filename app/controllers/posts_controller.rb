@@ -19,7 +19,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    if @post.update(post_params) && @post.visible?
+      @post.create_entry unless @post.entry
       redirect_to post_path(@post)
     else
       render :edit, alert: "There was a problem"
