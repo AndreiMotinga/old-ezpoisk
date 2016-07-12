@@ -1,34 +1,15 @@
 / desktop
-.hidden-xs
-  .social-share
-    ul.list-unstyled.list-inline
-      li.fb
-        .fb-share-button data-action="like" data-href=request.original_url data-layout="button_count" data-show-faces="true"
-      li.vk
-        a.vk
-      li.my-g-plus
-        .g-plus data-action="share" data-width=200 data-annotation="bubble"
-      - if count
-        li.prosmotrov
-          span просмотров #{count}
-
-/ mobile
-.visible-xs
-  button.btn.mobile-btn.btn-block data-target="#myModal" data-toggle="modal" type="button"
-    поделиться
-
-  / Modal
-  #myModal.modal.fade aria-labelledby="shareModal" role="dialog" tabindex="-1"
-    .modal-dialog role="document"
-      .modal-content
-        .modal-body
-          ul.list-unstyled
-            li.fb
-              .fb-share-button data-action="like" data-href=request.original_url data-layout="button_count" data-show-faces="true"
-            li.vk
-              a.vk
-            li.my-g-plus
-              .g-plus data-action="share" data-width=200 data-annotation="bubble"
+.social-share
+  ul.list-unstyled.list-inline
+    li.fb
+      .fb-share-button data-action="like" data-href=request.original_url data-layout="button_count" data-show-faces="true"
+    li.vk
+      a.vk
+    li.my-g-plus
+      .g-plus data-action="share" data-width=200 data-annotation="bubble"
+    - if count
+      li.prosmotrov
+        span просмотров #{count}
 
 - unless Rails.env.test?
   #fb-root
