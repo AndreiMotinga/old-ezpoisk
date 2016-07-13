@@ -3,17 +3,17 @@
     = f.text_field :source, label: "источник"
     hr.white-hr
 
+  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  hr.white-hr
+
   = form_state_select(f)
   = form_city_select(f, @re_private)
   = f.text_field :street, label: '* Улица'
   hr.white-hr
 
   = f.number_field :price, label: '* Цена'
-  = f.select :post_type, RE_TYPES, include_blank: true, label: '* Тип объявления'
+  = f.select :post_type, RE_TYPES, label: '* Тип объявления'
   = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
-  hr.white-hr
-
-  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
   hr.white-hr
 
   = f.select :duration, RE_DURATION, include_blank: true, label: "Продолжительность"
