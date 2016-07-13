@@ -158,7 +158,6 @@ span.favorite { color: $orange; }
 .contacts-list { margin-bottom: 10px; }
 .modal-content { border-radius: 0; }
 
-.panel { margin-bottom: 0; }
 .close {
   color: $orange;
   font-size: 30px;
@@ -173,4 +172,22 @@ span.favorite { color: $orange; }
 
 .margin-bottom-10 {
   margin-bottom: 10px;
+}
+
+.panel {
+  margin-bottom: 0;
+
+  .panel-heading {
+    background-color: $white;
+    border: 0;
+
+    a {
+      color: $grey4;
+      text-decoration: none;
+    }
+  }
+
+  .panel-footer {
+    background-color: $white;
+  }
 }

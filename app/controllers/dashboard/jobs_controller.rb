@@ -3,11 +3,12 @@ class Dashboard::JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :destroy]
 
   def new
+    email = current_user.admin? ? "" : current_user.email
     @job = Job.new(state_id: current_user.profile_state_id,
                    city_id: current_user.profile_city_id,
                    active: true,
                    phone: current_user.profile_phone,
-                   email: current_user.email)
+                   email: email)
   end
 
   def edit

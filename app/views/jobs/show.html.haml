@@ -13,12 +13,6 @@
 .col-xs-12
   = render @job
 
-- if @job.description?
-  .col-xs-12.white-block
-    .panel.panel-default
-      .panel-body
-        = sanitize @job.description
-
 .col-xs-12
   = render 'shared/show/map', record: @job
 

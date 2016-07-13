@@ -1,33 +1,19 @@
 .row.white-block class=("user-hidden" if job.user_hidden?(current_user)) data-hidden=job.id
   .listing
-    - if job.logo?
-      .col-xs-4.logo-js
-        = link_to job_path(job) do
-          = image_tag job.logo.url(:medium),
-                      alt: job.title,
-                      class: "img-responsive center-block"
-    div class=(job.logo? ? "col-xs-8" : "col-xs-12")
-      / line 1
-      .hidden-xs
-        h4.title= link_to job.title, job_path(job)
-      .visible-xs
-        h5.title= link_to job.title, job_path(job)
-
-      /line 2
-      strong= job.category
-      hr.post-devider/
-
-      / line 3
-      - if job.phone?
-        span.glyphicon.glyphicon-earphone
-        span.company-phone= " "+ job.phone
-        hr.post-devider/
-
-      / line 4
-      - if job.email?
-        span= job.email
-        hr.post-devider/
-
-      / line 5
-      .favor-links.pull-right= render "shared/favor_links", record: job
-      span.hidden-xs= time_ago_in_words job.updated_at
+    .panel.panel-default
+      .panel-heading
+        h4= link_to job.title, job_path(job)
+      .panel-body
+        - if job.logo?
+          = link_to job_path(job) do
+            = image_tag job.logo.url(:large),
+                        alt: job.title,
+                        class: "img-responsive center-block"
+          hr
+        p= sanitize job.description
+      .panel-footer
+        .row
+          .col-xs-6
+            h6 #{time_ago_in_words job.updated_at} назад
+          .col-xs-6
+            .favor-links.pull-right= render "shared/favor_links", record: job

@@ -12,11 +12,10 @@ class JobsController < ApplicationController
   private
 
   def sliced_params
-    params.slice(:state_id, :city_id, :category, :subcategory, :geo_scope)
+    params.slice(:state_id, :city_id, :keyword, :category, :subcategory, :geo_scope)
   end
 
   def set_partners
     @partner_ads = PartnerAds.new("Работа")
   end
-
 end

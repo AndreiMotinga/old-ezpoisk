@@ -1,17 +1,17 @@
 = bootstrap_form_for([:dashboard, @job]) do |f|
+
   -  if current_user.admin?
     = f.text_field :source, label: "источник"
     hr.white-hr
 
-  = form_state_select(f)
-  = form_city_select(f, @job)
-  = f.text_field :street, label: 'Улица'
+  = f.text_field :title, label: 'Заголовок'
+
+  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
   hr.white-hr
 
-  = f.text_field :title, label: '* Заголовок'
   = f.select :category,
               JOB_CATEGORIES.keys,
-              { include_blank: true, label: '* Раздел' },
+              { include_blank: true, label: 'Раздел' },
               class: "category-select",
               "data-type": "Job"
 
@@ -22,13 +22,15 @@
                class: "subcategory-select"
   - else
     = f.select :subcategory, [], { label: 'Категория' }, class: "subcategory-select"
-  hr.white-hr
-
-  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
-  hr.white-hr
 
   = f.text_field :phone, label: 'Телефон'
   = f.email_field :email
+
+  = form_state_select(f)
+  = form_city_select(f, @job)
+  = f.text_field :street, label: 'Улица'
+  hr.white-hr
+
   = f.check_box :active, label: "Активно *"
 
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"

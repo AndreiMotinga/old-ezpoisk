@@ -1,6 +1,10 @@
 form.form-horizontal action=jobs_path method="get"
   = render "shared/search_by_address"
   hr/
+
+  = label_tag "Ключевое слово", nil
+  = text_field_tag :keyword, params[:keyword], class: "form-control"
+  hr/
   = label_tag "Раздел", nil
   = select_tag :category,
                options_for_select(JOB_CATEGORIES.keys, params[:category]),

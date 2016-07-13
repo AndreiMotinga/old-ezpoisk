@@ -3,10 +3,11 @@ class Dashboard::RePrivatesController < ApplicationController
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
   def new
+    email = current_user.admin? ? "" : current_user.email
     @re_private = RePrivate.new(state_id: current_user.profile_state_id,
                                 city_id: current_user.profile_city_id,
                                 active: true,
-                                email: current_user.email,
+                                email: email,
                                 fee: true,
                                 baths: 1,
                                 duration: "помесячно",
