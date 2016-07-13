@@ -16,8 +16,7 @@ class Job < ActiveRecord::Base
   has_many :favorites, as: :favorable, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
-  has_attached_file(:logo, styles: { medium: ["300x170>", :jpg],
-                                     large: ["755x425#", :jpg] },
+  has_attached_file(:logo, styles: { large: ["755x425>", :jpg] },
                     default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_with(
