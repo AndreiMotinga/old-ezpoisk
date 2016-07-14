@@ -1,11 +1,15 @@
 .row.cover
   .left.col-sm-4
     .background style="background-image: url(#{@profile.cover.url(:large)})"
-    .content
+    .content.text-center
       = link_to profile_path(@profile) do
         = image_tag @profile.user.avatar.url(:medium), class: "img-circle center-block"
-      .name.text-center= @profile.name
-      .views.text-center= "#{@profile.impressions_count} просмотров"
+      .name= @profile.name
+      = render "profiles/show/thanks_link"
+      .views
+        = "#{@profile.impressions_count} просмотров"
+        = " | спасибо "
+        span data-id="thanks"= @profile.points.count
 
   .hidden-xs.col-sm-8.right
     = image_tag @profile.cover.url(:large), class: ""

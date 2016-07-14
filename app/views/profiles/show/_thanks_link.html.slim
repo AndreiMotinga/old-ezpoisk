@@ -1,0 +1,15 @@
+- if user_signed_in?
+  = link_to "Сказать спасибо",
+            points_path(profile_id: @profile.id),
+            method: "post",
+            "data-remote": true,
+            class: "btn btn-lg mobile-btn",
+            "data-id": "thanks"
+
+- else
+  = link_to "Спасибо",
+            "",
+            "data-target": "#new_session_modal",
+            "data-toggle": "modal",
+            class: "btn btn-lg mobile-btn",
+            id: "login_link"

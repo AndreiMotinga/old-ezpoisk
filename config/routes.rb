@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get "profiles/:id/answers", to: "profiles#answers", as: :profile_answers
   get "profiles/:id/reviews", to: "profiles#reviews", as: :profile_reviews
 
+  resources :points, only: [:create]
+
   resources :questions, except: [:destroy], path: :ezanswer do
     collection do
       get "unanswered"

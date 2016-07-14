@@ -6,6 +6,7 @@ class Profile < ActiveRecord::Base
   belongs_to :city
   has_many :posts, through: :user
   has_many :answers, through: :user
+  has_many :points
 
   delegate :email, to: :user, prefix: true
   delegate :name_to_show, to: :user, prefix: true
