@@ -1,6 +1,9 @@
 .home-sidebar {
+  margin-bottom: 10px;
+
   .col-xs-12 {
     padding-right: 0;
+    margin-bottom: 20px;
   }
 
   .accordion {
@@ -40,5 +43,12 @@
       color: $white;
       text-decoration: none;
     }
+  }
+}
+
+.social {
+  .panel-body {
+    overflow: hidden;
+    padding: 5px;
   }
 }

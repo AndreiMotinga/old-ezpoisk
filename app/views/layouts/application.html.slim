@@ -9,6 +9,12 @@ html
     meta name="description" content="#{yield(:description)}"
     meta content="68788c457c2622fc" name="yandex-verification"
 
+    meta property="og:url"           content="https://www.ezpoisk.com"
+    meta property="og:type"          content="website"
+    meta property="og:title"         content= yield(:title)
+    meta property="og:description"   content="#{yield(:description)}"
+    meta property="og:image"         content="https://s3.amazonaws.com/ezpoisk/missing.png"
+
     = favicon_link_tag "favicon"
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
@@ -30,7 +36,7 @@ html
         .col-sm-8.col-md-6
           = yield
         .hidden-xs.hidden-sm.col-md-3
-          /| ads
+          = yield :right_block
 
       .row
         = yield :partners_bottom if content_for?(:partners_bottom)
