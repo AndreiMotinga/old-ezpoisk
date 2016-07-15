@@ -19,7 +19,8 @@ ul.list-group.panel
       span.caret
   #jobs-nav.collapse
     li= link_to t(:agencies), main_app.job_agencies_path
-    li= link_to "Объявления", main_app.jobs_path
+    li= link_to "Требуется", main_app.jobs_path(category: "Требуется")
+    li= link_to "Ищу работу", main_app.jobs_path(category: "Ищу")
 
   a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#sales-nav"
     span.sidebar-icon

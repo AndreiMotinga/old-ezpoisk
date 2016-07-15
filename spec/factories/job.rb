@@ -4,8 +4,8 @@ FactoryGirl.define do
     phone "1234567890"
     email { Faker::Internet.email }
     description { Faker::Lorem.paragraph(5) }
-    category { JOB_CATEGORIES.keys.sample }
-    subcategory { JOB_CATEGORIES[category].sample }
+    category { JOB_CATEGORIES.sample }
+    subcategory { JOB_SUBCATEGORIES[JOB_SUBCATEGORIES.keys.sample].sample }
     active true
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }

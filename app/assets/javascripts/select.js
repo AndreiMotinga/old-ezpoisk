@@ -15,4 +15,6 @@ $(document).ready(function() {
   $("#page_list").select2({
     placeholder: "Выберите cтраницы"
   });
+
+  $(".job-select").select2();
 });

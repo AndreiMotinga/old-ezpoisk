@@ -1,9 +1,10 @@
+# used to update subcateories depending on the category.
+# used to work for both services and jobs. hence weird logic
 class SubcategoriesController < ApplicationController
   def update_subcategory
     category = attrs[:category]
     type = attrs[:type]
     @subcategories = SERVICE_CATEGORIES[category] if type == "Service"
-    @subcategories = JOB_CATEGORIES[category] if type == "Job"
   end
 
   private

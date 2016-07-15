@@ -10,18 +10,12 @@
   hr.white-hr
 
   = f.select :category,
-              JOB_CATEGORIES.keys,
-              { include_blank: true, label: 'Раздел' },
-              class: "category-select",
-              "data-type": "Job"
+              JOB_CATEGORIES,
+              { include_blank: true, label: 'Раздел' }
 
-  - if @job.category
-    = f.select :subcategory,
-               JOB_CATEGORIES,
-               { include_blank: true , label: 'Категория' },
-               class: "subcategory-select"
-  - else
-    = f.select :subcategory, [], { label: 'Категория' }, class: "subcategory-select"
+  = f.select :subcategory,
+             JOB_SUBCATEGORIES,
+             { include_blank: true , label: 'Категория' }
 
   = f.text_field :phone, label: 'Телефон'
   = f.email_field :email

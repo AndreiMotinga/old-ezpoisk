@@ -7,13 +7,15 @@ form.form-horizontal action=jobs_path method="get"
   hr/
   = label_tag "Раздел", nil
   = select_tag :category,
-               options_for_select(JOB_CATEGORIES.keys, params[:category]),
+               options_for_select(JOB_CATEGORIES, params[:category]),
                include_blank: true,
-               class: "form-control category-select",
-               "data-type": "Job"
+               class: "form-control"
   br
   = label_tag "Категория", nil
-  = select_tag :subcategory, job_subcategory_options, class: "form-control subcategory-select"
+  = select_tag :subcategory,
+               grouped_options_for_select(JOB_SUBCATEGORIES, params[:subcategory]),
+               multiple: true,
+               class: "form-control job-select"
 
   hr
   = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

@@ -31,7 +31,8 @@
             | Работа
           #jobs-tab.sublinks.collapse
             = link_to "Агенства", job_agencies_path, class: "list-group-item indented"
-            = link_to "Объявления", jobs_path, class: "list-group-item indented"
+            = link_to "Требуется", jobs_path(category: "Требуется"), class: "list-group-item indented"
+            = link_to "Ищу работу", jobs_path(category: "Ищу"), class: "list-group-item indented"
 
           = link_to "Продается", sales_path, class: "list-group-item mobile-link"
           = link_to "Услуги", services_path, class: "list-group-item mobile-link"
