@@ -34,11 +34,6 @@ describe Dashboard::ServicesController do
       )
       expect(service.title).to eq attrs[:title]
       expect(service.user).to eq @user
-
-      entry = Entry.last
-      expect(Entry.count).to eq 1
-      expect(entry.enterable_id).to eq service.id
-      expect(entry.enterable_type).to eq service.class.to_s
     end
   end
 

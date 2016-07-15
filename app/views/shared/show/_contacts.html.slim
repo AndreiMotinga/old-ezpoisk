@@ -1,41 +1,40 @@
 .col-xs-12.white-block.contacts
-  .contacts-list
-    - unless record.user.id == 181
-      li.list-group-item
-        | автор #{" "}
-        strong
-          = link_to record.user.name_to_show, profile_path(record.user.profile)
-
-    - unless record.try(:source).blank?
-      li.list-group-item
-        = link_to "Источник объявления", record.source, target: "_blank"
-
-    - if record.try(:phone).present?
-      li.list-group-item
-        | тел #{" "}
-        strong= record.phone
-
-    - unless record.try(:fax).blank?
-      li.list-group-item
-        | факс #{" "}
-        strong= record.try(:fax)
-
-    - unless record.try(:site).blank?
-      li.list-group-item
-        strong= link_to record.site, "http://#{record.site}", target: "_blank"
-
-    - if record.try(:email).present?
-      li.list-group-item
-        strong= record.email
-
+  - unless record.user.id == 181
     li.list-group-item
-      = link_to record.address, "https://maps.google.com/?q=#{record.address}", target: "_blank"
+      | автор #{" "}
+      strong
+        = link_to record.user.name_to_show, profile_path(record.user.profile)
 
+  - unless record.try(:source).blank?
     li.list-group-item
-      | Просмотров #{record.impressions_count}
+      = link_to "Источник объявления", record.source, target: "_blank"
 
+  - if record.try(:phone).present?
     li.list-group-item
-      strong * Укажите, что нашли объявление на ezpoisk.com
+      | тел #{" "}
+      strong= record.phone
 
+  - unless record.try(:fax).blank?
     li.list-group-item
-      = render "shared/social", count: nil
+      | факс #{" "}
+      strong= record.try(:fax)
+
+  - unless record.try(:site).blank?
+    li.list-group-item
+      strong= link_to record.site, "http://#{record.site}", target: "_blank"
+
+  - if record.try(:email).present?
+    li.list-group-item
+      strong= record.email
+
+  li.list-group-item
+    = link_to record.address, "https://maps.google.com/?q=#{record.address}", target: "_blank"
+
+  li.list-group-item
+    | Просмотров #{record.impressions_count}
+
+  li.list-group-item
+    strong * Укажите, что нашли объявление на ezpoisk.com
+
+  li.list-group-item
+    = render "shared/social", count: nil

@@ -40,6 +40,7 @@ class StripeSubscriptionsController < ApplicationController
       sub.update_attributes(attributes)
     else
       StripeSubscription.create(attributes)
+      Service.find(params[:service_id]).create_entry
     end
   end
 

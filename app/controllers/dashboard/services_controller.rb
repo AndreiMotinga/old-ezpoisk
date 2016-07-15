@@ -17,7 +17,6 @@ class Dashboard::ServicesController < ApplicationController
     if @service.save
       SlackNotifierJob.perform_async(@service.id, "Service")
       GeocodeJob.perform_async(@service.id, "Service")
-      @service.create_entry
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else

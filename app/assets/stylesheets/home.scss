@@ -1,4 +1,4 @@
-.home-sidebar {
+.home {
   margin-bottom: 10px;
 
   .col-xs-12 {
@@ -50,5 +50,15 @@
   .panel-body {
     overflow: hidden;
     padding: 5px;
+  }
+}
+
+.right-block {
+  .panel-body {
+    padding: 0;
+  }
+
+  .list-group {
+    margin-bottom: 0;
   }
 }
