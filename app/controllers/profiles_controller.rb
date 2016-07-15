@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
     @answers = @answers.page(params[:page])
   end
 
-  def reviews
+  def pictures
   end
 
   private

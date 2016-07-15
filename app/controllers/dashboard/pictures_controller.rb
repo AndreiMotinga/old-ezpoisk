@@ -1,10 +1,12 @@
 class Dashboard::PicturesController < ApplicationController
   def index
-    @pictures = record_class.find(params["id"]).pictures
+    @pictures = klass.find(params["id"]).pictures
+    @view = klass == Profile ? "profiles/picture" : "dashboard/pictures/picture"
   end
 
   def create
     @picture = current_user.pictures.build(picture_params)
+    return unless @picture.imageable.user == current_user
 
     if @picture.save
       render json: { message: "success", fileID: @picture.id }
@@ -31,8 +33,8 @@ class Dashboard::PicturesController < ApplicationController
     params.require(:picture).permit(:image, :imageable_id, :imageable_type)
   end
 
-  def record_class
-    [RePrivate, ReCommercial, Sale].find do |class_name|
+  def klass
+    [Profile, RePrivate, ReCommercial, Sale].find do |class_name|
       class_name.name == params["type"].classify
     end
   end

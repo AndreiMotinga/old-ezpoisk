@@ -5,4 +5,6 @@ $(document).ready(function() {
     autoSlide: true
   });
   $('.show .ps-current a').touchTouch();
+
+  $('[data-id="profile-image"]').touchTouch();
 });

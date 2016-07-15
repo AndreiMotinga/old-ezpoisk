@@ -7,6 +7,7 @@ class Profile < ActiveRecord::Base
   has_many :posts, through: :user
   has_many :answers, through: :user
   has_many :points
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   delegate :email, to: :user, prefix: true
   delegate :name_to_show, to: :user, prefix: true
