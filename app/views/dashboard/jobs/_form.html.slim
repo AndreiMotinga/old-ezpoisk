@@ -9,13 +9,11 @@
   = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
   hr.white-hr
 
-  = f.select :category,
-              JOB_CATEGORIES,
-              { include_blank: true, label: 'Раздел' }
+  = f.select :category, JOB_CATEGORIES, label: 'Раздел'
 
   = f.select :subcategory,
-             JOB_SUBCATEGORIES,
-             { include_blank: true , label: 'Категория' }
+              JOB_SUBCATEGORIES,
+              { include_blank: true , label: 'Категория' }
 
   = f.text_field :phone, label: 'Телефон'
   = f.email_field :email
