@@ -2,6 +2,10 @@ form.form-horizontal action=re_privates_path method="get"
   = render "shared/search_by_address"
   hr/
 
+  = label_tag "Тип объявления", nil
+  = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), include_blank: true, class: "form-control"
+  br
+
   = label_tag "Минимальная цена", nil
   = number_field_tag :min_price, params[:min_price], class: "form-control"
   br
@@ -12,10 +16,6 @@ form.form-horizontal action=re_privates_path method="get"
 
   = label_tag "Сортировать", nil
   = sort_select
-  br
-
-  = label_tag "Тип объявления", nil
-  = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), include_blank: true, class: "form-control"
   br
 
   = label_tag "Комнаты", nil
