@@ -4,18 +4,14 @@ form.form-horizontal action=jobs_path method="get"
 
   = label_tag "Ключевое слово", nil
   = text_field_tag :keyword, params[:keyword], class: "form-control"
-  hr/
+  br/
   = label_tag "Раздел", nil
   = select_tag :category,
                options_for_select(JOB_CATEGORIES, params[:category]),
                include_blank: true,
                class: "form-control"
-  br
-  = label_tag "Категория", nil
-  = select_tag :subcategory,
-               grouped_options_for_select(JOB_SUBCATEGORIES, params[:subcategory]),
-               multiple: true,
-               class: "form-control job-select"
 
-  hr
+  = render "jobs/subcategories"
+  br
+
   = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

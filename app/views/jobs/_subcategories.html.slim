@@ -1,0 +1,38 @@
+javascript:
+  $(document).on('click', '.job-categories .dropdown-menu', function (e) {
+    e.stopPropagation();
+  });
+
+.hidden-xs.job-categories
+  br
+  ul.nav.nav-tabs
+    li.dropdown role="presentation"
+      a.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+        | Категории
+        span.pull-right.glyphicon.glyphicon-chevron-right aria-hidden="true"
+      .row.dropdown-menu
+        .col-sm-6
+          - JOB_SUBCATEGORIES.each_with_index do |(c, subs), i|
+            - if i <= 9
+              h4= c
+              - subs.each do |sub|
+                .checkbox
+                  label
+                    = check_box_tag "subcategory[]", sub, params[:subcategory].try(:include?, sub)
+                    = " #{sub}"
+        .col-sm-6
+          - JOB_SUBCATEGORIES.each_with_index do |(c, subs), i|
+            - if i > 9
+              h4= c
+              - subs.each do |sub|
+                .checkbox
+                  label
+                    = check_box_tag "subcategory[]", sub, params[:subcategory].try(:include?, sub)
+                    = " #{sub}"
+
+.visible-xs
+  = label_tag "Категория", nil
+  = select_tag :subcategory,
+               grouped_options_for_select(JOB_SUBCATEGORIES, params[:subcategory]),
+               multiple: true,
+               class: "form-control job-select"
