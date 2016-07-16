@@ -14,6 +14,6 @@
       .panel-footer
         .row
           .col-xs-6
-            h6 #{time_ago_in_words job.updated_at} назад
+            h6 #{job.category} | #{time_ago_in_words job.updated_at} назад
           .col-xs-6
             .favor-links.pull-right= render "shared/favor_links", record: job
