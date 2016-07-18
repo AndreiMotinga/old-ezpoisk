@@ -38,9 +38,7 @@ class Service < ActiveRecord::Base
     )
   end
 
-  has_attached_file(:logo,
-                    styles: { medium: ["300x170>", :jpg] },
-                    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
+  has_attached_file :logo, styles: { medium: "x120" }
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with(

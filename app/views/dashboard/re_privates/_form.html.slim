@@ -11,7 +11,11 @@
   = f.text_field :street, label: '* Улица'
   hr.white-hr
 
-  = f.number_field :price, label: '* Цена'
+  = f.text_field :phone, label: 'Телефон'
+  = f.email_field :email, label: 'Email'
+  hr.white-hr
+
+  = f.number_field :price, label: 'Цена'
   = f.select :post_type, RE_TYPES, label: '* Тип объявления'
   = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
   hr.white-hr
@@ -20,15 +24,6 @@
   = f.number_field :baths, label: 'Ванные'
   = f.number_field :space, label: "Площадь (sq. feet)"
   hr.white-hr
-
-  = f.text_field :phone, label: 'Телефон'
-  = f.email_field :email, label: 'Email'
-
-  .row
-    .col-sm-6
-      .field
-    .col-sm-6
-      .field
 
   .row
     .col-xs-12

@@ -9,11 +9,7 @@ class Post < ActiveRecord::Base
   delegate :avatar, to: :user
   has_one :entry, as: :enterable, dependent: :destroy
 
-  has_attached_file(:image,
-                    styles: { small: ["158x99#"],
-                              medium: ["585x329#", :jpg],
-                              large: ["755x425#", :jpg] },
-                    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
+  has_attached_file :image, styles: { medium: "585x329#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
   def image_remote_url=(url_value)

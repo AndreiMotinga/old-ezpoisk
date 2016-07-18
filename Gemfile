@@ -23,9 +23,6 @@ gem "bootstrap-kaminari-views"
 gem "font-awesome-rails"
 
 gem "paperclip"
-gem "paperclip-optimizer"
-gem 'image_optim'
-gem 'image_optim_pack'
 gem "dropzonejs-rails"
 
 gem "figaro"

@@ -53,13 +53,13 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     storage: :s3,
-    :s3_protocol => :https,
+    s3_protocol: :https,
     s3_credentials: {
       bucket: ENV["S3_BUCKET_DEV"],
       access_key_id: ENV["AWS_ACCESS_KEY_ID"],
       secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
     },
-    processors: [:thumbnail, :paperclip_optimizer]
+    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png"
   }
 
   config.after_initialize do
@@ -67,6 +67,4 @@ Rails.application.configure do
     Bullet.console = true
     Bullet.alert = true
   end
-
-  config.assets.image_optim = {pngout: false, svgo: false}
 end
