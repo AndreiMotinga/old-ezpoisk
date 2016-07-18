@@ -1,33 +1,34 @@
-/- content_for(:head) do
-/  script type="text/javascript" src="//vk.com/js/api/openapi.js?123"
-/  javascript:
-/    VK.init({apiId: 5343503, onlyWidgets: true});
+- content_for(:head) do
+  script type="text/javascript" src="//vk.com/js/api/openapi.js?123"
+  javascript:
+    VK.init({apiId: 5343503, onlyWidgets: true});
 
 .home
   .col-xs-12
     ul.nav.accordion
       = render "shared/sidebar_links"
 
-  /.col-xs-12.social
-  /  .white-block
-  /    .panel.panel-default
-  /      .panel-body
-  /
-  /        #vk_like
-  /        javascript:
-  /          VK.Widgets.Like("vk_like", {type: "button"});
-  /
-  /        hr
-  /
-  /        #fb-root
-  /        javascript:
-  /          (function(d, s, id) {
-  /            var js, fjs = d.getElementsByTagName(s)[0];
-  /            if (d.getElementById(id)) return;
-  /            js = d.createElement(s); js.id = id;
-  /            js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=1746983858848479";
-  /            fjs.parentNode.insertBefore(js, fjs);
-  /          }(document, 'script', 'facebook-jssdk'));
-  /        .fb-like[data-href="https://www.ezpoisk.com"
-  /                 data-layout="standard" data-action="like" data-size="small"
-  /                 data-show-faces="true" data-width="220px" data-share="true"]
+  .col-xs-12.social
+    .white-block
+      .panel.panel-default
+        .panel-body
+          h5 Show support
+
+          #vk_like
+          javascript:
+            VK.Widgets.Like("vk_like", {type: "button"});
+
+          hr
+
+          #fb-root
+          javascript:
+            (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=1746983858848479";
+              fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+          .fb-like[data-href="https://www.ezpoisk.com"
+                   data-layout="button_count" data-action="like" data-size="small"
+                   data-show-faces="true" data-width="220px" data-share="true"]
