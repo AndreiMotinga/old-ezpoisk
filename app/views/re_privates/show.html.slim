@@ -1,0 +1,38 @@
+= title("#{@re_private.address} #{@re_private.post_type} жилье в США - ezpoisk")
+= desc("#{@re_private.post_type}, #{@re_private.address}, #{@re_private.phone} . EZPOISK - снять/продать квартиру, дом, недвижимоть.")
+
+= og_type("article")
+= og_url(re_private_url(@re_private))
+= og_image(@re_private.logo_url)
+
+- content_for :sidebar do
+  = render "shared/show/contacts", record: @re_private
+  = render "re_privates/details"
+
+.show
+  - if @re_private.pictures.any?
+    .white-block
+      ul.pgwSlideshow.pictures
+        - @re_private.pictures.each do |pic|
+          li
+            = link_to pic.image.url do
+              = image_tag pic.image.url(:large), alt: ""
+
+.col-xs-12
+  = render @re_private
+
+- if @re_private.description?
+  .col-xs-12.white-block
+    .panel.panel-default
+      .panel-body
+        = sanitize @re_private.description
+
+.col-xs-12
+  = render 'shared/show/map', record: @re_private
+
+.visible-xs
+  = render "shared/show/contacts", record: @re_private
+  = render "re_privates/details"
+
+.col-xs-12
+= render "shared/partners/bottom"
