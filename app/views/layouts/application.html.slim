@@ -20,6 +20,8 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
 
+    = render "shared/ga"
+
   body
     = render "shared/navbar"
 
@@ -48,4 +50,3 @@ html
     = render "shared/new_post_modal"
     = render "shared/new_session_modal"
     = render "shared/main_sidebar"
-    = render "shared/services"
