@@ -9,8 +9,7 @@ class ProfilesController < ApplicationController
   end
 
   def posts
-    @posts = @profile.user.posts
-    @posts = @posts.page(params[:page])
+    @posts = @profile.user.posts.page(params[:page])
   end
 
   def listings
@@ -19,11 +18,11 @@ class ProfilesController < ApplicationController
   end
 
   def answers
-    @answers = @profile.answers.includes(:question)
-    @answers = @answers.page(params[:page])
+    @answers = @profile.answers.includes(:question).page(params[:page])
   end
 
   def pictures
+    @pictures = @profile.pictures.page(params[:page]).per(30)
   end
 
   private

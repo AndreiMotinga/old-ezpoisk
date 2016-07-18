@@ -1,0 +1,6 @@
+$("[data-id='pictures']").append("<%= j render(partial: "profiles/picture", collection: @pictures) %>");
+<% if @pictures.next_page %>
+  $(".pagination").replaceWith("<%= j paginate(@pictures, :theme => 'twitter-bootstrap-3') %>")
+<% else  %>
+  $(".pagination").remove();
+<% end %>

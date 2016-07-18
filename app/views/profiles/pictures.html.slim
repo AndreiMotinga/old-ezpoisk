@@ -36,9 +36,11 @@
               button.btn.btn-default data-dismiss="modal" type="button" Close
   br
 
-.profile
-  - if @profile.pictures.any?
-    - @profile.pictures.each do |pic|
+.profile data-pictures="" data-id="pictures"
+  - if @pictures.any?
+    - @pictures.each do |pic|
       = render "profiles/picture", picture: pic
   - else
     p Здесь пока пусто
+
+= render "shared/pagination", records: @pictures

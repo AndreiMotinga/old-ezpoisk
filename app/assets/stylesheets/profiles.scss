@@ -91,3 +91,21 @@
     text-decoration: none;
   }
 }
+
+.profile-image {
+  display: inline-block;
+  position: relative;
+
+  .delete-link {
+    background-color: $lightgrey;
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  &:hover .delete-link {
+    display: block;
+  }
+}
