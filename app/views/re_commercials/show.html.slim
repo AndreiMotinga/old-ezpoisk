@@ -1,12 +1,9 @@
 = title("#{@re_commercial.address} #{@re_commercial.post_type} коммерческой недвижимости в США - ezpoisk")
-= desc("#{@re_commercial.post_type}, #{@re_commercial.address}, #{@re_commercial.phone}. EZPOISK - снять/продать коммерческую недвижимость в США")
-- content_for :head do
-  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
-  %meta{property: "og:type", content: "article"}/
-  %meta{property: "og:url", content: re_commercial_url(@re_commercial) }/
-  %meta{property: "og:title", content: @re_commercial.title}/
-  %meta{property: "og:image", content: @re_commercial.logo_url}/
-  %meta{property: "og:description", content: strip_tags(@re_commercial.description).truncate(200)}/
+= desc(strip_tags(@re_commercial.description).truncate(160))
+
+= og_type("article")
+= og_url(re_commercial_url(@re_commercial))
+= og_image(@re_commercial.logo_url(:large))
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @re_commercial
@@ -15,12 +12,12 @@
 .show
   - if @re_commercial.pictures.any?
     .white-block
-      %ul.pgwSlideshow
+      ul.pgwSlideshow
         - @re_commercial.pictures.each do |pic|
-          %li
+          li
             = link_to pic.image.url do
               = image_tag pic.image.url(:large), alt: ""
-    %hr.black-line/
+    hr.black-line/
 
 .col-xs-12
   = render @re_commercial
@@ -38,5 +35,5 @@
   = render "shared/show/contacts", record: @re_commercial
   = render "re_commercials/details"
 
-.col-xs-12
-= render "shared/partners/bottom"
+/.col-xs-12
+/= render "shared/partners/bottom"

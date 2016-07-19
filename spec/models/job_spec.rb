@@ -19,7 +19,7 @@ describe Job do
                      city_id: 18_031,
                      zip: 11_229,
                      street: "1970 East 18th"
-        address = "1970 East 18th Brooklyn New York, 11229"
+        address = "1970 East 18th Astoria New York, 11229"
         expect(job.address).to eq address
       end
 
@@ -29,7 +29,7 @@ describe Job do
                      city_id: 18_031,
                      zip: 11_229,
                      street: ""
-        address = "Brooklyn New York, 11229"
+        address = "Astoria New York, 11229"
         expect(job.address).to eq address
       end
 
@@ -39,7 +39,7 @@ describe Job do
                      city_id: 18_031,
                      zip: 0,
                      street: ""
-        address = "Brooklyn New York"
+        address = "Astoria New York"
         expect(job.address).to eq address
       end
     end
