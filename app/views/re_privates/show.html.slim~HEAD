@@ -1,12 +1,9 @@
-= title("#{@re_private.address} #{@re_private.post_type} частной недвижимости в США - ezpoisk")
+= title("#{@re_private.address} #{@re_private.post_type} жилье в США - ezpoisk")
 = desc("#{@re_private.post_type}, #{@re_private.address}, #{@re_private.phone} . EZPOISK - снять/продать квартиру, дом, недвижимоть.")
-- content_for :head do
-  %meta{property: "fb:app_id", content: ENV["FACEBOOK_APP_ID"] }/
-  %meta{property: "og:type", content: "article"}/
-  %meta{property: "og:url", content: re_private_url(@re_private) }/
-  %meta{property: "og:title", content: @re_private.title}/
-  %meta{property: "og:image", content: @re_private.logo_url}/
-  %meta{property: "og:description", content: strip_tags(@re_private.description).truncate(200)}/
+
+= og_type("article")
+= og_url(re_private_url(@re_private))
+= og_image(@re_private.logo_url)
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @re_private
@@ -15,12 +12,11 @@
 .show
   - if @re_private.pictures.any?
     .white-block
-      %ul.pgwSlideshow.pictures
+      ul.pgwSlideshow.pictures
         - @re_private.pictures.each do |pic|
-          %li
+          li
             = link_to pic.image.url do
               = image_tag pic.image.url(:large), alt: ""
-  /images
 
 .col-xs-12
   = render @re_private
@@ -37,7 +33,6 @@
 .visible-xs
   = render "shared/show/contacts", record: @re_private
   = render "re_privates/details"
-
 
 .col-xs-12
 = render "shared/partners/bottom"

@@ -1,0 +1,19 @@
+= title("#{@job.title} #{@job.city_name}\n #{@job.state_name}")
+= desc("#{@job.category} - ezpoisk")
+
+= og_type("article")
+= og_url(job_url(@job))
+= og_image(@job.logo.url)
+
+= content_for :sidebar, render("shared/show/contacts", record: @job)
+
+.col-xs-12
+  = render @job
+
+.col-xs-12
+  = render 'shared/show/map', record: @job
+
+.visible-xs
+  = render "shared/show/contacts", record: @job
+
+/= render "shared/partners/bottom"

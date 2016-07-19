@@ -3,7 +3,7 @@
 
 = og_type("article")
 = og_url(re_private_url(@re_private))
-= og_image(@re_private.logo_url)
+= og_image(@re_private.logo_url(:large))
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @re_private
@@ -34,5 +34,5 @@
   = render "shared/show/contacts", record: @re_private
   = render "re_privates/details"
 
-.col-xs-12
-= render "shared/partners/bottom"
+/.col-xs-12
+/= render "shared/partners/bottom"
