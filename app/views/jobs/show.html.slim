@@ -7,13 +7,14 @@
 
 = content_for :sidebar, render("shared/show/contacts", record: @job)
 
-.col-xs-12
-  = render @job
+.div itemscope="" itemtype="http://schema.org/JobPosting"
+  .col-xs-12
+    = render @job
 
-.col-xs-12
-  = render 'shared/show/map', record: @job
+  .col-xs-12
+    = render 'shared/show/map', record: @job
 
-.visible-xs
-  = render "shared/show/contacts", record: @job
+  .visible-xs
+    = render "shared/show/contacts", record: @job
 
 /= render "shared/partners/bottom"

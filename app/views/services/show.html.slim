@@ -15,20 +15,17 @@
 
 = content_for :sidebar, render("shared/show/contacts", record: @service)
 
-.col-xs-12
-  = render @service
+.div itemscope="" itemtype="http://schema.org/#{type(@service)}"
+  .col-xs-12
+    = render @service
 
-- if @service.description.present?
-  .col-xs-12.white-block.description
-    .panel.panel-default
-      .panel-body
-        = sanitize @service.description
+  = render "shared/show/description", record: @service
 
-.col-xs-12
-  = render "shared/show/map", record: @service
+  .col-xs-12
+    = render "shared/show/map", record: @service
 
-.visible-xs
-  = render "shared/show/contacts", record: @service
+  .visible-xs
+    = render "shared/show/contacts", record: @service
 
 /br
 /br

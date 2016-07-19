@@ -3,7 +3,7 @@
     .col-xs-4.logo-js
       = link_to re_private_path(re_private) do
         = image_tag re_private.logo_url, class: "img-responsive center-block",
-                    alt: "#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}"
+                    alt: "#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}", itemprop: "logo"
 
         - unless re_private.fee
           .hidden-xs

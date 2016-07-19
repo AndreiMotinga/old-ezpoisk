@@ -1,9 +1,10 @@
 .col-xs-12.white-block.contacts
   - unless record.user.id == 181
-    li.list-group-item
+    li.list-group-item itemscope="" itemtype="https://schema.org/OwnershipInfo"
       | автор #{" "}
       strong
-        = link_to record.user.name_to_show, profile_path(record.user.profile)
+        = link_to profile_path(record.user.profile) do
+          span itemprop="name" =record.user.name_to_show
 
   - unless record.try(:source).blank?
     li.list-group-item
@@ -11,24 +12,30 @@
 
   - if record.try(:phone).present?
     li.list-group-item
-      | тел #{" "}
-      strong= record.phone
+      span.glyphicon.glyphicon-earphone
+      strong itemprop="telephone"  #{record.phone}
 
   - unless record.try(:fax).blank?
     li.list-group-item
-      | факс #{" "}
-      strong= record.try(:fax)
+      strong itemprop="faxNumber" факс #{record.try(:fax)}
 
   - unless record.try(:site).blank?
     li.list-group-item
-      strong= link_to record.site, "http://#{record.site}", target: "_blank"
+      strong= link_to record.site, "http://#{record.site}", target: "_blank", itemprop: "url"
 
   - if record.try(:email).present?
     li.list-group-item
-      strong= record.email
+      strong itemprop="email" =record.email
 
-  li.list-group-item
-    = link_to record.address, "https://maps.google.com/?q=#{record.address}", target: "_blank"
+  li.list-group-item itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"
+    = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank" do
+      - if record.street.present?
+        span itemprop="streetAddress" =record.street
+        = ", "
+      span itemprop="addressLocality"= "#{record.city.name}, #{record.state.name}"
+      - if record.zip.present?
+        = ", "
+        span itemprop="postalCode"= record.zip
 
   li.list-group-item
     | Просмотров #{record.impressions_count}

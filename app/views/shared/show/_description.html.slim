@@ -1,0 +1,6 @@
+- if record.description.present?
+  .col-xs-12.white-block.description
+    .panel.panel-default
+      .panel-body
+        div itemprop="description"
+          = sanitize record.description

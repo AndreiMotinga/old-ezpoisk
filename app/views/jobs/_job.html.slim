@@ -2,15 +2,16 @@
   .listing
     .panel.panel-default
       .panel-heading
-        h4= link_to job.title, job_path(job)
+        h4= link_to job.title, job_path(job), itemprop: "title"
       .panel-body.description
         - if job.logo?
           = link_to job_path(job) do
             = image_tag job.logo.url(:large),
                         alt: job.title,
-                        class: "img-responsive center-block"
+                        class: "img-responsive center-block",
+                        itemprop: "image"
           hr
-        p= sanitize job.description
+        p itemprop="description" = sanitize job.description
       .panel-footer
         .row
           .col-xs-6

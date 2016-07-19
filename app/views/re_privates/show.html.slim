@@ -14,25 +14,22 @@
     .white-block
       ul.pgwSlideshow.pictures
         - @re_private.pictures.each do |pic|
-          li
-            = link_to pic.image.url do
+          li itemscope="" itemtype="http://schema.org/ImageObject"
+            = link_to pic.image.url, itemprop: "contentUrl" do
               = image_tag pic.image.url(:large), alt: ""
 
-.col-xs-12
-  = render @re_private
+.div itemscope="" itemtype="http://schema.org/ApartmentComplex"
+  .col-xs-12
+    = render @re_private
 
-- if @re_private.description?
-  .col-xs-12.white-block
-    .panel.panel-default
-      .panel-body
-        = sanitize @re_private.description
+  = render "shared/show/description", record: @re_private
 
-.col-xs-12
-  = render 'shared/show/map', record: @re_private
+  .col-xs-12
+    = render 'shared/show/map', record: @re_private
 
-.visible-xs
-  = render "shared/show/contacts", record: @re_private
-  = render "re_privates/details"
+  .visible-xs
+    = render "shared/show/contacts", record: @re_private
+    = render "re_privates/details"
 
-/.col-xs-12
-/= render "shared/partners/bottom"
+  /.col-xs-12
+  /= render "shared/partners/bottom"
