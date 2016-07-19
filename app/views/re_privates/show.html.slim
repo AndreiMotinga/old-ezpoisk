@@ -1,5 +1,5 @@
-= title("#{@re_private.address} #{@re_private.post_type} жилье в США - ezpoisk")
-= desc("#{@re_private.post_type}, #{@re_private.address}, #{@re_private.phone} . EZPOISK - снять/продать квартиру, дом, недвижимоть.")
+= title("#{@re_private.address} #{@re_private.post_type} жилье в США - ezpoisk.com")
+= desc(strip_tags(@re_private.description).truncate(160))
 
 = og_type("article")
 = og_url(re_private_url(@re_private))

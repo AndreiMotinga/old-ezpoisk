@@ -1,5 +1,5 @@
-= title("#{@job.title} #{@job.city_name}\n #{@job.state_name}")
-= desc("#{@job.category} - ezpoisk")
+= title("#{@job.title}, #{@job.city_name} #{@job.state_name}")
+= desc(strip_tags(@job.description).truncate(160))
 
 = og_type("article")
 = og_url(job_url(@job))

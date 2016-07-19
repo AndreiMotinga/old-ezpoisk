@@ -1,16 +1,12 @@
-= title("#{@profile.name} Галерея")
-= desc("#{@profile.about.truncate(160)}")
+= title("#{@profile.name} | Галерея")
+= desc(strip_tags(@profile.about).truncate(160))
 
-- content_for :head do
-  meta property="fb:app_id"      content=ENV["FACEBOOK_APP_ID"]
-  meta property="og:type"        content="article"
-  meta property="og:url"         content=profile_url(@profile)
-  meta property="og:title"       content=@profile.name
-  meta property="og:image"       content=@profile.cover.url(:large)
-  meta property="og:description" content=@profile.about.truncate(200)
+= og_type("article")
+= og_url(profile_pictures_url(@profile))
+= og_image(@profile.cover.url(:large))
 
 - content_for :profile_cover, render("profiles/cover")
-= content_for :mobile_search, render("shared/mobile_search_modal", id: "profiles")
+- content_for :mobile_search, render("shared/mobile_search_modal", id: "profiles")
 - content_for :sidebar, render("profiles/sidebar")
 
 
