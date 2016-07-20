@@ -1,8 +1,10 @@
-.form-group
-  .col-xs-12
-    label Адрес или zipcode
-    = origin_text_field_param
-    br
-  .col-xs-12
-    label Радиус (миль)
-    = within_text_field_param
+.panel.panel-default
+  .panel-body
+    .form-group
+      .col-xs-12
+        label Радиус (миль)
+        = within_text_field_param
+        br
+      .col-xs-12
+        label от (address / zipcode)
+        = origin_text_field_param
