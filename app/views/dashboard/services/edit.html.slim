@@ -1,5 +1,6 @@
 - unless @service.active?
   = render "dashboard/services/payment/warning"
+
 #pictures-data data-id=@service.id data-type=@service.class.to_s
 .col-xs-12
   = template_for(@service)
@@ -10,9 +11,9 @@
     ul.nav.nav-tabs role="tablist"
       li role="presentation"
         = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      li role="presentation"
+      li.active role="presentation"
         = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      li.active role="presentation" data-li="payment"
+      li role="presentation" data-li="payment"
         = link_to "Оплата", "#payment", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
     br
@@ -20,8 +21,8 @@
       #form.tab-pane.fade role="tabpanel"
         = render 'form'
 
-      #pictures.tab-pane.fade role="tabpanel"
+      #pictures.tab-pane.fade.in.active role="tabpanel"
           = render "dashboard/shared/logo", record: @service
 
-      #payment.tab-pane.fade.in.active role="tabpanel"
+      #payment.tab-pane.fade role="tabpanel"
         = render "dashboard/services/payment"

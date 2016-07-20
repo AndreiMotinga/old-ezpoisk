@@ -1,14 +1,3 @@
-.panel.panel-danger
-  .panel-heading Внимание
-  .panel-body
-    p
-      | Объявления в разделе “Услуги” являются платными.
-    p
-      | Мы верим в ezpoisk и комьюнити. Если Вы посчитаете, что Ваш бизнес не
-      |  получает пользы от ezpoisk в течение 30 дней, мы с удовольствием вернем
-      |  ваши деньги.
-hr
-
 = bootstrap_form_for([:dashboard, @service]) do |f|
   = form_state_select(f)
   = form_city_select(f, @service)

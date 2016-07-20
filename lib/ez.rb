@@ -10,7 +10,8 @@ class Ez
   end
 
   def self.notify_about(record)
-    string = "Регистрация нового  #{record.class}\n id #{record.id}"
+    string = "Регистрация нового  #{record.class}\n id #{record.id}\n\n"
+    string += record.to_json
     notifier.ping(string)
   end
 end

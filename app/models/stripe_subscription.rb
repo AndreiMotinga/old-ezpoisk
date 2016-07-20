@@ -13,6 +13,13 @@ class StripeSubscription < ActiveRecord::Base
     )
   end
 
+  after_invoice_payment_failed! do |invoice, _event|
+    # todo send email when customer is deleted
+    # todo send notification to slack
+    StripeSubscription.find_by_customer_id(invoice.customer).destroy
+    Stripe::Customer.retrieve(invoice.customer).delete
+  end
+
   def cancel
     remote_sub.delete(at_period_end: true)
     update_attribute(:status, "cancelled")
@@ -30,13 +37,9 @@ class StripeSubscription < ActiveRecord::Base
     status == "activated"
   end
 
-  def expired?
-    !active?
-  end
-
   def reactivate
     stripe_sub = remote_sub
-    stripe_sub.plan = "monthly"
+    stripe_sub.plan = plan
     stripe_sub.save
     update_attribute(:status, "activated")
   end

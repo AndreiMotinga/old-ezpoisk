@@ -1,7 +1,7 @@
 class StripeSubscriptionsController < ApplicationController
   def create
     begin
-      create_or_update_subscription
+      StripeSubscription.create(attributes)
       flash[:notice] = I18n.t(:stripe_subscription_created)
     rescue => err
       flash[:alert] = err.message
@@ -9,6 +9,7 @@ class StripeSubscriptionsController < ApplicationController
     redirect_to edit_dashboard_service_path(params[:service_id])
   end
 
+  # reactivates cancelled subscription
   def update
     sub = current_user.stripe_subscriptions.find(params[:id])
     begin
@@ -33,24 +34,11 @@ class StripeSubscriptionsController < ApplicationController
 
   private
 
-  def create_or_update_subscription
-    id = params[:service_id]
-    sub = current_user.stripe_subscriptions.find_by_service_id(id)
-    if sub
-      sub.update_attributes(attributes)
-    else
-      StripeSubscription.create(attributes)
-      Service.find(params[:service_id]).create_entry
-    end
-  end
-
   def attributes
     {
-      # activate listing temporarily. invoice.payment_succeeded will trigger
-      # webhook, that will be cought at StripeSubscription, where actvie_until
-      # will be set to 1.month.from_now
       active_until: 1.month.from_now,
       status: "activated",
+      plan: params[:plan],
       service_id: params[:service_id],
       customer_id: customer.id,
       sub_id: customer.subscriptions.data.first.id

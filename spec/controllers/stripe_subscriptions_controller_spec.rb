@@ -36,36 +36,6 @@ describe StripeSubscriptionsController do
       end
     end
 
-    context "user renews expired subscription" do
-      it "creates stripe_subscription and cusomter on stripe server" do
-        @stripe_helper.create_plan(id: "monthly")
-        service = create :service, user: @user
-        create(:stripe_subscription,
-               service: service,
-               active_until: 1.day.ago,
-               customer_id: "foo",
-               sub_id: "bar")
-
-        post :create, valid_attrs(service)
-
-        expect(response).to redirect_to edit_dashboard_service_path(service.id)
-        expect(flash[:notice]).to eq I18n.t(:stripe_subscription_created)
-
-        expect(StripeSubscription.count).to eq 1
-
-        sub = StripeSubscription.last
-        expect(sub.service_id).to eq service.id
-        expect(sub.active_until).to eq 1.month.from_now
-        expect(sub.status).to eq "activated"
-        expect(sub.customer_id).to_not eq "foo"
-        expect(sub.sub_id).to_not eq "bar"
-
-        expect(sub.remote_sub.status).to eq "active"
-        expect(sub.remote_sub.plan.id).to eq "monthly"
-        expect(sub.remote_sub.cancel_at_period_end).to eq false
-      end
-    end
-
     context "something went wrong" do
       it "doesn't create stripe_subscription, displays error alert" do
         StripeMock.prepare_card_error(:processing_error)

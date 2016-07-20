@@ -1,4 +1,4 @@
-- if !@service.stripe_subscription || @service.expired? || @service.trial?
+- if !@service.stripe_subscription || @service.trial?
   = render "dashboard/services/payment/form"
 
 - elsif @service.activated?

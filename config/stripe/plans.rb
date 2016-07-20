@@ -31,9 +31,26 @@
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
 
-Stripe.plan :monthly do |plan|
+Stripe.plan :monthly_base do |plan|
   # plan name as it will appear on credit card statements
-  plan.name = "EZPOISK Monthly Plan"
+  plan.name = "EZPOISK Monthly Base Plan"
+
+  # amount in cents. This is 6.99
+  plan.amount = 3000
+
+  # currency to use for the plan (default 'usd')
+  plan.currency = "usd"
+
+  # interval must be either 'week', 'month' or 'year'
+  plan.interval = "month"
+
+  # only bill once every three months (default 1)
+  plan.interval_count = 1
+end
+
+Stripe.plan :monthly_premium do |plan|
+  # plan name as it will appear on credit card statements
+  plan.name = "EZPOISK Monthly Premium Plan"
 
   # amount in cents. This is 6.99
   plan.amount = 6000

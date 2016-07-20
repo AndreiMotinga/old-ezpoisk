@@ -28,7 +28,6 @@ class Service < ActiveRecord::Base
   delegate :active?, to: :stripe_subscription, allow_nil: true
   delegate :activated?, to: :stripe_subscription, allow_nil: true
   delegate :active_until, to: :stripe_subscription, allow_nil: true
-  delegate :expired?, to: :stripe_subscription, allow_nil: true
   delegate :cancelled?, to: :stripe_subscription, allow_nil: true
   delegate :cancel, to: :stripe_subscription, allow_nil: true
 
