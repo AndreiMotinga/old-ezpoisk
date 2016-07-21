@@ -13,3 +13,9 @@
         li.list-group-item
           | Всего
           span.pull-right= Entry.count
+
+.panel.panel-default
+  .panel-body
+    = image_tag "got-something", class: "img-responsive"
+    .col-xs-12
+      = link_to "Добавляй Новость", new_dashboard_post_path, class: "btn btn-block mobile-btn"
