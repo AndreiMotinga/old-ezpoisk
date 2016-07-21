@@ -13,7 +13,7 @@ describe StripeSubscriptionsController do
   describe "POST #create" do
     context "first time subscription" do
       it "creates stripe_subscription and cusomter on stripe server" do
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
 
         post :create, valid_attrs(service)
@@ -31,15 +31,18 @@ describe StripeSubscriptionsController do
         expect(sub.sub_id).to_not eq nil
 
         expect(sub.remote_sub.status).to eq "active"
-        expect(sub.remote_sub.plan.id).to eq "monthly"
+        expect(sub.remote_sub.plan.id).to eq "monthly_base"
         expect(sub.remote_sub.cancel_at_period_end).to eq false
+
+        service.reload
+        expect(service.priority).to eq 1
       end
     end
 
     context "something went wrong" do
       it "doesn't create stripe_subscription, displays error alert" do
         StripeMock.prepare_card_error(:processing_error)
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
 
         post :create, invalid_attrs(service)
@@ -55,10 +58,10 @@ describe StripeSubscriptionsController do
   describe "DELETE #destroy" do
     context "successfully" do
       it "removes stipe_subscription" do
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         customer = Stripe::Customer.create(
           source: @stripe_helper.generate_card_token,
-          plan: "monthly"
+          plan: "monthly_base"
         )
         service = create :service, user: @user
         sub = create(:stripe_subscription,
@@ -79,7 +82,7 @@ describe StripeSubscriptionsController do
         expect(sub.service_id).to eq service.id
 
         expect(sub.remote_sub.status).to eq "active"
-        expect(sub.remote_sub.plan.id).to eq "monthly"
+        expect(sub.remote_sub.plan.id).to eq "monthly_base"
         expect(sub.remote_sub.cancel_at_period_end).to eq true
       end
     end
@@ -95,7 +98,7 @@ describe StripeSubscriptionsController do
 
     context "something went wrong" do
       it "displays error message" do
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
         sub = create(:stripe_subscription,
                      service: service,
@@ -117,15 +120,16 @@ describe StripeSubscriptionsController do
   describe "PUT #update" do
     context "success" do
       it "creates stripe_subscription and cusomter on stripe server" do
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
         customer = Stripe::Customer.create(
           source: @stripe_helper.generate_card_token,
-          plan: "monthly"
+          plan: "monthly_base"
         )
         local_sub = create(:stripe_subscription,
                            service: service,
                            customer_id: customer.id,
+                           plan: "monthly_base",
                            sub_id: customer.subscriptions.data[0].id,
                            active_until: 1.month.from_now)
         local_sub.cancel
@@ -140,13 +144,13 @@ describe StripeSubscriptionsController do
         expect(local_sub.status).to eq "activated"
 
         expect(local_sub.remote_sub.cancel_at_period_end).to eq false
-        expect(local_sub.remote_sub.plan.id).to eq "monthly"
+        expect(local_sub.remote_sub.plan.id).to eq "monthly_base"
       end
     end
 
     context "with errors" do
       it "displays error" do
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
         local_sub = create(:stripe_subscription,
                            service: service,
@@ -169,7 +173,7 @@ def valid_attrs(service)
   {
     service_id: service.id,
     stripeToken: @stripe_helper.generate_card_token,
-    plan: "monthly",
+    plan: "monthly_base",
     stripeEmail: @user.email
   }
 end
@@ -178,7 +182,7 @@ def invalid_attrs(service)
   {
     service_id: service.id,
     stripeToken: "",
-    plan: "monthly",
+    plan: "monthly_base",
     stripeEmail: @user.email
   }
 end

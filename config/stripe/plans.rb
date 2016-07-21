@@ -32,35 +32,49 @@
 # begin using them in your API calls.
 
 Stripe.plan :monthly_base do |plan|
-  # plan name as it will appear on credit card statements
   plan.name = "EZPOISK Monthly Base Plan"
-
-  # amount in cents. This is 6.99
-  plan.amount = 3000
-
-  # currency to use for the plan (default 'usd')
+  plan.amount = 2994
   plan.currency = "usd"
-
-  # interval must be either 'week', 'month' or 'year'
   plan.interval = "month"
+  plan.interval_count = 1
+end
 
-  # only bill once every three months (default 1)
+Stripe.plan :yearly_base do |plan|
+  plan.name = "EZPOISK Yearly Base Plan"
+  plan.amount = 299_28
+  plan.currency = "usd"
+  plan.interval = "year"
+  plan.interval_count = 1
+end
+
+Stripe.plan :monthly_standart do |plan|
+  plan.name = "EZPOISK Monthly Standart Plan"
+  plan.amount = 5994
+  plan.currency = "usd"
+  plan.interval = "month"
+  plan.interval_count = 1
+end
+
+Stripe.plan :yearly_standart do |plan|
+  plan.name = "EZPOISK Yearly Standart Plan"
+  plan.amount = 599_28
+  plan.currency = "usd"
+  plan.interval = "year"
   plan.interval_count = 1
 end
 
 Stripe.plan :monthly_premium do |plan|
-  # plan name as it will appear on credit card statements
   plan.name = "EZPOISK Monthly Premium Plan"
-
-  # amount in cents. This is 6.99
-  plan.amount = 6000
-
-  # currency to use for the plan (default 'usd')
+  plan.amount = 14_494
   plan.currency = "usd"
-
-  # interval must be either 'week', 'month' or 'year'
   plan.interval = "month"
+  plan.interval_count = 1
+end
 
-  # only bill once every three months (default 1)
+Stripe.plan :yearly_premium do |plan|
+  plan.name = "EZPOISK Yearly Premium Plan"
+  plan.amount = 1499_28
+  plan.currency = "usd"
+  plan.interval = "year"
   plan.interval_count = 1
 end

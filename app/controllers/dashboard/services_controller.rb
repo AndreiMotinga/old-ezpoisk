@@ -10,6 +10,7 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def edit
+    @plans = StripePlan.all
   end
 
   def create

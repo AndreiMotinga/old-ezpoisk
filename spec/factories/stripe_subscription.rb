@@ -4,7 +4,6 @@ FactoryGirl.define do
     # customer_id "bar"
     active_until { 1.month.from_now }
     status "activated"
-    plan "monthly"
 
     service
   end

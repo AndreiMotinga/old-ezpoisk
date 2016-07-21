@@ -1,5 +1,6 @@
 - unless @service.active?
-  = render "dashboard/services/payment/warning"
+  - content_for :sidebar do
+    = render "dashboard/services/payment/warning"
 
 #pictures-data data-id=@service.id data-type=@service.class.to_s
 .col-xs-12

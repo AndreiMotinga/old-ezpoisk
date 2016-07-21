@@ -1,0 +1,27 @@
+br
+br
+- @plans.each do |plan|
+  .col-xs-12.col-sm-6.white-block
+    .panel.panel-default
+      .panel-heading
+        .hidden-sm: h5= plan.name
+        .visible-sm: h5= plan.name.gsub("EZPOISK", "")
+      .panel-body
+        ul.list-group.margin-bottom-0
+          li.list-group-item
+            span Цикл
+            span.pull-right= plan.interval == "month" ? "раз в месяц" : "раз в год"
+          li.list-group-item
+            span Сумма
+            span.pull-right  $#{plan.amount.to_f/100}
+          li.list-group-item
+            span Вы экономите
+            span.pull-right $#{plan.savings}
+          li.list-group-item
+            span Приоритет
+            span.pull-right= plan.priority
+
+.white-block
+  .panel.panel-default
+    .panel-body
+      p * Чем выше приортите, тем выше в посике будет показано объявление.

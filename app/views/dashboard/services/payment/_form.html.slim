@@ -21,25 +21,10 @@
                 label CVC
                 input.form-control data-stripe="cvc" size="4" type="text" placeholder="123"
           .form-group
-            select.form-control id="" name="plan"
-              option Выберите план
-              option value="monthly_base" Monthly Base - $30/month
-              option value="monthly_premium" Monthly Premium - $60/month
+            = select_tag :plan, options_from_collection_for_select(@plans, 'stripe_id', 'name'), class: "form-control"
           input#submit-payment.submit.btn.btn-block.mobile-btn type="submit" value=("Submit Payment")
 
-br
-br
-br
-.well
-  strong Monthly Base Plan *
-  |  - базовая подписка стоимостью $30 долларов. Платеж осуществляется помесячно.
-  br
-  br
-  strong Monthly Premium Plan *
-  |  - объявления созданные под этим планом будут показываться первыми в поиске,
-  |  т.е выше, чем объявления с планом <em>Monthly Base.</em>
-  |  Стоимость $60 в месяц.
-
+= render "dashboard/services/payment/plans"
 
 .pk data-key= ENV["STRIPE_PUBLISHABLE_KEY"]
 

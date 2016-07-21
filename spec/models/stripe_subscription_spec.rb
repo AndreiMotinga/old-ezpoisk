@@ -112,14 +112,15 @@ describe StripeSubscription do
 
     describe "#reactivate" do
       it "reactivates cancelled sub" do
-        @stripe_helper.create_plan(id: "monthly")
+        @stripe_helper.create_plan(id: "monthly_base")
         customer = Stripe::Customer.create(
           source: @stripe_helper.generate_card_token,
-          plan: "monthly"
+          plan: "monthly_base"
         )
         sub = create(:stripe_subscription,
                      customer_id: customer.id,
                      sub_id: customer.subscriptions.data[0].id,
+                     plan: "monthly_base",
                      status: "cancelled",
                      active_until: 1.month.from_now)
         sub.cancel

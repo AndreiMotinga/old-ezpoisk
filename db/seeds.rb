@@ -1,87 +1,87 @@
-states = [
-  %w(Alabama AL),
-  %w(Alaska	AK),
-  %w(Arizona AZ),
-  %w(Arkansas	AR),
-  %w(California	CA),
-  %w(Colorado	CO),
-  %w(Connecticut CT),
-  %w(Delaware	DE),
-  %w(Florida FL),
-  %w(Georgia GA),
-  %w(Hawaii	HI),
-  %w(Idaho ID),
-  %w(Illinois	IL),
-  %w(Indiana IN),
-  %w(Iowa	IA),
-  %w(Kansas	KS),
-  %w(Kentucky	KY),
-  %w(Louisiana LA),
-  %w(Maine ME),
-  %w(Maryland	MD),
-  %w(Massachusetts	MA),
-  %w(Michigan	MI),
-  %w(Minnesota MN),
-  %w(Mississippi MS),
-  %w(Missouri	MO),
-  %w(Montana MT),
-  %w(Nebraska	NE),
-  %w(Nevada	NV),
-  [ "New Hampshire",	"NH" ],
-  [ "New Jersey",	"NJ" ],
-  [ "New Mexico",	"NM" ],
-  [ "New York",	"NY" ],
-  [ "North Carolina",	"NC" ],
-  [ "North Dakota",	"ND" ],
-  %w(Ohio OH),
-  %w(Oklahoma	OK),
-  %w(Oregon	OR),
-  %w(Pennsylvania	PA),
-  [ "Rhode Island",	"RI" ],
-  [ "South Carolina",	"SC" ],
-  [ "South Dakota",	"SD" ],
-  %w(Tennessee TN),
-  %w(Texas TX),
-  %w(Utah	UT),
-  %w(Vermont VT),
-  %w(Virginia	VA),
-  %w(Washington	WA),
-  ["West Virginia",	"WV"],
-  %w(Wisconsin WI),
-  %w(Wyoming WY)
-]
-states.each do |state|
-  State.create(
-    :name => state.first,
-    :abbr => state.last
-  )
-end
-
-csv_text = File.read("public/us_cities_and_states.csv")
-csv = CSV.parse(csv_text, headers: false)
-records = []
-old_state_name = ""
-state_id = nil
-csv.each do |row|
-  line = row[0].split("|")
-
-  new_state_name = line[1].strip
-  if new_state_name != old_state_name
-    old_state_name = new_state_name
-    state_id = State.find_by_name(old_state_name).id
-  end
-
-  city_name = line.last.strip
-  record = [state_id, city_name]
-  puts record
-  records << record
-end
-
-records.map! { |record| "('#{record.first}', '#{record.last}')" }
-sql = "INSERT INTO cities (state_id, name) VALUES #{records.join(', ')}"
-
-connection = ActiveRecord::Base.connection()
-connection.execute(sql)
+# states = [
+#   %w(Alabama AL),
+#   %w(Alaska	AK),
+#   %w(Arizona AZ),
+#   %w(Arkansas	AR),
+#   %w(California	CA),
+#   %w(Colorado	CO),
+#   %w(Connecticut CT),
+#   %w(Delaware	DE),
+#   %w(Florida FL),
+#   %w(Georgia GA),
+#   %w(Hawaii	HI),
+#   %w(Idaho ID),
+#   %w(Illinois	IL),
+#   %w(Indiana IN),
+#   %w(Iowa	IA),
+#   %w(Kansas	KS),
+#   %w(Kentucky	KY),
+#   %w(Louisiana LA),
+#   %w(Maine ME),
+#   %w(Maryland	MD),
+#   %w(Massachusetts	MA),
+#   %w(Michigan	MI),
+#   %w(Minnesota MN),
+#   %w(Mississippi MS),
+#   %w(Missouri	MO),
+#   %w(Montana MT),
+#   %w(Nebraska	NE),
+#   %w(Nevada	NV),
+#   [ "New Hampshire",	"NH" ],
+#   [ "New Jersey",	"NJ" ],
+#   [ "New Mexico",	"NM" ],
+#   [ "New York",	"NY" ],
+#   [ "North Carolina",	"NC" ],
+#   [ "North Dakota",	"ND" ],
+#   %w(Ohio OH),
+#   %w(Oklahoma	OK),
+#   %w(Oregon	OR),
+#   %w(Pennsylvania	PA),
+#   [ "Rhode Island",	"RI" ],
+#   [ "South Carolina",	"SC" ],
+#   [ "South Dakota",	"SD" ],
+#   %w(Tennessee TN),
+#   %w(Texas TX),
+#   %w(Utah	UT),
+#   %w(Vermont VT),
+#   %w(Virginia	VA),
+#   %w(Washington	WA),
+#   ["West Virginia",	"WV"],
+#   %w(Wisconsin WI),
+#   %w(Wyoming WY)
+# ]
+# states.each do |state|
+#   State.create(
+#     :name => state.first,
+#     :abbr => state.last
+#   )
+# end
+#
+# csv_text = File.read("public/us_cities_and_states.csv")
+# csv = CSV.parse(csv_text, headers: false)
+# records = []
+# old_state_name = ""
+# state_id = nil
+# csv.each do |row|
+#   line = row[0].split("|")
+#
+#   new_state_name = line[1].strip
+#   if new_state_name != old_state_name
+#     old_state_name = new_state_name
+#     state_id = State.find_by_name(old_state_name).id
+#   end
+#
+#   city_name = line.last.strip
+#   record = [state_id, city_name]
+#   puts record
+#   records << record
+# end
+#
+# records.map! { |record| "('#{record.first}', '#{record.last}')" }
+# sql = "INSERT INTO cities (state_id, name) VALUES #{records.join(', ')}"
+#
+# connection = ActiveRecord::Base.connection()
+# connection.execute(sql)
 
 # Partner.create(
 #   user_id: 4,
