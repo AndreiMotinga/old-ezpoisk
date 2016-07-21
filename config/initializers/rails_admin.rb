@@ -21,8 +21,10 @@ RailsAdmin.config do |config|
     edit do
       field :text do
         render do
-          bindings[:view].render partial: "text",
-            locals: { field: self, form: bindings[:form] }
+          bindings[:view].render(
+            partial: "text",
+            locals: { key: text, field: self, form: bindings[:form] }
+          )
         end
       end
     end
@@ -36,8 +38,10 @@ RailsAdmin.config do |config|
     edit do
       field :text do
         render do
-          bindings[:view].render partial: "text",
-            locals: { field: self, form: bindings[:form] }
+          bindings[:view].render(
+            partial: "text",
+            locals: { key: :text, field: self, form: bindings[:form] }
+          )
         end
       end
     end
@@ -48,10 +52,41 @@ RailsAdmin.config do |config|
     edit do
       field :text do
         render do
-          bindings[:view].render partial: "text",
-            locals: { field: self, form: bindings[:form] }
+          bindings[:view].render(
+            partial: "text",
+            locals: { key: :text, field: self, form: bindings[:form] }
+          )
         end
       end
     end
   end
+
+  config.model "Job" do
+    include_all_fields
+    edit do
+      field :description do
+        render do
+          bindings[:view].render(
+            partial: "text",
+            locals: { key: :description, field: self, form: bindings[:form] }
+          )
+        end
+      end
+    end
+  end
+
+  config.model "RePrivate" do
+    include_all_fields
+    edit do
+      field :description do
+        render do
+          bindings[:view].render(
+            partial: "text",
+            locals: { key: :description, field: self, form: bindings[:form] }
+          )
+        end
+      end
+    end
+  end
+
 end
