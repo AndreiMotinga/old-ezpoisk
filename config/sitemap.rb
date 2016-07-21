@@ -42,12 +42,12 @@ SitemapGenerator::Sitemap.create do
   ##############################################################
 
   add re_privates_path, priority: 0.6, changefreq: "weekly"
-  RePrivate.find_each do |post|
+  RePrivate.active.find_each do |post|
     add re_private_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
   add re_commercials_path, priority: 0.6, changefreq: "weekly"
-  ReCommercial.find_each do |post|
+  ReCommercial.active.find_each do |post|
     add re_commercial_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
@@ -65,7 +65,7 @@ SitemapGenerator::Sitemap.create do
 
   add posts_path, priority: 0.6, changefreq: "daily"
 
-  Post.find_each do |post|
+  Post.visible.find_each do |post|
     add post_path(post),
         priority: 0.6,
         lastmod: post.updated_at
@@ -84,7 +84,7 @@ SitemapGenerator::Sitemap.create do
   ##############################################################
 
   add sales_path, priority: 0.6, changefreq: "daily"
-  Sale.find_each do |post|
+  Sale.active.find_each do |post|
     add sale_path(post),
         priority: 0.6,
         lastmod: post.updated_at
@@ -103,7 +103,7 @@ SitemapGenerator::Sitemap.create do
   ##############################################################
 
   add services_path, priority: 0.6, changefreq: "weekly"
-  Service.find_each do |post|
+  Service.active.find_each do |post|
     add service_path(post),
         priority: 0.6,
         lastmod: post.updated_at
@@ -122,7 +122,7 @@ SitemapGenerator::Sitemap.create do
   ##############################################################
 
   add jobs_path, priority: 0.6, changefreq: "weekly"
-  Job.find_each do |post|
+  Job.active.find_each do |post|
     add jobs_path(post),
         priority: 0.6,
         lastmod: post.updated_at
