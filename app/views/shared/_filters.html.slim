@@ -1,4 +1,7 @@
 .panel.panel-default
-  .panel-heading Фильтры
+  .panel-heading
+    h5
+      | Фильтры
+      span.pull-right= count
   .panel-body
     = render "#{t}/search_form"
