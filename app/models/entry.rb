@@ -3,4 +3,8 @@ class Entry < ActiveRecord::Base
 
   scope :today, -> { where("created_at > ?", Date.today) }
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
+
+  def self.homepage
+    where(enterable_type: %w(Question Post))
+  end
 end
