@@ -5,6 +5,6 @@ class Entry < ActiveRecord::Base
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
 
   def self.homepage
-    where(enterable_type: %w(Question Post))
+    where(enterable_type: %w(Post))
   end
 end

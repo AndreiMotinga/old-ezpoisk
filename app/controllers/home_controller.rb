@@ -2,9 +2,10 @@ class HomeController < ApplicationController
   # before_action :set_partners, only: [:index]
 
   def index
-    @entries = Entry.homepage.includes(enterable: :user)
-                             .order("updated_at desc")
-                             .page(params[:page])
+    @posts = Post.includes(:user)
+                 .visible
+                 .desc
+                 .page(params[:page]).per(10)
   end
 
   private

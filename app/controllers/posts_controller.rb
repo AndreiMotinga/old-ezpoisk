@@ -3,12 +3,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
 
   def index
-    page = params[:page]
     @posts = Post.includes(:user)
                  .visible
                  .by_keyword(params[:keyword])
                  .desc
-                 .page(page).per(10)
+                 .page(params[:page]).per(10)
   end
 
   def show

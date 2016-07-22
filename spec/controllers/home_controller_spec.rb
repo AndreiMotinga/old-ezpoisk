@@ -3,17 +3,12 @@ require "rails_helper"
 describe HomeController do
   describe "GET index" do
     it "renders home page and assigns @entries" do
-      q = create(:question, updated_at: 2.days.ago)
-      q.create_entry
       p = create(:post, visible: true)
-      p.create_entry(updated_at: p.updated_at)
 
       get :index
-      entries = assigns(:entries).map{|e| e.enterable.title }
-      expected = [q, p].map(&:title)
 
       expect(response).to render_template(:index)
-      expect(entries).to eq expected
+      expect(assigns(:posts)).to match [p]
     end
   end
 end
