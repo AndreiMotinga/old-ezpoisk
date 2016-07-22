@@ -123,7 +123,7 @@ SitemapGenerator::Sitemap.create do
 
   add jobs_path, priority: 0.6, changefreq: "weekly"
   Job.active.find_each do |post|
-    add jobs_path(post),
+    add job_path(post),
         priority: 0.6,
         lastmod: post.updated_at
   end
