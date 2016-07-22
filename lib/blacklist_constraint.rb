@@ -3,7 +3,6 @@ class BlacklistConstraint
   IPS = [
     ENV["MY_IP_ONE"],
     ENV["GRETA_IP"],
-    ENV["SERGHEI_IP"]
   ].freeze
 
   def matches?(request)
