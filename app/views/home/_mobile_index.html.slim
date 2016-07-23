@@ -60,9 +60,16 @@
               li.list-group-item.mobile-link Выйти
 
   br
-  br
-  .text-center
-    #fb-root
-    .fb-like[data-href="https://www.ezpoisk.com"
-             data-layout="button_count" data-action="like" data-size="small"
-             data-show-faces="true" data-width="220px" data-share="true"]
+  .panel
+    .panel-heading: h5 Show your support !
+    .panel-body
+      #vk_like
+      javascript:
+        VK.Widgets.Like("vk_like", {type: "button"});
+
+      br
+
+      #fb-root
+      .fb-like[data-href="https://www.ezpoisk.com"
+               data-layout="button_count" data-action="like" data-size="small"
+               data-show-faces="true" data-width="220px" data-share="true"]

@@ -5,12 +5,6 @@
 = og_url("https://www.ezpoisk.com")
 = og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
 
-- content_for(:head) do
-  script type="text/javascript" src="//vk.com/js/api/openapi.js?123"
-  javascript:
-    VK.init({apiId: 5343503, onlyWidgets: true});
-
-
 - content_for(:sidebar) do
   = render "home/sidebar"
 - content_for(:right_block) do

@@ -5,3 +5,18 @@
       span.pull-right= count
   .panel-body
     = render "#{t}/search_form"
+
+br
+.panel
+  .panel-heading: h5 Show your support !
+  .panel-body
+    #vk_like
+    javascript:
+      VK.Widgets.Like("vk_like", {type: "button", pageUrl: "https://www.ezpoisk.com"});
+
+    br
+
+    #fb-root
+    .fb-like[data-href="https://www.ezpoisk.com"
+             data-layout="button_count" data-action="like" data-size="small"
+             data-show-faces="true" data-width="220px" data-share="true"]
