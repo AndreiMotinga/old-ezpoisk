@@ -83,9 +83,10 @@ Rails.application.routes.draw do
       get :import, on: :collection
       delete :destroy_all, on: :collection
     end
-    constraints BlacklistConstraint.new do
-      mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
-    end
+    # doesn't work sines ip through cloudflare is different every time
+    # constraints BlacklistConstraint.new do
+    mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
+    # end
   end
   resources :posts, only: [:index, :show]
 
