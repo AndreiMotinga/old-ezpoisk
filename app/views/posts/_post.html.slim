@@ -12,7 +12,7 @@
               p.text-muted= post.created_at.strftime("%d %B %Y")
 
       .panel-body
-        = link_to post_path(post) do
+        = link_to post_path(post), target: "_blank"  do
           = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
         h4= post.title
         p

@@ -1,7 +1,7 @@
 .row.white-block class=("user-hidden" if service.user_hidden?(current_user)) data-hidden=service.id
   .listing
     .col-xs-4.logo-js
-      = link_to service_path(service) do
+      = link_to service_path(service), target: "_blank" do
         = image_tag service.logo.url(:medium), alt: service.title, class: "img-responsive center-block", itemprop: "logo"
 
     .col-xs-8

@@ -2,7 +2,7 @@
   .listing
     .panel.panel-default
       .panel-heading
-        h4= link_to job.title, job_path(job), itemprop: "title"
+        h4= link_to job.title, job_path(job), target: "_blank", itemprop: "title"
       .panel-body.description
         - if job.logo?
           = link_to job_path(job) do

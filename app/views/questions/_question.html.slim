@@ -3,11 +3,11 @@
     .panel.panel-default
       .panel-heading
         h4.title
-          = link_to question.title, question
+          = link_to question.title, question, target: "_blank"
         - if question.has_answer?
           .row.author
             .col-xs-3.col-sm-2
-              = link_to profile_path(question.profile) do
+              = link_to profile_path(question.profile), target: "_blank" do
                 = image_tag question.avatar, alt: question.username,  class: "img-responsive img-circle center-block"
             .col-xs-9.col-sm-10
               /p.text-muted.pull-right
