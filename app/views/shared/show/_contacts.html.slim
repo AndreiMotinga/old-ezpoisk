@@ -8,7 +8,7 @@
 
   - unless record.try(:source).blank?
     li.list-group-item
-      = link_to "Источник объявления", record.source, target: "_blank"
+      = link_to "Автор объявления", record.source, target: "_blank"
 
   - if record.try(:phone).present?
     li.list-group-item

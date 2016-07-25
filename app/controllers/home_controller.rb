@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   # before_action :set_partners, only: [:index]
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes(user: :profile)
                  .visible
                  .desc
                  .page(params[:page]).per(10)

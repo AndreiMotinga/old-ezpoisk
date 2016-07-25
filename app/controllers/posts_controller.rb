@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update]
 
   def index
-    @posts = Post.includes(:user)
+    @posts = Post.includes(user: :profile)
                  .visible
                  .by_keyword(params[:keyword])
                  .desc
