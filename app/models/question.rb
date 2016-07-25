@@ -74,7 +74,7 @@ class Question < ActiveRecord::Base
   end
 
   def subscribers_emails
-    subscribers.pluck(:emails)
+    subscribers.pluck(:email)
   end
 
   def has_answer?
