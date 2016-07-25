@@ -27,4 +27,9 @@ class Job < ActiveRecord::Base
   def edit_link
     url_helpers.edit_dashboard_job_path(self)
   end
+
+  def self.subcategory(subs)
+    subs = subs.map{|s| "%#{s.strip}%"}
+    where("subcategory ILIKE ANY ( array[?] )", subs)
+  end
 end

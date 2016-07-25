@@ -12,6 +12,11 @@
                         itemprop: "image"
           hr
         p itemprop="description" = sanitize job.description
+        p.tags
+          - if job.subcategory.present?
+            - job.subcategory.split(", ").each do |sub|
+              a.tag= " ##{sub} "
+
       .panel-footer
         .row
           .col-xs-6

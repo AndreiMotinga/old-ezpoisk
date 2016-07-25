@@ -11,24 +11,17 @@ javascript:
         | Категории
         span.pull-right.glyphicon.glyphicon-chevron-right aria-hidden="true"
       .row.dropdown-menu
-        .col-sm-6
-          - JOB_SUBCATEGORIES.each_with_index do |(c, subs), i|
-            - if i <= 9
-              h4= c
-              - subs.each do |sub|
+        - JOB_SUBCATEGORIES.each_with_index do |(cat, subs), i|
+          .col-sm-6
+            h4= cat
+            - subs.each do |sub|
+              - unless sub.is_a? Array
                 .checkbox
                   label
-                    = check_box_tag "subcategory[]", sub, params[:subcategory].try(:include?, sub)
+                    = check_box_tag "subcategory[]", sub
                     = " #{sub}"
-        .col-sm-6
-          - JOB_SUBCATEGORIES.each_with_index do |(c, subs), i|
-            - if i > 9
-              h4= c
-              - subs.each do |sub|
-                .checkbox
-                  label
-                    = check_box_tag "subcategory[]", sub, params[:subcategory].try(:include?, sub)
-                    = " #{sub}"
+          - if i.odd?
+            .clearfix
 
 .visible-xs
   = label_tag "Категория", nil

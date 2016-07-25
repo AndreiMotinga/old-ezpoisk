@@ -1,7 +1,7 @@
 module QuestionsHelper
   def tag_links(question)
     sanitize question.tag_list
-      .map { |tag| link_to "##{tag}", tag_path(tag), class: "tag" }.join(" ")
+      .map { |tag| link_to "##{tag}", tag_path(tag), class: "tag" }.join
   end
 
   def tag_path(tag_id)
