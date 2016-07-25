@@ -13,6 +13,9 @@
       .visible-xs
         h5.title= link_to sale.title, sale_path(sale)
 
+      / line 2
+      span.state-city #{sale.city.name}, #{sale.state.name}
+
       /line 2
       .hidden-xs
         - if sale.street?

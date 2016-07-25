@@ -13,6 +13,9 @@
         h5.title= link_to re_commercial.title, re_commercial_path(re_commercial)
 
       / line 2
+      span.state-city #{re_commercial.city.name}, #{re_commercial.state.name}
+
+      / line 2
       strong= "$ #{re_commercial.price} "
       span= re_commercial.post_type
       hr.post-devider/

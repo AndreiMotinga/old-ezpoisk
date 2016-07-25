@@ -11,6 +11,9 @@
       h4.title.hidden-xs itemprop="name"
         = link_to service.title, service_path(service)
 
+      / line 2
+      span.state-city #{service.city.name}, #{service.state.name}
+
       /line 2
       .hidden-xs
         - if service.street?

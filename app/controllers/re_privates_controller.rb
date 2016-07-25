@@ -2,7 +2,8 @@ class RePrivatesController < ApplicationController
   # before_action :set_partners, only: :index
 
   def index
-    @re_privates = RePrivate.filter(sliced_params).page(params[:page])
+    @re_privates = RePrivate.includes(:state, :city)
+                            .filter(sliced_params).page(params[:page])
   end
 
   def show

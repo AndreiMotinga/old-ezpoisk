@@ -2,13 +2,15 @@ class SalesController < ApplicationController
   # before_action :set_partners
 
   def index
-    sales = Sale.filter(params.slice(:state_id,
-                                     :city_id,
-                                     :category,
-                                     :keyword,
-                                     :geo_scope))
-                .order("created_at desc")
-    @sales = sales.page(params[:page])
+    @sales = Sale
+             .includes(:state, :city)
+             .filter(params.slice(:state_id,
+                                  :city_id,
+                                  :category,
+                                  :keyword,
+                                  :geo_scope))
+             .order("updated_at desc")
+             .page(params[:page])
   end
 
   def show
