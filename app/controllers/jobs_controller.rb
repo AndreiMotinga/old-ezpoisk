@@ -2,7 +2,9 @@ class JobsController < ApplicationController
   # before_action :set_partners, only: :index
 
   def index
-    @jobs = Job.filter(sliced_params).page(params[:page])
+    @jobs = Job.includes(:state, :city)
+               .filter(sliced_params)
+               .page(params[:page])
   end
 
   def show

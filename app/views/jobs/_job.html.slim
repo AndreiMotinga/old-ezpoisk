@@ -23,3 +23,6 @@
             h6 #{job.category} | #{time_ago_in_words job.updated_at} назад
           .col-xs-6
             .favor-links.pull-right= render "shared/favor_links", record: job
+        .row
+          .col-xs-12
+            span.state-city #{job.city.name}, #{job.state.name}
