@@ -21,7 +21,7 @@ class Dashboard::RePrivatesController < ApplicationController
     if @re_private.save
       SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
       GeocodeJob.perform_async(@re_private.id, "RePrivate")
-      @re_private.create_entry
+      @re_private.create_entry(user: current_user)
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
     else

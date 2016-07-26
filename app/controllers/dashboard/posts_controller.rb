@@ -18,7 +18,7 @@ class Dashboard::PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       SlackNotifierJob.perform_async(@post.id, "Post")
-      @post.create_entry
+      @post.create_entry(user: current_user)
       redirect_to edit_dashboard_post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)

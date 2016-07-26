@@ -5,7 +5,7 @@ describe AnswersController do
     it "creates answer and touches entry" do
       sign_in(@user = create(:user))
       question = create :question, updated_at: 1.month.ago
-      entry = question.create_entry(updated_at: question.updated_at)
+      entry = question.create_entry(user: @user, updated_at: question.updated_at)
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
@@ -23,7 +23,7 @@ describe AnswersController do
     it "subscribes answer's author for answer's question" do
       sign_in(@user = create(:user))
       question = create :question
-      question.create_entry
+      question.create_entry(user: @user)
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 

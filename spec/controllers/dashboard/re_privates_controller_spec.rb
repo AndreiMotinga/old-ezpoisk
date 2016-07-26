@@ -53,6 +53,7 @@ describe Dashboard::RePrivatesController do
       expect(Entry.count).to eq 1
       expect(entry.enterable_id).to eq re_private.id
       expect(entry.enterable_type).to eq re_private.class.to_s
+      expect(entry.user_id).to eq @user.id
     end
 
     it "renders form and displays alert when record isn't saved" do

@@ -13,8 +13,7 @@ class ProfilesController < ApplicationController
   end
 
   def listings
-    @listings = ListingsAggregator.new(@profile.user).listings
-    @listings = Kaminari.paginate_array(@listings).page(params[:page])
+    @listings = Entry.includes(enterable: :state).page(params[:page])
   end
 
   def answers

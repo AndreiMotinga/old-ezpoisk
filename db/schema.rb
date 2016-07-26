@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160721164156) do
+ActiveRecord::Schema.define(version: 20160726021719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,11 @@ ActiveRecord::Schema.define(version: 20160721164156) do
     t.string   "enterable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "user_id"
   end
 
   add_index "entries", ["enterable_type", "enterable_id"], name: "index_entries_on_enterable_type_and_enterable_id", using: :btree
+  add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -477,6 +479,7 @@ ActiveRecord::Schema.define(version: 20160721164156) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
+  add_foreign_key "entries", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"

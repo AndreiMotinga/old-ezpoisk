@@ -23,6 +23,7 @@ feature "User browses profile" do
     user = create :user
     profile = create :profile, user: user
     re_private = create :re_private, user: user
+    re_private.create_entry(user: user)
 
     visit profile_listings_path(profile)
     expect(page).to have_content re_private.title

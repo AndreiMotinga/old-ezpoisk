@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   validates :text, presence: true # , length: { maximum: 160, minimum: 100 }
 
   belongs_to :user
+  belongs_to :state
+  belongs_to :city
   has_many :favorites, as: :favorable, dependent: :destroy
   delegate :avatar, to: :user
   has_one :entry, as: :enterable, dependent: :destroy

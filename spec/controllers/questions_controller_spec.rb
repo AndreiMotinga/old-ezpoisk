@@ -106,6 +106,7 @@ describe QuestionsController do
       expect(Entry.count).to eq 1
       expect(entry.enterable_id).to eq question.id
       expect(entry.enterable_type).to eq question.class.to_s
+      expect(entry.user_id).to eq @user.id
     end
 
     it "creates subscription" do

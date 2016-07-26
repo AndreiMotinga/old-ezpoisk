@@ -28,8 +28,10 @@ describe ProfilesController do
   describe "#listings" do
     it "is success and assigns listings" do
       user = create :user
-      create :re_private, user: user
-      create :sale, user: user
+      rp = create :re_private, user: user
+      rp.create_entry user: user
+      sale = create :sale, user: user
+      sale.create_entry user: user
 
       get :listings, id: user.profile.id
       listings = assigns(:listings)

@@ -5,7 +5,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     description { Faker::Lorem.paragraph(5) }
     category { JOB_CATEGORIES.sample }
-    subcategory { JOB_SUBCATEGORIES[JOB_SUBCATEGORIES.keys.sample].sample }
+    subcategory "pr"
     active true
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
