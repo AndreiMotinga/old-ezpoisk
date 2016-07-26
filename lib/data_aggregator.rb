@@ -1,10 +1,10 @@
 class DataAggregator
   def initialize
     @post_count = models.map(&:count).sum
-    @post_goal = (@post_count * 0.1).round
+    @post_goal = (@post_count * 0.33).round
 
-    @users_goal = (User.count * 0.1).round
-    @answer_goal = (Answer.count * 0.1).round
+    @users_goal = (User.count * 0.33).round
+    @answer_goal = (Answer.count * 0.33).round
   end
 
   def message
@@ -22,6 +22,6 @@ class DataAggregator
   end
 
   def models
-    MODELS.map { |model| model[1].constantize }
+    [RePrivate, ReCommercial, Job, Service, Sale, Post]
   end
 end

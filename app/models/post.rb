@@ -26,6 +26,10 @@ class Post < ActiveRecord::Base
   scope :invisible, -> { where(visible: false) }
   scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
 
+  def self.this_week
+    where("created_at > ?", Date.today.at_beginning_of_week).count
+  end
+
   def self.by_keyword(keyword)
     return all if keyword.blank?
     keys = convert_keyword(keyword)
