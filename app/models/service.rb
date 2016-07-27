@@ -34,7 +34,7 @@ class Service < ActiveRecord::Base
   def self.active
     joins(:stripe_subscription).where(
       "stripe_subscriptions.active_until > ?", Date.current
-    )
+    ).order("priority desc")
   end
 
   has_attached_file :logo, styles: { medium: "x120" }

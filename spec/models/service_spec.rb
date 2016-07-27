@@ -19,13 +19,24 @@ describe Service do
   it { should have_many(:favorites).dependent(:destroy) }
 
   describe ".active" do
-    it "returns path to edit record" do
+    it "returns only active services" do
       5.times { create :service, :active }
       create :service
       # will also create service
       create :stripe_subscription, active_until: 3.days.ago
 
       expect(Service.active.count).to eq 5
+    end
+
+    it "returns them in order of priority" do
+      two = create :service, :active, priority: 2
+      one = create :service, :active, priority: 1
+      three = create :service, :active, priority: 3
+
+      expected = [three.title, two.title, one.title]
+      result = Service.active.pluck(:title)
+
+      expect(result).to eq expected
     end
   end
 
