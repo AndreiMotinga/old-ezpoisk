@@ -1,5 +1,11 @@
-.col-xs-12.search-modal-trigger
+.col-xs-5.search-modal-trigger
   = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "##{id}", "data-toggle": :modal, role: :button
+
+.col-xs-7
+  #fb-root
+  .fb-like[data-href="https://www.ezpoisk.com"
+           data-layout="button_count" data-action="like" data-size="small"
+           data-show-faces="true" data-width="220px" data-share="true"]
 
 /! Modal
 .modal.fade id=id aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
