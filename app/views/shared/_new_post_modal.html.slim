@@ -1,0 +1,59 @@
+/ Modal
+#new.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true" ×
+        h4#myModalLabel.modal-title Подайте объявление
+
+
+      .modal-body
+        .home
+          ul.nav.accordion
+            ul.list-group.panel
+              a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav"
+                span.sidebar-icon
+                  i.fa.fa-hospital-o
+                = t(:ezrealty)
+                .pull-right
+                  span.caret
+              #realty-nav.collapse
+                /li= link_to  main_app.re_agencies_path
+                li= link_to t(:agencies), new_dashboard_service_path(category: "Недвижимость", subcategory: "Агентства Недвижимости")
+                li= link_to "Частная Недвижимость", new_dashboard_re_private_path
+                li= link_to "Коммерческая Недвижимость", new_dashboard_re_commercial_path
+
+              a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#jobs-nav"
+                span.sidebar-icon
+                  i.fa.fa-list-ul
+                | Работа
+                .pull-right
+                  span.caret
+              #jobs-nav.collapse
+                li= link_to t(:agencies), new_dashboard_service_path(category: "Работа", subcategory: "Агентства по Трудоустройству")
+                li= link_to "Требуется", new_dashboard_job_path(category: "Требуется")
+                li= link_to "Ищу работу", new_dashboard_job_path(category: "Ищу")
+
+              a.list-group-item href=new_dashboard_sale_path
+                span.sidebar-icon
+                  i.fa.fa-globe
+                | Продается
+
+              a.list-group-item href=new_dashboard_service_path
+                span.sidebar-icon
+                  i.fa.fa-balance-scale
+                | Услуги
+
+              a.list-group-item href=new_dashboard_post_path
+                span.sidebar-icon
+                  i.fa.fa-globe
+                | Новости
+
+              a.list-group-item href=new_question_path
+                span.sidebar-icon
+                  i.fa.fa-question
+                | Вопросы
+
+      .modal-footer
+        button.btn.btn-block.mobile-btn aria-label="Close" data-dismiss="modal" type="button" = t(:close)

@@ -72,4 +72,8 @@ module FormHelper
       f.select :city_id, [], { label: "* Город" }, class: "city-select"
     end
   end
+
+  def form_options(prm, opts)
+    prm.present? ? [prm] : opts
+  end
 end

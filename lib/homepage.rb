@@ -1,3 +1,4 @@
+# todo delete
 # aggregates listings, posts, and questions to display on homepage
 #
 # frozen_string_literal: true
