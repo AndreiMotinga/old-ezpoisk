@@ -1,11 +1,13 @@
-.col-xs-5.search-modal-trigger
-  = link_to "Настроить фильтр", "", class: "btn mobile-btn", "data-target": "##{id}", "data-toggle": :modal, role: :button
-
-.col-xs-7
+.col-xs-12.text-center
   #fb-root
   .fb-like[data-href="https://www.ezpoisk.com"
            data-layout="button_count" data-action="like" data-size="small"
            data-show-faces="true" data-width="220px" data-share="true"]
+br
+br
+
+.col-xs-12.search-modal-trigger
+  = link_to "Настроить фильтр", "", class: "btn btn-block mobile-btn", "data-target": "##{id}", "data-toggle": :modal, role: :button
 
 /! Modal
 .modal.fade id=id aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
