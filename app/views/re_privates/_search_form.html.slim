@@ -2,16 +2,18 @@ form.form-horizontal action=re_privates_path method="get"
   = render "shared/search_by_address"
   hr/
 
+  .col-xs-12
+    .form-group
+      = label_tag "Цена", nil
+      .row
+        .col-xs-6
+          = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
+        .col-xs-6
+          = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
+  br
+
   = label_tag "Тип объявления", nil
-  = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), include_blank: true, class: "form-control"
-  br
-
-  = label_tag "Минимальная цена", nil
-  = number_field_tag :min_price, params[:min_price], class: "form-control"
-  br
-
-  = label_tag "Максимальная цена", nil
-  = number_field_tag :max_price, params[:max_price], class: "form-control"
+  = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), class: "form-control"
   br
 
   = label_tag "Сортировать", nil

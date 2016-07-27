@@ -19,7 +19,6 @@ module FormHelper
                   "Поновее"   => "updated_at desc" }
     select_tag(:sorted,
                options_for_select(sort_opts, params[:sorted]),
-               include_blank: true,
                class: "form-control")
   end
 
