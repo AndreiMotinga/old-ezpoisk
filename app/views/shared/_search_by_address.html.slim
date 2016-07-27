@@ -1,19 +1,19 @@
 .panel.panel-default
   .panel-body
-    .form-group
-      = label_tag "Штат", nil,  class: "col-xs-1 control-label"
-      .col-xs-12
-        = select_tag :state_id, options_for_select(STATES, state_id), multiple: true, class: "form-control state-select"
-
-    .form-group
-      = label_tag "Город", nil,  class: "col-xs-1 control-label"
-      .col-xs-12
-        = select_tag :city_id, options_from_collection_for_select(state_cities, :id, :name, city_id), multiple: true,  class: "form-control city-select"
-
-    button.pull-right[type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom"
-           title="Выберите штат и город либо радиус и точку отсчета ( полный адрес или зипкод ), затем нажмите 'Обновить'"]
-      | ?
-
+    /.form-group
+    /  = label_tag "Штат", nil,  class: "col-xs-1 control-label"
+    /  .col-xs-12
+    /    = select_tag :state_id, options_for_select(STATES, state_id), multiple: true, class: "form-control state-select"
+    /
+    /.form-group
+    /  = label_tag "Город", nil,  class: "col-xs-1 control-label"
+    /  .col-xs-12
+    /    = select_tag :city_id, options_from_collection_for_select(state_cities, :id, :name, city_id), multiple: true,  class: "form-control city-select"
+    /
+    /button.pull-right[type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom"
+    /       title="Выберите штат и город либо радиус и точку отсчета ( полный адрес или зипкод ), затем нажмите 'Обновить'"]
+    /  | ?
+    /
     .form-group
       .col-xs-12
         label Радиус (миль)
