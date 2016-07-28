@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_rack_mini_profiler
-    Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    # Rack::MiniProfiler.authorize_request if current_user.try(:admin)
   end
 
   def get_record(model, id, path)
@@ -35,8 +35,8 @@ class ApplicationController < ActionController::Base
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(fields) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(fields) }
+    devise_parameter_sanitizer.permit(:sign_up, keys: fields)
+    devise_parameter_sanitizer.permit(:account_update, keys: fields)
   end
 
   def fields

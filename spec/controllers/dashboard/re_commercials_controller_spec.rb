@@ -16,7 +16,7 @@ describe Dashboard::ReCommercialsController do
     it "renders the edit template and assigns @re_commercial" do
       re_commercial = create :re_commercial, user: @user
 
-      get :edit, id: re_commercial.id
+      get :edit, params: { id: re_commercial.id }
 
       expect(response).to render_template(:edit)
       expect(assigns(:re_commercial)).to eq re_commercial
@@ -26,7 +26,7 @@ describe Dashboard::ReCommercialsController do
       re_commercial = create :re_commercial
       create :re_commercial, user: @user
 
-      expect { get :edit, id: re_commercial.id }
+      expect { get :edit, params: { id: re_commercial.id } }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
@@ -35,7 +35,7 @@ describe Dashboard::ReCommercialsController do
     it "creates new record and entry" do
       attrs = attributes_for(:re_commercial)
 
-      post :create, re_commercial: attrs
+      post :create, params: { re_commercial: attrs }
       re_commercial = assigns(:re_commercial)
 
       expect(response).to redirect_to(
@@ -65,7 +65,7 @@ describe Dashboard::ReCommercialsController do
       re_commercial = create :re_commercial, user: @user
       attrs = attributes_for(:re_commercial)
 
-      put :update, id: re_commercial.id, re_commercial: attrs
+      put :update, params: { id: re_commercial.id, re_commercial: attrs }
 
       expect(response)
         .to redirect_to(edit_dashboard_re_commercial_path(re_commercial))
@@ -88,7 +88,7 @@ describe Dashboard::ReCommercialsController do
     it "removes record" do
       re_commercial = create(:re_commercial, user: @user)
 
-      delete :destroy, id: re_commercial.id
+      delete :destroy, params: { id: re_commercial.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(ReCommercial.count).to be 0

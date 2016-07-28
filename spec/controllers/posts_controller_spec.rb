@@ -16,7 +16,7 @@ describe PostsController do
     it "assings @post" do
       post = create(:post)
 
-      get :show, id: post.slug
+      get :show, params: { id: post.slug }
 
       expect(assigns(:post)).to eq post
     end

@@ -9,7 +9,7 @@ describe FavoritesController do
           sign_in(user)
           re_private = create(:re_private)
 
-          post :create, favorite: favorite_attrs(re_private)
+          post :create, params: { favorite: favorite_attrs(re_private) }
           result = user.favorites.first
 
           expect(result.user_id).to eq user.id
@@ -31,7 +31,7 @@ describe FavoritesController do
                  saved: true,
                  hidden: false)
 
-          post :create, favorite: favorite_attrs(re_private)
+          post :create, params: { favorite: favorite_attrs(re_private) }
           result = user.favorites.count
 
           expect(result).to eq 0
@@ -52,7 +52,7 @@ describe FavoritesController do
             hidden: true
           }
 
-          post :create, favorite: attrs
+          post :create, params: { favorite: attrs }
           result = user.favorites.first
 
           expect(result.user_id).to eq user.id
@@ -82,7 +82,7 @@ describe FavoritesController do
             hidden: true
           }
 
-          post :create, favorite: attrs
+          post :create, params: { favorite: attrs }
           result = user.favorites.count
 
           expect(result).to eq 0

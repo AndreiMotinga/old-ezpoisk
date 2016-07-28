@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726021719) do
+ActiveRecord::Schema.define(version: 20160729051432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,18 +22,16 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "impressions_count", default: 0
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+    t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
-
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
-  add_index "answers", ["user_id"], name: "index_answers_on_user_id", using: :btree
 
   create_table "cities", force: :cascade do |t|
     t.string  "name"
     t.integer "state_id"
+    t.index ["name"], name: "index_cities_on_name", using: :btree
+    t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
   end
-
-  add_index "cities", ["name"], name: "index_cities_on_name", using: :btree
-  add_index "cities", ["state_id"], name: "index_cities_on_state_id", using: :btree
 
   create_table "entries", force: :cascade do |t|
     t.integer  "enterable_id"
@@ -42,10 +39,9 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
+    t.index ["enterable_type", "enterable_id"], name: "index_entries_on_enterable_type_and_enterable_id", using: :btree
+    t.index ["user_id"], name: "index_entries_on_user_id", using: :btree
   end
-
-  add_index "entries", ["enterable_type", "enterable_id"], name: "index_entries_on_enterable_type_and_enterable_id", using: :btree
-  add_index "entries", ["user_id"], name: "index_entries_on_user_id", using: :btree
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -53,11 +49,10 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string  "favorable_type"
     t.boolean "saved",          default: false, null: false
     t.boolean "hidden",         default: false, null: false
+    t.index ["user_id", "favorable_id", "favorable_type", "hidden"], name: "quadro_index_on_hidden", unique: true, using: :btree
+    t.index ["user_id", "favorable_id", "favorable_type", "saved"], name: "quadro_index_on_favorite", unique: true, using: :btree
+    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
-
-  add_index "favorites", ["user_id", "favorable_id", "favorable_type", "hidden"], name: "quadro_index_on_hidden", unique: true, using: :btree
-  add_index "favorites", ["user_id", "favorable_id", "favorable_type", "saved"], name: "quadro_index_on_favorite", unique: true, using: :btree
-  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
   create_table "feedbacks", force: :cascade do |t|
     t.string   "name"
@@ -74,12 +69,11 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "sluggable_type", limit: 50
     t.string   "scope"
     t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
-
-  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
@@ -95,16 +89,15 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.text     "referrer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
+    t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
+    t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
+    t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
+    t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
+    t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
+    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
+    t.index ["user_id"], name: "index_impressions_on_user_id", using: :btree
   end
-
-  add_index "impressions", ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index", using: :btree
-  add_index "impressions", ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index", using: :btree
-  add_index "impressions", ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index", using: :btree
-  add_index "impressions", ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index", using: :btree
-  add_index "impressions", ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index", using: :btree
-  add_index "impressions", ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index", using: :btree
-  add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index", using: :btree
-  add_index "impressions", ["user_id"], name: "index_impressions_on_user_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
@@ -130,13 +123,12 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "slug"
     t.string   "source"
     t.string   "subcategory"
+    t.index ["category"], name: "index_jobs_on_category", using: :btree
+    t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
+    t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
+    t.index ["state_id"], name: "index_jobs_on_state_id", using: :btree
+    t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end
-
-  add_index "jobs", ["category"], name: "index_jobs_on_category", using: :btree
-  add_index "jobs", ["city_id"], name: "index_jobs_on_city_id", using: :btree
-  add_index "jobs", ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
-  add_index "jobs", ["state_id"], name: "index_jobs_on_state_id", using: :btree
-  add_index "jobs", ["user_id"], name: "index_jobs_on_user_id", using: :btree
 
   create_table "partners", force: :cascade do |t|
     t.integer  "user_id"
@@ -153,9 +145,8 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.date     "start_date"
     t.date     "active_until"
     t.integer  "amount"
+    t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
-
-  add_index "partners", ["user_id"], name: "index_partners_on_user_id", using: :btree
 
   create_table "pictures", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -168,21 +159,19 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.datetime "image_updated_at"
     t.boolean  "logo"
     t.integer  "user_id"
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
+    t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
-
-  add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
-  add_index "pictures", ["user_id"], name: "index_pictures_on_user_id", using: :btree
 
   create_table "points", force: :cascade do |t|
     t.integer  "profile_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_points_on_profile_id", using: :btree
+    t.index ["user_id", "profile_id"], name: "index_points_on_user_id_and_profile_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_points_on_user_id", using: :btree
   end
-
-  add_index "points", ["profile_id"], name: "index_points_on_profile_id", using: :btree
-  add_index "points", ["user_id", "profile_id"], name: "index_points_on_user_id_and_profile_id", unique: true, using: :btree
-  add_index "points", ["user_id"], name: "index_points_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -199,10 +188,9 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "slug"
     t.string   "link"
     t.boolean  "visible",            default: true
+    t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
-
-  add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
@@ -227,11 +215,10 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
+    t.index ["city_id"], name: "index_profiles_on_city_id", using: :btree
+    t.index ["state_id"], name: "index_profiles_on_state_id", using: :btree
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
-
-  add_index "profiles", ["city_id"], name: "index_profiles_on_city_id", using: :btree
-  add_index "profiles", ["state_id"], name: "index_profiles_on_state_id", using: :btree
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
     t.string   "title"
@@ -243,11 +230,10 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.integer  "answers_count",     default: 0
     t.string   "slug"
     t.string   "image_url",         default: ""
+    t.index ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
+    t.index ["title"], name: "index_questions_on_title", using: :btree
+    t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
   end
-
-  add_index "questions", ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
-  add_index "questions", ["title"], name: "index_questions_on_title", using: :btree
-  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "re_commercials", force: :cascade do |t|
     t.string   "category",          default: "",    null: false
@@ -268,14 +254,13 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.text     "description",       default: "",    null: false
     t.integer  "impressions_count", default: 0
     t.string   "email"
+    t.index ["category"], name: "index_re_commercials_on_category", using: :btree
+    t.index ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
+    t.index ["price"], name: "index_re_commercials_on_price", using: :btree
+    t.index ["space"], name: "index_re_commercials_on_space", using: :btree
+    t.index ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
+    t.index ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
   end
-
-  add_index "re_commercials", ["category"], name: "index_re_commercials_on_category", using: :btree
-  add_index "re_commercials", ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
-  add_index "re_commercials", ["price"], name: "index_re_commercials_on_price", using: :btree
-  add_index "re_commercials", ["space"], name: "index_re_commercials_on_space", using: :btree
-  add_index "re_commercials", ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
-  add_index "re_commercials", ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
 
   create_table "re_privates", force: :cascade do |t|
     t.string   "street",            default: "",    null: false
@@ -300,13 +285,12 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.integer  "impressions_count", default: 0
     t.string   "source"
     t.string   "email"
+    t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
+    t.index ["price"], name: "index_re_privates_on_price", using: :btree
+    t.index ["space"], name: "index_re_privates_on_space", using: :btree
+    t.index ["state_id"], name: "index_re_privates_on_state_id", using: :btree
+    t.index ["user_id"], name: "index_re_privates_on_user_id", using: :btree
   end
-
-  add_index "re_privates", ["city_id"], name: "index_re_privates_on_city_id", using: :btree
-  add_index "re_privates", ["price"], name: "index_re_privates_on_price", using: :btree
-  add_index "re_privates", ["space"], name: "index_re_privates_on_space", using: :btree
-  add_index "re_privates", ["state_id"], name: "index_re_privates_on_state_id", using: :btree
-  add_index "re_privates", ["user_id"], name: "index_re_privates_on_user_id", using: :btree
 
   create_table "sales", force: :cascade do |t|
     t.string   "title"
@@ -327,14 +311,13 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "price"
     t.integer  "impressions_count", default: 0
     t.string   "slug"
+    t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
+    t.index ["description"], name: "index_sales_on_description", using: :btree
+    t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
+    t.index ["state_id"], name: "index_sales_on_state_id", using: :btree
+    t.index ["title"], name: "index_sales_on_title", using: :btree
+    t.index ["user_id"], name: "index_sales_on_user_id", using: :btree
   end
-
-  add_index "sales", ["city_id"], name: "index_sales_on_city_id", using: :btree
-  add_index "sales", ["description"], name: "index_sales_on_description", using: :btree
-  add_index "sales", ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
-  add_index "sales", ["state_id"], name: "index_sales_on_state_id", using: :btree
-  add_index "sales", ["title"], name: "index_sales_on_title", using: :btree
-  add_index "sales", ["user_id"], name: "index_sales_on_user_id", using: :btree
 
   create_table "services", force: :cascade do |t|
     t.string   "title"
@@ -361,18 +344,16 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "fax"
     t.integer  "impressions_count", default: 0
     t.integer  "priority",          default: 0,  null: false
+    t.index ["city_id"], name: "index_services_on_city_id", using: :btree
+    t.index ["state_id"], name: "index_services_on_state_id", using: :btree
+    t.index ["user_id"], name: "index_services_on_user_id", using: :btree
   end
-
-  add_index "services", ["city_id"], name: "index_services_on_city_id", using: :btree
-  add_index "services", ["state_id"], name: "index_services_on_state_id", using: :btree
-  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.string "name"
     t.string "abbr"
+    t.index ["abbr"], name: "index_states_on_abbr", unique: true, using: :btree
   end
-
-  add_index "states", ["abbr"], name: "index_states_on_abbr", unique: true, using: :btree
 
   create_table "stripe_plans", force: :cascade do |t|
     t.string   "name"
@@ -394,20 +375,18 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.datetime "updated_at",   null: false
     t.string   "status"
     t.string   "plan"
+    t.index ["service_id"], name: "index_stripe_subscriptions_on_service_id", using: :btree
   end
-
-  add_index "stripe_subscriptions", ["service_id"], name: "index_stripe_subscriptions_on_service_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_subscriptions_on_question_id", using: :btree
+    t.index ["user_id", "question_id"], name: "index_subscriptions_on_user_id_and_question_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
-
-  add_index "subscriptions", ["question_id"], name: "index_subscriptions_on_question_id", using: :btree
-  add_index "subscriptions", ["user_id", "question_id"], name: "index_subscriptions_on_user_id_and_question_id", unique: true, using: :btree
-  add_index "subscriptions", ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -417,17 +396,22 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context", using: :btree
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
   end
-
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
   end
-
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -455,11 +439,10 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "votable_id"
@@ -471,10 +454,9 @@ ActiveRecord::Schema.define(version: 20160726021719) do
     t.integer  "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
   end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"

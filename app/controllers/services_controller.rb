@@ -7,7 +7,6 @@ class ServicesController < ApplicationController
   def index
     @services = Service.includes(:state, :city)
                        .filter(sliced_params)
-                       .order("updated_at desc")
                        .page(params[:page])
   end
 

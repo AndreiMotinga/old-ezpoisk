@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # before_action :set_partners, only: [:index, :show, :tag, :unanswered]
 
   def index
-    qs = Question.by_keyword(params[:keyword])
+    qs = Question.includes(:taggings).by_keyword(params[:keyword])
     @questions = qs.order("updated_at desc").page(params[:page]).per(10)
   end
 

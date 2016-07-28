@@ -1,12 +1,5 @@
 # manually (fake) increase impressions_count on all the models
 class IncreaseImpressionsJob
-  include Sidekiq::Worker
-  include Sidetiq::Schedulable
-
-  recurrence do
-    hourly
-  end
-
   def perform
     increase_models
     increase_qs
@@ -43,3 +36,7 @@ class IncreaseImpressionsJob
     [RePrivate, Job, Service, Sale, Post]
   end
 end
+
+Sidekiq::Cron::Job.create(name: "every hour",
+                          cron: "0 * * * *",
+                          class: "IncreaseImpressionsJob")

@@ -1,3 +1,4 @@
+=begin
 # These defaults are used in Geokit::Mappable.distance_to and acts_as_mappable
 Geokit::default_units = :miles # others :kms, :nms, :meters
 Geokit::default_formula = :sphere
@@ -98,3 +99,4 @@ Geokit::Geocoders::GoogleGeocoder.api_key = ENV["GOOGLE_MAPS_API_KEY"]
 # Setting this to VERIFY_NONE may be needed on systems that don't have
 # a complete or up to date root certificate store. Only applies to
 # the Net::HTTP adapter.
+=end

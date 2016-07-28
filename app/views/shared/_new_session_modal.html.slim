@@ -23,13 +23,13 @@
             .row.text-center
               ul.list-inline.social-buttons
                 li
-                  = link_to user_omniauth_authorize_path(:facebook), class: "facebook-bg" do
+                  = link_to user_facebook_omniauth_authorize_path, class: "facebook-bg" do
                     i.fa.fa-facebook
                 li
-                  = link_to user_omniauth_authorize_path(:google_oauth2), class: "google-bg" do
+                  = link_to user_google_oauth2_omniauth_authorize_path, class: "google-bg" do
                     i.fa.fa-google
                 li
-                  = link_to user_omniauth_authorize_path(:vkontakte), class: "vk-bg" do
+                  = link_to user_vkontakte_omniauth_authorize_path, class: "vk-bg" do
                     i.fa.fa-vk
             hr/
             = bootstrap_form_for(:user, :url => session_path(:user)) do |f|

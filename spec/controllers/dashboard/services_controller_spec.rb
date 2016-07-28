@@ -17,7 +17,7 @@ describe Dashboard::ServicesController do
       service = create :service
       create :service, user: @user
 
-      expect { get :edit, id: service.id }
+      expect { get :edit, params: { id: service.id } }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
@@ -26,7 +26,7 @@ describe Dashboard::ServicesController do
     it "creates service" do
       attrs = attributes_for(:service)
 
-      post :create, service: attrs
+      post :create, params: { service: attrs }
       service = assigns(:service)
 
       expect(response).to redirect_to(
@@ -42,7 +42,7 @@ describe Dashboard::ServicesController do
       service = create(:service, user: @user)
       attrs = attributes_for(:service)
 
-      put :update, id: service.id, service: attrs
+      put :update, params: { id: service.id, service: attrs }
       updated_agency = assigns(:service)
 
       expect(response).to redirect_to(
@@ -64,7 +64,7 @@ describe Dashboard::ServicesController do
     it "removes record" do
       service = create(:service, user: @user)
 
-      delete :destroy, id: service.id
+      delete :destroy, params: { id: service.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(flash[:notice]).to eq I18n.t(:post_removed)
@@ -93,7 +93,7 @@ describe Dashboard::ServicesController do
                      active_until: 1.month.from_now,
                      status: "activated")
 
-        delete :destroy, id: service.id
+        delete :destroy, params: { id: service.id }
 
         expect(response).to redirect_to(dashboard_path)
         expect(flash[:notice]).to eq I18n.t(:post_removed)

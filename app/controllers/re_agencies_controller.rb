@@ -5,8 +5,7 @@ class ReAgenciesController < ApplicationController
     @re_agencies = Service.re_agencies
                           .includes(:state, :city)
                           .filter(params.slice(:state_id, :city_id, :geo_scope))
-                          .order("updated_at desc").page(params[:page])
-                          # todo change order here
+                          .page(params[:page])
   end
 
   private

@@ -5,7 +5,7 @@ describe ProfilesController do
     it "is success and assigns @profile" do
       user = create :user
 
-      get :show, id: user.profile.id
+      get :show, params: { id: user.profile.id }
 
       expect(assigns(:profile)).to be_a(Profile)
       expect(response).to be_success
@@ -17,7 +17,7 @@ describe ProfilesController do
       user = create :user
       2.times { create :post, user: user }
 
-      get :posts, id: user.profile.id
+      get :posts, params: { id: user.profile.id }
       posts = assigns(:posts)
 
       expect(response).to be_success
@@ -33,7 +33,7 @@ describe ProfilesController do
       sale = create :sale, user: user
       sale.create_entry user: user
 
-      get :listings, id: user.profile.id
+      get :listings, params: { id: user.profile.id }
       listings = assigns(:listings)
 
       expect(response).to be_success
@@ -46,7 +46,7 @@ describe ProfilesController do
       user = create :user
       2.times { create :answer, user: user }
 
-      get :answers, id: user.profile.id
+      get :answers, params: { id: user.profile.id }
       answers = assigns(:answers)
 
       expect(response).to be_success

@@ -16,7 +16,7 @@ describe Dashboard::RePrivatesController do
     it "renders the edit template and assigns @re_private" do
       re_private = create :re_private, user: @user
 
-      get :edit, id: re_private.id
+      get :edit, params: { id: re_private.id }
 
       expect(response).to render_template(:edit)
       expect(assigns(:re_private)).to eq re_private
@@ -26,7 +26,7 @@ describe Dashboard::RePrivatesController do
       re_private = create :re_private
       create :re_private, user: @user
 
-      expect { get :edit, id: re_private.id }
+      expect { get :edit, params: { id: re_private.id } }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
@@ -35,7 +35,7 @@ describe Dashboard::RePrivatesController do
     it "creates new record and entry" do
       attrs = attributes_for(:re_private)
 
-      post :create, re_private: attrs
+      post :create, params: { re_private: attrs }
       re_private = assigns(:re_private)
 
       expect(response).to redirect_to(
@@ -59,7 +59,7 @@ describe Dashboard::RePrivatesController do
     it "renders form and displays alert when record isn't saved" do
       attrs = attributes_for(:re_private, user: @user, street: nil)
 
-      post :create, re_private: attrs
+      post :create, params: { re_private: attrs }
 
       expect(response).to render_template(:new)
       expect(flash[:alert]).to be_present
@@ -71,7 +71,7 @@ describe Dashboard::RePrivatesController do
       re_private = create :re_private, user: @user
       attrs = attributes_for(:re_private)
 
-      put :update, id: re_private.id, re_private: attrs
+      put :update, params: { id: re_private.id, re_private: attrs }
 
       expect(response).to redirect_to(edit_dashboard_re_private_path re_private)
       re_private.reload
@@ -89,7 +89,7 @@ describe Dashboard::RePrivatesController do
       re_private = create(:re_private, user: @user)
       re_private.create_entry
 
-      delete :destroy, id: re_private.id
+      delete :destroy, params: { id: re_private.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(RePrivate.count).to eq 0

@@ -16,7 +16,7 @@ describe StripeSubscriptionsController do
         @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
 
-        post :create, valid_attrs(service)
+        post :create, params: valid_attrs(service)
 
         expect(response).to redirect_to edit_dashboard_service_path(service.id)
         expect(flash[:notice]).to eq I18n.t(:stripe_subscription_created)
@@ -45,7 +45,7 @@ describe StripeSubscriptionsController do
         @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
 
-        post :create, invalid_attrs(service)
+        post :create, params: invalid_attrs(service)
 
         expect(response).to redirect_to edit_dashboard_service_path(service.id)
         expect(flash[:alert]).to_not be nil
@@ -70,7 +70,7 @@ describe StripeSubscriptionsController do
                      sub_id: customer.subscriptions.data[0].id,
                      active_until: 1.day.from_now)
 
-        delete :destroy, id: sub.id
+        delete :destroy, params: { id: sub.id }
 
         expect(response).to redirect_to edit_dashboard_service_path(service)
         expect(flash[:notice]).to eq I18n.t(:stripe_subscription_cancelled)
@@ -90,8 +90,9 @@ describe StripeSubscriptionsController do
     context "user tries to remove someone else's sub" do
       it "throws 404" do
         sub = create :stripe_subscription
+        prms = { id: sub.id }
 
-        expect { delete :destroy, id: sub.id }
+        expect { delete :destroy, params: prms }
           .to raise_error ActiveRecord::RecordNotFound
       end
     end
@@ -105,7 +106,7 @@ describe StripeSubscriptionsController do
                      status: "activated",
                      active_until: 1.day.from_now)
 
-        delete :destroy, id: sub.id
+        delete :destroy, params: { id: sub.id }
 
         expect(response).to redirect_to edit_dashboard_service_path(sub.service)
         expect(flash[:alert]).to_not be nil
@@ -134,7 +135,7 @@ describe StripeSubscriptionsController do
                            active_until: 1.month.from_now)
         local_sub.cancel
 
-        put :update, id: local_sub.id
+        put :update, params: { id: local_sub.id }
 
         expect(response)
           .to redirect_to edit_dashboard_service_path(local_sub.service)
@@ -156,7 +157,7 @@ describe StripeSubscriptionsController do
                            service: service,
                            status: "cancelled")
 
-        put :update, id: local_sub.id
+        put :update, params: { id: local_sub.id }
 
         expect(response)
           .to redirect_to edit_dashboard_service_path(local_sub.service)

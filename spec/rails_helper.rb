@@ -14,6 +14,7 @@ require "webmock/rspec"
 WebMock.disable_net_connect!(allow_localhost: true)
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("lib/**/*.rb")].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 ActiveRecord::Migration.maintain_test_schema!
@@ -24,7 +25,7 @@ RSpec.configure do |config|
     conf.block_unknown_urls
   end
 
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Warden::Test::Helpers
   config.include FactoryGirl::Syntax::Methods
   config.infer_spec_type_from_file_location!

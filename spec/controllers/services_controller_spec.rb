@@ -25,7 +25,7 @@ describe ServicesController do
         2.times { create :service, :active, state_id: 1 }
         create :service, :active, state_id: 32
 
-        get :index, state_id: 32
+        get :index, params: { state_id: 32 }
 
         expect(assigns(:services).size).to eq 1
       end
@@ -35,7 +35,7 @@ describe ServicesController do
         create :service, :active, city_id: 18_031
         create :service, :active, city_id: 18_032
 
-        get :index, city_id: [18_031, 18_032]
+        get :index, params: { city_id: [18_031, 18_032] }
 
         expect(assigns(:services).size).to eq 2
       end
@@ -44,7 +44,7 @@ describe ServicesController do
         2.times { create :service, :active, category: SERVICE_CATEGORIES.keys.first }
         create :service, category: SERVICE_CATEGORIES.keys.second
 
-        get :index, category: SERVICE_CATEGORIES.keys.first
+        get :index, params: { category: SERVICE_CATEGORIES.keys.first }
 
         expect(assigns(:services).size).to eq 2
       end
@@ -53,7 +53,7 @@ describe ServicesController do
         2.times { create :service, :active, subcategory: "Салоны красоты" }
         create :service, subcategory: "other"
 
-        get :index, subcategory: "Салоны красоты"
+        get :index, params: { subcategory: "Салоны красоты" }
 
         expect(assigns(:services).size).to eq 2
       end
@@ -64,7 +64,7 @@ describe ServicesController do
     it "renders the show template and assigns @service if its active" do
       service = create(:service, :active)
 
-      get :show, id: service.id
+      get :show, params: { id: service.id }
 
       expect(response).to render_template(:show)
       expect(assigns(:service)).to eq service
@@ -74,7 +74,7 @@ describe ServicesController do
     it "redirects to 404 if it's inactive" do
       service = create(:service)
 
-      get :show, id: service.id
+      get :show, params: { id: service.id }
 
       expect(response).to redirect_to services_path
       expect(flash[:alert]).to eq I18n.t(:post_not_found)

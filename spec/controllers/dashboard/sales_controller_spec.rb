@@ -17,7 +17,7 @@ describe Dashboard::SalesController do
       sale = create :sale
       create :sale, user: @user
 
-      expect { get :edit, id: sale.id}
+      expect { get :edit, params: { id: sale.id } }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
@@ -26,7 +26,7 @@ describe Dashboard::SalesController do
     it "creates sale" do
       attrs = attributes_for(:sale)
 
-      post :create, sale: attrs
+      post :create, params: { sale: attrs }
       sale = assigns(:sale)
 
       expect(response).to redirect_to(
@@ -48,7 +48,7 @@ describe Dashboard::SalesController do
       sale = create(:sale, user: @user)
       attrs = attributes_for(:sale)
 
-      put :update, id: sale.id, sale: attrs
+      put :update, params: { id: sale.id, sale: attrs }
       updated_sale = assigns(:sale)
 
       expect(response).to redirect_to(
@@ -70,7 +70,7 @@ describe Dashboard::SalesController do
     it "removes record" do
       sale = create(:sale, user: @user)
 
-      delete :destroy, id: sale.id
+      delete :destroy, params: { id: sale.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(Sale.count).to be 0

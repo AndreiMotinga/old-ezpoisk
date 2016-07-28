@@ -1,6 +1,8 @@
-require 'sidekiq/web'
+# require "sidekiq/web"
 
 Rails.application.routes.draw do
+  default_url_options host: "www.ezpoisk.com"
+
   resources :stripe_subscriptions, only: [:create, :update, :destroy]
   resources :favorites, only: [:create]
 
@@ -77,7 +79,7 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show]
 
   authenticate :user, ->(u) { u.admin? } do
-    mount Sidekiq::Web => "/sidekiq_monstro"
+    # mount Sidekiq::Web => "/sidekiq_monstro"
     resources :posts, only: [:edit, :update] do
       get :all, on: :collection
       get :import, on: :collection

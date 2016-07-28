@@ -18,8 +18,9 @@ describe Dashboard::JobsController do
   describe "GET #edit" do
     it "only shows record that belongs to user" do
       job = create :job
+      prms = { id: job.id }
 
-      expect { get :edit, id: job.id }
+      expect { get :edit, params: prms }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
   end
@@ -28,7 +29,7 @@ describe Dashboard::JobsController do
     it "creates job" do
       attrs = attributes_for(:job)
 
-      post :create, job: attrs
+      post :create, params: { job: attrs }
       job = assigns(:job)
 
       expect(response).to redirect_to(
@@ -50,7 +51,7 @@ describe Dashboard::JobsController do
       job = create(:job, user: @user)
       attrs = attributes_for(:job)
 
-      put :update, id: job.id,  job: attrs
+      put :update, params: { id: job.id, job: attrs }
       updated_agency = assigns(:job)
 
       expect(response).to redirect_to(
@@ -72,7 +73,7 @@ describe Dashboard::JobsController do
     it "removes record" do
       job = create(:job, user: @user)
 
-      delete :destroy, id: job.id
+      delete :destroy, params: { id: job.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(Job.count).to be 0

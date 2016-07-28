@@ -3,5 +3,4 @@
 - if records.empty?
   = render "shared/no_posts_message"
 - else
-  .text-center
-    = paginate records, :theme => 'twitter-bootstrap-3'
+  .text-center= paginate records

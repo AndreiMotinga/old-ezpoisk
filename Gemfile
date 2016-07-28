@@ -1,12 +1,13 @@
 source "https://rubygems.org"
 
 ruby "2.3.0"
-gem "rails", "4.2.5.1"
-gem "pg", "~> 0.15"
-gem "sass-rails", "~> 5.0"
-gem "uglifier", ">= 1.3.0"
-gem "coffee-rails", "~> 4.1.0"
+gem "rails", "~> 5.0"
+gem "pg"
+gem "sass-rails"
+gem "uglifier"
+gem "coffee-rails"
 gem "jquery-rails"
+gem "jquery-ui-rails" #todo remove? how? what does it do?
 gem "bootstrap-sass"
 gem "select2-rails"
 
@@ -16,56 +17,51 @@ gem "devise-i18n"
 gem "devise-async"
 
 gem "bootstrap_form"
-
 gem "kaminari"
-gem "bootstrap-kaminari-views"
-
 gem "font-awesome-rails"
-
 gem "paperclip"
 gem "dropzonejs-rails"
-
 gem "figaro"
+gem "aws-sdk"
 
-gem "aws-sdk", "< 2.0"
-
-gem "haml-rails"
 gem "slim-rails"
 
 gem "sidekiq"
-gem "sinatra", require: nil
-gem "sidetiq", '~> 0.6.3'
+gem "sidekiq-cron"
+# gem "sinatra", require: nil
 
-gem "geokit-rails", github: "geokit/geokit-rails"
+gem "geokit-rails", github: "geokit/geokit-rails", branch: "rails5-test"
 gem "gmaps4rails"
 gem "underscore-rails"
-
 gem "summernote-rails"
 
-gem "rails_admin"
+# rails admin
+gem "rails_admin", github: "sferik/rails_admin"
+gem "rack-pjax", github: "afcapel/rack-pjax"
+gem "remotipart", github: "mshibuya/remotipart"
+
 gem "rails_admin_tag_list"
 
 gem "sitemap_generator"
 gem "slack-notifier"
 
 gem "cancancan"
-gem "recaptcha", require: "recaptcha/rails"
+# gem "recaptcha", require: "recaptcha/rails" # remove?
 
-gem "acts_as_votable", "~> 0.10.0"
+gem "acts_as_votable"
+gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 
-gem "acts-as-taggable-on"
-
-gem "rack-mini-profiler", require: false
-gem 'rack-cors', :require => 'rack/cors'
+# gem "rack-mini-profiler", require: false
+# gem 'rack-cors', :require => 'rack/cors'
 
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
 gem "omniauth-vkontakte"
 
-gem "friendly_id"
+gem "friendly_id", github: "norman/friendly_id", branch: "master"
 gem "babosa" # handle russian
 
-gem "stripe-rails", "~> 0.3.1"
+gem "stripe-rails"
 
 group :production do
   gem "puma"
@@ -74,25 +70,20 @@ group :production do
 end
 
 group :development, :test do
-  gem "thin"
+#   gem "thin"
   gem "pry-byebug"
-  gem "factory_girl_rails", "~> 4.7"
+  gem "factory_girl_rails"
   gem "faker"
   gem "awesome_print"
-  gem "guard-livereload", "~> 2.4", require: false
 end
 
 group :development do
-  gem "quiet_assets"
   gem "bullet"
   gem "better_errors"
   gem "meta_request"
   gem "spring-commands-rspec"
-  gem "spring", "~> 1.7.1"
-  gem "guard-rspec", require: false
-  gem "terminal-notifier-guard"
+  gem "spring"
   gem "launchy-rails"
-  gem "web-console"
 
   # code quality
   gem "brakeman", :require => false # security vulnerabilities
@@ -102,6 +93,7 @@ end
 group :test do
   gem "fuubar"
   gem "rspec-rails"
+  gem "rails-controller-testing"
   gem "webmock"
   gem "stripe-ruby-mock", "~> 2.2.4", require: "stripe_mock"
   gem "capybara"

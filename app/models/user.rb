@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
 
-
   def self.this_week
     where("created_at > ?", Date.today.at_beginning_of_week).count
   end

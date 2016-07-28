@@ -27,7 +27,7 @@ describe ReCommercialsController do
         2.times { create :re_commercial, :active, state_id: 1 }
         create :re_commercial, :active,  state_id: 32
 
-        get :index, state_id: 32
+        get :index, params: { state_id: 32 }
 
         expect(assigns(:re_commercials).size).to eq 1
       end
@@ -37,7 +37,7 @@ describe ReCommercialsController do
         create :re_commercial, :active,  city_id: 18_031
         create :re_commercial, :active, city_id: 18_032
 
-        get :index, city_id: [18_031, 18_032]
+        get :index, params: { city_id: [18_031, 18_032] }
 
         expect(assigns(:re_commercials).size).to eq 2
       end
@@ -46,7 +46,7 @@ describe ReCommercialsController do
         create :re_commercial, :active, post_type: "sale"
         create :re_commercial, :active, post_type: "rent"
 
-        get :index, post_type: "sale"
+        get :index, params: { post_type: "sale" }
 
         expect(assigns(:re_commercials).size).to eq 1
       end
@@ -56,7 +56,7 @@ describe ReCommercialsController do
         create :re_commercial, :active, space: 2000
         create :re_commercial, :active, space: 3000
 
-        get :index, space: 2000
+        get :index, params: { space: 2000 }
 
         expect(assigns(:re_commercials).size).to eq 2
       end
@@ -66,7 +66,7 @@ describe ReCommercialsController do
         create :re_commercial, :active, price: 2000
         create :re_commercial, :active, price: 3000
 
-        get :index, min_price: 2000
+        get :index, params: { min_price: 2000 }
 
         expect(assigns(:re_commercials).size).to eq 2
       end
@@ -76,7 +76,7 @@ describe ReCommercialsController do
         create :re_commercial, :active, price: 2000
         create :re_commercial, :active, price: 3000
 
-        get :index, max_price: 1000
+        get :index, params: { max_price: 1000 }
 
         expect(assigns(:re_commercials).size).to eq 1
       end
@@ -88,7 +88,7 @@ describe ReCommercialsController do
             create :re_commercial, :active, price: 100
             create :re_commercial, :active, price: 300
 
-            get :index, sorted: "price asc"
+            get :index, params: { sorted: "price asc" }
             expect(assigns(:re_commercials).pluck(:price)).to eq [100, 200, 300]
           end
           it "in desc order" do
@@ -96,7 +96,7 @@ describe ReCommercialsController do
             create :re_commercial, :active, price: 100
             create :re_commercial, :active, price: 300
 
-            get :index, sorted: "price desc"
+            get :index, params: { sorted: "price desc" }
             expect(assigns(:re_commercials).pluck(:price)).to eq [300, 200, 100]
           end
         end
@@ -107,7 +107,7 @@ describe ReCommercialsController do
             create :re_commercial, :active, space: 100
             create :re_commercial, :active, space: 300
 
-            get :index, sorted: "space asc"
+            get :index, params: { sorted: "space asc" }
             expect(assigns(:re_commercials).pluck(:space)).to eq [100, 200, 300]
           end
           it "in desc order" do
@@ -115,7 +115,7 @@ describe ReCommercialsController do
             create :re_commercial, :active, space: 100
             create :re_commercial, :active, space: 300
 
-            get :index, sorted: "space desc"
+            get :index, params: { sorted: "space desc" }
             expect(assigns(:re_commercials).pluck(:space)).to eq [300, 200, 100]
           end
         end
@@ -126,7 +126,7 @@ describe ReCommercialsController do
             create :re_commercial, :active, space: 100
             create :re_commercial, :active, space: 300
 
-            get :index, sorted: "updated_at asc"
+            get :index, params: { sorted: "updated_at asc" }
             expect(assigns(:re_commercials).pluck(:space)).to eq [200, 100, 300]
           end
         end
@@ -138,7 +138,7 @@ describe ReCommercialsController do
     it "renders the show template and assigns @re_commercial if its active" do
       re_commercial = create(:re_commercial, :active)
 
-      get :show, id: re_commercial.id
+      get :show, params: { id: re_commercial.id }
 
       expect(response).to render_template(:show)
       expect(assigns(:re_commercial)).to eq re_commercial
@@ -148,7 +148,7 @@ describe ReCommercialsController do
     it "redirects to 404 if it's inactive" do
       re_commercial = create(:re_commercial, active: false)
 
-      get :show, id: re_commercial.id
+      get :show, params: { id: re_commercial.id }
 
       expect(response).to redirect_to re_commercials_path
       expect(flash[:alert]).to eq I18n.t(:post_not_found)

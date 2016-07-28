@@ -27,7 +27,7 @@ describe RePrivatesController do
         2.times { create :re_private, :active, state_id: 1 }
         create :re_private, :active,  state_id: 32
 
-        get :index, state_id: 32
+        get :index, params: { state_id: 32 }
 
         expect(assigns(:re_privates).size).to eq 1
       end
@@ -37,7 +37,7 @@ describe RePrivatesController do
         create :re_private, :active,  city_id: 18_031
         create :re_private, :active, city_id: 18_032
 
-        get :index, city_id: [18_032, 18_031]
+        get :index, params: { city_id: [18_032, 18_031] }
 
         expect(assigns(:re_privates).size).to eq 2
       end
@@ -46,7 +46,7 @@ describe RePrivatesController do
         create :re_private, :active, fee: false
         create :re_private, :active, fee: true
 
-        get :index, fee: true
+        get :index, params: { fee: true }
 
         expect(assigns(:re_privates).size).to eq 1
       end
@@ -55,7 +55,7 @@ describe RePrivatesController do
         create :re_private, :active, post_type: "sale"
         create :re_private, :active, post_type: "rent"
 
-        get :index, post_type: "sale"
+        get :index, params: { post_type: "sale" }
 
         expect(assigns(:re_privates).size).to eq 1
       end
@@ -65,7 +65,7 @@ describe RePrivatesController do
         create :re_private, :active, duration: "day"
         create :re_private, :active, duration: "month"
 
-        get :index, duration: "day"
+        get :index, params: { duration: "day" }
 
         expect(assigns(:re_privates).size).to eq 1
       end
@@ -75,7 +75,7 @@ describe RePrivatesController do
         create :re_private, :active, rooms: 2
         create :re_private, :active, rooms: 3
 
-        get :index, rooms: "комната"
+        get :index, params: { rooms: "комната" }
 
         expect(assigns(:re_privates).size).to eq 1
       end
@@ -85,7 +85,7 @@ describe RePrivatesController do
         create :re_private, :active, baths: 2
         create :re_private, :active, baths: 3
 
-        get :index, baths: 2
+        get :index, params: { baths: 2 }
 
         expect(assigns(:re_privates).size).to eq 2
       end
@@ -95,7 +95,7 @@ describe RePrivatesController do
         create :re_private, :active, space: 2000
         create :re_private, :active, space: 3000
 
-        get :index, space: 2000
+        get :index, params: { space: 2000 }
 
         expect(assigns(:re_privates).size).to eq 2
       end
@@ -105,7 +105,7 @@ describe RePrivatesController do
         create :re_private, :active, price: 2000
         create :re_private, :active, price: 3000
 
-        get :index, min_price: 2000
+        get :index, params: { min_price: 2000 }
 
         expect(assigns(:re_privates).size).to eq 2
       end
@@ -115,7 +115,7 @@ describe RePrivatesController do
         create :re_private, :active, price: 2000
         create :re_private, :active, price: 3000
 
-        get :index, max_price: 1000
+        get :index, params: { max_price: 1000 }
 
         expect(assigns(:re_privates).size).to eq 1
       end
@@ -127,7 +127,7 @@ describe RePrivatesController do
             create :re_private, :active, price: 100
             create :re_private, :active, price: 300
 
-            get :index, sorted: "price asc"
+            get :index, params: { sorted: "price asc" }
             expect(assigns(:re_privates).pluck(:price)).to eq [100, 200, 300]
           end
           it "in desc order" do
@@ -135,7 +135,7 @@ describe RePrivatesController do
             create :re_private, :active, price: 100
             create :re_private, :active, price: 300
 
-            get :index, sorted: "price desc"
+            get :index, params: { sorted: "price desc" }
             expect(assigns(:re_privates).pluck(:price)).to eq [300, 200, 100]
           end
         end
@@ -146,7 +146,7 @@ describe RePrivatesController do
             create :re_private, :active, space: 100
             create :re_private, :active, space: 300
 
-            get :index, sorted: "space asc"
+            get :index, params: { sorted: "space asc" }
             expect(assigns(:re_privates).pluck(:space)).to eq [100, 200, 300]
           end
           it "in desc order" do
@@ -154,7 +154,7 @@ describe RePrivatesController do
             create :re_private, :active, space: 100
             create :re_private, :active, space: 300
 
-            get :index, sorted: "space desc"
+            get :index, params: { sorted: "space desc" }
             expect(assigns(:re_privates).pluck(:space)).to eq [300, 200, 100]
           end
         end
@@ -165,7 +165,7 @@ describe RePrivatesController do
             create :re_private, :active, space: 100
             create :re_private, :active, space: 300
 
-            get :index, sorted: "updated_at asc"
+            get :index, params: { sorted: "updated_at asc" }
             expect(assigns(:re_privates).pluck(:space)).to eq [200, 100, 300]
           end
         end
@@ -177,7 +177,7 @@ describe RePrivatesController do
     it "renders the show template and assigns @re_private if its active" do
       re_private = create(:re_private, :active)
 
-      get :show, id: re_private.id
+      get :show, params:  { id: re_private.id }
 
       expect(response).to render_template(:show)
       expect(assigns(:re_private)).to eq re_private
@@ -187,7 +187,7 @@ describe RePrivatesController do
     it "redirects to 404 if it's inactive" do
       re_private = create(:re_private, active: false)
 
-      get :show, id: re_private.id
+      get :show, params: { id: re_private.id }
 
       expect(response).to redirect_to re_privates_path
       expect(flash[:alert]).to eq I18n.t(:post_not_found)

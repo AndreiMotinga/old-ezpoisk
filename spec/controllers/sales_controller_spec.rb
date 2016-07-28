@@ -42,7 +42,7 @@ describe SalesController do
         2.times { create :sale, :active, state_id: 1 }
         create :sale, :active,  state_id: 32
 
-        get :index, state_id: 32
+        get :index, params: { state_id: 32 }
 
         expect(assigns(:sales).size).to eq 1
       end
@@ -52,7 +52,7 @@ describe SalesController do
         create :sale, :active,  city_id: 18_031
         create :sale, :active, city_id: 18_032
 
-        get :index, city_id: [18_031, 18_032]
+        get :index, params: { city_id: [18_031, 18_032] }
 
         expect(assigns(:sales).size).to eq 2
       end
@@ -62,7 +62,7 @@ describe SalesController do
         second = create :sale, :active, description: "Computer desk"
         create :sale, :active, title: "Supercar", description: "Foobar"
 
-        get :index, keyword: "comput"
+        get :index, params: { keyword: "comput" }
         sales = assigns(:sales)
 
         expect(sales.map(&:title)).to match_array [first.title, second.title]
@@ -74,7 +74,7 @@ describe SalesController do
           2.times { create :sale, :active, category: SALE_CATEGORIES.second }
           create :sale, :active, category: SALE_CATEGORIES.third
 
-          get :index, category: SALE_CATEGORIES.second
+          get :index, params: { category: SALE_CATEGORIES.second }
 
           expect(assigns(:sales).size).to eq 2
         end
@@ -83,7 +83,7 @@ describe SalesController do
           2.times { create :sale, :active, category: SALE_CATEGORIES.second }
           create :sale, :active, category: SALE_CATEGORIES.third
 
-          get :index, category: SALE_CATEGORIES.fourth
+          get :index, params: { category: SALE_CATEGORIES.fourth }
 
           expect(assigns(:sales).size).to eq 0
         end
@@ -95,7 +95,7 @@ describe SalesController do
     it "renders the show template and assigns @sale if its active" do
       sale = create(:sale, :active)
 
-      get :show, id: sale.id
+      get :show, params: { id: sale.id }
 
       expect(response).to render_template(:show)
       expect(assigns(:sale)).to eq sale
@@ -105,7 +105,7 @@ describe SalesController do
     it "redirects to 404 if it's inactive" do
       sale = create(:sale, active: false)
 
-      get :show, id: sale.id
+      get :show, params: { id: sale.id }
 
       expect(response).to redirect_to sales_path
       expect(flash[:alert]).to eq I18n.t(:post_not_found)

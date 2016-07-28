@@ -8,7 +8,7 @@ describe Dashboard::PostsController do
 
       attrs = attributes_for(:post)
 
-      post :create, post: attrs
+      post :create, params: { post: attrs }
       article = assigns(:post)
 
       expect(response).to redirect_to(
@@ -32,7 +32,7 @@ describe Dashboard::PostsController do
       post = create(:post, user: @user)
       post.create_entry
 
-      delete :destroy, id: post.id
+      delete :destroy, params: { id: post.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(Post.count).to eq 0

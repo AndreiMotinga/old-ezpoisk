@@ -35,7 +35,7 @@ describe QuestionsController do
       question = create(:question)
       create :answer, question: question
 
-     get :show, id: question.slug
+     get :show, params: { id: question.slug }
 
       expect(response).to render_template(:show)
       # expect(assigns(:question)).to eq question
@@ -70,7 +70,7 @@ describe QuestionsController do
         sign_in(@user = create(:user))
         question = create :question, user: @user
 
-        get :edit, id: question.slug
+        get :edit, params: { id: question.slug }
 
         expect(response).to render_template(:edit)
         expect(assigns(:question)).to eq question
@@ -82,7 +82,7 @@ describe QuestionsController do
         sign_in(create(:user))
         question = create :question
 
-        get :edit, id: question.slug
+        get :edit, params: { id: question.slug }
 
         expect(response).to redirect_to(questions_path)
       end
@@ -94,7 +94,7 @@ describe QuestionsController do
       sign_in(@user = create(:user))
       attrs = attributes_for(:question)
 
-      post :create, question: attrs
+      post :create, params: { question: attrs }
       question = assigns(:question)
 
       expect(response).to redirect_to(question)
@@ -113,7 +113,7 @@ describe QuestionsController do
       sign_in(@user = create(:user))
       attrs = attributes_for(:question)
 
-      post :create, question: attrs
+      post :create, params: { question: attrs }
       expect(Subscription.count).to eq 1
     end
   end
@@ -124,7 +124,7 @@ describe QuestionsController do
       question = create(:question, user: @user)
       attrs = attributes_for(:question)
 
-      put :update, id: question.slug, question: attrs
+      put :update, params: { id: question.slug, question: attrs }
       updated_q = assigns(:question)
 
       expect(response).to redirect_to(updated_q)

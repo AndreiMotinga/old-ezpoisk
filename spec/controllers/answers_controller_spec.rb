@@ -9,7 +9,7 @@ describe AnswersController do
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
-      post :create, answer: attrs
+      post :create, params: { answer: attrs }
       answer = assigns(:answer)
 
       expect(response).to redirect_to(question)
@@ -27,7 +27,7 @@ describe AnswersController do
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
-      post :create, answer: attrs
+      post :create, params: { answer: attrs }
 
       expect(Subscription.count).to eq 1
     end
@@ -41,7 +41,7 @@ describe AnswersController do
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
-      put :update, id: answer.id, answer: attrs
+      put :update, params: { id: answer.id, answer: attrs }
       updated_a = assigns(:answer)
 
       expect(response).to redirect_to(question)
@@ -56,7 +56,7 @@ describe AnswersController do
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
 
-      delete :destroy, id: answer.id
+      delete :destroy, params: { id: answer.id }
 
       expect(response).to redirect_to(question)
       expect(Answer.count).to be 0
@@ -69,7 +69,7 @@ describe AnswersController do
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
 
-      xhr :put, :upvote, id: answer.id
+      put :upvote, xhr: true, params: { id: answer.id }
 
       answer.reload
       expect(answer.score).to eq 1
@@ -82,7 +82,7 @@ describe AnswersController do
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
 
-      xhr :put, :downvote, id: answer.id
+      put :downvote, xhr: true, params: { id: answer.id }
 
       answer.reload
       expect(answer.score).to eq -1
@@ -96,9 +96,9 @@ describe AnswersController do
       answer = create(:answer, question: question, user: @user)
 
       # instead of creating vote properly
-      xhr :put, :downvote, id: answer.id
+      put :downvote, xhr: true, params: { id: answer.id }
 
-      xhr :put, :unvote, id: answer.id
+      put :unvote, xhr: true, params: { id: answer.id }
 
       answer.reload
       expect(answer.score).to eq 0
