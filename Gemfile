@@ -52,7 +52,7 @@ gem "acts_as_votable"
 gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 
 # gem "rack-mini-profiler", require: false
-# gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', :require => 'rack/cors'
 
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"
