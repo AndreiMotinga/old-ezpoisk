@@ -15,7 +15,7 @@ namespace :sitemap do
 
       begin
         object = bucket.object(path)
-        object.upload_file(file)
+        object.upload_file file, acl: 'public-read'
       rescue => e
         raise e
       end
