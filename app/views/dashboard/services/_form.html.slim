@@ -7,7 +7,7 @@
   = f.text_field :title, label: '* Заголовок / Название'
   = f.select :category,
               form_options(params[:category], SERVICE_CATEGORIES.keys),
-              { label: '* Раздел' },
+              { include_blank: true, label: '* Раздел' },
               class: "category-select",
               "data-type": "Service"
   - if @service.category || params[:subcategory]

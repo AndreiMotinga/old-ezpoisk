@@ -7,7 +7,7 @@ $(document).ready(function(){
     Dropzone.autoDiscover = false;
 
     var dropzone = new Dropzone (".dropzone", {
-      dictDefaultMessage: "Перетяните сюда фотографии или клик",
+      dictDefaultMessage: "Перетяните сюда фотографии или кликните",
       maxFilesize: 5, // MB
       paramName: "picture[image]",
       addRemoveLinks: false

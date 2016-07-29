@@ -3,7 +3,7 @@ require "rails_helper"
 describe ServicesController do
   describe "GET #index" do
     it "renders the index template and assigns @services" do
-      2.times { create :service, :active }
+      2.times { create :service }
 
       get :index
 
@@ -11,19 +11,10 @@ describe ServicesController do
       expect(assigns(:services).size).to eq 2
     end
 
-    it "return only active models" do
-      2.times { create :service, :active }
-      create :service
-
-      get :index
-
-      expect(assigns(:services).size).to eq 2
-    end
-
     describe "#filter" do
       it "filters by state_id" do
-        2.times { create :service, :active, state_id: 1 }
-        create :service, :active, state_id: 32
+        2.times { create :service, state_id: 1 }
+        create :service, state_id: 32
 
         get :index, params: { state_id: 32 }
 
@@ -31,9 +22,9 @@ describe ServicesController do
       end
 
       it "filters by city_id" do
-        2.times { create :service, :active, city_id: 18_030 }
-        create :service, :active, city_id: 18_031
-        create :service, :active, city_id: 18_032
+        2.times { create :service, city_id: 18_030 }
+        create :service, city_id: 18_031
+        create :service, city_id: 18_032
 
         get :index, params: { city_id: [18_031, 18_032] }
 
@@ -41,7 +32,7 @@ describe ServicesController do
       end
 
       it "filters by category" do
-        2.times { create :service, :active, category: SERVICE_CATEGORIES.keys.first }
+        2.times { create :service, category: SERVICE_CATEGORIES.keys.first }
         create :service, category: SERVICE_CATEGORIES.keys.second
 
         get :index, params: { category: SERVICE_CATEGORIES.keys.first }
@@ -57,27 +48,31 @@ describe ServicesController do
 
         expect(assigns(:services).size).to eq 2
       end
+
+      it "returns records according to priority" do
+        create :service, :job_agency, title: "third", priority: 0
+        create :service, :job_agency, title: "second", priority: 1
+        create :service, :job_agency, title: "first", priority: 2
+
+        get :index, params: { category: "Работа" }
+        result = assigns(:services).pluck(:title)
+
+        expect(result).to eq %w(first second third)
+      end
     end
   end
 
   describe "GET @show" do
-    it "renders the show template and assigns @service if its active" do
-      service = create(:service, :active)
-
-      get :show, params: { id: service.id }
-
-      expect(response).to render_template(:show)
-      expect(assigns(:service)).to eq service
-      expect(flash[:alert]).to be nil
-    end
-
-    it "redirects to 404 if it's inactive" do
+    it "renders the show template and assigns @service" do
       service = create(:service)
 
       get :show, params: { id: service.id }
+      record = assigns :service
 
-      expect(response).to redirect_to services_path
-      expect(flash[:alert]).to eq I18n.t(:post_not_found)
+      expect(response).to render_template(:show)
+      expect(record).to be_a Service
+      expect(record.impressions_count).to eq 1
+      expect(flash[:alert]).to be nil
     end
   end
 end

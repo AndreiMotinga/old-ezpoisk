@@ -21,7 +21,9 @@
             .pull-right: span.caret
             | Недвижимость
           #real_estate.sublinks.collapse
-            = link_to "Агенства", re_agencies_path, class: "list-group-item indented"
+            = link_to "Агенства",
+                      services_path(category: "Недвижимость", subcategory: "Агентства Недвижимости"),
+                      class: "list-group-item indented"
             = link_to "Частная", re_privates_path, class: "list-group-item indented"
             = link_to "Коммерческая", re_commercials_path, class: "list-group-item indented"
 
@@ -30,7 +32,9 @@
               span.caret
             | Работа
           #jobs-tab.sublinks.collapse
-            = link_to "Агенства", job_agencies_path, class: "list-group-item indented"
+            = link_to "Агенства",
+                      services_path(category: "Работа", subcategory: "Агентства по Трудоустройству"),
+                      class: "list-group-item indented"
             = link_to "Требуется", jobs_path(category: "Требуется"), class: "list-group-item indented"
             = link_to "Ищу работу", jobs_path(category: "Ищу"), class: "list-group-item indented"
 

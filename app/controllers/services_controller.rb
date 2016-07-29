@@ -11,7 +11,8 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = get_record(Service, params[:id], services_path)
+    @service = Service.find(params[:id])
+    @service.update_column(:impressions_count, @service.impressions_count + 1)
   end
 
   private

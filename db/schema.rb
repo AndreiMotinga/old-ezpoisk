@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729051432) do
+ActiveRecord::Schema.define(version: 20160730010744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -371,8 +371,6 @@ ActiveRecord::Schema.define(version: 20160729051432) do
     t.string   "customer_id"
     t.string   "sub_id"
     t.datetime "active_until"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
     t.string   "status"
     t.string   "plan"
     t.index ["service_id"], name: "index_stripe_subscriptions_on_service_id", using: :btree
@@ -439,6 +437,25 @@ ActiveRecord::Schema.define(version: 20160729051432) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "phone",                  default: ""
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "site"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.integer  "impressions_count"
+    t.text     "about"
+    t.string   "street"
+    t.string   "facebook"
+    t.string   "google"
+    t.string   "vk"
+    t.string   "ok"
+    t.string   "twitter"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree

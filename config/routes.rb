@@ -72,11 +72,8 @@ Rails.application.routes.draw do
 
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice
-  resources :re_agencies, only: [:index]
-  resources :re_finances, only: [:index]
   resources :re_privates, only: [:index, :show]
   resources :re_commercials, only: [:index, :show]
-  resources :job_agencies, only: [:index]
   resources :jobs, only: [:index, :show]
 
   authenticate :user, ->(u) { u.admin? } do

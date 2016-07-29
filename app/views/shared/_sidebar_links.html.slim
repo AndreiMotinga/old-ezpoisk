@@ -6,7 +6,7 @@ ul.list-group.panel
     .pull-right
       span.caret
   #realty-nav.collapse
-    li= link_to t(:agencies), main_app.re_agencies_path
+    li= link_to t(:agencies), main_app.services_path(category: "Недвижимость", subcategory: "Агентства Недвижимости")
     li= link_to t(:private), main_app.re_privates_path
     li= link_to t(:commercial), main_app.re_commercials_path
     /li= link_to "Финансирование", main_app.re_finances_path
@@ -18,7 +18,7 @@ ul.list-group.panel
     .pull-right
       span.caret
   #jobs-nav.collapse
-    li= link_to t(:agencies), main_app.job_agencies_path
+    li= link_to t(:agencies), main_app.services_path(category: "Работа", subcategory: "Агентства по Трудоустройству")
     li= link_to "Требуется", main_app.jobs_path(category: "Требуется")
     li= link_to "Ищу работу", main_app.jobs_path(category: "Ищу")
 

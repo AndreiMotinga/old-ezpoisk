@@ -32,9 +32,7 @@ class Service < ActiveRecord::Base
   delegate :cancel, to: :stripe_subscription, allow_nil: true
 
   def self.active
-    joins(:stripe_subscription).where(
-      "stripe_subscriptions.active_until > ?", Date.current
-    ).order("priority desc")
+    order("priority desc")
   end
 
   has_attached_file :logo, styles: { medium: "x120" }
