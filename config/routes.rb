@@ -36,7 +36,8 @@ Rails.application.routes.draw do
 
   resources :search_suggestions, only: [:index]
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  get "sitemaps/sitemap(:id).:format.:compression" => "sitemap#show"
+  get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
+  get "sitemaps/sitemap:id.:format.:compression", to: "sitemap#show_id"
   get "update_cities", to: "cities#update_cities"
   get "update_subcategory", to: "subcategories#update_subcategory"
   get '/tos', to: 'tos#tos'
