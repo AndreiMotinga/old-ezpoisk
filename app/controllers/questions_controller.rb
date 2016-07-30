@@ -9,13 +9,14 @@ class QuestionsController < ApplicationController
   end
 
   def tag
-    @questions = Question.tagged_with(params[:tag], any: true)
+    @questions = Question.includes(:taggings)
+                          .tagged_with(params[:tag], any: true)
                          .by_views.page(params[:page])
     render :index
   end
 
   def unanswered
-    qs = Question.unanswered
+    qs = Question.unanswered.includes(:taggings)
     tag = params[:tag]
     qs = qs.tagged_with(tag) if tag
     @questions = qs.by_views.page(params[:page])
