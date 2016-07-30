@@ -1,29 +1,42 @@
 = bootstrap_form_for([:dashboard, @re_private]) do |f|
   -  if current_user.admin?
     = f.text_field :source, label: "источник"
-    hr.white-hr
-
   = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
-  hr.white-hr
-
-  = form_state_select(f)
-  = form_city_select(f, @re_private)
   = f.text_field :street, label: '* Улица'
+
+  .row
+    .col-xs-12.col-sm-6
+      = form_state_select(f)
+    .col-xs-12.col-sm-6
+      = form_city_select(f, @re_private)
   hr.white-hr
 
-  = f.text_field :phone, label: 'Телефон'
-  = f.email_field :email, label: 'Email'
+  .row
+    .col-xs-12.col-sm-6
+      = f.select :post_type, RE_TYPES, label: '* Тип объявления'
+    .col-xs-12.col-sm-6
+      = f.select :duration, RE_DURATION, include_blank: true, label: "Продолжительность"
+
+  .row
+    .col-xs-12.col-sm-6
+      = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
+    .col-xs-12.col-sm-6
+      = f.number_field :price, label: '* Цена'
+
+  .row
+    .col-xs-12.col-sm-6
+      = f.number_field :baths, label: 'Ванные'
+    .col-xs-12.col-sm-6
+      = f.number_field :space, label: "Площадь (sq. feet)"
   hr.white-hr
 
-  = f.number_field :price, label: '* Цена'
-  = f.select :post_type, RE_TYPES, label: '* Тип объявления'
-  = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
+  .row
+    .col-xs-12.col-sm-6
+      = f.text_field :phone, label: 'Телефон'
+    .col-xs-12.col-sm-6
+      = f.email_field :email, label: 'Email'
   hr.white-hr
 
-  = f.select :duration, RE_DURATION, include_blank: true, label: "Продолжительность"
-  = f.number_field :baths, label: 'Ванные'
-  = f.number_field :space, label: "Площадь (sq. feet)"
-  hr.white-hr
 
   .row
     .col-xs-12
