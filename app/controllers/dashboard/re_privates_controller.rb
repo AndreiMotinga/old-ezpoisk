@@ -4,13 +4,13 @@ class Dashboard::RePrivatesController < ApplicationController
 
   def new
     email = current_user.admin? ? "" : current_user.email
-    @re_private = RePrivate.new(state_id: current_user.profile_state_id,
-                                city_id: current_user.profile_city_id,
+    @re_private = RePrivate.new(state_id: current_user.state_id,
+                                city_id: current_user.city_id,
                                 active: true,
                                 email: email,
                                 baths: 1,
                                 duration: "помесячно",
-                                phone: current_user.profile_phone)
+                                phone: current_user.phone)
   end
 
   def edit

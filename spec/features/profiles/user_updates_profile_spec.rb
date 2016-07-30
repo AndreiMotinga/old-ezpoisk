@@ -3,10 +3,9 @@ require "rails_helper"
 feature "user updates profile" do
   scenario "user updates contacts", js: true do
     user = create_and_login_user
-    profile = user.profile
-    attrs = build(:profile)
+    attrs = build(:user)
 
-    visit edit_dashboard_profile_path profile
+    visit edit_dashboard_user_path user
     fill_in "Телефон", with: attrs.phone
     fill_in "Ваш сайт", with: attrs.site
     fill_in "Facebook", with: attrs.facebook
@@ -14,51 +13,39 @@ feature "user updates profile" do
     fill_in "Vkontakte", with: attrs.vk
     fill_in "Odnoklassniki", with: attrs.ok
     fill_in "Twitter", with: attrs.twitter
+    find(:css, "#profile_user_email").set(attrs.email)
 
     click_on "contacts-save-btn"
     expect(page).to have_content I18n.t(:profile_updated)
-    profile.reload
+    user.reload
 
-    expect(profile.phone).to eq attrs.phone
-    expect(profile.site).to eq attrs.site
-    expect(profile.facebook).to eq attrs.facebook
-    expect(profile.google).to eq attrs.google
-    expect(profile.vk).to eq attrs.vk
-    expect(profile.ok).to eq attrs.ok
-    expect(profile.twitter).to eq attrs.twitter
+    expect(user.phone).to eq attrs.phone
+    expect(user.site).to eq attrs.site
+    expect(user.facebook).to eq attrs.facebook
+    expect(user.google).to eq attrs.google
+    expect(user.vk).to eq attrs.vk
+    expect(user.ok).to eq attrs.ok
+    expect(user.twitter).to eq attrs.twitter
+    expect(user.email).to eq attrs.email
     expect(page).to have_content I18n.t(:profile_updated)
   end
 
   # scenario "updates address", js: true do
   #   user = create_and_login_user
-  #   profile = create :profile, user: user
   #   ny = create :state, name: "New York"
   #   bk = create :city, name: "Brooklyn", state: ny
   #   street = "1970 East 18th str"
   #
-  #   visit edit_dashboard_profile_path profile
+  #   visit edit_dashboard_user_path user
   #   fill_in "Улица", with: street
   #   select("New York", from: "Штат")
   #   select("Brooklyn", from: "Город")
   #   click_on "address-save-btn"
-  #   profile.reload
+  #   user.reload
   #
   #   expect(page).to have_content I18n.t(:profile_updated)
-  #   expect(profile.street).to eq street
-  #   # expect(profile.state).to eq ny
-  #   expect(profile.city.name).to eq "Brooklyn"
+  #   expect(user.street).to eq street
+  #   # expect(user.state).to eq ny
+  #   expect(user.city.name).to eq "Brooklyn"
   # end
-
-  scenario "user updates email" do
-    user = create_and_login_user
-    profile = user.profile
-
-    visit edit_dashboard_profile_path profile
-    find(:css, "#profile_user_email").set("foo@bar.com")
-    click_on "email-save-btn"
-    profile.reload
-
-    expect(page).to have_content I18n.t(:profile_updated)
-    expect(profile.user_email).to eq "foo@bar.com"
-  end
 end

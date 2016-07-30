@@ -4,7 +4,7 @@ FactoryGirl.define do
     phone '1234567890'
     baths { Faker::Number.number(1).to_i }
     space { Faker::Number.number(4).to_i }
-    active { [true, false].sample }
+    active true
     description { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }
     rooms { ROOM_OPTIONS.sample }
@@ -18,10 +18,6 @@ FactoryGirl.define do
       lat { Faker::Address.latitude }
       lng { Faker::Address.longitude }
       zip { Faker::Address.zip }
-    end
-
-    trait :active do
-      active true
     end
 
     user

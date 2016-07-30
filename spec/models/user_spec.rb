@@ -10,6 +10,4 @@ describe User do
   it { should have_many(:pictures).dependent(:destroy) }
   it { should have_many(:posts) }
   it { should have_many(:entries) }
-
-  it { should have_one(:profile) }
 end

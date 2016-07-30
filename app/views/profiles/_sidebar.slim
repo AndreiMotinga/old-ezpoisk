@@ -4,16 +4,16 @@
       .panel-body
         ul.list-group
           li.list-group-item
-            = link_to "About", profile_path(@profile)
+            = link_to "About", profile_path(@user)
           li.list-group-item
-            = link_to "Контакты", profile_contacts_path(@profile)
+            = link_to "Контакты", profile_contacts_path(@user)
           li.list-group-item
-            = link_to "Галерея", profile_pictures_path(@profile)
+            = link_to "Галерея", profile_pictures_path(@user)
           li.list-group-item
-            = link_to "Объявления", profile_listings_path(@profile)
+            = link_to "Объявления", profile_listings_path(@user)
           li.list-group-item
-            = link_to "Ответы", profile_answers_path(@profile)
+            = link_to "Ответы", profile_answers_path(@user)
           li.list-group-item
-            = link_to "Новости", profile_posts_path(@profile)
-          - if @profile.user == current_user
-            li.list-group-item= link_to "Настройки", edit_dashboard_profile_path(@profile)
+            = link_to "Новости", profile_posts_path(@user)
+          - if @user == current_user
+            li.list-group-item= link_to "Настройки", edit_dashboard_user_path(@user)

@@ -18,4 +18,4 @@
 
 / ANSWERS
 = render "questions/no_answers_message" if !@question.has_answer?
-= render @question.answers.includes(user: :profile).by_score
+= render @question.answers.includes(:user).by_score

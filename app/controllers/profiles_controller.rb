@@ -1,32 +1,34 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile
+  before_action :set_user
 
   def show
-    @profile.increment!(:impressions_count)
+    @user.increment!(:impressions_count)
   end
 
   def contacts
   end
 
   def posts
-    @posts = @profile.user.posts.page(params[:page])
+    @posts = @user.posts.page(params[:page])
   end
 
   def listings
-    @listings = Entry.includes(enterable: :state).page(params[:page])
+    @listings = Entry.where.not(enterable_type: ["Post", "Question"])
+                     .includes(enterable: [:state, :city])
+                     .page(params[:page])
   end
 
   def answers
-    @answers = @profile.answers.includes(:question).page(params[:page])
+    @answers = @user.answers.includes(:question).page(params[:page])
   end
 
   def pictures
-    @pictures = @profile.pictures.page(params[:page]).per(30)
+    @pictures = @user.gallery.pictures.page(params[:page]).per(30)
   end
 
   private
 
-  def set_profile
-    @profile = Profile.find(params[:id])
+  def set_user
+    @user = User.find(params[:id])
   end
 end

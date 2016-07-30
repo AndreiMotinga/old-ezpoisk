@@ -141,7 +141,6 @@ GEM
       uniform_notifier (~> 1.10.0)
     byebug (9.0.5)
     callsite (0.0.11)
-    cancancan (1.15.0)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -307,6 +306,8 @@ GEM
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
     rack-cors (0.4.0)
+    rack-mini-profiler (0.10.1)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0)
@@ -484,7 +485,6 @@ DEPENDENCIES
   bootstrap_form
   brakeman
   bullet
-  cancancan
   capybara
   capybara-select2
   capybara-webkit
@@ -516,6 +516,7 @@ DEPENDENCIES
   pry-byebug
   puma
   rack-cors
+  rack-mini-profiler
   rack-pjax!
   rack-protection!
   rails (~> 5.0)

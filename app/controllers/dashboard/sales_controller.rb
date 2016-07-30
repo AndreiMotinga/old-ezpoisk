@@ -3,9 +3,9 @@ class Dashboard::SalesController < ApplicationController
   before_action :set_sale, only: [:edit, :update, :destroy]
 
   def new
-    @sale = Sale.new(state_id: current_user.profile_state_id,
-                     city_id: current_user.profile_city_id,
-                     phone: current_user.profile_phone,
+    @sale = Sale.new(state_id: current_user.state_id,
+                     city_id: current_user.city_id,
+                     phone: current_user.phone,
                      active: true,
                      email: current_user.email)
   end

@@ -9,7 +9,7 @@ end
 
 feature "User browses re_private" do
   scenario "success" do
-    rp = create :re_private, :active
+    rp = create :re_private
 
     visit re_private_path(rp)
 

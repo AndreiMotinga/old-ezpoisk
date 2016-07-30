@@ -1,17 +1,16 @@
-= title("#{@profile.name} | Галерея")
-= desc(strip_tags(@profile.about).truncate(160))
+= title("#{@user.name} | Галерея")
+= desc(strip_tags(@user.about).truncate(160))
 
 = og_type("article")
-= og_url(profile_pictures_url(@profile))
-= og_image(@profile.cover.url(:large))
+= og_url(profile_pictures_url(@user))
+= og_image(@user.cover.url(:large))
 
 - content_for :profile_cover, render("profiles/cover")
 - content_for :mobile_search, render("shared/mobile_search_modal", id: "profiles")
 - content_for :sidebar, render("profiles/sidebar")
 
-
-#pictures-data data-id=@profile.id data-type=@profile.class.to_s
-- if current_user == @profile.user
+#pictures-data data-id=@user.gallery.id data-type="Gallery"
+- if current_user == @user
   .row
     .col-xs-12
       button.btn.mobile-btn data-target="#myModal" data-toggle="modal" type="button" Загрузить фотографии
@@ -22,8 +21,8 @@
           .modal-content
             .modal-body
               = form_for([:dashboard, Picture.new], html: { multipart: true, class: "dropzone"}) do |f|
-                = f.hidden_field(:imageable_id, value: @profile.id)
-                = f.hidden_field(:imageable_type, value: @profile.class.to_s)
+                = f.hidden_field(:imageable_id, value: @user.gallery.id)
+                = f.hidden_field(:imageable_type, value: @user.gallery.class.to_s)
                 .fallback
                   = f.file_field :image
                   br
@@ -33,10 +32,7 @@
   br
 
 .profile data-pictures="" data-id="pictures"
-  - if @pictures.any?
-    - @pictures.each do |pic|
-      = render "profiles/picture", picture: pic
-  - else
-    p Здесь пока пусто
+  - @pictures.each do |pic|
+    = render "profiles/picture", picture: pic
 
 = render "shared/pagination", records: @pictures

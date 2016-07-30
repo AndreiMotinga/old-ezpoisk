@@ -2,7 +2,8 @@ class HomeController < ApplicationController
   # before_action :set_partners, only: [:index]
 
   def index
-    @posts = Post.includes(user: :profile)
+    # todo only select name and avatar
+    @posts = Post.includes(:user)
                  .visible
                  .desc
                  .page(params[:page]).per(10)

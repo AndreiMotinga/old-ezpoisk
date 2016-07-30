@@ -1,6 +1,6 @@
 - if user_signed_in?
   = link_to "Сказать спасибо",
-            points_path(profile_id: @profile.id),
+            points_path(user_id: @user.id),
             method: "post",
             "data-remote": true,
             class: "btn btn-lg mobile-btn",

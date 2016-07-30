@@ -49,7 +49,7 @@
       #profile.tab-pane role="tabpanel"
         - if user_signed_in?
           ul.list-group
-            = link_to profile_path(current_user.profile) do
+            = link_to profile_path(current_user) do
               li.list-group-item.mobile-link Моя страница
             = link_to dashboard_path do
               li.list-group-item.mobile-link Мои объявления
@@ -57,7 +57,7 @@
               li.list-group-item.mobile-link Мои новости
             = link_to dashboard_favorites_path do
               li.list-group-item.mobile-link Избранное
-            = link_to edit_dashboard_profile_path(current_user) do
+            = link_to edit_dashboard_user_path(current_user) do
               li.list-group-item.mobile-link Мои настройки
           ul.list-group
             = link_to main_app.destroy_user_session_path, method: :delete do

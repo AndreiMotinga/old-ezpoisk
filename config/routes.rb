@@ -1,8 +1,6 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  default_url_options host: "www.ezpoisk.com"
-
   resources :stripe_subscriptions, only: [:create, :update, :destroy]
   resources :favorites, only: [:create]
 
@@ -46,7 +44,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show]
   namespace :dashboard do
     resources :profiles, only: [:edit, :update]
-    resources :users, only: [:update]
+    resources :users, only: [:edit, :update]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
     resources :re_commercials, only: [:new, :create, :edit, :update, :destroy]
     resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]

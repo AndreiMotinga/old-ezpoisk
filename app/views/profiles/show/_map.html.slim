@@ -1,4 +1,4 @@
-- if @profile.street?
+- if @user.street?
   .white-block
     .panel.panel-default
       .panel-body.map
@@ -8,7 +8,7 @@
     $(document).ready(function(){
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-      markers = handler.addMarkers(#{raw @profile.map_marker.to_json});
+      markers = handler.addMarkers(#{raw @user.map_marker.to_json});
       handler.bounds.extendWith(markers);
       handler.fitMapToBounds();
       handler.getMap().setZoom(12);

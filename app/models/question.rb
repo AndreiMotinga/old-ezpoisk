@@ -70,7 +70,7 @@ class Question < ActiveRecord::Base
   end
 
   def profile
-    the_answer.user.profile
+    the_answer.user
   end
 
   def subscribers_emails

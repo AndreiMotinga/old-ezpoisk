@@ -1,7 +1,7 @@
 class Dashboard::PicturesController < ApplicationController
   def index
     @pictures = klass.find(params["id"]).pictures
-    @view = klass == Profile ? "profiles/picture" : "dashboard/pictures/picture"
+    @view = klass == Gallery ? "profiles/picture" : "dashboard/pictures/picture"
   end
 
   def create
@@ -34,7 +34,7 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def klass
-    [Profile, RePrivate, ReCommercial, Sale].find do |class_name|
+    [Gallery, RePrivate, ReCommercial, Sale].find do |class_name|
       class_name.name == params["type"].classify
     end
   end

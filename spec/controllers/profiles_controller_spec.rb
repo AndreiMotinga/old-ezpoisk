@@ -2,12 +2,12 @@ require "rails_helper"
 
 describe ProfilesController do
   describe "#show" do
-    it "is success and assigns @profile" do
+    it "is success and assigns @user" do
       user = create :user
 
-      get :show, params: { id: user.profile.id }
+      get :show, params: { id: user.id }
 
-      expect(assigns(:profile)).to be_a(Profile)
+      expect(assigns(:user)).to be_a User
       expect(response).to be_success
     end
   end
@@ -17,7 +17,7 @@ describe ProfilesController do
       user = create :user
       2.times { create :post, user: user }
 
-      get :posts, params: { id: user.profile.id }
+      get :posts, params: { id: user.id }
       posts = assigns(:posts)
 
       expect(response).to be_success
@@ -33,7 +33,7 @@ describe ProfilesController do
       sale = create :sale, user: user
       sale.create_entry user: user
 
-      get :listings, params: { id: user.profile.id }
+      get :listings, params: { id: user.id }
       listings = assigns(:listings)
 
       expect(response).to be_success
@@ -46,7 +46,7 @@ describe ProfilesController do
       user = create :user
       2.times { create :answer, user: user }
 
-      get :answers, params: { id: user.profile.id }
+      get :answers, params: { id: user.id }
       answers = assigns(:answers)
 
       expect(response).to be_success

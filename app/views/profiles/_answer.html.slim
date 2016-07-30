@@ -2,19 +2,10 @@
   .question
     .panel.panel-default
       .panel-heading
-        h4.title
-          = link_to answer.question.title, answer.question
-        .row.author
-          .col-xs-3.col-sm-2
-            = link_to profile_path(answer.question.profile) do
-              = image_tag answer.question.avatar, alt: answer.question.username,  class: "img-responsive img-circle center-block"
-          .col-xs-9.col-sm-10
-            /p.text-muted.pull-right
-            /  = question.the_answer.created_at.strftime("%d %B %Y")
-            h4.name= answer.question.username
-            p.text-muted
-              = "#{answer.question.impressions_count} просмотров, #{answer.question.answers.count} ответов"
+        h4.title= link_to answer.question.title, answer.question
       .panel-body
+        p.text-muted
+          = "#{answer.question.impressions_count} просмотров, #{answer.question.answers.count} ответов"
         = strip_tags(answer.question.text_to_show).truncate(380)
         - if strip_tags(answer.question.text_to_show).size > 380
           = " "

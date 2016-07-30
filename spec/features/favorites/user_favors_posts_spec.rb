@@ -3,7 +3,7 @@ require "rails_helper"
 feature "User favors different posts", js: true do
   scenario "user sees them in in dashboard", js: true do
     user = create_and_login_user
-    re_private = create :re_private, :active
+    re_private = create :re_private
     re_commercial = create :re_commercial, :active
     job = create :job
     service = create :service

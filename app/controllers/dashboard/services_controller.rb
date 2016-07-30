@@ -3,9 +3,9 @@ class Dashboard::ServicesController < ApplicationController
   before_action :set_service, only: [:edit, :update, :destroy]
 
   def new
-    @service = Service.new(state_id: current_user.profile_state_id,
-                           city_id: current_user.profile_city_id,
-                           phone: current_user.profile_phone,
+    @service = Service.new(state_id: current_user.state_id,
+                           city_id: current_user.city_id,
+                           phone: current_user.phone,
                            email: current_user.email)
   end
 

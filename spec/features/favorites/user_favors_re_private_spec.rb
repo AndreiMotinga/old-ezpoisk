@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User favors re_private", js: true do
   scenario "user is not logged in" do
-    create :re_private, :active
+    create :re_private
 
     visit re_privates_path
     page.find(".favor").click
@@ -13,7 +13,7 @@ feature "User favors re_private", js: true do
 
   scenario "creates favorite when user is logged in", js: true do
     create_and_login_user
-    create :re_private, :active
+    create :re_private
 
     visit re_privates_path
     page.find(".favor").click
@@ -24,7 +24,7 @@ feature "User favors re_private", js: true do
 
   scenario "destroys favorite when user is logged in", js: true do
     user = create_and_login_user
-    re_private = create :re_private, :active
+    re_private = create :re_private
     Favorite.create(user_id: user.id,
                     favorable_id: re_private.id,
                     favorable_type: re_private.class.to_s,

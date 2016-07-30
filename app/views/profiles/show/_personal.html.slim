@@ -6,29 +6,29 @@
       table.table.table-hover.text-center
         tr
           td email
-          td= @profile.user.email
+          td= @user.email
 
         tr
           td phone
-          td= @profile.phone
+          td= @user.phone
 
         tr
           td website
-          td= link_to @profile.site, site_link(@profile.site), target: "_blank"
+          td= link_to @user.site, site_link(@user.site), target: "_blank"
       hr
       span.social
-        - if @profile.facebook?
-          = link_to @profile.facebook do
+        - if @user.facebook?
+          = link_to @user.facebook do
             i.fa.fa-lg.fa-facebook
-        - if @profile.google?
-          = link_to @profile.google do
+        - if @user.google?
+          = link_to @user.google do
             i.fa.fa-lg.fa-google-plus
-        - if @profile.twitter?
-          = link_to @profile.twitter do
+        - if @user.twitter?
+          = link_to @user.twitter do
             i.fa.fa-lg.fa-twitter
-        - if @profile.vk?
-          = link_to @profile.vk do
+        - if @user.vk?
+          = link_to @user.vk do
             i.fa.fa-lg.fa-vk
-        - if @profile.ok?
-          = link_to @profile.ok do
+        - if @user.ok?
+          = link_to @user.ok do
             i.fa.fa-lg.fa-odnoklassniki

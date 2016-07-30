@@ -1,9 +1,9 @@
-= title(@profile.name)
-= desc(strip_tags(@profile.about).truncate(160))
+= title(@user.name)
+= desc(strip_tags(@user.about).truncate(160))
 
 = og_type("article")
-= og_url(profile_url(@profile))
-= og_image(@profile.cover.url(:large))
+= og_url(profile_url(@user))
+= og_image(@user.cover.url(:large))
 
 - content_for :profile_cover, render("profiles/cover")
 - content_for :mobile_search, render("shared/mobile_search_modal", id: "profiles")
@@ -13,8 +13,8 @@
   .white-block
     .panel.panel-default
       .panel-body
-        - if @profile.about?
-          .text.answer= simple_format @profile.about
+        - if @user.about?
+          .text.answer= simple_format @user.about
 
         - else
           p Пользователь не продаставил информации о себе

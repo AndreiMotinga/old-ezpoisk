@@ -1,7 +1,7 @@
 class PointsController < ApplicationController
   def create
     return unless current_user
-    @profile = Profile.find(params[:profile_id])
-    Point.create(user: current_user, profile: @profile)
+    @user = User.find(params[:user_id])
+    Point.create(user_id: @user.id, author_id: current_user.id)
   end
 end

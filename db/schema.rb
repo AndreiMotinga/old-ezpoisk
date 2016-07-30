@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730010744) do
+ActiveRecord::Schema.define(version: 20160730054035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,13 @@ ActiveRecord::Schema.define(version: 20160730010744) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  end
+
+  create_table "galleries", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id"], name: "index_galleries_on_user_id", using: :btree
   end
 
   create_table "impressions", force: :cascade do |t|
@@ -164,12 +171,11 @@ ActiveRecord::Schema.define(version: 20160730010744) do
   end
 
   create_table "points", force: :cascade do |t|
-    t.integer  "profile_id"
+    t.integer  "author_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_points_on_profile_id", using: :btree
-    t.index ["user_id", "profile_id"], name: "index_points_on_user_id_and_profile_id", unique: true, using: :btree
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["user_id", "author_id"], name: "index_points_on_user_id_and_author_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_points_on_user_id", using: :btree
   end
 
@@ -190,34 +196,6 @@ ActiveRecord::Schema.define(version: 20160730010744) do
     t.boolean  "visible",            default: true
     t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "phone",              default: ""
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.string   "site",               default: ""
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "cover_file_name"
-    t.string   "cover_content_type"
-    t.integer  "cover_file_size"
-    t.datetime "cover_updated_at"
-    t.integer  "impressions_count",  default: 0,  null: false
-    t.text     "about",              default: "", null: false
-    t.string   "street",             default: "", null: false
-    t.string   "facebook",           default: "", null: false
-    t.string   "google",             default: "", null: false
-    t.string   "vk",                 default: "", null: false
-    t.string   "ok",                 default: "", null: false
-    t.string   "twitter",            default: "", null: false
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "zip"
-    t.index ["city_id"], name: "index_profiles_on_city_id", using: :btree
-    t.index ["state_id"], name: "index_profiles_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
   create_table "questions", force: :cascade do |t|
@@ -440,19 +418,19 @@ ActiveRecord::Schema.define(version: 20160730010744) do
     t.string   "phone",                  default: ""
     t.integer  "state_id"
     t.integer  "city_id"
-    t.string   "site"
+    t.string   "site",                   default: ""
     t.string   "cover_file_name"
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
     t.integer  "impressions_count"
-    t.text     "about"
-    t.string   "street"
-    t.string   "facebook"
-    t.string   "google"
-    t.string   "vk"
-    t.string   "ok"
-    t.string   "twitter"
+    t.text     "about",                  default: ""
+    t.string   "street",                 default: ""
+    t.string   "facebook",               default: ""
+    t.string   "google",                 default: ""
+    t.string   "vk",                     default: ""
+    t.string   "ok",                     default: ""
+    t.string   "twitter",                default: ""
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
@@ -480,17 +458,14 @@ ActiveRecord::Schema.define(version: 20160730010744) do
   add_foreign_key "cities", "states"
   add_foreign_key "entries", "users"
   add_foreign_key "favorites", "users"
+  add_foreign_key "galleries", "users"
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"
   add_foreign_key "jobs", "users"
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
-  add_foreign_key "points", "profiles"
   add_foreign_key "points", "users"
   add_foreign_key "posts", "users"
-  add_foreign_key "profiles", "cities"
-  add_foreign_key "profiles", "states"
-  add_foreign_key "profiles", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "re_commercials", "cities"
   add_foreign_key "re_commercials", "states"

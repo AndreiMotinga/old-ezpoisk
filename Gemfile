@@ -46,14 +46,11 @@ gem "rails_admin_tag_list"
 gem "sitemap_generator"
 gem "slack-notifier"
 
-gem "cancancan"
-# gem "recaptcha", require: "recaptcha/rails" # remove?
-
 gem "acts_as_votable"
 gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 
-# gem "rack-mini-profiler", require: false
-gem 'rack-cors', :require => 'rack/cors'
+gem "rack-mini-profiler", require: false
+gem "rack-cors", require: "rack/cors"
 
 gem "omniauth-facebook"
 gem "omniauth-google-oauth2"

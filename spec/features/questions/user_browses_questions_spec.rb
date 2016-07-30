@@ -3,7 +3,6 @@ require "rails_helper"
 feature "User browses questions" do
   scenario "success" do
     user = create(:user)
-    profile = create(:profile, user: user)
     question = create :question
     create :answer, question: question, user: user
 

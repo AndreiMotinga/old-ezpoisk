@@ -12,10 +12,12 @@ module Ezpoisk
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
+    config.action_mailer.default_url_options = { host: "ezpoisk.com" }
+
     config.eager_load_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
 
-    config.middleware.insert_before 0, "SearchSuggestions"
-
+    config.middleware.insert_before(Rack::Sendfile, Rack::Deflater)
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
@@ -32,5 +34,7 @@ module Ezpoisk
           :max_age => 0
       end
     end
+
+    config.middleware.insert_before 0, "SearchSuggestions"
   end
 end
