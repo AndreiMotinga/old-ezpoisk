@@ -11,6 +11,7 @@
         - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
           span= link_to " ##{tag.name}", "/ezanswer/tag/#{tag.name}", class: "tag-in-cloud #{css_class}"
 
+= render "shared/social", count: nil, url: "https://www.ezpoisk.com"
 = render "questions/search_form"
 
 .col-xs-12 data-id="listings"

@@ -1,4 +1,4 @@
-.visible-xs
+.row
   div
 
     /! Nav tabs
@@ -62,18 +62,3 @@
           ul.list-group
             = link_to main_app.destroy_user_session_path, method: :delete do
               li.list-group-item.mobile-link Выйти
-
-  br
-  .panel
-    .panel-heading: h5 Show your support !
-    .panel-body
-      #vk_like
-      javascript:
-        VK.Widgets.Like("vk_like", {type: "button"});
-
-      br
-
-      #fb-root
-      .fb-like[data-href="https://www.ezpoisk.com"
-               data-layout="button_count" data-action="like" data-size="small"
-               data-show-faces="true" data-width="220px" data-share="true"]
