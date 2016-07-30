@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.includes(:user, :answers).find(params[:id])
+    @question = Question.includes(:user).find(params[:id])
     IncreaseQuestionImpressionsJob.perform_async(@question.id)
   end
 

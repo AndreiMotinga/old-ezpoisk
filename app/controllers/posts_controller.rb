@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post.title += " " # to trigger slug update
     if @post.update(post_params) && @post.visible?
       @post.create_entry(updated_at: @post.updated_at) unless @post.entry
       redirect_to post_path(@post)
@@ -39,7 +40,6 @@ class PostsController < ApplicationController
     NewsImporterJob.perform_async
     redirect_to all_posts_path
   end
-
 
   private
 
