@@ -1,31 +1,44 @@
 = bootstrap_form_for([:dashboard, @service]) do |f|
-  = form_state_select(f)
-  = form_city_select(f, @service)
-  = f.text_field :street, label: 'Улица *'
-  hr.white-hr
+  .row
+    .col-xs-12.col-sm-6
+      = f.select :category,
+                  form_options(params[:category], SERVICE_CATEGORIES.keys),
+                  { include_blank: true, label: '* Раздел' },
+                  class: "category-select",
+                  "data-type": "Service"
+    .col-xs-12.col-sm-6
+      - if @service.category || params[:subcategory]
+        = f.select :subcategory,
+                  form_options(params[:subcategory], SERVICE_CATEGORIES),
+                   { label: '* Категория' },
+                   class: "subcategory-select"
+      - else
+        = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
 
   = f.text_field :title, label: '* Заголовок / Название'
-  = f.select :category,
-              form_options(params[:category], SERVICE_CATEGORIES.keys),
-              { include_blank: true, label: '* Раздел' },
-              class: "category-select",
-              "data-type": "Service"
-  - if @service.category || params[:subcategory]
-    = f.select :subcategory,
-              form_options(params[:subcategory], SERVICE_CATEGORIES),
-               { label: '* Категория' },
-               class: "subcategory-select"
-  - else
-    = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
-  hr.white-hr
-
   = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+
   hr.white-hr
 
-  = f.text_field :phone, label: '* Телефон'
-  = f.text_field :fax, label: 'Факс'
-  = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
-  = f.email_field :email
+  = f.text_field :street, label: 'Улица *'
+  .row
+    .col-xs-12.col-sm-6
+      = form_state_select(f)
+    .col-xs-12.col-sm-6
+      = form_city_select(f, @service)
+  hr.white-hr
+
+  .row
+    .col-xs-12.col-sm-6
+      = f.text_field :phone, label: '* Телефон'
+    .col-xs-12.col-sm-6
+      = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
+
+  .row
+    .col-xs-12.col-sm-6
+      = f.email_field :email
+    .col-xs-12.col-sm-6
+      = f.text_field :fax, label: 'Факс'
   hr.white-hr
 
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
