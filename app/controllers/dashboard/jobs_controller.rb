@@ -31,6 +31,7 @@ class Dashboard::JobsController < ApplicationController
     address_changed = address_changed?(@job, job_params)
     if @job.update(job_params)
       GeocodeJob.perform_async(@job.id, "Job") if address_changed
+      @job.entry.try(:touch)
       redirect_to edit_dashboard_job_path(@job),
                   notice: I18n.t(:post_saved)
     else

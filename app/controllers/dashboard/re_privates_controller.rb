@@ -34,6 +34,7 @@ class Dashboard::RePrivatesController < ApplicationController
     address_changed = address_changed?(@re_private, re_private_params)
     if @re_private.update(re_private_params)
       GeocodeJob.perform_async(@re_private.id, "RePrivate") if address_changed
+      @re_private.entry.try(:touch)
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
     else

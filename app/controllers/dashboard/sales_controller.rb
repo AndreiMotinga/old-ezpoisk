@@ -30,6 +30,7 @@ class Dashboard::SalesController < ApplicationController
     address_changed = address_changed?(@sale, sale_params)
     if @sale.update(sale_params)
       GeocodeJob.perform_async(@sale.id, "Sale") if address_changed
+      @sale.entry.try(:touch)
       redirect_to edit_dashboard_sale_path(@sale), notice: I18n.t(:post_saved)
     else
       render :edit

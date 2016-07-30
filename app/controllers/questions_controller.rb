@@ -49,6 +49,7 @@ class QuestionsController < ApplicationController
   def update
     if @question.update(question_params)
       SlackNotifierJob.perform_async(@question.id, "Question")
+      @question.entry.try(:touch)
       redirect_to @question, notice: I18n.t(:q_updated)
     else
       render :edit

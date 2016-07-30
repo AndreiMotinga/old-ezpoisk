@@ -28,6 +28,7 @@ class Dashboard::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      @post.entry.try(:touch)
       redirect_to edit_dashboard_post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
