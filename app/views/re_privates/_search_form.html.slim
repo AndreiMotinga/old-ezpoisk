@@ -1,6 +1,5 @@
 form.form-horizontal action=re_privates_path method="get"
   = render "shared/search_by_address"
-  hr/
 
   .col-xs-12
     .form-group
@@ -12,29 +11,33 @@ form.form-horizontal action=re_privates_path method="get"
           = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
   br
 
-  = label_tag "Тип объявления", nil
-  = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), class: "form-control"
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Тип объявления", nil
+      = select_tag :post_type, options_for_select(RE_TYPES, params[:post_type]), class: "form-control"
+    .col-xs-12.col-sm-6
+      = label_tag "Сортировать", nil
+      = sort_select
   br
 
-  = label_tag "Сортировать", nil
-  = sort_select
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Комнаты", nil
+      = select_tag :rooms, options_for_select(ROOM_OPTIONS, params[:rooms]), include_blank: true, class: "form-control"
+    .col-xs-12.col-sm-6
+      = label_tag "Ванные", nil
+      = select_tag :baths, options_for_select((1..10).to_a, params[:baths]), include_blank: true, class: "form-control"
   br
 
-  = label_tag "Комнаты", nil
-  = select_tag :rooms, options_for_select(ROOM_OPTIONS, params[:rooms]), include_blank: true, class: "form-control"
-  br
-
-  = label_tag "Ванные", nil
-  = select_tag :baths, options_for_select((1..10).to_a, params[:baths]), include_blank: true, class: "form-control"
-  br
-
-  = label_tag "Продолжительность", nil
-  = select_tag :duration, options_for_select(RE_DURATION, params[:duration]), include_blank: true, class: "form-control"
-  br
-
-  = label_tag :fee, "Без комиссии"
-  = " "
-  = check_box_tag :fee, '0',  params[:fee], class: "checkbox-inline"
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Продолжительность", nil
+      = select_tag :duration, options_for_select(RE_DURATION, params[:duration]), include_blank: true, class: "form-control"
+    .col-xs-12.col-sm-6
+      br
+      = label_tag :fee, "Без комиссии"
+      = " "
+      = check_box_tag :fee, '0',  params[:fee], class: "checkbox-inline"
 
   hr
   = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

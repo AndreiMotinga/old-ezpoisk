@@ -5,7 +5,6 @@
 = og_url(sale_url(@sale))
 = og_image(@sale.logo_url(:large))
 
-- content_for :mobile_search, render("shared/mobile_search_modal", id: "sales")
 - content_for :sidebar do
   = render "shared/show/contacts", record: @sale
   = render "sales/details"

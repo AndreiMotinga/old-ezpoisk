@@ -43,7 +43,7 @@ module FormHelper
   def origin_text_field_param
     text_field_tag "geo_scope[origin]",
                    origin,
-                   placeholder: "e.g 11229",
+                   placeholder: "2424 Coney Island ave Brooklyn New York or 11229",
                    class: "form-control"
   end
 

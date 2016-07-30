@@ -1,17 +1,24 @@
 form.form-horizontal action=jobs_path method="get"
   = render "shared/search_by_address"
-  hr/
 
-  = label_tag "Ключевое слово", nil
-  = text_field_tag :keyword, params[:keyword], class: "form-control"
-  br/
-  = label_tag "Раздел", nil
-  = select_tag :category,
-               options_for_select(JOB_CATEGORIES, params[:category]),
-               include_blank: true,
-               class: "form-control"
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Ключевое слово", nil
+      = text_field_tag :keyword, params[:keyword], class: "form-control"
+    .col-xs-12.col-sm-6
+      = label_tag "Раздел", nil
+      = select_tag :category,
+                   options_for_select(JOB_CATEGORIES, params[:category]),
+                   include_blank: true,
+                   class: "form-control"
 
-  = render "jobs/subcategories"
   br
+  = label_tag "Категория", nil
+  = select_tag :subcategory,
+               grouped_options_for_select(JOB_SUBCATEGORIES, params[:subcategory]),
+               multiple: true,
+               class: "form-control job-select"
+
+  hr
 
   = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

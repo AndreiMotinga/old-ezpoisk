@@ -51,7 +51,6 @@ html
         = render "shared/partners/top"
         = yield :profile_cover if content_for?(:profile_cover)
         = render "shared/notice" unless devise_controller?
-        .visible-xs= yield :mobile_search if content_for?(:mobile_search)
 
       .row
         .hidden-xs.col-sm-4.col-md-3

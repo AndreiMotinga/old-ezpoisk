@@ -26,6 +26,6 @@
           .col-xs-6
             h6 #{time_ago_in_words post.updated_at} назад
           .col-xs-6
-            - if post.user_id == current_user.try(:id)
+            - if post.user == current_user
               a.pull-right href=post.edit_link data-content="Редактировать" data-toggle="popover" role="button" tabindex="0" data-placement="top"
                 i.fa.fa-pencil.text-muted

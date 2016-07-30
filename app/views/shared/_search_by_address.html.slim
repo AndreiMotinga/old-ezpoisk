@@ -1,24 +1,29 @@
-.panel.panel-default
-  .panel-body
-    /.form-group
-    /  = label_tag "Штат", nil,  class: "col-xs-1 control-label"
-    /  .col-xs-12
-    /    = select_tag :state_id, options_for_select(STATES, state_id), multiple: true, class: "form-control state-select"
-    /
-    /.form-group
-    /  = label_tag "Город", nil,  class: "col-xs-1 control-label"
-    /  .col-xs-12
-    /    = select_tag :city_id, options_from_collection_for_select(state_cities, :id, :name, city_id), multiple: true,  class: "form-control city-select"
-    /
-    /button.pull-right[type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom"
-    /       title="Выберите штат и город либо радиус и точку отсчета ( полный адрес или зипкод ), затем нажмите 'Обновить'"]
-    /  | ?
-    /
-    .form-group
-      .col-xs-12
-        label Радиус (миль)
+ul.nav.nav-tabs[role="tablist"]
+  li.active[role="presentation"]
+    a[href="#city" aria-controls="city" role="tab" data-toggle="tab"]
+      | Выбрать город
+  li[role="presentation"]
+    a[href="#radius" aria-controls="radius" role="tab" data-toggle="tab"]
+      | Радиус поиска
+
+.tab-content
+  #city.tab-pane.active[role="tabpanel"]
+    .row
+      .col-xs-12.col-sm-6
+        = label_tag "Штат", nil,  class: "col-xs-1 control-label"
+        = select_tag :state_id, options_for_select(STATES, state_id), multiple: true, class: "form-control state-select"
+
+      .col-xs-12.col-sm-6
+        = label_tag "Город", nil,  class: "col-xs-1 control-label"
+        = select_tag :city_id, options_from_collection_for_select(state_cities, :id, :name, city_id), multiple: true,  class: "form-control city-select"
+
+  #radius.tab-pane[role="tabpanel"]
+    .row
+      .col-xs-12.col-sm-3
+        = label_tag "Радиус (миль)"
         = within_text_field_param
-        br
-      .col-xs-12
-        label от (address / zipcode)
+      .col-xs-12.col-sm-9
+        = label_tag "от (address / zipcode)"
         = origin_text_field_param
+
+hr

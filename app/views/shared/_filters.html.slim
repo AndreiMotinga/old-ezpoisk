@@ -1,22 +1,15 @@
-.panel.panel-default
-  .panel-heading
-    h5
-      | Фильтры
-      span.pull-right= count
-  .panel-body
-    = render "#{t}/search_form"
+= link_to "Настроить фильтр", "",
+          class: "btn mobile-btn search-modal-trigger",
+          "data-target": "##{id}", "data-toggle": :modal, role: :button
 
-br
-.panel
-  .panel-heading: h5 Show your support !
-  .panel-body
-    #vk_like
-    javascript:
-      VK.Widgets.Like("vk_like", {type: "button", pageUrl: "https://www.ezpoisk.com"});
+/! Modal
+.modal.fade id=id aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true" ×
+        h4#myModalLabel.modal-title Расширенный поиск
 
-    br
-
-    #fb-root
-    .fb-like[data-href="https://www.ezpoisk.com"
-             data-layout="button_count" data-action="like" data-size="small"
-             data-show-faces="true" data-width="220px" data-share="true"]
+      .modal-body
+        = render "#{id}/search_form"

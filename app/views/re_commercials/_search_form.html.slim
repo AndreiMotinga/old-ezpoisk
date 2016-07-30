@@ -1,30 +1,34 @@
 form.form-horizontal action=re_commercials_path method="get"
   = render "shared/search_by_address"
-  hr/
 
-  = label_tag "Минимальная цена", nil
-  = number_field_tag :min_price, params[:min_price], class: "form-control"
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Минимальная цена", nil
+      = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
+    .col-xs-12.col-sm-6
+      = label_tag "Максимальная цена", nil
+      = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
   br
 
-  = label_tag "Максимальная цена", nil
-  = number_field_tag :max_price, params[:max_price], class: "form-control"
-  br
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Тип объявления", nil
+      = select_tag :post_type,
+                   options_for_select(RE_TYPES, params[:post_type]),
+                   include_blank: true,
+                   class: "form-control"
+    .col-xs-12.col-sm-6
+      = label_tag "Сортировать", nil
+      = sort_select
 
-  = label_tag "Сортировать", nil
-  = sort_select
   br
-
-  = label_tag "Тип объявления", nil
-  = select_tag :post_type,
-               options_for_select(RE_TYPES, params[:post_type]),
-               include_blank: true,
-               class: "form-control"
-  br
-  = label_tag "Категория", nil
-  = select_tag :category,
-               options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
-               include_blank: true,
-               class: "form-control"
+  .row
+    .col-xs-12.col-sm-6
+      = label_tag "Категория", nil
+      = select_tag :category,
+                   options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
+                   include_blank: true,
+                   class: "form-control"
 
   hr/
   = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

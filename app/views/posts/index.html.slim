@@ -1,8 +1,9 @@
 = title("Новости, информация об иммиграции в США - ezpoisk")
 = desc("EZPOISK - полезная информация о русской иммиграции в США. Новости, статьи, полезные советы.")
 
-= content_for :mobile_search, render("shared/mobile_search_modal", id: "posts")
-= content_for :sidebar, render("shared/filters", t: "posts", count: @posts.total_count)
+= content_for :sidebar, render("home/sidebar")
+
+= render("shared/filters", id: "posts")
 
 .col-xs-12 data-id="listings"
   = render @posts
