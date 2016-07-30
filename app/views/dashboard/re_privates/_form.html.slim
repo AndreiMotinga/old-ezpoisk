@@ -2,7 +2,7 @@
   -  if current_user.admin?
     = f.text_field :source, label: "источник"
   = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
-  = f.text_field :street, label: '* Улица'
+  = f.text_field :street, label: 'Улица'
 
   .row
     .col-xs-12.col-sm-6
@@ -21,7 +21,7 @@
     .col-xs-12.col-sm-6
       = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
     .col-xs-12.col-sm-6
-      = f.number_field :price, label: '* Цена'
+      = f.number_field :price, label: 'Цена'
 
   .row
     .col-xs-12.col-sm-6

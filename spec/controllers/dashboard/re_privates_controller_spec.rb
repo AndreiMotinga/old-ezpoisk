@@ -57,7 +57,7 @@ describe Dashboard::RePrivatesController do
     end
 
     it "renders form and displays alert when record isn't saved" do
-      attrs = attributes_for(:re_private, user: @user, street: nil)
+      attrs = attributes_for(:re_private, user: @user, state_id: nil)
 
       post :create, params: { re_private: attrs }
 
