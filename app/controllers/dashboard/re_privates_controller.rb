@@ -9,6 +9,7 @@ class Dashboard::RePrivatesController < ApplicationController
                                 active: true,
                                 email: email,
                                 baths: 1,
+                                price: 0,
                                 duration: "помесячно",
                                 phone: current_user.phone)
   end
