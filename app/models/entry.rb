@@ -5,7 +5,7 @@ class Entry < ActiveRecord::Base
   validates :user_id, presence: true
 
   scope :today, -> { where("updated_at > ?", Date.today) }
-  scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
+  scope :week, -> { where("updated_at > ?", Date.today.at_beginning_of_week) }
 
   def self.by_type(type)
     return all unless type.present?
