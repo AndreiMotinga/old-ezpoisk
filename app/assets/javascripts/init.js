@@ -1,4 +1,7 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", init);
+$(document).ajaxComplete(init);
+
+function init(){
   var is_touch_device = ("ontouchstart" in window) || window.DocumentTouch && document instanceof DocumentTouch;
   $('.favor').popover({
     html: true,
@@ -15,5 +18,5 @@ $(document).ready(function() {
     trigger: "click"
   });
 
-  $('[data-toggle="tooltip"]').tooltip()
-});
+  $('[data-toggle="tooltip"]').tooltip();
+}

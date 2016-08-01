@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
   $("#question_tag_list").select2({
     placeholder: "Выберите тэги (минимум 1, максимум 5)"
   });

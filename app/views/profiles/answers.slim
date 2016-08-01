@@ -8,7 +8,7 @@
 - content_for :profile_cover, render("profiles/cover")
 - content_for :sidebar, render("profiles/sidebar")
 
-= render("shared/filters", id: "profiles")
+= render "profiles/mob_menu"
 
 .col-xs-12 data-id="listings"
   - @answers.each do |answer|

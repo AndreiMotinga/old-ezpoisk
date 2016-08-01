@@ -5,8 +5,8 @@ class DashboardsController < ApplicationController
     type = params[:type]
     type = type.present? ? type.constantize : RePrivate
 
-    if type == Post || type == Question
-      @records = type.all
+    if type == Post
+      @records = type.includes(:user)
     else
       @records = type.includes(:state, :city)
     end

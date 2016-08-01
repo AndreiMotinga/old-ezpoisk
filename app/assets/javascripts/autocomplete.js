@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
   $(".q-search").autocomplete({
     source: "/search_suggestions",
 
@@ -11,7 +11,7 @@ $(document).ready(function() {
     // replace input with user selected li
     focus: function(event, ui) {
       event.preventDefault();
-      $(".q-search").val(ui.item.label);
+      // $(".q-search").val(ui.item.label);
     },
 
     // show menu users clicks on already populated search field
@@ -22,7 +22,7 @@ $(document).ready(function() {
   function openNewTab(uri){
     $('#linkToOpen').remove();
     var link = document.createElement('a');
-    link.target = '_blank';
+    // link.target = '_blank';
     link.href = uri;
     link.id = 'linkToOpen';
 

@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
   $('.pgwSlideshow').pgwSlideshow({
     transitionEffect : 'fading',
     intervalDuration: 5000,

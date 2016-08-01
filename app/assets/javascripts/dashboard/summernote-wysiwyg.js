@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
   $(".summernote-lg").summernote({ height: 400 });
 
   $(".news-summernote").summernote({

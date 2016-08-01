@@ -6,8 +6,7 @@ describe Dashboard::FavoritesController do
       user = create(:user)
       sign_in(user)
       re_private = create(:re_private)
-      sale = create(:sale)
-      [re_private, sale].each do |record|
+      [re_private].each do |record|
         create(:favorite,
                :saved,
                user_id: user.id,
@@ -17,10 +16,10 @@ describe Dashboard::FavoritesController do
       end
 
       get :index
-      result = assigns(:favorites)
+      result = assigns(:records)
 
       expect(response).to render_template(:index)
-      expect(result.size).to eq 2
+      expect(result.size).to eq 1
     end
   end
 end

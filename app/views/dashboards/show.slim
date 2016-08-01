@@ -3,8 +3,7 @@
 = render("shared/filters", id: "dashboards")
 
 .col-xs-12 data-id="listings"
-  - @records.each do |record|
-    = template_for(record)
+  = render @records
 
 .col-xs-12
   = render "shared/pagination", records: @records

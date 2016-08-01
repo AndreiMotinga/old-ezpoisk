@@ -450,6 +450,9 @@ GEM
     tilt (2.0.5)
     timecop (0.8.1)
     tool (0.2.3)
+    turbolinks (5.0.1)
+      turbolinks-source (~> 5)
+    turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.1)
@@ -543,6 +546,7 @@ DEPENDENCIES
   stripe-ruby-mock (~> 2.2.4)
   summernote-rails
   timecop
+  turbolinks (~> 5.0.1)
   uglifier
   underscore-rails
   webmock

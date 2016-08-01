@@ -25,23 +25,15 @@ html
 
     /!======== LINKS ============
     = favicon_link_tag "favicon"
-    = stylesheet_link_tag    "application"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    "application", 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "application", 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
-    = render "shared/ga"
-    //!======== LINKS ============
 
-    script type="text/javascript" src="//vk.com/js/api/openapi.js?123"
-    javascript:
-      VK.init({apiId: 5343503, onlyWidgets: true});
-    javascript:
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.7&appId=1746983858848479";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+  script src="//maps.google.com/maps/api/js?v=3.24&libraries=geometry&key=#{ENV["GOOGLE_MAPS_API_KEY"]}" type="text/javascript" defer="" async=""
+  script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js" defer="" async=""
+
+    - unless Rails.env.test?
+      = render "shared/ga"
 
   body
     = render "shared/navbar"
@@ -70,5 +62,3 @@ html
     = render "shared/new_post_modal"
     = render "shared/new_session_modal"
     = render "shared/main_sidebar"
-
-    script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/27597bc25de8ded90e9c9b5165060dd9a939a969e5e01bcc122aec50dda34f3d.js"

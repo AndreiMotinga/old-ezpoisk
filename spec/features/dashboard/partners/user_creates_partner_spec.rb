@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user creates partner" do
+xfeature "user creates partner" do
   scenario "successfully", js: true do
     # state = create :state, :alabama
     user = create_and_login_user

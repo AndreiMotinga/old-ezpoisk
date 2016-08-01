@@ -13,6 +13,7 @@
 //= require jquery2
 //= require jquery-ui
 //= require jquery_ujs
+//= require turbolinks
 //= require bootstrap-sprockets
 //= require dropzone
 //= require underscore
@@ -23,5 +24,9 @@
 //= require touchTouch
 
 //= require select2
+
+//= require social/vk
+//= require social/vk_2
+//= require vk_init
 
 //= require_tree .

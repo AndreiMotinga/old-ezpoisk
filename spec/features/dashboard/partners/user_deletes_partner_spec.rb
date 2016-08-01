@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user browses partner" do
+xfeature "user browses partner" do
   scenario "successfully", js: true do
     user = create_and_login_user
     create :partner, user: user

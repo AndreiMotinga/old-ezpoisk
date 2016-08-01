@@ -10,16 +10,14 @@
 - content_for(:right_block) do
   = render "home/right_block"
 
-.col-sm-12 data-id="listings"
-  .row
-    = render "shared/social", count: nil, url: "https://www.ezpoisk.com"
+= render "shared/social", count: nil, url: "https://www.ezpoisk.com"
 
+.hidden-xs.col-sm-12 data-id="listings"
   / DESKTOP
-  .hidden-xs
-    = render @posts
+  = render @posts
 
-    = render "shared/pagination", records: @posts
+  = render "shared/pagination", records: @posts
 
-  / MOBILE
-  .visible-xs
-    = render "home/mobile_index"
+/ MOBILE
+.visible-xs.col-xs-12
+  = render "home/mobile_index"

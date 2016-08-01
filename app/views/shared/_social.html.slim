@@ -15,25 +15,13 @@
 
 - unless Rails.env.test?
   #fb-root
-    javascript:
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id; js.async=true;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1746983858848479";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-  script charset="windows-1251" src="https://vk.com/js/api/share.js?93" type="text/javascript" async="" defer=""
   javascript:
-    $(window).load(function(){
-      var url = $("#share-data").attr("data-url");
-      $("a.vk").html(VK.Share.button(url,{type: "round", text: "share", eng: 1}));
-    })
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id; js.async=true;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&version=v2.5&appId=1746983858848479";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
   script async="" defer="" src="https://apis.google.com/js/platform.js"
-
-  javascript:
-    $(window).load(function(){
-      $(".fa-share-square").removeClass("hidden")
-    })

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", function() {
   if ($(".dropzone").length) {
     var type = $("#pictures-data").data("type");
     var id = $("#pictures-data").data("id");

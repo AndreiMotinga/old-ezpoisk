@@ -1,4 +1,4 @@
-$(document).ready(function () {
+document.addEventListener("turbolinks:load", function() {
   var trigger = $('.hamburger'),
       overlay = $('.overlay'),
      isClosed = false;

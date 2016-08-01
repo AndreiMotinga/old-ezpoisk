@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User favors sales", js: true do
+xfeature "User favors sales", js: true do
   scenario "user is not logged in" do
     create :sale, :active
 

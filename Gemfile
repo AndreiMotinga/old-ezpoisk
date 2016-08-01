@@ -10,6 +10,7 @@ gem "jquery-rails"
 gem "jquery-ui-rails" #todo remove? how? what does it do?
 gem "bootstrap-sass"
 gem "select2-rails"
+gem 'turbolinks', '~> 5.0.1'
 
 gem "devise"
 gem "devise-i18n-views"

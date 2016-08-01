@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", function() {
   $(".state-select").change(function(){
     $.ajax({
       url: "/update_cities",

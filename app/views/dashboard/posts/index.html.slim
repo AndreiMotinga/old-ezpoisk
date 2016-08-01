@@ -1,8 +1,7 @@
 = content_for :sidebar, render("home/sidebar")
 
 .col-xs-12
-  - @posts.each do |post|
-    = render "posts/post", post: post
+  = render @posts
 
 .col-xs-12
   = render "shared/pagination", records: @posts

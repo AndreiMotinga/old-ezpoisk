@@ -62,6 +62,7 @@ li.ui-menu-item {
   color: $blue;
   font-weight: bold;
 }
+.ui-menu-item { cursor: pointer; }
 
 li.ui-menu-item:hover { background-color: $blue0; }
 

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User favors job", js: true do
+xfeature "User favors job", js: true do
   scenario "user is not logged in" do
     create :job
 

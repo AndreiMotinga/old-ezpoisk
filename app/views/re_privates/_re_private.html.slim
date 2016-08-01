@@ -1,7 +1,7 @@
 .row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
   .listing
     .col-xs-4.logo-js
-      = link_to re_private_path(re_private), target: "_blank" do
+      = link_to re_private_path(re_private) do
         = image_tag re_private.logo_url, class: "img-responsive center-block",
                     alt: "#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}", itemprop: "logo"
 

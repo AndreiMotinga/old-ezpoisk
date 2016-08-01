@@ -8,28 +8,17 @@
 - content_for :profile_cover, render("profiles/cover")
 - content_for :sidebar, render("profiles/sidebar")
 
-= render("shared/filters", id: "profiles")
+= render "profiles/mob_menu"
 
 #pictures-data data-id=@user.gallery.id data-type="Gallery"
 - if current_user == @user
-  .row
-    .col-xs-12
-      button.btn.mobile-btn data-target="#myModal" data-toggle="modal" type="button" Загрузить фотографии
-
-      / Modal
-      #myModal.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
-        .modal-dialog role="document"
-          .modal-content
-            .modal-body
-              = form_for([:dashboard, Picture.new], html: { multipart: true, class: "dropzone"}) do |f|
-                = f.hidden_field(:imageable_id, value: @user.gallery.id)
-                = f.hidden_field(:imageable_type, value: @user.gallery.class.to_s)
-                .fallback
-                  = f.file_field :image
-                  br
-                  = f.submit "Upload"
-            .modal-footer
-              button.btn.btn-default data-dismiss="modal" type="button" Close
+  = form_for([:dashboard, Picture.new], html: { multipart: true, class: "dropzone"}) do |f|
+    = f.hidden_field(:imageable_id, value: @user.gallery.id)
+    = f.hidden_field(:imageable_type, value: @user.gallery.class.to_s)
+    .fallback
+      = f.file_field :image
+      br
+      = f.submit "Upload"
   br
 
 .profile data-pictures="" data-id="pictures"

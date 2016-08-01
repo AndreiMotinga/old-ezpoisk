@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("turbolinks:load", function() {
   $(".description img").addClass("img-responsive");
   $(".post img").addClass("img-responsive");
   $(".answer img").addClass("img-responsive");

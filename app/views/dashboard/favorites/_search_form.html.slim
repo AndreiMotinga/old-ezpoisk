@@ -2,9 +2,8 @@
               ["Коммерческая", "ReCommercial"],
               ["Услуги", "Service"],
               ["Работа", "Job"],
-              ["Продается", "Sale" ],
-              ["Новость", "Post" ] ]
-= form_tag dashboard_path, method: :get, class: "form-horizontal"
+              ["Продается", "Sale" ] ]
+= form_tag dashboard_favorites_path, method: :get, class: "form-horizontal"
   = label_tag "Раздел", nil,  class: "control-label"
   = select_tag :type,
                options_for_select(models, params[:type]),

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Dashboard::PartnersController do
+xdescribe Dashboard::PartnersController do
   describe "GET #index" do
     render_views
 

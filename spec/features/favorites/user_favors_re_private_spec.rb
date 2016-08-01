@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "User favors re_private", js: true do
+xfeature "User favors re_private", js: true do
   scenario "user is not logged in" do
     create :re_private
 

@@ -1,8 +1,28 @@
 = content_for :sidebar, render("home/sidebar")
 
-.col-xs-12
-  - @favorites.each do |p|
-    = template_for(p.favorable)
+.hidden-xs
+  = link_to "Настроить фильтр", "",
+            class: "btn mobile-btn search-modal-trigger",
+            "data-target": "#fav", "data-toggle": :modal, role: :button
+.visible-xs
+  = link_to "Настроить фильтр", "",
+            class: "btn mobile-btn btn-block search-modal-trigger",
+            "data-target": "#fav", "data-toggle": :modal, role: :button
 
-  .col-xs-12
-    = render "shared/pagination", records: @favorites
+/! Modal
+.modal.fade id="fav" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true" ×
+        h4#myModalLabel.modal-title Расширенный поиск
+
+      .modal-body
+        = render "dashboard/favorites/search_form"
+
+.col-xs-12 data-id="listings"
+  = render @records
+
+.col-xs-12
+  = render "shared/pagination", records: @records
