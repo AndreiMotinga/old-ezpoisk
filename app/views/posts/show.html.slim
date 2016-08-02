@@ -5,6 +5,8 @@
 = og_url(post_url(@post))
 = og_image(@post.logo_url)
 
+= content_for :sidebar, render("home/sidebar")
+
 .col-xs-12
   .row.white-block
     .post
