@@ -17,7 +17,7 @@ form.form-horizontal action=jobs_path method="get"
   = select_tag :subcategory,
                grouped_options_for_select(JOB_SUBCATEGORIES, params[:subcategory]),
                multiple: true,
-               class: "form-control job-select"
+               class: "form-control job-select my-dropdown"
 
   hr
 

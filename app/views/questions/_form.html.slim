@@ -14,7 +14,7 @@
       :tag_list,
       ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
       { :selected => @question.tag_list },
-      { :multiple => true, :name => 'question[tag_list][]', class: "q-select" }
+      { :multiple => true, :name => 'question[tag_list][]', class: "q-select my-dropdown" }
   - if @question.errors[:tag_list].any?
     ul.list-group-item-danger
       li Добавьте тэги, чтобы пользователи могли найти ваш вопрос

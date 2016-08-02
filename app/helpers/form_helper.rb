@@ -58,7 +58,7 @@ module FormHelper
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
              { label: "* Штат" },
-             class: "state-select"
+             class: "state-select my-dropdown"
   end
 
   def form_city_select(f, record)
@@ -67,9 +67,9 @@ module FormHelper
       f.select :city_id,
                state.cities.collect { |city| [city.name, city.id] },
                { label: "* Город" },
-               class: "city-select"
+               class: "city-select my-dropdown-multiple"
     else
-      f.select :city_id, [], { label: "* Город" }, class: "city-select"
+      f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown-multiple"
     end
   end
 
