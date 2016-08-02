@@ -212,3 +212,9 @@ span.favorite { color: $orange; }
 .dropzone {
   min-height: 120px;
 }
+
+// bootstrap modal scroll fix
+.modal-large {
+  position: absolute;
+  min-height: 500px;
+}
