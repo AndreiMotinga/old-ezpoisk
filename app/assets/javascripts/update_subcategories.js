@@ -1,4 +1,4 @@
-$(document).ready(function(){
+document.addEventListener("turbolinks:load", function() {
   $(".category-select").change(function(){
     $.ajax({
       url: "/update_subcategory",
