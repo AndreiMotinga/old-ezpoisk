@@ -17,7 +17,7 @@
       #listings.tab-pane.active role="tabpanel"
         .panel.list-group
 
-          a.list-group-item.mobile-link[data-parent="#menu" data-target="#real_estate" data-toggle="collapse" href="#"]
+          a.list-group-item.mobile-link[data-parent="#menu" data-target="#real_estate" data-toggle="collapse" href="#" data-turbolinks="false"]
             .pull-right: span.caret
             | Недвижимость
           #real_estate.sublinks.collapse
@@ -27,7 +27,7 @@
             = link_to "Частная", re_privates_path, class: "list-group-item indented"
             = link_to "Коммерческая", re_commercials_path, class: "list-group-item indented"
 
-          a.list-group-item.mobile-link[data-parent="#menu" data-target="#jobs-tab" data-toggle="collapse" href="#"]
+          a.list-group-item.mobile-link[data-parent="#menu" data-target="#jobs-tab" data-toggle="collapse" href="#" data-turbolinks="false"]
             .pull-right
               span.caret
             | Работа
