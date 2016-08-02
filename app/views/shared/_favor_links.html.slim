@@ -1,16 +1,16 @@
-/= link_to "#", class: "btn btn-sm btn-default favor",
-/          "data-id": record.id, "data-type": record.class.to_s ,
-/          "data-content": "Добавить в Избранное",
-/          "data-toggle": "popover",
-/          role: "button", tabindex: "0", "data-placement": "left" do
-/  span.glyphicon.glyphicon-star.text-muted class= ("favorite" if record.favorite?(current_user))
-/
-/= link_to "#", class: "btn btn-sm btn-default mute",
-/          "data-id": record.id, "data-type": record.class.to_s,
-/          "data-content": "Пометить как просмотренное",
-/          "data-toggle": "popover",
-/          role: "button", tabindex: "0", "data-placement": "top" do
-/  span.glyphicon.glyphicon-remove.text-muted
+= link_to "#", class: "btn btn-sm btn-default favor",
+          "data-id": record.id, "data-type": record.class.to_s ,
+          "data-content": "Добавить в Избранное",
+          "data-toggle": "popover",
+          role: "button", tabindex: "0", "data-placement": "left" do
+  span.glyphicon.glyphicon-star.text-muted class= ("favorite" if record.favorite?(current_user))
+
+= link_to "#", class: "btn btn-sm btn-default mute",
+          "data-id": record.id, "data-type": record.class.to_s,
+          "data-content": "Пометить как просмотренное",
+          "data-toggle": "popover",
+          role: "button", tabindex: "0", "data-placement": "top" do
+  span.glyphicon.glyphicon-remove.text-muted
 
 - if record.user_id == current_user.try(:id)
   = link_to record.edit_link, class: "btn btn-sm btn-default",
