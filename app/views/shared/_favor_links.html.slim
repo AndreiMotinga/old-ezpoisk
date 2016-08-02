@@ -11,10 +11,10 @@
 /          "data-toggle": "popover",
 /          role: "button", tabindex: "0", "data-placement": "top" do
 /  span.glyphicon.glyphicon-remove.text-muted
-/
-/- if record.user_id == current_user.try(:id)
-/  = link_to record.edit_link, class: "btn btn-sm btn-default",
-/          "data-content": "Редактировать",
-/          "data-toggle": "popover",
-/          role: "button", tabindex: "0", "data-placement": "top" do
-/    i.fa.fa-pencil.text-muted
+
+- if record.user_id == current_user.try(:id)
+  = link_to record.edit_link, class: "btn btn-sm btn-default",
+          "data-content": "Редактировать",
+          "data-toggle": "popover",
+          role: "button", tabindex: "0", "data-placement": "top" do
+    i.fa.fa-pencil.text-muted
