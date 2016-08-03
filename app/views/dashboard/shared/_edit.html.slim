@@ -18,6 +18,6 @@
 
       #pictures.tab-pane.fade role="tabpanel"
         - if record.class.method_defined?(:pictures)
-          = render "dashboard/shared/pictures", record: record
+          = render "dashboard/shared/pictures_form", record: record
         - else
           = render "dashboard/shared/logo", record: record
