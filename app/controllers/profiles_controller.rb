@@ -22,7 +22,7 @@ class ProfilesController < ApplicationController
     @answers = @user.answers.includes(:question).page(params[:page])
   end
 
-  def pictures
+  def gallery
     @pictures = @user.gallery.pictures.page(params[:page]).per(30)
   end
 

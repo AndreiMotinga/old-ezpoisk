@@ -1,8 +1,9 @@
+/todo rename to gallery
 = title("#{@user.name} | Галерея")
 = desc(strip_tags(@user.about).truncate(160))
 
 = og_type("article")
-= og_url(profile_pictures_url(@user))
+= og_url(profile_gallery_url(@user))
 = og_image(@user.cover.url(:large))
 
 - content_for :profile_cover, render("profiles/cover")

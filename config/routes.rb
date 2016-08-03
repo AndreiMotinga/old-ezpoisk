@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "profiles/:id/posts", to: "profiles#posts", as: :profile_posts
   get "profiles/:id/listings", to: "profiles#listings", as: :profile_listings
   get "profiles/:id/answers", to: "profiles#answers", as: :profile_answers
-  get "profiles/:id/pictures", to: "profiles#pictures", as: :profile_pictures
+  get "profiles/:id/gallery", to: "profiles#gallery", as: :profile_gallery
 
   resources :points, only: [:create]
 
