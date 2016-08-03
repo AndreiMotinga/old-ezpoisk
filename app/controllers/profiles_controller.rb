@@ -13,7 +13,8 @@ class ProfilesController < ApplicationController
   end
 
   def listings
-    @listings = Entry.where.not(enterable_type: ["Post", "Question"])
+    @listings = Entry.where(user_id: @user.id)
+                     .where.not(enterable_type: ["Post", "Question"])
                      .includes(enterable: [:state, :city])
                      .page(params[:page])
   end
