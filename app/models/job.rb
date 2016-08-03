@@ -8,6 +8,7 @@ class Job < ActiveRecord::Base
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates :user_id, presence: true
+  validates_with SourceValidator
 
   belongs_to :state
   belongs_to :city
