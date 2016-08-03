@@ -29,4 +29,7 @@
 //= require social/vk_2
 //= require vk_init
 
+//= require dropzone_init
+//= require summernote_init
+
 //= require_tree .
