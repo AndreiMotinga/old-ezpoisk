@@ -62,3 +62,5 @@
           ul.list-group
             = link_to main_app.destroy_user_session_path, method: :delete do
               li.list-group-item.mobile-link Выйти
+
+= render "shared/social", count: nil, url: "https://www.ezpoisk.com"
