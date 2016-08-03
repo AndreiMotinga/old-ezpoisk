@@ -15,7 +15,7 @@ gem 'turbolinks', '~> 5.0.1'
 gem "devise"
 gem "devise-i18n-views"
 gem "devise-i18n"
-gem "devise-async"
+gem "devise-async", github: "mhfs/devise-async", branch: "devise-4.x"
 
 gem "bootstrap_form"
 gem "kaminari"
