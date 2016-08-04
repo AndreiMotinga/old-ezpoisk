@@ -1,0 +1,12 @@
+.col-xs-12.white-block
+  .panel.panel-default
+    - if user_signed_in?
+      .panel-heading
+        h5= "#{commentable.comment_threads.count} комментариев"
+        = render "comments/form"
+      .panel-body
+        .comments-container data-target="comments-container"
+          = render commentable.root_comments.includes(:children).order("created_at desc")
+    - else
+      .panel-heading
+        a#login_link.text.text-muted src="" data-target="#new_session_modal" data-toggle="modal" Войдите, чтобы коментировать

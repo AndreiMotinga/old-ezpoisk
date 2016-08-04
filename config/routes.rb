@@ -1,8 +1,10 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  default_url_options host: "ezpoisk.com"
   resources :stripe_subscriptions, only: [:create, :update, :destroy]
   resources :favorites, only: [:create]
+  resources :comments, only: [:create]
 
   get "profiles/:id", to: "profiles#show", as: :profile
   get "profiles/:id/contacts", to: "profiles#contacts", as: :profile_contacts

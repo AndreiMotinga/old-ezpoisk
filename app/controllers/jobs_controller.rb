@@ -9,6 +9,9 @@ class JobsController < ApplicationController
 
   def show
     @job = get_record(Job, params[:id], jobs_path)
+    if @job.try(:active?)
+      @new_comment = Comment.build_from(@job, current_user.try(:id )|| 4, "")
+    end
   end
 
   private

@@ -49,4 +49,9 @@ module ViewHelpers
   def url_helpers
     Rails.application.routes.url_helpers
   end
+
+  def notification_email
+    return email if email.present?
+    user.email
+  end
 end

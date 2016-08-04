@@ -1,0 +1,7 @@
+$('input[name="comment[body]"]').val("")
+<% if @comment.parent  %>
+  $("a[data-href='comment-reply-<%= @comment.parent.id %>']").click();
+  $('div[data-target="comment-children-<%= @comment.parent.id %>"]').prepend('<%= j render @comment %>')
+<% else %>
+  $("div[data-target='comments-container']").prepend('<%= j render @comment %>')
+<% end %>

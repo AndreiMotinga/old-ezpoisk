@@ -1,5 +1,6 @@
 class Sale < ActiveRecord::Base
   acts_as_mappable
+  acts_as_commentable
   include MyFriendlyId
   include Filterable
   include ViewHelpers
@@ -19,5 +20,9 @@ class Sale < ActiveRecord::Base
 
   def edit_link
     Rails.application.routes.url_helpers.edit_dashboard_sale_path(self)
+  end
+
+  def show_url
+    url_helpers.job_url(self)
   end
 end

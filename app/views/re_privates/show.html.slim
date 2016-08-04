@@ -27,6 +27,8 @@
   .col-xs-12
     = render 'shared/show/map', record: @re_private
 
+  = render "shared/comments", commentable: @re_private, new_comment: @new_comment
+
   .visible-xs
     = render "shared/show/contacts", record: @re_private
     = render "re_privates/details"

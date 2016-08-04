@@ -30,6 +30,8 @@
 .col-xs-12
   = render 'shared/show/map', record: @sale
 
+= render "shared/comments", commentable: @sale, new_comment: @new_comment
+
 .visible-xs
   = render "shared/show/contacts", record: @sale
   = render "sales/details"

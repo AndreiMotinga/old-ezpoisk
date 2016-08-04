@@ -9,6 +9,9 @@ class ReCommercialsController < ApplicationController
 
   def show
     @re_commercial = get_record(ReCommercial, params[:id], re_commercials_path)
+    if @re_commercial.try(:active?)
+      @new_comment = Comment.build_from(@re_commercial, current_user.try(:id )|| 4, "")
+    end
   end
 
   private

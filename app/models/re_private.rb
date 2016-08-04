@@ -1,5 +1,6 @@
 class RePrivate < ActiveRecord::Base
   acts_as_mappable
+  acts_as_commentable
   include Filterable
   include ViewHelpers
 
@@ -24,5 +25,9 @@ class RePrivate < ActiveRecord::Base
 
   def edit_link
     url_helpers.edit_dashboard_re_private_path(self)
+  end
+
+  def show_url
+    url_helpers.re_private_url(self)
   end
 end

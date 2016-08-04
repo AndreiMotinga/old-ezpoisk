@@ -8,6 +8,9 @@ class RePrivatesController < ApplicationController
 
   def show
     @re_private = get_record(RePrivate, params[:id], re_privates_path)
+    if @re_private.try(:active?)
+      @new_comment = Comment.build_from(@re_private, current_user.try(:id )|| 4, "")
+    end
   end
 
   private

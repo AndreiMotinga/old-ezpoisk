@@ -15,6 +15,9 @@ class SalesController < ApplicationController
 
   def show
     @sale = get_record(Sale, params[:id], sales_path)
+    if @sale.try(:active?)
+      @new_comment = Comment.build_from(@sale, current_user.try(:id )|| 4, "")
+    end
   end
 
   private

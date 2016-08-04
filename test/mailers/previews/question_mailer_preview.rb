@@ -1,4 +1,4 @@
-class QuestionPreview < ActionMailer::Preview
+class QuestionMailerPreview < ActionMailer::Preview
   def new_activity
     return if Rails.env.production?
     q = Question.find(29)

@@ -11,6 +11,7 @@ gem "jquery-ui-rails" #todo remove? how? what does it do?
 gem "bootstrap-sass"
 gem "select2-rails"
 gem 'turbolinks', '~> 5.0.1'
+gem "acts_as_commentable_with_threading"
 
 gem "devise"
 gem "devise-i18n-views"

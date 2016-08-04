@@ -71,4 +71,17 @@ describe RePrivate do
       expect(result).to eq edit_path
     end
   end
+
+  describe "#notification_email" do
+    it "" do
+      rp = build :re_private
+      expect(rp.notification_email).to eq rp.email
+    end
+
+    it "" do
+      user = create :user
+      rp = build :re_private, email: nil, user: user
+      expect(rp.notification_email).to eq user.email
+    end
+  end
 end

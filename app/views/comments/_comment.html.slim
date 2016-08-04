@@ -1,0 +1,14 @@
+.comments-show
+  .comment
+    .well
+      = comment.body
+      .comment-nav
+        a.comment-reply href="#" data-href="comment-reply-#{comment.id}" reply
+      .reply-form
+        = bootstrap_form_for @new_comment, remote: true do |f|
+          = f.hidden_field :commentable_id, value: @new_comment.commentable_id
+          = f.hidden_field :commentable_type, value: @new_comment.commentable_type
+          = f.hidden_field :comment_id, value: comment.id
+          = f.text_field :body, class: 'form-control', skip_label: true
+  div data-target="comment-children-#{comment.id}"
+    = render comment.children

@@ -1,0 +1,35 @@
+.comments-container {
+  .comment-nav {
+    margin-bottom: 5px;
+    a {
+      font-size: 10px;
+      font-weight: bold;
+      color: #888;
+    }
+  }
+}
+
+.comments-container > .comments-show {
+  margin-left: 0;
+}
+
+.reply-form {
+  display: none;
+}
+
+.comments-show {
+  margin-left: 15px;
+}
+
+.comment {
+  .well {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+}
+
+.new_comment {
+  .form-group {
+    margin-bottom: 0;
+  }
+}

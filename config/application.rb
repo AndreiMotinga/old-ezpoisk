@@ -14,7 +14,6 @@ module Ezpoisk
 
     config.action_view.prefix_partial_path_with_controller_namespace = false
 
-    config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
     config.action_mailer.default_url_options = { host: "ezpoisk.com" }
 
     config.eager_load_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)

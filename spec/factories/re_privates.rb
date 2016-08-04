@@ -13,6 +13,7 @@ FactoryGirl.define do
     fee { [true, false].sample }
     state_id 32
     city_id 18031
+    email { Faker::Internet.email }
 
     trait :with_geolocation do
       lat { Faker::Address.latitude }

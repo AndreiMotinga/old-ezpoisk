@@ -1,5 +1,6 @@
 class Job < ActiveRecord::Base
   acts_as_mappable
+  acts_as_commentable
   include MyFriendlyId
   include Filterable
   include ViewHelpers
@@ -32,5 +33,9 @@ class Job < ActiveRecord::Base
   def self.subcategory(subs)
     subs = subs.map{|s| "%#{s.strip}%"}
     where("subcategory ILIKE ANY ( array[?] )", subs)
+  end
+
+  def show_url
+    url_helpers.job_url(self)
   end
 end
