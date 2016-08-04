@@ -6,20 +6,20 @@
   br
   .row
     ul.nav.nav-tabs role="tablist"
-      li role="presentation"
-        = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       li.active role="presentation"
+        = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      li role="presentation"
         = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      li role="presentation" data-li="payment"
-        = link_to "Поднять", "#payment", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      /li role="presentation" data-li="payment"
+      /  = link_to "Поднять", "#payment", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
     br
     .tab-content
-      #form.tab-pane.fade role="tabpanel"
+      #form.tab-pane.fade.in.active role="tabpanel"
         = render 'form'
 
-      #pictures.tab-pane.fade.in.active role="tabpanel"
+      #pictures.tab-pane.fade role="tabpanel"
           = render "dashboard/shared/logo", record: @service
 
-      #payment.tab-pane.fade role="tabpanel"
-        = render "dashboard/services/payment"
+      /#payment.tab-pane.fade role="tabpanel"
+      /  = render "dashboard/services/payment"
