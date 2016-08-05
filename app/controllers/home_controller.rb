@@ -9,6 +9,9 @@ class HomeController < ApplicationController
                  .page(params[:page]).per(10)
   end
 
+  def about
+  end
+
   private
 
   # def set_partners

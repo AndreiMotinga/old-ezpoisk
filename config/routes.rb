@@ -91,5 +91,6 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show]
 
   get "htmltagstrippingtool", to: "htmltagstrippingtool#index"
+  get "about", to: "home#about"
   root to: "home#index"
 end

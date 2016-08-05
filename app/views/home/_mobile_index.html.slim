@@ -45,6 +45,8 @@
             li.list-group-item Новости
           = link_to questions_path, class: "mobile-link" do
             li.list-group-item Вопросы
+          = link_to about_path, class: "mobile-link" do
+            li.list-group-item Включайся
 
       #profile.tab-pane role="tabpanel"
         - if user_signed_in?
