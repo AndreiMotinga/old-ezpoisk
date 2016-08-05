@@ -23,7 +23,7 @@ form.form-horizontal action=re_privates_path method="get"
   .row
     .col-xs-12.col-sm-6
       = label_tag "Комнаты", nil
-      = select_tag :rooms, options_for_select(ROOM_OPTIONS, params[:rooms]), include_blank: true, class: "form-control"
+      = select_tag :rooms, options_for_select(ru(ROOM_OPTIONS), params[:rooms]), include_blank: true, class: "form-control"
     .col-xs-12.col-sm-6
       = label_tag "Ванные", nil
       = select_tag :baths, options_for_select((1..10).to_a, params[:baths]), include_blank: true, class: "form-control"

@@ -19,7 +19,7 @@
 
   .row
     .col-xs-12.col-sm-6
-      = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
+      = f.select :rooms, ru(ROOM_OPTIONS), label: "* Комнат"
     .col-xs-12.col-sm-6
       = f.number_field :price, label: 'Цена'
 

@@ -7,7 +7,7 @@ FactoryGirl.define do
     active true
     description { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }
-    rooms { ROOM_OPTIONS.sample.second }
+    rooms { ROOM_OPTIONS.sample }
     post_type { RE_TYPES.sample }
     duration { RE_DURATION.sample }
     fee { [true, false].sample }

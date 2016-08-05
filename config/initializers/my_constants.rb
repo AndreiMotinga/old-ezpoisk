@@ -2,30 +2,8 @@ RE_COMMERCIAL_CATEGORIES = %w(office sales industry parking other).freeze
 RE_TYPES = %w(leasing renting selling buying).freeze
 RE_DURATION = %w(hourly daily weekly monthly ).freeze
 
-MODELS = [
-  ["Частная", "RePrivate"],
-  ["Коммерческая", "ReCommercial"],
-  ["Услуги", "Service"],
-  ["Работа", "Job"],
-  ["Продается", "Sale" ],
-  ["Новость", "Post" ],
-  ["Вопрос", "Question" ]
-].freeze
-
-ROOM_OPTIONS  = [
-  ["комната", "room"],
-  ["место в комнате", "bed"],
-  ["студия", "studio"],
-  ["1-спальная", "1-bebroom"],
-  ["2-спальная", "2-bebroom"],
-  ["3-спальная", "3-bebroom"],
-  ["4-спальная", "4-bebroom"],
-  ["5-спальная", "5-bebroom"],
-  ["6-спальная", "6-bebroom"],
-  ["7-спальная", "7-bebroom"],
-  ["8-спальная", "8-bebroom"],
-  ["9-спальная", "9-bebroom"]
-].freeze
+ROOM_OPTIONS = %w(room bed studio 1-bebroom 2-bebroom 3-bebroom 4-bebroom
+                  5-bebroom 6-bebroom 7-bebroom 8-bebroom 9-bebroom).freeze
 
 JOB_CATEGORIES = [
   %w(Требуется wanted),
