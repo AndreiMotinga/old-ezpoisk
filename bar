@@ -13,4 +13,4 @@ SALE_CATEGORIES.each {|c| Sale.find_each{|p| p.update_column(:category, c[1]) if
 
 JOB_SUBCATEGORIES.each_pair{|_t, sub| sub.each{|s| Job.find_each{|p| p.update_column(:subcategory, s[1]) if p.subcategory == s[0] } } }
 
-SERVICE_CATEGORIES.each_pair{|t, sub| sub.each{|s| Service.where(category: t).find_each{|p| p.update_column(:subcategory, s[1]) if p.subcategory == s[0] } } }
+SERVICE_SUBCATEGORIES.each_pair{|t, sub| sub.each{|s| Service.where(category: t).find_each{|p| p.update_column(:subcategory, s[1]) if p.subcategory == s[0] } } }

@@ -40,7 +40,7 @@ ul.list-group.panel
   /  .pull-right
   /    span.caret
   /#services.collapse
-  /  - SERVICE_CATEGORIES.each do |category|
+  /  - SERVICE_SUBCATEGORIES.each do |category|
   /    li= link_to category[0], main_app.sales_path(category: category[0])
 
   a.list-group-item href=services_path

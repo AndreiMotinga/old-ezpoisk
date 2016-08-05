@@ -192,7 +192,7 @@ SALE_CATEGORIES = [
   ["Распродажа", "sales"]
 ].freeze
 
-SERVICE_CATEGORIES = HashWithIndifferentAccess.new(
+SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "Автоуслуги": [
     ["Авто в аренду", "car-rentals"],
     ["Автосервисы", "autoservice"],
@@ -423,4 +423,4 @@ PARTNER_PAGES = HashWithIndifferentAccess.new(
       "- Раздел Услуги" => []
 )
 
-SERVICE_CATEGORIES.each { |ctg, subctg| PARTNER_PAGES[ctg] = subctg }
+SERVICE_SUBCATEGORIES.each { |ctg, subctg| PARTNER_PAGES[ctg] = subctg }

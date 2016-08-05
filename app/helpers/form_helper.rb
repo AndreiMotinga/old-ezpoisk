@@ -23,13 +23,13 @@ module FormHelper
   end
 
   def service_categories_options
-    options_for_select(SERVICE_CATEGORIES.keys, params[:category])
+    options_for_select(SERVICE_SUBCATEGORIES.keys, params[:category])
   end
 
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
-    options_for_select(SERVICE_CATEGORIES[category], params[:subcategory])
+    options_for_select(SERVICE_SUBCATEGORIES[category], params[:subcategory])
   end
 
   def origin

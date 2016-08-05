@@ -4,7 +4,7 @@ class SubcategoriesController < ApplicationController
   def update_subcategory
     category = attrs[:category]
     type = attrs[:type]
-    @subcategories = SERVICE_CATEGORIES[category] if type == "Service"
+    @subcategories = SERVICE_SUBCATEGORIES[category] if type == "Service"
   end
 
   private
