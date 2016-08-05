@@ -22,10 +22,6 @@ module FormHelper
                class: "form-control")
   end
 
-  def service_categories_options
-    options_for_select(SERVICE_CATEGORIES, params[:category])
-  end
-
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
