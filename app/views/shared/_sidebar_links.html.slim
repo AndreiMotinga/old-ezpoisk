@@ -30,7 +30,7 @@ ul.list-group.panel
       span.caret
   #sales-nav.collapse
     - SALE_CATEGORIES.each do |category|
-      li= link_to category[0], main_app.sales_path(category: category[1])
+      li= link_to t(category), main_app.sales_path(category: category)
 
   / when you have lots of services, so there aren't empty categories
   /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#services"

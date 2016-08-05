@@ -1,9 +1,10 @@
 RE_COMMERCIAL_CATEGORIES = %w(office sales industry parking other).freeze
 RE_TYPES = %w(leasing renting selling buying).freeze
 RE_DURATION = %w(hourly daily weekly monthly ).freeze
-
 ROOM_OPTIONS = %w(room bed studio 1-bebroom 2-bebroom 3-bebroom 4-bebroom
                   5-bebroom 6-bebroom 7-bebroom 8-bebroom 9-bebroom).freeze
+SALE_CATEGORIES = %w(transportation home kids clothes electronics pets plants
+                     sales).freeze
 
 JOB_CATEGORIES = [
   %w(Требуется wanted),
@@ -140,16 +141,6 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
   ]
 ).freeze
 
-SALE_CATEGORIES = [
-  ["Транспорт", "transportation"],
-  ["Для дома", "home"],
-  ["Для детей", "kids"],
-  ["Одежда", "clothes"],
-  ["Электроника", "electronics"],
-  ["Домашние животные", "pets"],
-  ["Растения", "plants"],
-  ["Распродажа", "sales"]
-].freeze
 
 SERVICE_CATEGORIES = [
   ["Автоуслуги", "auto"],

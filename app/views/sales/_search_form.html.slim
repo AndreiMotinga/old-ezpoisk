@@ -8,7 +8,7 @@ form.form-horizontal action=sales_path method="get"
     .col-xs-12.col-sm-6
       = label_tag "Раздел", nil
       = select_tag :category,
-                    options_for_select(SALE_CATEGORIES, params[:category]),
+                    options_for_select(ru(SALE_CATEGORIES), params[:category]),
                     include_blank: true,
                     class: "form-control"
   hr/
