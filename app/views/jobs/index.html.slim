@@ -3,7 +3,7 @@
 
 = content_for :sidebar, render("home/sidebar")
 
-= render("shared/filters", id: "jobs")
+= render("shared/filters", id: "jobs", count: @jobs.total_count)
 
 .col-xs-12 data-id="listings"
   = render @jobs

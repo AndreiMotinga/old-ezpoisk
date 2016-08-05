@@ -1,9 +1,9 @@
 .hidden-xs
-  = link_to "Настроить фильтр", "",
+  = link_to "Настроить фильтр | #{count}", "",
             class: "btn mobile-btn search-modal-trigger",
             "data-target": "##{id}", "data-toggle": :modal, role: :button
 .visible-xs
-  = link_to "Настроить фильтр", "",
+  = link_to "Настроить фильтр | #{count}", "",
             class: "btn mobile-btn btn-block search-modal-trigger",
             "data-target": "##{id}", "data-toggle": :modal, role: :button
 
