@@ -85,6 +85,7 @@ group :development do
   gem "spring-commands-rspec"
   gem "spring"
   gem "launchy-rails"
+  gem "web-console"
 
   # code quality
   gem "brakeman", :require => false # security vulnerabilities

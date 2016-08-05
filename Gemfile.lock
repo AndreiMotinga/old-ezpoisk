@@ -189,6 +189,7 @@ GEM
     daemons (1.2.3)
     dante (0.2.0)
     database_cleaner (1.5.3)
+    debug_inspector (0.0.2)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -482,6 +483,11 @@ GEM
     uniform_notifier (1.10.0)
     warden (1.2.6)
       rack (>= 1.0)
+    web-console (3.3.1)
+      actionview (>= 5.0)
+      activemodel (>= 5.0)
+      debug_inspector
+      railties (>= 5.0)
     webmock (2.1.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -569,6 +575,7 @@ DEPENDENCIES
   turbolinks (~> 5.0.1)
   uglifier
   underscore-rails
+  web-console
   webmock
 
 RUBY VERSION
