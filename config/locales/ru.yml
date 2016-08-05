@@ -9,6 +9,26 @@ ru:
   weekly: понедельно
   monthly: помесячно
 
+  office: Офис
+  sales: Торговля
+  industry: Промышленность
+  parking: Парковка
+  other: Другое
+
+
+  room: комната
+  bed: место в комнате
+  studio: студия
+  1-bebroom: 1-спальная
+  2-bebroom: 2-спальная
+  3-bebroom: 3-спальная
+  4-bebroom: 4-спальная
+  5-bebroom: 5-спальная
+  6-bebroom: 6-спальная
+  7-bebroom: 7-спальная
+  8-bebroom: 8-спальная
+  9-bebroom: 9-спальная
+
   transportation : Транспорт
   home: Для дома
   kids: Для детей
@@ -18,11 +38,6 @@ ru:
   plants: Растения
   sales: Распродажа
 
-  office: Офис
-  sales: Торговля
-  industry: Промышленность
-  parking: Парковка
-  other: Другое
 
   administration: администрация ресторана
   watiers: фициант
@@ -39,7 +54,7 @@ ru:
   dancers: танцовщицы
   trainer: тренер, инструктор
   auditing: аудиторство
-  leasing: банки, кредитование, лизинг
+  lease: банки, кредитование, лизинг
   accounting: бухгалтерия
   teachers: преподаватели, репетиторы
   preschool: дошкольное образование

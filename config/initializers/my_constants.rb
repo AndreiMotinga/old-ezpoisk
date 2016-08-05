@@ -79,9 +79,9 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["тренер, инструктор", "trainer"]
   ],
   "Банки, Финансы, Бухгалтерия": [
-    ["все", "auditing, leasing, accounting"],
+    ["все", "auditing, lease, accounting"],
     ["аудиторство", "auditing"],
-    ["банки, кредитование, лизинг", "leasing"],
+    ["банки, кредитование, лизинг", "lease"],
     ["бухгалтерия", "accounting"]
   ],
   "Образование": [
@@ -199,7 +199,7 @@ SERVICE_CATEGORIES = [
   ["Медицина", "medical"],
   ["Недвижимость", "real-estate"],
   ["Образование", "education"],
-  ["Работа", "works"],
+  ["Работа", "work"],
   ["Ремонт", "repairs"],
   ["Строительство", "construction"],
   ["Магазины", "stores"],
@@ -281,7 +281,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Спортивные школы", "sport-schools"],
     ["Обучение профессии", "trainings"]
   ],
-  "works": [
+  "work": [
     ["Агентства по Трудоустройству", "job-agencies"]
   ],
   "repairs": [

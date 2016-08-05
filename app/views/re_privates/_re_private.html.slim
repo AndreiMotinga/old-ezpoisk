@@ -29,7 +29,7 @@
 
       / line 3
       .hidden-xs
-        = re_private.rooms
+        = t re_private.rooms
         = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
         = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
         hr.post-devider
