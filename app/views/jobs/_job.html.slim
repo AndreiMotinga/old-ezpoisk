@@ -16,7 +16,7 @@
         p.tags
           - if job.subcategory.present?
             - job.subcategory.split(", ").each do |sub|
-              a.tag= " ##{sub} "
+              a.tag= " ##{t sub} "
 
       .panel-footer
         .row

@@ -73,6 +73,7 @@ module FormHelper
     end
   end
 
+  # todo remove
   def form_options(prm, opts)
     prm.present? ? [prm] : opts
   end
