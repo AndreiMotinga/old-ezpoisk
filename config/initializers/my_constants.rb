@@ -269,7 +269,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Эндокринолог", "endocrinologist"],
   ],
   "real-estate": [
-    ["Агентства Недвижимости", "realy"],
+    ["Агентства Недвижимости", "realty"],
     ["Финансирование", "fanancing"]
   ],
   "education": [
