@@ -2,7 +2,7 @@
   .row
     .col-xs-12.col-sm-6
       = f.select :category,
-                  SERVICE_CATEGORIES,
+                  ru(SERVICE_SUBCATEGORIES.keys),
                   { include_blank: true, label: '* Раздел' },
                   class: "category-select",
                   "data-type": "Service"

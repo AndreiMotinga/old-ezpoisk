@@ -137,21 +137,6 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
   ]
 ).freeze
 
-
-SERVICE_CATEGORIES = [
-  ["Автоуслуги", "auto"],
-  ["Адвокаты", "lawers"],
-  ["Красота", "beauty"],
-  ["Медицина", "medical"],
-  ["Недвижимость", "real-estate"],
-  ["Образование", "education"],
-  ["Работа", "work"],
-  ["Ремонт", "repairs"],
-  ["Строительство", "construction"],
-  ["Магазины", "stores"],
-  ["Другие услуги", "other"]
-].freeze
-
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "auto": [
     ["Авто в аренду", "car-rentals"],
