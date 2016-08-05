@@ -1,7 +1,24 @@
 # todo freeze these
-RE_COMMERCIAL_CATEGORIES = %w(Офис Торговля Промышленность Парковка Другое)
-RE_TYPES = ["Сдаю в аренду", "Ищу в аренду", "Продаю", "Хочу купить"]
-RE_DURATION = %w(почасово посуточно понедельно помесячно)
+# RE_COMMERCIAL_CATEGORIES = %w(Офис Торговля Промышленность Парковка Другое)
+RE_COMMERCIAL_CATEGORIES = [
+  %w(Офис office),
+  %w(Торговля sales),
+  %w(Промышленность industry),
+  %w(Парковка parking),
+  %w(Другое other)
+]
+RE_TYPES = [
+  ["Сдаю в аренду", "leasing"],
+  ["Ищу в аренду" "renting"],
+  ["Продаю", "selling"],
+  ["Хочу купить", "buying"]
+]
+RE_DURATION = [
+  %w(почасово hourly),
+  %w(посуточно daily ),
+  %w(понедельно weekly),
+  %w(помесячно monthly)
+]
 
 MODELS = [
   ["Частная", "RePrivate"],
@@ -13,21 +30,25 @@ MODELS = [
   ["Вопрос", "Question" ]
 ]
 ROOM_OPTIONS  = [
-  "комната",
-  "место в комнате",
-  "студия",
-  "1-спальная",
-  "2-спальная",
-  "3-спальная",
-  "4-спальная",
-  "5-спальная",
-  "6-спальная",
-  "7-спальная",
-  "8-спальная",
-  "9-спальная"
+  ["комната", "room"],
+  ["место в комнате", "bed"],
+  ["студия", "studio"],
+  ["1-спальная", "1-bebroom"],
+  ["2-спальная", "2-bebroom"],
+  ["3-спальная", "3-bebroom"],
+  ["4-спальная", "4-bebroom"],
+  ["5-спальная", "5-bebroom"],
+  ["6-спальная", "6-bebroom"],
+  ["7-спальная", "7-bebroom"],
+  ["8-спальная", "8-bebroom"],
+  ["9-спальная", "9-bebroom"]
 ]
 
-JOB_CATEGORIES = %w(Требуется Ищу)
+JOB_CATEGORIES = [
+  %w(Требуется wanted),
+  %w(Ищу seeking),
+]
+
 JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "Туризм, Рестораны, Бары": [
     ["все", "администрация ресторана, официант, бармен, др, работники кухни, туризм"],
@@ -158,8 +179,14 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
 )
 
 SALE_CATEGORIES = [
-  "Транспорт", "Для дома", "Для детей", "Одежда", "Электроника",
-  "Домашние животные", "Растения", "Распродажа"
+  ["Транспорт", "transportation"],
+  ["Для дома", "home"],
+  ["Для детей", "kids"],
+  ["Одежда", "clothes"],
+  ["Электроника", "electronics"],
+  ["Домашние животные", "pets"],
+  ["Растения", "plants"],
+  ["Распродажа", "sales"]
 ]
 
 SERVICE_CATEGORIES = HashWithIndifferentAccess.new(
