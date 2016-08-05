@@ -2,3 +2,13 @@ RE_COMMERCIAL_CATEGORIES.each {|c| ReCommercial.find_each{|p| p.update_column(:c
 
 RE_TYPES.each {|c| ReCommercial.find_each{|p| p.update_column(:post_type, c[1]) if p.post_type == c[0]} }
 RE_TYPES.each {|c| RePrivate.find_each{|p| p.update_column(:post_type, c[1]) if p.post_type == c[0]} }
+
+RE_DURATION.each {|c| RePrivate.find_each{|p| p.update_column(:duration, c[1]) if p.duration == c[0]} }
+
+ROOM_OPTIONS.each {|c| RePrivate.find_each{|p| p.update_column(:rooms, c[1]) if p.rooms == c[0]} }
+
+JOB_CATEGORIES.each {|c| Job.find_each{|p| p.update_column(:category, c[1]) if p.category == c[0]} }
+
+SALE_CATEGORIES.each {|c| Sale.find_each{|p| p.update_column(:category, c[1]) if p.category == c[0]} }
+
+JOB_SUBCATEGORIES.each_pair{|_t, sub| sub.each{|s| Job.find_each{|p| p.update_column(:subcategory, s[1]) if p.subcategory == s[0] } } }
