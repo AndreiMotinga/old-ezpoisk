@@ -10,20 +10,20 @@ ul.nav.nav-tabs[role="tablist"]
   #city.tab-pane.active[role="tabpanel"]
     .row
       .col-xs-12.col-sm-6
-        = label_tag "Штат", nil,  class: "col-xs-1 control-label"
+        = label_tag "Штат", nil,  class: "control-label"
         = select_tag :state_id, options_for_select(STATES, state_id), multiple: true, class: "form-control state-select my-dropdown"
 
       .col-xs-12.col-sm-6
-        = label_tag "Город", nil,  class: "col-xs-1 control-label"
+        = label_tag "Город", nil,  class: "control-label"
         = select_tag :city_id, options_from_collection_for_select(state_cities, :id, :name, city_id), multiple: true,  class: "form-control city-select my-dropdown-multiple"
 
   #radius.tab-pane[role="tabpanel"]
     .row
       .col-xs-12.col-sm-3
-        = label_tag "Радиус (миль)"
+        = label_tag "Радиус (миль)", nil,  class: "control-label"
         = within_text_field_param
       .col-xs-12.col-sm-9
-        = label_tag "от (address / zipcode)"
+        = label_tag "от (address / zipcode)", nil,  class: "control-label"
         = origin_text_field_param
 
 hr
