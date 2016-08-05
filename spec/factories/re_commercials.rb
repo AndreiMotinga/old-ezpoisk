@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :re_commercial do
-    category { RE_COMMERCIAL_CATEGORIES.sample.second }
+    category { RE_COMMERCIAL_CATEGORIES.sample }
     price { rand(2000) }
     space { Faker::Number.number(4).to_i }
     lat { Faker::Address.latitude }

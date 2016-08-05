@@ -1,4 +1,10 @@
 ru:
+  office: Офис
+  sales: Торговля
+  industry: Промышленность
+  parking: Парковка
+  other: Другое
+
   leasing: Сдаю в аренду
   renting: Ищу в аренду
   selling: Продаю
@@ -9,11 +15,6 @@ ru:
   weekly: понедельно
   monthly: помесячно
 
-  office: Офис
-  sales: Торговля
-  industry: Промышленность
-  parking: Парковка
-  other: Другое
 
 
   room: комната
