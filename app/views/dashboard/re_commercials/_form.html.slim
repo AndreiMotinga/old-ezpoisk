@@ -5,9 +5,9 @@
   hr.white-hr
 
   = f.number_field :price, label: '* Цена'
-  = f.select :post_type, RE_TYPES, include_blank: true, label: '* Тип объявления'
+  = f.select :post_type, ru(RE_TYPES), include_blank: true, label: '* Тип объявления'
   = f.select :category,
-             RE_COMMERCIAL_CATEGORIES.map { |k| [t(k), k] },
+             ru(RE_COMMERCIAL_CATEGORIES),
              include_blank: true, label: "* Категория"
   hr.white-hr
 

@@ -1,18 +1,6 @@
 RE_COMMERCIAL_CATEGORIES = %w(office sales industry parking other).freeze
-
-RE_TYPES = [
-  ["Сдаю в аренду", "leasing"],
-  ["Ищу в аренду", "renting"],
-  ["Продаю", "selling"],
-  ["Хочу купить", "buying"]
-].freeze
-
-RE_DURATION = [
-  %w(почасово hourly),
-  %w(посуточно daily ),
-  %w(понедельно weekly),
-  %w(помесячно monthly)
-].freeze
+RE_TYPES = %w(leasing renting selling buying).freeze
+RE_DURATION = %w(hourly daily weekly monthly ).freeze
 
 MODELS = [
   ["Частная", "RePrivate"],

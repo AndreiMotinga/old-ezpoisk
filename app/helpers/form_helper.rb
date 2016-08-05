@@ -68,4 +68,8 @@ module FormHelper
       f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown-multiple"
     end
   end
+
+  def ru(opts)
+    opts.map{|k| [t(k), k] }
+  end
 end

@@ -8,7 +8,7 @@ FactoryGirl.define do
     active { [true, false].sample }
     description { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }
-    post_type { RE_TYPES.sample.second }
+    post_type { RE_TYPES.sample }
     zip { Faker::Address.zip }
     phone '1234567890'
     state_id 32

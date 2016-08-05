@@ -8,8 +8,8 @@ FactoryGirl.define do
     description { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }
     rooms { ROOM_OPTIONS.sample.second }
-    post_type { RE_TYPES.sample.second }
-    duration { RE_DURATION.sample.second }
+    post_type { RE_TYPES.sample }
+    duration { RE_DURATION.sample }
     fee { [true, false].sample }
     state_id 32
     city_id 18031
