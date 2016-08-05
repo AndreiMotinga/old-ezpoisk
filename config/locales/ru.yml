@@ -1,4 +1,29 @@
 ru:
+  leasing: Сдаю в аренду
+  renting: Ищу в аренду
+  selling: Продаю
+  buying: Хочу купить
+
+  hourly: почасово
+  daily: посуточно
+  weekly: понедельно
+  monthly: помесячно
+
+  transportation : Транспорт
+  home: Для дома
+  kids: Для детей
+  clothes: Одежда
+  electronics: Электроника
+  pets: Домашние животные
+  plants: Растения
+  sales: Распродажа
+
+  office: Офис
+  sales: Торговля
+  industry: Промышленность
+  parking: Парковка
+  other: Другое
+
   hello: привет
   news:  Новости
   ezrealty: Недвижимость

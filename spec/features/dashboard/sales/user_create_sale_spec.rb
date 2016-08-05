@@ -9,7 +9,7 @@ feature "user creates sale" do
     fill_in "Заголовок", with: sale.title
     fill_in "Телефон", with: sale.phone
     fill_in "Email", with: sale.email
-    select(sale.category, from: "Категория")
+    find("option[value='#{sale.category}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     check("Активно")

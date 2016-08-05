@@ -32,7 +32,7 @@ form.form-horizontal action=re_privates_path method="get"
   .row
     .col-xs-12.col-sm-6
       = label_tag "Продолжительность", nil
-      = select_tag :duration, options_for_select(RE_DURATION, params[:duration]), include_blank: true, class: "form-control"
+      = select_tag :duration, options_for_select(RE_DURATION.map(&:second), params[:duration]), include_blank: true, class: "form-control"
     .col-xs-12.col-sm-6
       br
       = label_tag :fee, "Без комиссии"

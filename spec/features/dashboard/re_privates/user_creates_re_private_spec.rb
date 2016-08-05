@@ -9,9 +9,9 @@ feature "User create re_private" do
     fill_in "Улица", with: re_private.street
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    select(re_private.post_type, from: "Тип объявления")
-    select("помесячно", from: "Продолжительность")
-    select(re_private.rooms, from: "Комнат")
+    find("option[value='#{re_private.post_type}']").select_option
+    find("option[value='#{re_private.duration}']").select_option
+    find("option[value='#{re_private.rooms}']").select_option
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price
     fill_in "Ванные", with: re_private.baths
@@ -21,8 +21,8 @@ feature "User create re_private" do
     click_on "Сохранить"
 
     expect(page).to have_content re_private.street
-    expect(page).to have_content re_private.post_type
-    expect(page).to have_content "помесячно"
+    expect(page).to have_content I18n.t re_private.post_type
+    expect(page).to have_content I18n.t re_private.duration
     expect(page).to have_content re_private.space
     expect(page).to have_content re_private.price
     expect(page).to have_content re_private.baths

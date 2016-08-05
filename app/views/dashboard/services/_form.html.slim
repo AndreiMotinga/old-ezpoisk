@@ -2,7 +2,7 @@
   .row
     .col-xs-12.col-sm-6
       = f.select :category,
-                  form_options(params[:category], SERVICE_SUBCATEGORIES.keys),
+                  form_options(params[:category], SERVICE_CATEGORIES),
                   { include_blank: true, label: '* Раздел' },
                   class: "category-select",
                   "data-type": "Service"

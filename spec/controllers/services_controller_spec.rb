@@ -32,10 +32,10 @@ describe ServicesController do
       end
 
       it "filters by category" do
-        2.times { create :service, category: SERVICE_SUBCATEGORIES.keys.first }
-        create :service, category: SERVICE_SUBCATEGORIES.keys.second
+        2.times { create :service, category: SERVICE_CATEGORIES.first.second }
+        create :service, category: SERVICE_CATEGORIES.second.second
 
-        get :index, params: { category: SERVICE_SUBCATEGORIES.keys.first }
+        get :index, params: { category: SERVICE_CATEGORIES.first.second }
 
         expect(assigns(:services).size).to eq 2
       end

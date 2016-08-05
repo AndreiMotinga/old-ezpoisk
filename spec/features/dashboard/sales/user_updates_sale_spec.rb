@@ -11,7 +11,7 @@ feature "user updates sale" do
     fill_in "Заголовок", with: attrs.title
     fill_in "Телефон", with: attrs.phone
     fill_in "Email", with: attrs.email
-    select(attrs.category, from: "Категория")
+    find("option[value='#{attrs.category}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     check("Активно")

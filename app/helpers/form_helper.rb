@@ -23,7 +23,7 @@ module FormHelper
   end
 
   def service_categories_options
-    options_for_select(SERVICE_SUBCATEGORIES.keys, params[:category])
+    options_for_select(SERVICE_CATEGORIES, params[:category])
   end
 
   def service_subcategories_options

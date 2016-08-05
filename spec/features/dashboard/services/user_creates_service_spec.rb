@@ -3,7 +3,7 @@ require "rails_helper"
 feature "user creates service" do
   scenario "successfully", js: true do
     create_and_login_user
-    service = build(:service)
+    service = build :service
 
     visit new_dashboard_service_path
     fill_in "Заголовок", with: service.title
@@ -11,8 +11,8 @@ feature "user creates service" do
     fill_in "Телефон", with: service.phone
     fill_in "Email", with: service.email
     fill_in "Сайт", with: service.site
-    select(service.category, from: "Раздел")
-    select(service.subcategory, from: "Категория")
+    find("option[value='#{service.category}']").select_option
+    find("option[value='#{service.subcategory}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     click_on "details-save-btn"

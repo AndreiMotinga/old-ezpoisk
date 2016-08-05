@@ -12,8 +12,8 @@ feature "user updates job" do
     fill_in "Заголовок", with: attrs.title
     fill_in "Телефон", with: attrs.phone
     fill_in "Email", with: attrs.email
-    select(attrs.category, from: "Раздел")
-    select(attrs.subcategory, from: "Категория")
+    find("option[value='#{attrs.category}']").select_option
+    find("option[value='#{attrs.subcategory}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     check("Активно")
@@ -26,6 +26,7 @@ feature "user updates job" do
     expect(job.phone).to eq attrs.phone
     expect(job.email).to eq attrs.email
     expect(job.category).to eq attrs.category
+    expect(job.subcategory).to eq attrs.subcategory
     expect(job.active).to be true
     expect(job.state_name).to eq "Alabama"
     expect(job.city_name).to eq "Abbeville"

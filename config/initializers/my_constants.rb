@@ -192,10 +192,24 @@ SALE_CATEGORIES = [
   ["Распродажа", "sales"]
 ].freeze
 
+SERVICE_CATEGORIES = [
+  ["Автоуслуги", "auto"],
+  ["Адвокаты", "lawers"],
+  ["Красота", "beauty"],
+  ["Медицина", "medical"],
+  ["Недвижимость", "real-estate"],
+  ["Образование", "education"],
+  ["Работа", "works"],
+  ["Ремонт", "repairs"],
+  ["Строительство", "construction"],
+  ["Магазины", "stores"],
+  ["Другие услуги", "other"]
+].freeze
+
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
-  "Автоуслуги": [
+  "auto": [
     ["Авто в аренду", "car-rentals"],
-    ["Автосервисы", "autoservice"],
+    ["Автосервисы", "autoservices"],
     ["Автомойки", "carwash"],
     ["Автомагазины", "auto-stores"],
     ["Автошколы", "driver-schools"],
@@ -203,7 +217,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Moving, грузоперевозки", "moving"],
     ["Такси, CarService", "carservice"]
   ],
-  "Адвокаты": [
+  "lawers": [
     ["Общий профиль", "general"],
     ["Аварии, Медицинские ошибки", "accidents"],
     ["Бизнес, Финансы, Банкротство", "business"],
@@ -214,7 +228,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Недвижимость", "realty"],
     ["Семейное право", "family"]
   ],
-  "Красота": [
+  "beauty": [
     ["Салоны красоты, парикмахерские", "beauty-salons"],
     ["SPA, солярий, массаж, уход за телом", "spa"],
     ["Коррекция фигуры и лица", "correction"],
@@ -222,7 +236,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Татуировка, татуаж", "tatoo"],
     ["Бани, Сауны", "saunas"]
   ],
-  "Медицина": [
+  "medical": [
     ["Медицинский офис, Госпиталь", "hospitals"],
     ["Аптеки", "farmacies"],
     ["Альтернативная медицина", "alternative-medicine"],
@@ -254,11 +268,11 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Физиотерапевт, массажист, хиропрактор", "physiotherapist"],
     ["Эндокринолог", "endocrinologist"],
   ],
-  "Недвижимость": [
-    ["Агентства Недвижимости", "real-estate"],
+  "real-estate": [
+    ["Агентства Недвижимости", "realy"],
     ["Финансирование", "fanancing"]
   ],
-  "Образование": [
+  "education": [
     ["Университеты, Колледжы, Школы", "schools"],
     ["Танцы, Музыка, Искусство", "art-education"],
     ["Детские сады", "kinder-gardens"],
@@ -267,18 +281,18 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Спортивные школы", "sport-schools"],
     ["Обучение профессии", "trainings"]
   ],
-  "Работа": [
+  "works": [
     ["Агентства по Трудоустройству", "job-agencies"]
   ],
-  "Ремонт": [
+  "repairs": [
     ["Ремонт и сервис телефонов", "cellphone-repair"],
     ["Ремонт компьютеров", "computer-repair"],
     ["Ремонт бытовой техники, электроники", "appliances-repair"],
     ["Ремонт, пошив одежды, обуви", "clothes-repais"],
     ["Ремонт, настройка музыкальных инструментов", "musical-instruments-repair-tuning"]
   ],
-  "Строительство": [
-    ["Строительные компании", "construction"],
+  "construction": [
+    ["Строительные компании", "construction-companies"],
     ["Электрики", "electicians"],
     ["Сантехники", "plumbers"],
     ["Маляры", "painters"],
@@ -291,7 +305,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Ремонт и дизайн помещений", "interior-design"],
     ["Кондиционеры, Отопление", "air-conditioning"]
   ],
-  "Магазины": [
+  "stores": [
     ["Детские товары", "kid-goods"],
     ["Магазины с доставкой", "stores-with-delivery"],
     ["Зоотовары", "pet-stores"],
@@ -312,7 +326,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["Ювелирные изделия", "jewlery"],
     ["Автозапчасти" "car-parts"],
   ],
-  "Другие услуги": [
+  "other": [
     ["Артисты, праздники", "artists-celebrities"],
     ["Бизнес, партнерства", "business"],
     ["Детективы, охрана", "detectives"],
