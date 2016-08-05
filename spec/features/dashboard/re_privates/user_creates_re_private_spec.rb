@@ -26,7 +26,7 @@ feature "User create re_private" do
     expect(page).to have_content re_private.space
     expect(page).to have_content re_private.price
     expect(page).to have_content re_private.baths
-    expect(page).to have_content re_private.rooms
+    expect(page).to have_content I18n.t re_private.rooms
 
     re_private_save = RePrivate.last
     expect(re_private_save.active).to be true
