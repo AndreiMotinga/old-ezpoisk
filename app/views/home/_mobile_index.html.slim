@@ -22,7 +22,7 @@
             | Недвижимость
           #real_estate.sublinks.collapse
             = link_to "Агенства",
-                      services_path(category: "Недвижимость", subcategory: "Агентства Недвижимости"),
+                      services_path(category: "real-estate", subcategory: "realty"),
                       class: "list-group-item indented"
             = link_to "Частная", re_privates_path, class: "list-group-item indented"
             = link_to "Коммерческая", re_commercials_path, class: "list-group-item indented"
@@ -35,8 +35,8 @@
             = link_to "Агенства",
                       services_path(category: "Работа", subcategory: "Агентства по Трудоустройству"),
                       class: "list-group-item indented"
-            = link_to "Требуется", jobs_path(category: "Требуется"), class: "list-group-item indented"
-            = link_to "Ищу работу", jobs_path(category: "Ищу"), class: "list-group-item indented"
+            = link_to "Требуется", jobs_path(category: "wanted"), class: "list-group-item indented"
+            = link_to "Ищу работу", jobs_path(category: "seeking"), class: "list-group-item indented"
 
           = link_to "Продается", sales_path, class: "list-group-item mobile-link"
           = link_to "Услуги", services_path, class: "list-group-item mobile-link"

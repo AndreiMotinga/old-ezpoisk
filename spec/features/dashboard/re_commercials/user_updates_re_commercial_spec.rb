@@ -13,10 +13,10 @@ feature "User updates re_commercial" do
     fill_in "Цена", with: attrs.price
     fill_in "Площадь", with: attrs.space
     fill_in "Email", with: "foo@bar.com"
-    select(attrs.post_type, from: "Тип объявления")
+    find("option[value='#{attrs.post_type}']").select_option
+    find("option[value='#{attrs.category}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    select(attrs.category, from: "Категория")
     check("Активно")
     click_on "details-save-btn"
 

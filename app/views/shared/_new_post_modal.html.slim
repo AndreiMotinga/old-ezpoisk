@@ -12,6 +12,7 @@
         .home
           ul.nav.accordion
             ul.list-group.panel
+
               a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav-2"
                 span.sidebar-icon
                   i.fa.fa-hospital-o
@@ -19,20 +20,14 @@
                 .pull-right
                   span.caret
               #realty-nav-2.collapse
-                li= link_to t(:agencies), new_dashboard_service_path(category: "Недвижимость", subcategory: "Агентства Недвижимости")
                 li= link_to "Частная Недвижимость", new_dashboard_re_private_path
                 li= link_to "Коммерческая Недвижимость", new_dashboard_re_commercial_path
 
-              a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#jobs-nav-2"
+
+              a.list-group-item href=new_dashboard_job_path
                 span.sidebar-icon
                   i.fa.fa-list-ul
                 | Работа
-                .pull-right
-                  span.caret
-              #jobs-nav-2.collapse
-                li= link_to t(:agencies), new_dashboard_service_path(category: "Работа", subcategory: "Агентства по Трудоустройству")
-                li= link_to "Требуется", new_dashboard_job_path(category: "Требуется")
-                li= link_to "Ищу работу", new_dashboard_job_path(category: "Ищу")
 
               a.list-group-item href=new_dashboard_sale_path
                 span.sidebar-icon

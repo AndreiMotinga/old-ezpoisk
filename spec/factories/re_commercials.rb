@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :re_commercial do
-    category { RE_COMMERCIAL_CATEGORIES.sample }
+    category { RE_COMMERCIAL_CATEGORIES.sample.second }
     price { rand(2000) }
     space { Faker::Number.number(4).to_i }
     lat { Faker::Address.latitude }
@@ -8,7 +8,7 @@ FactoryGirl.define do
     active { [true, false].sample }
     description { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }
-    post_type { RE_TYPES.sample }
+    post_type { RE_TYPES.sample.second }
     zip { Faker::Address.zip }
     phone '1234567890'
     state_id 32

@@ -10,9 +10,10 @@ feature "user creates re_private" do
     click_on "Детали"
 
     fill_in "Улица", with: attrs.street
-    select(attrs.post_type, from: "Тип объявления")
-    select(attrs.duration, from: "Продолжительность")
-    select(attrs.rooms, from: "Комнат")
+
+    find("option[value='#{attrs.post_type}']").select_option
+    find("option[value='#{attrs.duration}']").select_option
+    find("option[value='#{attrs.rooms}']").select_option
     fill_in "Телефон", with: attrs.phone
     fill_in "Цена", with: attrs.price
     fill_in "Ванные", with: attrs.baths

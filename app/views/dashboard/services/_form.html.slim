@@ -2,14 +2,14 @@
   .row
     .col-xs-12.col-sm-6
       = f.select :category,
-                  form_options(params[:category], SERVICE_CATEGORIES.keys),
+                  SERVICE_CATEGORIES,
                   { include_blank: true, label: '* Раздел' },
                   class: "category-select",
                   "data-type": "Service"
     .col-xs-12.col-sm-6
       - if @service.category || params[:subcategory]
         = f.select :subcategory,
-                  form_options(params[:subcategory], SERVICE_CATEGORIES),
+                   SERVICE_SUBCATEGORIES,
                    { label: '* Категория' },
                    class: "subcategory-select"
       - else

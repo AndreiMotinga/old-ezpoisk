@@ -13,8 +13,8 @@ feature "user updates service" do
     fill_in "Телефон", with: attrs.phone
     fill_in "Email", with: attrs.email
     fill_in "Сайт", with: attrs.site
-    select(attrs.category, from: "Раздел")
-    select(attrs.subcategory, from: "Категория")
+    find("option[value='#{attrs.category}']").select_option
+    find("option[value='#{attrs.subcategory}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     click_on "details-save-btn"

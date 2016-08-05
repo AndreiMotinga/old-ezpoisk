@@ -3,7 +3,7 @@
     .col-xs-4.logo-js
       = link_to re_commercial_path(re_commercial) do
         = image_tag re_commercial.logo_url, class: "img-responsive center-block",
-                    alt: "#{re_commercial.post_type} коммерческой недвижимости - #{re_commercial.street} #{re_commercial.phone}"
+                    alt: "#{t re_commercial.post_type} коммерческой недвижимости - #{re_commercial.street} #{re_commercial.phone}"
 
     .col-xs-8
       / line 1
@@ -17,13 +17,13 @@
 
       / line 2
       strong= "$ #{re_commercial.price} "
-      span= re_commercial.post_type
+      span= t re_commercial.post_type
       hr.post-devider/
 
 
       / line 2
       .hidden-xs
-        span= re_commercial.category
+        span= t re_commercial.category
         = " / #{re_commercial.space }ft." unless re_commercial.space.blank?
         hr.post-devider/
 

@@ -22,14 +22,10 @@ module FormHelper
                class: "form-control")
   end
 
-  def service_categories_options
-    options_for_select(SERVICE_CATEGORIES.keys, params[:category])
-  end
-
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
-    options_for_select(SERVICE_CATEGORIES[category], params[:subcategory])
+    options_for_select(SERVICE_SUBCATEGORIES[category], params[:subcategory])
   end
 
   def origin
@@ -71,9 +67,5 @@ module FormHelper
     else
       f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown-multiple"
     end
-  end
-
-  def form_options(prm, opts)
-    prm.present? ? [prm] : opts
   end
 end

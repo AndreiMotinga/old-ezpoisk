@@ -4,7 +4,10 @@ form.form-horizontal action=services_path method="get"
   .row
     .col-xs-12.col-sm-6
       = label_tag "Раздел", nil
-      = select_tag :category, service_categories_options, include_blank: true, class: "form-control category-select", "data-type": "Service"
+      = select_tag :category,
+                   options_for_select(SERVICE_CATEGORIES, params[:category]),
+                   include_blank: true,
+                   class: "form-control category-select", "data-type": "Service"
     .col-xs-12.col-sm-6
       = label_tag "Категория", nil
       = select_tag :subcategory, service_subcategories_options, class: "form-control subcategory-select"

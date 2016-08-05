@@ -12,7 +12,7 @@
   .row
     .col-sm-6
       = f.select :category,
-                 form_options(params[:category], JOB_CATEGORIES),
+                 options_for_select(JOB_CATEGORIES, params[:category]),
                  label: 'Раздел'
     .col-sm-6
       = f.select :subcategory,

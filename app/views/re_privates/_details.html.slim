@@ -1,7 +1,7 @@
 .col-xs-12.white-block
-  li.list-group-item= @re_private.post_type
+  li.list-group-item= t @re_private.post_type
    - if @re_private.duration?
-    li.list-group-item= @re_private.duration
+    li.list-group-item= t @re_private.duration
   li.list-group-item
     | Цена
     span.pull-right #{@re_private.price}
@@ -10,7 +10,7 @@
     span.pull-right #{@re_private.fee ? 'да' : 'нет'}
   li.list-group-item
     | Комнаты
-    span.pull-right #{@re_private.rooms}
+    span.pull-right #{t @re_private.rooms}
   li.list-group-item
     | Ванные комнаты
     span.pull-right #{@re_private.baths}
