@@ -1,0 +1,4 @@
+RE_COMMERCIAL_CATEGORIES.each {|c| ReCommercial.find_each{|p| p.update_column(:category, c[1]) if p.category == c[0]} }
+
+RE_TYPES.each {|c| ReCommercial.find_each{|p| p.update_column(:post_type, c[1]) if p.post_type == c[0]} }
+RE_TYPES.each {|c| RePrivate.find_each{|p| p.update_column(:post_type, c[1]) if p.post_type == c[0]} }

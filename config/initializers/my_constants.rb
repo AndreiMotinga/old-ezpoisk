@@ -1,15 +1,15 @@
 # todo freeze these
-# RE_COMMERCIAL_CATEGORIES = %w(Офис Торговля Промышленность Парковка Другое)
 RE_COMMERCIAL_CATEGORIES = [
   %w(Офис office),
   %w(Торговля sales),
   %w(Промышленность industry),
   %w(Парковка parking),
   %w(Другое other)
-]
+].freeze
+
 RE_TYPES = [
   ["Сдаю в аренду", "leasing"],
-  ["Ищу в аренду" "renting"],
+  ["Ищу в аренду", "renting"],
   ["Продаю", "selling"],
   ["Хочу купить", "buying"]
 ]
