@@ -7,9 +7,9 @@
                   class: "category-select",
                   "data-type": "Service"
     .col-xs-12.col-sm-6
-      - if @service.category || params[:subcategory]
+      - if @service.category
         = f.select :subcategory,
-                   SERVICE_SUBCATEGORIES,
+                   ru(SERVICE_SUBCATEGORIES[@service.category]),
                    { label: '* Категория' },
                    class: "subcategory-select"
       - else

@@ -25,7 +25,7 @@ module FormHelper
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
-    options_for_select(SERVICE_SUBCATEGORIES[category], params[:subcategory])
+    options_for_select(ru(SERVICE_SUBCATEGORIES[category]), params[:subcategory])
   end
 
   def origin
@@ -70,6 +70,6 @@ module FormHelper
   end
 
   def ru(opts)
-    opts.map{|k| [t(k), k] }
+    opts.map{ |k| [t(k), k] }
   end
 end

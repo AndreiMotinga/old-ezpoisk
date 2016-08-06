@@ -71,19 +71,19 @@ describe SalesController do
 
       context "filters by category" do
         it "with existing records" do
-          2.times { create :sale, :active, category: SALE_CATEGORIES.second.second }
-          create :sale, :active, category: SALE_CATEGORIES.third.second
+          2.times { create :sale, :active, category: SALE_CATEGORIES.second }
+          create :sale, :active, category: SALE_CATEGORIES.third
 
-          get :index, params: { category: SALE_CATEGORIES.second.second }
+          get :index, params: { category: SALE_CATEGORIES.second }
 
           expect(assigns(:sales).size).to eq 2
         end
 
         it "with non existing records" do
-          2.times { create :sale, :active, category: SALE_CATEGORIES.second.second }
-          create :sale, :active, category: SALE_CATEGORIES.third.second
+          2.times { create :sale, :active, category: SALE_CATEGORIES.second }
+          create :sale, :active, category: SALE_CATEGORIES.third
 
-          get :index, params: { category: SALE_CATEGORIES.fourth.second }
+          get :index, params: { category: SALE_CATEGORIES.fourth }
 
           expect(assigns(:sales).size).to eq 0
         end

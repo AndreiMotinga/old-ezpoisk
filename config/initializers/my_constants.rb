@@ -138,150 +138,37 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
 ).freeze
 
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
-  "auto": [
-    ["Авто в аренду", "car-rentals"],
-    ["Автосервисы", "autoservices"],
-    ["Автомойки", "carwash"],
-    ["Автомагазины", "auto-stores"],
-    ["Автошколы", "driver-schools"],
-    ["Дилеры, аукционы", "auto-auction"],
-    ["Moving, грузоперевозки", "moving"],
-    ["Такси, CarService", "carservice"]
-  ],
-  "lawers": [
-    ["Общий профиль", "general"],
-    ["Аварии, Медицинские ошибки", "accidents"],
-    ["Бизнес, Финансы, Банкротство", "business"],
-    ["Нотариальные услуги", "paralegal"],
-    ["Иммиграция", "immigration"],
-    ["Криминал", "criminal"],
-    ["Наследство, Завещания", "heritage"],
-    ["Недвижимость", "realty"],
-    ["Семейное право", "family"]
-  ],
-  "beauty": [
-    ["Салоны красоты, парикмахерские", "beauty-salons"],
-    ["SPA, солярий, массаж, уход за телом", "spa"],
-    ["Коррекция фигуры и лица", "correction"],
-    ["Эпиляция, лазерная косметология", "epilation"],
-    ["Татуировка, татуаж", "tatoo"],
-    ["Бани, Сауны", "saunas"]
-  ],
-  "medical": [
-    ["Медицинский офис, Госпиталь", "hospitals"],
-    ["Аптеки", "farmacies"],
-    ["Альтернативная медицина", "alternative-medicine"],
-    ["Ветеринарные клиники", "veterinary-clinics"],
-    ["Аллерголог", "allergist"],
-    ["Венеролог", "venereologist"],
-    ["Гинеколог, акушер", "gynecologis"],
-    ["Дермотолог", "dermotolog"],
-    ["Диетолог", "nutritionist"],
-    ["Иммунолог", "immunologist"],
-    ["Кардиолог", "cardiologist"],
-    ["Косметолог", "beautician"],
-    ["ЛОР", "ent"],
-    ["Мануальный терапевт", "chiropractor"],
-    ["Невролог", "neurologist"],
-    ["Стоматолог", "dentist"],
-    ["Онколог", "oncologist"],
-    ["Ортопед", "orthopedist"],
-    ["Офтальмолог", "ophthalmologist"],
-    ["Педиатр", "pediatrician"],
-    ["Пластический хирург", "plastic-surgeon"],
-    ["Психиатр, нарколог", "psychiatrist"],
-    ["Психолог", "psychologist"],
-    ["Сексопатолог", "seksopatolog"],
-    ["Семейный доктор", "family-doctor"],
-    ["Терапевт", "therapist"],
-    ["Уролог, андролог", "urologist"],
-    ["Хирург, проктолог", "surgeon"],
-    ["Физиотерапевт, массажист, хиропрактор", "physiotherapist"],
-    ["Эндокринолог", "endocrinologist"],
-  ],
-  "real-estate": [
-    ["Агентства Недвижимости", "realty"],
-    ["Финансирование", "fanancing"]
-  ],
-  "education": [
-    ["Университеты, Колледжы, Школы", "schools"],
-    ["Танцы, Музыка, Искусство", "art-education"],
-    ["Детские сады", "kinder-gardens"],
-    ["Курсы английского", "english-lessons"],
-    ["Репетиторы", "teachers"],
-    ["Спортивные школы", "sport-schools"],
-    ["Обучение профессии", "trainings"]
-  ],
-  "work": [
-    ["Агентства по Трудоустройству", "job-agencies"]
-  ],
-  "repairs": [
-    ["Ремонт и сервис телефонов", "cellphone-repair"],
-    ["Ремонт компьютеров", "computer-repair"],
-    ["Ремонт бытовой техники, электроники", "appliances-repair"],
-    ["Ремонт, пошив одежды, обуви", "clothes-repais"],
-    ["Ремонт, настройка музыкальных инструментов", "musical-instruments-repair-tuning"]
-  ],
-  "construction": [
-    ["Строительные компании", "construction-companies"],
-    ["Электрики", "electicians"],
-    ["Сантехники", "plumbers"],
-    ["Маляры", "painters"],
-    ["Мастер на все руки, Handyman", "handymen"],
-    ["Изготовление мебели", "furniture"],
-    ["Сигнализация, Видеонаблюдение", "alarm-video-surveillance"],
-    ["Замки", "locks"],
-    ["Заборы, Сварка", "fences-welding"],
-    ["Снос зданий, Мусор", "garbage"],
-    ["Ремонт и дизайн помещений", "interior-design"],
-    ["Кондиционеры, Отопление", "air-conditioning"]
-  ],
-  "stores": [
-    ["Детские товары", "kid-goods"],
-    ["Магазины с доставкой", "stores-with-delivery"],
-    ["Зоотовары", "pet-stores"],
-    ["Интернет-магазины", "online-stores"],
-    ["Канцелярские товары", "stationery"],
-    ["Книги, печатная продукция", "book-stores"],
-    ["Одежда", "clothes-stores"],
-    ["Обувь", "shoe-stores"],
-    ["Парфюмерия и косметика", "perfumes-cosmetics-stores"],
-    ["Подарки, сувениры", "gift-stores"],
-    ["Продукты", "food"],
-    ["Сад и огород", "garden"],
-    ["Ткани и товары для рукоделия", "fabric-craft-supplies"],
-    ["Товары для спорта", ""],
-    ["Хозтовары", "household-goods"],
-    ["Цветы", "flower-stores"],
-    ["Часы", "wathces"],
-    ["Ювелирные изделия", "jewlery"],
-    ["Автозапчасти" "car-parts"],
-  ],
-  "other": [
-    ["Артисты, праздники", "artists-celebrities"],
-    ["Бизнес, партнерства", "business"],
-    ["Детективы, охрана", "detectives"],
-    ["Истребление насекомых", "exterminators"],
-    ["Компьютеры, интернет", "computers"],
-    ["Няни, гувернантки", "nannies"],
-    ["Переводы, печатные работы", "tranlations"],
-    ["Посылки, грузы", "parcels"],
-    ["Реклама и PR", "advertisement"],
-    ["Рестораны, развлечения", "restourants"],
-    ["Ритуальные услуги", "funeral-services"],
-    ["Спорт, фитнес", "sports"],
-    ["Сопровождение на встречах и отдыхе", "escort"],
-    ["Страхование", "insurance"],
-    ["Туристические фирмы", "tourism"],
-    ["Танцы", "dance"],
-    ["Уборка помещений", "cleaning"],
-    ["Финансы, налоги", "finances-taxes"],
-    ["Фото, Видео", "photo-video"],
-    ["Художники, искусство", "art"],
-    ["Цветы", "flowers"],
-    ["Эротический Массаж", "erotics-massage"],
-    ["Экстрасенсы", "psychics"]
-  ]
+  "auto": %w(car-rentals autoservices carwash auto-stores driver-schools
+             auto-auction moving carservic),
+  "lawers": %w(general accidents business paralegal immigration criminal
+               heritage realty family),
+  "beauty": %w(beauty-salons spa correction epilation tatoo sauna),
+  "medical": %w(hospitals farmacies alternative-medicine veterinary-clinics
+                allergist venereologist gynecologis dermotolog nutritionist
+                immunologist cardiologist beautician ent chiropractor
+                neurologist dentist oncologist orthopedist ophthalmologist
+                pediatrician plastic-surgeon psychiatrist psychologist
+                seksopatolog family-doctor therapist urologist surgeon
+                physiotherapist endocrinologist),
+  "real-estate": %w(realtors financing),
+  "education": %w(schools art-education kinder-gardens english-lessons
+                  teachers sport-schools training),
+  "work": %w(job-agencies),
+  "repairs": %w(cellphone-repair computer-repair appliances-repair
+                clothes-repais musical-instruments-repair-tuning),
+  "construction": %w(construction-companies electicians plumbers painters
+                     handymen furniture alarm-video-surveillance locks
+                     fences-welding garbage interior-design air-conditioning),
+  "stores": %w(kid-goods stores-with-delivery pet-stores online-stores
+               stationery book-stores clothes-stores shoe-stores
+               perfumes-cosmetics-stores gift-stores food garden
+               fabric-craft-supplies household-goods flower-stores wathces
+               jewlery car-parts),
+  "other": %w(artists-celebrities business detectives exterminators
+              computers nannies tranlations parcels advertisement
+              restourants funeral-services sports escort insurance tourism
+              dance cleaning finances-taxes photo-video art flowers
+              erotics-massage psychic)
 ).freeze
 
 STATES = [
@@ -356,16 +243,16 @@ NEWS_CATEGORIES = [
    "https://news.yandex.ua/index.rss"
 ].freeze
 
-PARTNER_PAGES = HashWithIndifferentAccess.new(
-      "Домашняя" => ["Домашняя"],
-      "- Раздел Недвижимость" => [
-        "Частная", "Коммерческая", "Агентства Недвижимости", "Финансирование"
-      ],
-      "- Раздел Работа" => ["Работа", "Агентства по Трудоустройству"],
-      "- Раздел Вопросы" => ["Вопросы"],
-      "- Раздел Новости" => ["Новости"],
-      "- Раздел Продажи" => SALE_CATEGORIES,
-      "- Раздел Услуги" => []
-)
-
-SERVICE_SUBCATEGORIES.each { |ctg, subctg| PARTNER_PAGES[ctg] = subctg }
+# PARTNER_PAGES = HashWithIndifferentAccess.new(
+#       "Домашняя" => ["Домашняя"],
+#       "- Раздел Недвижимость" => [
+#         "Частная", "Коммерческая", "Агентства Недвижимости", "Финансирование"
+#       ],
+#       "- Раздел Работа" => ["Работа", "Агентства по Трудоустройству"],
+#       "- Раздел Вопросы" => ["Вопросы"],
+#       "- Раздел Новости" => ["Новости"],
+#       "- Раздел Продажи" => SALE_CATEGORIES,
+#       "- Раздел Услуги" => []
+# )
+#
+# SERVICE_SUBCATEGORIES.each { |ctg, subctg| PARTNER_PAGES[ctg] = subctg }

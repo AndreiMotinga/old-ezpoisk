@@ -52,77 +52,6 @@ ru:
   construction: Строительство
   stores: Магазины
 
-  administration: администрация ресторана
-  watiers: фициант
-  bartenders: бармен
-  kitchen-workers: работники кухни
-  tourism: туризм
-  agronomy: агрономия
-  veterinary: зоотехника и ветеринария
-  law: юристы, адвокаты, нотариусы
-  insurance: страхование, коллекторы, приставы, оценщики
-  makeup artist: визажист/косметолог
-  manicure-pedicure: мастер маникюра / педикюра
-  hairdresser: парикмахер, стилист
-  dancers: танцовщицы
-  trainer: тренер, инструктор
-  auditing: аудиторство
-  lease: банки, кредитование, лизинг
-  accounting: бухгалтерия
-  teachers: преподаватели, репетиторы
-  preschool: дошкольное образование
-  language: иностранные языки
-  trainings: курсы, семинары, тренинги
-  design: дизайн и графика
-  art: искусство
-  entertainment: развлечения
-  photo-video: фото, видео, аудио
-  carwash: автомойка
-  autoservice: автосервис
-  driver: водитель / экспедитор
-  moving: логистика и перевозки
-  gas-stations: работник заправки
-  massage: массаж
-  hospitals: медицинский персонал
-  farmacies: фармацевтика
-  development: it программирование
-  management: it менеджмент
-  network: системное администрирование
-  telecommunications: телекоммуникации
-  tech-repairs: ремонт компьютеров и телефонов
-  seo: seo
-  gineers: инженеры/технологи производства
-  gustry-maganers: менеджмент производства
-  sewing: швейный бизнес
-  production-worker: рабочие на производство
-  realty: недвижимость
-  architecture: проектирование и архитектура
-  building-materials: производство стройматериалов
-  building-expertise: строительные специализации
-  host: ведущий
-  journalists: журналистика
-  tranlations: переводчики
-  producers: продюсер
-  customer-support: менеджер по работе с клиентами
-  retailers: продавцы, кассиры
-  telemarketing: продажи по телефону (телемаркетинг)
-  sale-representatives: торговые представители
-  sales-magagement: управление продажами
-  bodyguard: охранник / телохранитель
-  security: специалист по безопасности
-  curier: курьер
-  remote-work: удаленная работа
-  home-attendant: няня, сиделка
-  front-desk: офис-менеджер / секретарь
-  misc: разнорабочие
-  cleaning: уборщица/горничная
-  social: психология / соц. работа
-  human-resources: hr, кадры
-  copywriters: копирайтинг / контент-менеджмент
-  marketing: маркетинг
-  promoters: промоутер
-  pr: pr
-
   hello: привет
   news:  Новости
   ezrealty: Недвижимость
@@ -573,3 +502,205 @@ ru:
   views:
     pagination:
       truncate: "..."
+
+
+  # services:
+  car-rentals: Авто в аренду
+  autoservices: Автосервисы
+  carwash: Автомойки
+  auto-stores: Автомагазины
+  driver-schools: Автошколы
+  auto-auction: Дилеры, аукционы
+  moving: Moving, грузоперевозки
+  carservice: Такси, CarService
+  general: Общий профиль
+  accidents: Аварии, Медицинские ошибки
+  business: Бизнес, Финансы, Банкротство
+  paralegal: Нотариальные услуги
+  immigration: Иммиграция
+  criminal: Криминал
+  heritage: Наследство, Завещания
+  realtors: Недвижимость
+  financing: Финансирование
+  family: Семейное право
+  beauty-salons: Салоны красоты, парикмахерские
+  spa: SPA, солярий, массаж, уход за телом
+  correction: Коррекция фигуры и лица
+  epilation: Эпиляция, лазерная косметология
+  tatoo: Татуировка, татуаж
+  sauna: Бани, Сауны
+  hospitals: Медицинский офис, Госпиталь
+  farmacies: Аптеки
+  alternative-medicine: Альтернативная медицина
+  veterinary-clinics: Ветеринарные клиники
+  allergist: Аллерголог
+  venereologist: Венеролог
+  gynecologis: Гинеколог, акушер
+  dermotolog: Дермотолог
+  nutritionist: Диетолог
+  immunologist: Иммунолог
+  cardiologist: Кардиолог
+  beautician: Косметолог
+  ent: ЛОР
+  chiropractor: Мануальный терапевт
+  neurologist: Невролог
+  dentist: Стоматолог
+  oncologist: Онколог
+  orthopedist: Ортопед
+  ophthalmologist: Офтальмолог
+  pediatrician: Педиатр
+  plastic-surgeon: Пластический хирург
+  psychiatrist: Психиатр, нарколог
+  psychologist: Психолог
+  seksopatolog: Сексопатолог
+  family-doctor: Семейный доктор
+  therapist: Терапевт
+  urologist: Уролог, андролог
+  surgeon: Хирург, проктолог
+  physiotherapist: Физиотерапевт, массажист, хиропрактор
+  endocrinologist: Эндокринолог
+  realty: Агентства Недвижимости
+  fanancing: Финансирование
+  schools: Университеты, Колледжы, Школы
+  art-education: Танцы, Музыка, Искусство
+  kinder-gardens: Детские сады
+  english-lessons: Курсы английского
+  teachers: Репетиторы
+  sport-schools: Спортивные школы
+  trainings: Обучение профессии
+  job-agencies: Агентства по Трудоустройству
+  cellphone-repair: Ремонт и сервис телефонов
+  computer-repair: Ремонт компьютеров
+  appliances-repair: Ремонт бытовой техники, электроники
+  clothes-repais: Ремонт, пошив одежды, обуви
+  musical-instruments-repair-tuning: Ремонт, настройка музыкальных инструментов
+  construction-companies: Строительные компании
+  electicians: Электрики
+  plumbers: Сантехники
+  painters: Маляры
+  handymen: Мастер на все руки, Handyman
+  furniture: Изготовление мебели
+  alarm-video-surveillance: Сигнализация, Видеонаблюдение
+  locks: Замки
+  fences-welding: Заборы, Сварка
+  garbage: Снос зданий, Мусор
+  interior-design: Ремонт и дизайн помещений
+  air-conditioning: Кондиционеры, Отопление
+  kid-goods: Детские товары
+  stores-with-delivery: Магазины с доставкой
+  pet-stores: Зоотовары
+  online-stores: Интернет-магазины
+  stationery: Канцелярские товары
+  book-stores: Книги, печатная продукция
+  clothes-stores: Одежда
+  shoe-stores: Обувь
+  perfumes-cosmetics-stores: Парфюмерия и косметика
+  gift-stores: Подарки, сувениры
+  food: Продукты
+  garden: Сад и огород
+  fabric-craft-supplies: Ткани и товары для рукоделия
+  sport-goods: Товары для спорта
+  household-goods: Хозтовары
+  flower-stores: Цветы
+  wathces: Часы
+  jewlery: Ювелирные изделия
+  car-parts: Автозапчасти
+  artists-celebrities: Артисты, праздники
+  business: Бизнес, партнерства
+  detectives: Детективы, охрана
+  exterminators: Истребление насекомых
+  computers: Компьютеры, интернет
+  nannies: Няни, гувернантки
+  tranlations: Переводы, печатные работы
+  parcels: Посылки, грузы
+  advertisement: Реклама и PR
+  restourants: Рестораны, развлечения
+  funeral-services: Ритуальные услуги
+  sports: Спорт, фитнес
+  escort: Сопровождение на встречах и отдыхе
+  insurance: Страхование
+  tourism: Туристические фирмы
+  dance: Танцы
+  cleaning: Уборка помещений
+  finances-taxes: Финансы, налоги
+  photo-video: Фото, Видео
+  art: Художники, искусство
+  flowers: Цветы
+  erotics-massage: Эротический Массаж
+  psychic: Экстрасенсы
+  training: Специализированые курсы
+  # # services
+
+  # jobs:
+  administration: администрация ресторана
+  watiers: фициант
+  bartenders: бармен
+  kitchen-workers: работники кухни
+  tourism: туризм
+  agronomy: агрономия
+  veterinary: зоотехника и ветеринария
+  law: юристы, адвокаты, нотариусы
+  insurance: страхование, коллекторы, приставы, оценщики
+  makeup artist: визажист/косметолог
+  manicure-pedicure: мастер маникюра / педикюра
+  hairdresser: парикмахер, стилист
+  dancers: танцовщицы
+  trainer: тренер, инструктор
+  auditing: аудиторство
+  lease: банки, кредитование, лизинг
+  accounting: бухгалтерия
+  teachers: преподаватели, репетиторы
+  preschool: дошкольное образование
+  language: иностранные языки
+  trainings: курсы, семинары, тренинги
+  design: дизайн и графика
+  art: искусство
+  entertainment: развлечения
+  photo-video: фото, видео, аудио
+  carwash: автомойка
+  autoservice: автосервис
+  driver: водитель / экспедитор
+  moving: логистика и перевозки
+  gas-stations: работник заправки
+  massage: массаж
+  hospitals: медицинский персонал
+  farmacies: фармацевтика
+  development: it программирование
+  management: it менеджмент
+  network: системное администрирование
+  telecommunications: телекоммуникации
+  tech-repairs: ремонт компьютеров и телефонов
+  seo: seo
+  gineers: инженеры/технологи производства
+  gustry-maganers: менеджмент производства
+  sewing: швейный бизнес
+  production-worker: рабочие на производство
+  realtors: недвижимость
+  financing: финансирование
+  architecture: проектирование и архитектура
+  building-materials: производство стройматериалов
+  building-expertise: строительные специализации
+  host: ведущий
+  journalists: журналистика
+  tranlations: переводчики
+  producers: продюсер
+  customer-support: менеджер по работе с клиентами
+  retailers: продавцы, кассиры
+  telemarketing: продажи по телефону (телемаркетинг)
+  sale-representatives: торговые представители
+  sales-magagement: управление продажами
+  bodyguard: охранник / телохранитель
+  security: специалист по безопасности
+  curier: курьер
+  remote-work: удаленная работа
+  home-attendant: няня, сиделка
+  front-desk: офис-менеджер / секретарь
+  misc: разнорабочие
+  cleaning: уборщица/горничная
+  social: психология / соц. работа
+  human-resources: hr, кадры
+  copywriters: копирайтинг / контент-менеджмент
+  marketing: маркетинг
+  promoters: промоутер
+  pr: pr
+  # # jobs:
