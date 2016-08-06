@@ -2,9 +2,10 @@
   .listing
     .panel.panel-default
       .panel-heading
-        h4= link_to job.title, job_path(job), itemprop: "title"
-        span #{job.city.name}, #{job.state.name}
-      .panel-body.description
+        - if job.title.present?
+          h4= link_to job.title, job_path(job)
+
+      .panel-body
         - if job.logo?
           = link_to job_path(job) do
             = image_tag job.logo.url(:large),
@@ -12,12 +13,16 @@
                         class: "img-responsive center-block",
                         itemprop: "image"
           hr
-        p itemprop="description" = sanitize job.description
+
+        .description itemprop="description"
+          = link_to job_path(job) do
+            = sanitize job.description
         p.tags
           - if job.subcategory.present?
             - job.subcategory.split(", ").each do |sub|
               a.tag= " ##{t sub} "
 
+        span #{job.city.name}, #{job.state.name}
       .panel-footer
         .row
           .col-xs-6

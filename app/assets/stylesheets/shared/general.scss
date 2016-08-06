@@ -219,3 +219,11 @@ body.modal-open { position: fixed; }
 //   position: absolute;
 //   min-height: 500px;
 // }
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  color: $black;
+  text-decoration: none;
+}

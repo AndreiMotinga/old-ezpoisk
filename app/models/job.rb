@@ -6,6 +6,7 @@ class Job < ActiveRecord::Base
   include ViewHelpers
 
   validates :title, length: { maximum: 90 }
+  validates :description, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates :user_id, presence: true

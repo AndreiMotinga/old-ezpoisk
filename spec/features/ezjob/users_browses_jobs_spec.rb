@@ -14,6 +14,6 @@ feature "User browses job" do
 
     visit job_path(j)
 
-    expect(page).to have_content j.title
+    expect(page).to have_content j.description
   end
 end
