@@ -1,6 +1,6 @@
 RE_COMMERCIAL_CATEGORIES = %w(office sales industry parking other).freeze
 RE_TYPES = %w(leasing renting selling buying).freeze
-RE_DURATION = %w(hourly daily weekly monthly ).freeze
+RE_DURATION = %w(monthly weekly daily hourly).freeze
 ROOM_OPTIONS = %w(room bed studio 1-bebroom 2-bebroom 3-bebroom 4-bebroom
                   5-bebroom 6-bebroom 7-bebroom 8-bebroom 9-bebroom).freeze
 SALE_CATEGORIES = %w(transportation home kids clothes electronics pets plants
@@ -139,7 +139,7 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
 
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "auto": %w(car-rentals autoservices carwash auto-stores driver-schools
-             auto-auction moving carservic),
+             auto-auction moving carservice),
   "lawers": %w(general accidents business paralegal immigration criminal
                heritage realty family),
   "beauty": %w(beauty-salons spa correction epilation tatoo sauna),
