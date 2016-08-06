@@ -5,7 +5,7 @@ form.form-horizontal action=jobs_path method="get"
     .col-xs-12.col-sm-6
       = label_tag "Раздел", nil
       = select_tag :category,
-                   options_for_select(JOB_CATEGORIES, params[:category]),
+                   options_for_select(ru(JOB_CATEGORIES), params[:category]),
                    include_blank: true,
                    class: "form-control"
     .col-xs-12.col-sm-6

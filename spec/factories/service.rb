@@ -13,8 +13,8 @@ FactoryGirl.define do
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
 
-    category { SERVICE_CATEGORIES.sample.second }
-    subcategory { SERVICE_SUBCATEGORIES[category].sample.second }
+    category { SERVICE_SUBCATEGORIES.keys.sample }
+    subcategory { SERVICE_SUBCATEGORIES[category].sample }
 
     user
 

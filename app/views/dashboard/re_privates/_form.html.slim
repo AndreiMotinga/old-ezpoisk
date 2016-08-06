@@ -13,13 +13,13 @@
 
   .row
     .col-xs-12.col-sm-6
-      = f.select :post_type, RE_TYPES, label: '* Тип объявления'
+      = f.select :post_type, ru(RE_TYPES), label: '* Тип объявления'
     .col-xs-12.col-sm-6
-      = f.select :duration, RE_DURATION, include_blank: true, label: "Продолжительность"
+      = f.select :duration, ru(RE_DURATION), include_blank: true, label: "Продолжительность"
 
   .row
     .col-xs-12.col-sm-6
-      = f.select :rooms, ROOM_OPTIONS, label: "* Комнат"
+      = f.select :rooms, ru(ROOM_OPTIONS), label: "* Комнат"
     .col-xs-12.col-sm-6
       = f.number_field :price, label: 'Цена'
 

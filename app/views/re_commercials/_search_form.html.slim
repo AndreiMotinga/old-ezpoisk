@@ -14,7 +14,7 @@ form.form-horizontal action=re_commercials_path method="get"
     .col-xs-12.col-sm-6
       = label_tag "Тип объявления", nil
       = select_tag :post_type,
-                   options_for_select(RE_TYPES, params[:post_type]),
+                   options_for_select(ru(RE_TYPES), params[:post_type]),
                    include_blank: true,
                    class: "form-control"
     .col-xs-12.col-sm-6
@@ -26,7 +26,7 @@ form.form-horizontal action=re_commercials_path method="get"
     .col-xs-12.col-sm-6
       = label_tag "Категория", nil
       = select_tag :category,
-                   options_for_select(RE_COMMERCIAL_CATEGORIES, params[:category]),
+                   options_for_select(ru(RE_COMMERCIAL_CATEGORIES), params[:category]),
                    include_blank: true,
                    class: "form-control"
 

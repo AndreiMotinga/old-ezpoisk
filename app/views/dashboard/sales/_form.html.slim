@@ -5,7 +5,7 @@
   hr.white-hr
 
   = f.text_field :title, label: '* Заголовок'
-  = f.select :category, SALE_CATEGORIES, include_blank: true, label: '* Категория'
+  = f.select :category, ru(SALE_CATEGORIES), include_blank: true, label: '* Категория'
   = f.number_field :price, label: 'Цена'
   hr.white-hr
 

@@ -1,55 +1,11 @@
-# todo freeze these
-RE_COMMERCIAL_CATEGORIES = [
-  %w(Офис office),
-  %w(Торговля sales),
-  %w(Промышленность industry),
-  %w(Парковка parking),
-  %w(Другое other)
-].freeze
-
-RE_TYPES = [
-  ["Сдаю в аренду", "leasing"],
-  ["Ищу в аренду", "renting"],
-  ["Продаю", "selling"],
-  ["Хочу купить", "buying"]
-].freeze
-
-RE_DURATION = [
-  %w(почасово hourly),
-  %w(посуточно daily ),
-  %w(понедельно weekly),
-  %w(помесячно monthly)
-].freeze
-
-MODELS = [
-  ["Частная", "RePrivate"],
-  ["Коммерческая", "ReCommercial"],
-  ["Услуги", "Service"],
-  ["Работа", "Job"],
-  ["Продается", "Sale" ],
-  ["Новость", "Post" ],
-  ["Вопрос", "Question" ]
-].freeze
-
-ROOM_OPTIONS  = [
-  ["комната", "room"],
-  ["место в комнате", "bed"],
-  ["студия", "studio"],
-  ["1-спальная", "1-bebroom"],
-  ["2-спальная", "2-bebroom"],
-  ["3-спальная", "3-bebroom"],
-  ["4-спальная", "4-bebroom"],
-  ["5-спальная", "5-bebroom"],
-  ["6-спальная", "6-bebroom"],
-  ["7-спальная", "7-bebroom"],
-  ["8-спальная", "8-bebroom"],
-  ["9-спальная", "9-bebroom"]
-].freeze
-
-JOB_CATEGORIES = [
-  %w(Требуется wanted),
-  %w(Ищу seeking),
-].freeze
+RE_COMMERCIAL_CATEGORIES = %w(office sales industry parking other).freeze
+RE_TYPES = %w(leasing renting selling buying).freeze
+RE_DURATION = %w(hourly daily weekly monthly ).freeze
+ROOM_OPTIONS = %w(room bed studio 1-bebroom 2-bebroom 3-bebroom 4-bebroom
+                  5-bebroom 6-bebroom 7-bebroom 8-bebroom 9-bebroom).freeze
+SALE_CATEGORIES = %w(transportation home kids clothes electronics pets plants
+                     sales).freeze
+JOB_CATEGORIES = %w(wanted seeking).freeze
 
 # todo
 JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
@@ -180,31 +136,6 @@ JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
     ["другое", "other"]
   ]
 ).freeze
-
-SALE_CATEGORIES = [
-  ["Транспорт", "transportation"],
-  ["Для дома", "home"],
-  ["Для детей", "kids"],
-  ["Одежда", "clothes"],
-  ["Электроника", "electronics"],
-  ["Домашние животные", "pets"],
-  ["Растения", "plants"],
-  ["Распродажа", "sales"]
-].freeze
-
-SERVICE_CATEGORIES = [
-  ["Автоуслуги", "auto"],
-  ["Адвокаты", "lawers"],
-  ["Красота", "beauty"],
-  ["Медицина", "medical"],
-  ["Недвижимость", "real-estate"],
-  ["Образование", "education"],
-  ["Работа", "work"],
-  ["Ремонт", "repairs"],
-  ["Строительство", "construction"],
-  ["Магазины", "stores"],
-  ["Другие услуги", "other"]
-].freeze
 
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "auto": [
