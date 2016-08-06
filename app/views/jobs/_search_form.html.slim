@@ -9,17 +9,15 @@ form.form-horizontal action=jobs_path method="get"
                    include_blank: true,
                    class: "form-control"
     .col-xs-12.col-sm-6
-      = label_tag "Категории", nil
-      = select_tag :tag_list,
-                   options_for_select(Job.taggings_list, params[:tag_list]),
-                   multiple: true,
-                   class: "form-control my-dropdown-multiple"
-
+      = label_tag "Ключевое слово", nil
+      = text_field_tag :keyword, params[:keyword], class: "form-control"
 
   br
-
-  = label_tag "Ключевое слово", nil
-  = text_field_tag :keyword, params[:keyword], class: "form-control"
+  = label_tag "Категории", nil
+  = select_tag :tag_list,
+               options_for_select(Job.taggings_list, params[:tag_list]),
+               multiple: true,
+               class: "form-control my-dropdown-multiple"
 
   hr
 

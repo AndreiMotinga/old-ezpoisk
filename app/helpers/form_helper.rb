@@ -72,4 +72,9 @@ module FormHelper
   def ru(opts)
     opts.map{ |k| [t(k), k] }
   end
+
+  def value_or_param
+    return @job.category if @job.category.present?
+    params[:category]
+  end
 end

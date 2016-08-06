@@ -44,5 +44,6 @@ class Job < ActiveRecord::Base
   def self.taggings_list
     ActsAsTaggableOn::Tag.joins(:taggings)
                          .where("taggings.taggable_type = ?", "Job")
+                         .uniq
   end
 end

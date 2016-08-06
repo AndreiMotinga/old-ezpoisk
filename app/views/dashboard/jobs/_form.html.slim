@@ -1,4 +1,5 @@
 = bootstrap_form_for([:dashboard, @job]) do |f|
+  = hidden_field_tag 'job[category]', value_or_param
 
   -  if current_user.admin?
     = f.text_field :source, label: "источник"
@@ -10,18 +11,14 @@
   hr.white-hr
 
   .row
-    .col-sm-6
-      = f.select :category,
-                 options_for_select(ru(JOB_CATEGORIES), params[:category]),
-                 label: 'Раздел'
-
-    .col-sm-6
+    .col-xs-12
       = label_tag "Категории", nil
       = collection_select :job,
         :tag_list,
         ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
         { selected: @job.tag_list },
         { multiple: true, name: 'job[tag_list][]', class: "my-dropdown-multiple" }
+  br
 
   .row
     .col-sm-6
