@@ -7,135 +7,79 @@ SALE_CATEGORIES = %w(transportation home kids clothes electronics pets plants
                      sales).freeze
 JOB_CATEGORIES = %w(wanted seeking).freeze
 
-# todo
-JOB_SUBCATEGORIES = HashWithIndifferentAccess.new(
-  "Туризм, Рестораны, Бары": [
-    ["все", "administration, watiers, bartenders, kitchen-workers, tourism"],
-    ["администрация ресторана", "administration"],
-    ["официант, бармен", "watiers, bartenders"],
-    ["работники кухни", "kitchen-workers"],
-    ["туризм", "tourism"]
-  ],
-  "Сельское хозяйство": [
-    ["все", "agronomy, veterinary"],
-    ["агрономия", "agronomy"],
-    ["зоотехника и ветеринария", "veterinary"]
-  ],
-  "Юриспруденция и Страхование": [
-    ["все", "law, insurance"],
-    ["юристы, адвокаты, нотариусы", "law"],
-    ["страхование, коллекторы, приставы, оценщики", "insurance"]
-  ],
-  "Спорт и Красота": [
-    ["все", "makeup artist, manicure-pedicure, hairdresser, dancers, trainer"],
-    ["визажист/косметолог", "makeup artist"],
-    ["мастер маникюра / педикюра", "manicure-pedicure"],
-    ["парикмахер, стилист", "hairdresser"],
-    ["танцовщицы", "dancers"],
-    ["тренер, инструктор", "trainer"]
-  ],
-  "Банки, Финансы, Бухгалтерия": [
-    ["все", "auditing, lease, accounting"],
-    ["аудиторство", "auditing"],
-    ["банки, кредитование, лизинг", "lease"],
-    ["бухгалтерия", "accounting"]
-  ],
-  "Образование": [
-    ["все", "teachers, preschool, language, trainings"],
-    ["преподаватели, репетиторы", "teachers"],
-    ["дошкольное образование", "preschool"],
-    ["иностранные языки", "language"],
-    ["курсы, семинары, тренинги", "trainings"]
-  ],
-  "Дизайн, Искусство, Развлечения": [
-    ["все", "design, art, entertainment, photo-video"],
-    ["дизайн и графика", "design"],
-    ["искусство", "art"],
-    ["развлечения", "entertainment"],
-    ["фото, видео, аудио", "photo-video"]
-  ],
-  "Транспорт и Логистика": [
-    ["Все", "carwash, autoservice, driver, moving, gas-stations"],
-    ["автомойка", "carwash"],
-    ["автосервис", "autoservice"],
-    ["водитель / экспедитор", "driver"],
-    ["логистика и перевозки", "moving"],
-    ["работник заправки", "gas-stations"],
-  ],
-  "Медицина и Фармацевтика": [
-    ["все", "massage, hospitals, farmacies"],
-    ["массаж", "massage"],
-    ["медицинский персонал", "hospitals"],
-    ["фармацевтика", "farmacies"]
-  ],
-  "IT и Телекоммуникации": [
-    ["все", "development, management, network, telecommunications, tech-repairs, seo"],
-    ["it программирование", "development"],
-    ["it менеджмент", "management"],
-    ["системное администрирование", "network"],
-    ["телекоммуникации", "telecommunications"],
-    ["ремонт компьютеров и телефонов", "tech-repairs"],
-    ["seo", "seo"]
-  ],
-  "Производство, промышленность": [
-    ["все", "engineers, ingustry-maganers, sewing, production-worker"],
-    ["инженеры/технологи производства", "engineers"],
-    ["менеджмент производства", "ingustry-maganers"],
-    ["швейный бизнес", "sewing"],
-    ["рабочие на производство", "production-worker"]
-  ],
-  "Строительство и Недвижимость": [
-    ["все", "realty, architecture, building-materials, building-expertise"],
-    ["недвижимость", "realty"],
-    ["проектирование и архитектура", "architecture"],
-    ["производство стройматериалов", "building-materials"],
-    ["строительные специализации", "building-expertise"]
-  ],
-  "СМИ, Журналистика, Переводы": [
-    ["все", "host, journalists, tranlations, producers"],
-    ["ведущий", "host"],
-    ["журналистика", "journalists"],
-    ["переводчики", "tranlations"],
-    ["продюсер", "producers"]
-  ],
-  "Торговля и Продажи": [
-    ["все", "customer-support, retailers, telemarketing, sale-representatives, sales-magagement"],
-    ["менеджер по работе с клиентами", "customer-support"],
-    ["продавцы, кассиры", "retailers"],
-    ["продажи по телефону (телемаркетинг)", "telemarketing"],
-    ["торговые представители", "sale-representatives"],
-    ["управление продажами", "sales-magagement"]
-  ],
-  "Охрана и Безопасность": [
-    ["все", "bodyguard, security"],
-    ["охранник / телохранитель", "bodyguard"],
-    ["специалист по безопасности", "security"]
-  ],
-  "Персонал для дома и офиса": [
-    ["все", "curier, remote-work, home-attendant, front-desk, misc, cleaning"],
-    ["курьер", "curier"],
-    ["удаленная работа", "remote-work"],
-    ["няня, сиделка", "home-attendant"],
-    ["офис-менеджер / секретарь", "front-desk"],
-    ["разнорабочие", "misc"],
-    ["уборщица/горничная", "cleaning"]
-  ],
-  "HR, Соц. работа": [
-    ["все", "психология / соц. работа, hr, кадры"],
-    ["психология / соц. работа", "social"],
-    ["hr, кадры", "human-resources"]
-  ],
-  "Маркетинг, Реклама, PR": [
-    ["все", "копирайтинг / контент-менеджмент, маркетинг, промоутер, pr"],
-    ["копирайтинг / контент-менеджмент", "copywriters"],
-    ["маркетинг", "marketing"],
-    ["промоутер", "promoters"],
-    ["pr" , "pr"]
-  ],
-  "Другое": [
-    ["другое", "other"]
-  ]
-).freeze
+# todo remove
+JOB_SUBCATEGORIES = [
+  ["администрация ресторана", "administration"],
+  ["официант", "watiers"],
+  ["бармен", "bartenders"],
+  ["работники кухни", "kitchen-workers"],
+  ["туризм", "tourism"],
+  ["агрономия", "agronomy"],
+  ["зоотехника и ветеринария", "veterinary"],
+  ["юристы, адвокаты, нотариусы", "law"],
+  ["страхование, коллекторы, приставы, оценщики", "insurance"],
+  ["визажист/косметолог", "makeup artist"],
+  ["мастер маникюра / педикюра", "manicure-pedicure"],
+  ["парикмахер, стилист", "hairdresser"],
+  ["танцовщицы", "dancers"],
+  ["тренер, инструктор", "trainer"],
+  ["аудиторство", "auditing"],
+  ["банки, кредитование, лизинг", "lease"],
+  ["бухгалтерия", "accounting"],
+  ["преподаватели, репетиторы", "teachers"],
+  ["дошкольное образование", "preschool"],
+  ["иностранные языки", "language"],
+  ["курсы, семинары, тренинги", "trainings"],
+  ["дизайн и графика", "design"],
+  ["искусство", "art"],
+  ["развлечения", "entertainment"],
+  ["фото, видео, аудио", "photo-video"],
+  ["автомойка", "carwash"],
+  ["автосервис", "autoservice"],
+  ["водитель / экспедитор", "driver"],
+  ["логистика и перевозки", "moving"],
+  ["работник заправки", "gas-stations"],
+  ["массаж", "massage"],
+  ["медицинский персонал", "hospitals"],
+  ["фармацевтика", "farmacies"],
+  ["it программирование", "development"],
+  ["it менеджмент", "management"],
+  ["системное администрирование", "network"],
+  ["телекоммуникации", "telecommunications"],
+  ["ремонт компьютеров и телефонов", "tech-repairs"],
+  ["seo", "seo"],
+  ["инженеры/технологи производства", "engineers"],
+  ["менеджмент производства", "ingustry-maganers"],
+  ["швейный бизнес", "sewing"],
+  ["рабочие на производство", "production-worker"],
+  ["недвижимость", "realty"],
+  ["проектирование и архитектура", "architecture"],
+  ["производство стройматериалов", "building-materials"],
+  ["строительные специализации", "building-expertise"],
+  ["ведущий", "host"],
+  ["журналистика", "journalists"],
+  ["переводчики", "tranlations"],
+  ["продюсер", "producers"],
+  ["менеджер по работе с клиентами", "customer-support"],
+  ["продавцы, кассиры", "retailers"],
+  ["продажи по телефону (телемаркетинг)", "telemarketing"],
+  ["торговые представители", "sale-representatives"],
+  ["управление продажами", "sales-magagement"],
+  ["охранник / телохранитель", "bodyguard"],
+  ["специалист по безопасности", "security"],
+  ["курьер", "curier"],
+  ["удаленная работа", "remote-work"],
+  ["няня, сиделка", "home-attendant"],
+  ["офис-менеджер / секретарь", "front-desk"],
+  ["разнорабочие", "misc"],
+  ["уборщица/горничная", "cleaning"],
+  ["психология / соц. работа", "social"],
+  ["hr, кадры", "human-resources"],
+  ["копирайтинг / контент-менеджмент", "copywriters"],
+  ["маркетинг", "marketing"],
+  ["промоутер", "promoters"],
+  ["pr" , "pr"]
+].freeze
 
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "auto": %w(car-rentals autoservices carwash auto-stores driver-schools

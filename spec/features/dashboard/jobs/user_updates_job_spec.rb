@@ -13,7 +13,6 @@ feature "user updates job" do
     fill_in "Телефон", with: attrs.phone
     fill_in "Email", with: attrs.email
     find("option[value='#{attrs.category}']").select_option
-    find("option[value='#{attrs.subcategory}']").select_option
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
     check("Активно")

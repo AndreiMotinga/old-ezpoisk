@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   # before_action :set_partners, only: :index
 
   def index
-    @jobs = Job.includes(:state, :city)
+    @jobs = Job.includes(:state, :city, :taggings)
                .filter(sliced_params)
                .page(params[:page])
   end
@@ -17,7 +17,7 @@ class JobsController < ApplicationController
   private
 
   def sliced_params
-    params.slice(:state_id, :city_id, :keyword, :category, :subcategory, :geo_scope)
+    params.slice(:state_id, :city_id, :keyword, :category,:geo_scope, :tag_list)
   end
 
   def set_partners

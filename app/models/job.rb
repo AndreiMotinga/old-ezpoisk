@@ -1,4 +1,5 @@
 class Job < ActiveRecord::Base
+  acts_as_taggable
   acts_as_mappable
   acts_as_commentable
   include MyFriendlyId
@@ -38,5 +39,10 @@ class Job < ActiveRecord::Base
 
   def show_url
     url_helpers.job_url(self)
+  end
+
+  def self.taggings_list
+    ActsAsTaggableOn::Tag.joins(:taggings)
+                         .where("taggings.taggable_type = ?", "Job")
   end
 end

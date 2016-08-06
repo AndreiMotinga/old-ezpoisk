@@ -19,6 +19,7 @@ module Filterable
     scope :min_price, -> (num) { where("price >= ?", num.to_i) }
     scope :max_price, -> (num) { where("price <= ?", num.to_i) }
     scope :sorted, ->(type) { order type }
+    scope :tag_list, -> (tags) { tagged_with(tags, any: true) }
 
     def self.this_week
       where("created_at > ?", Date.today.at_beginning_of_week).count

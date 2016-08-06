@@ -10,6 +10,7 @@
     = f.text_area :text, label: "Подробности"
 
   .field
+    = label_tag "Тэги", nil
     = collection_select :question,
       :tag_list,
       ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,

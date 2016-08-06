@@ -14,11 +14,14 @@
       = f.select :category,
                  options_for_select(ru(JOB_CATEGORIES), params[:category]),
                  label: 'Раздел'
+
     .col-sm-6
-      = f.select :subcategory,
-                  JOB_SUBCATEGORIES,
-                  { include_blank: true , label: 'Категория' },
-                  class: "job-select my-dropdown"
+      = label_tag "Категории", nil
+      = collection_select :job,
+        :tag_list,
+        ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
+        { selected: @job.tag_list },
+        { multiple: true, name: 'job[tag_list][]', class: "my-dropdown-multiple" }
 
   .row
     .col-sm-6
