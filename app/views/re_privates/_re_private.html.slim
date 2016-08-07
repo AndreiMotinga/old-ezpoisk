@@ -3,7 +3,7 @@
     .col-xs-4.logo-js
       = link_to re_private_path(re_private) do
         = image_tag re_private.logo_url, class: "img-responsive center-block",
-                    alt: "#{t re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}", itemprop: "logo"
+                    alt: "#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}", itemprop: "logo"
 
         - unless re_private.fee
           .hidden-xs
@@ -22,14 +22,14 @@
       span.state-city #{re_private.city.name}, #{re_private.state.name}
 
       / line 2
-      span= t re_private.post_type
+      span= re_private.post_type
       strong= " $#{re_private.price}"
-      span.hidden-xs= "/#{t re_private.duration}"
+      span.hidden-xs= "/#{re_private.duration}"
       hr.post-devider
 
       / line 3
       .hidden-xs
-        = t re_private.rooms
+        = re_private.rooms
         = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
         = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
         hr.post-devider
