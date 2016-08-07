@@ -32,4 +32,6 @@
 //= require dropzone_init
 //= require summernote_init
 
+//= require ga
+
 //= require_tree .
