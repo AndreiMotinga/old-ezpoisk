@@ -5,7 +5,7 @@
         img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
             alt="#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}"]
 
-        - unless re_private.fee
+        - if !re_private.fee && re_private.post_type == "renting"
           .hidden-xs
             h4.capture.capture-desktop.text-center Без комиссии
           .visible-xs.capture
