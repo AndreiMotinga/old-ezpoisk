@@ -5,6 +5,7 @@ class RePrivate < ActiveRecord::Base
   include ViewHelpers
 
   validates :rooms, presence: true
+  validates :duration, presence: true
   validates :price, presence: true, numericality: true
   validates :post_type, presence: true
   validates :state_id, presence: true

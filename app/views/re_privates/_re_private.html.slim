@@ -22,14 +22,14 @@
       span.state-city #{re_private.city.name}, #{re_private.state.name}
 
       / line 2
-      span= re_private.post_type
+      span= t re_private.post_type
       strong= " $#{re_private.price}"
-      span.hidden-xs= "/#{re_private.duration}"
+      span.hidden-xs= "#{t re_private.duration}" if re_private.duration.present?
       hr.post-devider
 
       / line 3
       .hidden-xs
-        = re_private.rooms
+        = t re_private.rooms
         = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
         = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
         hr.post-devider
