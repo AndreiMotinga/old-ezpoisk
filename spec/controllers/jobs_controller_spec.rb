@@ -7,8 +7,13 @@ describe JobsController do
 
       get :index
 
+      jobs = assigns(:jobs)
       expect(response).to render_template(:index)
-      expect(assigns(:jobs).size).to eq 2
+      expect(jobs.size).to eq 2
+      expect(IncreaseImpressionsJob.jobs.size).to eq 1
+      job = IncreaseImpressionsJob.jobs.first
+      expect(job["args"].first).to eq jobs.pluck :id
+      expect(job["args"].second).to eq "Job"
     end
 
     it "return only active models" do

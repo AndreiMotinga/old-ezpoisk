@@ -4,6 +4,7 @@ class RePrivatesController < ApplicationController
   def index
     @re_privates = RePrivate.includes(:state, :city)
                             .filter(sliced_params).page(params[:page])
+    IncreaseImpressionsJob.perform_async(@re_privates.pluck(:id), "RePrivate")
   end
 
   def show

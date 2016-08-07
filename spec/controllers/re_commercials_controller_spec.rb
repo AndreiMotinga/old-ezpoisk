@@ -4,13 +4,18 @@ describe ReCommercialsController do
   before { sign_in(@user = create(:user)) }
 
   describe "GET #index" do
-    it "renders the index template and assigns @re_commercials" do
+    it "renders the index template, assigns @re_commercials, schedules job" do
       2.times { create :re_commercial, :active }
 
       get :index
 
+      rc = assigns(:re_commercials)
       expect(response).to render_template(:index)
-      expect(assigns(:re_commercials).size).to eq 2
+      expect(rc.size).to eq 2
+      expect(IncreaseImpressionsJob.jobs.size).to eq 1
+      job = IncreaseImpressionsJob.jobs.first
+      expect(job["args"].first).to eq rc.pluck :id
+      expect(job["args"].second).to eq "ReCommercial"
     end
 
     it "return only active models" do

@@ -5,6 +5,8 @@ class ReCommercialsController < ApplicationController
     @re_commercials = ReCommercial.includes(:state, :city)
                                   .filter(sliced_params)
                                   .page(params[:page])
+    IncreaseImpressionsJob
+      .perform_async(@re_commercials.pluck(:id), "ReCommercial")
   end
 
   def show

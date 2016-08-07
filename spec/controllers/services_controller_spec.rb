@@ -8,7 +8,12 @@ describe ServicesController do
       get :index
 
       expect(response).to render_template(:index)
-      expect(assigns(:services).size).to eq 2
+      services = assigns(:services)
+      expect(services.size).to eq 2
+      expect(IncreaseImpressionsJob.jobs.size).to eq 1
+      job = IncreaseImpressionsJob.jobs.first
+      expect(job["args"].first).to eq services.pluck :id
+      expect(job["args"].second).to eq "Service"
     end
 
     describe "#filter" do

@@ -4,13 +4,18 @@ describe RePrivatesController do
   before { sign_in(@user = create(:user)) }
 
   describe "GET #index" do
-    it "renders the index template and assigns @re_privates" do
+    it "renders the index template, assigns @re_privates, and schedules job" do
       2.times { create :re_private }
 
       get :index
 
+      re_privates = assigns(:re_privates)
       expect(response).to render_template(:index)
-      expect(assigns(:re_privates).size).to eq 2
+      expect(re_privates.size).to eq 2
+      expect(IncreaseImpressionsJob.jobs.size).to eq 1
+      job = IncreaseImpressionsJob.jobs.first
+      expect(job["args"].first).to eq re_privates.pluck :id
+      expect(job["args"].second).to eq "RePrivate"
     end
 
     it "return only active models" do

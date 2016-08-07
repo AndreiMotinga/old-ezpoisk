@@ -8,6 +8,7 @@ class ServicesController < ApplicationController
     @services = Service.includes(:state, :city)
                        .filter(sliced_params)
                        .page(params[:page])
+    IncreaseImpressionsJob.perform_async(@services.pluck(:id), "Service")
   end
 
   def show

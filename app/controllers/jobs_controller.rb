@@ -5,6 +5,7 @@ class JobsController < ApplicationController
     @jobs = Job.includes(:state, :city, :taggings)
                .filter(sliced_params)
                .page(params[:page])
+    IncreaseImpressionsJob.perform_async(@jobs.pluck(:id), "Job")
   end
 
   def show

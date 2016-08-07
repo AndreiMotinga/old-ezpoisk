@@ -4,14 +4,9 @@ class SalesController < ApplicationController
   def index
     @sales = Sale
              .includes(:state, :city)
-             .filter(params.slice(:state_id,
-                                  :city_id,
-                                  :category,
-                                  :keyword,
-                                  :sorted,
-                                  :geo_scope))
-             .order("updated_at desc")
+             .filter(sliced_params)
              .page(params[:page])
+    IncreaseImpressionsJob.perform_async(@sales.pluck(:id), "Sale")
   end
 
   def show
@@ -25,5 +20,9 @@ class SalesController < ApplicationController
 
   def set_partners
     @partner_ads = PartnerAds.new(params[:category])
+  end
+
+  def sliced_params
+    params.slice(:state_id, :city_id, :category, :keyword, :sorted, :geo_scope)
   end
 end

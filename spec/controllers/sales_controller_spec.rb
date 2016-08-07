@@ -2,13 +2,18 @@ require "rails_helper"
 
 describe SalesController do
   describe "GET #index" do
-    it "renders the index template and assigns @sales" do
+    it "renders the index template, assigns @sales, schedules job" do
       2.times { create :sale, :active }
 
       get :index
 
+      sales = assigns(:sales)
       expect(response).to render_template(:index)
-      expect(assigns(:sales).size).to eq 2
+      expect(sales.size).to eq 2
+      expect(IncreaseImpressionsJob.jobs.size).to eq 1
+      job = IncreaseImpressionsJob.jobs.first
+      expect(job["args"].first).to eq sales.pluck :id
+      expect(job["args"].second).to eq "Sale"
     end
 
     it "return only active models" do
