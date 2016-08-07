@@ -13,7 +13,8 @@
   - if record.try(:phone).present?
     li.list-group-item
       span.glyphicon.glyphicon-earphone
-      strong itemprop="telephone"  #{record.phone}
+      a href="tel:#{record.phone}"
+        strong itemprop="telephone"  #{record.phone}
 
   - unless record.try(:fax).blank?
     li.list-group-item

@@ -13,7 +13,7 @@ module FormHelper
 
   def sort_select
     sort_opts = { "Подешевле" => "price asc",
-                  "Подороже"  => "price desc",
+                  "Подороже"  => "case when price is null then -1 else price end desc",
                   "Поменьше"  => "space asc",
                   "Побольше"  => "space desc",
                   "Поновее"   => "updated_at desc" }

@@ -26,7 +26,7 @@
   .col-xs-12.white-block
     .panel.panel-default
       .panel-body
-        = sanitize @re_commercial.description
+        = markdown @re_commercial.description
 
 .col-xs-12
   = render 'shared/show/map', record: @re_commercial

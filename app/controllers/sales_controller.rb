@@ -8,6 +8,7 @@ class SalesController < ApplicationController
                                   :city_id,
                                   :category,
                                   :keyword,
+                                  :sorted,
                                   :geo_scope))
              .order("updated_at desc")
              .page(params[:page])

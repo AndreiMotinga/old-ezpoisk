@@ -14,8 +14,10 @@
 
       .panel-body
         = link_to post_path(post) do
-          = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
-        h4= post.title
+          - if post.image?
+            = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
+          h4.title= post.title
+
         p
           = strip_tags(post.text).truncate(380)
           - if strip_tags(post.text).size > 380

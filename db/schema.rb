@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160807003034) do
+ActiveRecord::Schema.define(version: 20160807031813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,7 +233,7 @@ ActiveRecord::Schema.define(version: 20160807003034) do
     t.string   "street",            default: "",    null: false
     t.string   "post_type",         default: "",    null: false
     t.string   "phone",             default: "",    null: false
-    t.integer  "price",                             null: false
+    t.integer  "price"
     t.integer  "space"
     t.integer  "zip"
     t.float    "lat"
@@ -260,7 +260,7 @@ ActiveRecord::Schema.define(version: 20160807003034) do
     t.string   "post_type",         default: "",    null: false
     t.string   "duration",          default: "",    null: false
     t.string   "phone",             default: "",    null: false
-    t.integer  "price",             default: 0,     null: false
+    t.integer  "price"
     t.integer  "baths"
     t.integer  "space"
     t.string   "rooms",                             null: false
@@ -301,9 +301,9 @@ ActiveRecord::Schema.define(version: 20160807003034) do
     t.datetime "updated_at",                     null: false
     t.integer  "zip"
     t.string   "street"
-    t.string   "price"
     t.integer  "impressions_count", default: 0
     t.string   "slug"
+    t.integer  "price"
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["description"], name: "index_sales_on_description", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree

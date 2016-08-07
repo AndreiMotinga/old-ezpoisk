@@ -17,6 +17,7 @@ gem "devise"
 gem "devise-i18n-views"
 gem "devise-i18n"
 gem "devise-async", github: "mhfs/devise-async", branch: "devise-4.x"
+gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 
 gem "bootstrap_form"
 gem "kaminari"

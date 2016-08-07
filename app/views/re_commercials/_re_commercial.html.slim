@@ -1,6 +1,6 @@
 .row.white-block class=("user-hidden" if re_commercial.user_hidden?(current_user)) data-hidden=re_commercial.id
   .listing
-    .col-xs-4.logo-js
+    .col-xs-4.logo data-id="logo"
       = link_to re_commercial_path(re_commercial) do
         = image_tag re_commercial.logo_url, class: "img-responsive center-block",
                     alt: "#{t re_commercial.post_type} коммерческой недвижимости - #{re_commercial.street} #{re_commercial.phone}"

@@ -4,14 +4,14 @@
   = f.text_field :street, label: '* Улица'
   hr.white-hr
 
-  = f.number_field :price, label: '* Цена'
+  = f.number_field :price, label: 'Цена'
   = f.select :post_type, ru(RE_TYPES), include_blank: true, label: '* Тип объявления'
   = f.select :category,
              ru(RE_COMMERCIAL_CATEGORIES),
              include_blank: true, label: "* Категория"
   hr.white-hr
 
-  = f.text_area :description, rows: 5, label: 'Описание', class: "summernote"
+  = f.text_area :description, rows: 5, label: 'Описание'
   hr.white-hr
 
   = f.number_field :space, label: 'Площадь'

@@ -1,30 +1,28 @@
 .row.white-block class=("user-hidden" if job.user_hidden?(current_user)) data-hidden=job.id
   .listing
     .panel.panel-default
-      .panel-heading
-        - if job.title.present?
+      - if job.title.present?
+        .panel-heading
           h4= link_to job.title, job_path(job)
 
       .panel-body
         - if job.logo?
-          = link_to job_path(job) do
-            = image_tag job.logo.url(:large),
-                        alt: job.title,
-                        class: "img-responsive center-block",
-                        itemprop: "image"
+          = image_tag job.logo.url(:large),
+                      alt: job.title,
+                      class: "img-responsive center-block",
+                      itemprop: "image"
           hr
 
         .description itemprop="description"
           = link_to job_path(job) do
-            = sanitize job.description
+            = markdown job.description
         p.tags
           - job.tag_list.each do |sub|
             a.tag= " ##{sub} "
 
-        span #{job.city.name}, #{job.state.name}
       .panel-footer
+        span #{job.category} | #{time_ago_in_words job.updated_at} назад
         .row
-          .col-xs-6
-            h6 #{job.category} | #{time_ago_in_words job.updated_at} назад
-          .col-xs-6
-            .favor-links.pull-right= render "shared/favor_links", record: job
+          .col-xs-7
+            strong #{job.city.name}, #{job.state.name}
+          .favor-links.pull-right= render "shared/favor_links", record: job

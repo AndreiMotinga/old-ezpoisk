@@ -1,10 +1,9 @@
 .row.white-block class=("user-hidden" if sale.user_hidden?(current_user)) data-hidden=sale.id
   .listing
 
-    .col-xs-4.logo-js
+    .col-xs-4.logo data-id="logo"
       = link_to sale_path(sale) do
-        = image_tag sale.logo_url, class: "img-responsive center-block",
-          alt: "Продается #{sale.title}"
+        img.img-responsive.center-block src=sale.logo_url data-id="logo" alt="Продается #{sale.title}"
 
     .col-xs-8
       / line 1

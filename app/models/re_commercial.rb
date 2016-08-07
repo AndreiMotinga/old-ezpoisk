@@ -5,7 +5,6 @@ class ReCommercial < ActiveRecord::Base
   include ViewHelpers
 
   validates :post_type, presence: true
-  validates :price, presence: true
   validates :category, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true

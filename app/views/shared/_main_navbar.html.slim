@@ -8,7 +8,7 @@ nav.navbar.navbar-fixed-top.navbar-main.shadow
         span.icon-bar
       = link_to root_path do
         = image_tag "logos/ezpoisk", class: "img-responsive"
-      - if controller_name == "questions" || controller_name == "profiles" || controller_name == "users" || action_name == "new" || action_name == "edit"
+      - if controller_name == "questions" || controller_name == "profiles" || controller_name == "users" || action_name == "new" || action_name == "edit" || action_name == "show"
         button.hamburger.is-closed data-toggle="offcanvas" type="button"
           span.hamb-top
           span.hamb-middle

@@ -1,9 +1,9 @@
 .row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
   .listing
-    .col-xs-4.logo-js
+    .col-xs-4.logo
       = link_to re_private_path(re_private) do
-        = image_tag re_private.logo_url, class: "img-responsive center-block",
-                    alt: "#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}", itemprop: "logo"
+        img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
+            alt="#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}"]
 
         - unless re_private.fee
           .hidden-xs
@@ -12,33 +12,23 @@
             h5.capture.text-center $
 
     .col-xs-8
-      / line 1
-      .hidden-xs
-        h4.title= link_to re_private.title, re_private
-      .visible-xs
-        h5.title= link_to re_private.title, re_private
+      h4.title= re_private.title
 
       / line 2
       span.state-city #{re_private.city.name}, #{re_private.state.name}
-
-      / line 2
-      span= t re_private.post_type
-      strong= " $#{re_private.price}"
-      span.hidden-xs= "#{t re_private.duration}" if re_private.duration.present?
       hr.post-devider
 
       / line 3
-      .hidden-xs
-        = t re_private.rooms
-        = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
-        = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
-        hr.post-devider
+      span= "#{t re_private.post_type} | "
+      strong= "$#{re_private.price}"
+      span.hidden-xs= " | #{t re_private.duration}"
+      hr.post-devider
 
       / line 4
-      - if re_private.phone?
-        span.glyphicon.glyphicon-earphone
-        span.company-phone= " " + re_private.phone
-        hr.post-devider
+      = t re_private.rooms
+      = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
+      = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
+      hr.post-devider
 
       / line 5
       .favor-links.pull-right= render "shared/favor_links", record: re_private

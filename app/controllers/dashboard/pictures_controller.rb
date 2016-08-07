@@ -1,7 +1,6 @@
 class Dashboard::PicturesController < ApplicationController
   def index
     @pictures = klass.find(params["id"]).pictures
-    @view = klass == Gallery ? "profiles/picture" : "dashboard/pictures/picture"
   end
 
   def create
