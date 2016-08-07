@@ -34,4 +34,7 @@
 
 //= require ga
 
+//= require compatability
+//= require facebook
+
 //= require_tree .
