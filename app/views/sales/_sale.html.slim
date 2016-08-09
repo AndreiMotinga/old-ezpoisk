@@ -33,6 +33,6 @@
         hr.post-devider/
 
       / line 4
-      .hidden-xs
-        .favor-links.pull-right= render "shared/favor_links", record: sale
-        span= time_ago_in_words sale.updated_at
+      .favor-links.pull-right= render "shared/favor_links", record: sale
+      span.hidden-xs data-time=sale.id
+        = timeago_tag sale.updated_at

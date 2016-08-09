@@ -33,4 +33,5 @@
 
       / line 5
       .favor-links.pull-right= render "shared/favor_links", record: service
-      span.hidden-xs= time_ago_in_words service.updated_at
+      span.hidden-xs data-time=service.id
+        = timeago_tag service.updated_at

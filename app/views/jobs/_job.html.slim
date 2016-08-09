@@ -21,7 +21,10 @@
             a.tag= " ##{sub} "
 
       .panel-footer
-        span #{job.category} | #{time_ago_in_words job.updated_at} назад
+        span #{job.category} |
+        = " "
+        span.hidden-xs data-time=job.id
+          = timeago_tag job.updated_at
         .row
           .col-xs-7
             strong #{job.city.name}, #{job.state.name}

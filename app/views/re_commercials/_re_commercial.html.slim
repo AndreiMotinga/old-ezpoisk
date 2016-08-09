@@ -35,4 +35,5 @@
 
       / line 4
       .favor-links.pull-right= render "shared/favor_links", record: re_commercial
-      span.hidden-xs= time_ago_in_words re_commercial.updated_at
+      span.hidden-xs data-time=re_commercial.id
+        = time_ago_in_words re_commercial.updated_at

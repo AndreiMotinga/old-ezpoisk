@@ -37,4 +37,6 @@
 //= require compatability
 //= require facebook
 
+//= require rails-timeago-all
+
 //= require_tree .
