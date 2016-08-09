@@ -19,7 +19,8 @@
               h4.name= @post.user.name_to_show
               p.text-muted= @post.created_at.strftime("%d %B %Y")
         .panel-body
-          = image_tag @post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
+          - if @post.image?
+            = image_tag @post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
           h4= @post.title
           p= sanitize @post.text
 
