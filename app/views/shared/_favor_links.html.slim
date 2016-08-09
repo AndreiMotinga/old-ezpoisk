@@ -13,6 +13,10 @@
   span.glyphicon.glyphicon-remove.text-muted
 
 - if record.user_id == current_user.try(:id)
+  a.btn.btn-sm.btn-default[href="#" data-action="touch" data-id=record.id data-type=record.class.to_s
+    data-content="Обновить" data-toggle="popover" role="button" tabindex="0" data-placement="top"]
+    span.glyphicon.glyphicon-refresh.text-muted
+
   = link_to record.edit_link, class: "btn btn-sm btn-default",
           "data-content": "Редактировать",
           "data-toggle": "popover",

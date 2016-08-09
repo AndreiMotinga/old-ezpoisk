@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   default_url_options host: "https://www.ezpoisk.com"
   resources :stripe_subscriptions, only: [:create, :update, :destroy]
   resources :favorites, only: [:create]
+  post "favorites/touch", to: "favorites#touch"
+
   resources :comments, only: [:create]
 
   get "profiles/:id", to: "profiles#show", as: :profile

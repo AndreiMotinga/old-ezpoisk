@@ -10,7 +10,16 @@ class FavoritesController < ApplicationController
     end
   end
 
+  def touch
+    @record = record_params["type"].constantize.find(record_params[:id])
+    @record.touch
+  end
+
   private
+
+  def record_params
+    params.require(:record).permit(:id, :type)
+  end
 
   def favorite_params
     params.require(:favorite).permit(
