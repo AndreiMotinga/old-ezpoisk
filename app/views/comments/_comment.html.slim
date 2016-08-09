@@ -1,14 +1,19 @@
 .comments-show
   .comment
-    .well
-      = comment.body
-      .comment-nav
-        a.comment-reply href="#" data-href="comment-reply-#{comment.id}" reply
-      .reply-form
-        = bootstrap_form_for @new_comment, remote: true do |f|
-          = f.hidden_field :commentable_id, value: @new_comment.commentable_id
-          = f.hidden_field :commentable_type, value: @new_comment.commentable_type
-          = f.hidden_field :comment_id, value: comment.id
-          = f.text_field :body, class: 'form-control', skip_label: true
+    .panel.panel-default.panel-sm
+      .panel-heading
+        span.pull-right= timeago_tag comment.created_at
+        span= comment.user.name_to_show
+      .panel-body
+        = markdown comment.body
+        span.comment-nav
+          a.comment-reply href="#" data-href="comment-reply-#{comment.id}" reply
+        .reply-form
+          = bootstrap_form_for @new_comment, remote: true do |f|
+            = f.hidden_field :commentable_id, value: @new_comment.commentable_id
+            = f.hidden_field :commentable_type, value: @new_comment.commentable_type
+            = f.hidden_field :comment_id, value: comment.id
+            = f.text_area :body, rows: 1, class: 'form-control',
+                           skip_label: true, "data-action": "enter", required: true
   div data-target="comment-children-#{comment.id}"
     = render comment.children

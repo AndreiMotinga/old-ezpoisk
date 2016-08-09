@@ -1,12 +1,14 @@
 .col-xs-12.white-block
   .panel.panel-default
     - if user_signed_in?
-      .panel-heading
-        h5= "#{commentable.comment_threads.count} комментариев"
+      .panel-heading.comments-section
+        a[aria-controls="collapseExample" aria-expanded="false"
+          data-toggle="collapse" href="#collapseExample" role="button"]
+          h5= "комментариев #{commentable.comment_threads.count}  |  показать"
+
         = render "comments/form"
-      .panel-body
-        .comments-container data-target="comments-container"
-          = render commentable.root_comments.includes(:children).order("created_at desc")
+      #collapseExample.collapse.panel-body.comments-container data-target="comments-container"
+        = render commentable.root_comments.includes(:user).order("created_at desc")
     - else
       .panel-heading
         a#login_link.text.text-muted src="" data-target="#new_session_modal" data-toggle="modal" Войдите, чтобы коментировать
