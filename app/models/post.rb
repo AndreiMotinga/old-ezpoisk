@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  scope :desc, -> { order("created_at desc") }
+  scope :desc, -> { order("posts.created_at desc") }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :today, -> { where("created_at > ?", Time.zone.yesterday) }

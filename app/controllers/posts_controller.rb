@@ -8,10 +8,10 @@ class PostsController < ApplicationController
                  .by_keyword(params[:keyword])
                  .desc
                  .page(params[:page]).per(10)
+    IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
   end
 
   def show
-    @post.update_column(:impressions_count, @post.impressions_count + 1)
   end
 
   def edit
