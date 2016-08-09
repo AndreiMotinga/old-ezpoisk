@@ -22,7 +22,8 @@ class Sale < ActiveRecord::Base
     Rails.application.routes.url_helpers.edit_dashboard_sale_path(self)
   end
 
+  # todo write these tests
   def show_url
-    url_helpers.job_url(self)
+    url_helpers.sale_url(self)
   end
 end
