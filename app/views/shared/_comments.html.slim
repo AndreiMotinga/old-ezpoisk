@@ -4,7 +4,11 @@
       .panel-heading.comments-section
         a[aria-controls="collapseExample" aria-expanded="false"
           data-toggle="collapse" href="#collapseExample" role="button"]
-          h5= "комментариев #{commentable.comment_threads.count}  |  показать"
+          h5
+            | комментариев
+            = " "
+            span data-comment="count" = commentable.comment_threads.count
+            |  |  показать
 
         = render "comments/form"
       #collapseExample.collapse.panel-body.comments-container data-target="comments-container"

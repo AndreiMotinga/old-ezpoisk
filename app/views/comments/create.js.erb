@@ -1,4 +1,5 @@
 $('input[name="comment[body]"]').val("")
+$('[data-comment="count"]').html("<%= @comment.commentable.comment_threads.count %>")
 <% if @comment.parent  %>
   $("a[data-href='comment-reply-<%= @comment.parent.id %>']").click();
   $('div[data-target="comment-children-<%= @comment.parent.id %>"]').prepend('<%= j render @comment %>')
