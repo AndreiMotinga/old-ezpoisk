@@ -51,6 +51,10 @@ class Post < ActiveRecord::Base
     url_helpers.edit_dashboard_post_path(self)
   end
 
+  def show_url
+    url_helpers.post_url(self)
+  end
+
   def active?
     true
   end

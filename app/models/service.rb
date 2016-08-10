@@ -48,6 +48,10 @@ class Service < ActiveRecord::Base
     url_helpers.edit_dashboard_service_path(self)
   end
 
+  def show_url
+    url_helpers.service_path(self)
+  end
+
   def site_link
     site.match(/http/).present? ? site : "http://#{site}"
   end

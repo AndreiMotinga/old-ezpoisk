@@ -16,6 +16,10 @@ class Answer < ActiveRecord::Base
     get_upvotes.count - get_downvotes.count
   end
 
+  def show_url
+    Rails.application.routes.url_helpers.question_url(question)
+  end
+
   def avatar
     user.avatar(:thumb)
   end
