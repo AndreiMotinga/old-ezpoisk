@@ -54,8 +54,8 @@ class User < ActiveRecord::Base
     role.to_sym == val
   end
 
-  def subscribed?(q_id)
-    Subscription.exists?(user_id: id, question_id: q_id)
+  def subscribed?(id, type)
+    subscriptions.exists?(subscribable_type: type, subscribable_id: id)
   end
 
   def name_to_show

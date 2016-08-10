@@ -40,6 +40,8 @@ describe Dashboard::SalesController do
       expect(entry.enterable_id).to eq sale.id
       expect(entry.enterable_type).to eq sale.class.to_s
       expect(entry.user_id).to eq @user.id
+
+      expect(Subscription.count).to eq 1
     end
   end
 
@@ -69,12 +71,14 @@ describe Dashboard::SalesController do
   describe "DELETE #destroy" do
     it "removes record" do
       sale = create(:sale, user: @user)
+      sale.subscriptions.create(user: @user)
 
       delete :destroy, params: { id: sale.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(Sale.count).to be 0
       expect(Entry.count).to be 0
+      expect(Subscription.count).to be 0
     end
   end
 end

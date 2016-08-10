@@ -11,6 +11,7 @@ describe Job do
   it { should belong_to(:state) }
 
   it { should have_many(:favorites).dependent(:destroy) }
+  it { should have_many(:subscriptions).dependent(:destroy) }
 
   describe "address" do
     context "full string" do

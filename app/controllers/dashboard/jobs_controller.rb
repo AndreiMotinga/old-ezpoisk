@@ -17,9 +17,7 @@ class Dashboard::JobsController < ApplicationController
   def create
     @job = current_user.jobs.build(job_params)
     if @job.save
-      SlackNotifierJob.perform_async(@job.id, "Job")
-      GeocodeJob.perform_async(@job.id, "Job")
-      @job.create_entry(user: current_user)
+      run_jobs_and_notifications
       redirect_to edit_dashboard_job_path(@job), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -46,6 +44,13 @@ class Dashboard::JobsController < ApplicationController
   end
 
   private
+
+  def run_jobs_and_notifications
+    SlackNotifierJob.perform_async(@job.id, "Job")
+    GeocodeJob.perform_async(@job.id, "Job")
+    @job.create_entry(user: current_user)
+    create_subscription(@job)
+  end
 
   def set_job
     @job = current_user.jobs.find(params[:id])

@@ -72,9 +72,14 @@ class AnswersController < ApplicationController
   def create_subscription
     return if Subscription.exists?(
       user_id: current_user.id,
-      question_id: question.id
+      subscribable_id: question.id,
+      subscribable_type: question.class.to_s
     )
-    Subscription.create(user: current_user, question: question)
+    Subscription.create(
+      user_id: current_user.id,
+      subscribable_id: question.id,
+      subscribable_type: question.class.to_s
+    )
   end
 
   def question

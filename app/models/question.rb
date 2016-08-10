@@ -3,8 +3,7 @@ class Question < ActiveRecord::Base
   include MyFriendlyId
   belongs_to :user
   has_many :answers
-  has_many :subscriptions
-  has_many :subscribers, through: :subscriptions, source: :user
+  has_many :subscriptions, as: :subscribable, dependent: :destroy
 
   validates :title, presence: true
   validates_presence_of :tag_list
@@ -74,7 +73,7 @@ class Question < ActiveRecord::Base
   end
 
   def subscribers_emails
-    subscribers.pluck(:email)
+    subscriptions.map(&:user).pluck(:email)
   end
 
   def has_answer?

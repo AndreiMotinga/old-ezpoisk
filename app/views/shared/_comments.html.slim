@@ -10,6 +10,9 @@
             span data-comment="count" = commentable.comment_threads.count
             |  |  показать
 
+        span.pull-right
+          = subscription_links(commentable)
+
         = render "comments/form"
       #collapseExample.collapse.panel-body.comments-container data-target="comments-container"
         = render commentable.root_comments.includes(:user).order("created_at desc")

@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def create_subscription(record)
+    Subscription.create(
+      user: current_user,
+      subscribable_id: record.id,
+      subscribable_type: record.class.to_s
+    )
+  end
+
   def address_changed?(record, prms)
     return true if record.try(:street) != prms[:street]
     return true if record.state_id != prms[:state_id].to_i

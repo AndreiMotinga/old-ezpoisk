@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.save
     @new_comment = Comment.build_from(@comment.commentable, current_user.id, "")
     make_child_comment
-    NotifyAuthorOfCommentJob.perform_async(@comment.id)
+    NotifyListingSubscribersJob.perform_async(@comment.id)
     SlackNotifierJob.perform_async(@comment.id, "Comment")
   end
 

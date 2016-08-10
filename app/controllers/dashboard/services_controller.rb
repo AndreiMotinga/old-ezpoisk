@@ -16,8 +16,7 @@ class Dashboard::ServicesController < ApplicationController
   def create
     @service = current_user.services.build(service_params)
     if @service.save
-      SlackNotifierJob.perform_async(@service.id, "Service")
-      GeocodeJob.perform_async(@service.id, "Service")
+      run_jobs_and_notifications
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else
@@ -46,6 +45,12 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   private
+
+  def run_jobs_and_notifications
+    SlackNotifierJob.perform_async(@service.id, "Service")
+    GeocodeJob.perform_async(@service.id, "Service")
+    @service.create_entry(user: current_user)
+  end
 
   def set_service
     @service = current_user.services.find(params[:id])

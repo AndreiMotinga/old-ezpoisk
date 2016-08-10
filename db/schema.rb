@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160807031813) do
+ActiveRecord::Schema.define(version: 20160810010551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20160807031813) do
     t.integer  "impressions_count", default: 0
     t.string   "slug"
     t.string   "source"
+    t.string   "token"
     t.index ["category"], name: "index_jobs_on_category", using: :btree
     t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
     t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
@@ -247,6 +248,7 @@ ActiveRecord::Schema.define(version: 20160807031813) do
     t.text     "description",       default: "",    null: false
     t.integer  "impressions_count", default: 0
     t.string   "email"
+    t.string   "token"
     t.index ["category"], name: "index_re_commercials_on_category", using: :btree
     t.index ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
     t.index ["price"], name: "index_re_commercials_on_price", using: :btree
@@ -278,6 +280,7 @@ ActiveRecord::Schema.define(version: 20160807031813) do
     t.integer  "impressions_count", default: 0
     t.string   "source"
     t.string   "email"
+    t.string   "token"
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["price"], name: "index_re_privates_on_price", using: :btree
     t.index ["space"], name: "index_re_privates_on_space", using: :btree
@@ -304,6 +307,7 @@ ActiveRecord::Schema.define(version: 20160807031813) do
     t.integer  "impressions_count", default: 0
     t.string   "slug"
     t.integer  "price"
+    t.string   "token"
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["description"], name: "index_sales_on_description", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
@@ -370,12 +374,10 @@ ActiveRecord::Schema.define(version: 20160807031813) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["question_id"], name: "index_subscriptions_on_question_id", using: :btree
-    t.index ["user_id", "question_id"], name: "index_subscriptions_on_user_id_and_question_id", unique: true, using: :btree
+    t.integer "user_id"
+    t.string  "subscribable_type"
+    t.integer "subscribable_id"
+    t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable_type_and_subscribable_id", using: :btree
     t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
 
@@ -495,6 +497,5 @@ ActiveRecord::Schema.define(version: 20160807031813) do
   add_foreign_key "services", "states"
   add_foreign_key "services", "users"
   add_foreign_key "stripe_subscriptions", "services"
-  add_foreign_key "subscriptions", "questions"
   add_foreign_key "subscriptions", "users"
 end

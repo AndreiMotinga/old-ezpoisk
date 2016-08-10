@@ -18,6 +18,7 @@ class Job < ActiveRecord::Base
   belongs_to :user
 
   has_many :favorites, as: :favorable, dependent: :destroy
+  has_many :subscriptions, as: :subscribable, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
   has_attached_file :logo, styles: { large: "755x425>" }

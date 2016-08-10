@@ -32,7 +32,7 @@ describe Dashboard::RePrivatesController do
   end
 
   describe "POST #create" do
-    it "creates new record and entry" do
+    it "creates new record, entry, and subscription" do
       attrs = attributes_for(:re_private)
 
       post :create, params: { re_private: attrs }
@@ -54,6 +54,8 @@ describe Dashboard::RePrivatesController do
       expect(entry.enterable_id).to eq re_private.id
       expect(entry.enterable_type).to eq re_private.class.to_s
       expect(entry.user_id).to eq @user.id
+
+      expect(Subscription.count).to eq 1
     end
 
     it "renders form and displays alert when record isn't saved" do
@@ -88,6 +90,7 @@ describe Dashboard::RePrivatesController do
     it "removes record and entry" do
       re_private = create(:re_private, user: @user)
       re_private.create_entry
+      re_private.subscriptions.create(user: @user)
 
       delete :destroy, params: { id: re_private.id }
 
@@ -95,6 +98,7 @@ describe Dashboard::RePrivatesController do
       expect(RePrivate.count).to eq 0
       expect(flash[:notice]).to eq I18n.t(:post_removed)
       expect(Entry.count).to eq 0
+      expect(Subscription.count).to eq 0
     end
   end
 end

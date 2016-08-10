@@ -16,15 +16,12 @@ Rails.application.routes.draw do
   get "profiles/:id/gallery", to: "profiles#gallery", as: :profile_gallery
 
   resources :points, only: [:create]
+  resources :subscriptions, only: [:create, :destroy]
 
   resources :questions, except: [:destroy], path: :ezanswer do
     collection do
       get "unanswered"
       get "tag/:tag", to: "questions#tag"
-    end
-    member do
-      put "subscribe", to: "questions#subscribe"
-      put "unsubscribe", to: "questions#unsubscribe"
     end
     resources :answers, only: [:new, :edit]
   end

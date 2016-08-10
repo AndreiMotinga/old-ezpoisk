@@ -19,9 +19,7 @@ class Dashboard::RePrivatesController < ApplicationController
   def create
     @re_private = current_user.re_privates.build(re_private_params)
     if @re_private.save
-      SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
-      GeocodeJob.perform_async(@re_private.id, "RePrivate")
-      @re_private.create_entry(user: current_user)
+      run_jobs_and_notifications
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
     else
@@ -49,6 +47,13 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   private
+
+  def run_jobs_and_notifications
+    SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
+    GeocodeJob.perform_async(@re_private.id, "RePrivate")
+    @re_private.create_entry(user: current_user)
+    create_subscription(@re_private)
+  end
 
   def set_re_private
     @re_private = current_user.re_privates.find(params[:id])

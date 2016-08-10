@@ -57,6 +57,8 @@ describe Dashboard::ReCommercialsController do
       expect(entry.enterable_id).to eq re_commercial.id
       expect(entry.enterable_type).to eq re_commercial.class.to_s
       expect(entry.user_id).to eq @user.id
+
+      expect(Subscription.count).to eq 1
     end
   end
 
@@ -87,12 +89,14 @@ describe Dashboard::ReCommercialsController do
   describe "DELETE #destroy" do
     it "removes record" do
       re_commercial = create(:re_commercial, user: @user)
+      re_commercial.subscriptions.create(user: @user)
 
       delete :destroy, params: { id: re_commercial.id }
 
       expect(response).to redirect_to(dashboard_path)
       expect(ReCommercial.count).to be 0
       expect(Entry.count).to be 0
+      expect(Subscription.count).to be 0
     end
   end
 end

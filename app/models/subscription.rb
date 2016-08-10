@@ -1,4 +1,4 @@
 class Subscription < ActiveRecord::Base
   belongs_to :user
-  belongs_to :question
+  belongs_to :subscribable, polymorphic: true
 end

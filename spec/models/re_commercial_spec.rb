@@ -13,6 +13,7 @@ describe ReCommercial do
   it { should belong_to(:city) }
   it { should have_many(:pictures).dependent(:destroy) }
   it { should have_many(:favorites).dependent(:destroy) }
+  it { should have_many(:subscriptions).dependent(:destroy) }
 
   describe "#logo" do
     it "returns logo image of the re_commercial" do

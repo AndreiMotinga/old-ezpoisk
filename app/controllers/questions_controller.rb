@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
 
     if @question.save
       SlackNotifierJob.perform_async(@question.id, "Question")
-      Subscription.create(user: current_user, question: @question)
+      create_subscription
       @question.create_entry(user: current_user)
       redirect_to @question, notice: I18n.t(:q_created)
     else
@@ -57,17 +57,15 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def subscribe
-    @question = Question.find(params[:id])
-    Subscription.create(user: current_user, question: @question)
-  end
-
-  def unsubscribe
-    @question = Question.find(params[:id])
-    Subscription.find_by(user: current_user, question: @question).destroy
-  end
-
   private
+
+  def create_subscription
+    Subscription.create(
+      user: current_user,
+      subscribable_id: @question.id,
+      subscribable_type: @question.class.to_s
+    )
+  end
 
   def set_question
     @question = current_user.questions.find_by_slug(params[:id])
