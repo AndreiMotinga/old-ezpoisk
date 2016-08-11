@@ -1,6 +1,6 @@
 class DataAggregatorJob
   def perform
-    return unless Rails.env.production?
+    return unless Rails.env.development?
     Ez.ping(DataAggregator.new.message)
   end
 end
