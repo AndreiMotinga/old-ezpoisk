@@ -1,28 +1,20 @@
-.answer.white-block
-  .panel.panel-default
-    .panel-heading
+.row.white-block
+  .answer
+    .panel.panel-default
+      .panel-heading
+        h4.title
+          - unless controller_name == "questions"
+            = link_to answer.question.title, answer
       .row.author
         .col-xs-3.col-sm-2
           = link_to profile_path(answer.user) do
             = image_tag answer.avatar, alt: answer.name_to_show,  class: "img-responsive img-circle center-block"
         .col-xs-9.col-sm-10
           h4.name= answer.name_to_show
-          p.text-muted= "#{answer.impressions_count} просмотров"
-          - if answer.user == current_user
-            = link_to "редактировать", edit_question_answer_path(answer.question, answer), class: "text-muted qa-link"
-            = link_to 'удалить', answer_path(answer), class: "text-muted qa-link", method: :delete, data: { confirm: I18n.t(:confirm) }
-
-    .panel-body
-      = sanitize answer.text
-
-      - if user_signed_in?
-        = current_user.voted_for?(answer) ? voted_answer_btn(answer) : upvote_answer_btn(answer)
-        .pull-right
-          = link_to "Downvote", downvote_answer_path(answer), method: :put, remote: true, class: "text-muted qa-link"
-          = link_to "Коментарии", "#answer-comments-#{answer.id}", class: "text-muted qa-link", "aria-expanded": "false", "data-toggle": "collapse"
-      - else
-        = link_to "Войдите, что бы голосовать", "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"
-
-      / comments
-      .collapse id="answer-comments-#{answer.id}"
-        .fb-comments data-href=question_url(answer.question, answer: answer.id) data-numposts=5
+          p.text-muted= "#{answer.impressions_count} просмотров |  #{answer.score} голосов "
+      .panel-body
+        = strip_tags(answer.text).truncate(380)
+        - if strip_tags(answer.text).size > 380
+          = " "
+          = link_to "дальше", answer, class: "read-more"
+        p.tags= tag_links(answer.question)

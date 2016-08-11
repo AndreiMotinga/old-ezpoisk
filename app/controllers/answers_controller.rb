@@ -1,6 +1,17 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_answer, only: [:update, :destroy]
+
+  def index
+    @answers = Answer.includes(:user, question: :taggings)
+    @answers = @answers.page(params[:page]).per(10)
+    IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
+  end
+
+  def show
+    @answer = Answer.find(params[:id])
+    @new_comment = Comment.build_from(@answer, current_user.try(:id )|| 4, "")
+    @posts = Post.last(10)
+  end
 
   def new
     question = Question.find(params[:question_id])
@@ -10,10 +21,7 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     if @answer.save
-      run_notifications
-      question.increment!(:answers_count)
-      question.entry.try(:touch)
-      create_subscription
+      run_jobs_and_notifications
       redirect_to(question_path(question), notice: I18n.t(:answer_created))
     end
   end
@@ -54,6 +62,14 @@ class AnswersController < ApplicationController
 
   private
 
+  def run_jobs_and_notifications
+    SlackNotifierJob.perform_async(@answer.id, "Answer")
+    QuestionNotificatorJob.perform_async(question.id)
+    question.increment!(:answers_count)
+    question.entry.try(:touch)
+    create_subscription
+  end
+
   def set_answer
     id = params[:id]
     return @answer = Answer.find(id) if current_user.admin?
@@ -64,21 +80,16 @@ class AnswersController < ApplicationController
     params.require(:answer).permit(:text, :question_id)
   end
 
-  def run_notifications
-    SlackNotifierJob.perform_async(@answer.id, "Answer")
-    QuestionNotificatorJob.perform_async(question.id)
-  end
-
   def create_subscription
     return if Subscription.exists?(
       user_id: current_user.id,
-      subscribable_id: question.id,
-      subscribable_type: question.class.to_s
+      subscribable_id: @answer.id,
+      subscribable_type: @answer.class.to_s
     )
     Subscription.create(
       user_id: current_user.id,
-      subscribable_id: question.id,
-      subscribable_type: question.class.to_s
+      subscribable_id: @answer.id,
+      subscribable_type: @answer.class.to_s
     )
   end
 

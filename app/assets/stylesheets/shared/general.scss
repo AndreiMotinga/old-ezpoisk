@@ -128,7 +128,7 @@ footer {
   width: 100% !important;
 }
 
-.my-g-plus { width: 110px; }
+.my-g-plus { width: 80px; }
 
 .social-share {
   font-size: 1px;
@@ -193,6 +193,7 @@ span.favorite { color: $orange; }
 
 .tags {
   margin: 10px 0 0;
+  overflow: hidden;
 
   .tag {
     background-color: $body_background_color;
@@ -220,12 +221,18 @@ body.modal-open { position: fixed; }
 //   min-height: 500px;
 // }
 
-a:hover,
-a:visited,
-a:link,
-a:active {
-  color: $black;
+
+textarea { resize: vertical; }
+.read-more {
+  color: $blue;
+}
+
+.link {
+  color: $grey4;
   text-decoration: none;
 }
 
-textarea { resize: vertical; }
+.devider {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

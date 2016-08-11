@@ -140,9 +140,9 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add questions_path, priority: 0.8, changefreq: "daily"
-  Question.find_each do |question|
-    add question_path(question),
+  add answers_path, priority: 0.8, changefreq: "daily"
+  Answer.find_each do |answer|
+    add answers_path(answer),
         priority: 0.7,
         lastmod: question.updated_at
   end

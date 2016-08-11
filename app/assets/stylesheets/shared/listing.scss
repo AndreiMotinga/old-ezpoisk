@@ -10,6 +10,11 @@
 .listing {
   position: relative;
 
+  a {
+    color: $grey4;
+    text-decoration: none;
+  }
+
   .capture {
     background-color: $capture_background;
     bottom: 0;
@@ -27,11 +32,6 @@
   .title {
     margin: 0 0 3px;
     overflow: hidden;
-
-    a {
-      color: $grey4;
-      text-decoration: none;
-    }
   }
 
   p {

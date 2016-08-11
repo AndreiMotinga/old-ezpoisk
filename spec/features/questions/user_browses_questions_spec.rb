@@ -22,6 +22,5 @@ feature "User browses question" do
     visit question_path(q)
 
     expect(page).to have_content q.title
-    expect(page).to have_content a.text
   end
 end

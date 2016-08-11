@@ -1,0 +1,8 @@
+.white-block
+  .panel.panel-default
+    .panel-body
+      ul.list-unstyled
+        - @posts.each do |post|
+          li
+            h5= link_to post.title, post, class: "link"
+          hr.devider

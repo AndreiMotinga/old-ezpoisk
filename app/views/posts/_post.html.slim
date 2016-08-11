@@ -16,7 +16,7 @@
         = link_to post_path(post) do
           - if post.image?
             = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
-          h4.title= post.title
+        h4.title= link_to post.title, post
 
         p
           = strip_tags(post.text).truncate(380)

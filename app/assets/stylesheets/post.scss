@@ -1,4 +1,10 @@
 .post {
+  .title {
+    a {
+      color: $grey4;
+      text-decoration: none;
+    }
+  }
   overflow: hidden;
   .author {
     .name {

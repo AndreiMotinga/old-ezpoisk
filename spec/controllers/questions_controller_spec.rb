@@ -84,7 +84,7 @@ describe QuestionsController do
 
         get :edit, params: { id: question.slug }
 
-        expect(response).to redirect_to(questions_path)
+        expect(response).to redirect_to(answers_path)
       end
     end
   end

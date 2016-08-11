@@ -1,13 +1,14 @@
 = title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
 = desc("EZANSWER - здесь можно находить полезную информацию, спрашить и делиться своим мнением, получать качетвенные ответы на любые вопросы")
 
-= content_for :sidebar,  render("questions/sidebar")
+= content_for :sidebar do
+  = render "questions/sidebar"
 
 = render "questions/search_form"
 
 .col-xs-12 data-id="listings"
-  = render @questions
+  = render @answers
 
 .row
   .col-xs-12
-    = render "shared/pagination", records: @questions
+    = render "shared/pagination", records: @answers

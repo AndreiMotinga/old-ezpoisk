@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
 
   def index
     qs = Question.includes(:taggings).by_keyword(params[:keyword])
-    @questions = qs.order("updated_at desc").page(params[:page]).per(10)
+    @questions = qs.page(params[:page]).per(10)
   end
 
   def tag
@@ -24,7 +24,6 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.includes(:user).find(params[:id])
-    IncreaseQuestionImpressionsJob.perform_async(@question.id)
   end
 
   def new
@@ -69,7 +68,7 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = current_user.questions.find_by_slug(params[:id])
-    redirect_to questions_path, alert: I18n.t(:q_not_found) unless @question
+    redirect_to answers_path, alert: I18n.t(:q_not_found) unless @question
   end
 
   def question_params

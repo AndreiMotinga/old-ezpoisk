@@ -1,11 +1,22 @@
 require "rails_helper"
 
 describe AnswersController do
+  describe "GET #index" do
+    it "renders the index template and returns answers" do
+      2.times { create :answer }
+
+      get :index
+
+      expect(response).to render_template(:index)
+      expect(assigns(:answers).size).to eq 2
+    end
+  end
+
   describe "POST #create" do
     it "creates answer and touches entry" do
       sign_in(@user = create(:user))
-      question = create :question, updated_at: 1.month.ago
-      entry = question.create_entry(user: @user, updated_at: question.updated_at)
+      question = create :question
+      entry = question.create_entry(user: @user, updated_at: 1.month.ago)
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 

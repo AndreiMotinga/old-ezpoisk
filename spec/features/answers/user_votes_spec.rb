@@ -6,7 +6,7 @@ feature "Voting on answers" do
       user = create_and_login_user
       answer = create(:answer, :with_question, user: user)
 
-      visit question_path(answer.question)
+      visit answer_path(answer)
       click_on "Upvote"
       wait_for_ajax
       answer.reload
@@ -19,7 +19,7 @@ feature "Voting on answers" do
       user = create_and_login_user
       answer = create(:answer, :with_question, user: user)
 
-      visit question_path(answer.question)
+      visit answer_path(answer)
       click_on "Downvote"
       wait_for_ajax
       answer.reload

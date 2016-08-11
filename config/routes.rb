@@ -18,14 +18,14 @@ Rails.application.routes.draw do
   resources :points, only: [:create]
   resources :subscriptions, only: [:create, :destroy]
 
-  resources :questions, except: [:destroy], path: :ezanswer do
+  resources :questions, except: [:destroy] do
     collection do
       get "unanswered"
       get "tag/:tag", to: "questions#tag"
     end
     resources :answers, only: [:new, :edit]
   end
-  resources :answers, only: [:create, :update, :destroy] do
+  resources :answers do
     member do
       put "upvote", to: "answers#upvote"
       put "downvote", to: "answers#downvote"

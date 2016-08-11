@@ -5,17 +5,14 @@
 = og_url(question_url(@question))
 = og_image(@question.image)
 
-- content_for :mobile_search do
-  .col-xs-12.search-modal-trigger
-    = link_to "Добавьте свой ответ", new_question_answer_path(@question), class: "btn mobile-btn"
+= content_for :sidebar, render("questions/show/sidebar")
 
-= content_for :sidebar do
-  = link_to "Добавьте свой ответ", new_question_answer_path(@question), class: "btn btn-block mobile-btn margin-bottom-10"
-  = render("questions/sidebar")
+.row
+  = render "questions/search_form"
+  = render "questions/show/question"
 
-= render "questions/search_form"
-= render "questions/show/question"
+  / ANSWERS
+  = render "questions/no_answers_message" if !@question.has_answer?
 
-/ ANSWERS
-= render "questions/no_answers_message" if !@question.has_answer?
-= render @question.answers.includes(:user).by_score
+  .col-xs-12
+    = render @question.answers.includes(:user).by_score.first
