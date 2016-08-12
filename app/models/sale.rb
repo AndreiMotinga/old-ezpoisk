@@ -4,6 +4,7 @@ class Sale < ActiveRecord::Base
   include MyFriendlyId
   include Filterable
   include ViewHelpers
+  validates_with SourceValidator
 
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :category, presence: true
@@ -23,7 +24,6 @@ class Sale < ActiveRecord::Base
     Rails.application.routes.url_helpers.edit_dashboard_sale_path(self)
   end
 
-  # todo write these tests
   def show_url
     url_helpers.sale_url(self)
   end

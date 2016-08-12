@@ -7,13 +7,12 @@
 
     .col-xs-8
       / line 1
-      .hidden-xs
-        h4.title= link_to sale.title, sale_path(sale)
-      .visible-xs
-        h5.title= link_to sale.title, sale_path(sale)
+      h4.title= link_to sale.title, sale_path(sale)
+      hr.post-devider/
 
       / line 2
       span.state-city #{sale.city.name}, #{sale.state.name}
+      hr.post-devider
 
       /line 2
       .hidden-xs

@@ -1,21 +1,31 @@
 = bootstrap_form_for([:dashboard, @sale]) do |f|
-  = form_state_select(f)
-  = form_city_select(f, @sale)
-  = f.text_field :street, label: 'Улица'
-  hr.white-hr
-
+  -  if current_user.admin?
+    = f.text_field :source, label: "источник"
   = f.text_field :title, label: '* Заголовок'
-  = f.select :category, ru(SALE_CATEGORIES), include_blank: true, label: '* Категория'
-  = f.number_field :price, label: 'Цена'
-  hr.white-hr
-
   = f.text_area :description, rows: 5, label: 'Описание'
   hr.white-hr
 
-  = f.text_field :phone, label: 'Телефон'
-  = f.email_field :email
-  = f.check_box :active, label: "Активно *"
+  .row
+    .col-xs-12.col-sm-6
+      = f.select :category, ru(SALE_CATEGORIES), include_blank: true, label: '* Категория'
+    .col-xs-12.col-sm-6
+      = f.number_field :price, label: 'Цена'
 
+  .row
+    .col-xs-12.col-sm-6
+      = f.text_field :phone, label: 'Телефон'
+    .col-xs-12.col-sm-6
+      = f.email_field :email
+
+  .row
+    .col-xs-12.col-sm-6
+      = form_state_select(f)
+    .col-xs-12.col-sm-6
+      = form_city_select(f, @sale)
+  = f.text_field :street, label: 'Улица'
+
+
+  = f.check_box :active, label: "Активно *"
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
   - unless @sale.new_record?
     = link_to "Удалить",

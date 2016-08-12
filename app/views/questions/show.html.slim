@@ -15,4 +15,4 @@
   = render "questions/no_answers_message" if !@question.has_answer?
 
   .col-xs-12
-    = render @question.answers.includes(:user).by_score.first
+    = render @question.answers.includes(:user).by_score

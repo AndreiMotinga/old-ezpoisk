@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811210836) do
+ActiveRecord::Schema.define(version: 20160812020138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,6 +303,7 @@ ActiveRecord::Schema.define(version: 20160811210836) do
     t.integer  "impressions_count", default: 0
     t.string   "slug"
     t.integer  "price"
+    t.string   "source"
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["description"], name: "index_sales_on_description", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
