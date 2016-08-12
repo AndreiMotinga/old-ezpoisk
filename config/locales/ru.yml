@@ -54,7 +54,6 @@ ru:
 
   hello: привет
   news:  Новости
-  ezrealty: Недвижимость
   agencies: Агентства
   re_agency: Агентство недвижимости
   private: Частная
@@ -520,7 +519,7 @@ ru:
   immigration: Иммиграция
   criminal: Криминал
   heritage: Наследство, Завещания
-  realtors: Недвижимость
+  realtors: Агентства недвижимости
   financing: Финансирование
   family: Семейное право
   beauty-salons: Салоны красоты, парикмахерские

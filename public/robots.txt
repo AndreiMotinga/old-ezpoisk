@@ -5,5 +5,9 @@ User-agent: *
 Disallow: /dashboard
 Disallow: /dashboard/**/*
 Disallow: /users/*
+Disallow: /answers/new
+Disallow: /answers/edit
+Disallow: /questions/new
+Disallow: /questions/edit
 
 Sitemap: https://s3.amazonaws.com/ezpoisk/sitemaps/sitemap.xml.gz

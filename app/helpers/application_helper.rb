@@ -7,26 +7,6 @@ module ApplicationHelper
     params[:category] == category || category == record.try(:category)
   end
 
-  def title(page_title)
-    content_for(:title) { page_title }
-  end
-
-  def desc(description)
-    content_for(:description) { description }
-  end
-
-  def og_url(og_url)
-    content_for(:og_url) { og_url }
-  end
-
-  def og_type(og_type)
-    content_for(:og_type) { og_type }
-  end
-
-  def og_image(og_image)
-    content_for(:og_image) { og_image }
-  end
-
   def home_controller?
     params[:controller] == "home"
   end
