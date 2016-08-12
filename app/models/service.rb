@@ -49,7 +49,7 @@ class Service < ActiveRecord::Base
   end
 
   def show_url
-    url_helpers.service_path(self)
+    url_helpers.service_url(self)
   end
 
   def site_link

@@ -46,37 +46,16 @@ class Question < ActiveRecord::Base
     qs.by_views.limit(20) - [self]
   end
 
-  def the_answer
-    answers.last
-  end
-
-  def text_to_show
-    return the_answer.text if the_answer.present?
-    text
-  end
-
-  def avatar
-    return the_answer.user.avatar.url(:thumb) if the_answer.try(:user)
-  end
-
-  def username
-    return the_answer.user.name if the_answer.try(:user)
-  end
-
   def image
     return image_url if image_url.present?
     "https://s3.amazonaws.com/ezpoisk/missing.png"
-  end
-
-  def profile
-    the_answer.user
   end
 
   def subscribers_emails
     subscriptions.map(&:user).pluck(:email)
   end
 
-  def has_answer?
-    the_answer.present?
+  def has_answers?
+    !!answers.first
   end
 end

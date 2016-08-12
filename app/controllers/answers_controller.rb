@@ -1,16 +1,16 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_answer, only: [:update, :destroy]
 
   def index
     @answers = Answer.includes(:user, question: :taggings)
-    @answers = @answers.page(params[:page]).per(10)
+                     .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
   end
 
   def show
     @answer = Answer.find(params[:id])
-    @new_comment = Comment.build_from(@answer, current_user.try(:id )|| 4, "")
-    @posts = Post.last(10)
+    @new_comment = Comment.build_from(@answer, current_user.try(:id)|| 4, "")
   end
 
   def new
@@ -71,9 +71,7 @@ class AnswersController < ApplicationController
   end
 
   def set_answer
-    id = params[:id]
-    return @answer = Answer.find(id) if current_user.admin?
-    @answer = current_user.answers.find(id)
+    @answer = current_user.answers.find(params[:id])
   end
 
   def answer_params

@@ -24,4 +24,8 @@ class Answer < ActiveRecord::Base
   def avatar
     user.avatar(:thumb)
   end
+
+  def side_posts
+    @posts = Post.last(10)
+  end
 end

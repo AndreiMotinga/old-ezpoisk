@@ -1,5 +1,5 @@
 = title("#{@question.title} - ezpoisk")
-= desc(strip_tags(@question.text_to_show).truncate(160))
+= desc(strip_tags(@question.text).truncate(160))
 
 = og_type("article")
 = og_url(question_url(@question))
@@ -9,10 +9,11 @@
 
 .row
   = render "questions/search_form"
-  = render "questions/show/question"
+  = render @question
 
   / ANSWERS
-  = render "questions/no_answers_message" if !@question.has_answer?
-
   .col-xs-12
-    = render @question.answers.includes(:user).by_score
+    - if @question.has_answers?
+      /= render @question.answers.includes(:user).by_score
+    - else
+    = render "questions/no_answers_message"

@@ -5,7 +5,7 @@ module QuestionsHelper
   end
 
   def tag_path(tag_id)
-    "/ezanswer/tag/#{tag_id}"
+    "/questions/tag/#{tag_id}"
   end
 
   def log_in_trigger

@@ -1,29 +1,34 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_question, only: [:edit, :update, :destroy]
   # before_action :set_partners, only: [:index, :show, :tag, :unanswered]
 
   def index
-    qs = Question.includes(:taggings).by_keyword(params[:keyword])
-    @questions = qs.page(params[:page]).per(10)
+    @questions = Question.includes(:taggings)
+                          .by_keyword(params[:keyword])
+                          .page(params[:page]).per(10)
+    IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
   end
 
   def tag
     @questions = Question.includes(:taggings)
-                          .tagged_with(params[:tag], any: true)
+                         .tagged_with(params[:tag], any: true)
                          .by_views.page(params[:page])
+    IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
     render :index
   end
 
   def unanswered
-    qs = Question.unanswered.includes(:taggings)
-    tag = params[:tag]
-    qs = qs.tagged_with(tag) if tag
-    @questions = qs.by_views.page(params[:page])
+    @questions  = Question.unanswered.includes(:taggings)
+    @questions = @questions.tagged_with(params[:tag]) if params[:tag].present?
+    @questions = @questions.by_views.page(params[:page])
+    IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
+    render :index
   end
 
   def show
-    @question = Question.includes(:user).find(params[:id])
+    @question = Question.find(params[:id])
+    IncreaseImpressionsJob.perform_async([@question.id], "Question")
   end
 
   def new

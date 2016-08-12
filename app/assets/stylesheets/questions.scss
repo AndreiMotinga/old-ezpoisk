@@ -22,3 +22,13 @@
 .qa-link {
   margin: 5px;
 }
+
+.question {
+  .panel-heading {
+    padding-bottom: 0;
+  }
+
+  .panel-body {
+    padding-top: 5px;
+  }
+}

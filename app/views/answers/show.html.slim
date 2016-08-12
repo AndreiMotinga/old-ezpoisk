@@ -28,7 +28,14 @@
 
       div= render "shared/social", count: nil
 
-br
-  p.text-center= link_to "Просмотреть другие ответы", @answer.question, class: "btn mobile-btn margin-bottom-10"
+.row
+  .col-xs-12.col-sm-6
+    = link_to "Добавьте свой ответ",
+              new_question_answer_path(@answer.question),
+              class: "btn btn-block mobile-btn margin-bottom-10"
+  .col-xs-12.col-sm-6
+    = link_to "Просмотреть другие ответы",
+              @answer.question,
+              class: "btn mobile-btn btn-block margin-bottom-10"
 
 = render "shared/comments", commentable: @answer, new_comment: @new_comment

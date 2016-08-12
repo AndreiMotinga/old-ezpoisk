@@ -2,7 +2,7 @@ class NotifyListingSubscribersJob
   include Sidekiq::Worker
 
   def perform(id)
-    # return if Rails.env.development?
+    return if Rails.env.development?
     @comment = Comment.find(id)
     return unless emails.any?
     emails.each do |email|

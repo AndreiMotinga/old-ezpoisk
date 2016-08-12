@@ -62,18 +62,4 @@ describe Question do
       expect(qs.first).to eq unanswered
     end
   end
-
-  describe "#the_answer" do
-    it "returns the best answer" do
-      user = create :user
-      q = create :question
-      bad = create :answer, question: q
-      ok = create :answer, question: q
-      good = create :answer, question: q
-
-      good.upvote_by user
-
-      expect(q.the_answer).to eq good
-    end
-  end
 end

@@ -23,7 +23,7 @@ describe QuestionsController do
 
       get :unanswered
 
-      expect(response).to render_template(:unanswered)
+      expect(response).to render_template(:index)
       expect(assigns(:questions).size).to eq 1
       expect(assigns(:questions).first).to eq unanswered
     end

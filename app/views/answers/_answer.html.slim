@@ -14,7 +14,6 @@
           p.text-muted= "#{answer.impressions_count} просмотров |  #{answer.score} голосов "
       .panel-body
         = strip_tags(answer.text).truncate(380)
-        - if strip_tags(answer.text).size > 380
-          = " "
-          = link_to "дальше", answer, class: "read-more"
+        = " "
+        = link_to "дальше", answer, class: "read-more"
         p.tags= tag_links(answer.question)
