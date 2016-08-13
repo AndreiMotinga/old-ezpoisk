@@ -58,4 +58,8 @@ class Question < ActiveRecord::Base
   def has_answers?
     !!answers.first
   end
+
+  def show_url
+    Rails.application.routes.url_helpers.question_url(self)
+  end
 end
