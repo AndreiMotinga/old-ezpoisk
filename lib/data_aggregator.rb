@@ -1,20 +1,27 @@
 class DataAggregator
   def initialize
-    @post_count = models.map(&:count).sum
-    @post_goal = (@post_count * 0.33).round
+    @listings_count = models.map(&:count).sum
+    @listings_goal = (@listings_count * 0.33).round
 
     @users_goal = (User.count * 0.33).round
     @answer_goal = (Answer.count * 0.33).round
+
+    @posts_goal = (Post.count * 0.33).round
   end
 
   def message
     "Общая статистика сайта
-     Users:
-     Всего: #{User.count}, Неделя: #{User.this_week}, Цель: #{@users_goal}
-     Ответы:
-     Всего: #{Answer.count}, Неделя: #{Answer.this_week}, Цель:#{@answer_goal}
      Объявления:
-     Всего:  #{@post_count}, Неделя: #{this_week}, Цель: #{@post_goal}"
+     Всего:  #{@listings_count}, Цель: #{@listings_goal}, Достигнуто: #{this_week}
+
+     Ответы:
+     Всего: #{Answer.count}, Цель:#{@answer_goal}, Достигнуто: #{Answer.this_week}
+
+     Новости:
+     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.this_week}
+
+     Users:
+     Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.this_week}"
   end
 
   def this_week
