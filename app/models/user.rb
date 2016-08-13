@@ -71,6 +71,10 @@ class User < ActiveRecord::Base
     ).first
   end
 
+  def show_url
+    url_helpers.profile_url(self)
+  end
+
   private
 
   def send_emails

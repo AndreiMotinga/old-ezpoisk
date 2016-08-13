@@ -28,7 +28,7 @@
       / line 4
       .hidden-xs
         - if service.try(:site).present?
-          strong= link_to service.site, service.site_link
+          strong= link_to service.site, service.site_link, rel: "nofollow"
           hr.post-devider/
 
       / line 5
