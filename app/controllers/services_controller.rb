@@ -1,6 +1,4 @@
 class ServicesController < ApplicationController
-  # before_action :set_partners
-
   def all
   end
 
@@ -17,10 +15,6 @@ class ServicesController < ApplicationController
   end
 
   private
-
-  def set_partners
-    @partner_ads = PartnerAds.new(params[:subcategory])
-  end
 
   def sliced_params
     params.slice(:state_id, :city_id, :category, :subcategory, :geo_scope)

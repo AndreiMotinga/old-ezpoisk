@@ -50,10 +50,6 @@ class User < ActiveRecord::Base
     where("created_at > ?", Date.today.at_beginning_of_week).count
   end
 
-  def role?(val)
-    role.to_sym == val
-  end
-
   def subscribed?(id, type)
     subscriptions.exists?(subscribable_type: type, subscribable_id: id)
   end
@@ -73,6 +69,11 @@ class User < ActiveRecord::Base
 
   def show_url
     url_helpers.profile_url(self)
+  end
+
+  def new_email
+    return "" if admin?
+    email
   end
 
   private

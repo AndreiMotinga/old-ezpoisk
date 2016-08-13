@@ -42,7 +42,6 @@ html
 
     .container.page-wrap
       .row
-        = render "shared/partners/top"
         = yield :profile_cover if content_for?(:profile_cover)
         = render "shared/notice" unless devise_controller?
 
@@ -53,9 +52,6 @@ html
           = yield
         .hidden-xs.hidden-sm.col-md-3
           = yield :right_block
-
-      .row
-        = yield :partners_bottom if content_for?(:partners_bottom)
 
     .hidden-xs
       = render "shared/footer"

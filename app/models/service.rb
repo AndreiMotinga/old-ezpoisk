@@ -21,10 +21,6 @@ class Service < ActiveRecord::Base
   has_one :stripe_subscription, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
-  scope :re_agencies, -> { where(subcategory: "Агентства Недвижимости") }
-  scope :re_finances, -> { where(subcategory: "Финансирование") }
-  scope :job_agencies, -> { where(subcategory: "Агентства по Трудоустройству") }
-
   delegate :active?, to: :stripe_subscription, allow_nil: true
   delegate :activated?, to: :stripe_subscription, allow_nil: true
   delegate :active_until, to: :stripe_subscription, allow_nil: true

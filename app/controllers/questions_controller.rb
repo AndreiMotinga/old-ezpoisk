@@ -1,7 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_question, only: [:edit, :update, :destroy]
-  # before_action :set_partners, only: [:index, :show, :tag, :unanswered]
 
   def index
     @questions = Question.includes(:taggings)
@@ -78,9 +77,5 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :text, :image_url, tag_list: [])
-  end
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Вопросы")
   end
 end

@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  # before_action :set_partners, only: [:index]
-
   def index
     # todo only select name and avatar
     @posts = Post.includes(:user)
@@ -11,10 +9,4 @@ class HomeController < ApplicationController
 
   def about
   end
-
-  private
-
-  # def set_partners
-  #   @partner_ads = PartnerAds.new("Домашняя")
-  # end
 end

@@ -1,6 +1,4 @@
 class RePrivatesController < ApplicationController
-  # before_action :set_partners, only: :index
-
   def index
     @re_privates = RePrivate.includes(:state, :city)
                             .filter(sliced_params).page(params[:page])
@@ -15,10 +13,6 @@ class RePrivatesController < ApplicationController
   end
 
   private
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Частная")
-  end
 
   def sliced_params
     params.slice(:state_id, :city_id, :geo_scope, :fee, :duration, :post_type,

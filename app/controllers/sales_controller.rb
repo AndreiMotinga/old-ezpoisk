@@ -1,6 +1,4 @@
 class SalesController < ApplicationController
-  # before_action :set_partners
-
   def index
     @sales = Sale
              .includes(:state, :city)
@@ -17,10 +15,6 @@ class SalesController < ApplicationController
   end
 
   private
-
-  def set_partners
-    @partner_ads = PartnerAds.new(params[:category])
-  end
 
   def sliced_params
     params.slice(:state_id, :city_id, :category, :keyword, :sorted, :geo_scope)

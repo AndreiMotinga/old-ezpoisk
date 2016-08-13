@@ -5,8 +5,6 @@ class Dashboard::PicturesController < ApplicationController
 
   def create
     @picture = current_user.pictures.build(picture_params)
-    return unless @picture.imageable.user == current_user
-
     if @picture.save
       render json: { message: "success", fileID: @picture.id }
     else

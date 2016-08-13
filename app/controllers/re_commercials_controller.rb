@@ -1,6 +1,4 @@
 class ReCommercialsController < ApplicationController
-  # before_action :set_partners, only: :index
-
   def index
     @re_commercials = ReCommercial.includes(:state, :city)
                                   .filter(sliced_params)
@@ -17,10 +15,6 @@ class ReCommercialsController < ApplicationController
   end
 
   private
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Коммерческая")
-  end
 
   def sliced_params
     params.slice(:state_id, :city_id, :geo_scope, :post_type, :space,

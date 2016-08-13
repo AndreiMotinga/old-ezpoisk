@@ -6,13 +6,4 @@ class Entry < ActiveRecord::Base
 
   scope :today, -> { where("updated_at > ?", Date.today) }
   scope :week, -> { where("updated_at > ?", Date.today.at_beginning_of_week) }
-
-  def self.by_type(type)
-    return all unless type.present?
-    where("enterable_type = ?", type)
-  end
-
-  def self.homepage
-    where(enterable_type: %w(Post))
-  end
 end

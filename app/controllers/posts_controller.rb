@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  # before_action :set_partners
   before_action :set_post, only: [:show, :edit, :update]
 
   def index
@@ -46,10 +45,6 @@ class PostsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:id])
-  end
-
-  def set_partners
-    @partner_ads = PartnerAds.new("Новости")
   end
 
   def post_params
