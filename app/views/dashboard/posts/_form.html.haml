@@ -4,7 +4,7 @@
 = bootstrap_form_for([:dashboard, @post]) do |f|
   = f.file_field :image
   = f.text_field :title, label: '* Заголовок'
-  = f.text_area :text, rows: 3, label: 'Краткое описание (100-160 символов)', class: "summernote"
+  = f.text_area :text, rows: 10
   .actions
     = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
     - unless @post.new_record?

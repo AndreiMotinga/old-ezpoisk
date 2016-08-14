@@ -7,7 +7,6 @@
 #     visit new_dashboard_post_path
 #     attrs = build(:post)
 #     fill_in "Заголовок", with: attrs.title
-#     # summernote shit
 #     # select("Alabama", from: "Штат")
 #     # select("Abbeville", from: "Город")
 #     click_on "Сохранить"

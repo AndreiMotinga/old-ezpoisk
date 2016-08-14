@@ -1,6 +1,5 @@
 require "rails_helper"
 
-# todo figure out how to fill out fucking summernote
 xfeature "user creates job" do
   scenario "successfully", js: true do
     create_and_login_user

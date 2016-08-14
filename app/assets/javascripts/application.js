@@ -18,7 +18,6 @@
 //= require dropzone
 //= require underscore
 //= require gmaps/google
-//= require summernote
 //
 //= require pgwslider
 //= require touchTouch
@@ -30,7 +29,6 @@
 //= require vk_init
 
 //= require dropzone_init
-//= require summernote_init
 
 //= require ga
 

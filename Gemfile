@@ -37,7 +37,6 @@ gem "rack-protection", github: "sinatra/rack-protection"
 gem "geokit-rails", github: "geokit/geokit-rails", branch: "rails5-test"
 gem "gmaps4rails"
 gem "underscore-rails"
-gem "summernote-rails"
 
 # rails admin
 gem "rails_admin", github: "sferik/rails_admin"

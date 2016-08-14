@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   include MyFriendlyId
   include ViewHelpers
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
-  validates :text, presence: true # , length: { maximum: 160, minimum: 100 }
+  validates :text, presence: true
 
   belongs_to :user
   belongs_to :state

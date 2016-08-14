@@ -4,7 +4,7 @@ br
 
 = bootstrap_form_for([:dashboard, current_user]) do |f|
   = f.text_field :name, label: "Ваше имя"
-  = f.text_area :about, label: "Расскажите о себе", class: "summernote"
+  = f.text_area :about, label: "Расскажите о себе"
   .row
     .col-sm-3
       = f.file_field :cover

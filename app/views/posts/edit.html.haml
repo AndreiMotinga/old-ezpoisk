@@ -4,7 +4,7 @@ edit page
 
 = bootstrap_form_for(@post) do |f|
   = f.text_field :title
-  = f.text_area :text, class: "summernote"
+  = f.text_area :text
   = f.text_field :image_remote_url
   = f.check_box :visible
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"

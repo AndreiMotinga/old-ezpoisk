@@ -7,7 +7,6 @@ feature "user creates question" do
   #   question = build(:question)
   #
   #   fill_in "Ваш вопрос", with: question.title
-  #   # summernote text field is wierd, doesn't work by label
   #   # fill_in "Подробности", with: question.text
   #   click_on "Сохранить"
   #

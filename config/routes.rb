@@ -53,7 +53,6 @@ Rails.application.routes.draw do
     resources :sales, only: [:new, :create, :edit, :update, :destroy]
     resources :services, only: [:new, :create, :edit, :update, :destroy]
 
-    resources :summernote, only: [:create]
     resources :pictures, only: [:index, :create, :update, :destroy]
 
     resources :favorites, only: [:index]

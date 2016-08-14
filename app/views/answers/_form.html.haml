@@ -2,7 +2,7 @@
 %br
 = bootstrap_form_for @answer do |f|
   = hidden_field_tag 'answer[question_id]', @answer.question.id
-  .field= f.text_area :text, label: "Ваш ответ", class: "summernote"
+  .field= f.text_area :text, label: "Ваш ответ"
 
   %br/
   .actions
