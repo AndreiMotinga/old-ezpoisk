@@ -7,7 +7,7 @@ class Dashboard::SalesController < ApplicationController
                      city_id: current_user.city_id,
                      phone: current_user.phone,
                      active: true,
-                     email: current_user.email)
+                     email: current_user.new_email)
   end
 
   def edit
