@@ -14,21 +14,21 @@
 
         tr
           td website
-          td= link_to @user.site, site_link(@user.site), target: "_blank"
+          td= link_to @user.site, site_link(@user.site), target: "_blank", rel: "nofollow"
       hr
       span.social
         - if @user.facebook?
-          = link_to @user.facebook do
+          = link_to @user.facebook, rel: "nofollow" do
             i.fa.fa-lg.fa-facebook
         - if @user.google?
-          = link_to @user.google do
+          = link_to @user.google, rel: "nofollow" do
             i.fa.fa-lg.fa-google-plus
         - if @user.twitter?
-          = link_to @user.twitter do
+          = link_to @user.twitter, rel: "nofollow" do
             i.fa.fa-lg.fa-twitter
         - if @user.vk?
-          = link_to @user.vk do
+          = link_to @user.vk, rel: "nofollow" do
             i.fa.fa-lg.fa-vk
         - if @user.ok?
-          = link_to @user.ok do
+          = link_to @user.ok, rel: "nofollow" do
             i.fa.fa-lg.fa-odnoklassniki

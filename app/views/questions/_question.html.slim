@@ -8,10 +8,10 @@
       p.text
         = markdown question.text
       - if action_name == "show"
-        = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse"
+        = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
         = subscription_links(question)
         = "  "
-        = link_to 'редактировать', edit_question_path(question), class: "text text-muted qa-links" if current_user == question.user
+        = link_to 'редактировать', edit_question_path(question), class: "text text-muted qa-links", rel: "nofollow" if current_user == question.user
         = render "shared/social", count: nil
         br
         #comments.collapse

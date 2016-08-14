@@ -4,10 +4,10 @@
 
       ul.nav.nav-tabs.text-center role="tablist"
         li.active role="presentation"
-          a aria-controls="sign_in" data-toggle="tab" href="#sign_in" role="tab"
+          a aria-controls="sign_in" data-toggle="tab" href="#sign_in" role="tab" rel="nofollow"
             h4 Вход
         li role="presentation"
-          a aria-controls="sign_up" data-toggle="tab" href="#sign_up" role="tab"
+          a aria-controls="sign_up" data-toggle="tab" href="#sign_up" role="tab" rel="nofollow"
             h4 Регистрация
 
       .modal-body
@@ -23,13 +23,13 @@
             .row.text-center
               ul.list-inline.social-buttons
                 li
-                  = link_to user_facebook_omniauth_authorize_path, class: "facebook-bg" do
+                  = link_to user_facebook_omniauth_authorize_path, class: "facebook-bg", rel: "nofollow" do
                     i.fa.fa-facebook
                 li
-                  = link_to user_google_oauth2_omniauth_authorize_path, class: "google-bg" do
+                  = link_to user_google_oauth2_omniauth_authorize_path, class: "google-bg", rel: "nofollow" do
                     i.fa.fa-google
                 li
-                  = link_to user_vkontakte_omniauth_authorize_path, class: "vk-bg" do
+                  = link_to user_vkontakte_omniauth_authorize_path, class: "vk-bg", rel: "nofollow" do
                     i.fa.fa-vk
             hr/
             = bootstrap_form_for(:user, :url => session_path(:user)) do |f|

@@ -10,12 +10,12 @@ module SubscriptionHelper
   def subscribe_link(record)
     link_to "подписаться",
       subscriptions_path(id: record.id, type: record.class.to_s),
-      method: "post", remote: true, id: "subscribe", class: "text text-muted qa-links"
+      method: "post", remote: true, id: "subscribe", class: "text text-muted qa-links", rel: "nofollow"
   end
 
   def unsubscribe_link(record)
     link_to "отписаться",
       subscription_path(id: record.id, type: record.class.to_s),
-        method: "delete", remote: true, id: "unsubscribe", class: "text text-muted qa-links"
+        method: "delete", remote: true, id: "unsubscribe", class: "text text-muted qa-links", rel: "nofollow"
   end
 end

@@ -22,14 +22,14 @@
 
   - unless record.try(:site).blank?
     li.list-group-item
-      strong= link_to record.site, "http://#{record.site}", target: "_blank", itemprop: "url"
+      strong= link_to record.site, "http://#{record.site}", target: "_blank", itemprop: "url", rel: "nofollow"
 
   - if record.try(:email).present?
     li.list-group-item
       strong itemprop="email" =record.email
 
   li.list-group-item itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"
-    = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank" do
+    = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
       - if record.street.present?
         span itemprop="streetAddress" =record.street
         = ", "

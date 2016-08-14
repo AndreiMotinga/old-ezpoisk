@@ -23,7 +23,7 @@
           - if @post.image?
             = image_tag @post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
           h4= @post.title
-          p= sanitize @post.text
+          p= markdown @post.text
 
           .col-xs-12
             = render "shared/social", count: @post.impressions_count

@@ -35,4 +35,4 @@ nav.navbar.navbar-fixed-top.navbar-main.shadow
               li.divider role: "separator"
               li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
         - else
-          li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"
+          li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"

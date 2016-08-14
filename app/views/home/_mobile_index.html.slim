@@ -9,7 +9,7 @@
         - if user_signed_in?
           a aria-controls="profile" data-toggle="tab" href="#profile" role="tab" Аккаунт
         - else
-          = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", role: "button", id: "login_link"
+          = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", role: "button", id: "login_link", rel: "nofollow"
 
     /! Tab panes
     .tab-content

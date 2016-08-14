@@ -3,7 +3,7 @@
     - if user_signed_in?
       .panel-heading.comments-section
         a[aria-controls="collapseExample" aria-expanded="false"
-          data-toggle="collapse" href="#collapseExample" role="button"]
+          data-toggle="collapse" href="#collapseExample" role="button" rel="nofollow"]
           h5
             | комментариев
             = " "
@@ -18,4 +18,4 @@
         = render commentable.root_comments.includes(:user).order("created_at desc")
     - else
       .panel-heading
-        a#login_link.text.text-muted src="" data-target="#new_session_modal" data-toggle="modal" Войдите, чтобы коментировать
+        a#login_link.text.text-muted src="" data-target="#new_session_modal" data-toggle="modal" rel="nofollow" Войдите, чтобы коментировать
