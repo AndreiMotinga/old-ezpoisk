@@ -8,7 +8,7 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = Post.new(category: "user")
   end
 
   def edit
@@ -18,8 +18,7 @@ class Dashboard::PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       SlackNotifierJob.perform_async(@post.id, "Post")
-      @post.create_entry(user: current_user)
-      redirect_to edit_dashboard_post_path(@post), notice: I18n.t(:post_saved)
+      redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -28,8 +27,7 @@ class Dashboard::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      @post.entry.try(:touch)
-      redirect_to edit_dashboard_post_path(@post), notice: I18n.t(:post_saved)
+      redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
@@ -44,10 +42,15 @@ class Dashboard::PostsController < ApplicationController
   private
 
   def set_post
-    @post = current_user.posts.find(params[:id])
+    if current_user.admin?
+      @post = Post.find(params[:id])
+    else
+      @post = current_user.posts.find(params[:id])
+    end
   end
 
   def post_params
-    params.require(:post).permit(:title, :text, :image)
+    params.require(:post).permit(:title, :text, :image_remote_url, :visible,
+                                 :summary, :category)
   end
 end

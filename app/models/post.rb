@@ -2,7 +2,10 @@ class Post < ActiveRecord::Base
   include MyFriendlyId
   include ViewHelpers
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
+  validates :summary, presence: true, length: {  maximum: 400, minimum: 80 }
   validates :text, presence: true
+  CATEGORIES = %w(world us top tech money science autonews entertainment travel
+                 user).freeze
 
   belongs_to :user
   belongs_to :state
@@ -11,7 +14,7 @@ class Post < ActiveRecord::Base
   delegate :avatar, to: :user
   has_one :entry, as: :enterable, dependent: :destroy
 
-  has_attached_file :image, styles: { medium: "x450>" }
+  has_attached_file :image, styles: { medium: "810" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
   def image_remote_url=(url_value)
@@ -21,7 +24,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  scope :desc, -> { order("posts.created_at desc") }
+  scope :desc, -> { order("posts.updated_at desc") }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
@@ -35,6 +38,11 @@ class Post < ActiveRecord::Base
     keys = convert_keyword(keyword)
     query = "LOWER(title) ILIKE ANY (array[?]) OR LOWER(text) ILIKE ANY (array[?])"
     where(query, keys, keys)
+  end
+
+  def self.category(category)
+    return all if category.blank?
+    where(category: category)
   end
 
   def self.convert_keyword(keyword)

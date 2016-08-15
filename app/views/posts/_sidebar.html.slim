@@ -1,0 +1,8 @@
+.col-xs-12
+  .profile-sidebar
+    .white-block
+      .panel.panel-default
+        .panel-body
+          ul.list-group
+            - Post::CATEGORIES.each do |cat|
+              li.list-group-item= link_to t(cat), posts_path(category: cat)

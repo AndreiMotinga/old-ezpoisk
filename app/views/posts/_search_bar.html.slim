@@ -1,0 +1,7 @@
+.row.white-block
+  form.form-horizontal action=posts_path method="get"
+    .input-group
+      input.form-control placeholder="Поиск новостей" type="text" name="keyword" value=params[:keyword]
+        span.input-group-btn
+          button.btn.btn-default type="submit"
+            i.fa.fa-search

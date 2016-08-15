@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     email
   end
 
+  def editor?
+    admin? or role == "editor"
+  end
+
   private
 
   def send_emails

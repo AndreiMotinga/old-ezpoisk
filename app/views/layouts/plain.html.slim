@@ -40,16 +40,11 @@ html
 
     .container.page-wrap
       .row
-        = yield :profile_cover if content_for?(:profile_cover)
         = render "shared/notice" unless devise_controller?
 
       .row
-        .hidden-xs.green class=("col-sm-4 col-md-3" if content_for?(:sidebar))
-          = yield :sidebar
-        div class=(content_for?(:sidebar) ? "col-xs-12 col-sm-8 col-md-6" : "col-xs-12 col-md-9")
+        .col-xs-12
           = yield
-        .hidden-xs.hidden-sm.col-md-3
-          = yield :right_block
 
     .hidden-xs
       = render "shared/footer"
@@ -58,5 +53,3 @@ html
     = render "shared/new_post_modal"
     = render "shared/new_session_modal"
     = render "shared/main_sidebar"
-
-    /script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/27597bc25de8ded90e9c9b5165060dd9a939a969e5e01bcc122aec50dda34f3d.js"

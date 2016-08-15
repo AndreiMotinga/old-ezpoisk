@@ -4,7 +4,7 @@ describe Dashboard::PostsController do
   before { sign_in(@user = create(:user)) }
 
   describe "POST #create" do
-    it "creates record and entry" do
+    it "creates record" do
 
       attrs = attributes_for(:post)
 
@@ -12,17 +12,13 @@ describe Dashboard::PostsController do
       article = assigns(:post)
 
       expect(response).to redirect_to(
-        edit_dashboard_post_path(article)
+        post_path(article)
       )
       expect(article.title).to eq attrs[:title]
       expect(article.user).to eq @user
       expect(article.text).to eq attrs[:text]
-
-      entry = Entry.last
-      expect(Entry.count).to eq 1
-      expect(entry.enterable_id).to eq article.id
-      expect(entry.enterable_type).to eq article.class.to_s
-      expect(entry.user_id).to eq @user.id
+      expect(article.category).to eq attrs[:category]
+      expect(article.summary).to eq attrs[:summary]
     end
   end
 

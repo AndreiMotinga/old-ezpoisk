@@ -9,6 +9,7 @@ module MyFriendlyId
       end
 
       def should_generate_new_friendly_id?
+        return true if self.class == Post
         title_changed?
       end
     end

@@ -74,17 +74,17 @@ Rails.application.routes.draw do
   resources :re_commercials, only: [:index, :show]
   resources :jobs, only: [:index, :show]
 
-  authenticate :user, ->(u) { u.admin? } do
-    mount Sidekiq::Web => "/sidekiq_monstro"
-    resources :posts, only: [:edit, :update] do
+  authenticate :user, ->(u) { u.editor? } do
+    resources :posts do
       get :all, on: :collection
       get :import, on: :collection
       delete :destroy_all, on: :collection
     end
-    # doesn't work sines ip through cloudflare is different every time
-    # constraints BlacklistConstraint.new do
+  end
+
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web => "/sidekiq_monstro"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
-    # end
   end
   resources :posts, only: [:index, :show]
 

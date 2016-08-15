@@ -94,25 +94,6 @@ STATES = [
   [ "Wyoming", 50 ]
 ].freeze
 
-NEWS_CATEGORIES = [
-  "https://news.yandex.ru/auto.rss",
-  "https://news.yandex.ru/world.rss",
-  "https://news.yandex.ru/internet.rss",
-  "https://news.yandex.ru/movies.rss",
-  "https://news.yandex.ru/fashion.rss",
-  "https://news.yandex.ru/music.rss",
-  "https://news.yandex.ru/science.rss",
-  "https://news.yandex.ru/computers.rss",
-   "https://news.yandex.ru/politics.rss",
-   "https://news.yandex.ru/finances.rss",
-   "https://news.yandex.ru/Belarus/index.rss",
-   "https://news.yandex.ru/Israel/index.rss",
-   "https://news.yandex.ru/Kazakhstan/index.rss",
-   "https://news.yandex.ru/Moldova/index.rss",
-   "https://news.yandex.ru/USA/index.rss",
-   "https://news.yandex.ua/index.rss"
-].freeze
-
 # PARTNER_PAGES = HashWithIndifferentAccess.new(
 #       "Домашняя" => ["Домашняя"],
 #       "- Раздел Недвижимость" => [

@@ -1,7 +1,7 @@
 .row.white-block
   .post
     .panel.panel-default
-      - unless post.user.id == 181
+      - unless post.user.try(:editor?)
         /todo fix it when redo posts
         .panel-heading.hidden-xs
           .row.author
@@ -17,18 +17,15 @@
           - if post.image?
             = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
         h4.title= link_to post.title, post
+        p= strip_tags(post.summary)
 
-        p
-          = strip_tags(post.text).truncate(380)
-          - if strip_tags(post.text).size > 380
-            = " "
-            = link_to "дальше", post
+
 
       .panel-footer
         .row
           .col-sm-6
             h6 #{time_ago_in_words post.updated_at} назад
           .col-sm-6
-            - if post.user == current_user
+            - if post.user == current_user || current_user.try(:editor?)
               a.pull-right href=post.edit_link data-content="Редактировать" data-toggle="popover" role="button" tabindex="0" data-placement="top"
                 i.fa.fa-pencil.text-muted

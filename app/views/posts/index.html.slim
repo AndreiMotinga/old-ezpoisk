@@ -1,11 +1,11 @@
 = title("Новости, информация об иммиграции в США - ezpoisk")
 = desc("EZPOISK - полезная информация о русской иммиграции в США. Новости, статьи, полезные советы.")
 
-= content_for :sidebar, render("home/sidebar")
-
-= render("shared/filters", id: "posts", count: @posts.total_count)
+= content_for :sidebar, render("posts/sidebar")
 
 .col-xs-12 data-id="listings"
+  = render "posts/mobile"
+  = render "posts/search_bar"
   = render @posts
 
 .row

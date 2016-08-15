@@ -5,31 +5,29 @@
 = og_url(post_url(@post))
 = og_image(@post.logo_url)
 
-= content_for :sidebar, render("home/sidebar")
 = content_for :right_block, render("shared/adsense")
 
 .col-xs-12
   .row.white-block
     .post
       .panel.panel-default
-        .panel-heading
-          .row.author
-            .col-xs-3.col-sm-2
-              = image_tag @post.avatar.url(:thumb), class: "img-responsive center-block img-circle", alt: "Новости комьюнити"
-            .col-xs-9.col-sm-10
-              h4.name= @post.user.name_to_show
-              p.text-muted= @post.created_at.strftime("%d %B %Y")
+        - unless @post.user.try(:editor?)
+          .panel-heading
+            .row.author
+              .col-xs-3.col-sm-2.green
+                = image_tag @post.avatar.url(:thumb), class: "img-responsive center-block img-circle", alt: "Новости комьюнити"
+              .col-xs-9.col-sm-10.purple
+                h4.name= @post.user.name_to_show
+                p.text-muted= @post.created_at.strftime("%d %B %Y")
+
         .panel-body
           - if @post.image?
             = image_tag @post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
           h4= @post.title
           p= markdown @post.text
 
-          .col-xs-12
-            = render "shared/social", count: @post.impressions_count
-            - if current_user.try(:admin?)
-              = link_to "Редактировать ", edit_post_path(@post), class: "text-muted"
+          = render "shared/social", count: @post.impressions_count
+          - if @post.user == current_user || current_user.try(:editor?)
+            = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
-          .row
-            .col-xs-12
-              .fb-comments data-href=post_url(@post) data-numposts="5"
+          .fb-comments data-href=post_url(@post) data-numposts="5"
