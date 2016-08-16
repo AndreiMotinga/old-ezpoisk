@@ -5,6 +5,13 @@
 
 = render("shared/filters", id: "re_privates", count: @re_privates.total_count)
 
+- content_for(:right_block) do
+  = render("shared/listings_count",
+            title: "Частная Недвижимость",
+            today: RePrivate.today.count,
+            week: RePrivate.week.count,
+            total: RePrivate.count)
+
 .col-xs-12 data-id="listings"
   = render @re_privates
 

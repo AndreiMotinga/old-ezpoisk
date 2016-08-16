@@ -2,6 +2,12 @@
 = desc("EZPOISK - полезная информация о русской иммиграции в США. Новости, статьи, полезные советы.")
 
 = content_for :sidebar, render("posts/sidebar")
+- content_for(:right_block) do
+  = render("shared/listings_count",
+            title: "Наши Новости",
+            today: Post.visible.today.count,
+            week: Post.visible.week.count,
+            total: Post.visible.count)
 
 .col-xs-12 data-id="listings"
   = render "posts/mobile"

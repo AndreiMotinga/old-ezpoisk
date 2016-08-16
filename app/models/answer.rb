@@ -1,4 +1,5 @@
 class Answer < ActiveRecord::Base
+  include Filterable
   acts_as_votable
   acts_as_commentable
   belongs_to :user

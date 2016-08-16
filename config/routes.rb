@@ -68,25 +68,23 @@ Rails.application.routes.draw do
     end
   end
 
+  authenticate :user, ->(u) { u.editor? } do
+    get 'posts/all', to: "posts#all"
+    get 'posts/import', to: "posts#import"
+    delete 'posts/destroy_all', to: "posts#destroy_all"
+  end
+
+  resources :posts, only: [:index, :show]
   resources :sales, only: [:index, :show], path: :ezsale
   resources :services, only: [:index, :show], path: :ezservice
   resources :re_privates, only: [:index, :show]
   resources :re_commercials, only: [:index, :show]
   resources :jobs, only: [:index, :show]
 
-  authenticate :user, ->(u) { u.editor? } do
-    resources :posts do
-      get :all, on: :collection
-      get :import, on: :collection
-      delete :destroy_all, on: :collection
-    end
-  end
-
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq_monstro"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
-  resources :posts, only: [:index, :show]
 
   get "htmltagstrippingtool", to: "htmltagstrippingtool#index"
   get "about", to: "home#about"

@@ -6,6 +6,13 @@
 
 = render "questions/search_form"
 
+- content_for(:right_block) do
+  = render("shared/listings_count",
+            title: "Информация о наших",
+            today: Answer.today.count,
+            week: Answer.week.count,
+            total: Answer.count)
+
 .col-xs-12 data-id="listings"
   = render @answers
 

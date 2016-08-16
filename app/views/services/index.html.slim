@@ -4,6 +4,12 @@
 = content_for :sidebar, render("home/sidebar")
 
 = render("shared/filters", id: "services", count: @services.total_count)
+- content_for(:right_block) do
+  = render("shared/listings_count",
+            title: "Предоставляю Услуги",
+            today: Service.today.count,
+            week: Service.week.count,
+            total: Service.count)
 
 .col-xs-12 data-id="listings"
   = render @services

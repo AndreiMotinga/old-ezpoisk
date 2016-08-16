@@ -5,6 +5,9 @@ module Filterable
     delegate :name, to: :state, prefix: true
     delegate :name, to: :city, prefix: true
 
+    scope :today, -> { where("updated_at > ?", Date.today) }
+    scope :week, -> { where("updated_at > ?", Date.today.at_beginning_of_week) }
+
     scope :active, -> { where(active: true) }
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, -> (id) { where(city_id: id) }
