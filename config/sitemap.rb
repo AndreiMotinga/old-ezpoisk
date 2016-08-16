@@ -41,7 +41,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add re_privates_path, priority: 0.6, changefreq: "weekly"
+  add re_privates_path, priority: 0.8, changefreq: "daily"
   RePrivate.active.find_each do |post|
     add re_private_path(post), priority: 0.6, lastmod: post.updated_at
   end
@@ -63,7 +63,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add posts_path, priority: 0.6, changefreq: "daily"
+  add posts_path, priority: 0.8, changefreq: "daily"
 
   Post.visible.find_each do |post|
     add post_path(post),
@@ -102,7 +102,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add services_path, priority: 0.6, changefreq: "weekly"
+  add services_path, priority: 0.6, changefreq: "daily"
   Service.find_each do |post|
     add service_path(post),
         priority: 0.6,
@@ -121,7 +121,7 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add jobs_path, priority: 0.6, changefreq: "weekly"
+  add jobs_path, priority: 0.8, changefreq: "daily"
   Job.active.find_each do |post|
     add job_path(post),
         priority: 0.6,
@@ -140,11 +140,11 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add answers_path, priority: 0.8, changefreq: "daily"
+  add answers_path, priority: 0.8, changefreq: "weekly"
   Answer.find_each do |answer|
-    add answers_path(answer),
+    add answer_path(answer),
         priority: 0.7,
-        lastmod: question.updated_at
+        lastmod: answer.updated_at
   end
 
   ##############################################################
