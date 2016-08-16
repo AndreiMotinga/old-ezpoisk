@@ -15,7 +15,12 @@ class PostsController < ApplicationController
   end
 
   def destroy_all
-    NewsCleanerJob.perform_async
+    if params[:category]
+      Post.invisible.category(params[:category]).delete_all
+    else
+      Post.invisible.delete_all
+    end
+
     redirect_to posts_all_path
   end
 

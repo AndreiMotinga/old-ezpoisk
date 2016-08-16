@@ -14,6 +14,16 @@ table.table.table-striped
       td= post.category
       td= link_to post.title, edit_dashboard_post_path(post)
 
+br
+= form_tag posts_destroy_all_path, class: "form-horizontal", method: "post" do
+  input name="_method" type="hidden" value="delete"
+  .row
+    .col-xs-3
+      = select_tag :category, options_for_select(ru(Post::CATEGORIES), params[:category]), class: "form-control"
+    .col-xs-3
+      = submit_tag "Удалить", name: nil, class: "btn mobile-btn"
+
+
 br/
 = link_to "Очистить", posts_destroy_all_path, method: :delete, class: "btn btn-danger"
 = " "
