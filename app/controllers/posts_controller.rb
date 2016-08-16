@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def destroy_all
     NewsCleanerJob.perform_async
-    redirect_to all_posts_path
+    redirect_to posts_all_path
   end
 
   def all
@@ -27,6 +27,6 @@ class PostsController < ApplicationController
 
   def import
     NewsImporterJob.perform_async
-    redirect_to all_posts_path
+    redirect_to posts_all_path
   end
 end
