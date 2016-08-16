@@ -11,7 +11,8 @@
       .g-plus data-action="share" data-width=200 data-annotation="bubble" data-href=url
     - if count
       li.prosmotrov
-        span просмотров #{count}
+        i.fa.fa-eye.text-muted
+        span  #{count}
 
 - unless Rails.env.test?
   #fb-root

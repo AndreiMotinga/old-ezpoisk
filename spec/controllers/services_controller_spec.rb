@@ -76,8 +76,6 @@ describe ServicesController do
 
       expect(response).to render_template(:show)
       expect(record).to be_a Service
-      expect(record.impressions_count).to eq 1
-      expect(flash[:alert]).to be nil
     end
   end
 end

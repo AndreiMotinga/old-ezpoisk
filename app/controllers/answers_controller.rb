@@ -11,6 +11,7 @@ class AnswersController < ApplicationController
   def show
     @answer = Answer.find(params[:id])
     @new_comment = Comment.build_from(@answer, current_user.try(:id)|| 4, "")
+    IncreaseVisitsJob.perform_async(@answer.id, 'Answer')
   end
 
   def new

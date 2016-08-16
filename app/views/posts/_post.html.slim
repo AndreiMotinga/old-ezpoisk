@@ -19,12 +19,13 @@
         h4.title= link_to post.title, post
         p= strip_tags(post.summary)
 
-
-
       .panel-footer
         .row
           .col-sm-6
-            h6 #{time_ago_in_words post.updated_at} назад
+            h6 style="display:inline" #{time_ago_in_words post.updated_at} назад |
+            = " "
+            i.fa.fa-eye.text-muted
+            span  #{post.impressions_count}/#{post.visits}
           .col-sm-6
             - if post.user == current_user || current_user.try(:editor?)
               a.pull-right href=post.edit_link data-content="Редактировать" data-toggle="popover" role="button" tabindex="0" data-placement="top"

@@ -19,7 +19,10 @@ class ApplicationController < ActionController::Base
 
   def get_record(model, id, path)
     record = model.find(id) if model.exists?(id)
-    return record if record && record.active?
+    if record && record.active?
+      IncreaseVisitsJob.perform_async(record.id, record.class.to_s)
+      return record
+    end
     redirect_to path, alert: I18n.t(:post_not_found)
   end
 

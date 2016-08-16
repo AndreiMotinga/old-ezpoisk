@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815184045) do
+ActiveRecord::Schema.define(version: 20160816010501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.datetime "updated_at",                    null: false
     t.integer  "impressions_count", default: 0
     t.string   "slug"
+    t.integer  "visits",            default: 0
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
@@ -146,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.integer  "impressions_count", default: 0
     t.string   "slug"
     t.string   "source"
+    t.integer  "visits",            default: 0
     t.index ["category"], name: "index_jobs_on_category", using: :btree
     t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
     t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
@@ -212,6 +214,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.boolean  "visible",            default: true
     t.string   "category"
     t.text     "summary"
+    t.integer  "visits",             default: 0
     t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
@@ -224,6 +227,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.integer "answers_count",     default: 0
     t.string  "slug"
     t.string  "image_url",         default: ""
+    t.integer "visits",            default: 0
     t.index ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
     t.index ["title"], name: "index_questions_on_title", using: :btree
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
@@ -248,6 +252,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.text     "description",       default: "",    null: false
     t.integer  "impressions_count", default: 0
     t.string   "email"
+    t.integer  "visits",            default: 0
     t.index ["category"], name: "index_re_commercials_on_category", using: :btree
     t.index ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
     t.index ["price"], name: "index_re_commercials_on_price", using: :btree
@@ -279,6 +284,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.integer  "impressions_count", default: 0
     t.string   "source"
     t.string   "email"
+    t.integer  "visits",            default: 0
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["price"], name: "index_re_privates_on_price", using: :btree
     t.index ["space"], name: "index_re_privates_on_space", using: :btree
@@ -306,6 +312,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.string   "slug"
     t.integer  "price"
     t.string   "source"
+    t.integer  "visits",            default: 0
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["description"], name: "index_sales_on_description", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
@@ -339,6 +346,7 @@ ActiveRecord::Schema.define(version: 20160815184045) do
     t.string   "fax"
     t.integer  "impressions_count", default: 0
     t.integer  "priority",          default: 0,  null: false
+    t.integer  "visits",            default: 0
     t.index ["city_id"], name: "index_services_on_city_id", using: :btree
     t.index ["state_id"], name: "index_services_on_state_id", using: :btree
     t.index ["user_id"], name: "index_services_on_user_id", using: :btree
