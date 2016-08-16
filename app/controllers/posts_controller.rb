@@ -20,7 +20,9 @@ class PostsController < ApplicationController
   end
 
   def all
-    @posts = Post.invisible.today
+    @posts = Post.invisible
+                 .category(params[:category])
+                 .today
   end
 
   def import

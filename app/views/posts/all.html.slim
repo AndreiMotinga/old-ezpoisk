@@ -1,4 +1,13 @@
-p= @posts.size
+p Total #{@posts.size}
+
+form.form-horizontal action=all_posts_path method="get"
+  .row
+    .col-xs-3
+      = select_tag :category, options_for_select(ru(Post::CATEGORIES), params[:category]), class: "form-control"
+    .col-xs-3
+      = submit_tag "Обновить", name: nil, class: "btn mobile-btn"
+br
+
 table.table.table-striped
   - @posts.each do |post|
     tr
