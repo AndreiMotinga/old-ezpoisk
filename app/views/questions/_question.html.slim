@@ -1,7 +1,7 @@
 .question.white-block
   .panel.panel-default
     .panel-heading
-      h4.question= link_to question.title, question
+      h1.h1-title.question-title= link_to question.title, question
       p.text-muted
         = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
     .panel-body

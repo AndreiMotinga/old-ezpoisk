@@ -1,7 +1,6 @@
 .col-xs-12.white-block.contacts
-  - unless record.user.id == 181
+  - unless record.user.admin?
     li.list-group-item itemscope="" itemtype="https://schema.org/OwnershipInfo"
-      | автор #{" "}
       strong
         = link_to profile_path(record.user) do
           span itemprop="name" =record.user.name_to_show

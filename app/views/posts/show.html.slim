@@ -23,7 +23,7 @@
         .panel-body
           - if @post.image?
             = image_tag @post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
-          h4= @post.title
+          h1.h1-title= @post.title
           p= markdown @post.text
 
           = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}"

@@ -1,6 +1,7 @@
 .col-xs-12.white-block
-  li.list-group-item= t @re_private.post_type
-   - if @re_private.duration?
+  li.list-group-item
+    h1.h1-side-block= t @re_private.post_type
+  - if @re_private.duration?
     li.list-group-item= t @re_private.duration
   li.list-group-item
     | Цена
