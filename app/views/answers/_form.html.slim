@@ -1,0 +1,14 @@
+h1.h1-title= @answer.question_title
+br
+= bootstrap_form_for @answer do |f|
+  = hidden_field_tag 'answer[question_id]', @answer.question.id
+  .field= f.text_area :text, rows: 8, label: "Ваш ответ"
+  span.text-muted
+    | *  Вы можете использовать
+    em  markdown
+
+  br
+  br
+  .actions
+    = f.submit 'Сохранить', class: "btn mobile-btn"
+br/
