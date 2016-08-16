@@ -35,8 +35,13 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def destroy
+    @id = @post.id
     @post.destroy
-    redirect_to dashboard_path, notice: I18n.t(:post_removed)
+
+    respond_to do |format|
+      format.html { redirect_to dashboard_path, notice: I18n.t(:post_removed) }
+      format.js
+    end
   end
 
   private

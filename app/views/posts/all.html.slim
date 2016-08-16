@@ -10,9 +10,10 @@ br
 
 table.table.table-striped
   - @posts.each do |post|
-    tr
+    tr data-id="post-#{post.id}"
       td= post.category
-      td= link_to post.title, edit_dashboard_post_path(post)
+      td= link_to post.title, edit_dashboard_post_path(post), target: "_blank"
+      td= link_to 'удалить', dashboard_post_path(post), method: :delete, remote: true
 
 br
 = form_tag posts_destroy_all_path, class: "form-horizontal", method: "post" do

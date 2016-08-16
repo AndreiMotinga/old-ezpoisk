@@ -2,11 +2,11 @@
 
 - if current_user.try(:editor?)
   br/
-  = link_to @post.link, @post.link, target: "_blank", rel: "nofollow"
+  = link_to @post.link, site_link(@post.link), target: "_blank", rel: "nofollow"
   br/
   br/
 
   .container
     .row
       .embed-responsive.embed-responsive-16by9
-        iframe.embed-responsive-item src="//#{@post.link}"
+        iframe.embed-responsive-item src=@post.link
