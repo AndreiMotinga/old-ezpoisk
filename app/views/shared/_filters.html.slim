@@ -1,11 +1,11 @@
 .hidden-xs
   = link_to "Настроить фильтр | #{count}", "",
             class: "btn mobile-btn search-modal-trigger",
-            "data-target": "##{id}", "data-toggle": :modal, role: :button
+            "data-target": "##{id}", "data-toggle": :modal, role: :button, rel: "nofollow"
 .visible-xs
   = link_to "Настроить фильтр | #{count}", "",
             class: "btn mobile-btn btn-block search-modal-trigger",
-            "data-target": "##{id}", "data-toggle": :modal, role: :button
+            "data-target": "##{id}", "data-toggle": :modal, role: :button, rel: "nofollow"
 
 /! Modal
 .modal.modal-large.fade id=id aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
