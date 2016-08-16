@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    IncreaseVisitsJob.perform_async(@post.id, 'Post') if @post
   end
 
   def destroy_all
@@ -19,7 +20,9 @@ class PostsController < ApplicationController
   end
 
   def all
-    @posts = Post.invisible.today
+    @posts = Post.invisible
+                 .category(params[:category])
+                 .today
   end
 
   def import

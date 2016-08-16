@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    IncreaseImpressionsJob.perform_async([@question.id], "Question")
+    IncreaseVisitsJob.perform_async(@question.id, "Question")
   end
 
   def new

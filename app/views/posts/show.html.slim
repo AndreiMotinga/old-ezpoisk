@@ -26,7 +26,7 @@
           h4= @post.title
           p= markdown @post.text
 
-          = render "shared/social", count: @post.impressions_count
+          = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}"
           - if @post.user == current_user || current_user.try(:editor?)
             = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 

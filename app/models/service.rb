@@ -21,7 +21,8 @@ class Service < ActiveRecord::Base
   has_one :stripe_subscription, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
-  delegate :active?, to: :stripe_subscription, allow_nil: true
+  # todo fix when work with services
+  # delegate :active?, to: :stripe_subscription, allow_nil: true
   delegate :activated?, to: :stripe_subscription, allow_nil: true
   delegate :active_until, to: :stripe_subscription, allow_nil: true
   delegate :cancelled?, to: :stripe_subscription, allow_nil: true
@@ -55,5 +56,10 @@ class Service < ActiveRecord::Base
   def trial?
     return false unless stripe_subscription
     stripe_subscription.status == "trial"
+  end
+
+  def active?
+    # todo fix when work with services
+    true
   end
 end

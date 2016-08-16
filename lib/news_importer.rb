@@ -113,6 +113,8 @@ class NewsImporter
       ["http://www.wsj.com/xml/rss/3_7085.xml", "world"],
       ["http://www.wsj.com/xml/rss/3_7014.xml", "money"],
       ["http://www.wsj.com/xml/rss/3_7455.xml", "tech"],
+
+      ["http://feeds.feedburner.com/cnet/tcoc", "tech"],
     ]
   end
 end
