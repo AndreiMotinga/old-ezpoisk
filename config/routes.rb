@@ -82,6 +82,7 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show]
 
   authenticate :user, ->(u) { u.admin? } do
+    get "feeds", to: "feeds#index"
     mount Sidekiq::Web => "/sidekiq_monstro"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end

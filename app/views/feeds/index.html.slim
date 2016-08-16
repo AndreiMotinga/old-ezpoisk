@@ -1,0 +1,9 @@
+h3 Активность на сайте за сегодня
+br
+= render "feeds/search_form"
+br
+
+table.table
+  - @listings.each do |l|
+    tr
+      td= l.show_url
