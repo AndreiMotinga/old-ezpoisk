@@ -6,5 +6,5 @@ class DataAggregatorJob
 end
 
 Sidekiq::Cron::Job.create(name: "every 12 hours",
-                          cron: "0 */12 * * *",
+                          cron: "0 1 * * *",
                           class: "DataAggregatorJob")
