@@ -16,7 +16,8 @@
         - @sale.pictures.each do |pic|
           li
             = link_to pic.image.url do
-              = image_tag pic.image.url(:large), alt: ""
+              = image_tag pic.image.url(:large),
+                          alt: "Продается #{t @sale.category} #{@sale.title} #{@sale.city.name} #{@sale.state.name} #{pic.image_file_name}"
 
 .col-xs-12
   = render @sale

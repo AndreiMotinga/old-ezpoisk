@@ -16,7 +16,9 @@
         - @re_private.pictures.each do |pic|
           li itemscope="" itemtype="http://schema.org/ImageObject"
             = link_to pic.image.url, itemprop: "contentUrl" do
-              = image_tag pic.image.url(:large), alt: ""
+              = image_tag pic.image.url(:large),
+                          alt: "#{t @re_private.post_type} #{t @re_private.rooms} #{@re_private.city.name} \
+                                #{@re_private.state.name} #{@re_private.zip} #{pic.image_file_name}"
 
 .div itemscope="" itemtype="http://schema.org/ApartmentComplex"
   .col-xs-12
