@@ -1,5 +1,5 @@
 = title("#{@post.title} - ezpoisk")
-= desc(strip_tags(@post.text).truncate(160))
+= desc(strip_tags(@post.summary).truncate(160))
 
 = og_type("article")
 = og_url(post_url(@post))
