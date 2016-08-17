@@ -6,7 +6,7 @@
       table.table.table-hover.text-center
         tr
           td email
-          td= @user.email
+          td: a href="mailto:#{@user.email}" =@user.email
 
         tr
           td phone
