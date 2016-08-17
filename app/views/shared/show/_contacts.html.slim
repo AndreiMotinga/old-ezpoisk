@@ -2,7 +2,7 @@
   - unless record.user.admin?
     li.list-group-item itemscope="" itemtype="https://schema.org/OwnershipInfo"
       strong
-        = link_to profile_path(record.user) do
+        = link_to profile_path(record.user), rel: "nofollow" do
           span itemprop="name" =record.user.name_to_show
 
   - unless record.try(:source).blank?
