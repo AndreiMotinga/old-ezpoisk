@@ -3,7 +3,7 @@
     .col-xs-4.logo
       = link_to re_private_path(re_private) do
         img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
-            alt="#{re_private.post_type} частной недвижимости - #{re_private.street} #{re_private.phone}"]
+          alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
 
         - if !re_private.fee && re_private.post_type == "leasing"
           .hidden-xs

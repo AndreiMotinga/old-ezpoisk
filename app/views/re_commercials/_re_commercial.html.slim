@@ -2,8 +2,9 @@
   .listing
     .col-xs-4.logo data-id="logo"
       = link_to re_commercial_path(re_commercial) do
-        = image_tag re_commercial.logo_url, class: "img-responsive center-block",
-                    alt: "#{t re_commercial.post_type} коммерческой недвижимости - #{re_commercial.street} #{re_commercial.phone}"
+        = image_tag re_commercial.logo_url,
+                    class: "img-responsive center-block",
+                    alt: "#{t re_commercial.post_type} коммерческой недвижимости - #{re_commercial.street} #{re_commercial.city.name} #{re_commercial.state.name}"
 
     .col-xs-8
       / line 1

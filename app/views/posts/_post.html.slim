@@ -7,7 +7,9 @@
           .row.author
             .col-sm-2
               = link_to profile_path(post.user) do
-                = image_tag post.avatar.url(:thumb), class: "img-responsive center-block img-circle", alt: "Новости комьюнити"
+                = image_tag post.avatar.url(:thumb),
+                            class: "img-responsive center-block img-circle",
+                            alt: "автор новости #{post.user.name_to_show}"
             .col-sm-10
               h4.name= post.user.name_to_show
               p.text-muted= post.created_at.strftime("%d %B %Y")
@@ -15,7 +17,9 @@
       .panel-body
         = link_to post_path(post) do
           - if post.image?
-            = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости комьюнити"
+            = image_tag post.logo_url,
+                        class: "img-responsive center-block",
+                        alt: "Новости русского комьюнити в США - #{post.title}"
         h4.title= link_to post.title, post
         p= strip_tags(post.summary)
 
