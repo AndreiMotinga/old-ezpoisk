@@ -1,3 +1,4 @@
+ga('send', 'pageview');
 $("[data-id='listings']").append("<%= j render(records) %>");
 <% if records.next_page %>
   $(".pagination").replaceWith("<%= j paginate(records) %>")
