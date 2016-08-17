@@ -1,6 +1,0 @@
-$("[data-id='listings']").append("<%= j render(@re_commercials) %>");
-<% if @re_commercials.next_page %>
-  $(".pagination").replaceWith("<%= j paginate(@re_commercials) %>")
-<% else  %>
-  $(".pagination").remove();
-<% end %>

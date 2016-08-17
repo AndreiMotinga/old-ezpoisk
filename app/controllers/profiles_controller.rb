@@ -10,6 +10,10 @@ class ProfilesController < ApplicationController
 
   def posts
     @posts = @user.posts.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @posts } }
+    end
   end
 
   def listings
@@ -17,15 +21,23 @@ class ProfilesController < ApplicationController
                      .where.not(enterable_type: ["Post", "Question"])
                      .includes(enterable: [:state, :city])
                      .page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @listings } }
+    end
   end
 
   def answers
-    @answers = @user.answers.includes(:question).page(params[:page])
+    @answers = @user.answers.includes(question: :taggings).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @answers } }
+    end
   end
 
-  def gallery
-    @pictures = @user.gallery.pictures.page(params[:page]).per(30)
-  end
+  # def gallery
+  #   @pictures = @user.gallery.pictures.page(params[:page]).per(30)
+  # end
 
   private
 

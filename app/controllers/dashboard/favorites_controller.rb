@@ -11,5 +11,11 @@ class Dashboard::FavoritesController < ApplicationController
                    .includes(:state, :city)
                    .where(id: ids)
                    .page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index",
+                         locals: { records: @records } }
+    end
   end
 end

@@ -3,6 +3,12 @@ class RePrivatesController < ApplicationController
     @re_privates = RePrivate.includes(:state, :city)
                             .filter(sliced_params).page(params[:page])
     IncreaseImpressionsJob.perform_async(@re_privates.pluck(:id), "RePrivate")
+
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index",
+                         locals: { records: @re_privates } }
+    end
   end
 
   def show

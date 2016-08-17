@@ -7,6 +7,10 @@ class QuestionsController < ApplicationController
                           .by_keyword(params[:keyword])
                           .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @questions } }
+    end
   end
 
   def tag
@@ -14,7 +18,11 @@ class QuestionsController < ApplicationController
                          .tagged_with(params[:tag], any: true)
                          .by_views.page(params[:page])
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
-    render :index
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render partial: "shared/index", locals: { records: @questions } }
+    end
   end
 
   def unanswered
@@ -22,7 +30,10 @@ class QuestionsController < ApplicationController
     @questions = @questions.tagged_with(params[:tag]) if params[:tag].present?
     @questions = @questions.by_views.page(params[:page])
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
-    render :index
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render partial: "shared/index", locals: { records: @questions } }
+    end
   end
 
   def show

@@ -5,6 +5,10 @@ class SalesController < ApplicationController
              .filter(sliced_params)
              .page(params[:page])
     IncreaseImpressionsJob.perform_async(@sales.pluck(:id), "Sale")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @sales } }
+    end
   end
 
   def show

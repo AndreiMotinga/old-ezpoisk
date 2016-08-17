@@ -5,6 +5,12 @@ class ReCommercialsController < ApplicationController
                                   .page(params[:page])
     IncreaseImpressionsJob
       .perform_async(@re_commercials.pluck(:id), "ReCommercial")
+
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index",
+                         locals: { records: @re_commercials } }
+    end
   end
 
   def show

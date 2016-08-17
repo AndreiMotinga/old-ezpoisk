@@ -4,6 +4,11 @@ class JobsController < ApplicationController
                .filter(sliced_params)
                .page(params[:page])
     IncreaseImpressionsJob.perform_async(@jobs.pluck(:id), "Job")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index",
+                         locals: { records: @jobs } }
+    end
   end
 
   def show

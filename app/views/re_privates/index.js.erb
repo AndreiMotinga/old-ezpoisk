@@ -1,6 +1,0 @@
-$("[data-id='listings']").append("<%= j render(@re_privates) %>");
-<% if @re_privates.next_page %>
-  $(".pagination").replaceWith("<%= j paginate(@re_privates) %>")
-<% else  %>
-  $(".pagination").remove();
-<% end %>

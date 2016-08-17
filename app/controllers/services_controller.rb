@@ -1,12 +1,13 @@
 class ServicesController < ApplicationController
-  def all
-  end
-
   def index
     @services = Service.includes(:state, :city)
                        .filter(sliced_params)
                        .page(params[:page])
     IncreaseImpressionsJob.perform_async(@services.pluck(:id), "Service")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @services } }
+    end
   end
 
   def show

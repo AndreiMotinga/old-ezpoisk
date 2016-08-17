@@ -7,6 +7,10 @@ class PostsController < ApplicationController
                  .desc
                  .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @posts } }
+    end
   end
 
   def show

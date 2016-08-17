@@ -6,6 +6,10 @@ class AnswersController < ApplicationController
     @answers = Answer.includes(:user, question: :taggings)
                      .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @answers } }
+    end
   end
 
   def show
