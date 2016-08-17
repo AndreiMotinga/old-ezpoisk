@@ -75,8 +75,8 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [:index, :show]
-  resources :sales, only: [:index, :show], path: :ezsale
-  resources :services, only: [:index, :show], path: :ezservice
+  resources :sales, only: [:index, :show]
+  resources :services, only: [:index, :show]
   resources :re_privates, only: [:index, :show]
   resources :re_commercials, only: [:index, :show]
   resources :jobs, only: [:index, :show]
