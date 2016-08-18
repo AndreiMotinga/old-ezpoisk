@@ -1,4 +1,5 @@
 = bootstrap_form_for([:dashboard, @sale]) do |f|
+  = hidden_field_tag :token, params[:token]
   -  if current_user.admin?
     = f.text_field :source, label: "источник"
   = f.text_field :title, label: '* Заголовок'
@@ -29,7 +30,7 @@
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
   - unless @sale.new_record?
     = link_to "Удалить",
-              dashboard_sale_path(@sale),
+              dashboard_sale_path(@sale, token: params[:token]),
               method: :delete,
               data: { confirm: I18n.t(:confirm) },
               class: "btn mobile-btn btn-danger pull-right"

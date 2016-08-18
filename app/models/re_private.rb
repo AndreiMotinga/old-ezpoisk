@@ -3,6 +3,7 @@ class RePrivate < ActiveRecord::Base
   acts_as_commentable
   include Filterable
   include ViewHelpers
+  include Tokenable
 
   validates :rooms, presence: true
   validates :duration, presence: true
@@ -26,6 +27,10 @@ class RePrivate < ActiveRecord::Base
 
   def edit_link
     url_helpers.edit_dashboard_re_private_path(self)
+  end
+
+  def edit_url_with_token
+    url_helpers.edit_dashboard_re_private_url(self, token: token)
   end
 
   def show_url

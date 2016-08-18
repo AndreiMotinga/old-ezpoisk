@@ -9,8 +9,12 @@ class Ez
     notifier.ping message
   end
 
-  def self.notify_about(record)
-    string = "Регистрация нового  #{record.class}\n id #{record.id}\n\n"
+  def self.notify_about(record, type = nil)
+    if type == 'update'
+      string = "UPDATE |  #{record.class}\n id #{record.id}\n\n"
+    else
+      string = "NEW    |  #{record.class}\n id #{record.id}\n\n"
+    end
     string += "#{record.show_url}"
     notifier.ping(string)
   end

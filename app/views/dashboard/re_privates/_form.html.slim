@@ -1,5 +1,6 @@
 = bootstrap_form_for([:dashboard, @re_private]) do |f|
-  -  if current_user.admin?
+  = hidden_field_tag :token, params[:token]
+  -  if current_user.try(:admin?)
     = f.text_field :source, label: "источник"
   = f.text_area :description, rows: 5, label: 'Описание'
   = f.text_field :street, label: 'Улица'
@@ -48,7 +49,7 @@
     = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
     - unless @re_private.new_record?
       = link_to "Удалить",
-                dashboard_re_private_path(@re_private),
+                dashboard_re_private_path(@re_private, token: params[:token]),
                 method: :delete,
                 data: { confirm: I18n.t(:confirm) },
                 class: "btn mobile-btn btn-danger pull-right"

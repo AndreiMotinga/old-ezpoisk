@@ -1,5 +1,5 @@
 class Dashboard::JobsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_job, only: [:edit, :update, :destroy]
 
   def new
@@ -16,7 +16,7 @@ class Dashboard::JobsController < ApplicationController
   def create
     @job = current_user.jobs.build(job_params)
     if @job.save
-      run_jobs_and_notifications
+      run_create_notifications
       redirect_to edit_dashboard_job_path(@job), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -28,9 +28,8 @@ class Dashboard::JobsController < ApplicationController
     address_changed = address_changed?(@job, job_params)
     if @job.update(job_params)
       GeocodeJob.perform_async(@job.id, "Job") if address_changed
-      @job.entry.try(:touch)
-      redirect_to edit_dashboard_job_path(@job),
-                  notice: I18n.t(:post_saved)
+      run_update_notifications
+      redirect_to update_redirect_path, notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
@@ -39,12 +38,25 @@ class Dashboard::JobsController < ApplicationController
 
   def destroy
     @job.destroy
-    redirect_to dashboard_path, notice: I18n.t(:post_removed)
+    redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
   end
 
   private
 
-  def run_jobs_and_notifications
+  def update_redirect_path
+    if params[:token].present?
+      edit_dashboard_job_path(@job, token: params[:token])
+    else
+      edit_dashboard_job_path(@job)
+    end
+  end
+
+  def run_update_notifications
+    SlackNotifierJob.perform_async(@job.id, "Job", 'update')
+    @job.entry.try(:touch)
+  end
+
+  def run_create_notifications
     SlackNotifierJob.perform_async(@job.id, "Job")
     GeocodeJob.perform_async(@job.id, "Job")
     @job.create_entry(user: current_user)
@@ -52,12 +64,18 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def set_job
-    @job = current_user.jobs.find(params[:id])
+    if params[:token].present?
+      @job = Job.find(params[:id])
+      @job = nil unless @job.token == params[:token]
+    else
+      @job = current_user.jobs.find(params[:id])
+    end
   end
 
   def job_params
     params.require(:job).permit(:title, :phone, :email, :description,
                                 :active, :street, :state_id, :city_id,
-                                :logo, :category, :subcategory, :source, tag_list: [])
+                                :logo, :category, :subcategory, :source,
+                                tag_list: [])
   end
 end

@@ -26,7 +26,7 @@ class AnswersController < ApplicationController
   def create
     @answer = current_user.answers.build(answer_params)
     if @answer.save
-      run_jobs_and_notifications
+      run_create_notifications
       redirect_to(question_path(question), notice: I18n.t(:answer_created))
     end
   end
@@ -67,7 +67,7 @@ class AnswersController < ApplicationController
 
   private
 
-  def run_jobs_and_notifications
+  def run_create_notifications
     SlackNotifierJob.perform_async(@answer.id, "Answer")
     QuestionNotificatorJob.perform_async(question.id)
     question.increment!(:answers_count)

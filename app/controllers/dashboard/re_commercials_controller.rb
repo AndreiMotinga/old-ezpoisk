@@ -16,7 +16,7 @@ class Dashboard::ReCommercialsController < ApplicationController
   def create
     @re_commercial = current_user.re_commercials.build(re_commercial_params)
     if @re_commercial.save
-      run_jobs_and_notifications
+      run_create_notifications
       redirect_to edit_dashboard_re_commercial_path(@re_commercial),
                   notice: I18n.t(:post_saved)
     else
@@ -42,7 +42,7 @@ class Dashboard::ReCommercialsController < ApplicationController
 
   private
 
-  def run_jobs_and_notifications
+  def run_create_notifications
     SlackNotifierJob.perform_async(@re_commercial.id, "ReCommercial")
     GeocodeJob.perform_async(@re_commercial.id, "ReCommercial")
     @re_commercial.create_entry(user: current_user)

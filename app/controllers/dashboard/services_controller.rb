@@ -16,7 +16,7 @@ class Dashboard::ServicesController < ApplicationController
   def create
     @service = current_user.services.build(service_params)
     if @service.save
-      run_jobs_and_notifications
+      run_create_notifications
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else
@@ -29,7 +29,7 @@ class Dashboard::ServicesController < ApplicationController
     address_changed = address_changed?(@service, service_params)
     if @service.update(service_params)
       GeocodeJob.perform_async(@service.id, "Service") if address_changed
-      @service.entry.try(:touch)
+      run_update_notifications
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_saved)
     else
@@ -46,7 +46,12 @@ class Dashboard::ServicesController < ApplicationController
 
   private
 
-  def run_jobs_and_notifications
+  def run_update_notifications
+    @service.entry.try(:touch)
+    SlackNotifierJob.perform_async(@service.id, "Service", 'update')
+  end
+
+  def run_create_notifications
     SlackNotifierJob.perform_async(@service.id, "Service")
     GeocodeJob.perform_async(@service.id, "Service")
     @service.create_entry(user: current_user)

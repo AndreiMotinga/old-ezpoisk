@@ -2,9 +2,8 @@
 class SlackNotifierJob
   include Sidekiq::Worker
 
-  def perform(id, type)
-    return if Rails.env.development?
-    record = type.constantize.find(id)
-    Ez.notify_about(record)
+  def perform(id, model, type = nil)
+    record = model.constantize.find(id)
+    Ez.notify_about(record, type)
   end
 end

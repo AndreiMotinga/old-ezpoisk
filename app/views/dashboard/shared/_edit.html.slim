@@ -1,3 +1,6 @@
+- if current_user.try(:admin?)
+  = render "shared/spam_message", record: record
+
 #pictures-data data-id=record.id data-type=record.class.to_s
 .col-xs-12
   = render record

@@ -1,5 +1,5 @@
 class Dashboard::SalesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_sale, only: [:edit, :update, :destroy]
 
   def new
@@ -16,7 +16,7 @@ class Dashboard::SalesController < ApplicationController
   def create
     @sale = current_user.sales.build(sale_params)
     if @sale.save
-      run_jobs_and_notifications
+      run_create_notifications
       redirect_to edit_dashboard_sale_path(@sale), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -28,8 +28,8 @@ class Dashboard::SalesController < ApplicationController
     address_changed = address_changed?(@sale, sale_params)
     if @sale.update(sale_params)
       GeocodeJob.perform_async(@sale.id, "Sale") if address_changed
-      @sale.entry.try(:touch)
-      redirect_to edit_dashboard_sale_path(@sale), notice: I18n.t(:post_saved)
+      run_update_notifications
+      redirect_to update_redirect_path, notice: I18n.t(:post_saved)
     else
       render :edit
     end
@@ -37,12 +37,26 @@ class Dashboard::SalesController < ApplicationController
 
   def destroy
     @sale.destroy
-    redirect_to dashboard_path, notice: I18n.t(:post_removed)
+    redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
   end
 
   private
 
-  def run_jobs_and_notifications
+  def update_redirect_path
+    if params[:token].present?
+      edit_dashboard_sale_path(@sale, token: params[:token])
+    else
+      edit_dashboard_sale_path(@sale)
+    end
+
+  end
+
+  def run_update_notifications
+    SlackNotifierJob.perform_async(@sale.id, "Sale", 'update')
+    @sale.entry.try(:touch)
+  end
+
+  def run_create_notifications
     SlackNotifierJob.perform_async(@sale.id, "Sale")
     GeocodeJob.perform_async(@sale.id, "Sale")
     @sale.create_entry(user: current_user)
@@ -50,7 +64,12 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def set_sale
-    @sale = current_user.sales.find(params[:id])
+    if params[:token].present?
+      @sale = Sale.find(params[:id])
+      @sale = nil unless @sale.token == params[:token]
+    else
+      @sale = current_user.sales.find(params[:id])
+    end
   end
 
   def sale_params

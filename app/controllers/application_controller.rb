@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def destroy_redirect_path
+    params[:token].present? ? root_path : dashboard_path
+  end
+
   def create_subscription(record)
     Subscription.create(
       user: current_user,

@@ -5,6 +5,7 @@ class Job < ActiveRecord::Base
   include MyFriendlyId
   include Filterable
   include ViewHelpers
+  include Tokenable
 
   validates :title, length: { maximum: 90 }
   validates :description, presence: true
@@ -40,6 +41,10 @@ class Job < ActiveRecord::Base
 
   def show_url
     url_helpers.job_url(self)
+  end
+
+  def edit_url_with_token
+    url_helpers.edit_dashboard_job_url(self, token: token)
   end
 
   def self.taggings_list

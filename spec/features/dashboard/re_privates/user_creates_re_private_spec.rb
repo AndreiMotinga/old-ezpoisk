@@ -36,5 +36,6 @@ feature "User create re_private" do
     expect(re_private_save.state_id).to_not be nil
     expect(re_private_save.city_id).to_not be nil
     expect(re_private_save.user_id).to_not be nil
+    expect(re_private_save.token).to_not be nil
   end
 end

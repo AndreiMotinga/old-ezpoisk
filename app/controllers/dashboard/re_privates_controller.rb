@@ -1,5 +1,5 @@
 class Dashboard::RePrivatesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
   def new
@@ -18,7 +18,7 @@ class Dashboard::RePrivatesController < ApplicationController
   def create
     @re_private = current_user.re_privates.build(re_private_params)
     if @re_private.save
-      run_jobs_and_notifications
+      run_create_notifications
       redirect_to edit_dashboard_re_private_path(@re_private),
                   notice: I18n.t(:post_saved)
     else
@@ -31,9 +31,8 @@ class Dashboard::RePrivatesController < ApplicationController
     address_changed = address_changed?(@re_private, re_private_params)
     if @re_private.update(re_private_params)
       GeocodeJob.perform_async(@re_private.id, "RePrivate") if address_changed
-      @re_private.entry.try(:touch)
-      redirect_to edit_dashboard_re_private_path(@re_private),
-                  notice: I18n.t(:post_saved)
+      run_update_notifications
+      redirect_to update_redirect_path, notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
@@ -42,12 +41,25 @@ class Dashboard::RePrivatesController < ApplicationController
 
   def destroy
     @re_private.destroy
-    redirect_to dashboard_path, notice: I18n.t(:post_removed)
+    redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
   end
 
   private
 
-  def run_jobs_and_notifications
+  def update_redirect_path
+    if params[:token].present?
+      edit_dashboard_re_private_path(@re_private, token: params[:token])
+    else
+      edit_dashboard_re_private_path(@re_private)
+    end
+  end
+
+  def run_update_notifications
+    SlackNotifierJob.perform_async(@re_private.id, "RePrivate", 'update')
+    @re_private.entry.try(:touch)
+  end
+
+  def run_create_notifications
     SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
     GeocodeJob.perform_async(@re_private.id, "RePrivate")
     @re_private.create_entry(user: current_user)
@@ -55,7 +67,12 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def set_re_private
-    @re_private = current_user.re_privates.find(params[:id])
+    if params[:token].present?
+      @re_private = RePrivate.find(params[:id])
+      @re_private = nil unless @re_private.token == params[:token]
+    else
+      @re_private = current_user.re_privates.find(params[:id])
+    end
   end
 
   def re_private_params

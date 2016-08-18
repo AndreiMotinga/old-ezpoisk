@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Dashboard::SalesController do
-  before { sign_in(@user = create(:user)) }
-
   describe "GET #new" do
     it "renders the new template and assigns @sale" do
+      sign_in(@user = create(:user))
+
       get :new
 
       expect(response).to render_template(:new)
@@ -14,16 +14,29 @@ describe Dashboard::SalesController do
 
   describe "GET #edit" do
     it "only shows record that belongs to user" do
+      sign_in(@user = create(:user))
       sale = create :sale
       create :sale, user: @user
 
       expect { get :edit, params: { id: sale.id } }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
+
+    context "with token" do
+      it "renders page" do
+        sale = create :sale
+
+        get :edit, params: { id: sale.id, token: sale.token }
+
+        expect(response).to render_template(:edit)
+        expect(assigns(:sale)).to eq sale
+      end
+    end
   end
 
   describe "POST #create" do
     it "creates sale" do
+      sign_in(@user = create(:user))
       attrs = attributes_for(:sale)
 
       post :create, params: { sale: attrs }
@@ -47,6 +60,7 @@ describe Dashboard::SalesController do
 
   describe "PUT #update" do
     it "updates sale" do
+      sign_in(@user = create(:user))
       sale = create(:sale, user: @user)
       attrs = attributes_for(:sale)
 
@@ -66,10 +80,30 @@ describe Dashboard::SalesController do
       expect(updated_sale.state_id).to eq attrs[:state_id]
       expect(updated_sale.user).to eq @user
     end
+
+    context "with token" do
+      it "updates the record" do
+        sale = create :sale
+        attrs = attributes_for(:sale, title: sale.title)
+
+        put :update, params: {
+          id: sale.id, sale: attrs, token: sale.token
+        }
+
+        expect(response).to redirect_to(
+          edit_dashboard_sale_path(sale, token: sale.token)
+        )
+        sale.reload
+
+        expect(sale.street).to eq attrs[:street]
+        expect(flash[:notice]).to eq I18n.t(:post_saved)
+      end
+    end
   end
 
   describe "DELETE #destroy" do
     it "removes record" do
+      sign_in(@user = create(:user))
       sale = create(:sale, user: @user)
       sale.subscriptions.create(user: @user)
 
@@ -81,4 +115,15 @@ describe Dashboard::SalesController do
       expect(Subscription.count).to be 0
     end
   end
+
+    context "with token" do
+      it "removes record and entry" do
+        sale = create :sale
+
+        delete :destroy, params: { id: sale.id, token: sale.token }
+
+        expect(response).to redirect_to(root_path)
+        expect(flash[:notice]).to eq I18n.t(:post_removed)
+      end
+    end
 end

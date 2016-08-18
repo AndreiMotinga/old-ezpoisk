@@ -19,6 +19,7 @@ feature "user creates re_private" do
     fill_in "Ванные", with: attrs.baths
     fill_in "Площадь", with: attrs.space
     fill_in "Email", with: "foo@bar.com"
+    fill_in "Описание", with: attrs.description
     check("Активно")
     check("Комиссия")
     select("Alabama", from: "Штат")
@@ -37,22 +38,10 @@ feature "user creates re_private" do
     expect(re_private.baths).to eq attrs.baths
     expect(re_private.rooms).to eq attrs.rooms
     expect(re_private.space).to eq attrs.space
+    expect(re_private.description).to eq attrs.description
     expect(re_private.active).to be true
     expect(re_private.fee).to be true
     expect(re_private.state.name).to eq "Alabama"
     expect(re_private.city.name).to eq "Abbeville"
-  end
-
-  scenario "updates description" do
-    user = create_and_login_user
-
-    re_private = create :re_private, user: user
-
-    visit edit_dashboard_re_private_path re_private
-    fill_in "Описание", with: "New description"
-    click_on "details-save-btn"
-    re_private.reload
-
-    expect(re_private.description).to eq "New description"
   end
 end

@@ -1,13 +1,9 @@
 require "rails_helper"
 
 describe Dashboard::JobsController do
-  before do
-    @user = create(:user)
-    sign_in(@user)
-  end
-
   describe "GET #new" do
     it "renders the new template and assigns @job" do
+      sign_in(@user = create(:user))
       get :new
 
       expect(response).to render_template(:new)
@@ -17,16 +13,29 @@ describe Dashboard::JobsController do
 
   describe "GET #edit" do
     it "only shows record that belongs to user" do
+      sign_in(@user = create(:user))
       job = create :job
       prms = { id: job.id }
 
       expect { get :edit, params: prms }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
+
+    context "with token" do
+      it "renders page" do
+        job = create :job
+
+        get :edit, params: { id: job.id, token: job.token }
+
+        expect(response).to render_template(:edit)
+        expect(assigns(:job)).to eq job
+      end
+    end
   end
 
   describe "POST #create" do
     it "creates job" do
+      sign_in(@user = create(:user))
       attrs = attributes_for(:job)
 
       post :create, params: { job: attrs }
@@ -50,6 +59,7 @@ describe Dashboard::JobsController do
 
   describe "PUT #update" do
     it "updates job" do
+      sign_in(@user = create(:user))
       job = create(:job, user: @user)
       attrs = attributes_for(:job)
 
@@ -69,10 +79,30 @@ describe Dashboard::JobsController do
       expect(updated_agency.state_id).to eq attrs[:state_id]
       expect(updated_agency.user).to eq @user
     end
+
+    context "with token" do
+      it "updates the record" do
+        job = create :job
+        attrs = attributes_for(:job, title: job.title)
+
+        put :update, params: {
+          id: job.id, job: attrs, token: job.token
+        }
+
+        expect(response).to redirect_to(
+          edit_dashboard_job_path(job, token: job.token)
+        )
+        job.reload
+
+        expect(job.street).to eq attrs[:street]
+        expect(flash[:notice]).to eq I18n.t(:post_saved)
+      end
+    end
   end
 
   describe "DELETE #destroy" do
     it "removes record" do
+      sign_in(@user = create(:user))
       job = create(:job, user: @user)
       job.subscriptions.create(user: @user)
 
@@ -82,6 +112,17 @@ describe Dashboard::JobsController do
       expect(Job.count).to be 0
       expect(Entry.count).to be 0
       expect(Subscription.count).to be 0
+    end
+  end
+
+  context "with token" do
+    it "removes record and entry" do
+      job = create :job
+
+      delete :destroy, params: { id: job.id, token: job.token }
+
+      expect(response).to redirect_to(root_path)
+      expect(flash[:notice]).to eq I18n.t(:post_removed)
     end
   end
 end
