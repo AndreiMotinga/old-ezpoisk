@@ -7,6 +7,7 @@ module Filterable
 
     scope :today, -> { where("updated_at > ?", Date.today) }
     scope :week, -> { where("updated_at > ?", Date.today.at_beginning_of_week) }
+    scope :till_last_week, -> { where("created_at < ?", Date.today.at_beginning_of_week) }
 
     scope :active, -> { where(active: true) }
     scope :state_id, ->(id) { where(state_id: id) }
