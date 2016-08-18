@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe Dashboard::ServicesController do
-  before { sign_in(@user = create(:user)) }
-
   describe "GET #new" do
     it "renders the new template and assigns @service" do
+     sign_in(@user = create(:user))
+
       get :new
 
       expect(response).to render_template(:new)
@@ -14,16 +14,29 @@ describe Dashboard::ServicesController do
 
   describe "GET #edit" do
     it "only shows record that belongs to user" do
+      sign_in(@user = create(:user))
       service = create :service
       create :service, user: @user
 
       expect { get :edit, params: { id: service.id } }
         .to raise_exception(ActiveRecord::RecordNotFound)
     end
+
+    context "with token" do
+      it "renders page" do
+        service = create :service
+
+        get :edit, params: { id: service.id, token: service.token }
+
+        expect(response).to render_template(:edit)
+        expect(assigns(:service)).to eq service
+      end
+    end
   end
 
   describe "POST #create" do
     it "creates service" do
+      sign_in(@user = create(:user))
       attrs = attributes_for(:service)
 
       post :create, params: { service: attrs }
@@ -39,6 +52,7 @@ describe Dashboard::ServicesController do
 
   describe "PUT #update" do
     it "updates service" do
+      sign_in(@user = create(:user))
       service = create(:service, user: @user)
       attrs = attributes_for(:service)
 
@@ -58,10 +72,30 @@ describe Dashboard::ServicesController do
       expect(updated_agency.state_id).to eq attrs[:state_id]
       expect(updated_agency.user).to eq @user
     end
+
+    context "with token" do
+      it "updates the record" do
+        service = create :service
+        attrs = attributes_for(:service, title: service.title)
+
+        put :update, params: {
+          id: service.id, service: attrs, token: service.token
+        }
+
+        expect(response).to redirect_to(
+          edit_dashboard_service_path(service, token: service.token)
+        )
+        service.reload
+
+        expect(service.street).to eq attrs[:street]
+        expect(flash[:notice]).to eq I18n.t(:post_saved)
+      end
+    end
   end
 
   describe "DELETE #destroy" do
     it "removes record" do
+      sign_in(@user = create(:user))
       service = create(:service, user: @user)
 
       delete :destroy, params: { id: service.id }
@@ -80,6 +114,7 @@ describe Dashboard::ServicesController do
       after { StripeMock.stop }
 
       it "cancels stripe_subscription" do
+        sign_in(@user = create(:user))
         @stripe_helper.create_plan(id: "monthly")
         service = create :service, user: @user
         customer = Stripe::Customer.create(
@@ -100,6 +135,17 @@ describe Dashboard::ServicesController do
         expect(Service.count).to be 0
 
         expect(remote_sub(sub).cancel_at_period_end).to eq true
+      end
+
+      context "with token" do
+        it "removes record and entry" do
+          service = create :service
+
+          delete :destroy, params: { id: service.id, token: service.token }
+
+          expect(response).to redirect_to(root_path)
+          expect(flash[:notice]).to eq I18n.t(:post_removed)
+        end
       end
     end
   end

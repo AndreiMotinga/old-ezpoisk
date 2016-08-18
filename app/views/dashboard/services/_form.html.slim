@@ -1,4 +1,5 @@
 = bootstrap_form_for([:dashboard, @service]) do |f|
+  = hidden_field_tag :token, params[:token]
   .row
     .col-xs-12.col-sm-6
       = f.select :category,
@@ -44,7 +45,7 @@
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
   - unless @service.new_record?
     = link_to "Удалить",
-              dashboard_service_path(@service),
+              dashboard_service_path(@service, token: params[:token]),
               method: :delete,
               data: { confirm: I18n.t(:confirm) },
               class: "btn mobile-btn btn-danger pull-right"

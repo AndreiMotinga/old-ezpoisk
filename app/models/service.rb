@@ -3,6 +3,7 @@ class Service < ActiveRecord::Base
   include MyFriendlyId
   include Filterable
   include ViewHelpers
+  include Tokenable
 
   validates :title, presence: true, length: { maximum: 44, minimum: 3 }
   validates :phone, presence: true
@@ -41,14 +42,6 @@ class Service < ActiveRecord::Base
     less_than: 1.megabytes
   )
 
-  def edit_link
-    url_helpers.edit_dashboard_service_path(self)
-  end
-
-  def show_url
-    url_helpers.service_url(self)
-  end
-
   def site_link
     site.match(/http/).present? ? site : "http://#{site}"
   end
@@ -61,5 +54,17 @@ class Service < ActiveRecord::Base
   def active?
     # todo fix when work with services
     true
+  end
+
+  def edit_link
+    url_helpers.edit_dashboard_service_path(self)
+  end
+
+  def edit_url_with_token
+    url_helpers.edit_dashboard_service_url(self, token: token)
+  end
+
+  def show_url
+    url_helpers.service_url(self)
   end
 end
