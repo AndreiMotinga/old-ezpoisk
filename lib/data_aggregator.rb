@@ -16,12 +16,12 @@ class DataAggregator
 
      Ответы:
      Всего: #{Answer.count}, Цель:#{@answer_goal}, Достигнуто: #{Answer.this_week}
-
-     Новости:
-     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.this_week}
-
-     Users:
-     Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.this_week}"
+     "
+     # Новости:
+     # Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.this_week}
+     #
+     # Users:
+     # Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.this_week}
   end
 
   def this_week
@@ -29,6 +29,6 @@ class DataAggregator
   end
 
   def models
-    [RePrivate, ReCommercial, Job, Service, Sale, Post]
+    [RePrivate, ReCommercial, Job, Service, Sale]
   end
 end
