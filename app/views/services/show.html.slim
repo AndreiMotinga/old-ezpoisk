@@ -1,5 +1,8 @@
+- description = strip_tags(@service.description).truncate(130)
+- description = "#{description} #{t @service.category} #{t @service.subcategory}"
+= desc(description)
+
 = title("#{@service.title} #{@service.city_name} #{@service.state_name}")
-= desc(strip_tags(@service.description).truncate(160))
 
 = og_type("business.business")
 = og_url(service_url(@service))

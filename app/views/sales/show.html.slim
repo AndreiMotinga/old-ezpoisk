@@ -1,5 +1,7 @@
+- d = strip_tags(@sale.description).truncate(160)
+- d = d.present? ? d : "Продается #{t @sale.category} #{@sale.title}"
+= desc(d)
 = title("#{@sale.title}, #{@sale.city_name} #{@sale.state_name} - ezpoisk")
-= desc(strip_tags(@sale.description).truncate(160))
 
 = og_type("article")
 = og_url(sale_url(@sale))

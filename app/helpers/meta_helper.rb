@@ -51,4 +51,15 @@ module MetaHelper
     return true if params[:city_id]
     return true if params[:post_type]
   end
+
+  def question_desc
+    case params[:action]
+    when 'index'
+      desc("Получите информацию на интересующую вас тему из первых рук. Советы адвокатов, риэлторов, врачей")
+    when 'tag'
+      desc("#{params[:tag]} - все, что нужно знать иммигранту в америке. - ezpoisk")
+    when 'unanswered'
+      desc("Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. We're in this together. - ezpoisk")
+    end
+  end
 end

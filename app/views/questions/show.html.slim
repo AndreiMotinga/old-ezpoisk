@@ -1,5 +1,8 @@
 = title("#{@question.title} - ezpoisk")
-= desc(strip_tags(@question.text).truncate(160))
+
+- description = strip_tags(@question.text).truncate(160)
+- description.present? ? description : "#{@question.title} - ezpoisk"
+= desc(description)
 
 = og_type("article")
 = og_url(question_url(@question))
