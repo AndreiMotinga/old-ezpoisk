@@ -3,6 +3,7 @@ class ReCommercial < ActiveRecord::Base
   acts_as_commentable
   include Filterable
   include ViewHelpers
+  include Tokenable
 
   validates :post_type, presence: true
   validates :category, presence: true
@@ -29,5 +30,9 @@ class ReCommercial < ActiveRecord::Base
 
   def show_url
     url_helpers.re_commercial_url(self)
+  end
+
+  def edit_url_with_token
+    url_helpers.edit_dashboard_re_commercial_url(self, token: token)
   end
 end

@@ -1,4 +1,5 @@
 = bootstrap_form_for([:dashboard, @re_commercial]) do |f|
+  = hidden_field_tag :token, params[:token]
   = form_state_select(f)
   = form_city_select(f, @re_commercial)
   = f.text_field :street, label: '* Улица'
@@ -25,7 +26,7 @@
 
   - unless @re_commercial.new_record?
     = link_to "Удалить",
-              dashboard_re_commercial_path(@re_commercial),
+              dashboard_re_commercial_path(@re_commercial, token: params[:token]),
               method: :delete,
               data: { confirm: I18n.t(:confirm) },
               class: "btn mobile-btn btn-danger pull-right"

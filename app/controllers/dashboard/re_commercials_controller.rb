@@ -1,5 +1,5 @@
 class Dashboard::ReCommercialsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_re_commercial, only: [:edit, :update, :destroy]
 
   def new
@@ -28,8 +28,7 @@ class Dashboard::ReCommercialsController < ApplicationController
     changed = address_changed?(@re_commercial, re_commercial_params)
     if @re_commercial.update(re_commercial_params)
       GeocodeJob.perform_async(@re_commercial.id, "ReCommercial") if changed
-      redirect_to edit_dashboard_re_commercial_path(@re_commercial),
-                  notice: I18n.t(:post_saved)
+      redirect_to update_redirect_path, notice: I18n.t(:post_saved)
     else
       render :edit, alert: I18n.t(:post_not_saved)
     end
@@ -37,10 +36,18 @@ class Dashboard::ReCommercialsController < ApplicationController
 
   def destroy
     @re_commercial.destroy
-    redirect_to dashboard_path, notice: I18n.t(:post_removed)
+    redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
   end
 
   private
+
+  def update_redirect_path
+    if params[:token].present?
+      edit_dashboard_re_commercial_path(@re_commercial, token: params[:token])
+    else
+      edit_dashboard_re_commercial_path(@re_commercial)
+    end
+  end
 
   def run_create_notifications
     SlackNotifierJob.perform_async(@re_commercial.id, "ReCommercial")
@@ -50,7 +57,12 @@ class Dashboard::ReCommercialsController < ApplicationController
   end
 
   def set_re_commercial
-    @re_commercial = current_user.re_commercials.find(params[:id])
+    if params[:token].present?
+      @re_commercial = ReCommercial.find(params[:id])
+      @re_commercial = nil unless @re_commercial.token == params[:token]
+    else
+      @re_commercial = current_user.re_commercials.find(params[:id])
+    end
   end
 
   def re_commercial_params

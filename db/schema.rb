@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160818080228) do
+ActiveRecord::Schema.define(version: 20160818085445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 20160818080228) do
     t.string   "email"
     t.integer  "visits",            default: 0
     t.integer  "priority",          default: 0,     null: false
+    t.string   "token"
     t.index ["category"], name: "index_re_commercials_on_category", using: :btree
     t.index ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
     t.index ["price"], name: "index_re_commercials_on_price", using: :btree
