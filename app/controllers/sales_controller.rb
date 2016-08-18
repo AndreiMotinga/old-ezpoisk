@@ -1,9 +1,9 @@
 class SalesController < ApplicationController
   def index
-    @sales = Sale
-             .includes(:state, :city)
-             .filter(sliced_params)
-             .page(params[:page])
+    @sales = Sale.includes(:state, :city)
+                 .order("priority desc")
+                 .filter(sliced_params)
+                 .page(params[:page])
     IncreaseImpressionsJob.perform_async(@sales.pluck(:id), "Sale")
     respond_to do |format|
       format.html

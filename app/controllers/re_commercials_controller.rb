@@ -1,6 +1,7 @@
 class ReCommercialsController < ApplicationController
   def index
     @re_commercials = ReCommercial.includes(:state, :city)
+                                  .order("priority desc")
                                   .filter(sliced_params)
                                   .page(params[:page])
     IncreaseImpressionsJob

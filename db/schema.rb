@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816174644) do
+ActiveRecord::Schema.define(version: 20160818002624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160816174644) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.string   "enterable_type"
     t.integer  "enterable_id"
+    t.string   "enterable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -174,8 +174,8 @@ ActiveRecord::Schema.define(version: 20160816174644) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "imageable_type"
     t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 20160816174644) do
     t.integer  "impressions_count", default: 0
     t.string   "email"
     t.integer  "visits",            default: 0
+    t.integer  "priority",          default: 0,     null: false
     t.index ["category"], name: "index_re_commercials_on_category", using: :btree
     t.index ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
     t.index ["price"], name: "index_re_commercials_on_price", using: :btree
@@ -286,6 +287,7 @@ ActiveRecord::Schema.define(version: 20160816174644) do
     t.string   "source"
     t.string   "email"
     t.integer  "visits",            default: 0
+    t.integer  "priority",          default: 0,     null: false
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["price"], name: "index_re_privates_on_price", using: :btree
     t.index ["space"], name: "index_re_privates_on_space", using: :btree
@@ -314,6 +316,7 @@ ActiveRecord::Schema.define(version: 20160816174644) do
     t.integer  "price"
     t.string   "source"
     t.integer  "visits",            default: 0
+    t.integer  "priority",          default: 0,  null: false
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["description"], name: "index_sales_on_description", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
@@ -390,10 +393,10 @@ ActiveRecord::Schema.define(version: 20160816174644) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "taggable_type"
     t.integer  "taggable_id"
-    t.string   "tagger_type"
+    t.string   "taggable_type"
     t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -466,10 +469,10 @@ ActiveRecord::Schema.define(version: 20160816174644) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string   "votable_type"
     t.integer  "votable_id"
-    t.string   "voter_type"
+    t.string   "votable_type"
     t.integer  "voter_id"
+    t.string   "voter_type"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
