@@ -1,18 +1,36 @@
-p
-  |  Здравствуйте,
-  br
-  |  Мы разместили Ваше объявление на  #{record.show_url}
-  br
-  |  Вы можете его редактировать / удалить на  #{record.edit_url_with_token}
-  br
-  br
-  | Советуем добавить телефон и email, так как это существенно увеличит его эффективность.
-  br
+.row
+  .col-xs-12.col-sm-6
+    p
+      |  Здравствуйте,
+      br
+      |  Мы разместили Ваше объявление на  #{record.show_url}
+      br
+      |  Вы можете его редактировать / удалить на  #{record.edit_url_with_token}
+      br
+      br
+      | Советуем добавить телефон и email, так как это существенно увеличит его эффективность.
+      br
 
-  | "Спасибо" приветствуется, но остается на усмотрение клиента))
-  br
-  br
-  | P.S Сделайте доброе дело, помогите нам пожалуйста рассказать о сайте, это займет у вас меньше минуты.
-  br
-  | https://www.ezpoisk.com/posts/vsem-privet-i-dobro-pozhalovat-na-izi-poisk
+      | "Спасибо" приветствуется, но остается на усмотрение клиента))
+      br
+      br
+      | P.S Сделайте доброе дело, помогите нам пожалуйста рассказать о сайте, это займет у вас меньше минуты.
+      br
+      | https://www.ezpoisk.com/posts/vsem-privet-i-dobro-pozhalovat-na-izi-poisk
+  .col-xs-12.col-sm-6
+    p
+      - if record.try(:title).present?
+        |  #{t record.title}
+    p
+      - if record.try(:post_type).present?
+        |  #{t record.post_type}
+      - if record.try(:category).present?
+        |  #{t record.try(:category)}
+      - if record.try(:subcategory).present?
+        |  #{t record.try(:subcategory)}
+      |  #{record.city.name} #{record.state.name} #{record.zip}
+
+    p= record.description
+    p Подробнее #{record.show_url}
+
 hr

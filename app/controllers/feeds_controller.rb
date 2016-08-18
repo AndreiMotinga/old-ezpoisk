@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
     if type == Post
       @listings = type.visible.today
     else
-      @listings = type.today
+      @listings = type.today.includes(:state, :city)
     end
   end
 end

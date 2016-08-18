@@ -3,7 +3,21 @@ br
 = render "feeds/search_form"
 br
 
-table.table
-  - @listings.each do |l|
-    tr
-      td= l.show_url
+- @listings.each do |l|
+    .white-block
+      .panel.panel-default
+        .panel-body
+          p
+            - if l.try(:title).present?
+              |  #{t l.title}
+          p
+            - if l.try(:post_type).present?
+              |  #{t l.post_type}
+            - if l.try(:category).present?
+              |  #{t l.try(:category)}
+            - if l.try(:subcategory).present?
+              |  #{t l.try(:subcategory)}
+            |  #{l.city.name} #{l.state.name} #{l.zip}
+
+          p= l.description
+          p Подробнее #{l.show_url}
