@@ -12,19 +12,10 @@
         = link_to service.title, service_path(service)
       h4.title.hidden-xs itemprop="name"
         = link_to service.title, service_path(service)
+      hr.post-devider/
 
       / line 2
       span.state-city #{service.city.name}, #{service.state.name}
-
-      /line 2
-      .hidden-xs
-        - if service.street?
-          span= service.street
-          hr.post-devider/
-
-      /line 3
-      span.glyphicon.glyphicon-earphone
-      span.company-phone  #{service.phone}
       hr.post-devider/
 
       / line 4
@@ -35,5 +26,5 @@
 
       / line 5
       .favor-links.pull-right= render "shared/favor_links", record: service
-      span.hidden-xs data-time=service.id
-        = timeago_tag service.updated_at
+      span.glyphicon.glyphicon-earphone
+      span.company-phone  #{service.phone}
