@@ -29,10 +29,10 @@ feature "User browses profile" do
   scenario "visits answers" do
     user = create :user
     q = create :question
-    answer = create :answer, user: user, question: q
+    answer = create :answer, user: user, question: q, title: q.title
 
     visit profile_answers_path(user)
-    expect(page).to have_content answer.question_title
+    expect(page).to have_content answer.title
   end
 
   scenario "visits his own profile" do

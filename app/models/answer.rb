@@ -1,11 +1,11 @@
 class Answer < ActiveRecord::Base
   include Filterable
+  include MyFriendlyId
   acts_as_votable
   acts_as_commentable
   belongs_to :user
   belongs_to :question
 
-  delegate :title, to: :question, prefix: true
   delegate :name_to_show, to: :user
 
   scope :by_score, -> { all.sort_by(&:score).reverse }

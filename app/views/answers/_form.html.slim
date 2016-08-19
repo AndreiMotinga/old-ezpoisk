@@ -1,7 +1,8 @@
-h1.h1-title= @answer.question_title
+h1.h1-title= @answer.question.title
 br
 = bootstrap_form_for @answer do |f|
   = hidden_field_tag 'answer[question_id]', @answer.question.id
+  = hidden_field_tag 'answer[title]', @answer.question.title
   .field= f.text_area :text, rows: 8, label: "Ваш ответ"
   span.text-muted
     | *  Вы можете использовать
