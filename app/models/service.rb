@@ -6,6 +6,7 @@ class Service < ActiveRecord::Base
   include Tokenable
 
   validates :title, presence: true, length: { maximum: 44, minimum: 3 }
+  validates :site, presence: true
   validates :phone, presence: true
   validates :street, presence: true
   validates :category, presence: true
