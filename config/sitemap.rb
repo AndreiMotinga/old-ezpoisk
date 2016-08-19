@@ -46,10 +46,10 @@ SitemapGenerator::Sitemap.create do
     add re_private_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
-  # add re_commercials_path, priority: 0.6, changefreq: "weekly"
-  # ReCommercial.active.find_each do |post|
-  #   add re_commercial_path(post), priority: 0.6, lastmod: post.updated_at
-  # end
+  add re_commercials_path, priority: 0.6, changefreq: "weekly"
+  ReCommercial.active.find_each do |post|
+    add re_commercial_path(post), priority: 0.6, lastmod: post.updated_at
+  end
 
   ##############################################################
   #
@@ -63,13 +63,13 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  # add posts_path, priority: 0.8, changefreq: "daily"
-  #
-  # Post.visible.find_each do |post|
-  #   add post_path(post),
-  #       priority: 0.6,
-  #       lastmod: post.updated_at
-  # end
+  add posts_path, priority: 0.8, changefreq: "daily"
+
+  Post.visible.find_each do |post|
+    add post_path(post),
+        priority: 0.6,
+        lastmod: post.updated_at
+  end
 
   ##############################################################
   #
@@ -140,12 +140,12 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  # add answers_path, priority: 0.8, changefreq: "weekly"
-  # Answer.find_each do |answer|
-  #   add answer_path(answer),
-  #       priority: 0.7,
-  #       lastmod: answer.updated_at
-  # end
+  add answers_path, priority: 0.8, changefreq: "weekly"
+  Answer.find_each do |answer|
+    add answer_path(answer),
+        priority: 0.7,
+        lastmod: answer.updated_at
+  end
 
   ##############################################################
   #
