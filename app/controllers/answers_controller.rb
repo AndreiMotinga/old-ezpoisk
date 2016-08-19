@@ -1,13 +1,25 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_answer, only: [:update, :destroy]
+  before_action :set_answer, only: [:edit, :update, :destroy]
 
   def index
-    @answers = Answer.includes(:user, question: :taggings)
+    @answers = Answer.includes(:user, :taggings)
                      .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
     respond_to do |format|
       format.html
+      format.js { render partial: "shared/index", locals: { records: @answers } }
+    end
+  end
+
+  def tag
+    @answers = Answer.includes(:user, :taggings)
+                     .tagged_with(params[:tag], any: true)
+                     .page(params[:page])
+    IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
+
+    respond_to do |format|
+      format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @answers } }
     end
   end
@@ -32,7 +44,6 @@ class AnswersController < ApplicationController
   end
 
   def edit
-    @answer = Answer.find(params[:id])
   end
 
   def update
@@ -81,7 +92,7 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :question_id, :title)
+    params.require(:answer).permit(:text, :question_id, :title, tag_list: [])
   end
 
   def create_subscription

@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.includes(:taggings)
+    @questions = Question.unanswered.includes(:taggings)
                           .by_keyword(params[:keyword])
                           .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
@@ -14,18 +14,6 @@ class QuestionsController < ApplicationController
   end
 
   def tag
-    @questions = Question.includes(:taggings)
-                         .tagged_with(params[:tag], any: true)
-                         .by_views.page(params[:page])
-    IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
-
-    respond_to do |format|
-      format.html { render :index }
-      format.js { render partial: "shared/index", locals: { records: @questions } }
-    end
-  end
-
-  def unanswered
     @questions  = Question.unanswered.includes(:taggings)
     @questions = @questions.tagged_with(params[:tag]) if params[:tag].present?
     @questions = @questions.by_views.page(params[:page])
@@ -37,7 +25,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
+    @question = Question.includes(:user).find(params[:id])
     IncreaseVisitsJob.perform_async(@question.id, "Question")
   end
 

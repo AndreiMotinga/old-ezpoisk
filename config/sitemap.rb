@@ -46,11 +46,6 @@ SitemapGenerator::Sitemap.create do
     add re_private_path(post), priority: 0.6, lastmod: post.updated_at
   end
 
-  add re_commercials_path, priority: 0.6, changefreq: "weekly"
-  ReCommercial.active.find_each do |post|
-    add re_commercial_path(post), priority: 0.6, lastmod: post.updated_at
-  end
-
   ##############################################################
   #
   #     REAL ESTATE ///

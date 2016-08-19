@@ -1,7 +1,7 @@
 = title("Новости, информация об иммиграции в США - ezpoisk")
 = desc("Новости русской иммиграции в США. Информцаия о наших от Бостона до Сан Франциско")
 
-= content_for :sidebar, render("posts/sidebar")
+= content_for :sidebar, render("posts/sidebar", klass: "desktop")
 - content_for(:right_block) do
   = render("shared/listings_count",
             title: "Наши Новости",
@@ -11,7 +11,6 @@
 
 .col-xs-12 data-id="listings"
   = render "posts/mobile"
-  = render "posts/search_bar"
   = render @posts
 
 .row

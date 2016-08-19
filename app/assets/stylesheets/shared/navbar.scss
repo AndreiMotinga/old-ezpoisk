@@ -27,3 +27,16 @@
   color: $link-blue;
   font-weight: bold;
 }
+
+@media(max-width:767px){}
+@media(min-width:768px){}
+@media(min-width:992px){
+  #navbar-search {
+    width: 300px;
+  }
+}
+@media(min-width:1200px){
+  #navbar-search {
+    width: 500px;
+  }
+}

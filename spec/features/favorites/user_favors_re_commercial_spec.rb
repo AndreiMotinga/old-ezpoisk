@@ -1,8 +1,8 @@
 require "rails_helper"
 
-xfeature "User favors re_commercial", js: true do
+xfeature "User favors re_private", js: true do
   scenario "user is not logged in" do
-    create :re_commercial, :active
+    create :re_private, :active
 
     visit re_commercials_path
     page.find(".favor").click
@@ -13,7 +13,7 @@ xfeature "User favors re_commercial", js: true do
 
   scenario "creates favorite when user is logged in", js: true do
     create_and_login_user
-    create :re_commercial, :active
+    create :re_private, :active
 
     visit re_commercials_path
     page.find(".favor").click
@@ -24,10 +24,10 @@ xfeature "User favors re_commercial", js: true do
 
   scenario "destroys favorite when user is logged in", js: true do
     user = create_and_login_user
-    re_commercial = create :re_commercial, :active
+    re_private = create :re_private, :active
     Favorite.create(user_id: user.id,
-                    favorable_id: re_commercial.id,
-                    favorable_type: re_commercial.class.to_s,
+                    favorable_id: re_private.id,
+                    favorable_type: re_private.class.to_s,
                     saved: true)
 
     visit re_commercials_path

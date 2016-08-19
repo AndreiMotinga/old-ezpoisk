@@ -1,13 +1,4 @@
 // navbar
-.mobile-navbar {
-  background-color: $white;
-
-  .mobile-brand-image {
-    margin-top: 8px;
-    max-width: 110px;
-  }
-}
-
 // tabs
 .mobile-nav-tabs > li {
   width: 50%;
@@ -15,33 +6,13 @@
   a { padding: 5px; }
 }
 
-.mobile-btn {
-  background-color: transparent;
-  border: 2px solid $blue;
-  border-radius: 0;
-  color: $blue;
-  font-size: 12px;
-  height: 30px;
-  padding: 4px 12px;
-}
-
-
-.mobile-back-btn {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.mobile-btn-new { margin-top: 8px; }
-.mobile-search { text-align: right; }
-.float-right { float: right; }
-.indented { padding-left: 30px; }
-
-.mobile-footer {
-  background-color: $body_background_color;
+.mobile-btn-new {
   margin-top: 10px;
-  padding-bottom: 50px;
-  padding-top: 50px;
+  margin-right: 15px;
 }
+
+.mobile-search { text-align: right; }
+.indented { padding-left: 30px; }
 
 .mobile-link {
   color: $grey3;

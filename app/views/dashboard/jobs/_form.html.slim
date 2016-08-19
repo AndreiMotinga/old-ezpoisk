@@ -1,6 +1,5 @@
 = bootstrap_form_for([:dashboard, @job]) do |f|
   = hidden_field_tag :token, params[:token]
-  = hidden_field_tag 'job[category]', value_or_param
 
   -  if current_user.try(:admin?)
     = f.text_field :source, label: "источник"
@@ -12,7 +11,9 @@
   hr.white-hr
 
   .row
-    .col-xs-12
+    .col-xs-12.col-sm-6
+      = f.select :category, ru(JOB_CATEGORIES)
+    .col-xs-12.col-sm-6
       = label_tag "Категории", nil
       = collection_select :job,
         :tag_list,

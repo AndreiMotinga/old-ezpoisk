@@ -1,4 +1,10 @@
 class RePrivate < ActiveRecord::Base
+  CATEGORIES = %w(apartment office sales industry parking other).freeze
+  TYPES = %w(leasing renting selling buying).freeze
+  DURATION = %w(monthly weekly daily hourly).freeze
+  ROOMS = %w(room bed studio 1-bebroom 2-bebroom 3-bebroom 4-bebroom
+             5-bebroom 6-bebroom 7-bebroom 8-bebroom 9-bebroom).freeze
+
   acts_as_mappable
   acts_as_commentable
   include Filterable
@@ -35,5 +41,9 @@ class RePrivate < ActiveRecord::Base
 
   def show_url
     url_helpers.re_private_url(self)
+  end
+
+  def temporary?
+    post_type == "leasing" || post_type == "renting"
   end
 end

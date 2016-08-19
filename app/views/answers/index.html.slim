@@ -1,12 +1,12 @@
 = title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
 = desc("Информация о жизни русскоговорящих людей в америке. Полезная информация об иммиграции в США")
 
-= content_for :sidebar do
-  = render "questions/sidebar"
+= content_for :sidebar, render("answers/tag_cloud")
 
 = render "questions/search_form"
 
 - content_for(:right_block) do
+  = link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
   = render("shared/listings_count",
             title: "Информация о наших",
             today: Answer.today.count,

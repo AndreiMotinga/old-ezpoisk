@@ -9,35 +9,16 @@
         - if user_signed_in?
           a aria-controls="profile" data-toggle="tab" href="#profile" role="tab" Аккаунт
         - else
-          = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", role: "button", id: "login_link", rel: "nofollow"
+          = link_to t(:sign_in), "", "data-target": "#new_session_modal",
+                    "data-toggle": "modal", role: "button", id: "login_link",
+                    rel: "nofollow"
 
     /! Tab panes
     .tab-content
       br/
       #listings.tab-pane.active role="tabpanel"
         .panel.list-group
-
-          a.list-group-item.mobile-link[data-parent="#menu" data-target="#real_estate" data-toggle="collapse" href="#" data-turbolinks="false"]
-            .pull-right: span.caret
-            | Недвижимость
-          #real_estate.sublinks.collapse
-            /= link_to "Агенства",
-            /          services_path(category: "real-estate", subcategory: "realty"),
-            /          class: "list-group-item indented"
-            = link_to "Частная", re_privates_path, class: "list-group-item indented"
-            = link_to "Коммерческая", re_commercials_path, class: "list-group-item indented"
-
-          /a.list-group-item.mobile-link[data-parent="#menu" data-target="#jobs-tab" data-toggle="collapse" href="#" data-turbolinks="false"]
-          /  .pull-right
-          /    span.caret
-          /  | Работа
-          /#jobs-tab.sublinks.collapse
-          /  = link_to "Агенства",
-          /            services_path(category: "Работа", subcategory: "Агентства по Трудоустройству"),
-          /            class: "list-group-item indented"
-          /  = link_to "Требуется", jobs_path(category: "wanted"), class: "list-group-item indented"
-          /  = link_to "Ищу работу", jobs_path(category: "seeking"), class: "list-group-item indented"
-          /
+          = link_to "Недвижимость", re_privates_path, class: "list-group-item mobile-link"
           = link_to "Работа", jobs_path, class: "list-group-item mobile-link"
           = link_to "Продается", sales_path, class: "list-group-item mobile-link"
           = link_to "Услуги", services_path, class: "list-group-item mobile-link"

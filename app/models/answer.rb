@@ -1,4 +1,5 @@
 class Answer < ActiveRecord::Base
+  acts_as_taggable
   include Filterable
   include MyFriendlyId
   acts_as_votable
@@ -19,7 +20,7 @@ class Answer < ActiveRecord::Base
   end
 
   def show_url
-    Rails.application.routes.url_helpers.question_url(question)
+    Rails.application.routes.url_helpers.answer_url(question)
   end
 
   def avatar

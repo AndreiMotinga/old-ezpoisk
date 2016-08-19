@@ -10,26 +10,6 @@
       = form_state_select(f)
     .col-xs-12.col-sm-6
       = form_city_select(f, @re_private)
-  hr.white-hr
-
-  .row
-    .col-xs-12.col-sm-6
-      = f.select :post_type, ru(RE_TYPES), label: '* Тип объявления'
-    .col-xs-12.col-sm-6
-      = f.select :duration, ru(RE_DURATION), label: "Продолжительность"
-
-  .row
-    .col-xs-12.col-sm-6
-      = f.select :rooms, ru(ROOM_OPTIONS), label: "* Комнат"
-    .col-xs-12.col-sm-6
-      = f.number_field :price, label: 'Цена'
-
-  .row
-    .col-xs-12.col-sm-6
-      = f.number_field :baths, label: 'Ванные'
-    .col-xs-12.col-sm-6
-      = f.number_field :space, label: "Площадь (sq. feet)"
-  hr.white-hr
 
   .row
     .col-xs-12.col-sm-6
@@ -38,10 +18,33 @@
       = f.email_field :email, label: 'Email'
   hr.white-hr
 
+  .row
+    .col-xs-12.col-sm-6
+      = f.select :post_type, ru(RePrivate::TYPES), label: '* Тип объявления'
+    .col-xs-12.col-sm-6
+      = f.select :category,
+                 ru(RePrivate::CATEGORIES),
+                 {}, "data-id": "re_private_category", label: "* Категория"
 
   .row
-    .col-xs-12
+    .col-xs-12.col-sm-6
+      = f.number_field :price, label: 'Цена'
+    .col-xs-12.col-sm-6
+      = f.number_field :space, label: "Площадь (sq. feet)"
+  hr.white-hr
+
+  .row data-id="apartment_fields"
+    .col-xs-12.col-sm-4
+      = f.select :rooms, ru(RePrivate::ROOMS), label: "* Комнат"
+    .col-xs-12.col-sm-4
+      = f.select :duration, ru(RePrivate::DURATION), label: "Продолжительность"
+    .col-xs-12.col-sm-4
+      = f.number_field :baths, label: 'Ванные'
+
+  .row
+    .col-xs-6.col-sm-4
       = f.check_box :active, label: "Активно *"
+    .col-xs-6.col-sm-4
       = f.check_box :fee, label: "Комиссия *"
 
   br

@@ -1,4 +1,5 @@
 ru:
+  apartment: Квартира
   office: Офис
   sales: Торговля
   industry: Промышленность
@@ -56,8 +57,6 @@ ru:
   news:  Новости
   agencies: Агентства
   re_agency: Агентство недвижимости
-  private: Частная
-  commercial: Коммерческая
   dashboard: Панель управления
   sign_in: Войти
   sign_up: Регистрация
@@ -631,13 +630,14 @@ ru:
   # # services
   #
   # posts
-  world: В мире
+  world: Что в мире
   travel: Путешествия
   entertainment: Развлечения
   science: Наука
   tech: Технологии
-  us: В США
-  top: Toп
+  us: Новости США
+  top: Toп Новостей
   money: Деньги
   user: Наши новости
   autonews: Авто
+  home-news: На родине

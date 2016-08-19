@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160819012933) do
+ActiveRecord::Schema.define(version: 20160820041054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20160819012933) do
     t.string   "title"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -53,8 +59,8 @@ ActiveRecord::Schema.define(version: 20160819012933) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.string   "enterable_type"
     t.integer  "enterable_id"
+    t.string   "enterable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -176,8 +182,8 @@ ActiveRecord::Schema.define(version: 20160819012933) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "imageable_type"
     t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -197,6 +203,15 @@ ActiveRecord::Schema.define(version: 20160819012933) do
     t.datetime "updated_at"
     t.index ["user_id", "author_id"], name: "index_points_on_user_id_and_author_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_points_on_user_id", using: :btree
+  end
+
+  create_table "post_categories", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_post_categories_on_category_id", using: :btree
+    t.index ["post_id"], name: "index_post_categories_on_post_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -236,36 +251,6 @@ ActiveRecord::Schema.define(version: 20160819012933) do
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
   end
 
-  create_table "re_commercials", force: :cascade do |t|
-    t.string   "category",          default: "",    null: false
-    t.string   "street",            default: "",    null: false
-    t.string   "post_type",         default: "",    null: false
-    t.string   "phone",             default: "",    null: false
-    t.integer  "price"
-    t.integer  "space"
-    t.integer  "zip"
-    t.float    "lat"
-    t.float    "lng"
-    t.boolean  "active",            default: false
-    t.integer  "user_id"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.text     "description",       default: "",    null: false
-    t.integer  "impressions_count", default: 0
-    t.string   "email"
-    t.integer  "visits",            default: 0
-    t.integer  "priority",          default: 0,     null: false
-    t.string   "token"
-    t.index ["category"], name: "index_re_commercials_on_category", using: :btree
-    t.index ["city_id"], name: "index_re_commercials_on_city_id", using: :btree
-    t.index ["price"], name: "index_re_commercials_on_price", using: :btree
-    t.index ["space"], name: "index_re_commercials_on_space", using: :btree
-    t.index ["state_id"], name: "index_re_commercials_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_re_commercials_on_user_id", using: :btree
-  end
-
   create_table "re_privates", force: :cascade do |t|
     t.string   "street",            default: "",    null: false
     t.string   "post_type",         default: "",    null: false
@@ -292,6 +277,7 @@ ActiveRecord::Schema.define(version: 20160819012933) do
     t.integer  "visits",            default: 0
     t.integer  "priority",          default: 0,     null: false
     t.string   "token"
+    t.string   "category"
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["price"], name: "index_re_privates_on_price", using: :btree
     t.index ["space"], name: "index_re_privates_on_space", using: :btree
@@ -399,10 +385,10 @@ ActiveRecord::Schema.define(version: 20160819012933) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "taggable_type"
     t.integer  "taggable_id"
-    t.string   "tagger_type"
+    t.string   "taggable_type"
     t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -475,10 +461,10 @@ ActiveRecord::Schema.define(version: 20160819012933) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string   "votable_type"
     t.integer  "votable_id"
-    t.string   "voter_type"
+    t.string   "votable_type"
     t.integer  "voter_id"
+    t.string   "voter_type"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
@@ -500,11 +486,10 @@ ActiveRecord::Schema.define(version: 20160819012933) do
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "points", "users"
+  add_foreign_key "post_categories", "categories"
+  add_foreign_key "post_categories", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"
-  add_foreign_key "re_commercials", "cities"
-  add_foreign_key "re_commercials", "states"
-  add_foreign_key "re_commercials", "users"
   add_foreign_key "re_privates", "cities"
   add_foreign_key "re_privates", "states"
   add_foreign_key "re_privates", "users"

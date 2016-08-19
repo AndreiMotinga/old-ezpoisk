@@ -1,46 +1,20 @@
 ul.list-group.panel
-  a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav"
+  /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav"
+  /  span.sidebar-icon
+  /    i.fa.fa-hospital-o
+  /  | Недвижимость
+  /  .pull-right
+  /    span.caret
+  /#realty-nav.collapse
+  /  /li= link_to t(:agencies), main_app.services_path(category: "real-estate", subcategory: "realty")
+  /  li= link_to t(:private), main_app.re_privates_path
+  /  li= link_to t(:commercial), main_app.re_commercials_path
+  /  /li= link_to "Финансирование", main_app.re_finances_path
+
+  a.list-group-item href=re_privates_path
     span.sidebar-icon
       i.fa.fa-hospital-o
     | Недвижимость
-    .pull-right
-      span.caret
-  #realty-nav.collapse
-    /li= link_to t(:agencies), main_app.services_path(category: "real-estate", subcategory: "realty")
-    li= link_to t(:private), main_app.re_privates_path
-    li= link_to t(:commercial), main_app.re_commercials_path
-    /li= link_to "Финансирование", main_app.re_finances_path
-
-  /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#jobs-nav"
-  /  span.sidebar-icon
-  /    i.fa.fa-list-ul
-  /  | Работа
-  /  .pull-right
-  /    span.caret
-  /#jobs-nav.collapse
-  /  li= link_to t(:agencies), main_app.services_path(category: "work", subcategory: "job-agencies")
-  /  li= link_to "Объявления", main_app.jobs_path
-
-  /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#sales-nav"
-  /  span.sidebar-icon
-  /    i.fa.fa-shopping-bag
-  /  | Продается
-  /  .pull-right
-  /    span.caret
-  /#sales-nav.collapse
-  /  - SALE_CATEGORIES.each do |category|
-  /    li= link_to t(category), main_app.sales_path(category: category)
-
-  / when you have lots of services, so there aren't empty categories
-  /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#services"
-  /  span.sidebar-icon
-  /    i.fa.fa-shopping-bag
-  /  | Услуги
-  /  .pull-right
-  /    span.caret
-  /#services.collapse
-  /  - SERVICE_SUBCATEGORIES.each do |category|
-  /    li= link_to category[0], main_app.sales_path(category: category[0])
 
   a.list-group-item href=jobs_path
     span.sidebar-icon

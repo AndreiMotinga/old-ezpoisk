@@ -3,7 +3,8 @@ require "rails_helper"
 feature "User create re_private" do
   scenario "success", js: true do
     user = create_and_login_user
-    re_private = build(:re_private)
+    re_private = build(:re_private,
+                       category: "apartment", post_type: "renting")
 
     visit new_dashboard_re_private_path
     fill_in "Улица", with: re_private.street
@@ -12,6 +13,7 @@ feature "User create re_private" do
     find("option[value='#{re_private.post_type}']").select_option
     find("option[value='#{re_private.duration}']").select_option
     find("option[value='#{re_private.rooms}']").select_option
+    find("option[value='#{re_private.category}']").select_option
     fill_in "Телефон", with: re_private.phone
     fill_in "Цена", with: re_private.price
     fill_in "Ванные", with: re_private.baths

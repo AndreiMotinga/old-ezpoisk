@@ -20,12 +20,14 @@ Rails.application.routes.draw do
 
   resources :questions, except: [:destroy] do
     collection do
-      get "unanswered"
       get "tag/:tag", to: "questions#tag"
     end
     resources :answers, only: [:new, :edit]
   end
   resources :answers do
+    collection do
+      get "tag/:tag", to: "answers#tag"
+    end
     member do
       put "upvote", to: "answers#upvote"
       put "downvote", to: "answers#downvote"
@@ -47,7 +49,6 @@ Rails.application.routes.draw do
     resources :profiles, only: [:edit, :update]
     resources :users, only: [:edit, :update]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
-    resources :re_commercials, only: [:new, :create, :edit, :update, :destroy]
     resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :jobs, only: [:new, :create, :edit, :update, :destroy]
     resources :sales, only: [:new, :create, :edit, :update, :destroy]
@@ -78,7 +79,6 @@ Rails.application.routes.draw do
   resources :sales, only: [:index, :show]
   resources :services, only: [:index, :show]
   resources :re_privates, only: [:index, :show]
-  resources :re_commercials, only: [:index, :show]
   resources :jobs, only: [:index, :show]
 
   authenticate :user, ->(u) { u.admin? } do

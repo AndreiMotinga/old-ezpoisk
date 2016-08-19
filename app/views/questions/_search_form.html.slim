@@ -2,7 +2,8 @@
   .col-xs-12
     form.white-block role="search" method="get" action=questions_path
       .input-group
-        input.q-search.form-control placeholder="Задайте свой вопрос здесь.." type="text" name="keyword" value=params[:keyword]
+        input.q-search.form-control[placeholder="Задайте свой вопрос здесь.."
+          type="text" name="keyword" value=params[:keyword] ]
           span.input-group-btn
             button.btn.btn-default type="submit"
               i.fa.fa-search

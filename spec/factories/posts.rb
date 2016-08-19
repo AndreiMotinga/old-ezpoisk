@@ -4,5 +4,7 @@ FactoryGirl.define do
     text { Faker::Lorem.paragraph 40 }
     summary { Faker::Lorem.paragraph 4 }
     category 'user'
+
+    user
   end
 end

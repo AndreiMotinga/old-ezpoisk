@@ -12,25 +12,25 @@
           ul.nav.accordion
             ul.list-group.panel
 
-              a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav-2"
+              /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav-2"
+              /  span.sidebar-icon
+              /    i.fa.fa-hospital-o
+              /  | Недвижимость
+              /  .pull-right
+              /    span.caret
+              /#realty-nav-2.collapse
+              /  li= link_to "Частная Недвижимость", new_dashboard_re_private_path
+              /  li= link_to "Коммерческая Недвижимость", new_dashboard_re_commercial_path
+
+              a.list-group-item href=new_dashboard_re_private_path
                 span.sidebar-icon
                   i.fa.fa-hospital-o
                 | Недвижимость
-                .pull-right
-                  span.caret
-              #realty-nav-2.collapse
-                li= link_to "Частная Недвижимость", new_dashboard_re_private_path
-                li= link_to "Коммерческая Недвижимость", new_dashboard_re_commercial_path
 
-              a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#jobs-2"
+              a.list-group-item href=new_dashboard_job_path
                 span.sidebar-icon
                   i.fa.fa-list-ul
                 | Работа
-                .pull-right
-                  span.caret
-              #jobs-2.collapse
-                li= link_to "Требуется", new_dashboard_job_path(category: "wanted")
-                li= link_to "Ищу работу", new_dashboard_job_path(category: "seeking")
 
               a.list-group-item href=new_dashboard_sale_path
                 span.sidebar-icon

@@ -8,15 +8,18 @@
 = og_url(question_url(@question))
 = og_image(@question.image)
 
-= content_for :sidebar, render("questions/show/sidebar")
+= content_for :sidebar do
+  our_adds
+- content_for :right_block do
+  = link_to "Добавить свой ответ", new_question_answer_path(@question), class: "btn mobile-btn btn-block margin-bottom-10"
 
-.row
-  = render "questions/search_form"
+= render "questions/search_form"
+
+.col-xs-12
   = render @question
 
   / ANSWERS
-  .col-xs-12
-    - if @question.has_answers?
-      = render @question.answers.includes(:user).by_score
-    - else
-      = render "questions/no_answers_message"
+  - if @question.has_answers?
+    = render @question.answers.includes(:user).by_score
+  - else
+    = render "questions/no_answers_message"

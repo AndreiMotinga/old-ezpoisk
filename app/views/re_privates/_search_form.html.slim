@@ -14,26 +14,38 @@ form.form-horizontal action=re_privates_path method="get"
   .row
     .col-xs-12.col-sm-6
       = label_tag "Тип объявления", nil
-      = select_tag :post_type, options_for_select(ru(RE_TYPES), params[:post_type]), class: "form-control"
+      = select_tag :post_type,
+                   options_for_select(ru(RePrivate::TYPES), params[:post_type]),
+                   class: "form-control"
+
     .col-xs-12.col-sm-6
-      = label_tag "Сортировать", nil
-      = sort_select
+      = label_tag "Категория", nil
+      = select_tag :category,
+                   options_for_select(ru(RePrivate::CATEGORIES), params[:category]),
+                   class: "form-control", "data-id": "re_private_category"
   br
 
-  .row
-    .col-xs-12.col-sm-6
+  .row data-id="apartment_fields"
+    .col-xs-12.col-sm-4
+      = label_tag "Продолжительность", nil
+      = select_tag :duration,
+                   options_for_select(ru(RePrivate::DURATION), params[:duration]),
+                   include_blank: true, class: "form-control"
+    .col-xs-12.col-sm-4
       = label_tag "Комнаты", nil
-      = select_tag :rooms, options_for_select(ru(ROOM_OPTIONS), params[:rooms]), include_blank: true, class: "form-control"
-    .col-xs-12.col-sm-6
+      = select_tag :rooms,
+                   options_for_select(ru(RePrivate::ROOMS), params[:rooms]),
+                   include_blank: true, class: "form-control"
+    .col-xs-12.col-sm-4
       = label_tag "Ванные", nil
       = select_tag :baths, options_for_select((1..10).to_a, params[:baths]), include_blank: true, class: "form-control"
   br
 
   .row
     .col-xs-12.col-sm-6
-      = label_tag "Продолжительность", nil
-      = select_tag :duration, options_for_select(ru(RE_DURATION), params[:duration]), include_blank: true, class: "form-control"
-    .col-xs-12.col-sm-6
+      = label_tag "Сортировать", nil
+      = sort_select
+    .col-xs-12.col-sm-6 data-id="apartment_fields"
       br
       = label_tag :fee, "Без комиссии"
       = " "

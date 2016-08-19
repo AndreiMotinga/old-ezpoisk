@@ -4,7 +4,7 @@
 = og_url("https://www.ezpoisk.com")
 = og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
 
-- content_for :sidebar, render("home/sidebar")
+- content_for :sidebar, render("shared/sidebar_links")
 - content_for(:right_block) do
   = render("shared/listings_count",
             title: "Доска объявлений",

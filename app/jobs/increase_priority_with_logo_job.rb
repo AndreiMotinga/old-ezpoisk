@@ -1,6 +1,6 @@
 class IncreasePriorityWithLogoJob
   def perform
-    [RePrivate, ReCommercial, Sale].each do |model|
+    [RePrivate, Sale].each do |model|
       model.find_each do |record|
         if record.logo.present? and record.priority == 0
           record.update_column(:priority, 1)

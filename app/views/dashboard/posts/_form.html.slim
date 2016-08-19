@@ -2,15 +2,16 @@
   = f.text_field :image_remote_url, label: "Фото"
   = f.text_field :title, label: "* Заголовок"
   = f.text_area :summary, rows: 3, label: "* Описание (80-400 симоволов)"
-  = f.text_area :text, rows: 8, label: "* Текст (markdown)"
+  = f.text_area :text, rows: 20, label: "* Текст (markdown)"
   em youtube video format https://www.youtube.com/watch?v=fqf5X4mt1Cc
   br
   br
 
   - if current_user.try(:editor?)
     .row
-      .col-sm-6
-        = f.select :category, Post::CATEGORIES, skip_label: true
+      .col-sm-12
+        = f.collection_select :category_ids, Category.all, :id, :name, {}, multiple: true, class: "my-dropdown-multiple"
+    .row
       .col-sm-3
         = f.check_box :visible
       .col-sm-3

@@ -29,6 +29,6 @@ class DataAggregator
   end
 
   def models
-    [RePrivate, ReCommercial, Job, Service, Sale]
+    [RePrivate, Job, Service, Sale]
   end
 end

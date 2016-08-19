@@ -1,8 +1,65 @@
-.col-xs-12
-  .profile-sidebar
-    .white-block
-      .panel.panel-default
-        .panel-body
-          ul.list-group
-            - Post::CATEGORIES.each do |cat|
-              li.list-group-item= link_to t(cat), posts_path(category: cat)
+ul.list-group.panel class=klass
+  a.list-group-item data-parent=".#{klass}" data-toggle="collapse" href="##{klass}"
+    span.sidebar-icon
+      i.fa.fa-hospital-o
+    = t "us"
+    .pull-right
+      span.caret
+  .collapse id=klass
+    li.list-group-item= link_to "В Стране", posts_path(category: "usa")
+    li.list-group-item= link_to "Chicago", posts_path(category: "chicago")
+    li.list-group-item= link_to "Los Angeles", posts_path(category: "los-angeles")
+    li.list-group-item= link_to "Miami", posts_path(category: "miami")
+    li.list-group-item= link_to "New York", posts_path(category: "new-york")
+    li.list-group-item= link_to "Philadelphia", posts_path(category: "philadelphia")
+    li.list-group-item= link_to "San Francisco", posts_path(category: "san-fransico")
+
+  = link_to posts_path(category: "top"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-arrow-circle-up
+    = t "top"
+
+  = link_to posts_path(category: "world"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-globe
+    = t "world"
+
+  = link_to posts_path(category: "home-news"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-bullhorn
+    = t "home-news"
+
+  = link_to posts_path(category: "tech"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-gears
+    = t "tech"
+
+  = link_to posts_path(category: "money"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-money
+    = t "money"
+
+  = link_to posts_path(category: "science"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-flask
+    = t "science"
+
+  = link_to posts_path(category: "autonews"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-car
+    = t "autonews"
+
+  = link_to posts_path(category: "entertainment"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-bicycle
+    = t "entertainment"
+
+  = link_to posts_path(category: "travel"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-plane
+    = t "travel"
+
+  = link_to posts_path(category: "user"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-user
+    = t "user"

@@ -4,28 +4,12 @@ describe QuestionsController do
   describe "GET #index" do
     it "renders the index template and returns answered questions" do
       question = create :question
-      answer = create :answer, question: question
 
       get :index
 
       expect(response).to render_template(:index)
       expect(assigns(:questions).size).to eq 1
       expect(assigns(:questions).first).to eq question
-    end
-  end
-
-  describe "GET #unanswered" do
-    it "renders the index template and returns unanswered questions" do
-      sign_in(create(:user))
-      answered = create :question
-      answer = create :answer, question: answered
-      unanswered = create :question
-
-      get :unanswered
-
-      expect(response).to render_template(:index)
-      expect(assigns(:questions).size).to eq 1
-      expect(assigns(:questions).first).to eq unanswered
     end
   end
 

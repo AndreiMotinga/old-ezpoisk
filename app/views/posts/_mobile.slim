@@ -14,6 +14,4 @@
         h4#myModalLabel.modal-title Расширенный поиск
 
       .modal-body
-        ul.list-group
-          - Post::CATEGORIES.each do |cat|
-            li.list-group-item= link_to t(cat), posts_path(category: cat)
+        = render "posts/sidebar", klass: "mobile-menu"

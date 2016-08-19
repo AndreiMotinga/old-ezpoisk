@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   has_one :gallery
 
   has_many :re_privates, dependent: :destroy
-  has_many :re_commercials, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy

@@ -15,13 +15,14 @@
       h4.title= re_private.title
 
       / line 2
-      span.state-city #{re_private.city.name}, #{re_private.state.name}
+      span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}
       hr.post-devider
 
       / line 3
       span= "#{t re_private.post_type} | "
       strong= "$#{re_private.price}"
-      span.hidden-xs= " | #{t re_private.duration}"
+      - if re_private.temporary?
+        span.hidden-xs= " | #{t re_private.duration}"
       hr.post-devider
 
       / line 4

@@ -5,7 +5,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :summary, presence: true, length: {  maximum: 400, minimum: 80 }
   validates :text, presence: true
-  CATEGORIES = %w(world us top tech money science autonews entertainment travel
+  CATEGORIES = %w(world home-news us top tech money science autonews entertainment travel
                  user).freeze
 
   belongs_to :user
@@ -14,6 +14,9 @@ class Post < ActiveRecord::Base
   has_many :favorites, as: :favorable, dependent: :destroy
   delegate :avatar, to: :user
   has_one :entry, as: :enterable, dependent: :destroy
+
+  has_many :post_categories, dependent: :destroy
+  has_many :categories, through: :post_categories
 
   has_attached_file :image, styles: { medium: "810" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}

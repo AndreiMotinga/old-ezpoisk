@@ -4,7 +4,6 @@ feature "User browses questions" do
   scenario "success" do
     user = create(:user)
     question = create :question
-    create :answer, question: question, user: user
 
     visit questions_path
 

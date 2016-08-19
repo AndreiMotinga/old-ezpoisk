@@ -3,7 +3,7 @@ p Total #{@posts.size}
 form.form-horizontal action=posts_all_path method="get"
   .row
     .col-xs-3
-      = select_tag :category, options_for_select(ru(Post::CATEGORIES), params[:category]), class: "form-control"
+      = select_tag :category, options_for_select(ru(Category.pluck(:name)), params[:category]), class: "form-control"
     .col-xs-3
       = submit_tag "Обновить", name: nil, class: "btn mobile-btn"
 br

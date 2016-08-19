@@ -1,7 +1,9 @@
 = title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
 = question_desc
 
-= content_for :sidebar,  render("questions/sidebar")
+= content_for :sidebar, render("questions/tag_cloud")
+- content_for :right_block do
+  = link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
 
 = render "questions/search_form"
 

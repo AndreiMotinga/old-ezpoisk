@@ -78,7 +78,8 @@ class Dashboard::RePrivatesController < ApplicationController
   def re_private_params
     params.require(:re_private).permit(
       :street, :post_type, :duration, :phone, :price, :baths, :space,
-      :rooms, :active, :fee, :description, :state_id, :source, :email, :city_id
+      :rooms, :active, :fee, :description, :state_id, :source, :email, :city_id,
+      :category
     )
   end
 end

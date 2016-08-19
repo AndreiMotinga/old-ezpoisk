@@ -33,7 +33,7 @@ RSpec.configure do |config|
   config.include Helpers
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation, except: %w(states cities stripe_plans))
+    DatabaseCleaner.clean_with(:truncation, except: %w(states cities stripe_plans categories))
     Warden.test_mode!
   end
 
@@ -42,7 +42,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :truncation, { except: %w(states cities stripe_plans) }
+    DatabaseCleaner.strategy = :truncation, { except: %w(states cities stripe_plans categories) }
   end
 
   config.before(:each) do

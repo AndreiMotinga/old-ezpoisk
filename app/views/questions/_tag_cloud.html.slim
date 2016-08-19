@@ -1,5 +1,7 @@
 .white-block#tag_cloud
   .panel.panel-default
+    .panel-heading: h1.h1-side-block Неотвеченные
     .panel-body
-      - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
-        span= link_to " ##{tag.name}", "/questions/tag/#{tag.name}", class: "tag-in-cloud #{css_class}"
+      ul.list-group
+        - tag_cloud Question.tag_counts.sort_by(&:name), %w[s m l] do |tag, css_class|
+          span= link_to " ##{tag.name}", "/questions/tag/#{tag.name}", class: "tag-in-cloud #{css_class}"
