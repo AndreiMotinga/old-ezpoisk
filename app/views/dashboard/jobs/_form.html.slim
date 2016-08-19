@@ -2,7 +2,7 @@
   = hidden_field_tag :token, params[:token]
   = hidden_field_tag 'job[category]', value_or_param
 
-  -  if current_user.admin?
+  -  if current_user.try(:admin?)
     = f.text_field :source, label: "источник"
     hr.white-hr
 

@@ -1,6 +1,6 @@
 = bootstrap_form_for([:dashboard, @sale]) do |f|
   = hidden_field_tag :token, params[:token]
-  -  if current_user.admin?
+  -  if current_user.try(:admin?)
     = f.text_field :source, label: "источник"
   = f.text_field :title, label: '* Заголовок'
   = f.text_area :description, rows: 5, label: 'Описание'

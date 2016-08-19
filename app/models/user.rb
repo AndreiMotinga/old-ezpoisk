@@ -80,6 +80,11 @@ class User < ActiveRecord::Base
     admin? or role == "editor"
   end
 
+  # refactor it to ask if current_user.can_edit?(record)
+  def can_edit?(current_user)
+    self == current_user or current_user.try(:editor?)
+  end
+
   private
 
   def send_emails
