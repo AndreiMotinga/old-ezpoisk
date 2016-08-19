@@ -9,15 +9,25 @@
   = link_to "Добавьте свой ответ", new_question_answer_path(@answer.question), class: "btn btn-block mobile-btn margin-bottom-10"
   = render "answers/show/side_posts"
 
-.answer.white-block
+.answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel.panel-default
     .panel-heading
-      h1.h1-title= @answer.title
+      h1.h1-title itemprop="name" = @answer.title
       - if @answer.user == current_user
         = link_to "редактировать", edit_question_answer_path(@answer.question, @answer), class: "text-muted qa-link"
         = link_to 'удалить', answer_path(@answer), class: "text-muted qa-link", method: :delete, data: { confirm: I18n.t(:confirm) }
+      .row.author
+        .col-xs-3.col-sm-2
+          = link_to profile_path(@answer.user) do
+            = image_tag @answer.avatar,
+                        alt: "автор ответа #{@answer.name_to_show}",
+                        class: "img-responsive img-circle center-block"
+        .col-xs-9.col-sm-10
+          h4.name itemprop="author" = @answer.name_to_show
+          p.text-muted= "#{@answer.impressions_count} просмотров |  #{@answer.score} голосов "
     .panel-body
-      = markdown @answer.text
+      div itemprop="description"
+        = markdown @answer.text
 
       - if user_signed_in?
         = current_user.voted_for?(@answer) ? voted_answer_btn(@answer) : upvote_answer_btn(@answer)

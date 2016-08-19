@@ -13,7 +13,7 @@
     li.list-group-item
       span.glyphicon.glyphicon-earphone
       a href="tel:#{record.phone}"
-        strong itemprop="telephone"  #{record.phone}
+        strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{record.phone}
 
   - unless record.try(:fax).blank?
     li.list-group-item
@@ -21,13 +21,13 @@
 
   - unless record.try(:site).blank?
     li.list-group-item
-      strong= link_to record.site, "http://#{record.site}", target: "_blank", itemprop: "url", rel: "nofollow"
+      strong= link_to record.site_link, "http://#{record.site_link}", target: "_blank", itemprop: "url", rel: "nofollow"
 
   - if record.try(:email).present?
     li.list-group-item
-      strong: a href="mailto:#{record.email}" target="_top"itemprop="email" =record.email
+      strong: a href="mailto:#{record.email}" target="_top" itemprop=("email" unless record.class.to_s == "RePrivate") =record.email
 
-  li.list-group-item itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress"
+  li.list-group-item itemprop=("address" unless record.class.to_s == 'Job' or record.class.to_s == 'Sale') itemscope="" itemtype="http://schema.org/PostalAddress"
     = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
       - if record.street.present?
         span itemprop="streetAddress" =record.street
@@ -35,7 +35,7 @@
       span itemprop="addressLocality"= "#{record.city.name}, #{record.state.name}"
       - if record.zip.present?
         = ", "
-        span itemprop="postalCode"= record.zip
+        span itemprop="postalCode" = record.zip
 
   li.list-group-item
     | Показов #{record.impressions_count}

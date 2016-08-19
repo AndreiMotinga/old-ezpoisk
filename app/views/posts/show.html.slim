@@ -7,7 +7,7 @@
 
 = content_for :right_block, render("shared/adsense")
 
-.col-xs-12
+.col-xs-12 itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .row.white-block
     .post
       .panel.panel-default
@@ -19,7 +19,7 @@
                             class: "img-responsive center-block img-circle",
                             alt: @post.user.name_to_show
               .col-xs-9.col-sm-10
-                h4.name= @post.user.name_to_show
+                h4.name itemprop="author" = @post.user.name_to_show
                 p.text-muted= @post.created_at.strftime("%d %B %Y")
 
         .panel-body
@@ -27,8 +27,9 @@
             = image_tag @post.logo_url,
                         class: "img-responsive center-block",
                         alt: "Новости русского комьюнити в США - #{@post.title}"
-          h1.h1-title= @post.title
-          p= markdown @post.text
+          h1.h1-title itemprop="name" = @post.title
+          div itemprop="description"
+            = markdown @post.text
 
           = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}"
           - if @post.user == current_user || current_user.try(:editor?)

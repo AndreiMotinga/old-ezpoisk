@@ -3,7 +3,7 @@
 
     .col-xs-4.logo data-id="logo"
       = link_to sale_path(sale) do
-        img.img-responsive.center-block [src=sale.logo_url data-id="logo"
+        img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
           alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
     .col-xs-8
@@ -22,9 +22,12 @@
           hr.post-devider/
 
       /line 3
+
       - if sale.price?
-        strong $ #{sale.price}
-        hr.post-devider/
+        span itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"
+          strong: span content="USD" itemprop="priceCurrency"  $
+          strong: span content="1000.00" itemprop="price"  #{sale.price}
+          hr.post-devider/
 
       / line 3
       - if sale.phone?

@@ -17,8 +17,8 @@
     .white-block
       ul.pgwSlideshow
         - @re_commercial.pictures.each do |pic|
-          li
-            = link_to pic.image.url do
+          li itemscope="" itemtype="http://schema.org/ImageObject"
+            = link_to pic.image.url, itemprop: "contentUrl" do
               = image_tag pic.image.url(:large),
                           alt: "#{t @re_commercial.post_type} #{t @re_commercial.category} #{@re_commercial.city.name} \
                                 #{@re_commercial.state.name} #{@re_commercial.zip} #{pic.image_file_name}"

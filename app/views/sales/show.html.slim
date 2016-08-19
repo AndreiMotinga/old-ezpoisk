@@ -16,25 +16,28 @@
     .white-block
       ul.pgwSlideshow
         - @sale.pictures.each do |pic|
-          li
-            = link_to pic.image.url do
+          li itemscope="" itemtype="http://schema.org/ImageObject"
+            = link_to pic.image.url, itemprop: "contentUrl" do
               = image_tag pic.image.url(:large),
                           alt: "Продается #{t @sale.category} #{@sale.title} #{@sale.city.name} #{@sale.state.name} #{pic.image_file_name}"
 
-.col-xs-12
-  = render @sale
+div itemscope="" itemtype="http://schema.org/Product"
+  .col-xs-12
+    = render @sale
 
-- if @sale.description?
-  .col-xs-12.white-block.description
-    .panel.panel-default
-      .panel-body
-        = markdown @sale.description
+  - if @sale.description?
+    .col-xs-12.white-block.description
+      .panel.panel-default
+        .panel-body
+          h1.h1-desc-title itemprop="name"  = @sale.title
+          div itemprop="description"
+            = markdown @sale.description
 
-.col-xs-12
-  = render 'shared/show/map', record: @sale
+  .col-xs-12
+    = render 'shared/show/map', record: @sale
 
-= render "shared/comments", commentable: @sale, new_comment: @new_comment
+  = render "shared/comments", commentable: @sale, new_comment: @new_comment
 
-.visible-xs
-  = render "shared/show/contacts", record: @sale
-  = render "sales/details"
+  .visible-xs
+    = render "shared/show/contacts", record: @sale
+    = render "sales/details"
