@@ -5,11 +5,3 @@ keys = [
   "ищу сотрудников",
   "разместить вакансию бесплатно без регистрации",
 ]
-
-File.open('keywords/keywords.txt', 'w+') do |f|
-  keys.each do |key|
-      f.puts "#{key}"
-      f.puts "'#{key}'"
-      f.puts "[#{key}]"
-  end
-end

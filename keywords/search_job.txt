@@ -11,14 +11,6 @@ keys = [
   "срочно ищу работу",
   "срочно требуются",
 ]
-
-cities = [
-  "сан франциско",
-  "сан хосе",
-  "пало алто",
-  "сакраменто"
-]
-
 keys = [
   "rabota trebuetsya",
   "ischu raboty",
@@ -27,9 +19,17 @@ keys = [
   "gde naiti rabotu"
 ]
 
-cities = [
-  "san francisco",
-  "san jose",
-  "palo alto",
-  "sacramento"
+keys = [
+ "работа",
+ "вакансии",
+ "работа без документов",
+ "срочно ищу работу",
+ "требуются на работу в разных штатах",
+ "помощь в трудоустройстве",
+]
+keys = [
+  "rabota",
+  "vakansii",
+  "rabota bez dokumentov",
+  "trebuutsya v usa"
 ]

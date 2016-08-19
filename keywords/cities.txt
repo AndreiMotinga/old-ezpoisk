@@ -1,0 +1,25 @@
+cities = [
+  "сан франциско",
+  "san francisco",
+  "сан хосе",
+  "san jose",
+  "пало алто",
+  "palo alto",
+  "сакраменто",
+  "sacramento"
+]
+
+cities = [
+  "бруклин",
+  "квинс",
+  "стэйтен айленд",
+  "манхэттан",
+  "бронкс"
+  "broolyn",
+  "queens",
+  "manhattan",
+  "staten island",
+  "brighton",
+  "bronx",
+  "downtown",
+]

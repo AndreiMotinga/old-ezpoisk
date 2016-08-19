@@ -14,28 +14,3 @@ keys = [
   "дома",
   "земля",
 ]
-
-cities = [
-  "бруклин",
-  "квинс",
-  "стэйтен айленд",
-  "манхэттан",
-  "бронкс"
-]
-
-keys = [
-  "arenda kvartira",
-  "sniat dom",
-  "komnata",
-  "kvartira bez agentov"
-]
-
-cities = [
-  "broolyn",
-  "queens",
-  "manhattan",
-  "staten island",
-  "brighton",
-  "bronx",
-  "downtown",
-]
