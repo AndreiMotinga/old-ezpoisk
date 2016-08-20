@@ -9,6 +9,7 @@
   = link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
   = render("shared/listings_count",
             title: "Информация о наших",
+            url: answers_path,
             today: Answer.today.count,
             week: Answer.week.count,
             total: Answer.count)

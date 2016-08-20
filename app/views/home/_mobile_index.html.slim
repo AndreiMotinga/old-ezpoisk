@@ -47,6 +47,7 @@
             = link_to main_app.destroy_user_session_path, method: :delete do
               li.list-group-item.mobile-link Выйти
 
+br
 = render "shared/social", count: nil, url: "https://www.ezpoisk.com"
 br
 = link_to "Нужна помощь !", post_path("vsem-privet-i-dobro-pozhalovat-na-izi-poisk"), class: "btn btn-block mobile-btn"

@@ -5,6 +5,7 @@
 - content_for(:right_block) do
   = render("shared/listings_count",
             title: "Наши Новости",
+            url: posts_path,
             today: Post.visible.today.count,
             week: Post.visible.week.count,
             total: Post.visible.count)

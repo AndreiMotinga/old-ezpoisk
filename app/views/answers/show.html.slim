@@ -1,4 +1,4 @@
-/= title(@answer.title)
+= title(@answer.title)
 = desc(strip_tags(@answer.text).truncate(160))
 
 = og_type("article")
@@ -18,7 +18,7 @@
       h1.h1-title itemprop="name" = @answer.title
       .row.author
         .col-xs-3.col-sm-2
-          = link_to profile_path(@answer.user) do
+          = link_to profile_path(@answer.user), target: "_blank" do
             = image_tag @answer.avatar,
                         alt: "автор ответа #{@answer.name_to_show}",
                         class: "img-responsive img-circle center-block"
@@ -47,14 +47,9 @@
         .col-xs-12.col-md-7
           = render "shared/social", count: nil
 
-.row
-  .col-xs-12.col-sm-6
-    = link_to "Добавьте свой ответ",
-              new_question_answer_path(@answer.question),
-              class: "btn btn-block mobile-btn margin-bottom-10"
-  .col-xs-12.col-sm-6
-    = link_to "Просмотреть другие ответы",
-              @answer.question,
-              class: "btn mobile-btn btn-block margin-bottom-10"
+.col-xs-12.col-md-6.col-md-offset-3
+  = link_to "Просмотреть другие ответы",
+            @answer.question,
+            class: "btn mobile-btn btn-block other-answers"
 
 = render "shared/comments", commentable: @answer, new_comment: @new_comment

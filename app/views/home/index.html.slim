@@ -8,6 +8,7 @@
 - content_for(:right_block) do
   = render("shared/listings_count",
             title: "Доска объявлений",
+            url: root_path,
             today: Entry.today.count,
             week: Entry.week.count,
             total: Entry.count)

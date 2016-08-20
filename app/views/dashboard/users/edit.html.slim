@@ -1,10 +1,12 @@
+- content_for :sidebar do
+  our_ads
 = link_to "Обновить пароль", edit_user_registration_path
 br
 br
 
 = bootstrap_form_for([:dashboard, current_user]) do |f|
   = f.text_field :name, label: "Ваше имя"
-  = f.text_area :about, label: "Расскажите о себе"
+  = f.text_area :about, label: "Расскажите о себе", rows: 5
   .row
     .col-sm-3
       = f.file_field :cover

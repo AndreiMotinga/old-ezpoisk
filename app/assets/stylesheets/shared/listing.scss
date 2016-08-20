@@ -63,7 +63,13 @@
   width: 100% !important;
 }
 
-.contacts { margin-bottom: 10px; }
+.contacts {
+  margin-bottom: 10px;
+
+  .email {
+    overflow-x: scroll;
+  }
+}
 .author { margin: 10px; }
 
 .favor-links .btn-sm {

@@ -3,7 +3,7 @@ document.addEventListener("turbolinks:load", function() {
     $(window).scroll(function(){
       var url = $(".pagination .next a").attr("href");
       var scrollTop = $(window).scrollTop();
-      var bottom = $(document).height() - $(window).height() - 400;
+      var bottom = $(document).height() - $(window).height() - 300;
       if(url && scrollTop > bottom) {
         $(".pagination").html(
             "<img src=<%= asset_path 'downloading' %> class='img-responsive center-block downloading'>"

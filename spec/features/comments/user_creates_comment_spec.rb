@@ -6,6 +6,6 @@ feature "User comments on re_private", js: true do
 
     visit re_private_path(rp)
 
-    expect(page).to have_content "Войдите, чтобы коментировать"
+    expect(page).to have_content "Войдите, чтобы читать/добавлять коментарии"
   end
 end

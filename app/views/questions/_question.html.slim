@@ -1,7 +1,7 @@
 .row.question.white-block
   .panel.panel-default
     .panel-heading
-      h1.h1-title.question-title= link_to question.title, question
+      h1.h1-title.question-title= question.title
       p.text-muted
         = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
     .panel-body
@@ -12,8 +12,9 @@
         = subscription_links(question)
         = "  "
         = link_to 'редактировать', edit_question_path(question), class: "text text-muted qa-links", rel: "nofollow" if current_user == question.user
-        = render "shared/social", count: nil
         br
+        br
+        = render "shared/social", count: nil
         #comments.collapse
           .fb-comments data-href=question_url(question) data-numposts="5"
       p.tags= tag_links(question)

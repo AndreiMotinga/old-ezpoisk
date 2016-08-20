@@ -1,15 +1,15 @@
 = title("Адвокаты Медицина Недвижимость Образование Работа Ремонт Строительство - ezpoisk")
 = desc("Бесплатные обьявления, реклама. Все виды услуг в США. Найти сервис, рекламировать бизнес, получить помощь.")
 
-= content_for :sidebar, render("shared/sidebar_links")
-
-= render("shared/filters", id: "services", count: @services.total_count)
-- content_for(:right_block) do
+= content_for :sidebar
   = render("shared/listings_count",
-            title: "Предоставляю Услуги",
+            title: "Услуги",
+            url: services_path,
             today: Service.today.count,
             week: Service.week.count,
             total: Service.count)
+
+= render("shared/filters", id: "services", count: @services.total_count)
 
 .col-xs-12 data-id="listings"
   = render @services

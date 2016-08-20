@@ -1,15 +1,16 @@
 = title("Работа в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами - ezpoisk", "Работа ")
 = desc("Работа для русскоговорящих людей в США: Нью Йорк, Сан Франциско, Лос Анджелес, Майами. Множество вакансий")
 
-= content_for :sidebar, render("shared/sidebar_links")
-
-= render("shared/filters", id: "jobs", count: @jobs.total_count)
-- content_for(:right_block) do
+= content_for :sidebar
   = render("shared/listings_count",
-            title: "Объявления 'Работа'",
+            title: "Работа",
+            url: jobs_path,
             today: Job.today.count,
             week: Job.week.count,
             total: Job.count)
+
+= render("shared/filters", id: "jobs", count: @jobs.total_count)
+- content_for(:right_block) do
 
 .col-xs-12 data-id="listings"
   = render @jobs

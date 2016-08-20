@@ -6,7 +6,7 @@
         .panel-heading.hidden-xs
           .row.author
             .col-sm-2
-              = link_to profile_path(post.user) do
+              = link_to profile_path(post.user), target: "_blank" do
                 = image_tag post.avatar.url(:thumb),
                             class: "img-responsive center-block img-circle",
                             alt: "автор новости #{post.user.name_to_show}"
@@ -15,12 +15,12 @@
               p.text-muted= post.created_at.strftime("%d %B %Y")
 
       .panel-body
-        = link_to post_path(post) do
+        = link_to post_path(post), target: "_blank" do
           - if post.image?
             = image_tag post.logo_url,
                         class: "img-responsive center-block",
                         alt: "Новости русского комьюнити в США - #{post.title}"
-        h4.title= link_to post.title, post
+        h4.title= link_to post.title, post, target: "_blank"
         p= strip_tags(post.summary)
 
       .panel-footer
