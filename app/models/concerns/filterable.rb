@@ -49,7 +49,7 @@ module Filterable
 
   module ClassMethods
     def filter(params)
-      results = active
+      results = params[:sorted] ? active : active.order("priority desc")
       params.each do |key, value|
         results = results.public_send(key, value) unless value.blank?
       end
