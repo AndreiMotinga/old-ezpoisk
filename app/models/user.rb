@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   belongs_to :state
   belongs_to :city
-  has_one :gallery
+  has_one :gallery, dependent: :destroy
 
   has_many :re_privates, dependent: :destroy
   has_many :jobs, dependent: :destroy
@@ -38,6 +38,13 @@ class User < ActiveRecord::Base
                     styles: { thumb: "50x50#", medium: "160x160#" },
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
+  attr_reader :avatar_remote_url
+  def avatar_remote_url=(url_value)
+    if url_value.present?
+      self.avatar = URI.parse(url_value)
+      @avatar_remote_url = url_value
+    end
+  end
 
   has_attached_file(
     :cover,

@@ -12,10 +12,14 @@ module OmniLogin
       return user if user
 
       # create user if none of the above
-      User.create(email: auth.info.email,
-                  password: Devise.friendly_token[0, 20],
-                  provider: auth.provider,
-                  uid: auth.uid)
+      u = User.create(email: auth.info.email,
+                      name: auth.info.name,
+                      password: Devise.friendly_token[0, 20],
+                      provider: auth.provider,
+                      uid: auth.uid)
+      u.avatar_remote_url = auth.info.image.gsub("http://", "https://")
+      u.save
+      u
     end
   end
 end
