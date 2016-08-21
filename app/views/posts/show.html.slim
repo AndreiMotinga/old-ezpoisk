@@ -32,7 +32,7 @@
           div itemprop="description"
             = markdown @post.text
 
-          = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}"
+          = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
           - if @post.user == current_user || current_user.try(:editor?)
             = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
