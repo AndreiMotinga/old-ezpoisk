@@ -7,7 +7,7 @@ gem "sass-rails"
 gem "uglifier"
 gem "coffee-rails"
 gem "jquery-rails"
-gem "jquery-ui-rails" #todo remove? how? what does it do?
+gem "jquery-ui-rails"
 gem "bootstrap-sass"
 gem "select2-rails"
 gem 'turbolinks', '~> 5.0.1'
