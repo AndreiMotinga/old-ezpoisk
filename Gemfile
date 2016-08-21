@@ -72,7 +72,7 @@ group :production do
 end
 
 group :development, :test do
-#   gem "thin"
+  gem "thin"
   gem "pry-byebug"
   gem "factory_girl_rails"
   gem "faker"
