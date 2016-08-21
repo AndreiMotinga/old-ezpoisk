@@ -45,9 +45,13 @@ class Post < ActiveRecord::Base
     where(query, keys, keys)
   end
 
+  def self.import_category(category)
+    where(category: category)
+  end
+
   def self.category(category)
     return all if category.blank?
-    where(category: category)
+    joins(:categories).where("categories.name = ?", category)
   end
 
   def self.convert_keyword(keyword)

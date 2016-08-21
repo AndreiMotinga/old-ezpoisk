@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def all
     @posts = Post.invisible
-                 .category(params[:category])
+                 .import_category(params[:category])
                  .order('title desc')
                  .today
   end
