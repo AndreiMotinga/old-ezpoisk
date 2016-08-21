@@ -46,6 +46,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.import_category(category)
+    return all unless category.present?
     where(category: category)
   end
 

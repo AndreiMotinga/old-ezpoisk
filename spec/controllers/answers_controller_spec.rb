@@ -49,13 +49,13 @@ describe AnswersController do
       sign_in(@user = create(:user))
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
-      attrs = attributes_for(:answer)
+      attrs = attributes_for(:answer, title: answer.title)
       attrs[:question_id] = question.id
 
       put :update, params: { id: answer.id, answer: attrs }
       updated_a = assigns(:answer)
 
-      expect(response).to redirect_to(question)
+      expect(response).to redirect_to(answer_path(answer))
       expect(updated_a.text).to eq attrs[:text]
       expect(updated_a.user).to eq @user
     end

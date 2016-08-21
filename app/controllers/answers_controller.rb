@@ -48,7 +48,7 @@ class AnswersController < ApplicationController
 
   def update
     if @answer.update(answer_params)
-      redirect_to(question_path(question), notice: I18n.t(:answer_updated))
+      redirect_to(answer_path(@answer), notice: I18n.t(:answer_updated))
     else
       render :edit
     end

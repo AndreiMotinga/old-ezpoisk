@@ -48,7 +48,7 @@ class Dashboard::PostsController < ApplicationController
   private
 
   def set_post
-    if current_user.admin?
+    if current_user.editor?
       @post = Post.find(params[:id])
     else
       @post = current_user.posts.find(params[:id])
