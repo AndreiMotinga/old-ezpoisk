@@ -33,7 +33,6 @@ nav.navbar-fixed-top.navbar-main
             a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                      data-toggle="dropdown" href="#" role="button"]
               = image_tag current_user.avatar, class: "img-circle"
-              = "#{current_user.name_to_show} "
               span.caret
             ul.dropdown-menu
               li= link_to "Моя страница", profile_path(current_user)
