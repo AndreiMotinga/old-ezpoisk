@@ -25,6 +25,7 @@ module MarkdownHelper
   def markdown(text)
     options = {
       escape_html:     true,
+      tables:          true,
       hard_wrap:       true,
       link_attributes: { rel: 'nofollow', target: "_blank" },
       space_after_headers: true,
