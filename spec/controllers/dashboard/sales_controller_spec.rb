@@ -3,8 +3,6 @@ require "rails_helper"
 describe Dashboard::SalesController do
   describe "GET #new" do
     it "renders the new template and assigns @sale" do
-      sign_in(@user = create(:user))
-
       get :new
 
       expect(response).to render_template(:new)
@@ -35,26 +33,46 @@ describe Dashboard::SalesController do
   end
 
   describe "POST #create" do
-    it "creates sale" do
-      sign_in(@user = create(:user))
-      attrs = attributes_for(:sale)
+    context "user logged in" do
+      it "creates sale" do
+        sign_in(@user = create(:user))
+        attrs = attributes_for(:sale)
 
-      post :create, params: { sale: attrs }
-      sale = assigns(:sale)
+        post :create, params: { sale: attrs }
+        sale = assigns(:sale)
 
-      expect(response).to redirect_to(
-        edit_dashboard_sale_path(sale)
-      )
-      expect(sale.title).to eq attrs[:title]
-      expect(sale.user).to eq @user
+        expect(response).to redirect_to(
+          edit_dashboard_sale_path(sale)
+        )
+        expect(sale.title).to eq attrs[:title]
+        expect(sale.user).to eq @user
+        expect(flash[:notice]).to eq I18n.t(:post_saved)
 
-      entry = Entry.last
-      expect(Entry.count).to eq 1
-      expect(entry.enterable_id).to eq sale.id
-      expect(entry.enterable_type).to eq sale.class.to_s
-      expect(entry.user_id).to eq @user.id
+        entry = Entry.last
+        expect(Entry.count).to eq 1
+        expect(entry.enterable_id).to eq sale.id
+        expect(entry.enterable_type).to eq sale.class.to_s
+        expect(entry.user_id).to eq @user.id
 
-      expect(Subscription.count).to eq 1
+        expect(Subscription.count).to eq 1
+      end
+    end
+
+    context "user not logged" do
+      it "creates sale reidrects to edit with token" do
+        attrs = attributes_for(:sale)
+
+        post :create, params: { sale: attrs }
+        sale = assigns(:sale)
+
+        expect(response).to redirect_to(
+          edit_dashboard_sale_path(sale, token: sale.token)
+        )
+        expect(sale.title).to eq attrs[:title]
+        expect(sale.user).to be nil
+        notice = I18n.t(:post_saved_wr) + " #{sale.edit_url_with_token}"
+        expect(flash[:notice]).to eq notice
+      end
     end
   end
 

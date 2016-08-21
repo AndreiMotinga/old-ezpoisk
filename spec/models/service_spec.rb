@@ -10,7 +10,6 @@ describe Service do
 
   it { should validate_presence_of :city_id }
   it { should validate_presence_of :state_id }
-  it { should validate_presence_of :user_id }
 
   it { should belong_to(:user) }
   it { should belong_to(:city) }

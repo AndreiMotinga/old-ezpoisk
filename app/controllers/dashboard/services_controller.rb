@@ -1,12 +1,11 @@
 class Dashboard::ServicesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_service, only: [:edit, :update, :destroy]
 
   def new
-    @service = Service.new(state_id: current_user.state_id,
-                           city_id: current_user.city_id,
-                           phone: current_user.phone,
-                           email: current_user.email)
+    @service = Service.new(state_id: current_user.try(:state_id),
+                           city_id: current_user.try(:city_id),
+                           phone: current_user.try(:phone),
+                           email: current_user.try(:email))
   end
 
   def edit
@@ -14,11 +13,11 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def create
-    @service = current_user.services.build(service_params)
+    @service = Service.new(service_params)
+    @service.user = current_user
     if @service.save
       run_create_notifications
-      redirect_to edit_dashboard_service_path(@service),
-                  notice: I18n.t(:post_saved)
+      redirect_on_create
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -44,6 +43,20 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   private
+
+  def redirect_on_create
+    if @service.user
+      redirect_to(
+        edit_dashboard_service_path(@service),
+        notice: I18n.t(:post_saved)
+      )
+    else
+      redirect_to(
+        edit_dashboard_service_path(@service, token: @service.token),
+        notice: I18n.t(:post_saved_wr) + " #{@service.edit_url_with_token}"
+      )
+    end
+  end
 
   def update_redirect_path
     if params[:token].present?

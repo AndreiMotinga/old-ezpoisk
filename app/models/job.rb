@@ -11,12 +11,11 @@ class Job < ActiveRecord::Base
   validates :description, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
-  validates :user_id, presence: true
   validates_with SourceValidator
 
   belongs_to :state
   belongs_to :city
-  belongs_to :user
+  belongs_to :user, optional: true
 
   has_many :favorites, as: :favorable, dependent: :destroy
   has_many :subscriptions, as: :subscribable, dependent: :destroy

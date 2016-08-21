@@ -1,26 +1,25 @@
 class Dashboard::RePrivatesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
   def new
-    @re_private = RePrivate.new(state_id: current_user.state_id,
-                                city_id: current_user.city_id,
+    @re_private = RePrivate.new(state_id: current_user.try(:state_id),
+                                city_id: current_user.try(:city_id),
                                 active: true,
-                                email: current_user.new_email,
+                                email: current_user.try(:new_email),
                                 baths: 1,
                                 duration: "помесячно",
-                                phone: current_user.phone)
+                                phone: current_user.try(:phone))
   end
 
   def edit
   end
 
   def create
-    @re_private = current_user.re_privates.build(re_private_params)
+    @re_private = RePrivate.new(re_private_params)
+    @re_private.user = current_user
     if @re_private.save
       run_create_notifications
-      redirect_to edit_dashboard_re_private_path(@re_private),
-                  notice: I18n.t(:post_saved)
+      redirect_on_create
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -45,6 +44,20 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   private
+
+  def redirect_on_create
+    if @re_private.user
+      redirect_to(
+        edit_dashboard_re_private_path(@re_private),
+        notice: I18n.t(:post_saved)
+      )
+    else
+      redirect_to(
+        edit_dashboard_re_private_path(@re_private, token: @re_private.token),
+        notice: I18n.t(:post_saved_wr) + " #{@re_private.edit_url_with_token}"
+      )
+    end
+  end
 
   def update_redirect_path
     if params[:token].present?

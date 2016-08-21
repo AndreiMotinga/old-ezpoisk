@@ -1,23 +1,23 @@
 class Dashboard::JobsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_job, only: [:edit, :update, :destroy]
 
   def new
-    @job = Job.new(state_id: current_user.state_id,
-                   city_id: current_user.city_id,
+    @job = Job.new(state_id: current_user.try(:state_id),
+                   city_id: current_user.try(:city_id),
                    active: true,
-                   phone: current_user.phone,
-                   email: current_user.new_email)
+                   phone: current_user.try(:phone),
+                   email: current_user.try(:new_email))
   end
 
   def edit
   end
 
   def create
-    @job = current_user.jobs.build(job_params)
+    @job = Job.new(job_params)
+    @job.user = current_user
     if @job.save
       run_create_notifications
-      redirect_to edit_dashboard_job_path(@job), notice: I18n.t(:post_saved)
+      redirect_on_create
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -42,6 +42,20 @@ class Dashboard::JobsController < ApplicationController
   end
 
   private
+
+  def redirect_on_create
+    if @job.user
+      redirect_to(
+        edit_dashboard_job_path(@job),
+        notice: I18n.t(:post_saved)
+      )
+    else
+      redirect_to(
+        edit_dashboard_job_path(@job, token: @job.token),
+        notice: I18n.t(:post_saved_wr) + " #{@job.edit_url_with_token}"
+      )
+    end
+  end
 
   def update_redirect_path
     if params[:token].present?

@@ -1,7 +1,11 @@
 .row.question.white-block
   .panel.panel-default
     .panel-heading
-      h1.h1-title.question-title= question.title
+      h1.h1-title.question-title
+        - if action_name == "index"
+          = link_to question.title, question
+        - else
+          = question.title
       p.text-muted
         = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
     .panel-body

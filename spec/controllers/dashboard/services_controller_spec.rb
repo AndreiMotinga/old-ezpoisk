@@ -3,8 +3,6 @@ require "rails_helper"
 describe Dashboard::ServicesController do
   describe "GET #new" do
     it "renders the new template and assigns @service" do
-     sign_in(@user = create(:user))
-
       get :new
 
       expect(response).to render_template(:new)
@@ -13,13 +11,15 @@ describe Dashboard::ServicesController do
   end
 
   describe "GET #edit" do
-    it "only shows record that belongs to user" do
-      sign_in(@user = create(:user))
-      service = create :service
-      create :service, user: @user
+    context "user logged in" do
+      it "only shows record that belongs to user" do
+        sign_in(@user = create(:user))
+        service = create :service
+        create :service, user: @user
 
-      expect { get :edit, params: { id: service.id } }
-        .to raise_exception(ActiveRecord::RecordNotFound)
+        expect { get :edit, params: { id: service.id } }
+          .to raise_exception(ActiveRecord::RecordNotFound)
+      end
     end
 
     context "with token" do
@@ -47,6 +47,23 @@ describe Dashboard::ServicesController do
       )
       expect(service.title).to eq attrs[:title]
       expect(service.user).to eq @user
+    end
+
+    context "user not logged in" do
+      it "creates service" do
+        attrs = attributes_for(:service)
+
+        post :create, params: { service: attrs }
+        service = assigns(:service)
+
+        expect(response).to redirect_to(
+          edit_dashboard_service_path(service, token: service.token)
+        )
+        expect(service.title).to eq attrs[:title]
+        expect(service.user).to be nil
+        notice = I18n.t(:post_saved_wr) + " #{service.edit_url_with_token}"
+        expect(flash[:notice]).to eq notice
+      end
     end
   end
 

@@ -1,23 +1,23 @@
 class Dashboard::SalesController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
   before_action :set_sale, only: [:edit, :update, :destroy]
 
   def new
-    @sale = Sale.new(state_id: current_user.state_id,
-                     city_id: current_user.city_id,
-                     phone: current_user.phone,
+    @sale = Sale.new(state_id: current_user.try(:state_id),
+                     city_id: current_user.try(:city_id),
+                     phone: current_user.try(:phone),
                      active: true,
-                     email: current_user.new_email)
+                     email: current_user.try(:new_email))
   end
 
   def edit
   end
 
   def create
-    @sale = current_user.sales.build(sale_params)
+    @sale = Sale.new(sale_params)
+    @sale.user = current_user
     if @sale.save
       run_create_notifications
-      redirect_to edit_dashboard_sale_path(@sale), notice: I18n.t(:post_saved)
+      redirect_on_create
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -41,6 +41,20 @@ class Dashboard::SalesController < ApplicationController
   end
 
   private
+
+  def redirect_on_create
+    if @sale.user
+      redirect_to(
+        edit_dashboard_sale_path(@sale),
+        notice: I18n.t(:post_saved)
+      )
+    else
+      redirect_to(
+        edit_dashboard_sale_path(@sale, token: @sale.token),
+        notice: I18n.t(:post_saved_wr) + " #{@sale.edit_url_with_token}"
+      )
+    end
+  end
 
   def update_redirect_path
     if params[:token].present?

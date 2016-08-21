@@ -13,11 +13,10 @@ class Service < ActiveRecord::Base
   validates :subcategory, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
-  validates :user_id, presence: true
 
   belongs_to :state
   belongs_to :city
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :favorites, as: :favorable, dependent: :destroy
 
   has_one :stripe_subscription, dependent: :destroy
@@ -31,7 +30,7 @@ class Service < ActiveRecord::Base
   delegate :cancel, to: :stripe_subscription, allow_nil: true
 
   def self.active
-    order("priority desc")
+    all
   end
 
   has_attached_file :logo, styles: { medium: "x120" }
