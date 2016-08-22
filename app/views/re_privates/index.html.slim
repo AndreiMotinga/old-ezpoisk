@@ -3,6 +3,7 @@
 
 = content_for :sidebar
   .sticky
+    = render("shared/filters_btn", id: "re_privates", count: @re_privates.total_count)
     = render("shared/listings_count",
               title: "Недвижимость",
               url: re_privates_path,
