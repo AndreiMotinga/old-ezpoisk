@@ -7,7 +7,7 @@ class Job < ActiveRecord::Base
   include ViewHelpers
   include Tokenable
 
-  validates :title, length: { maximum: 90 }
+  validates :title, presence: true, length: { maximum: 90 }
   validates :description, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true

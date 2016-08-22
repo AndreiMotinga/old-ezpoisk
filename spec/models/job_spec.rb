@@ -4,6 +4,7 @@ describe Job do
   it { should validate_presence_of :city_id }
   it { should validate_presence_of :state_id }
   it { should validate_presence_of :description }
+  it { should validate_presence_of :title }
 
   it { should belong_to(:user) }
   it { should belong_to(:city) }
