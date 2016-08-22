@@ -46,7 +46,7 @@ describe ServicesController do
       end
 
       it "filters by subcategory" do
-        2.times { create :service, :active, subcategory: "Салоны красоты" }
+        2.times { create :service, subcategory: "Салоны красоты" }
         create :service, subcategory: "other"
 
         get :index, params: { subcategory: "Салоны красоты" }

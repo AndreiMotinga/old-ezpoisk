@@ -6,6 +6,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     state_id 32
     city_id 18031
+    active true
 
     site { Faker::Internet.url("example.com") }
     description { Faker::Lorem.paragraph(5) }
@@ -32,9 +33,5 @@ FactoryGirl.define do
       category "Работа"
       subcategory "Агентства по Трудоустройству"
     end
-  end
-
-  trait :active do
-    stripe_subscription
   end
 end

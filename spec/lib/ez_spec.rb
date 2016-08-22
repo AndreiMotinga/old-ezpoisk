@@ -17,7 +17,7 @@ describe Ez do
 
       expect(stub_post)
         .to have_requested(:post, ENV["SLACK_URL"])
-        .with(body: { payload: "{\"text\":\"foo\"}" })
+        .with(body: { payload: "{\"channel\":\"tech\",\"text\":\"foo\"}" })
     end
   end
 

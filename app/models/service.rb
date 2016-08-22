@@ -29,10 +29,6 @@ class Service < ActiveRecord::Base
   delegate :cancelled?, to: :stripe_subscription, allow_nil: true
   delegate :cancel, to: :stripe_subscription, allow_nil: true
 
-  def self.active
-    all
-  end
-
   has_attached_file :logo, styles: { medium: "x120" }
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
@@ -49,11 +45,6 @@ class Service < ActiveRecord::Base
   def trial?
     return false unless stripe_subscription
     stripe_subscription.status == "trial"
-  end
-
-  def active?
-    # todo fix when work with services
-    true
   end
 
   def edit_link
