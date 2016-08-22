@@ -1,41 +1,21 @@
-footer
-  .row.text-muted
-    .col-sm-4
-      .text-right
-        ul.list-unstyled
-          li= link_to 'Недвижимость', main_app.re_privates_path
-          li= link_to 'Услуги', main_app.services_path
-          li= link_to 'Работа', main_app.jobs_path
-          li= link_to 'Продается', main_app.sales_path
-          li= link_to 'Новости', main_app.posts_path
-          li= link_to 'О компании', "/about"
-          li= link_to 'Terms of Service',  '/tos', rel: "nofollow"
-
-    .col-sm-6
-      p.copyright
-        | &emsp;
-        strong ezpoisk
-        |  - это комьюнити портал, созданный с целью сблизить русскоговорящих людей,
-        |  проживающих в США. Здесь Вы сможете найти полезную и интересную информацию.
-        |  Ищите ли Вы жилье, какой-либо вид услуг или же хотите рассказать о
-        |  своем бизнесе - все это Вы можете сделать здесь. Если у Вас есть идеи о
-        |  том, как можно сделать этот сайт лучше, пожалуйста, пишите нам.
-        |  Мы действительно ценим Ваш отзыв.
-      h5
-        | Copyright © ezpoisk #{Time.now.year}
-      ul.list-inline.social-buttons.pull-right
-        li.text-center
-          = link_to "https://vk.com/ezpoiskusa", target: "_blank" do
-            i.fa.fa-vk
-        li.text-center
-          = link_to "https://plus.google.com/communities/107591116080815357420", target: "_blank" do
-            i.fa.fa-google-plus
-        li.text-center
-          = link_to "https://www.facebook.com/ezpoisk", target: "_blank" do
-            i.fa.fa-facebook
-        li.text-center
-          = link_to "https://twitter.com/ezpoisk", target: "_blank" do
-            i.fa.fa-twitter
-        li.text-center
-          a href="#"
-            i.fa.fa-linkedin
+footer.text-center
+  ul.list-inline
+    li.hidden-sm= link_to 'Недвижимость', main_app.re_privates_path
+    li.hidden-sm= link_to 'Работа', main_app.jobs_path
+    li.hidden-sm= link_to 'Продажи', main_app.sales_path
+    li.hidden-sm= link_to 'Услуги', main_app.services_path
+    li.hidden-sm= link_to 'Новости', main_app.posts_path
+    li.hidden-sm= link_to 'Terms of Service',  '/tos', rel: "nofollow"
+    li.text-center
+      = link_to "https://vk.com/ezpoiskusa", target: "_blank" do
+        i.fa.fa-vk
+    li.text-center
+      = link_to "https://plus.google.com/communities/107591116080815357420", target: "_blank" do
+        i.fa.fa-google-plus
+    li.text-center
+      = link_to "https://www.facebook.com/ezpoisk", target: "_blank" do
+        i.fa.fa-facebook
+    li.text-center
+      = link_to "https://twitter.com/ezpoisk", target: "_blank" do
+        i.fa.fa-twitter
+    li: h5 Copyright © ezpoisk #{Time.now.year}

@@ -9,8 +9,9 @@
   our_adds
 
 = content_for :right_block do
-  = link_to "Добавьте свой ответ", new_question_answer_path(@answer.question), class: "btn btn-block mobile-btn margin-bottom-10"
-  = render "answers/show/side_posts"
+  .sticky
+    = link_to "Добавьте свой ответ", new_question_answer_path(@answer.question), class: "btn btn-block mobile-btn margin-bottom-10"
+    = render "answers/show/side_posts"
 
 .answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel.panel-default

@@ -7,7 +7,7 @@ body {
 
 .page-wrap {
   // equal to footer height
-  margin-bottom: -300px;
+  margin-bottom: -60px;
   min-height: 100%;
 }
 
@@ -18,14 +18,13 @@ body {
 
 footer,
 .page-wrap::after {
-  height: 300px;
+  height: 40px;
 }
 
 footer {
   background-color: $footer_background_color;
   margin-top: 20px;
-  padding-bottom: 60px;
-  padding-top: 60px;
+  .list-inline { margin-bottom: 0; }
 
   a {
     color: $grey4;
@@ -33,33 +32,6 @@ footer {
   }
 
   li { padding: 2px; }
-  .fa { color: $white; }
-
-  .social-buttons {
-    margin-bottom: 0;
-
-    a {
-      background-color: $grey3;
-      border-radius: 100%;
-      color: $white;
-      display: block;
-      font-size: 20px;
-      height: 40px;
-      line-height: 40px;
-      outline: none;
-      width: 40px;
-      // todo learn how to avoid it
-      -webkit-transition: all 0.3s;
-      -moz-transition: all 0.3s;
-      transition: all 0.3s;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-      background-color: $orange;
-    }
-  }
 }
 
 .shadow {
