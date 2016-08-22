@@ -23,14 +23,14 @@
         .col-xs-12
           = link_to "Добавляй Новость", new_dashboard_post_path, class: "btn btn-block mobile-btn"
 
+/ MOBILE
+.visible-xs.col-xs-12
+  = render "home/mobile_index"
+
 .hidden-xs.col-sm-12 data-id="listings"
   / DESKTOP
   = render @posts
 
 .row
-  .col-xs-12
+  .hidden-xs
     = render "shared/pagination", records: @posts
-
-/ MOBILE
-.visible-xs.col-xs-12
-  = render "home/mobile_index"

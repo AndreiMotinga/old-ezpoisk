@@ -185,7 +185,10 @@ span.favorite { color: $orange; }
 }
 
 // bootstrap modal scroll fix
-body.modal-open { position: fixed; }
+
+@media(max-width:767px){
+  body.modal-open { position: fixed; }
+}
 // .modal-large {
 //   position: absolute;
 //   min-height: 500px;
