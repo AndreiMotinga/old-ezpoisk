@@ -249,3 +249,30 @@ textarea { resize: vertical; }
 #login_link {
   cursor: pointer;
 }
+
+#scrollUp {
+}
+
+#scrollUp {
+  position: fixed;
+  display: none;
+  background-color: $blue;
+  border-radius: 30px;
+  color: #eee;
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  bottom: 20px;
+  left: 20px;
+  overflow: hidden;
+  width: 46px;
+  height: 46px;
+  border: none;
+  opacity: .8;
+}
+
+#scrollUp:hover{
+  color: #eee;
+  background-color: #222;
+}

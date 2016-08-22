@@ -80,7 +80,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "thin"
   gem "bullet"
   gem "better_errors"
   gem "meta_request"

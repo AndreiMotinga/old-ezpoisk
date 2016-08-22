@@ -2,8 +2,10 @@
   .left.col-sm-4
     .background style="background-image: url(#{@user.cover.url(:large)})"
     .content.text-center
-      = link_to profile_path(@user) do
-        = image_tag @user.avatar.url(:medium), class: "img-circle center-block"
+      = link_to profile_path(@user), rel: "nofollow" do
+        = image_tag @user.avatar.url(:medium),
+                    class: "img-circle center-block",
+                    alt: @user.name
       .name= @user.name
       = render "profiles/show/thanks_link"
       .views

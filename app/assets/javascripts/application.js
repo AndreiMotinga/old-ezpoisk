@@ -39,4 +39,6 @@
 //= require sticky
 //= require sticky_init
 
+//= require scroll_up
+
 //= require_tree .
