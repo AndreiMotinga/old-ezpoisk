@@ -3,7 +3,10 @@
     .panel.panel-default
       - if job.title.present?
         .panel-heading
-          h4= link_to job.title, job_path(job)
+          - if action_name == "index"
+            h4= link_to job.title, job_path(job)
+          - else
+            h4= job.title
 
       .panel-body
         - if job.logo?
@@ -15,8 +18,7 @@
           hr
 
         .description itemprop="description"
-          = link_to job_path(job) do
-            = markdown job.description
+          = markdown job.description
         p.tags
           - job.tag_list.each do |sub|
             a.tag= " ##{sub} "
