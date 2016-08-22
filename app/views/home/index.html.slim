@@ -27,7 +27,9 @@
   / DESKTOP
   = render @posts
 
-  = render "shared/pagination", records: @posts
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @posts
 
 / MOBILE
 .visible-xs.col-xs-12
