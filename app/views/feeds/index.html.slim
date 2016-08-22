@@ -17,7 +17,8 @@ br
               |  #{t l.try(:category)}
             - if l.try(:subcategory).present?
               |  #{t l.try(:subcategory)}
-            |  #{l.city.name} #{l.state.name} #{l.zip}
+            - if l.try(:city).present?
+              |  #{l.city.name} #{l.state.name} #{l.zip}
 
-          p= l.description
+          p= l.try(:description)
           p Подробнее #{l.show_url}

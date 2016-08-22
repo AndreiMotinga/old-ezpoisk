@@ -10,6 +10,7 @@ class Answer < ActiveRecord::Base
   delegate :name_to_show, to: :user
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
+  scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
 
   def self.this_week
     where("created_at > ?", Date.current.at_beginning_of_week).count
@@ -20,7 +21,7 @@ class Answer < ActiveRecord::Base
   end
 
   def show_url
-    Rails.application.routes.url_helpers.answer_url(question)
+    Rails.application.routes.url_helpers.answer_url(self)
   end
 
   def avatar
