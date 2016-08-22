@@ -2,12 +2,13 @@
 = desc("Обьявления о продаже в США: Нью Йорк, Сан Франциско, Лос Анджелес, Майами. Распродажи")
 
 = content_for :sidebar
-  = render("shared/listings_count",
-            title: "Продажи",
-            url: sales_path,
-            today: Sale.today.count,
-            week: Sale.week.count,
-            total: Sale.count)
+  .sticky
+    = render("shared/listings_count",
+              title: "Продажи",
+              url: sales_path,
+              today: Sale.today.count,
+              week: Sale.week.count,
+              total: Sale.count)
 
 = render("shared/filters", id: "sales", count: @sales.total_count)
 

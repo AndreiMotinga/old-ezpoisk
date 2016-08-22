@@ -1,18 +1,21 @@
 = title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
 = desc("Информация о жизни русскоговорящих людей в америке. Полезная информация об иммиграции в США")
 
-= content_for :sidebar, render("answers/tag_cloud")
-
-= render "questions/search_form"
+= content_for :sidebar do
+  .sticky
+    = render("answers/tag_cloud")
 
 - content_for(:right_block) do
-  = link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
-  = render("shared/listings_count",
-            title: "Информация о наших",
-            url: answers_path,
-            today: Answer.today.count,
-            week: Answer.week.count,
-            total: Answer.count)
+  .sticky
+    = link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
+    = render("shared/listings_count",
+              title: "Информация о наших",
+              url: answers_path,
+              today: Answer.today.count,
+              week: Answer.week.count,
+              total: Answer.count)
+
+= render "questions/search_form"
 
 .col-xs-12 data-id="listings"
   = render @answers

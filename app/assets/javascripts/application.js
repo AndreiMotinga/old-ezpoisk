@@ -36,5 +36,7 @@
 //= require facebook
 
 //= require rails-timeago-all
+//= require sticky
+//= require sticky_init
 
 //= require_tree .

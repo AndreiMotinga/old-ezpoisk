@@ -28,6 +28,6 @@ class Answer < ActiveRecord::Base
   end
 
   def side_posts
-    @posts = Post.visible.last(10)
+    @posts = Post.visible.last(9)
   end
 end

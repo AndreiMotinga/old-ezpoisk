@@ -11,7 +11,8 @@
 = content_for :sidebar do
   our_adds
 - content_for :right_block do
-  = link_to "Добавить свой ответ", new_question_answer_path(@question), class: "btn mobile-btn btn-block margin-bottom-10"
+  .sticky
+    = link_to "Добавить свой ответ", new_question_answer_path(@question), class: "btn mobile-btn btn-block margin-bottom-10"
 
 = render "questions/search_form"
 

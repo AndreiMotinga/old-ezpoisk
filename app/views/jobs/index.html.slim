@@ -2,15 +2,17 @@
 = desc("Работа для русскоговорящих людей в США: Нью Йорк, Сан Франциско, Лос Анджелес, Майами. Множество вакансий")
 
 = content_for :sidebar
-  = render("shared/listings_count",
-            title: "Работа",
-            url: jobs_path,
-            today: Job.today.count,
-            week: Job.week.count,
-            total: Job.count)
+  .sticky
+    = render("shared/listings_count",
+              title: "Работа",
+              url: jobs_path,
+              today: Job.today.count,
+              week: Job.week.count,
+              total: Job.count)
 
 = render("shared/filters", id: "jobs", count: @jobs.total_count)
 - content_for(:right_block) do
+  ads
 
 .col-xs-12 data-id="listings"
   = render @jobs
