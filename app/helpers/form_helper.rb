@@ -70,6 +70,7 @@ module FormHelper
   end
 
   def ru(opts)
+    return "" unless opts
     opts.map{ |k| [t(k), k] }
   end
 end
