@@ -29,7 +29,7 @@
                         class: "img-responsive center-block",
                         alt: "Новости русского комьюнити в США - #{@post.title}"
           h1.h1-title itemprop="name" = @post.title
-          div itemprop="description"
+          .post-body itemprop="description"
             = markdown @post.text
 
           = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
