@@ -3,11 +3,8 @@
 
 = content_for :sidebar do
   .sticky
-    = render("answers/tag_cloud")
-
-- content_for(:right_block) do
-  .sticky
     = link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
+    = render("answers/tag_cloud")
     = render("shared/listings_count",
               title: "Информация о наших",
               url: answers_path,

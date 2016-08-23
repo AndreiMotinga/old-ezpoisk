@@ -224,8 +224,8 @@ textarea { resize: vertical; }
   font-size: 20px;
 }
 
-.side-column {
-  padding-left: 0;
+.left-column {
+  padding-left: 15px;
   padding-right: 0;
 }
 
@@ -278,4 +278,7 @@ textarea { resize: vertical; }
 #scrollUp:hover{
   color: #eee;
   background-color: #222;
+}
+.gads {
+  max-width: 306px;
 }

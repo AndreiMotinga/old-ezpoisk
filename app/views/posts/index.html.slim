@@ -2,9 +2,8 @@
 = desc("Новости русской иммиграции в США. Информцаия о наших от Бостона до Сан Франциско")
 
 = content_for :sidebar do
-  .sticky
-    = render("posts/sidebar", klass: "desktop")
-- content_for(:right_block) do
+  = render("posts/sidebar", klass: "desktop")
+  br
   .sticky
     = render("shared/listings_count",
               title: "Наши Новости",
