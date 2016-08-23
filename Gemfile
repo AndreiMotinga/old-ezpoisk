@@ -12,6 +12,7 @@ gem "bootstrap-sass"
 gem "select2-rails"
 gem 'turbolinks', '~> 5.0.1'
 gem "acts_as_commentable_with_threading"
+gem "summernote-rails"
 
 gem "devise"
 gem "devise-i18n-views"

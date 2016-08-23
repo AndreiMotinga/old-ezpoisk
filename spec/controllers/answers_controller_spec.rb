@@ -23,7 +23,7 @@ describe AnswersController do
       post :create, params: { answer: attrs }
       answer = assigns(:answer)
 
-      expect(response).to redirect_to(question)
+      expect(response).to redirect_to(answer)
       expect(answer.text).to eq attrs[:text]
       expect(answer.user).to eq @user
 

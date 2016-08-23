@@ -39,7 +39,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.build(answer_params)
     if @answer.save
       run_create_notifications
-      redirect_to(question_path(question), notice: I18n.t(:answer_created))
+      redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))
     end
   end
 

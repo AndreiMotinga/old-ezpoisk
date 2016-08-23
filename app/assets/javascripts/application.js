@@ -19,7 +19,9 @@
 //= require underscore
 //= require dropzone_init
 //= require gmaps/google
-//
+//= require summernote
+//= require summernote_init
+
 //= require pgwslider
 //= require touchTouch
 

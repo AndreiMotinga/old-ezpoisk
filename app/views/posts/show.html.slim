@@ -30,7 +30,8 @@
                         alt: "Новости русского комьюнити в США - #{@post.title}"
           h1.h1-title itemprop="name" = @post.title
           .post-body itemprop="description"
-            = markdown @post.text
+            /todo how to use markdown to display videos
+            = raw @post.text
 
           = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
           - if @post.user == current_user || current_user.try(:editor?)

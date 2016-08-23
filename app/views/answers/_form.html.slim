@@ -6,10 +6,7 @@ br
   -  @answer.question.tag_list.each do |tag|
     = hidden_field_tag 'answer[tag_list][]', tag
 
-  .field= f.text_area :text, rows: 20, label: "Ваш ответ"
-  span.text-muted
-    | *  Вы можете использовать
-    em  markdown
+  .field= f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
 
   br
   br
