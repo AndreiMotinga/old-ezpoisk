@@ -35,9 +35,9 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # def gallery
-  #   @pictures = @user.gallery.pictures.page(params[:page]).per(30)
-  # end
+  def gallery
+    @pictures = @user.gallery.pictures.page(params[:page]).per(30)
+  end
 
   private
 

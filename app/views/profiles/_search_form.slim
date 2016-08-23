@@ -1,7 +1,7 @@
 ul.nav.home-sidebar-nav
   li= link_to "Контакты", profile_path(@user)
   li= link_to "Новости", profile_posts_path(@user)
-  /li= link_to "Галерея", profile_gallery_path(@user)
+  li= link_to "Галерея", profile_gallery_path(@user)
   li= link_to "Объявления", profile_listings_path(@user)
   li= link_to "Ответы", profile_answers_path(@user)
   - if @user == current_user

@@ -7,7 +7,7 @@ document.addEventListener("turbolinks:load", function() {
 
     $(window).scroll(function() {
       // If the user scrolled a bit (150 pixels) show the link
-      if ($(this).scrollTop() > 150) {
+      if ($(this).scrollTop() > 1000) {
         link.fadeIn(100);
       } else {
         link.fadeOut(100);

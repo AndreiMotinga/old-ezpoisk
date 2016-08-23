@@ -1,3 +1,5 @@
+Dropzone.autoDiscover = false;
+
 document.addEventListener("turbolinks:load", function() {
   if ($(".dropzone").length) {
     var type = $("#pictures-data").data("type");

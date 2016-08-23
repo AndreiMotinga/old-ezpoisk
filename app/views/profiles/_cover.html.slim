@@ -1,5 +1,5 @@
 .row.cover
-  .left.col-sm-4
+  .left.col-xs-12.col-sm-4
     .background style="background-image: url(#{@user.cover.url(:large)})"
     .content.text-center
       = link_to profile_path(@user), rel: "nofollow" do
@@ -13,5 +13,5 @@
         = " | спасибо "
         span data-id="thanks"= @user.points.count
 
-  .hidden-xs.col-sm-8.right
-    = image_tag @user.cover.url(:large), class: ""
+  .col-sm-8.right
+    = image_tag @user.cover.url(:large), class: "img-responsive"

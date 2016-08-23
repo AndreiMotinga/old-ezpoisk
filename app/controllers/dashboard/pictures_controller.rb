@@ -1,6 +1,7 @@
 class Dashboard::PicturesController < ApplicationController
   def index
     @pictures = klass.find(params["id"]).pictures
+    @partial = klass == Gallery ? "profiles/picture" : "pictures/picture"
   end
 
   def create

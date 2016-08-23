@@ -22,7 +22,6 @@
   br
 
 .profile data-pictures="" data-id="pictures"
-  - @pictures.each do |pic|
-    = render "profiles/picture", picture: pic
+  = render partial: "profiles/picture", collection: @pictures
 
 = render "shared/pagination", records: @pictures

@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require dropzone
 //= require underscore
+//= require dropzone_init
 //= require gmaps/google
 //
 //= require pgwslider
@@ -27,8 +28,6 @@
 //= require social/vk
 //= require social/vk_2
 //= require vk_init
-
-//= require dropzone_init
 
 //= require ga
 

@@ -26,7 +26,6 @@
 
     .background {
       background-position: center center;
-      height: 400px;
 
       -webkit-filter: blur(13px);
       -moz-filter: blur(13px);
@@ -72,6 +71,33 @@
     margin: 10px;
   }
 }
+
+@media(max-width:767px){
+  .cover .left {
+    overflow: visible;
+    z-index: 1;
+    .content img {
+      width: 50px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
+@media(min-width:768px){
+  .cover .left {
+    .background { height: 260px; }
+    .content img {
+      margin-top: 10px;
+    }
+  }
+}
+@media(min-width:992px){
+  .cover .left .background { height: 333px; }
+}
+@media(min-width:1200px){
+  .cover .left .background { height: 400px }
+}
+
 
 .profile-sidebar {
   .panel-default {
