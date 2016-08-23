@@ -11,7 +11,7 @@ class Ez
 
   def self.notify_about(record, type = nil)
     type = type.present? ? type : "new"
-    name = record.class == User ? record.name_to_show : record.user.name_to_show
+    name = record.class == User ? record.name_to_show : record.user.try(:name_to_show)
     string = "#{type} | #{record.class} #{record.id} | author #{name}\n\n"
     string += "#{record.show_url}"
     notifier.ping(string)
