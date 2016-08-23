@@ -4,12 +4,12 @@ describe Answer do
   it { should belong_to(:user) }
   it { should belong_to(:question) }
 
-  describe ".this_week" do
+  describe ".week" do
     it "returns amount of answers created during current week" do
       create(:answer, created_at: Time.current)
       create(:answer, created_at: 8.days.ago)
 
-      result = Answer.this_week
+      result = Answer.week.size
 
       expect(result).to eq 1
     end

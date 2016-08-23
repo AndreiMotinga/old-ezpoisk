@@ -18,17 +18,18 @@ class DataAggregator
      Всего:  #{@listings_count}, Цель: #{@listings_goal}, Достигнуто: #{this_week}
 
      Dasha | Ответы:
-     Всего: #{Answer.count}, Цель:#{@answer_goal}, Достигнуто: #{Answer.this_week}
+     Всего: #{Answer.count}, Цель:#{@answer_goal}, Достигнуто: #{Answer.week}
 
      Rustam | Новости:
-     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.this_week}"
+     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.week}"
 
      # Users:
      # Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.this_week}
   end
 
   def this_week
-    models.map(&:this_week).sum
+    # todo this should just be entries
+    models.map(&:week).sum
   end
 
   def models

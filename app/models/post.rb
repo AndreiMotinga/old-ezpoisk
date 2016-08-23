@@ -31,12 +31,7 @@ class Post < ActiveRecord::Base
   scope :desc, -> { order("posts.created_at desc") }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
-  scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
   scope :home, -> { where(home: true) }
-
-  def self.this_week
-    where("created_at > ?", Date.today.at_beginning_of_week).count
-  end
 
   def self.by_keyword(keyword)
     return all if keyword.blank?

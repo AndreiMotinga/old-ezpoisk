@@ -12,10 +12,6 @@ class Answer < ActiveRecord::Base
   scope :by_score, -> { all.sort_by(&:score).reverse }
   scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
 
-  def self.this_week
-    where("created_at > ?", Date.current.at_beginning_of_week).count
-  end
-
   def score
     get_upvotes.count - get_downvotes.count
   end
