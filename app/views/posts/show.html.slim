@@ -27,7 +27,8 @@
           - if @post.image?
             = image_tag @post.logo_url,
                         class: "img-responsive center-block",
-                        alt: "Новости русского комьюнити в США - #{@post.title}"
+                        alt: "Новости русского комьюнити в США - #{@post.title}",
+                        "data-id": "post-logo"
           h1.h1-title itemprop="name" = @post.title
           .post-body itemprop="description"
             /todo how to use markdown to display videos
