@@ -10,11 +10,9 @@ class Ez
   end
 
   def self.notify_about(record, type = nil)
-    if type == 'update'
-      string = "UPDATE |  #{record.class} #{record.id} | author #{record.user.try(:name_to_show)}\n\n"
-    else
-      string = "NEW    |  #{record.class} #{record.id} | author #{record.user.try(:name_to_show)}\n\n"
-    end
+    type = type.present? ? type : "new"
+    name = record.class == User ? record.name_to_show : record.user.name_to_show
+    string = "#{type} | #{record.class} #{record.id} | author #{name}\n\n"
     string += "#{record.show_url}"
     notifier.ping(string)
   end
