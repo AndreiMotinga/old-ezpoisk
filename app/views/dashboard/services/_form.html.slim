@@ -40,7 +40,9 @@
       = f.email_field :email
     .col-xs-12.col-sm-6
       = f.text_field :fax, label: 'Факс'
-  hr.white-hr
+  .row
+    .col-xs-6.col-sm-4
+      = f.check_box :active, label: "Активно *"
 
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
   - unless @service.new_record?
@@ -50,3 +52,6 @@
               data: { confirm: I18n.t(:confirm) },
               class: "btn mobile-btn btn-danger pull-right"
 br
+p
+  strong Активно * -
+  = t :active_tooltip
