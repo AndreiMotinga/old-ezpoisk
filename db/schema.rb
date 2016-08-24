@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160822234153) do
+ActiveRecord::Schema.define(version: 20160824224352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,7 @@ ActiveRecord::Schema.define(version: 20160822234153) do
     t.text     "summary"
     t.integer  "visits",             default: 0
     t.boolean  "home"
+    t.string   "source"
     t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end

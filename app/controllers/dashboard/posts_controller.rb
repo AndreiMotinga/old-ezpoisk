@@ -57,6 +57,7 @@ class Dashboard::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text, :image_remote_url, :visible,
-                                 :summary, :home, :category, category_ids: [])
+                                 :summary, :home, :category, :source,
+                                 category_ids: [])
   end
 end

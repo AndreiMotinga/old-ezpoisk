@@ -34,6 +34,10 @@
             /todo how to use markdown to display videos
             = raw @post.text
 
+          - if @post.source.present?
+            = link_to "Источник", @post.source, class: "pull-right", target: "_blank", rel: "nofollow"
+            hr
+
           = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
           - if @post.user == current_user || current_user.try(:editor?)
             = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
