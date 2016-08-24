@@ -8,7 +8,7 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new(category: "user")
+    @post = Post.new(category: "user", home: true)
   end
 
   def edit

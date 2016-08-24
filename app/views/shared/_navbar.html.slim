@@ -36,10 +36,35 @@ nav.navbar-fixed-top.navbar-main
               span.caret
             ul.dropdown-menu.pull-right
               li= link_to "Моя страница", profile_path(current_user)
-              li= link_to "Мои объявления", main_app.dashboard_path
+              li.dropdown-submenu
+                a.test href="#" tabindex="-1" Мои объявления
+                ul.dropdown-menu
+                  li = link_to "Недвижимость", main_app.dashboard_path(type: "RePrivate"), tabindex: '-1'
+                  li = link_to "Работа", main_app.dashboard_path(type: "Job"), tabindex: '-1'
+                  li = link_to "Продажи", main_app.dashboard_path(type: "Sale"), tabindex: '-1'
+                  li = link_to "Услуги", main_app.dashboard_path(type: "Service"), tabindex: '-1'
+                  li = link_to "Новости", main_app.dashboard_path(type: "Post"), tabindex: '-1'
+                  /li.dropdown-submenu
+                  /  a.test href="#"
+                  /    | Another dropdown
+                  /    span.caret
+                  /  ul.dropdown-menu
+                  /    li
+                  /      a href="#"  3rd level dropdown
+                  /    li
+                  /      a href="#"  3rd level dropdown
+
               li= link_to "Избранное", main_app.dashboard_favorites_path
               li= link_to "Mои настройки", main_app.edit_dashboard_user_path(current_user)
               li.divider role: "separator"
               li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
         - else
           li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"
+javascript:
+  $(document).ready(function(){
+    $('.dropdown-submenu a.test').on("click", function(e){
+      $(this).next('ul').toggle();
+      e.stopPropagation();
+      e.preventDefault();
+    });
+  });
