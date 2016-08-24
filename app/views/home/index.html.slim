@@ -5,18 +5,14 @@
 = og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
 
 - content_for :sidebar do
-  = render("shared/sidebar_links")
+  = render("shared/listings_count",
+            title: "Доска объявлений",
+            url: root_path,
+            today: Entry.today.count,
+            week: Entry.week.count,
+            total: Entry.count)
   .sticky
-    = render("shared/listings_count",
-              title: "Доска объявлений",
-              url: root_path,
-              today: Entry.today.count,
-              week: Entry.week.count,
-              total: Entry.count)
-      .panel.panel-default
-        .panel-body
-          = image_tag "got-something", class: "img-responsive"
-          = link_to "Добавляй Новость", new_dashboard_post_path, class: "btn btn-block mobile-btn"
+    = render("shared/sidebar_links")
 
 / MOBILE
 .visible-xs.col-xs-12
