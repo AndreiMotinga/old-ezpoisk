@@ -47,6 +47,7 @@ describe Dashboard::ServicesController do
       )
       expect(service.title).to eq attrs[:title]
       expect(service.user).to eq @user
+      expect(service.active).to be true
     end
 
     context "user not logged in" do
