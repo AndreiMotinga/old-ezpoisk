@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20160822234153) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "icon"
   end
 
   create_table "cities", force: :cascade do |t|
