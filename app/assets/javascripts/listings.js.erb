@@ -6,7 +6,7 @@ document.addEventListener("turbolinks:load", function() {
       var bottom = $(document).height() - $(window).height() - 450;
       if(url && scrollTop > bottom) {
         $(".pagination").html(
-            "<img src=<%= asset_path 'downloading' %> class='img-responsive center-block downloading'>"
+            "<img src=<%= asset_path 'downloading' %> class='img-responsive center-block downloading' alt='Loading...' title='Loading...'>"
           );
         $.getScript(url);
       }
