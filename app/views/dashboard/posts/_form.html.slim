@@ -1,4 +1,6 @@
 = bootstrap_form_for([:dashboard, @post]) do |f|
+  - unless current_user.editor?
+    .hidden= f.collection_select :category_ids, Category.all, :id, :name, {selected: 17}, multiple: true, class: "my-dropdown-multiple"
   = f.text_field :image_remote_url, label: "Фото"
   = f.text_field :title, label: "* Заголовок"
   = f.text_area :summary, rows: 3, label: "* Описание (80-400 симоволов)"
