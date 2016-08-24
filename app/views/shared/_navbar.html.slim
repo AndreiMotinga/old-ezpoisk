@@ -34,7 +34,7 @@ nav.navbar-fixed-top.navbar-main
                                      data-toggle="dropdown" href="#" role="button"]
               = image_tag current_user.avatar, class: "img-circle"
               span.caret
-            ul.dropdown-menu
+            ul.dropdown-menu.pull-right
               li= link_to "Моя страница", profile_path(current_user)
               li= link_to "Мои объявления", main_app.dashboard_path
               li= link_to "Избранное", main_app.dashboard_favorites_path
