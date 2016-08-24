@@ -29,6 +29,8 @@
             li.list-group-item Ответы
           = link_to about_path, class: "mobile-link" do
             li.list-group-item Включайся
+          = link_to contacts_path, class: "mobile-link" do
+            li.list-group-item Контакты
 
       #profile.tab-pane role="tabpanel"
         - if user_signed_in?

@@ -1,0 +1,43 @@
+= title("Контакты - ezpoisk")
+= desc("Ezpoisk создан сообществом русскоговорящей иммиграции в США, для всех нас.")
+
+= og_type("website")
+= og_url("https://www.ezpoisk.com/contacts")
+= og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
+
+- content_for(:sidebar) do
+  .sticky
+    = render "shared/sidebar_links"
+
+.white-block
+  .panel.panel-default
+    .panel-heading: h1.h1-title Добро пожаловать на ezpoisk
+    .panel-body
+      p
+        strong
+          i.fa.fa-icon.fa-phone
+          |  929 29 35 385
+        br
+        strong
+          i.fa.fa-icon.fa-envelope-o
+          |  ez@ezpoisk.com
+
+#disqus_thread data-disqus-url=request.url
+javascript:
+  var disqus_config = function () {
+    //$("#disqus_thread[data-dusqus-url]").
+    var url = $("#disqus_thread").data("disqus-url")
+    this.page.url = url;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = url; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+      s.src = '//https-ezpoisk-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+   })();
+
+noscript
+  | Please enable JavaScript to view the
+  a href="https://disqus.com/?ref_noscript"  comments powered by Disqus.
