@@ -3,6 +3,7 @@
     .panel.panel-default
       - if job.title.present?
         .panel-heading
+          = render "shared/favor_links", record: job
           - if action_name == "index"
             h4= link_to job.title, job_path(job)
           - else
@@ -31,4 +32,3 @@
         .row
           .col-xs-7
             strong #{job.city.name}, #{job.state.name}
-          .favor-links.pull-right= render "shared/favor_links", record: job

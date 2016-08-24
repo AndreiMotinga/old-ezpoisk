@@ -12,6 +12,7 @@
             h5.capture.text-center $
 
     .col-xs-8
+      = render "shared/favor_links", record: re_private
       h4.title= re_private.title
 
       / line 2
@@ -32,6 +33,5 @@
       hr.post-devider
 
       / line 5
-      .favor-links.pull-right= render "shared/favor_links", record: re_private
       span.hidden-xs data-time=re_private.id
         = timeago_tag re_private.updated_at

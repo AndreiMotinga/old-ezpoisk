@@ -44,9 +44,6 @@ function getCookieValue(cookieName) {
 }
 
 function createFavorite(el) {
-  // toggle color of the star glyphicon
-  $(el).find("span").toggleClass("favorite");
-
   $.ajax({
     url: "/favorites",
     type: 'POST',

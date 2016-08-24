@@ -8,10 +8,8 @@
 
     .col-xs-8
       / line 1
+      = render "shared/favor_links", record: sale
       h4.title= link_to sale.title, sale_path(sale)
-      hr.post-devider/
-
-      / line 2
       span.state-city #{sale.city.name}, #{sale.state.name}
       hr.post-devider
 
@@ -36,6 +34,5 @@
         hr.post-devider/
 
       / line 4
-      .favor-links.pull-right= render "shared/favor_links", record: sale
       span.hidden-xs data-time=sale.id
         = timeago_tag sale.updated_at

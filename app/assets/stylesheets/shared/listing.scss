@@ -46,6 +46,13 @@
   .logo {
     padding: 0;
   }
+
+  .dropdown {
+    top: 5px;
+    i {
+      min-width: 0;
+    }
+  }
 }
 
 .google-maps {
@@ -71,7 +78,3 @@
   }
 }
 .author { margin: 10px; }
-
-.favor-links .btn-sm {
-  border: 0;
-}

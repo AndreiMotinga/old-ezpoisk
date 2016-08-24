@@ -1,24 +1,18 @@
-= link_to "#", class: "btn btn-sm btn-default favor", rel: "nofollow",
-          "data-id": record.id, "data-type": record.class.to_s ,
-          "data-content": "Добавить в Избранное",
-          "data-toggle": "popover",
-          role: "button", tabindex: "0", "data-placement": "left" do
-  span.glyphicon.glyphicon-star.text-muted class= ("favorite" if record.favorite?(current_user))
+.dropdown.pull-right
+  a#dLabel aria-expanded="false" aria-haspopup="true" data-target="#" data-toggle="dropdown" href=""
+    i.fa.fa-lg.fa-icon.fa-ellipsis-v
+  ul.dropdown-menu aria-labelledby="dLabel"
+    li
+      = link_to "В избранное", "", class: "favor", rel: "nofollow",
+                "data-id": record.id, "data-type": record.class.to_s
 
-= link_to "#", class: "btn btn-sm btn-default mute", rel: "nofollow",
-          "data-id": record.id, "data-type": record.class.to_s,
-          "data-content": "Пометить как просмотренное",
-          "data-toggle": "popover",
-          role: "button", tabindex: "0", "data-placement": "top" do
-  span.glyphicon.glyphicon-remove.text-muted
+    li
+      = link_to "Спрятать", "", class: "mute", rel: "nofollow",
+                "data-id": record.id, "data-type": record.class.to_s
 
-- if record.user_id == current_user.try(:id)
-  a.btn.btn-sm.btn-default[href="#" data-action="touch" data-id=record.id data-type=record.class.to_s
-    data-content="Обновить" data-toggle="popover" role="button" tabindex="0" data-placement="top" rel="nofollow"]
-    span.glyphicon.glyphicon-refresh.text-muted
+    - if record.user_id == current_user.try(:id)
+      li
+        a href="#" data-action="touch" data-id=record.id data-type=record.class.to_s Обновить
 
-  = link_to record.edit_link, class: "btn btn-sm btn-default", rel: "nofollow",
-          "data-content": "Редактировать",
-          "data-toggle": "popover",
-          role: "button", tabindex: "0", "data-placement": "top" do
-    i.fa.fa-pencil.text-muted
+      li
+        = link_to "Редактировать", record.edit_link, rel: "nofollow"
