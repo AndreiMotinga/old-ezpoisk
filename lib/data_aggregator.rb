@@ -17,14 +17,14 @@ class DataAggregator
      Alina | Объявления:
      Всего:  #{@listings_count}, Цель: #{@listings_goal}, Достигнуто: #{this_week}
 
-     Dasha | Ответы:
+     Serghei | Ответы:
      Всего: #{Answer.count}, Цель:#{@answer_goal}, Достигнуто: #{Answer.week}
 
      Rustam | Новости:
-     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.week}"
+     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.week}
 
-     # Users:
-     # Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.this_week}
+     Users:
+     Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.this_week}"
   end
 
   def this_week
