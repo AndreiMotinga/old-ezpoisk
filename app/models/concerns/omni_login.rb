@@ -17,7 +17,11 @@ module OmniLogin
                       password: Devise.friendly_token[0, 20],
                       provider: auth.provider,
                       uid: auth.uid)
-      u.avatar_remote_url = auth.info.image.gsub("http://", "https://")
+      if auth.provider == "vkontakte"
+        u.avatar_remote_url = auth.info.image
+      else
+        u.avatar_remote_url = auth.info.image.gsub("http://", "https://")
+      end
       u.save
       u
     end
