@@ -25,7 +25,7 @@
       .panel-footer
         .row
           .col-sm-6
-            h6 style="display:inline" #{time_ago_in_words post.updated_at} назад |
+            h6 style="display:inline" #{time_ago_in_words post.created_at} назад |
             = " "
             i.fa.fa-eye.text-muted
             span  #{post.impressions_count}/#{post.visits}
