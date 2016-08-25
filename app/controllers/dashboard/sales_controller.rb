@@ -66,7 +66,9 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def run_update_notifications
-    SlackNotifierJob.perform_async(@sale.id, "Sale", 'update')
+    unless current_user.try(:team_member?)
+      SlackNotifierJob.perform_async(@sale.id, "Sale", 'update')
+    end
     @sale.entry.try(:touch)
   end
 

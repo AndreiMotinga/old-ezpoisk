@@ -27,7 +27,9 @@ class Dashboard::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      SlackNotifierJob.perform_async(@post.id, "Post", 'update')
+      unless current_user.try(:team_member?)
+        SlackNotifierJob.perform_async(@post.id, "Post", 'update')
+      end
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)

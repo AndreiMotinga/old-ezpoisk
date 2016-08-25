@@ -69,7 +69,9 @@ class Dashboard::ServicesController < ApplicationController
 
   def run_update_notifications
     @service.entry.try(:touch)
-    SlackNotifierJob.perform_async(@service.id, "Service", 'update')
+    unless current_user.try(:team_member?)
+      SlackNotifierJob.perform_async(@service.id, "Service", 'update')
+    end
   end
 
   def run_create_notifications

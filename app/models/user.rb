@@ -89,6 +89,10 @@ class User < ActiveRecord::Base
     self == current_user or current_user.try(:editor?)
   end
 
+  def team_member?
+    admin? or editor?
+  end
+
   private
 
   def send_emails

@@ -68,7 +68,9 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def run_update_notifications
-    SlackNotifierJob.perform_async(@re_private.id, "RePrivate", 'update')
+    unless current_user.try(:team_member?)
+      SlackNotifierJob.perform_async(@re_private.id, "RePrivate", 'update')
+    end
     @re_private.entry.try(:touch)
   end
 
