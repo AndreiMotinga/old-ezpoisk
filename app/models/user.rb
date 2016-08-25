@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
 
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
+  scope :today, -> { where("created_at > ?", Date.today) }
 
   has_attached_file(:avatar,
                     styles: { thumb: "50x50#", medium: "160x160#" },

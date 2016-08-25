@@ -13,22 +13,24 @@ class DataAggregator
   end
 
   def message
-    "Общая статистика сайта
-     Alina | Объявления:
-     Всего:  #{@listings_count}, Цель: #{@listings_goal}, Достигнуто: #{this_week}
-
-     Serghei | Ответы:
-     Всего: #{Answer.count}, Цель:#{@answer_goal}, Достигнуто: #{Answer.week.count}
-
-     Rustam | Новости:
-     Всего:  #{Post.count}, Цель: #{@posts_goal}, Достигнуто: #{Post.week.count}
-
-     Users:
-     Всего: #{User.count}, Цель: #{@users_goal} , Достигнуто: #{User.week.count}"
+    <<-eos
+    Статистика
+     ---------------------------------------------------------------------------------------------
+    |               | Категория    | Всего  | Цель    | Достигнуто      | Сегодня
+     ---------------------------------------------------------------------------------------------
+    | Alina     | Объявления | #{@listings_count}   | #{@listings_goal}      | #{this_week}                     | #{this_day}
+    | Serghei | Ответы         | #{Answer.count}      | #{@answer_goal}        | #{Answer.week.count}                         | #{Answer.today.count}
+    | Rustam | Новости        | #{Post.count}     | #{@posts_goal }      | #{Post.week.count}                       | #{Post.today.count}
+    |               | Users             | #{User.count}      | #{@users_goal}     | #{User.week.count}                       | #{User.today.count}
+     eos
   end
 
   def this_week
     models.map{ |m| m.week.count }.sum
+  end
+
+  def this_day
+    models.map{ |m| m.today.count }.sum
   end
 
   def models
