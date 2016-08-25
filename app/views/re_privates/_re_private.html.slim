@@ -13,7 +13,8 @@
 
     .col-xs-8
       = render "shared/favor_links", record: re_private
-      h4.title= re_private.title
+      h4.title.hidden-xs= re_private.title
+      h5.title.visible-xs= re_private.title
 
       / line 2
       span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}

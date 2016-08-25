@@ -9,7 +9,8 @@
     .col-xs-8
       / line 1
       = render "shared/favor_links", record: service
-      h4.title.hidden-xs itemprop="name" = link_to service.title, service_path(service)
+      h4.title.hidden-xs itemprop="name" = service.title
+      h5.title.visible-xs itemprop="name" = service.title
       span.state-city #{service.city.name}, #{service.state.name}
       hr.post-devider/
 

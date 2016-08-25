@@ -9,7 +9,8 @@
     .col-xs-8
       / line 1
       = render "shared/favor_links", record: sale
-      h4.title= link_to sale.title, sale_path(sale)
+      h4.title.hidden-xs= sale.title
+      h5.title.visible-xs= sale.title
       span.state-city #{sale.city.name}, #{sale.state.name}
       hr.post-devider
 
