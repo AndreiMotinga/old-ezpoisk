@@ -20,7 +20,7 @@ class DataAggregator
      ---------------------------------------------------------------------------------------------
     | Alina     | Объявления | #{@listings_count}   | #{@listings_goal}      | #{this_week}                     | #{this_day}
     | Serghei | Ответы         | #{Answer.count}      | #{@answer_goal}        | #{Answer.week.count}                         | #{Answer.today.count}
-    | Rustam | Новости        | #{Post.count}     | #{@posts_goal }      | #{Post.week.count}                       | #{Post.today.count}
+    | Rustam | Новости        | #{Post.count}    | #{@posts_goal }      | #{Post.week.count}                       | #{Post.today.count}
     |               | Users             | #{User.count}      | #{@users_goal}     | #{User.week.count}                       | #{User.today.count}
      eos
   end
