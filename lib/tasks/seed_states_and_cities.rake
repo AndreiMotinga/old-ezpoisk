@@ -70,7 +70,7 @@ namespace :db do
       ["new-york"],
       ["philadelphia"],
       ["san-fransico"],
-      ["fa-arrow-circle-up", "top"],
+      ["top", "top"],
       ["world"]         ,
       ["home-news"]     ,
       ["tech"]          ,
@@ -79,7 +79,10 @@ namespace :db do
       ["autonews"]      ,
       ["entertainment"] ,
       ["travel"]        ,
-      ["user"]
+      ["user"],
+      ["culture"],
+      ["health"],
+      ["sport"]
     ]
     categories.each do |category|
       Category.create(name: category[0])
