@@ -39,9 +39,10 @@ html
   body
     = render "shared/navbar"
     .container-fluid.page-wrap
-      .row
-        = yield :profile_cover if content_for?(:profile_cover)
-        = render "shared/notice" unless devise_controller?
+      .container
+        .row
+          = yield :profile_cover if content_for?(:profile_cover)
+          = render "shared/notice" unless devise_controller?
 
       .row
         .hidden-xs class="col-sm-3 col-md-2 left-column"
