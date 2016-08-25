@@ -6,6 +6,6 @@ class DataAggregatorJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "every 6 hours",
-                          cron: "0 */6 * * *",
+Sidekiq::Cron::Job.create(name: "every 4 hours",
+                          cron: "0 */4 * * *",
                           class: "DataAggregatorJob")
