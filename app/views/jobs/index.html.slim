@@ -12,11 +12,10 @@
               total: Job.count)
 
 = render("shared/filters", id: "jobs", count: @jobs.total_count)
-- content_for(:right_block) do
-  ads
 
 .col-xs-12 data-id="listings"
   = render @jobs
+  = render "shared/gads/leaderboard_small"
 
 .row
   .col-xs-12

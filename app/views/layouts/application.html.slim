@@ -37,6 +37,8 @@ html
     script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js" defer="" async=""
 
   body
+    .visible-xs
+      = render "shared/gads/mobile"
     = render "shared/navbar"
     .container-fluid.page-wrap
       .container
@@ -50,8 +52,8 @@ html
         div class="col-xs-12 col-sm-9 col-md-6"
           = yield
         .hidden-xs.hidden-sm.col-md-4
-          = yield :right_block
-          = render "shared/gads/right"
+          .sticky data-id="right"
+            = render "shared/gads/right"
 
     .hidden-xs
       = render "shared/footer"

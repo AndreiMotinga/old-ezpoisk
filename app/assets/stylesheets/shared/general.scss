@@ -5,6 +5,12 @@ body {
   padding-top: 35px;
 }
 
+@media(max-width:767px){
+  body {
+    padding-top: 20px;
+  }
+}
+
 .page-wrap {
   // equal to footer height
   margin-bottom: -60px;

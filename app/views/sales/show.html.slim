@@ -21,6 +21,8 @@
               = image_tag pic.image.url(:large),
                           alt: "Продается #{t @sale.category} #{@sale.title} #{@sale.city.name} #{@sale.state.name} #{pic.image_file_name}"
 
+= render "shared/gads/leaderboard_small"
+
 div itemscope="" itemtype="http://schema.org/Product"
   .col-xs-12
     = render @sale
