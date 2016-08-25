@@ -28,7 +28,6 @@ class DataAggregator
   end
 
   def this_week
-    # todo this should just be entries
     models.map{ |m| m.week.count }.sum
   end
 
