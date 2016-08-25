@@ -13,11 +13,10 @@
 
 = render("shared/filters", id: "re_privates", count: @re_privates.total_count)
 
-- content_for(:right_block) do
-  ads
 
 .col-xs-12 data-id="listings"
   = render @re_privates
+  = render "shared/gads/leaderboard_small"
 
 .row
   .col-xs-12

@@ -1,4 +1,10 @@
 ul.list-group.panel class=klass
+  /= link_to posts_path(category: "top"), class: "list-group-item" do
+  = link_to posts_path, class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-arrow-circle-up
+    = t "top"
+
   a.list-group-item data-parent=".#{klass}" data-toggle="collapse" href="##{klass}"
     span.sidebar-icon
       i.fa.fa-hospital-o
@@ -13,11 +19,6 @@ ul.list-group.panel class=klass
     li.list-group-item= link_to "New York", posts_path(category: "new-york")
     li.list-group-item= link_to "Philadelphia", posts_path(category: "philadelphia")
     li.list-group-item= link_to "San Francisco", posts_path(category: "san-fransico")
-
-  = link_to posts_path(category: "top"), class: "list-group-item" do
-    span.sidebar-icon
-      i.fa.fa-arrow-circle-up
-    = t "top"
 
   = link_to posts_path(category: "world"), class: "list-group-item" do
     span.sidebar-icon
