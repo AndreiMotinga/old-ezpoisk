@@ -1,4 +1,6 @@
 class DataAggregatorJob
+  include Sidekiq::Worker
+
   def perform
     Ez.ping(DataAggregator.new.message)
   end

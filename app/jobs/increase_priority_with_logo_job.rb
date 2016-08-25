@@ -1,4 +1,5 @@
 class IncreasePriorityWithLogoJob
+  include Sidekiq::Worker
   def perform
     [RePrivate, Sale].each do |model|
       model.find_each do |record|
@@ -10,6 +11,6 @@ class IncreasePriorityWithLogoJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "IncreasePriorityWithLogoJob 0 1 * * *",
+Sidekiq::Cron::Job.create(name: "priority job",
                           cron: "0 1 * * *",
-                          class: "DataAggregatorJob")
+                          class: "IncreasePriorityWithLogoJob")
