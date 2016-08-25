@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
 
-  has_attached_file :image, styles: { medium: "810" }
+  has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
   def image_remote_url=(url_value)
@@ -32,6 +32,7 @@ class Post < ActiveRecord::Base
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :home, -> { where(home: true) }
+  scope :older, ->(date) { where("created_at < ?", date) }
 
   def self.by_keyword(keyword)
     return all if keyword.blank?
@@ -70,5 +71,12 @@ class Post < ActiveRecord::Base
 
   def active?
     true
+  end
+
+  def side_posts
+    Post.joins(:categories)
+      .where(categories: {id:  categories.pluck(:id)})
+      .older(created_at)
+      .limit(9)
   end
 end
