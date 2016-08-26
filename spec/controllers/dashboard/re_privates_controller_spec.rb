@@ -65,6 +65,7 @@ describe Dashboard::RePrivatesController do
         expect(flash[:notice]).to eq I18n.t(:post_saved)
 
         expect(GeocodeJob.jobs.size).to eq 1
+        expect(FacebookNotifierJob.jobs.size).to eq 1
 
         entry = Entry.last
         expect(Entry.count).to eq 1

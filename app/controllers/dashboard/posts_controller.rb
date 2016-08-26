@@ -18,6 +18,7 @@ class Dashboard::PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       SlackNotifierJob.perform_async(@post.id, "Post")
+      FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)

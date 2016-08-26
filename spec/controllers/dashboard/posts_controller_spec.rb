@@ -19,6 +19,8 @@ describe Dashboard::PostsController do
       expect(article.text).to eq attrs[:text]
       expect(article.category).to eq attrs[:category]
       expect(article.summary).to eq attrs[:summary]
+
+      expect(FacebookNotifierJob.jobs.size).to eq 1
     end
   end
 
