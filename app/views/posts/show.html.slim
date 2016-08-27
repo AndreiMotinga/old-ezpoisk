@@ -43,11 +43,11 @@
           - if @post.user == current_user || current_user.try(:editor?)
             = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
-= render "shared/gads/leaderboard_small"
+= render "shared/gads/leaderboard"
 
 .fb-comments data-href=post_url(@post) data-numposts="5"
 
 .side-posts
   = render "posts/side_posts", posts: @post.side_posts
 
-= render "shared/gads/leaderboard_small"
+= render "shared/gads/leaderboard"
