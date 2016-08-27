@@ -19,7 +19,7 @@ function initSummernote(){
       // ['color', ['color']],
       ['para', ['ul', 'ol', 'paragraph']],
       ['insert', ['picture', 'link', 'video', 'table', 'hr']],
-      ['misc', ['undo', 'redo']],
+      ['misc', ['undo', 'redo', 'codeview']],
       // ['height', ['height']]
     ],
     lang: 'ru',
