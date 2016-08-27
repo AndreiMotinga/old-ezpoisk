@@ -554,7 +554,7 @@ DEPENDENCIES
   gmaps4rails
   jquery-rails
   jquery-ui-rails
-  kaminari
+  kaminari (~> 0.17.0)
   koala (~> 2.2)
   launchy-rails
   meta_request

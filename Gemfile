@@ -24,7 +24,7 @@ gem "devise-async", github: "mhfs/devise-async", branch: "devise-4.x"
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 
 gem "bootstrap_form"
-gem "kaminari"
+gem 'kaminari', '~> 0.17.0'
 gem "font-awesome-rails"
 gem "paperclip"
 gem "dropzonejs-rails"
