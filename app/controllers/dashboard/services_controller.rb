@@ -78,6 +78,7 @@ class Dashboard::ServicesController < ApplicationController
     SlackNotifierJob.perform_async(@service.id, "Service")
     GeocodeJob.perform_async(@service.id, "Service")
     FacebookNotifierJob.perform_in(18.minutes, @service.id, "Service")
+    VkNotifierJob.perform_in(17.minutes, @service.id, "Service")
     @service.create_entry(user: current_user)
   end
 

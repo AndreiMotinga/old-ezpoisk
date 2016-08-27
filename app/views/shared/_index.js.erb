@@ -1,7 +1,7 @@
 ga('send', 'pageview');
 $("[data-id='listings']").append("<%= j render(records) %>");
-// $("[data-id='listings']").append("<%= j render("shared/gads/leaderboard") %>");
-$("[data-id='right']").html("<%= j render("shared/gads/right") %>");
+$("[data-id='listings']").append("<%= j render('shared/gads/leaderboard') %>");
+$("[data-id='right']").html("<%= j render('shared/gads/right') %>");
 <% if records.next_page %>
   $(".pagination").replaceWith("<%= j paginate(records) %>")
 <% else  %>

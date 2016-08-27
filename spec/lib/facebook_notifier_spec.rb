@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Ez do
+describe FacebookNotifier do
   describe ".post" do
     context "re_privates" do
       it "makes request to correct group with correct record" do

@@ -28,6 +28,7 @@ describe AnswersController do
       expect(answer.user).to eq @user
 
       expect(FacebookNotifierJob.jobs.size).to eq 1
+      expect(VkNotifierJob.jobs.size).to eq 1
 
       entry.reload
       expect(entry.updated_at).to eq Time.zone.now

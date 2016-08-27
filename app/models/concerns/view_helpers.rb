@@ -54,4 +54,16 @@ module ViewHelpers
     return email if email.present?
     user.email
   end
+
+  def vk_message
+    html = "#{title}\n"
+    html += "#{I18n.t(self.try(:post_type))}\n" if self.try(:post_type).present?
+    html += "#{I18n.t(self.try(:category))}\n" if self.try(:category).present?
+    if self.try(:subcategory).present?
+      html += "#{I18n.t(self.try(:subcategory))}\n"
+    end
+    html += "#{city.name} #{state.name} #{zip}\n"
+    html += "#{description}\n"
+    html += "Подробнее #{show_url}"
+  end
 end

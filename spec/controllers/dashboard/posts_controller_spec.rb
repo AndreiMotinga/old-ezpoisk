@@ -21,6 +21,7 @@ describe Dashboard::PostsController do
       expect(article.summary).to eq attrs[:summary]
 
       expect(FacebookNotifierJob.jobs.size).to eq 1
+      expect(VkNotifierJob.jobs.size).to eq 1
     end
   end
 

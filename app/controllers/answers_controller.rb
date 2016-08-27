@@ -82,6 +82,7 @@ class AnswersController < ApplicationController
     SlackNotifierJob.perform_async(@answer.id, "Answer")
     QuestionNotificatorJob.perform_async(question.id)
     FacebookNotifierJob.perform_in(11.minutes, @answer.id, "Answer")
+    VkNotifierJob.perform_in(23.minutes, @answer.id, "Answer")
     question.increment!(:answers_count)
     question.entry.try(:touch)
     create_subscription

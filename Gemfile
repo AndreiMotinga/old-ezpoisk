@@ -15,6 +15,7 @@ gem "acts_as_commentable_with_threading"
 gem "summernote-rails"
 
 gem "koala", "~> 2.2"
+gem "vkontakte_api", '~> 1.4'
 
 gem "devise"
 gem "devise-i18n-views"

@@ -17,8 +17,7 @@ class Dashboard::PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      SlackNotifierJob.perform_async(@post.id, "Post")
-      FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
+      run_create_notifications
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -27,10 +26,9 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def update
+    visible = @post.visible
     if @post.update(post_params)
-      unless current_user.try(:team_member?)
-        SlackNotifierJob.perform_async(@post.id, "Post", 'update')
-      end
+      run_update_notifications(visible)
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -49,6 +47,23 @@ class Dashboard::PostsController < ApplicationController
   end
 
   private
+
+  def run_create_notifications
+    SlackNotifierJob.perform_async(@post.id, "Post")
+    FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
+    VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
+  end
+
+  def run_update_notifications(visible)
+    # post was imported and then updated by editor to be visible
+    if visible != @post.visible
+      FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
+      VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
+    end
+    unless current_user.try(:team_member?)
+      SlackNotifierJob.perform_async(@post.id, "Post", 'update')
+    end
+  end
 
   def set_post
     if current_user.editor?

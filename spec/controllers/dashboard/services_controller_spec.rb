@@ -51,6 +51,7 @@ describe Dashboard::ServicesController do
 
       expect(GeocodeJob.jobs.size).to eq 1
       expect(FacebookNotifierJob.jobs.size).to eq 1
+      expect(VkNotifierJob.jobs.size).to eq 1
     end
 
     context "user not logged in" do
