@@ -11,28 +11,28 @@
           .visible-xs.capture
             h5.capture.text-center $
 
-    /.col-xs-8
-    /  = render "shared/favor_links", record: re_private
-    /  h4.title.hidden-xs= re_private.title
-    /  h5.title.visible-xs= re_private.title
-    /
-    /  / line 2
-    /  span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}
-    /  hr.post-devider
-    /
-    /  / line 3
-    /  span= "#{t re_private.post_type} | "
-    /  strong= "$#{re_private.price}"
-    /  - if re_private.temporary?
-    /    span.hidden-xs= " | #{t re_private.duration}"
-    /  hr.post-devider
-    /
-    /  / line 4
-    /  = t re_private.rooms
-    /  = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
-    /  = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
-    /  hr.post-devider
-    /
-    /  / line 5
-    /  span.hidden-xs data-time=re_private.id
-    /    = timeago_tag re_private.updated_at
+    .col-xs-8
+      = render "shared/favor_links", record: re_private
+      h4.title.hidden-xs= re_private.title
+      h5.title.visible-xs= re_private.title
+
+      / line 2
+      span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}
+      hr.post-devider
+
+      / line 3
+      span= "#{t re_private.post_type} | "
+      strong= "$#{re_private.price}"
+      - if re_private.temporary?
+        span.hidden-xs= " | #{t re_private.duration}"
+      hr.post-devider
+
+      / line 4
+      = t re_private.rooms
+      = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
+      = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
+      hr.post-devider
+
+      / line 5
+      span.hidden-xs data-time=re_private.id
+        = timeago_tag re_private.updated_at
