@@ -77,6 +77,9 @@ class Dashboard::RePrivatesController < ApplicationController
   def run_create_notifications
     SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
     GeocodeJob.perform_async(@re_private.id, "RePrivate")
+    FacebookNotifierJob.perform_in(27.minutes, @re_private.id, "RePrivate")
+    VkNotifierJob.perform_in(23.minutes, @re_private.id, "RePrivate")
+    # todo do I still use entries it?
     @re_private.create_entry(user: current_user)
     create_subscription(@re_private)
   end

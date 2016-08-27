@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
 
- has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
+  has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
   def image_remote_url=(url_value)

@@ -14,6 +14,9 @@ gem 'turbolinks', '~> 5.0.1'
 gem "acts_as_commentable_with_threading"
 gem "summernote-rails"
 
+gem "koala", "~> 2.2"
+gem "vkontakte_api", '~> 1.4'
+
 gem "devise"
 gem "devise-i18n-views"
 gem "devise-i18n"
@@ -21,7 +24,7 @@ gem "devise-async", github: "mhfs/devise-async", branch: "devise-4.x"
 gem 'redcarpet', '~> 3.3', '>= 3.3.4'
 
 gem "bootstrap_form"
-gem "kaminari"
+gem 'kaminari', '~> 0.17.0'
 gem "font-awesome-rails"
 gem "paperclip"
 gem "dropzonejs-rails"

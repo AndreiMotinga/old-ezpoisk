@@ -48,6 +48,10 @@ describe Dashboard::ServicesController do
       expect(service.title).to eq attrs[:title]
       expect(service.user).to eq @user
       expect(service.active).to be true
+
+      expect(GeocodeJob.jobs.size).to eq 1
+      expect(FacebookNotifierJob.jobs.size).to eq 1
+      expect(VkNotifierJob.jobs.size).to eq 1
     end
 
     context "user not logged in" do

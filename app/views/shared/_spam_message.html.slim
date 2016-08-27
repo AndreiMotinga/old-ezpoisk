@@ -18,21 +18,3 @@
         | P.S Сделайте доброе дело, помогите нам пожалуйста рассказать о сайте, это займет у вас меньше минуты.
         br
         | https://www.ezpoisk.com/posts/vsem-privet-i-dobro-pozhalovat-na-izi-poisk
-.col-xs-12.white-block
-  .panel
-    .panel-body
-      p
-        - if record.try(:title).present?
-          |  #{t record.title}
-      p
-        - if record.try(:post_type).present?
-          |  #{t record.post_type}
-        - if record.try(:category).present?
-          |  #{t record.try(:category)}
-        - if record.try(:subcategory).present?
-          |  #{t record.try(:subcategory)}
-        |  #{record.city.name} #{record.state.name} #{record.zip}
-
-      p= record.description
-      p Подробнее #{record.show_url}
-
