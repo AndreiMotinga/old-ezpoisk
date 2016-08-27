@@ -1,4 +1,6 @@
-ga('send', 'pageview');
+<% unless current_user.try(:team_member?)  %>
+  ga('send', 'pageview');
+<% end %>
 $("[data-id='listings']").append("<%= j render(records) %>");
 $("[data-id='listings']").append("<%= j render("shared/gads/leaderboard") %>");
 $("[data-id='right']").html("<%= j render("shared/gads/right") %>");
