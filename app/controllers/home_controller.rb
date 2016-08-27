@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout :resolve_layout
+
   def index
     # todo only select name and avatar
     @posts = Post.includes(:user)
@@ -18,5 +20,14 @@ class HomeController < ApplicationController
   end
 
   def contacts
+  end
+
+  def clean
+  end
+
+  private
+
+  def resolve_layout
+    "plain" if action_name == "clean"
   end
 end

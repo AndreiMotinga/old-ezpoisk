@@ -90,5 +90,6 @@ Rails.application.routes.draw do
 
   get "about", to: "home#about"
   get "contacts", to: "home#contacts"
+  get "clean", to: "home#clean"
   root to: "home#index"
 end
