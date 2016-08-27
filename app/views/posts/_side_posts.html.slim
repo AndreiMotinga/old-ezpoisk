@@ -1,0 +1,11 @@
+.row.side_posts
+  - posts.each_with_index do |post, i|
+    .col-xs-12.col-sm-6.col-lg-4
+      .white-block
+        .thumbnail
+          /todo after a while use thumb instead of orginal and remove max-height form css
+          = link_to post do
+            = image_tag post.logo_url, class: "img-responsive center-block", alt: "Новости русского комьюнити в США - #{post.title}"
+          .caption.text-center
+            p.visible-xs= post.title
+            p.title.hidden-xs= post.title.truncate(60)

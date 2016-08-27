@@ -16,3 +16,18 @@
     padding-top: 20px;
   }
 }
+
+.side_posts {
+  .thumbnail {
+    margin-bottom: 0;
+    img { max-height: 100px; }
+  }
+}
+
+@media(min-width:992px){
+  .side_posts {
+    .caption {
+      min-height: 90px;
+    }
+  }
+}
