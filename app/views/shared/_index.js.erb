@@ -2,8 +2,9 @@
   ga('send', 'pageview');
 <% end %>
 
-$("[data-id='listings']").append("<%= j render(records) %>");
+$("[data-id='leaderboard']").remove();
 $("[data-id='listings']").append("<%= j render('shared/gads/leaderboard') %>");
+$("[data-id='listings']").append("<%= j render(records) %>");
 $("[data-id='right']").html("<%= j render('shared/gads/right') %>");
 
 <% if records.next_page %>
