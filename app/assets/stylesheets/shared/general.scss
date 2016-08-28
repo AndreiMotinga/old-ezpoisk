@@ -104,7 +104,7 @@ footer {
   width: 100% !important;
 }
 
-.my-g-plus { width: 80px; }
+.my-g-plus { width: 90px; }
 
 .social-share {
   font-size: 1px;
@@ -112,6 +112,7 @@ footer {
   li {
     vertical-align: middle;
     margin-bottom: 5px;
+    overflow: hidden;
   }
 }
 
