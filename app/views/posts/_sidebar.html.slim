@@ -1,10 +1,4 @@
 ul.list-group.panel class=klass
-  /= link_to posts_path(category: "top"), class: "list-group-item" do
-  = link_to posts_path, class: "list-group-item" do
-    span.sidebar-icon
-      i.fa.fa-arrow-circle-up
-    = t "top"
-
   a.list-group-item data-parent=".#{klass}" data-toggle="collapse" href="##{klass}"
     span.sidebar-icon
       i.fa.fa-hospital-o
@@ -25,40 +19,70 @@ ul.list-group.panel class=klass
       i.fa.fa-globe
     = t "world"
 
-  = link_to posts_path(category: "home-news"), class: "list-group-item" do
+  = link_to posts_path(category: "autonews"), class: "list-group-item" do
     span.sidebar-icon
-      i.fa.fa-bullhorn
-    = t "home-news"
-
-  = link_to posts_path(category: "tech"), class: "list-group-item" do
-    span.sidebar-icon
-      i.fa.fa-gears
-    = t "tech"
+      i.fa.fa-car
+    = t "autonews"
 
   = link_to posts_path(category: "money"), class: "list-group-item" do
     span.sidebar-icon
       i.fa.fa-money
     = t "money"
 
+  = link_to posts_path(category: "animals"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-toggle-off
+    = t "animals"
+
+  = link_to posts_path(category: "health"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-heartbeat
+    = t "health"
+
+  = link_to posts_path(category: "cooking"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-cutlery
+    = t "cooking"
+
+  = link_to posts_path(category: "culture"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-cube
+    = t "culture"
+
+  = link_to posts_path(category: "home-news"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-bullhorn
+    = t "home-news"
+
   = link_to posts_path(category: "science"), class: "list-group-item" do
     span.sidebar-icon
       i.fa.fa-flask
     = t "science"
 
-  = link_to posts_path(category: "autonews"), class: "list-group-item" do
+  = link_to posts_path(category: "politics"), class: "list-group-item" do
     span.sidebar-icon
-      i.fa.fa-car
-    = t "autonews"
+      i.fa.fa-university
+    = t "politics"
+
+  = link_to posts_path(category: "travel"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-plane
+    = t "travel"
 
   = link_to posts_path(category: "entertainment"), class: "list-group-item" do
     span.sidebar-icon
       i.fa.fa-bicycle
     = t "entertainment"
 
-  = link_to posts_path(category: "travel"), class: "list-group-item" do
+  = link_to posts_path(category: "sport"), class: "list-group-item" do
     span.sidebar-icon
-      i.fa.fa-plane
-    = t "travel"
+      i.fa.fa-futbol-o
+    = t "sport"
+
+  = link_to posts_path(category: "tech"), class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-gears
+    = t "tech"
 
   = link_to posts_path(category: "user"), class: "list-group-item" do
     span.sidebar-icon

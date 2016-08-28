@@ -79,6 +79,9 @@ namespace :db do
       ["autonews"],
       ["entertainment"],
       ["travel"],
+      ["politics"],
+      ["cooking"],
+      ["animals"],
       ["user"]
     ]
     categories.each do |category|
