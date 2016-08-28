@@ -45,6 +45,7 @@ describe Dashboard::ServicesController do
       expect(response).to redirect_to(
         edit_dashboard_service_path(service)
       )
+      expect(flash[:notice]).to eq I18n.t(:post_created)
       expect(service.title).to eq attrs[:title]
       expect(service.user).to eq @user
       expect(service.active).to be true
@@ -66,8 +67,7 @@ describe Dashboard::ServicesController do
         )
         expect(service.title).to eq attrs[:title]
         expect(service.user).to be nil
-        notice = I18n.t(:post_saved_wr) + " #{service.edit_url_with_token}"
-        expect(flash[:notice]).to eq notice
+        expect(flash[:notice]).to eq I18n.t(:post_created_wr)
       end
     end
   end

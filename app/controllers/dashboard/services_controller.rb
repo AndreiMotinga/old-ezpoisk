@@ -49,12 +49,12 @@ class Dashboard::ServicesController < ApplicationController
     if @service.user
       redirect_to(
         edit_dashboard_service_path(@service),
-        notice: I18n.t(:post_saved)
+        notice: I18n.t(:post_created)
       )
     else
       redirect_to(
         edit_dashboard_service_path(@service, token: @service.token),
-        notice: I18n.t(:post_saved_wr) + " #{@service.edit_url_with_token}"
+        notice: I18n.t(:post_created_wr)
       )
     end
   end

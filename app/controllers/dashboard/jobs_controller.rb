@@ -47,12 +47,12 @@ class Dashboard::JobsController < ApplicationController
     if @job.user
       redirect_to(
         edit_dashboard_job_path(@job),
-        notice: I18n.t(:post_saved)
+        notice: I18n.t(:post_created)
       )
     else
       redirect_to(
         edit_dashboard_job_path(@job, token: @job.token),
-        notice: I18n.t(:post_saved_wr) + " #{@job.edit_url_with_token}"
+        notice: I18n.t(:post_created_wr)
       )
     end
   end

@@ -62,7 +62,7 @@ describe Dashboard::RePrivatesController do
         expect(re_private.state.id).to eq attrs[:state_id]
         expect(re_private.category).to eq attrs[:category]
         expect(re_private.token).to_not eq nil
-        expect(flash[:notice]).to eq I18n.t(:post_saved)
+        expect(flash[:notice]).to eq I18n.t(:post_created)
 
         expect(GeocodeJob.jobs.size).to eq 1
         expect(FacebookNotifierJob.jobs.size).to eq 1
@@ -90,8 +90,7 @@ describe Dashboard::RePrivatesController do
         )
 
         expect(re_private.user).to be nil
-        notice = I18n.t(:post_saved_wr) + " #{re_private.edit_url_with_token}"
-        expect(flash[:notice]).to eq notice
+        expect(flash[:notice]).to eq I18n.t(:post_created_wr)
       end
     end
 

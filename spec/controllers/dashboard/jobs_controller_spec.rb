@@ -48,7 +48,7 @@ describe Dashboard::JobsController do
         )
         expect(job.title).to eq attrs[:title]
         expect(job.user).to eq @user
-        expect(flash[:notice]).to eq I18n.t(:post_saved)
+        expect(flash[:notice]).to eq I18n.t(:post_created)
 
         expect(GeocodeJob.jobs.size).to eq 1
         expect(FacebookNotifierJob.jobs.size).to eq 1
@@ -64,7 +64,7 @@ describe Dashboard::JobsController do
       end
     end
 
-    context "user not logged but" do
+    context "user not logged in but uses token" do
       it "creates job and redirects with token" do
         attrs = attributes_for(:job)
 
@@ -75,8 +75,7 @@ describe Dashboard::JobsController do
           edit_dashboard_job_path(job, token: job.token)
         )
         expect(job.user).to be nil
-        notice = I18n.t(:post_saved_wr) + " #{job.edit_url_with_token}"
-        expect(flash[:notice]).to eq notice
+        expect(flash[:notice]).to eq I18n.t(:post_created_wr)
       end
     end
   end

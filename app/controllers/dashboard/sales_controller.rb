@@ -46,12 +46,12 @@ class Dashboard::SalesController < ApplicationController
     if @sale.user
       redirect_to(
         edit_dashboard_sale_path(@sale),
-        notice: I18n.t(:post_saved)
+        notice: I18n.t(:post_created)
       )
     else
       redirect_to(
         edit_dashboard_sale_path(@sale, token: @sale.token),
-        notice: I18n.t(:post_saved_wr) + " #{@sale.edit_url_with_token}"
+        notice: I18n.t(:post_created_wr)
       )
     end
   end

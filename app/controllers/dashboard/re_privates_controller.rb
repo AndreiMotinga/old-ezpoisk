@@ -49,12 +49,12 @@ class Dashboard::RePrivatesController < ApplicationController
     if @re_private.user
       redirect_to(
         edit_dashboard_re_private_path(@re_private),
-        notice: I18n.t(:post_saved)
+        notice: I18n.t(:post_created)
       )
     else
       redirect_to(
         edit_dashboard_re_private_path(@re_private, token: @re_private.token),
-        notice: I18n.t(:post_saved_wr) + " #{@re_private.edit_url_with_token}"
+        notice: I18n.t(:post_created_wr)
       )
     end
   end
