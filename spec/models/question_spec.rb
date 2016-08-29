@@ -5,6 +5,7 @@ describe Question do
   it { should have_many(:answers) }
 
   it { should validate_presence_of(:title) }
+  it { should validate_uniqueness_of(:title) }
 
   describe ".by_keyword" do
     it "retruns all records if keyword blank" do

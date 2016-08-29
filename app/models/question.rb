@@ -5,7 +5,7 @@ class Question < ActiveRecord::Base
   has_many :answers
   has_many :subscriptions, as: :subscribable, dependent: :destroy
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates_presence_of :tag_list
 
   scope :by_views, -> { order("impressions_count desc") }
