@@ -40,10 +40,10 @@ describe RePrivate do
       expect(re_private.logo_url(:medium)).to eq logo.image.url(:medium)
     end
 
-    it "return missing.png url when logo isn't set" do
+    it "return missing-small.png url when logo isn't set" do
       re_private = create(:re_private)
 
-      expect(re_private.logo_url(:thumb)).to eq "https://s3.amazonaws.com/ezpoisk/missing.png"
+      expect(re_private.logo_url(:thumb)).to eq "https://s3.amazonaws.com/ezpoisk/missing-small.png"
     end
   end
 

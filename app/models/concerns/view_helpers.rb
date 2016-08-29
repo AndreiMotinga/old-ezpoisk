@@ -6,7 +6,11 @@ module ViewHelpers
   end
 
   def logo_url(style = :medium)
-    logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing.png"
+    logo.present? ? logo.image.url(style) : "https://s3.amazonaws.com/ezpoisk/missing-small.png"
+  end
+
+  def og_image_url
+    logo.present? ? logo.image.url(:large) : "https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
   end
 
   def unset_logo

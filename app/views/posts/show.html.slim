@@ -1,4 +1,4 @@
-= title("#{@post.title} - ezpoisk")
+= title(@post.title)
 = desc(strip_tags(@post.summary).truncate(160))
 
 = og_type("article")

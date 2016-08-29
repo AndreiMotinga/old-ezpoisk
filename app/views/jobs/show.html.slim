@@ -7,7 +7,7 @@
 
 = og_type("article")
 = og_url(job_url(@job))
-= og_image(@job.logo.url)
+= og_image(@job.og_image_url)
 
 = content_for :sidebar do
   = render "shared/show/contacts", record: @job

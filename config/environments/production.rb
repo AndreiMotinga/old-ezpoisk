@@ -110,6 +110,6 @@ Rails.application.configure do
       access_key_id: ENV["AWS_ACCESS_KEY_ID"],
       secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
     },
-    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png"
+    default_url: "https://s3.amazonaws.com/ezpoisk/missing-small.png"
   }
 end

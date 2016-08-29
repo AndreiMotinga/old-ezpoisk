@@ -5,7 +5,7 @@
 
 = og_type("article")
 = og_url(sale_url(@sale))
-= og_image(@sale.logo_url(:large))
+= og_image(@sale.og_image_url)
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @sale

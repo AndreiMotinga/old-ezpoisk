@@ -6,7 +6,7 @@
 
 = og_type("article")
 = og_url(re_private_url(@re_private))
-= og_image(@re_private.logo_url(:large))
+= og_image(@re_private.og_image_url)
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @re_private
