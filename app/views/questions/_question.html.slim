@@ -12,7 +12,8 @@
       p.text
         = markdown question.text
       - if action_name == "show"
-        = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
+        = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
+        = " "
         = subscription_links(question)
         = "  "
         = link_to 'редактировать', edit_question_path(question), class: "text text-muted qa-links", rel: "nofollow" if current_user == question.user
@@ -20,5 +21,5 @@
         br
         = render "shared/social", count: nil, inline: true
         #comments.collapse
-          .fb-comments data-href=question_url(question) data-numposts="5"
+          = render "shared/disqus"
       p.tags= tag_links(question)

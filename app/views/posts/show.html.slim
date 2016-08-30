@@ -45,7 +45,7 @@
 
 = render "shared/gads/leaderboard"
 
-.fb-comments data-href=post_url(@post) data-numposts="5"
+= render "shared/disqus"
 
 .side-posts
   = render "posts/side_posts", posts: @post.side_posts
