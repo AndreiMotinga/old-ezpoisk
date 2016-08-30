@@ -1,5 +1,4 @@
 class Devise::MailerPreview < ActionMailer::Preview
-
   def reset_password_instructions
     return if Rails.env.production?
     Devise::Mailer.reset_password_instructions(User.last, "faketoken")

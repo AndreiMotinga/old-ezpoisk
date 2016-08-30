@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
 
   def show
     @user.increment!(:impressions_count)
+    ProfileNotifierJob.perform_async(@user.id) if @user.impressions_count == 10
   end
 
   def contacts
