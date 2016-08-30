@@ -1,0 +1,15 @@
+p Наши поздравления !
+
+p
+  | #{@author.name_to_show} сказал вам
+  = " "
+  = link_to "Спасибо !", profile_url(@user)
+  br
+  | Отличная работа ;) Родина Вас не забудет.
+
+p
+  | Хорошего Вам дня.
+  br
+  | С уважением,
+  br
+  | команда #{link_to "ezpoisk.com", "https://www.ezpoisk.com"}

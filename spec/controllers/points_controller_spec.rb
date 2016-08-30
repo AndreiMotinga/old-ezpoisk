@@ -10,6 +10,7 @@ describe PointsController do
         post :create, params: { user_id: user.id }, format: :js
 
         expect(Point.count).to eq 0
+        expect(PointNotifierJob.jobs.size).to eq 0
       end
     end
 
@@ -25,6 +26,7 @@ describe PointsController do
         expect(Point.count).to eq 1
         expect(point.user_id).to eq user.id
         expect(point.author.id).to eq author.id
+        expect(PointNotifierJob.jobs.size).to eq 1
       end
     end
   end

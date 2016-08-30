@@ -4,5 +4,9 @@ class PointsController < ApplicationController
     @user = User.find(params[:user_id])
     return if @user.id == current_user.id
     Point.create(user_id: @user.id, author_id: current_user.id)
+
+    if @user.points.count == 1
+      PointNotifierJob.perform_async(@user.id, current_user.id)
+    end
   end
 end
