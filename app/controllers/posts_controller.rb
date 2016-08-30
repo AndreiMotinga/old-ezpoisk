@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    IncreaseVisitsJob.perform_async(@post.id, 'Post') if @post
+    IncreaseVisitsJob.perform_in(14.minutes, @post.id, 'Post') if @post
   end
 
   def destroy_all
