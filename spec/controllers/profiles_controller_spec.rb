@@ -9,6 +9,17 @@ describe ProfilesController do
 
       expect(assigns(:user)).to be_a User
       expect(response).to be_success
+      expect(ProfileNotifierJob.jobs.size).to eq 0
+    end
+
+    context "profile is visted for the 10th time" do
+      it "enques ProfileNotifierJob" do
+        user = create :user, impressions_count: 9
+
+        get :show, params: { id: user.id }
+
+        expect(ProfileNotifierJob.jobs.size).to eq 1
+      end
     end
   end
 
