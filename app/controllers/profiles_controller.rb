@@ -2,9 +2,10 @@ class ProfilesController < ApplicationController
   before_action :set_user
 
   def show
-    # todo unless current user == user
-    @user.increment!(:impressions_count)
-    ProfileNotifierJob.perform_async(@user.id) if @user.impressions_count == 10
+    unless current_user == @user
+      @user.increment!(:impressions_count)
+      ProfileNotifierJob.perform_async(@user.id) if @user.impressions_count == 10
+    end
   end
 
   def contacts

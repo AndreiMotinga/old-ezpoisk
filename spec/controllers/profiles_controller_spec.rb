@@ -21,6 +21,21 @@ describe ProfilesController do
         expect(ProfileNotifierJob.jobs.size).to eq 1
       end
     end
+
+    context "profile is visited by user himself" do
+      it "doesn't increment impressions_count" do
+        user = create :user
+        sign_in(user)
+
+        get :show, params: { id: user.id }
+
+        user = assigns(:user)
+        expect(user).to be_a User
+        expect(response).to be_success
+        expect(user.impressions_count).to eq 0
+        expect(ProfileNotifierJob.jobs.size).to eq 0
+      end
+    end
   end
 
   describe "#posts" do
