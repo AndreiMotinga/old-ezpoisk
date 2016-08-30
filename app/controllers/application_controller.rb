@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
     record = model.find(id) if model.exists?(id)
     if record && record.active?
       IncreaseVisitsJob.perform_in(11.minutes, record.id, record.class.to_s)
+      if record.visits == 9
+        ListingsNotifierJob.perform_in(12.minutes, record.id, record.class.to_s)
+      end
       return record
     end
     redirect_to path, alert: I18n.t(:post_not_found)

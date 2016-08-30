@@ -70,4 +70,9 @@ module ViewHelpers
     html += "#{description}\n"
     html += "Подробнее #{show_url}"
   end
+
+  def contact_email
+    return user.email if user.present?
+    return email if email.present?
+  end
 end
