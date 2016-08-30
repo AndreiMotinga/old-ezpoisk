@@ -13,7 +13,7 @@
     li.list-group-item
       span.glyphicon.glyphicon-earphone
       a href="tel:#{record.phone}"
-        strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{record.phone}
+        strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(record.phone, area_code: 1)}
 
   - unless record.try(:fax).blank?
     li.list-group-item
