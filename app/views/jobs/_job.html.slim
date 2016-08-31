@@ -5,13 +5,13 @@
         .panel-heading
           = render "shared/favor_links", record: job
           - if action_name == "index"
-            h4= link_to job.title, job_path(job)
+            h4= link_to job.title, job_path(job), "data-turbolinks": "false"
           - else
             h4= job.title
 
       .panel-body
         - if job.logo?
-          = link_to job_path(job) do
+          = link_to job_path(job), target: "_blank" do
             = image_tag job.logo.url(:large),
                         alt: "#{job.title} #{t job.category} в #{job.city.name} #{job.state.name}",
                         class: "img-responsive center-block",

@@ -2,7 +2,7 @@
   .listing
 
     .col-xs-4.logo data-id="logo"
-      = link_to sale_path(sale) do
+      = link_to sale_path(sale), "data-turbolinks": false do
         img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
           alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
