@@ -1,4 +1,4 @@
-- if Rails.env.production?
+- if ENV["SHOW_GADS"] == 'yes'
   .right-block.gads.pull-right
     ins.adsbygoogle data-ad-client="ca-pub-1350854790289606" data-ad-slot="6000964174" style="display:inline-block;width:300px;height:250px" class="margin-bottom-10"
     javascript:
@@ -13,7 +13,7 @@
     /javascript:
     /  (adsbygoogle = window.adsbygoogle || []).push({});
 
-- if Rails.env.development?
+- else
   .right-block.gads.pull-right
     div style="background-color: green;height:250px;width:300px;" class="margin-bottom-10"
     div style="background-color: green;height:250px;width:300px;" class="margin-bottom-10"

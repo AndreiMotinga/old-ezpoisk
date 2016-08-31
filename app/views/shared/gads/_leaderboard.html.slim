@@ -1,8 +1,8 @@
 .hidden-xs.text-center data-id="leaderboard"
-  - if Rails.env.production?
+  - if ENV["SHOW_GADS"] == 'yes'
     ins.adsbygoogle data-ad-client="ca-pub-1350854790289606" data-ad-slot="2679067778" style="display:inline-block;width:468px;height:60px" class="margin-bottom-10"
     javascript:
       (adsbygoogle = window.adsbygoogle || []).push({});
 
-  - if Rails.env.development?
+  - else
     div.green style="display:inline-block;width:468px;height:60px" class="margin-bottom-10"
