@@ -1,5 +1,7 @@
-- content_for :sidebar do
-  our_ads
+- content_for :head do
+  = render "shared/hotjar"
+  = render "shared/userlike"
+
 = link_to "Обновить пароль", edit_user_registration_path
 br
 br

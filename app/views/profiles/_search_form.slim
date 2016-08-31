@@ -5,4 +5,4 @@ ul.nav.home-sidebar-nav
   li= link_to "Объявления", profile_listings_path(@user)
   li= link_to "Ответы", profile_answers_path(@user)
   - if @user == current_user
-    li= link_to "Настройки", edit_dashboard_user_path(@user), rel: "nofollow"
+    li= link_to "Настройки", edit_dashboard_user_path(@user), rel: "nofollow", "data-turbolinks": false

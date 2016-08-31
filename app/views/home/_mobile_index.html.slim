@@ -29,7 +29,7 @@
             li.list-group-item Ответы
           = link_to about_path, class: "mobile-link" do
             li.list-group-item Включайся
-          = link_to contacts_path, class: "mobile-link" do
+          = link_to contacts_path, class: "mobile-link", "data-turbolinks": false do
             li.list-group-item Контакты
 
       #profile.tab-pane role="tabpanel"
@@ -43,7 +43,7 @@
               li.list-group-item.mobile-link Мои новости
             = link_to dashboard_favorites_path do
               li.list-group-item.mobile-link Избранное
-            = link_to edit_dashboard_user_path(current_user) do
+            = link_to edit_dashboard_user_path(current_user), "data-turbolinks": false do
               li.list-group-item.mobile-link Мои настройки
           ul.list-group
             = link_to main_app.destroy_user_session_path, method: :delete do
