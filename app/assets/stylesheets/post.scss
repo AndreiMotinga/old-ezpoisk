@@ -20,7 +20,10 @@
 .side_posts {
   .thumbnail {
     margin-bottom: 0;
-    img { max-height: 100px; }
+    img { height: 80px; }
+    .caption {
+      padding: 0;
+    }
   }
 }
 
