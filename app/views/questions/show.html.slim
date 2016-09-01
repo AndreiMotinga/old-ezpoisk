@@ -8,12 +8,11 @@
 = og_url(question_url(@question))
 = og_image(@question.image)
 
-= content_for :sidebar do
-  .sticky
-    = link_to "Добавить ответ",
-              new_question_answer_path(@question),
-              class: "btn mobile-btn btn-block margin-bottom-10"
-    = render("questions/tag_cloud")
+- content_for :sidebar do
+  = link_to "Добавить ответ",
+            new_question_answer_path(@question),
+            class: "btn mobile-btn btn-block margin-bottom-10"
+  = render("questions/tag_cloud")
 
 = render "questions/search_form"
 

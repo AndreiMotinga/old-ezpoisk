@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    = render "layouts/head"
+  body
+    = render "shared/navbar"
+    .container.page-wrap
+      = render "shared/notice" unless devise_controller?
+
+      .row
+        - if content_for?(:sidebar)
+          .hidden-xs.col-sm-3.col-md-2.left-column
+            = yield :sidebar
+        - if content_for?(:sidebar)
+          .col-xs-12.col-sm-9.col-md-6
+            = yield
+        - else
+          .col-xs-12
+            = yield
+        .hidden-xs.hidden-sm.col-md-4
+          .pull-right
+            = yield :right_block
+
+    .hidden-xs
+      = render "shared/footer"
+
+    / MODALS & services
+    = render "shared/new_post_modal"
+    = render "shared/new_session_modal"
+    = render "shared/main_sidebar"

@@ -1,6 +1,7 @@
 SALE_CATEGORIES = %w(transportation home kids clothes electronics pets plants
                      sales).freeze
 JOB_CATEGORIES = %w(wanted seeking).freeze
+PARTNER_POSITIONS = %w(left right).freeze
 
 SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
   "auto": %w(car-rentals autoservices carwash auto-stores driver-schools
@@ -88,17 +89,3 @@ STATES = [
   [ "Wisconsin", 49 ],
   [ "Wyoming", 50 ]
 ].freeze
-
-# PARTNER_PAGES = HashWithIndifferentAccess.new(
-#       "Домашняя" => ["Домашняя"],
-#       "- Раздел Недвижимость" => [
-#         "Частная", "Коммерческая", "Агентства Недвижимости", "Финансирование"
-#       ],
-#       "- Раздел Работа" => ["Работа", "Агентства по Трудоустройству"],
-#       "- Раздел Ответы" => ["Ответы"],
-#       "- Раздел Новости" => ["Новости"],
-#       "- Раздел Продажи" => SALE_CATEGORIES,
-#       "- Раздел Услуги" => []
-# )
-#
-# SERVICE_SUBCATEGORIES.each { |ctg, subctg| PARTNER_PAGES[ctg] = subctg }

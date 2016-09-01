@@ -6,12 +6,10 @@
 /= og_image(@answer.logo.url)
 
 - content_for :sidebar do
-  .sticky
-    = link_to "Добавьте ответ", new_question_answer_path(@answer.question), class: "btn btn-block mobile-btn margin-bottom-10"
-    = render("answers/tag_cloud")
-
-= content_for :right_block do
-  = render "answers/show/side_posts"
+  = link_to "Добавьте ответ",
+            new_question_answer_path(@answer.question),
+            class: "btn btn-block mobile-btn margin-bottom-10"
+  = render("answers/tag_cloud")
 
 .answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel.panel-default

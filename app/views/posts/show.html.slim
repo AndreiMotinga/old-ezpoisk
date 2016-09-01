@@ -6,8 +6,7 @@
 = og_image(@post.logo_url)
 
 = content_for :sidebar do
-  .sticky
-    = render("posts/sidebar", klass: "desktop")
+  = render("posts/sidebar", klass: "desktop")
 
 .col-xs-12 itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .row.white-block

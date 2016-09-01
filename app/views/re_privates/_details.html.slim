@@ -1,21 +1,24 @@
-.col-xs-12.white-block
-  li.list-group-item
-    h1.h1-side-block= t @re_private.post_type
-  - if @re_private.temporary? and @re_private.duration?
-    li.list-group-item= t @re_private.duration
-  li.list-group-item
-    | Цена
-    span.pull-right #{@re_private.price}
-  li.list-group-item
-    | Комиссия
-    span.pull-right #{@re_private.fee ? 'да' : 'нет'}
-  li.list-group-item
-    | Комнаты
-    span.pull-right #{t @re_private.rooms}
-  li.list-group-item
-    | Ванные комнаты
-    span.pull-right #{@re_private.baths}
-  li.list-group-item
-    | Площадь
-    span.pull-right #{@re_private.space}
-  li.list-group-item #{time_ago_in_words @re_private.created_at} назад
+.right-block.white-block
+  .panel.panel-default
+    .panel-body
+      ul.list-group
+        li.list-group-item
+          h1.h1-side-block= t @re_private.post_type
+        - if @re_private.temporary? and @re_private.duration?
+          li.list-group-item= t @re_private.duration
+        li.list-group-item
+          | Цена
+          span.pull-right #{@re_private.price}
+        li.list-group-item
+          | Комиссия
+          span.pull-right #{@re_private.fee ? 'да' : 'нет'}
+        li.list-group-item
+          | Комнаты
+          span.pull-right #{t @re_private.rooms}
+        li.list-group-item
+          | Ванные комнаты
+          span.pull-right #{@re_private.baths}
+        li.list-group-item
+          | Площадь
+          span.pull-right #{@re_private.space}
+        li.list-group-item #{time_ago_in_words @re_private.created_at} назад

@@ -1,0 +1,20 @@
+= title("Рекламные банеры")
+= desc("EZPOISK - полезная информация о русской иммиграции в США. Новости, статьи, полезные советы.")
+
+h3= link_to "Создать Рекламный Блок",
+            new_dashboard_partner_path,
+            class: "btn btn-warning"
+br/
+table.table.table-striped.table-condensed.table-bordered
+  thead.text-center
+    tr
+      td
+      td Название
+      td Показов
+      td Кликов
+      td Статус
+      td Approval
+      td
+  tbody
+    - @partners.each do |partner|
+      = render "dashboard/partners/partner", partner: partner

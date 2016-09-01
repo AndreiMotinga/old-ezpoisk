@@ -1,20 +1,26 @@
 class Dashboard::PartnersController < ApplicationController
+  layout 'partner'
   before_action :authenticate_user!
-  before_action :set_ad, only: [:show, :edit, :destroy]
+  before_action :set_ad, only: [:edit, :update, :destroy]
 
   def index
     @partners = current_user.partners.order("created_at")
-    @partners = @partners.page(params[:page])
   end
 
   def new
     @partner = Partner.new
   end
 
-  def show
+  def edit
   end
 
-  def edit
+  def update
+    if @partner.update(ad_params)
+      redirect_to dashboard_partners_path
+    else
+      flash.now[:alert] = I18n.t(:post_not_saved)
+      render :edit
+    end
   end
 
   def create
@@ -33,6 +39,16 @@ class Dashboard::PartnersController < ApplicationController
     redirect_to dashboard_partners_path, notice: I18n.t(:post_removed)
   end
 
+  def increment
+    PartnerImpressionsJob.perform_async(params[:id])
+  end
+
+  def redirect
+    partner = Partner.find(params[:id])
+    partner.update_column(:clicks, partner.clicks + 1)
+    redirect_to partner.redirect_url
+  end
+
   private
 
   def set_ad
@@ -40,6 +56,7 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def ad_params
-    params.require(:partner).permit(:title, :image, :link, :position, :page)
+    params.require(:partner).permit(:title, :image, :url, :description,
+                                    :position)
   end
 end

@@ -5,21 +5,25 @@ html
   body
     = render "shared/navbar"
     = render "shared/gads/top"
-    hr.top-hr
     .container.page-wrap
-      .container
-        .row
-          = yield :profile_cover if content_for?(:profile_cover)
-          = render "shared/notice" unless devise_controller?
+      .row
+        = yield :profile_cover if content_for?(:profile_cover)
+        = render "shared/notice" unless devise_controller?
 
       .row
         .hidden-xs.col-sm-3.col-md-2.left-column
           = yield :sidebar
+          .sticky data-id="left"
+            = render "partners/left"
+
         .col-xs-12.col-sm-9.col-md-6
           = yield
         .hidden-xs.hidden-sm.col-md-4
-          .sticky data-id="right"
+          .pull-right
             = render "shared/gads/right"
+            .sticky data-id="right"
+              = render "partners/right"
+
 
     .hidden-xs
       = render "shared/footer"
@@ -30,4 +34,4 @@ html
     = render "shared/new_post_modal"
     = render "shared/new_session_modal"
     = render "shared/main_sidebar"
-    = render "shared/userlike"
+    script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/27597bc25de8ded90e9c9b5165060dd9a939a969e5e01bcc122aec50dda34f3d.js"

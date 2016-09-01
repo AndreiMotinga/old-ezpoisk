@@ -59,7 +59,11 @@ Rails.application.routes.draw do
 
     resources :favorites, only: [:index]
 
-    resources :partners, except: [:edit, :update] do
+    resources :partners, except: [:show] do
+      member do
+        post "increment", to: "partners#increment"
+        get "redirect", to: "partners#redirect"
+      end
       resources :charges, only: [:new] do
         collection do
           post "week", action: "week", as: "week"

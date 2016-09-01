@@ -9,7 +9,7 @@
 = og_url(job_url(@job))
 = og_image(@job.og_image_url)
 
-= content_for :sidebar do
+- content_for :sidebar do
   = render "shared/show/contacts", record: @job
   = render "jobs/details"
 

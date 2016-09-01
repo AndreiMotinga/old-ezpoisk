@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830170423) do
+ActiveRecord::Schema.define(version: 20160902225649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20160830170423) do
 
   create_table "partners", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "link"
+    t.string   "url"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.string   "image_file_name"
@@ -163,11 +163,10 @@ ActiveRecord::Schema.define(version: 20160830170423) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "title"
-    t.string   "position",           default: ""
-    t.string   "page"
-    t.date     "start_date"
-    t.date     "active_until"
-    t.integer  "amount"
+    t.string   "description",        default: "", null: false
+    t.string   "position"
+    t.integer  "impressions_count",  default: 0,  null: false
+    t.integer  "clicks",             default: 0,  null: false
     t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
 

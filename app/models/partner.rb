@@ -1,53 +1,23 @@
 class Partner < ActiveRecord::Base
   belongs_to :user
 
-  has_attached_file(:image,
-                    default_url: "https://s3.amazonaws.com/ezpoisk/missing.png")
+  has_attached_file :image, styles: { thumb: "100x50", left: "200x100#", right: "300x250#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :image, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with AttachmentSizeValidator,
                  attributes: :image,
                  less_than: 1.megabyte
+  validates :title, presence: true, length: { maximum: 45 }
+  validates :description, presence: true, length: { maximum: 45 }
   validates :image, presence: true
-  validates :image, dimensions: {}
 
-  validates :title, presence: true
-  validates :image, presence: true
-  validates :page, presence: true
-  validates_with PositionValidator
-
-  scope :by_position, -> (pos) { where(position: pos) }
-  scope :by_page, -> (page) { where(page: page) }
-
-  def self.active
-    where("start_date < ? AND active_until > ?", Date.tomorrow, Date.today)
+  def self.random(position, num)
+    where(position: position)
+      .limit(num)
+      .order("RANDOM()")
   end
 
-  def self.current(page, position)
-    by_page(page)
-      .by_position(position)
-      .active
-      .first
-  end
-
-  def available_start_date
-    self.class
-        .by_page(page)
-        .by_position(position)
-        .where.not(active_until: nil)
-        .order("active_until desc").first
-        .try(:active_until) || Date.today
-  end
-
-  def activate(weeks_prm, amount)
-    num_of_weeks = weeks_prm.to_i
-    self.start_date = available_start_date
-    self.active_until = available_start_date + num_of_weeks.weeks
-    self.amount = amount
-    save
-  end
-
-  def active?
-    active_until.try(:future?)
+  def redirect_url
+    url.match(/http/).present? ? url : "http://#{url}"
   end
 end

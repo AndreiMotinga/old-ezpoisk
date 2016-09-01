@@ -74,9 +74,10 @@ class Post < ActiveRecord::Base
   end
 
   def side_posts
-    Post.joins(:categories)
-      .where(categories: {id:  categories.pluck(:id)})
-      .older(created_at)
-      .limit(9)
+    # Post.joins(:categories)
+    #   .where(categories: {id:  categories.pluck(:id)})
+    #   .older(created_at)
+    #   .limit(9)
+    Post.older(created_at).limit(9)
   end
 end

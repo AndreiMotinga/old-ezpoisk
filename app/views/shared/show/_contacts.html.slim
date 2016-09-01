@@ -1,45 +1,48 @@
-.col-xs-12.white-block.contacts
-  - if record.user and !record.user.admin?
-    li.list-group-item.scroll itemscope="" itemtype="https://schema.org/OwnershipInfo"
-      strong
-        = link_to profile_path(record.user), rel: "nofollow" do
-          span itemprop="name" =record.user.name_to_show
+.right-block.white-block.contacts
+  .panel.panel-default
+    .panel-body
+      ul.list-group
+        - if record.user and !record.user.admin?
+          li.list-group-item.scroll itemscope="" itemtype="https://schema.org/OwnershipInfo"
+            strong
+              = link_to profile_path(record.user), rel: "nofollow" do
+                span itemprop="name" =record.user.name_to_show
 
-  - unless record.try(:source).blank?
-    li.list-group-item
-      = link_to "Автор объявления", record.source, target: "_blank"
+        - unless record.try(:source).blank?
+          li.list-group-item
+            = link_to "Автор объявления", record.source, target: "_blank"
 
-  - unless record.try(:fax).blank?
-    li.list-group-item
-      strong itemprop="faxNumber" факс #{record.try(:fax)}
+        - unless record.try(:fax).blank?
+          li.list-group-item
+            strong itemprop="faxNumber" факс #{record.try(:fax)}
 
-  - if record.try(:email).present?
-    li.list-group-item.scroll
-      strong: a href="mailto:#{record.email}" target="_top" itemprop=("email" unless record.class.to_s == "RePrivate") =record.email
+        - if record.try(:email).present?
+          li.list-group-item.scroll
+            strong: a href="mailto:#{record.email}" target="_top" itemprop=("email" unless record.class.to_s == "RePrivate") =record.email
 
-  - if record.try(:phone).present?
-    li.list-group-item
-      span.glyphicon.glyphicon-earphone
-      a href="tel:#{record.phone}"
-        strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(record.phone, area_code: 1)}
+        - if record.try(:phone).present?
+          li.list-group-item
+            span.glyphicon.glyphicon-earphone
+            a href="tel:#{record.phone}"
+              strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(record.phone, area_code: 1)}
 
-  li.list-group-item itemprop=("address" unless record.class.to_s == 'Job' or record.class.to_s == 'Sale') itemscope="" itemtype="http://schema.org/PostalAddress"
-    = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
-      - if record.street.present?
-        span itemprop="streetAddress" =record.street
-        = ", "
-      span itemprop="addressLocality"= "#{record.city.name}, #{record.state.name}"
-      - if record.zip.present?
-        = ", "
-        span itemprop="postalCode" = record.zip
+        li.list-group-item itemprop=("address" unless record.class.to_s == 'Job' or record.class.to_s == 'Sale') itemscope="" itemtype="http://schema.org/PostalAddress"
+          = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
+            - if record.street.present?
+              span itemprop="streetAddress" =record.street
+              = ", "
+            span itemprop="addressLocality"= "#{record.city.name}, #{record.state.name}"
+            - if record.zip.present?
+              = ", "
+              span itemprop="postalCode" = record.zip
 
-  li.list-group-item
-    | Показов #{record.impressions_count}
-  li.list-group-item
-    | Просмотров #{record.visits}
+        li.list-group-item
+          | Показов #{record.impressions_count}
+        li.list-group-item
+          | Просмотров #{record.visits}
 
-  li.list-group-item
-    strong * Укажите, что нашли объявление на ezpoisk.com
+        li.list-group-item
+          strong * Укажите, что нашли объявление на ezpoisk.com
 
-  li.list-group-item
-    = render "shared/social", count: nil, inline: false
+        li.list-group-item
+          = render "shared/social", count: nil, inline: false

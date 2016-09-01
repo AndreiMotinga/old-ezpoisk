@@ -1,0 +1,29 @@
+- content_for :sidebar do
+  = render "partners/partner", partner: @partner, side: "left"
+
+- content_for :right_block do
+  = render "partners/partner", partner: @partner, side: "right"
+
+.white-block
+  .panel.panel-default
+    .panel-body
+      = render "form"
+
+javascript:
+  function readURL(input, position) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $("[data-partner-image='left']").attr('src', e.target.result)
+                                        .width(200)
+                                        .height(100);
+
+        $("[data-partner-image='right']").attr('src', e.target.result)
+                                        .width(300)
+                                        .height(250);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }

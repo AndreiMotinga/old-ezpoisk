@@ -1,15 +1,14 @@
 = title("Продажа, Автомобили, Электроника, Одежда, Магазины, Распродажи в США - ezpoisk", "Продаю ")
 = desc("Обьявления о продаже в США: Нью Йорк, Сан Франциско, Лос Анджелес, Майами. Распродажи")
 
-= content_for :sidebar
-  .sticky
-    = render("shared/filters_btn", id: "sales", count: @sales.total_count)
-    = render("shared/listings_count",
-              title: "Продажи",
-              url: sales_path,
-              today: Sale.today.count,
-              week: Sale.week.count,
-              total: Sale.count)
+- content_for :sidebar
+  = render("shared/filters_btn", id: "sales", count: @sales.total_count)
+  = render("shared/listings_count",
+            title: "Продажи",
+            url: sales_path,
+            today: Sale.today.count,
+            week: Sale.week.count,
+            total: Sale.count)
 
 = render("shared/filters", id: "sales", count: @sales.total_count)
 

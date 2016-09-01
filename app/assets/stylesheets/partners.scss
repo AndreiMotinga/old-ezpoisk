@@ -1,1 +1,20 @@
-.partner { margin-bottom: 10px; }
+.partner {
+  a { text-decoration: none; }
+  span { display: block; }
+
+  .title {
+    color: $darkblue;
+    font-weight: 600;
+  }
+
+  .description { color: $black; }
+  .partner-hr {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-top: 1px solid $grey_c;
+  }
+}
+
+.partner.right {
+  max-width: 306px;
+}

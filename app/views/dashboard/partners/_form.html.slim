@@ -1,0 +1,12 @@
+= bootstrap_form_for([:dashboard, @partner]) do |f|
+  .row
+    .col-xs-12
+      = f.file_field :image, label: "Банер", onchange: "readURL(this);"
+      span.text-muted слева 200x100px | справа 300x250px
+  br
+  = f.text_field :title, label: 'Название', "data-title": ""
+  = f.text_field :description, label: "Описание", "data-description": ""
+  = f.text_field :url, label: "Ссылка", "data-url": ""
+  = f.select :position, ru(PARTNER_POSITIONS), label: "Расположение"
+
+  = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"

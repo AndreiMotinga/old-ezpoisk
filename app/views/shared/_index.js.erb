@@ -5,10 +5,13 @@
 $("[data-id='leaderboard']").remove();
 $("[data-id='listings']").append("<%= j render('shared/gads/leaderboard') %>");
 $("[data-id='listings']").append("<%= j render(records) %>");
-$("[data-id='right']").html("<%= j render('shared/gads/right') %>");
+$("[data-id='right']").html("<%= j render('partners/right') %>");
+$("[data-id='left']").html("<%= j render('partners/left') %>");
 
 <% if records.next_page %>
   $(".pagination").replaceWith("<%= j(paginate records) %>")
 <% else  %>
   $(".pagination").remove();
 <% end %>
+
+incrementPartners();
