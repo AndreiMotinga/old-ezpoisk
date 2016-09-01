@@ -1,8 +1,24 @@
-.hidden-xs.text-center data-id="leaderboard"
-  - if ENV["SHOW_GADS"] == 'yes'
-    ins.adsbygoogle data-ad-client="ca-pub-1350854790289606" data-ad-slot="2679067778" style="display:inline-block;width:468px;height:60px" class="margin-bottom-10"
-    javascript:
-      (adsbygoogle = window.adsbygoogle || []).push({});
+.margin-bottom-10 data-id="leaderboard"
+  .visible-xs.text-center
+    - if ENV["SHOW_GADS"]
+      ins[class="adsbygoogle"
+           style="display:inline-block;width:320px;height:100px"
+           data-ad-client="ca-pub-1350854790289606"
+           data-ad-slot="7924375772"]
+      javascript:
+        (adsbygoogle = window.adsbygoogle || []).push({});
 
-  - else
-    div.green style="display:inline-block;width:468px;height:60px" class="margin-bottom-10"
+    - else
+      .green style="display:inline-block;width:320px;height:100px"
+
+  .hidden-xs.text-center
+    - if ENV["SHOW_GADS"]
+      ins.adsbygoogle[data-ad-client="ca-pub-1350854790289606"
+                      data-ad-slot="2679067778"
+                      style="display:inline-block;width:468px;height:60px"]
+      javascript:
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+    - else
+      .green style="display:inline-block;width:468px;height:60px"
+

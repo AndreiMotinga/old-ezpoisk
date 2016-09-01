@@ -130,6 +130,11 @@ footer {
 }
 
 .white-hr { border-top: 1px solid $white; }
+.top-hr {
+  border-top: 1px solid $grey_c;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
 .search-modal-trigger { margin-bottom: 10px; }
 .modal-content { border-radius: 0; }
 

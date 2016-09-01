@@ -1,0 +1,10 @@
+div.text-center.margin-bottom-10
+  - if ENV["SHOW_GADS"]
+    ins[class="adsbygoogle"
+        style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-1350854790289606"
+        data-ad-slot="9819911375"]
+    javascript:
+      (adsbygoogle = window.adsbygoogle || []).push({});
+  - else
+    .green style="display:inline-block;width:728px;height:90px"
