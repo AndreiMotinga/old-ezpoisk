@@ -45,7 +45,10 @@
 
 = render "shared/gads/leaderboard"
 
-= render "shared/disqus"
+.white-block
+  .panel.panel-default
+    .panel-body
+      = render "shared/disqus"
 
 .side-posts
   = render "posts/side_posts", posts: @post.side_posts
