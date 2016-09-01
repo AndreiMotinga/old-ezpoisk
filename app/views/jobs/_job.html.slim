@@ -27,7 +27,7 @@
       .panel-footer
         span #{t job.category} |
         = " "
-        span.hidden-xs data-time=job.id
+        span data-time=job.id
           = timeago_tag job.updated_at
         .row
           .col-xs-7
