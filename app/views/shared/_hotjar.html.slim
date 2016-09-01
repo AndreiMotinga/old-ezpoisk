@@ -1,5 +1,5 @@
 /! Hotjar Tracking Code for http://ezpoisk.com
-- Rails.env.production?
+- if Rails.env.production?
   - unless current_user.try(:team_member?)
     javascript:
       (function(h,o,t,j,a,r){
