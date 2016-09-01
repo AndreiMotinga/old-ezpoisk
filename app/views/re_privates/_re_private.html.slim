@@ -1,7 +1,7 @@
 .row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
   .listing
     .col-xs-4.logo
-      = link_to re_private_path(re_private), "data-turbolinks": "false" do
+      = link_to re_private_path(re_private) do
         img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
           alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
 

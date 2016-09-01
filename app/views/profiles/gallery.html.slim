@@ -21,7 +21,8 @@
       = f.submit "Upload"
   br
 
-.profile data-pictures="" data-id="pictures"
+/todo data-id='pictures'
+.profile data-pictures="" data-id="listings"
   = render partial: "profiles/picture", collection: @pictures
 
 = render "shared/pagination", records: @pictures

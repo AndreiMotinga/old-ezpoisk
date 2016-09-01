@@ -6,5 +6,5 @@ document.addEventListener("turbolinks:load", function() {
   });
   $('.show .ps-current a').touchTouch();
 
-  $('[data-id="profile-image"]').touchTouch();
+  $('[data-action="touchTouch"]').touchTouch();
 });
