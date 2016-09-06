@@ -64,8 +64,8 @@ describe SalesController do
 
       it "filters by keyword" do
         first = create :sale, :active, title: "Computer table"
-        second = create :sale, :active, description: "Computer desk"
-        create :sale, :active, title: "Supercar", description: "Foobar"
+        second = create :sale, :active, text: "Computer desk"
+        create :sale, :active, title: "Supercar", text: "Foobar"
 
         get :index, params: { keyword: "comput" }
         sales = assigns(:sales)

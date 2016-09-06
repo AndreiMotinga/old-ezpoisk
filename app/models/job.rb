@@ -8,7 +8,7 @@ class Job < ActiveRecord::Base
   include Tokenable
 
   validates :title, presence: true, length: { maximum: 90 }
-  validates :description, presence: true
+  validates :text, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates_with SourceValidator

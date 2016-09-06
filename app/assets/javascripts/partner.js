@@ -12,12 +12,12 @@ document.addEventListener("turbolinks:load", function() {
   //   url.html(new_url);
   // });
 
-  $("[data-description]").on("change keyup paste", function(){
-    var desc = $("[data-partner-description]");
-    var new_desc = $("[data-description]").val();
+  $("[data-text]").on("change keyup paste", function(){
+    var desc = $("[data-partner-text]");
+    var new_desc = $("[data-text]").val();
     desc.html(new_desc);
     var length = 45 - new_desc.length;
-    $("label[for=partner_description]").html("Описание " + length);
+    $("label[for=partner_text]").html("Описание " + length);
   });
 });
 

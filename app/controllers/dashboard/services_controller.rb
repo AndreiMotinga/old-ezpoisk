@@ -93,7 +93,7 @@ class Dashboard::ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(
-      :title, :street, :phone, :fax, :email, :site, :description, :state_id,
+      :title, :street, :phone, :fax, :email, :site, :text, :state_id,
       :city_id, :logo, :category, :active, :subcategory
     )
   end

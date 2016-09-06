@@ -40,7 +40,7 @@ class Dashboard::ChargesController < ApplicationController
       currency: "usd",
       receipt_email: current_user.email,
       source: token,
-      description: "Оплата банера."
+      text: "Оплата банера."
     )
   end
 

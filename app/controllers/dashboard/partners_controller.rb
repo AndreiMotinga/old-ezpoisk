@@ -56,7 +56,7 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def ad_params
-    params.require(:partner).permit(:title, :image, :url, :description,
+    params.require(:partner).permit(:title, :image, :url, :text,
                                     :position)
   end
 end

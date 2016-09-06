@@ -67,7 +67,7 @@ module ViewHelpers
       html += "#{I18n.t(self.try(:subcategory))}\n"
     end
     html += "#{city.name} #{state.name} #{zip}\n"
-    html += "#{description}\n"
+    html += "#{text}\n"
     html += "Подробнее #{show_url}"
   end
 

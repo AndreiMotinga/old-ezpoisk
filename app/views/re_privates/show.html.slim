@@ -1,4 +1,4 @@
-- d = strip_tags(@re_private.description).truncate(160)
+- d = strip_tags(@re_private.text).truncate(160)
 - d = d.present? ? d : "#{t @re_private.post_type} жилье в США - ezpoisk.com"
 = desc(d)
 
@@ -29,7 +29,7 @@
 
   = render "shared/gads/leaderboard"
 
-  = render "shared/show/description", record: @re_private
+  = render "shared/show/text", record: @re_private
 
   .col-xs-12
     = render 'shared/show/map', record: @re_private

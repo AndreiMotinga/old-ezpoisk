@@ -94,7 +94,7 @@ describe Dashboard::SalesController do
       expect(updated_sale.title).to eq attrs[:title]
       expect(updated_sale.phone).to eq attrs[:phone]
       expect(updated_sale.email).to eq attrs[:email]
-      expect(updated_sale.description).to eq attrs[:description]
+      expect(updated_sale.text).to eq attrs[:text]
       expect(updated_sale.active).to eq attrs[:active]
 
       expect(updated_sale.city_id).to eq attrs[:city_id]

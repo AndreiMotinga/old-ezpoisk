@@ -33,15 +33,15 @@ feature "user updates service" do
     expect(service.user_id).to_not be nil
   end
 
-  scenario "updates description" do
+  scenario "updates text" do
     user = create_and_login_user
     service = create :service, user: user
 
     visit edit_dashboard_service_path service
-    fill_in "Описание", with: "New description"
+    fill_in "Описание", with: "New text"
     click_on "details-save-btn"
     service.reload
 
-    expect(service.description).to eq "New description"
+    expect(service.text).to eq "New text"
   end
 end

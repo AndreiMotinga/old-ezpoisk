@@ -2,7 +2,7 @@
   = hidden_field_tag :token, params[:token]
   -  if current_user.try(:admin?)
     = f.text_field :source, label: "источник"
-  = f.text_area :description, rows: 5, label: 'Описание'
+  = f.text_area :text, rows: 5, label: 'Описание'
   = f.text_field :street, label: 'Улица'
 
   .row

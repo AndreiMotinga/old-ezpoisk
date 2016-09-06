@@ -1,4 +1,4 @@
-- d = strip_tags(@sale.description).truncate(160)
+- d = strip_tags(@sale.text).truncate(160)
 - d = d.present? ? d : "Продается #{t @sale.category} #{@sale.title}"
 = desc(d)
 = title("#{@sale.title}, #{@sale.city_name} #{@sale.state_name} - ezpoisk")
@@ -27,13 +27,14 @@ div itemscope="" itemtype="http://schema.org/Product"
   .col-xs-12
     = render @sale
 
-  - if @sale.description?
-    .col-xs-12.white-block.description
+  /todo move to text partial
+  - if @sale.text?
+    .col-xs-12.white-block.text
       .panel.panel-default
         .panel-body
           h1.h1-desc-title itemprop="name"  = @sale.title
           div itemprop="description"
-            = markdown @sale.description
+            = markdown @sale.text
 
   .col-xs-12
     = render 'shared/show/map', record: @sale

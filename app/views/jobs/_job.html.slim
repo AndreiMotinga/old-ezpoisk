@@ -18,8 +18,8 @@
                         itemprop: "image"
           hr
 
-        .description itemprop="description"
-          = markdown job.description
+        .text itemprop="description"
+          = markdown job.text
         p.tags
           - job.tag_list.each do |sub|
             a.tag= " ##{sub} "

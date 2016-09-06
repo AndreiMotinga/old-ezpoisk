@@ -20,5 +20,5 @@ br
             - if l.try(:city).present?
               |  #{l.city.name} #{l.state.name} #{l.zip}
 
-          p= l.try(:description)
+          p= l.try(:text)
           p Подробнее #{l.show_url}

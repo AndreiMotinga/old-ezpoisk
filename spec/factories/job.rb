@@ -3,7 +3,7 @@ FactoryGirl.define do
     title { Faker::Name.title }
     phone "1234567890"
     email { Faker::Internet.email }
-    description { Faker::Lorem.paragraph(5) }
+    text { Faker::Lorem.paragraph(5) }
     category { JOB_CATEGORIES.sample }
     active true
     lat { Faker::Address.latitude }

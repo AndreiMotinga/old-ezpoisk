@@ -7,7 +7,7 @@ FactoryGirl.define do
     state_id 32
     city_id 18031
 
-    description { Faker::Lorem.paragraph(5) }
+    text { Faker::Lorem.paragraph(5) }
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }

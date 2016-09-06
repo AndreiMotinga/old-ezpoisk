@@ -14,7 +14,7 @@ feature "user updates job" do
     fill_in "Email", with: attrs.email
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    fill_in "Описание", with: attrs.description
+    fill_in "Описание", with: attrs.text
     check("Активно")
 
     click_on "details-save-btn"
@@ -27,6 +27,6 @@ feature "user updates job" do
     expect(job.active).to be true
     expect(job.state_name).to eq "Alabama"
     expect(job.city_name).to eq "Abbeville"
-    expect(job.description).to eq attrs.description
+    expect(job.text).to eq attrs.text
   end
 end

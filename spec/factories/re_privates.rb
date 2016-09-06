@@ -5,7 +5,7 @@ FactoryGirl.define do
     baths { Faker::Number.number(1).to_i }
     space { Faker::Number.number(4).to_i }
     active true
-    description { Faker::Lorem.sentence(5) }
+    text { Faker::Lorem.sentence(5) }
     street { Faker::Address.street_name }
     rooms { RePrivate::ROOMS.sample }
     category { RePrivate::CATEGORIES.sample }

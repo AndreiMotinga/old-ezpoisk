@@ -19,7 +19,7 @@ feature "user creates re_private" do
     fill_in "Ванные", with: attrs.baths
     fill_in "Площадь", with: attrs.space
     fill_in "Email", with: "foo@bar.com"
-    fill_in "Описание", with: attrs.description
+    fill_in "Описание", with: attrs.text
     check("Активно")
     check("Комиссия")
     select("Alabama", from: "Штат")
@@ -38,7 +38,7 @@ feature "user creates re_private" do
     expect(re_private.baths).to eq attrs.baths
     expect(re_private.rooms).to eq attrs.rooms
     expect(re_private.space).to eq attrs.space
-    expect(re_private.description).to eq attrs.description
+    expect(re_private.text).to eq attrs.text
     expect(re_private.active).to be true
     expect(re_private.fee).to be true
     expect(re_private.state.name).to eq "Alabama"

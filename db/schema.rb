@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902225649) do
+ActiveRecord::Schema.define(version: 20160906160012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160902225649) do
     t.string   "phone"
     t.string   "email"
     t.string   "category"
-    t.text     "description",       default: "", null: false
+    t.text     "text",              default: "", null: false
     t.boolean  "active"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20160902225649) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "title"
-    t.string   "description",        default: "", null: false
+    t.string   "text",               default: "", null: false
     t.string   "position"
     t.integer  "impressions_count",  default: 0,  null: false
     t.integer  "clicks",             default: 0,  null: false
@@ -253,7 +253,7 @@ ActiveRecord::Schema.define(version: 20160902225649) do
     t.float    "lng"
     t.boolean  "active",            default: false
     t.boolean  "fee",               default: false
-    t.text     "description",       default: "",    null: false
+    t.text     "text",              default: "",    null: false
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
@@ -278,7 +278,7 @@ ActiveRecord::Schema.define(version: 20160902225649) do
     t.string   "category"
     t.string   "phone"
     t.string   "email"
-    t.text     "description",       default: "", null: false
+    t.text     "text",              default: "", null: false
     t.boolean  "active"
     t.float    "lat"
     t.float    "lng"
@@ -297,9 +297,9 @@ ActiveRecord::Schema.define(version: 20160902225649) do
     t.integer  "priority",          default: 0,  null: false
     t.string   "token"
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
-    t.index ["description"], name: "index_sales_on_description", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
     t.index ["state_id"], name: "index_sales_on_state_id", using: :btree
+    t.index ["text"], name: "index_sales_on_text", using: :btree
     t.index ["title"], name: "index_sales_on_title", using: :btree
     t.index ["user_id"], name: "index_sales_on_user_id", using: :btree
   end
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(version: 20160902225649) do
     t.string   "site"
     t.string   "category"
     t.string   "subcategory"
-    t.text     "description",       default: "", null: false
+    t.text     "text",              default: "", null: false
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "state_id"

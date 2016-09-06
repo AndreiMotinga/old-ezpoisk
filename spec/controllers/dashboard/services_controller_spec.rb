@@ -88,7 +88,7 @@ describe Dashboard::ServicesController do
       expect(updated_agency.street).to eq attrs[:street]
       expect(updated_agency.phone).to eq attrs[:phone]
       expect(updated_agency.email).to eq attrs[:email]
-      expect(updated_agency.description).to eq attrs[:description]
+      expect(updated_agency.text).to eq attrs[:text]
 
       expect(updated_agency.city_id).to eq attrs[:city_id]
       expect(updated_agency.state_id).to eq attrs[:state_id]

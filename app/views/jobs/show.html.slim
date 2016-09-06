@@ -1,4 +1,4 @@
-- d = strip_tags(@job.description).truncate(150)
+- d = strip_tags(@job.text).truncate(150)
 - d = "#{t @job.category} #{d}"
 = desc(d)
 

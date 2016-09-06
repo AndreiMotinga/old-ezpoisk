@@ -31,13 +31,14 @@ module Filterable
     end)
 
     scope(:keyword, lambda do |keyword|
-      query = "LOWER(title) LIKE ? OR LOWER(description) LIKE ?"
+      query = "LOWER(title) LIKE ? OR LOWER(text) LIKE ?"
       keyword = "%#{keyword.mb_chars.downcase}%"
       where(query, keyword, keyword)
     end)
 
     scope(:street, lambda do |keyword|
-      query = "LOWER(street) LIKE ? OR LOWER(description) LIKE ?"
+      # todo rename street to title
+      query = "LOWER(street) LIKE ? OR LOWER(text) LIKE ?"
       keyword = "%#{keyword.mb_chars.downcase}%"
       where(query, keyword, keyword)
     end)

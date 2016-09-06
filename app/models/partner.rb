@@ -8,7 +8,7 @@ class Partner < ActiveRecord::Base
                  attributes: :image,
                  less_than: 1.megabyte
   validates :title, presence: true, length: { maximum: 45 }
-  validates :description, presence: true, length: { maximum: 45 }
+  validates :text, presence: true, length: { maximum: 45 }
   validates :image, presence: true
 
   def self.random(position, num)

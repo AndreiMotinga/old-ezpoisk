@@ -5,7 +5,7 @@
       span.text-muted слева 200x100px | справа 300x250px
   br
   = f.text_field :title, label: 'Название', "data-title": ""
-  = f.text_field :description, label: "Описание", "data-description": ""
+  = f.text_field :text, label: "Описание", "data-text": ""
   = f.text_field :url, label: "Ссылка", "data-url": ""
   = f.select :position, ru(PARTNER_POSITIONS), label: "Расположение"
 

@@ -96,7 +96,7 @@ describe Dashboard::JobsController do
         expect(updated_agency.title).to eq attrs[:title]
         expect(updated_agency.phone).to eq attrs[:phone]
         expect(updated_agency.email).to eq attrs[:email]
-        expect(updated_agency.description).to eq attrs[:description]
+        expect(updated_agency.text).to eq attrs[:text]
         expect(updated_agency.active).to eq attrs[:active]
 
         expect(updated_agency.city_id).to eq attrs[:city_id]

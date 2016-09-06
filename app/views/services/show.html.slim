@@ -1,4 +1,4 @@
-- description = strip_tags(@service.description).truncate(130)
+- description = strip_tags(@service.text).truncate(130)
 - description = "#{description} #{t @service.category} #{t @service.subcategory}"
 = desc(description)
 
@@ -26,7 +26,7 @@
 
   = render "shared/gads/leaderboard"
 
-  = render "shared/show/description", record: @service
+  = render "shared/show/text", record: @service
 
   .col-xs-12
     = render "shared/show/map", record: @service

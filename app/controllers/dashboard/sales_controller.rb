@@ -92,7 +92,7 @@ class Dashboard::SalesController < ApplicationController
 
   def sale_params
     params.require(:sale).permit(
-      :title, :price, :street, :phone, :email, :description, :active,
+      :title, :price, :street, :phone, :email, :text, :active,
       :state_id, :city_id, :logo, :category, :source
     )
   end
