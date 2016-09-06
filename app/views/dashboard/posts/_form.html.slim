@@ -8,17 +8,22 @@
   br
   br
 
+  .row
+    .col-sm-12
+      = label_tag "Тэги", nil
+      = collection_select :post,
+        :tag_list,
+        ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
+        { :selected => @post.tag_list },
+        { :multiple => true, :name => 'post[tag_list][]', class: "q-select my-dropdown" }
+    - if @post.errors[:tag_list].any?
+      ul.list-group-item-danger
+        li Добавьте тэги
+
   - if current_user.try(:editor?)
-    .row
-      .col-sm-12
-        = f.collection_select :category_ids, Category.all, :id, :name, {}, multiple: true, class: "my-dropdown-multiple"
     .row
       .col-sm-3
         = f.check_box :visible
-      .col-sm-3
-        = f.check_box :home
-      .col-sm-6
-        = f.text_field :source, label: "Источник"
   br
   br
   .actions

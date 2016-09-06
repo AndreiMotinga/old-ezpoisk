@@ -2,7 +2,7 @@
   .panel.panel-default
     .panel-heading
       h1.h1-title.question-title
-        - if action_name == "index"
+        - if action_name == "index" || "tag"
           = link_to question.title, question
         - else
           = question.title
@@ -12,14 +12,10 @@
       p.text
         = markdown question.text
       - if action_name == "show"
-        = link_to "коментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
-        = " "
         = subscription_links(question)
         = "  "
         = link_to 'редактировать', edit_question_path(question), class: "text text-muted qa-links", rel: "nofollow" if current_user == question.user
         br
         br
         = render "shared/social", count: nil, inline: true
-        #comments.collapse
-          = render "shared/disqus"
       p.tags= tag_links(question)

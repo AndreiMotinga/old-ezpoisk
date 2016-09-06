@@ -59,13 +59,13 @@ class NewsImporter
 
   def self.links
     [
-      ["https://news.yandex.ru/world.rss", "world"],
-      ["https://news.yandex.ru/movies.rss", "entertainment"],
-      ["https://news.yandex.ru/music.rss", "entertainment"],
-      ["https://news.yandex.ru/science.rss", "science"],
-      ["https://news.yandex.ru/computers.rss", "tech"],
-      ["https://news.yandex.ru/internet.rss", "tech"],
-      ["https://news.yandex.ru/USA/index.rss", "top"],
+      # ["https://news.yandex.ru/world.rss", "world"],
+      # ["https://news.yandex.ru/movies.rss", "entertainment"],
+      # ["https://news.yandex.ru/music.rss", "entertainment"],
+      # ["https://news.yandex.ru/science.rss", "science"],
+      # ["https://news.yandex.ru/computers.rss", "tech"],
+      # ["https://news.yandex.ru/internet.rss", "tech"],
+      # ["https://news.yandex.ru/USA/index.rss", "top"],
 
       # ["http://rss.cnn.com/rss/edition.rss", "top"],
       # ["http://rss.cnn.com/rss/edition_world.rss", "world"],

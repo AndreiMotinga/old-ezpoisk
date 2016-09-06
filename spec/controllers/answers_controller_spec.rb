@@ -13,10 +13,9 @@ describe AnswersController do
   end
 
   describe "POST #create" do
-    it "creates answer and touches entry" do
+    it "creates answer and entry" do
       sign_in(@user = create(:user))
       question = create :question
-      entry = question.create_entry(user: @user, updated_at: 1.month.ago)
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
@@ -30,8 +29,7 @@ describe AnswersController do
       expect(FacebookNotifierJob.jobs.size).to eq 1
       expect(VkNotifierJob.jobs.size).to eq 1
 
-      entry.reload
-      expect(entry.updated_at).to eq Time.zone.now
+      expect(Entry.count).to eq 1
     end
 
     it "subscribes answer's author for answer's question" do

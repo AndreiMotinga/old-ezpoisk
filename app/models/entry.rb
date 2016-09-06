@@ -4,4 +4,7 @@ class Entry < ActiveRecord::Base
   belongs_to :user
 
   validates :user_id, presence: true
+
+  scope :desc, -> { order("created_at desc") }
+  scope :news, -> { where(enterable_type: ["Answer", "Post", "Question"]) }
 end

@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  acts_as_taggable
   include MyFriendlyId
   include Filterable
   include ViewHelpers
@@ -31,7 +32,6 @@ class Post < ActiveRecord::Base
   scope :desc, -> { order("posts.created_at desc") }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
-  scope :home, -> { where(home: true) }
   scope :older, ->(date) { where("created_at < ?", date) }
 
   def self.by_keyword(keyword)

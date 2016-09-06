@@ -7,6 +7,8 @@ class Answer < ActiveRecord::Base
   belongs_to :user
   belongs_to :question
 
+  has_one :entry, as: :enterable, dependent: :destroy
+
   delegate :name_to_show, to: :user
 
   scope :by_score, -> { all.sort_by(&:score).reverse }

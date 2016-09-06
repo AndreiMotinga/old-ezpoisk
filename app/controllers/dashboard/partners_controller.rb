@@ -8,7 +8,8 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def new
-    @partner = Partner.new
+    @partner = Partner.new(phone: current_user.phone,
+                           email: current_user.email)
   end
 
   def edit
@@ -57,6 +58,6 @@ class Dashboard::PartnersController < ApplicationController
 
   def ad_params
     params.require(:partner).permit(:title, :image, :url, :text,
-                                    :position)
+                                    :position, :budget, :phone, :email)
   end
 end

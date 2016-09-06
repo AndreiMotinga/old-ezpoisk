@@ -34,8 +34,6 @@
             /todo how to use markdown to display videos
             = raw @post.text
 
-          - if @post.source.present?
-            = link_to "Источник", @post.source, class: "pull-right", target: "_blank", rel: "nofollow"
             hr
 
           = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true

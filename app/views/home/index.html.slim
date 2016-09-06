@@ -18,8 +18,8 @@
 
 .hidden-xs.col-sm-12 data-id="listings"
   / DESKTOP
-  = render @posts
+  = render @entries
 
 .row
   .hidden-xs
-    = render "shared/pagination", records: @posts
+    = render "shared/pagination", records: @entries

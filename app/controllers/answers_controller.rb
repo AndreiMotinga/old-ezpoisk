@@ -84,7 +84,7 @@ class AnswersController < ApplicationController
     FacebookNotifierJob.perform_in(11.minutes, @answer.id, "Answer")
     VkNotifierJob.perform_in(23.minutes, @answer.id, "Answer")
     question.increment!(:answers_count)
-    question.entry.try(:touch)
+    @answer.create_entry(user: current_user)
     create_subscription
   end
 

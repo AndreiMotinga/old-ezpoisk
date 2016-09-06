@@ -8,7 +8,7 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new(category: "user", home: true)
+    @post = Post.new(category: "user")
   end
 
   def edit
@@ -52,6 +52,7 @@ class Dashboard::PostsController < ApplicationController
     SlackNotifierJob.perform_async(@post.id, "Post")
     FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
     VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
+    @post.create_entry(user: current_user)
   end
 
   def run_update_notifications(visible)
@@ -63,6 +64,7 @@ class Dashboard::PostsController < ApplicationController
     unless current_user.try(:team_member?)
       SlackNotifierJob.perform_async(@post.id, "Post", 'update')
     end
+    @post.entry ? @post.entry.touch : @post.create_entry(user: current_user)
   end
 
   def set_post
@@ -75,7 +77,6 @@ class Dashboard::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text, :image_remote_url, :visible,
-                                 :summary, :home, :category, :source,
-                                 category_ids: [])
+                                 :summary, :category, tag_list: [])
   end
 end

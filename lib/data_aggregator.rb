@@ -16,12 +16,11 @@ class DataAggregator
     <<-eos
     Статистика
      ---------------------------------------------------------------------------------------------
-    |               | Категория    | Всего  | Цель    | Достигнуто      | Сегодня
+    |Категория    | Всего  | Цель    | Достигнуто      | Сегодня
      ---------------------------------------------------------------------------------------------
-    | Alina     | Объявления | #{@listings_count}   | #{@listings_goal}      | #{this_week}                     | #{this_day}
-    | Serghei | Ответы         | #{Answer.count}      | #{@answer_goal}        | #{Answer.week.count}                         | #{Answer.today.count}
-    | Rustam | Новости        | #{Post.visible.count}    | #{@posts_goal }       | #{Post.visible.week.count}                       | #{Post.visible.today.count}
-    |               | Users             | #{User.count}      | #{@users_goal}     | #{User.week.count}                       | #{User.today.count}
+    | Объявления | #{@listings_count}   | #{@listings_goal}      | #{this_week}                     | #{this_day}
+    | Ответы         | #{Answer.count}      | #{@answer_goal}        | #{Answer.week.count}                         | #{Answer.today.count}
+    | Users             | #{User.count}      | #{@users_goal}      | #{User.week.count}                         | #{User.today.count}
      eos
   end
 

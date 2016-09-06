@@ -13,12 +13,12 @@ class Ez
     type = type.present? ? type : "new"
     name = record.class == User ? record.name_to_show : record.user.try(:name_to_show)
     string = "#{type} | #{record.class} #{record.id} | author #{name}\n\n"
-    # todo add text to report
+    string += "#{strip_html_tags(record.text)}\n"
     string += "#{record.show_url}"
     notifier.ping(string)
   end
 
-  def strip_html_tags(string)
+  def self.strip_html_tags(string)
       ActionView::Base.full_sanitizer.sanitize(string)
   end
 end

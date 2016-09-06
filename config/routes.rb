@@ -80,7 +80,11 @@ Rails.application.routes.draw do
     delete 'posts/destroy_all', to: "posts#destroy_all"
   end
 
-  resources :posts, only: [:index, :show]
+  resources :posts, only: [:index, :show] do
+    collection do
+      get "tag/:tag", to: "posts#tag", as: "post_tag"
+    end
+  end
   resources :sales, only: [:index, :show]
   resources :services, only: [:index, :show]
   resources :re_privates, only: [:index, :show]

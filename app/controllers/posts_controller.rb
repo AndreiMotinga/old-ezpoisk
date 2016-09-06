@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.includes(:user)
+    # remove keyword category
+    @posts = Post.includes(:user, :taggings)
                  .visible
                  .by_keyword(params[:keyword])
                  .category(params[:category])
@@ -13,11 +14,25 @@ class PostsController < ApplicationController
     end
   end
 
+  def tag
+    @posts = Post.visible
+                   .includes(:user, :taggings)
+                   .tagged_with(params[:tag], any: true)
+                   .page(params[:page])
+    IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
+
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render partial: "shared/index", locals: { records: @posts } }
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
     IncreaseVisitsJob.perform_in(14.minutes, @post.id, 'Post') if @post
   end
 
+  # todo move these to dashboard
   def destroy_all
     if params[:category]
       Post.invisible.category(params[:category]).delete_all

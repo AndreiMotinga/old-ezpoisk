@@ -8,5 +8,9 @@
   = f.text_field :text, label: "Описание", "data-text": ""
   = f.text_field :url, label: "Ссылка", "data-url": ""
   = f.select :position, ru(PARTNER_POSITIONS), label: "Расположение"
+  hr
+  = f.number_field :phone, label: 'Телефон'
+  = f.email_field :email
+  = f.text_field :budget, label: "Ваш бюджет"
 
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"

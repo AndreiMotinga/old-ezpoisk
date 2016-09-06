@@ -18,10 +18,11 @@
 
 .col-xs-12
   = render @question
-  = render "shared/gads/leaderboard"
 
   / ANSWERS
   - if @question.has_answers?
     = render @question.answers.includes(:user).by_score
   - else
     = render "questions/no_answers_message"
+
+  = render "shared/disqus"
