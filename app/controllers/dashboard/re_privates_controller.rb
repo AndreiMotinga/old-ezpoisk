@@ -39,6 +39,7 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def destroy
+    SlackNotifierJob.perform_async(@re_private.id, "RePrivate", 'destroyed')
     @re_private.destroy
     redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
   end
