@@ -13,6 +13,7 @@ FactoryGirl.define do
     budget { Faker::Number.number(2).to_i }
     phone "1234567890"
     email { Faker::Internet.email }
+    approved true
 
     association :user
   end

@@ -15,8 +15,12 @@ class Partner < ActiveRecord::Base
   validates :budget, presence: true
   validates :email, presence: true
 
+  scope :approved, -> { where(approved: true) }
+
   def self.random(position, num)
-    where(position: position)
+    approved
+      .where(position: position)
+      .order("featured desc")
       .limit(num)
       .order("RANDOM()")
   end

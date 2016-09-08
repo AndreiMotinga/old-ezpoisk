@@ -38,6 +38,11 @@ class Post < ActiveRecord::Base
            .map { |key| "%#{key.mb_chars.downcase}%" }
   end
 
+  def self.category(category)
+    return all unless category.present?
+    where(category: category)
+  end
+
   def logo_url(style = :medium)
     image.url(style)
   end
