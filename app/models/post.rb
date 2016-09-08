@@ -31,7 +31,6 @@ class Post < ActiveRecord::Base
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :older, ->(date) { where("posts.created_at < ?", date) }
-  scope :category, ->(cat) { where(category: cat) }
 
   def self.convert_keyword(keyword)
     keyword.gsub(/[^0-9a-zа-я ]/i, "")

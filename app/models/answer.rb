@@ -12,7 +12,6 @@ class Answer < ActiveRecord::Base
   delegate :name_to_show, to: :user
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
-  scope :today, -> { where("created_at > ?", Time.zone.yesterday) }
 
   has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}

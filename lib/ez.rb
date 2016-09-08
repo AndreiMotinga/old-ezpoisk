@@ -19,6 +19,6 @@ class Ez
 
   def self.strip_html_tags(string)
     return "" unless string
-      ActionView::Base.full_sanitizer.sanitize(string)
+    ActionView::Base.full_sanitizer.sanitize(string)
   end
 end
