@@ -9,16 +9,16 @@ class Ez
     notifier.ping message
   end
 
-  def self.notify_about(record, type = nil)
-    type = type.present? ? type : "new"
+  def self.notify_about(record, type)
     name = record.class == User ? record.name_to_show : record.user.try(:name_to_show)
-    string = "#{type} | #{record.class} #{record.id} | author #{name}\n\n"
-    string += "#{strip_html_tags(record.text)}\n"
+    string = "#{type} #{record.class} #{record.id} | author #{name}\n\n"
+    string += "#{strip_html_tags(record.try(:text))}\n"
     string += "#{record.show_url}"
     notifier.ping(string)
   end
 
   def self.strip_html_tags(string)
+    return "" unless string
       ActionView::Base.full_sanitizer.sanitize(string)
   end
 end
