@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   include Filterable
   include ViewHelpers
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
-  validates :summary, presence: true, length: {  maximum: 400, minimum: 80 }
+  validates :summary, presence: true, length: {  maximum: 400, minimum: 30 }
   validates :text, presence: true
   CATEGORIES = %w(world home-news us top tech money science autonews entertainment travel
                  user).freeze

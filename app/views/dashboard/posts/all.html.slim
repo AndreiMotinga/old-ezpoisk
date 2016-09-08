@@ -1,6 +1,6 @@
 p Total #{@posts.size}
 
-form.form-horizontal action=posts_all_path method="get"
+form.form-horizontal action=all_dashboard_posts_path method="get"
   .row
     .col-xs-3
       = select_tag :category, options_for_select(ru(Post::CATEGORIES), params[:category]), class: "form-control"
@@ -16,7 +16,7 @@ table.table.table-striped
       td= link_to 'удалить', dashboard_post_path(post), method: :delete, remote: true
 
 br
-= form_tag posts_destroy_all_path, class: "form-horizontal", method: "post" do
+= form_tag destroy_all_dashboard_posts_path, class: "form-horizontal", method: "post" do
   input name="_method" type="hidden" value="delete"
   .row
     .col-xs-3
@@ -25,6 +25,6 @@ br
       = submit_tag "Удалить", name: nil, class: "btn mobile-btn"
 
 br/
-= link_to "Очистить", posts_destroy_all_path, method: :delete, class: "btn btn-danger"
+= link_to "Очистить", destroy_all_dashboard_posts_path, method: :delete, class: "btn btn-danger"
 = " "
-= link_to "Импортировать", posts_import_path, class: "btn btn-success"
+= link_to "Импортировать", import_dashboard_posts_path, class: "btn btn-success"

@@ -49,7 +49,15 @@ Rails.application.routes.draw do
     resources :profiles, only: [:edit, :update]
     resources :users, only: [:edit, :update]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
-    resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :posts, only: [:new, :create, :edit, :update, :destroy] do
+      authenticate :user, ->(u) { u.editor? } do
+        collection do
+          get "all"
+          get "import"
+          delete "destroy_all"
+        end
+      end
+    end
     resources :jobs, only: [:new, :create, :edit, :update, :destroy]
     resources :sales, only: [:new, :create, :edit, :update, :destroy]
     resources :services, only: [:new, :create, :edit, :update, :destroy]
@@ -74,16 +82,8 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticate :user, ->(u) { u.editor? } do
-    get 'posts/all', to: "posts#all"
-    get 'posts/import', to: "posts#import"
-    delete 'posts/destroy_all', to: "posts#destroy_all"
-  end
-
   resources :posts, only: [:index, :show] do
-    collection do
-      get "tag/:tag", to: "posts#tag", as: "post_tag"
-    end
+    get "tag/:tag", to: "posts#tag", as: "post_tag", on: :collection
   end
   resources :sales, only: [:index, :show]
   resources :services, only: [:index, :show]

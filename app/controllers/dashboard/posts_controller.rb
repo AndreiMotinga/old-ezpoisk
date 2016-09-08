@@ -2,11 +2,6 @@ class Dashboard::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:edit, :update, :destroy]
 
-  def index
-    @posts = current_user.posts
-    @posts = @posts.page(params[:page])
-  end
-
   def new
     @post = Post.new(category: "user")
   end
@@ -44,6 +39,28 @@ class Dashboard::PostsController < ApplicationController
       format.html { redirect_to dashboard_path, notice: I18n.t(:post_removed) }
       format.js
     end
+  end
+
+  def destroy_all
+    if params[:category]
+      Post.invisible.category(params[:category]).delete_all
+    else
+      Post.invisible.delete_all
+    end
+
+    redirect_to all_dashboard_posts_path
+  end
+
+  def all
+    @posts = Post.invisible
+                 .category(params[:category])
+                 .order('title desc')
+                 .today
+  end
+
+  def import
+    NewsImporterJob.perform_async
+    redirect_to all_dashboard_posts_path
   end
 
   private
