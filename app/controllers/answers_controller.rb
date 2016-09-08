@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
   def index
     @answers = Answer.includes(:user, :taggings)
                      .page(params[:page]).per(10)
-    IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
+    IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
@@ -16,7 +16,7 @@ class AnswersController < ApplicationController
     @answers = Answer.includes(:user, :taggings)
                      .tagged_with(params[:tag], any: true)
                      .page(params[:page])
-    IncreaseImpressionsJob.perform_async(@answers.pluck(:id), "Answer")
+    IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
 
     respond_to do |format|
       format.html { render :index }
@@ -26,8 +26,7 @@ class AnswersController < ApplicationController
 
   def show
     @answer = Answer.find(params[:id])
-    @new_comment = Comment.build_from(@answer, current_user.try(:id)|| 4, "")
-    IncreaseVisitsJob.perform_in(13.minutes, @answer.id, 'Answer')
+    IncreaseImpressionsJob.perform_in(1.minutes, [@answer.id], 'Answer')
   end
 
   def new
