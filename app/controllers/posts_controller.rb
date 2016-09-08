@@ -1,10 +1,7 @@
 class PostsController < ApplicationController
   def index
-    # remove keyword category
     @posts = Post.includes(:user, :taggings)
                  .visible
-                 .by_keyword(params[:keyword])
-                 .category(params[:category])
                  .desc
                  .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
@@ -45,7 +42,7 @@ class PostsController < ApplicationController
 
   def all
     @posts = Post.invisible
-                 .import_category(params[:category])
+                 .category(params[:category])
                  .order('title desc')
                  .today
   end

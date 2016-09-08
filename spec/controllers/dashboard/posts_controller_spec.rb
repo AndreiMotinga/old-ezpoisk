@@ -26,7 +26,6 @@ describe Dashboard::PostsController do
     end
   end
 
-
   describe "DELETE #destroy" do
     it "removes record and entry" do
       post = create(:post, user: @user)

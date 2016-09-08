@@ -16,9 +16,6 @@ class Post < ActiveRecord::Base
   delegate :avatar, to: :user
   has_one :entry, as: :enterable, dependent: :destroy
 
-  has_many :post_categories, dependent: :destroy
-  has_many :categories, through: :post_categories
-
   has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
@@ -33,23 +30,7 @@ class Post < ActiveRecord::Base
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
   scope :older, ->(date) { where("created_at < ?", date) }
-
-  def self.by_keyword(keyword)
-    return all if keyword.blank?
-    keys = convert_keyword(keyword)
-    query = "LOWER(title) ILIKE ANY (array[?]) OR LOWER(text) ILIKE ANY (array[?])"
-    where(query, keys, keys)
-  end
-
-  def self.import_category(category)
-    return all unless category.present?
-    where(category: category)
-  end
-
-  def self.category(category)
-    return all if category.blank?
-    joins(:categories).where("categories.name = ?", category)
-  end
+  scope :category, ->(cat) { where(category: cat) }
 
   def self.convert_keyword(keyword)
     keyword.gsub(/[^0-9a-zа-я ]/i, "")
