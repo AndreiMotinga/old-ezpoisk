@@ -14,6 +14,7 @@
 .answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel.panel-default
     .panel-heading
+      = render "answers/links", record: @answer
       h1.h1-title itemprop="name" = @answer.title
       .row.author
         .col-xs-3.col-sm-2
@@ -25,10 +26,6 @@
           h4.name itemprop="author" = @answer.name_to_show
           p.text-muted
             = "#{@answer.impressions_count} просмотров |  #{@answer.score} голосов "
-            br
-            - if @answer.user.can_edit?(current_user)
-              = link_to "редактировать", edit_question_answer_path(@answer.question, @answer), class: "text-muted qa-link"
-              = link_to 'удалить', answer_path(@answer), class: "text-muted qa-link", method: :delete, data: { confirm: I18n.t(:confirm) }
     .panel-body
       .post-body itemprop="description"
         - if @answer.image?
