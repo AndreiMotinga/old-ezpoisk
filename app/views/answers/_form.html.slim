@@ -6,7 +6,10 @@ br
   -  @answer.question.tag_list.each do |tag|
     = hidden_field_tag 'answer[tag_list][]', tag
 
-  .field= f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
+  .field
+    = f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
+  .field
+    = f.text_field :image_remote_url, label: "Картинка"
 
   br
   br

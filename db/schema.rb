@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908031605) do
+ActiveRecord::Schema.define(version: 20160908150851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,16 @@ ActiveRecord::Schema.define(version: 20160908031605) do
     t.text     "text"
     t.integer  "user_id"
     t.integer  "question_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "impressions_count", default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "impressions_count",  default: 0
     t.string   "slug"
-    t.integer  "visits",            default: 0
+    t.integer  "visits",             default: 0
     t.string   "title"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
@@ -53,8 +57,8 @@ ActiveRecord::Schema.define(version: 20160908031605) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.string   "enterable_type"
     t.integer  "enterable_id"
+    t.string   "enterable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -170,8 +174,8 @@ ActiveRecord::Schema.define(version: 20160908031605) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "imageable_type"
     t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -365,10 +369,10 @@ ActiveRecord::Schema.define(version: 20160908031605) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "taggable_type"
     t.integer  "taggable_id"
-    t.string   "tagger_type"
+    t.string   "taggable_type"
     t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -441,10 +445,10 @@ ActiveRecord::Schema.define(version: 20160908031605) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string   "votable_type"
     t.integer  "votable_id"
-    t.string   "voter_type"
+    t.string   "votable_type"
     t.integer  "voter_id"
+    t.string   "voter_type"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"

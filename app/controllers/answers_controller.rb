@@ -93,7 +93,8 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :question_id, :title, tag_list: [])
+    params.require(:answer).permit(:text, :question_id, :title,
+                                   :image_remote_url, tag_list: [])
   end
 
   def create_subscription

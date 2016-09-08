@@ -3,7 +3,7 @@
 
 = og_type("article")
 = og_url(answer_path(@answer))
-/= og_image(@answer.logo.url)
+= og_image(@answer.image.url(:medium))
 
 - content_for :sidebar do
   = link_to "Добавьте ответ",
@@ -31,6 +31,10 @@
               = link_to 'удалить', answer_path(@answer), class: "text-muted qa-link", method: :delete, data: { confirm: I18n.t(:confirm) }
     .panel-body
       .post-body itemprop="description"
+        - if @answer.image?
+          = image_tag @answer.image.url(:medium),
+                      class: "img-responsive center-block margin-bottom-10",
+                      alt: "Помощь русским в США - #{@answer.title}"
         /todo how to use markdown
         = raw @answer.text
       br
