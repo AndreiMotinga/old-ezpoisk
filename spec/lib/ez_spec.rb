@@ -26,7 +26,7 @@ describe Ez do
       stub_post = stub_request(:post, ENV["SLACK_URL"])
       re_private = build_stubbed(:re_private)
 
-      Ez.notify_about(re_private)
+      Ez.notify_about(re_private, "new")
 
       expect(stub_post).to have_requested(:post, ENV["SLACK_URL"])
     end
