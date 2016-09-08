@@ -27,5 +27,16 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     IncreaseVisitsJob.perform_in(14.minutes, @post.id, 'Post') if @post
+
+    @posts = Post.includes(:user, :taggings)
+                 .visible
+                 .older(@post.created_at)
+                 .desc
+                 .page(params[:page]).per(10)
+    IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
+    respond_to do |format|
+      format.html
+      format.js { render partial: "shared/index", locals: { records: @posts } }
+    end
   end
 end

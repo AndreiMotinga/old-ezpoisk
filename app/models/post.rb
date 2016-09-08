@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
   scope :desc, -> { order("posts.created_at desc") }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
-  scope :older, ->(date) { where("created_at < ?", date) }
+  scope :older, ->(date) { where("posts.created_at < ?", date) }
   scope :category, ->(cat) { where(category: cat) }
 
   def self.convert_keyword(keyword)
@@ -52,13 +52,5 @@ class Post < ActiveRecord::Base
 
   def active?
     true
-  end
-
-  def side_posts
-    # Post.joins(:categories)
-    #   .where(categories: {id:  categories.pluck(:id)})
-    #   .older(created_at)
-    #   .limit(9)
-    Post.older(created_at).limit(9)
   end
 end

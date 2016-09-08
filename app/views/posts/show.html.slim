@@ -44,7 +44,9 @@
 
 = render "shared/disqus"
 
-.side-posts
-  = render "posts/side_posts", posts: @post.side_posts
+.col-xs-12 data-id="listings"
+  = render @posts
 
-= render "shared/gads/leaderboard"
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @posts
