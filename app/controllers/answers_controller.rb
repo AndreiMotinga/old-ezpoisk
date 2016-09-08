@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:edit]
   before_action :set_answer, only: [:edit, :update, :destroy]
 
   def index
@@ -35,9 +35,10 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = current_user.answers.build(answer_params)
+    user = user_signed_in? ? current_user : User.find(4)
+    @answer = user.answers.build(answer_params)
     if @answer.save
-      run_create_notifications
+      run_create_notifications(user)
       redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))
     end
   end
@@ -77,14 +78,14 @@ class AnswersController < ApplicationController
 
   private
 
-  def run_create_notifications
+  def run_create_notifications(user)
     SlackNotifierJob.perform_async(@answer.id, "Answer")
     QuestionNotificatorJob.perform_async(question.id)
     FacebookNotifierJob.perform_in(11.minutes, @answer.id, "Answer")
     VkNotifierJob.perform_in(23.minutes, @answer.id, "Answer")
     question.increment!(:answers_count)
-    @answer.create_entry(user: current_user)
-    create_subscription
+    @answer.create_entry(user: user)
+    create_subscription(user)
   end
 
   def set_answer
@@ -97,14 +98,14 @@ class AnswersController < ApplicationController
                                    :image_remote_url, tag_list: [])
   end
 
-  def create_subscription
+  def create_subscription(user)
     return if Subscription.exists?(
-      user_id: current_user.id,
+      user_id: user.id,
       subscribable_id: @answer.id,
       subscribable_type: @answer.class.to_s
     )
     Subscription.create(
-      user_id: current_user.id,
+      user_id: user.id,
       subscribable_id: @answer.id,
       subscribable_type: @answer.class.to_s
     )
