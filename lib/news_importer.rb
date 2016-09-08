@@ -31,7 +31,7 @@ class NewsImporter
     <<-EOL
       ('#{USER_ID}',
        '#{item.title.gsub("'", "''")}',
-       '#{item.description.try(:gsub, "'", "''")}',
+       '#{conver_summary(item.description)}',
        '#{convert_link(item.link)}',
        '#{category}',
        '#{false}',
@@ -55,6 +55,12 @@ class NewsImporter
     url = url.gsub("https://news.yandex.ua/yandsearch?cl4url=", "")
     url = url.gsub("http://www.cnn.com", "http://edition.cnn.com/")
     URI.decode(url)
+  end
+
+  def self.conver_summary(text)
+    ActionView::Base.full_sanitizer
+                    .sanitize(text)
+                    .try(:gsub, "'", "''")
   end
 
   def self.links

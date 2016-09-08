@@ -6,8 +6,9 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :summary, presence: true, length: {  maximum: 400, minimum: 30 }
   validates :text, presence: true
-  CATEGORIES = %w(world home-news us top tech money science autonews entertainment travel
-                 user).freeze
+  CATEGORIES = %w(
+    world usa top tech money science autonews entertainment travel
+  ).freeze
 
   belongs_to :user
   belongs_to :state
