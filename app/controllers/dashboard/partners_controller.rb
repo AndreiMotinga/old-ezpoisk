@@ -12,26 +12,29 @@ class Dashboard::PartnersController < ApplicationController
                            email: current_user.email)
   end
 
-  def edit
-  end
-
-  def update
-    if @partner.update(ad_params)
-      redirect_to dashboard_partners_path
-    else
-      flash.now[:alert] = I18n.t(:post_not_saved)
-      render :edit
-    end
-  end
-
   def create
     @partner = current_user.partners.build(ad_params)
 
     if @partner.save
-      redirect_to dashboard_partners_path, notice: I18n.t(:post_saved)
+      SlackNotifierJob.perform_async(@partner.id, "Partner")
+      redirect_to dashboard_partners_path, notice: I18n.t(:we_contact_shortly)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    @partner.approved = false
+    if @partner.update(ad_params)
+      SlackNotifierJob.perform_async(@partner.id, "Partner", "Update")
+      redirect_to dashboard_partners_path, notice: I18n.t(:we_contact_shortly)
+    else
+      flash.now[:alert] = I18n.t(:post_not_saved)
+      render :edit
     end
   end
 

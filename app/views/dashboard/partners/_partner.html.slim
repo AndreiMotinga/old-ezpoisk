@@ -3,10 +3,7 @@ tr
   td= link_to partner.title, edit_dashboard_partner_path(partner)
   td= partner.impressions_count
   td= partner.clicks
-  td.text-center Активно
-  td Approved
+  td.text-center = partner.approved? ? "Активно" : "Рассматривается"
   td.text-center= link_to 'Удалить',
             dashboard_partner_path(partner),
-            method: :delete,
-            data: { confirm: I18n.t(:confirm) },
-            class: "mobile-btn btn-danger"
+            method: :delete, data: { confirm: I18n.t(:confirm) }
