@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907162446) do
+ActiveRecord::Schema.define(version: 20160908031605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,6 @@ ActiveRecord::Schema.define(version: 20160907162446) do
     t.string   "title"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -195,13 +191,6 @@ ActiveRecord::Schema.define(version: 20160907162446) do
     t.datetime "updated_at"
     t.index ["user_id", "author_id"], name: "index_points_on_user_id_and_author_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_points_on_user_id", using: :btree
-  end
-
-  create_table "post_categories", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "category_id"
-    t.index ["category_id"], name: "index_post_categories_on_category_id", using: :btree
-    t.index ["post_id"], name: "index_post_categories_on_post_id", using: :btree
   end
 
   create_table "posts", force: :cascade do |t|
@@ -477,8 +466,6 @@ ActiveRecord::Schema.define(version: 20160907162446) do
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "points", "users"
-  add_foreign_key "post_categories", "categories"
-  add_foreign_key "post_categories", "posts"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "re_privates", "cities"

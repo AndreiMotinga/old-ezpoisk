@@ -5,7 +5,6 @@ namespace :db do
   task load: :environment do
     create_states
     create_cities
-    create_categories
     puts "All Done"
     puts "States: #{State.count}"
     puts "Cities: #{City.count}"
@@ -59,33 +58,5 @@ namespace :db do
   def parsed_csv
     csv_text = File.read("public/us_cities_and_states.csv")
     CSV.parse(csv_text, headers: false)
-  end
-
-  def create_categories
-    categories = [
-      ["usa"],
-      ["chicago"],
-      ["los-angeles"],
-      ["miami"],
-      ["new-york"],
-      ["philadelphia"],
-      ["san-fransico"],
-      ["top"],
-      ["world"],
-      ["home-news"],
-      ["tech"],
-      ["money"],
-      ["science"],
-      ["autonews"],
-      ["entertainment"],
-      ["travel"],
-      ["politics"],
-      ["cooking"],
-      ["animals"],
-      ["user"]
-    ]
-    categories.each do |category|
-      Category.create(name: category[0])
-    end
   end
 end
