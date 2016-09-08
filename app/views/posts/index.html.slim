@@ -2,10 +2,9 @@
 = desc("Новости русской иммиграции в США. Информцаия о наших от Бостона до Сан Франциско")
 
 - content_for :sidebar do
-  = render("posts/sidebar", klass: "desktop")
+  = render("posts/tag_cloud")
 
 .col-xs-12 data-id="listings"
-  = render "posts/mobile"
   = render @posts
 
 .row
