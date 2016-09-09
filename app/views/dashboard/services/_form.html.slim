@@ -1,57 +1,60 @@
-= bootstrap_form_for([:dashboard, @service]) do |f|
-  = hidden_field_tag :token, params[:token]
-  .row
-    .col-xs-12.col-sm-6
-      = f.select :category,
-                  ru(SERVICE_SUBCATEGORIES.keys),
-                  { include_blank: true, label: '* Раздел' },
-                  class: "category-select",
-                  "data-type": "Service"
-    .col-xs-12.col-sm-6
-      - if @service.category
-        = f.select :subcategory,
-                   ru(SERVICE_SUBCATEGORIES[@service.category]),
-                   { label: '* Категория' },
-                   class: "subcategory-select"
-      - else
-        = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
+.white-block
+  .panel
+    .panel-body
+      = bootstrap_form_for([:dashboard, @service]) do |f|
+        = hidden_field_tag :token, params[:token]
+        .row
+          .col-xs-12.col-sm-6
+            = f.select :category,
+                        ru(SERVICE_SUBCATEGORIES.keys),
+                        { include_blank: true, label: '* Раздел' },
+                        class: "category-select",
+                        "data-type": "Service"
+          .col-xs-12.col-sm-6
+            - if @service.category
+              = f.select :subcategory,
+                         ru(SERVICE_SUBCATEGORIES[@service.category]),
+                         { label: '* Категория' },
+                         class: "subcategory-select"
+            - else
+              = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
 
-  = f.text_field :title, label: '* Заголовок / Название'
-  = f.text_area :text, rows: 5, label: 'Описание'
+        = f.text_field :title, label: '* Заголовок / Название'
+        = f.text_area :text, rows: 5, label: 'Описание'
 
-  hr.white-hr
+        hr.white-hr
 
-  = f.text_field :street, label: 'Улица *'
-  .row
-    .col-xs-12.col-sm-6
-      = form_state_select(f)
-    .col-xs-12.col-sm-6
-      = form_city_select(f, @service)
-  hr.white-hr
+        = f.text_field :street, label: 'Улица *'
+        .row
+          .col-xs-12.col-sm-6
+            = form_state_select(f)
+          .col-xs-12.col-sm-6
+            = form_city_select(f, @service)
+        hr.white-hr
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.number_field :phone, label: '* Телефон'
-    .col-xs-12.col-sm-6
-      = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
+        .row
+          .col-xs-12.col-sm-6
+            = f.number_field :phone, label: '* Телефон'
+          .col-xs-12.col-sm-6
+            = f.text_field :site, label: 'Сайт', placeholder: "Пример: www.ezpoisk.com"
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.email_field :email
-    .col-xs-12.col-sm-6
-      = f.text_field :fax, label: 'Факс'
-  .row
-    .col-xs-6.col-sm-4
-      = f.check_box :active, label: "Активно *"
+        .row
+          .col-xs-12.col-sm-6
+            = f.email_field :email
+          .col-xs-12.col-sm-6
+            = f.text_field :fax, label: 'Факс'
+        .row
+          .col-xs-6.col-sm-4
+            = f.check_box :active, label: "Активно *"
 
-  = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-  - unless @service.new_record?
-    = link_to "Удалить",
-              dashboard_service_path(@service, token: params[:token]),
-              method: :delete,
-              data: { confirm: I18n.t(:confirm) },
-              class: "btn mobile-btn btn-danger pull-right"
-br
-p
-  strong Активно * -
-  = t :active_tooltip
+        = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+        - unless @service.new_record?
+          = link_to "Удалить",
+                    dashboard_service_path(@service, token: params[:token]),
+                    method: :delete,
+                    data: { confirm: I18n.t(:confirm) },
+                    class: "btn mobile-btn btn-danger pull-right"
+      br
+      p
+        strong Активно * -
+        = t :active_tooltip

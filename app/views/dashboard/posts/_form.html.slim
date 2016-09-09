@@ -1,31 +1,34 @@
-= bootstrap_form_for([:dashboard, @post]) do |f|
-  = f.text_field :image_remote_url, label: "Фото"
-  = f.text_field :title, label: "* Заголовок"
-  = f.text_area :summary, rows: 3, label: "* Описание (80-400 симоволов)"
-  = f.text_area :text, rows: 20, label: "* Текст", class: "summernote post-body"
-  br
-  br
+.white-block
+  .panel
+    .panel-body
+      = bootstrap_form_for([:dashboard, @post]) do |f|
+        = f.text_field :image_remote_url, label: "Фото"
+        = f.text_field :title, label: "* Заголовок"
+        = f.text_area :summary, rows: 3, label: "* Описание (80-400 симоволов)"
+        = f.text_area :text, rows: 20, label: "* Текст", class: "summernote post-body"
+        br
+        br
 
-  .row
-    .col-sm-12
-      = label_tag "Тэги", nil
-      = collection_select :post,
-        :tag_list,
-        ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
-        { :selected => @post.tag_list },
-        { :multiple => true, :name => 'post[tag_list][]', class: "q-select my-dropdown" }
-    - if @post.errors[:tag_list].any?
-      ul.list-group-item-danger
-        li Добавьте тэги
+        .row
+          .col-sm-12
+            = label_tag "Тэги", nil
+            = collection_select :post,
+              :tag_list,
+              ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
+              { :selected => @post.tag_list },
+              { :multiple => true, :name => 'post[tag_list][]', class: "q-select my-dropdown" }
+          - if @post.errors[:tag_list].any?
+            ul.list-group-item-danger
+              li Добавьте тэги
 
-  .row
-    .col-sm-3
-      = f.check_box :visible
-  br
-  br
-  .actions
-    = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-    = " "
-    - unless @post.new_record?
-      = link_to 'Удалить', dashboard_post_path(@post), method: :delete, data: { confirm: I18n.t(:confirm) }, class: "btn mobile-btn btn-danger"
-br
+        .row
+          .col-sm-3
+            = f.check_box :visible
+        br
+        br
+        .actions
+          = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+          = " "
+          - unless @post.new_record?
+            = link_to 'Удалить', dashboard_post_path(@post), method: :delete, data: { confirm: I18n.t(:confirm) }, class: "btn mobile-btn btn-danger"
+      br

@@ -1,18 +1,19 @@
-h1.h1-title= @answer.question.title
-br
-= bootstrap_form_for @answer do |f|
-  = hidden_field_tag 'answer[question_id]', @answer.question.id
-  = hidden_field_tag 'answer[title]', @answer.question.title
-  -  @answer.question.tag_list.each do |tag|
-    = hidden_field_tag 'answer[tag_list][]', tag
+.white-block
+  .panel
+    .panel-body
+      h1.h1-title= @answer.question.title
+      br
+      = bootstrap_form_for @answer do |f|
+        = hidden_field_tag 'answer[question_id]', @answer.question.id
+        = hidden_field_tag 'answer[title]', @answer.question.title
+        -  @answer.question.tag_list.each do |tag|
+          = hidden_field_tag 'answer[tag_list][]', tag
 
-  .field
-    = f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
-  .field
-    = f.text_field :image_remote_url, label: "Картинка"
+        .field
+          = f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
+        .field
+          = f.text_field :image_remote_url, label: "Картинка"
 
-  br
-  br
-  .actions
-    = f.submit 'Сохранить', class: "btn mobile-btn"
-br/
+        br
+        .actions
+          = f.submit 'Сохранить', class: "btn mobile-btn"

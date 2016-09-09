@@ -1,66 +1,69 @@
-= bootstrap_form_for([:dashboard, @re_private]) do |f|
-  = hidden_field_tag :token, params[:token]
-  -  if current_user.try(:admin?)
-    = f.text_field :source, label: "источник"
-  = f.text_area :text, rows: 5, label: 'Описание'
-  = f.text_field :street, label: 'Улица'
+.white-block
+  .panel
+    .panel-body
+      = bootstrap_form_for([:dashboard, @re_private]) do |f|
+        = hidden_field_tag :token, params[:token]
+        -  if current_user.try(:admin?)
+          = f.text_field :source, label: "источник"
+        = f.text_area :text, rows: 5, label: 'Описание'
+        = f.text_field :street, label: 'Улица'
 
-  .row
-    .col-xs-12.col-sm-6
-      = form_state_select(f)
-    .col-xs-12.col-sm-6
-      = form_city_select(f, @re_private)
+        .row
+          .col-xs-12.col-sm-6
+            = form_state_select(f)
+          .col-xs-12.col-sm-6
+            = form_city_select(f, @re_private)
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.number_field :phone, label: 'Телефон'
-    .col-xs-12.col-sm-6
-      = f.email_field :email, label: 'Email'
-  hr.white-hr
+        .row
+          .col-xs-12.col-sm-6
+            = f.number_field :phone, label: 'Телефон'
+          .col-xs-12.col-sm-6
+            = f.email_field :email, label: 'Email'
+        hr.white-hr
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.select :post_type, ru(RePrivate::TYPES), label: '* Тип объявления'
-    .col-xs-12.col-sm-6
-      = f.select :category,
-                 ru(RePrivate::CATEGORIES),
-                 {}, "data-id": "re_private_category", label: "* Категория"
+        .row
+          .col-xs-12.col-sm-6
+            = f.select :post_type, ru(RePrivate::TYPES), label: '* Тип объявления'
+          .col-xs-12.col-sm-6
+            = f.select :category,
+                       ru(RePrivate::CATEGORIES),
+                       {}, "data-id": "re_private_category", label: "* Категория"
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.number_field :price, label: 'Цена'
-    .col-xs-12.col-sm-6
-      = f.number_field :space, label: "Площадь (sq. feet)"
-  hr.white-hr
+        .row
+          .col-xs-12.col-sm-6
+            = f.number_field :price, label: 'Цена'
+          .col-xs-12.col-sm-6
+            = f.number_field :space, label: "Площадь (sq. feet)"
+        hr.white-hr
 
-  .row data-id="apartment_fields"
-    .col-xs-12.col-sm-4
-      = f.select :rooms, ru(RePrivate::ROOMS), label: "* Комнат"
-    .col-xs-12.col-sm-4
-      = f.select :duration, ru(RePrivate::DURATION), label: "Продолжительность"
-    .col-xs-12.col-sm-4
-      = f.number_field :baths, label: 'Ванные'
+        .row data-id="apartment_fields"
+          .col-xs-12.col-sm-4
+            = f.select :rooms, ru(RePrivate::ROOMS), label: "* Комнат"
+          .col-xs-12.col-sm-4
+            = f.select :duration, ru(RePrivate::DURATION), label: "Продолжительность"
+          .col-xs-12.col-sm-4
+            = f.number_field :baths, label: 'Ванные'
 
-  .row
-    .col-xs-6.col-sm-4
-      = f.check_box :active, label: "Активно *"
-    .col-xs-6.col-sm-4
-      = f.check_box :fee, label: "Комиссия *"
+        .row
+          .col-xs-6.col-sm-4
+            = f.check_box :active, label: "Активно *"
+          .col-xs-6.col-sm-4
+            = f.check_box :fee, label: "Комиссия *"
 
-  br
-  .actions
-    = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-    - unless @re_private.new_record?
-      = link_to "Удалить",
-                dashboard_re_private_path(@re_private, token: params[:token]),
-                method: :delete,
-                data: { confirm: I18n.t(:confirm) },
-                class: "btn mobile-btn btn-danger pull-right"
+        br
+        .actions
+          = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+          - unless @re_private.new_record?
+            = link_to "Удалить",
+                      dashboard_re_private_path(@re_private, token: params[:token]),
+                      method: :delete,
+                      data: { confirm: I18n.t(:confirm) },
+                      class: "btn mobile-btn btn-danger pull-right"
 
-br
-p
-  strong Активно * -
-  = t :active_tooltip
-p
-  strong Комиссия * -
-  = t :active_tooltip
+      br
+      p
+        strong Активно * -
+        = t :active_tooltip
+      p
+        strong Комиссия * -
+        = t :active_tooltip

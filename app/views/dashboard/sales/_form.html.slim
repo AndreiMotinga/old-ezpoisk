@@ -1,41 +1,44 @@
-= bootstrap_form_for([:dashboard, @sale]) do |f|
-  = hidden_field_tag :token, params[:token]
-  -  if current_user.try(:admin?)
-    = f.text_field :source, label: "источник"
-  = f.text_field :title, label: '* Заголовок'
-  = f.text_area :text, rows: 5, label: 'Описание'
-  hr.white-hr
+.white-block
+  .panel
+    .panel-body
+      = bootstrap_form_for([:dashboard, @sale]) do |f|
+        = hidden_field_tag :token, params[:token]
+        -  if current_user.try(:admin?)
+          = f.text_field :source, label: "источник"
+        = f.text_field :title, label: '* Заголовок'
+        = f.text_area :text, rows: 5, label: 'Описание'
+        hr.white-hr
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.select :category, ru(SALE_CATEGORIES), include_blank: true, label: '* Категория'
-    .col-xs-12.col-sm-6
-      = f.number_field :price, label: 'Цена'
+        .row
+          .col-xs-12.col-sm-6
+            = f.select :category, ru(SALE_CATEGORIES), include_blank: true, label: '* Категория'
+          .col-xs-12.col-sm-6
+            = f.number_field :price, label: 'Цена'
 
-  .row
-    .col-xs-12.col-sm-6
-      = f.number_field :phone, label: 'Телефон'
-    .col-xs-12.col-sm-6
-      = f.email_field :email
+        .row
+          .col-xs-12.col-sm-6
+            = f.number_field :phone, label: 'Телефон'
+          .col-xs-12.col-sm-6
+            = f.email_field :email
 
-  .row
-    .col-xs-12.col-sm-6
-      = form_state_select(f)
-    .col-xs-12.col-sm-6
-      = form_city_select(f, @sale)
-  = f.text_field :street, label: 'Улица'
+        .row
+          .col-xs-12.col-sm-6
+            = form_state_select(f)
+          .col-xs-12.col-sm-6
+            = form_city_select(f, @sale)
+        = f.text_field :street, label: 'Улица'
 
 
-  = f.check_box :active, label: "Активно *"
-  = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-  - unless @sale.new_record?
-    = link_to "Удалить",
-              dashboard_sale_path(@sale, token: params[:token]),
-              method: :delete,
-              data: { confirm: I18n.t(:confirm) },
-              class: "btn mobile-btn btn-danger pull-right"
+        = f.check_box :active, label: "Активно *"
+        = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+        - unless @sale.new_record?
+          = link_to "Удалить",
+                    dashboard_sale_path(@sale, token: params[:token]),
+                    method: :delete,
+                    data: { confirm: I18n.t(:confirm) },
+                    class: "btn mobile-btn btn-danger pull-right"
 
-br
-p
-  strong Активно * - #{" "}
-  = t :active_tooltip
+      br
+      p
+        strong Активно * - #{" "}
+        = t :active_tooltip
