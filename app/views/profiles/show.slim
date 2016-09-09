@@ -8,7 +8,6 @@
 - content_for :profile_cover, render("profiles/cover")
 - content_for :sidebar, render("profiles/sidebar")
 
-= render "shared/social", count: nil, inline: true
 = render "profiles/mob_menu"
 
 .profile
@@ -21,3 +20,7 @@
         - else
           p Пользователь не продаставил информации о себе
 
+  = render "shared/social", count: nil, inline: true
+
+  = render "profiles/show/personal"
+  = render "profiles/show/map"

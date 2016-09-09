@@ -8,9 +8,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  def contacts
-  end
-
   def posts
     @posts = @user.posts.page(params[:page])
     respond_to do |format|
@@ -21,7 +18,7 @@ class ProfilesController < ApplicationController
 
   def listings
     @listings = Entry.where(user_id: @user.id)
-                     .where.not(enterable_type: ["Post", "Question"])
+                     .where.not(enterable_type: ["Post", "Answer", "Question"])
                      .includes(enterable: [:state, :city])
                      .page(params[:page])
     respond_to do |format|
@@ -31,7 +28,7 @@ class ProfilesController < ApplicationController
   end
 
   def answers
-    @answers = @user.answers.includes(question: :taggings).page(params[:page])
+    @answers = @user.answers.includes(:taggings).page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
