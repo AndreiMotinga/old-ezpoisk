@@ -1,4 +1,7 @@
 .partner {
+  &:hover {
+    background-color: $grey_d;
+  }
   a { text-decoration: none; }
   span { display: block; }
 
