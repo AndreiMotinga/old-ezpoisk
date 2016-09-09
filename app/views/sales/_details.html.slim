@@ -1,9 +1,12 @@
-.col-xs-12
-  li.list-group-item
-    h2.h1-side-block Продается #{t @sale.category}
-  li.list-group-item
-    | Цена
-    span.pull-right #{@sale.price}
-  li.list-group-item
-    | Подано
-    span.pull-right #{time_ago_in_words @sale.created_at} назад
+.right-block.white-block
+  .panel.panel-default
+    .panel-body
+      ul.list-group
+        li.list-group-item
+          h2.h1-side-block Продается #{t @sale.category}
+        li.list-group-item
+          | Цена
+          span.pull-right #{@sale.price}
+        li.list-group-item
+          | Подано
+          span.pull-right #{time_ago_in_words @sale.created_at} назад
