@@ -13,6 +13,7 @@ class DataAggregator
   end
 
   def message
+    # | Users             | #{User.count}      | #{@users_goal}      | #{User.week.count}                         | #{User.today.count}
     <<-eos
     Статистика
      ---------------------------------------------------------------------------------------------
@@ -20,7 +21,6 @@ class DataAggregator
      ---------------------------------------------------------------------------------------------
     | Объявления | #{@listings_count}   | #{@listings_goal}      | #{this_week}                     | #{this_day}
     | Ответы         | #{Answer.count}      | #{@answer_goal}        | #{Answer.week.count}                         | #{Answer.today.count}
-    | Users             | #{User.count}      | #{@users_goal}      | #{User.week.count}                         | #{User.today.count}
      eos
   end
 
