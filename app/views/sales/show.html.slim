@@ -39,7 +39,7 @@ div itemscope="" itemtype="http://schema.org/Product"
   .col-xs-12
     = render 'shared/show/map', record: @sale
 
-  = render "shared/comments", commentable: @sale, new_comment: @new_comment
+  = render "shared/disqus"
 
   .visible-xs
     = render "shared/show/contacts", record: @sale
