@@ -41,11 +41,11 @@ ul.list-group.panel
       i.fa.fa-question
     | Ответы
 
-  /= link_to about_path, class: "list-group-item" do
-  /  span.sidebar-icon
-  /    i.fa.fa-users
-  /  | Включайся
-  /
+  = link_to dashboard_partners_path, class: "list-group-item" do
+    span.sidebar-icon
+      i.fa.fa-feed
+    | Реклама
+
   /= link_to contacts_path, class: "list-group-item", "data-turbolinks": false do
   /  span.sidebar-icon
   /    i.fa.fa-phone
