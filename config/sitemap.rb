@@ -134,12 +134,12 @@ SitemapGenerator::Sitemap.create do
   #
   ##############################################################
 
-  add posts_path, priority: 0.8, changefreq: "daily"
-  Post.visible.find_each do |post|
-    add post_path(post),
-        priority: 0.6,
-        lastmod: post.updated_at
-  end
+  # add posts_path, priority: 0.8, changefreq: "daily"
+  # Post.visible.find_each do |post|
+  #   add post_path(post),
+  #       priority: 0.6,
+  #       lastmod: post.updated_at
+  # end
 
   ##############################################################
   #
