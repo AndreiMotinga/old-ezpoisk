@@ -1,6 +1,4 @@
-<% unless current_user.try(:team_member?)  %>
-  ga('send', 'pageview');
-<% end %>
+ga('send', 'pageview');
 
 $("[data-id='leaderboard']").remove();
 $("[data-id='listings']").append("<%= j render('shared/gads/leaderboard') %>");
