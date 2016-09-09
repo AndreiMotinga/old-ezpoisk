@@ -1,52 +1,46 @@
-.row
-  div
+/! Nav tabs
+ul.nav.nav-tabs.mobile-nav-tabs.text-center role="tablist"
+  li.text-center.active role="presentation"
+    a aria-controls="listings" data-toggle="tab" href="#listings" role="tab" Объявления
+  li.text-center role="presentation"
+    - if user_signed_in?
+      a aria-controls="profile" data-toggle="tab" href="#profile" role="tab" Аккаунт
+    - else
+      = link_to t(:sign_in), "", "data-target": "#new_session_modal",
+                "data-toggle": "modal", role: "button", id: "login_link",
+                rel: "nofollow"
 
-    /! Nav tabs
-    ul.nav.nav-tabs.mobile-nav-tabs.text-center role="tablist"
-      li.text-center.active role="presentation"
-        a aria-controls="listings" data-toggle="tab" href="#listings" role="tab" Объявления
-      li.text-center role="presentation"
-        - if user_signed_in?
-          a aria-controls="profile" data-toggle="tab" href="#profile" role="tab" Аккаунт
-        - else
-          = link_to t(:sign_in), "", "data-target": "#new_session_modal",
-                    "data-toggle": "modal", role: "button", id: "login_link",
-                    rel: "nofollow"
+/! Tab panes
+.tab-content.margin-bottom-10
+  br/
+  #listings.tab-pane.active role="tabpanel"
+    .panel.list-group
+      = link_to "Недвижимость", re_privates_path, class: "list-group-item mobile-link"
+      = link_to "Работа", jobs_path, class: "list-group-item mobile-link"
+      = link_to "Продается", sales_path, class: "list-group-item mobile-link"
+      = link_to "Услуги", services_path, class: "list-group-item mobile-link"
 
-    /! Tab panes
-    .tab-content
-      br/
-      #listings.tab-pane.active role="tabpanel"
-        .panel.list-group
-          = link_to "Недвижимость", re_privates_path, class: "list-group-item mobile-link"
-          = link_to "Работа", jobs_path, class: "list-group-item mobile-link"
-          = link_to "Продается", sales_path, class: "list-group-item mobile-link"
-          = link_to "Услуги", services_path, class: "list-group-item mobile-link"
+      = link_to posts_path, class: "mobile-link" do
+        li.list-group-item Новости
+      = link_to answers_path, class: "mobile-link" do
+        li.list-group-item Ответы
+      = link_to dashboard_partners_path, class: "mobile-link" do
+        li.list-group-item  Реклама
 
-          = link_to posts_path, class: "mobile-link" do
-            li.list-group-item Новости
-          = link_to answers_path, class: "mobile-link" do
-            li.list-group-item Ответы
-          = link_to dashboard_partners_path, class: "mobile-link" do
-            li.list-group-item  Реклама
-
-      #profile.tab-pane role="tabpanel"
-        - if user_signed_in?
-          ul.list-group
-            = link_to profile_path(current_user) do
-              li.list-group-item.mobile-link Моя страница
-            = link_to dashboard_path do
-              li.list-group-item.mobile-link Мои объявления
-            = link_to dashboard_posts_path do
-              li.list-group-item.mobile-link Мои новости
-            = link_to dashboard_favorites_path do
-              li.list-group-item.mobile-link Избранное
-            = link_to edit_dashboard_user_path(current_user), "data-turbolinks": false do
-              li.list-group-item.mobile-link Мои настройки
-          ul.list-group
-            = link_to main_app.destroy_user_session_path, method: :delete do
-              li.list-group-item.mobile-link Выйти
-
-br
+  #profile.tab-pane role="tabpanel"
+    - if user_signed_in?
+      ul.list-group
+        = link_to profile_path(current_user) do
+          li.list-group-item.mobile-link Моя страница
+        = link_to dashboard_path do
+          li.list-group-item.mobile-link Мои объявления
+        = link_to dashboard_posts_path do
+          li.list-group-item.mobile-link Мои новости
+        = link_to dashboard_favorites_path do
+          li.list-group-item.mobile-link Избранное
+        = link_to edit_dashboard_user_path(current_user), "data-turbolinks": false do
+          li.list-group-item.mobile-link Мои настройки
+      ul.list-group
+        = link_to main_app.destroy_user_session_path, method: :delete do
+          li.list-group-item.mobile-link Выйти
 = render "shared/social", count: nil, url: "https://www.ezpoisk.com", inline: true
-br

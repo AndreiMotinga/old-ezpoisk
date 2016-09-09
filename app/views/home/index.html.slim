@@ -13,11 +13,11 @@
             week: Entry.week.count,
             total: Entry.count)
 / MOBILE
-.visible-xs.col-xs-12
-  = render "home/mobile_index"
+.row
+  .visible-xs.col-xs-12
+    = render "home/mobile_index"
 
-.hidden-xs.col-sm-12 data-id="listings"
-  / DESKTOP
+.col-sm-12 data-id="listings"
   = render @entries
 
 .row

@@ -14,7 +14,7 @@ class Dashboard::PartnersController < ApplicationController
 
   def create
     @partner = current_user.partners.build(ad_params)
-
+    @partner.approved = true if current_user.admin?
     if @partner.save
       SlackNotifierJob.perform_async(@partner.id, "Partner")
       redirect_to dashboard_partners_path, notice: I18n.t(:we_contact_shortly)
@@ -28,7 +28,7 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def update
-    @partner.approved = false
+    @partner.approved = false unless current_user.admin?
     if @partner.update(ad_params)
       SlackNotifierJob.perform_async(@partner.id, "Partner", "Update")
       redirect_to dashboard_partners_path, notice: I18n.t(:we_contact_shortly)
