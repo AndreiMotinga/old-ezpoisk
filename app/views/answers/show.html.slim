@@ -42,17 +42,18 @@
             = current_user.voted_for?(@answer) ? voted_answer_btn(@answer) : upvote_answer_btn(@answer)
             = " "
             = link_to "Downvote", downvote_answer_path(@answer), method: :put, remote: true, class: "btn btn-xs btn-vote margin-bottom-10"
-
           - else
             = link_to "Войдите, что бы голосовать", "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"
+          br
+          = link_to "коментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
+
         .col-xs-12.col-md-7
           = render "shared/social", count: nil, inline: true
 
+br
 .col-xs-12.col-md-6.col-md-offset-3
   = link_to "Просмотреть другие ответы",
             @answer.question,
             class: "btn mobile-btn btn-block other-answers"
-
-= render "shared/gads/leaderboard"
 
 = render "shared/disqus"
