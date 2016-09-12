@@ -1,20 +1,16 @@
 .row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
   .listing
-    .col-xs-4.logo
+    .col-xs-12.col-sm-4.logo
       = link_to re_private_path(re_private) do
         img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
           alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
 
-        - if !re_private.fee && re_private.post_type == "leasing"
-          .hidden-xs
-            h4.capture.capture-desktop.text-center Без комиссии
-          .visible-xs.capture
-            h5.capture.text-center $
+        /- if !re_private.fee && re_private.post_type == "leasing"
+        /  h4.capture.capture-desktop.text-center Без комиссии
 
-    .col-xs-8
+    .col-xs-12.col-sm-8
       = render "shared/favor_links", record: re_private
-      h4.title.hidden-xs= re_private.title
-      h5.title.visible-xs= re_private.title
+      h4.title= re_private.title
 
       / line 2
       span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}
