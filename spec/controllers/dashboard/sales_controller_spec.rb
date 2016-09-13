@@ -45,6 +45,8 @@ describe Dashboard::SalesController do
           edit_dashboard_sale_path(sale)
         )
         expect(sale.title).to eq attrs[:title]
+        expect(sale.vk).to eq attrs[:vk]
+        expect(sale.fb).to eq attrs[:fb]
         expect(sale.user).to eq @user
         expect(flash[:notice]).to eq I18n.t(:post_created)
 

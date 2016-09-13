@@ -11,6 +11,8 @@ FactoryGirl.define do
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
+    vk { Faker::Internet.email }
+    fb { Faker::Internet.email }
 
     association :user
 

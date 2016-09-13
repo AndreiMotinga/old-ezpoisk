@@ -9,6 +9,8 @@ FactoryGirl.define do
     lat { Faker::Address.latitude }
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
+    vk { Faker::Internet.email }
+    fb { Faker::Internet.email }
 
     state_id 32
     city_id 18_031

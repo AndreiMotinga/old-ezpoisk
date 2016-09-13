@@ -47,6 +47,8 @@ describe Dashboard::JobsController do
           edit_dashboard_job_path(job)
         )
         expect(job.title).to eq attrs[:title]
+        expect(job.vk).to eq attrs[:vk]
+        expect(job.fb).to eq attrs[:fb]
         expect(job.user).to eq @user
         expect(flash[:notice]).to eq I18n.t(:post_created)
 

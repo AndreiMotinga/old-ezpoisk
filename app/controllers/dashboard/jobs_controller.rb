@@ -95,6 +95,6 @@ class Dashboard::JobsController < ApplicationController
     params.require(:job).permit(:title, :phone, :email, :text,
                                 :active, :street, :state_id, :city_id,
                                 :logo, :category, :subcategory, :source,
-                                tag_list: [])
+                                :vk, :fb, tag_list: [])
   end
 end

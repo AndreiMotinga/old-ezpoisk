@@ -2,9 +2,11 @@
   .panel
     .panel-body
       = bootstrap_form_for([:dashboard, @sale]) do |f|
-        = hidden_field_tag :token, params[:token]
-        -  if current_user.try(:admin?)
-          = f.text_field :source, label: "источник"
+        .row
+          .col-xs-12.col-sm-6
+            = f.text_field :vk, label: 'Я вконтакте'
+          .col-xs-12.col-sm-6
+            = f.text_field :fb, label: 'Я в facebook'
         = f.text_field :title, label: '* Заголовок'
         = f.text_area :text, rows: 5, label: 'Описание'
         hr.white-hr
