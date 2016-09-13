@@ -1,0 +1,7 @@
+.col-xs-12 data-id="listings"
+  = render @posts
+
+- if @posts.empty?
+  .col-xs-12= render "shared/no_posts_message"
+- else
+  .text-center= paginate @posts, param_name: "posts_page"

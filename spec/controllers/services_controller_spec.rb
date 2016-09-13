@@ -54,7 +54,7 @@ describe ServicesController do
         expect(assigns(:services).size).to eq 2
       end
 
-      it "returns records according to priority" do
+      xit "returns records according to priority" do
         create :service, :job_agency, title: "third", priority: 0
         create :service, :job_agency, title: "second", priority: 1
         create :service, :job_agency, title: "first", priority: 2

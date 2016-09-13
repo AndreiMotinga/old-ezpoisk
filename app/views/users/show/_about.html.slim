@@ -1,0 +1,10 @@
+= render "shared/social", count: nil, inline: true
+
+.profile
+  .white-block
+    .panel.panel-default
+      .panel-body
+        - if @user.about?
+          .text.answer= markdown @user.about
+        - else
+          p Пользователь не продаставил информации о себе

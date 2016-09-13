@@ -3,7 +3,7 @@ p Привет #{@user.name_to_show},
 p
   | Мы рады сообщить, что
   = " "
-  = link_to "Ваш профайл", profile_url(@user)
+  = link_to "Ваш профайл", user_url(@user)
   = " "
   | начинает пользоваться популярностью.
   br

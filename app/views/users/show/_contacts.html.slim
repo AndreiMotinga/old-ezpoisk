@@ -1,0 +1,38 @@
+.white-block
+  .panel
+    .panel-heading
+      h4.title Контакты
+    .panel-body
+      table.table.table-hover.text-center
+        tr
+          td email
+          td: a href="mailto:#{@user.email}" =@user.email
+
+        - if @user.phone?
+          tr
+            td phone
+            td= @user.phone
+
+        - if @user.site?
+          tr
+            td website
+            td= link_to @user.site, site_link(@user.site), target: "_blank", rel: "nofollow"
+      hr
+      span.social
+        - if @user.facebook?
+          = link_to @user.facebook, rel: "nofollow" do
+            i.fa.fa-lg.fa-facebook
+        - if @user.vk?
+          = link_to @user.vk, rel: "nofollow" do
+            i.fa.fa-lg.fa-vk
+        - if @user.twitter?
+          = link_to @user.twitter, rel: "nofollow" do
+            i.fa.fa-lg.fa-twitter
+        - if @user.google?
+          = link_to @user.google, rel: "nofollow" do
+            i.fa.fa-lg.fa-google-plus
+        - if @user.ok?
+          = link_to @user.ok, rel: "nofollow" do
+            i.fa.fa-lg.fa-odnoklassniki
+
+= render "users/show/map"

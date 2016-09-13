@@ -8,16 +8,10 @@ Rails.application.routes.draw do
   post "favorites/touch", to: "favorites#touch"
 
   resources :comments, only: [:create]
-
-  get "profiles/:id", to: "profiles#show", as: :profile
-  get "profiles/:id/posts", to: "profiles#posts", as: :profile_posts
-  get "profiles/:id/listings", to: "profiles#listings", as: :profile_listings
-  get "profiles/:id/answers", to: "profiles#answers", as: :profile_answers
-  get "profiles/:id/gallery", to: "profiles#gallery", as: :profile_gallery
-
   resources :points, only: [:create]
   resources :subscriptions, only: [:create, :destroy]
 
+  resources :users, only: [:show]
   resources :questions, except: [:destroy] do
     collection do
       get "tag/:tag", to: "questions#tag"
@@ -45,7 +39,6 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: [:show]
   namespace :dashboard do
-    resources :profiles, only: [:edit, :update]
     resources :users, only: [:edit, :update]
     resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
     resources :posts, only: [:new, :create, :edit, :update, :destroy] do

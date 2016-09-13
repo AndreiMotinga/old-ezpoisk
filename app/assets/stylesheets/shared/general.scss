@@ -285,3 +285,10 @@ textarea { resize: vertical; }
   color: #eee;
   background-color: #222;
 }
+
+span.social {
+  .fa {
+    min-width: 0;
+    margin: 0 5px;
+  }
+}

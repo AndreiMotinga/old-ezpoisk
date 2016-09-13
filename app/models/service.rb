@@ -6,18 +6,20 @@ class Service < ActiveRecord::Base
   include Tokenable
 
   validates :title, presence: true, length: { maximum: 44, minimum: 3 }
-  validates :site, presence: true
-  validates :phone, presence: true
-  validates :street, presence: true
   validates :category, presence: true
   validates :subcategory, presence: true
   validates :state_id, presence: true
   validates :city_id, presence: true
+  validates :street, presence: true
+  validates :phone, presence: true
+  validates :email, presence: true
 
   belongs_to :state
   belongs_to :city
   belongs_to :user, optional: true
   has_many :favorites, as: :favorable, dependent: :destroy
+  has_many :pictures, as: :imageable, dependent: :destroy
+  has_many :reviews
 
   has_one :stripe_subscription, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
@@ -29,7 +31,7 @@ class Service < ActiveRecord::Base
   delegate :cancelled?, to: :stripe_subscription, allow_nil: true
   delegate :cancel, to: :stripe_subscription, allow_nil: true
 
-  has_attached_file :logo, styles: { medium: "x120" }
+  has_attached_file :logo, styles: { medium: "x120", avatar: "100x100#" }
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with(
@@ -37,6 +39,12 @@ class Service < ActiveRecord::Base
     attributes: :logo,
     less_than: 1.megabytes
   )
+
+  has_attached_file(
+    :cover,
+    styles: { large: "800x400#" },
+    default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
+  validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
   def site_link
     site.match(/http/).present? ? site : "http://#{site}"

@@ -10,6 +10,10 @@
             week: Service.week.count,
             total: Service.count)
 
+- content_for :right_block do
+  .sticky data-id="right"
+    = render "partners/right"
+
 = render("shared/filters", id: "services", count: @services.total_count)
 
 .col-xs-12 data-id="listings"

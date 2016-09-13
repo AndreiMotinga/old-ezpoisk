@@ -1,0 +1,23 @@
+.white-block
+  .panel
+    .panel-body
+      = form_for([:dashboard, current_user]) do |f|
+        .row
+          .col-sm-3
+            label Аватар
+            = f.file_field :avatar
+            p.text-muted 100 x 100px
+          .col-sm-8.col-sm-offset-1
+            = image_tag current_user.avatar.url(:medium),
+              class: "pull-right thumbnail img-responsive"
+
+        .row
+          .col-sm-3
+            label Обложка
+            = f.file_field :cover
+            p.text-muted 800 x 400px
+          .col-sm-8.col-sm-offset-1
+            = image_tag current_user.cover.url(:large),
+              class: "pull-right thumbnail img-responsive"
+
+        = f.submit "Сохранить", class: "btn mobile-btn"

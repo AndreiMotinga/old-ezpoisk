@@ -1,0 +1,15 @@
+ga('send', 'pageview');
+
+$("[data-id='leaderboard']").remove();
+$("[data-id='listings']:visible").append("<%= j render('shared/gads/leaderboard') %>");
+$("[data-id='listings']:visible").append("<%= j render(@records) %>");
+$("[data-id='right']").html("<%= j render('partners/right') %>");
+$("[data-id='left']").html("<%= j render('partners/left') %>");
+
+<% if @records.next_page %>
+  $(".pagination:visible").replaceWith("<%= j(paginate @records, param_name: @param) %>")
+<% else  %>
+  $(".pagination:visible").remove();
+<% end %>
+
+incrementPartners();

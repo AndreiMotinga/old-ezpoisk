@@ -30,7 +30,7 @@ ul.nav.nav-tabs.mobile-nav-tabs.text-center role="tablist"
   #profile.tab-pane role="tabpanel"
     - if user_signed_in?
       ul.list-group
-        = link_to profile_path(current_user) do
+        = link_to user_path(current_user) do
           li.list-group-item.mobile-link Моя страница
         = link_to dashboard_path do
           li.list-group-item.mobile-link Мои объявления

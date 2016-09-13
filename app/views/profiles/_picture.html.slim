@@ -1,6 +1,0 @@
-.profile-image
-  = link_to picture.image.url, "data-action": "touchTouch" do
-    = image_tag picture.image.url(:medium), alt: "", class: "img-responsive gallery-thumb", id: "picture-#{picture.id}"
-  - if picture.user_id == current_user.try(:id)
-    .delete-link.text-center
-      = link_to 'Удалить', dashboard_picture_path(picture), method: :delete, data: { remote: true }, rel: "nofollow"

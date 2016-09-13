@@ -1,11 +1,10 @@
 class Dashboard::PicturesController < ApplicationController
   def index
     @pictures = klass.find(params["id"]).pictures
-    @partial = klass == Gallery ? "profiles/picture" : "pictures/picture"
   end
 
   def create
-    @picture = current_user.pictures.build(picture_params)
+    @picture = current_user.images.build(picture_params)
     if @picture.save
       render json: { message: "success", fileID: @picture.id }
     else
@@ -15,14 +14,14 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def update
-    @picture = current_user.pictures.find(params[:id])
+    @picture = current_user.images.find(params[:id])
     @picture.imageable.unset_logo
     @picture.update_attribute(:logo, true)
   end
 
   def destroy
     @id = params[:id]
-    current_user.pictures.find(@id).destroy
+    current_user.images.find(@id).destroy
   end
 
   private
@@ -32,7 +31,7 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def klass
-    [Gallery, RePrivate, Sale].find do |class_name|
+    [User, RePrivate, Sale, Service].find do |class_name|
       class_name.name == params["type"].classify
     end
   end

@@ -10,7 +10,7 @@ br
 
 / Pictures
 .row data-pictures=""
-  = render record.pictures
+  = render partial: "dashboard/pictures/picture", collection: record.pictures
 
 javascript:
   if ($(".dropzone").length) {

@@ -1,4 +1,5 @@
 class Dashboard::ServicesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_service, only: [:edit, :update, :destroy]
 
   def new
@@ -14,11 +15,11 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def create
-    @service = Service.new(service_params)
-    @service.user = current_user
+    @service = current_user.services.build(service_params)
     if @service.save
       run_create_notifications
-      redirect_on_create
+      redirect_to edit_dashboard_service_path(@service),
+                  notice: I18n.t(:post_created)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -30,7 +31,8 @@ class Dashboard::ServicesController < ApplicationController
     if @service.update(service_params)
       GeocodeJob.perform_async(@service.id, "Service") if address_changed
       run_update_notifications
-      redirect_to update_redirect_path, notice: I18n.t(:post_saved)
+      redirect_to edit_dashboard_service_path(@service),
+                  notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
@@ -45,28 +47,6 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   private
-
-  def redirect_on_create
-    if @service.user
-      redirect_to(
-        edit_dashboard_service_path(@service),
-        notice: I18n.t(:post_created)
-      )
-    else
-      redirect_to(
-        edit_dashboard_service_path(@service, token: @service.token),
-        notice: I18n.t(:post_created_wr)
-      )
-    end
-  end
-
-  def update_redirect_path
-    if params[:token].present?
-      edit_dashboard_service_path(@service, token: params[:token])
-    else
-      edit_dashboard_service_path(@service)
-    end
-  end
 
   def run_update_notifications
     @service.entry.try(:touch)
@@ -94,8 +74,9 @@ class Dashboard::ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(
-      :title, :street, :phone, :fax, :email, :site, :text, :state_id,
-      :city_id, :logo, :category, :active, :subcategory
+      :title, :street, :phone, :email, :site, :text, :state_id,
+      :city_id, :logo, :category, :active, :subcategory, :vk, :fb, :ok,
+      :google, :twitter, :cover
     )
   end
 end

@@ -16,22 +16,24 @@
   meta property="business:contact_data:postal_code"    content= @service.zip
   meta property="business:contact_data:country_name"   content= "USA"
 
-= content_for :sidebar do
-  = render "shared/show/contacts", record: @service
-  = render "services/details", record: @service
+- content_for :sidebar do
+  = render "services/show/menu"
+
+- content_for :cover do
+  = render "services/show/cover"
+
+= render "services/show/mobile"
 
 .div itemscope="" itemtype="http://schema.org/#{type(@service)}"
-  .col-xs-12
-    = render @service
-
-  = render "shared/gads/leaderboard"
-
-  = render "shared/show/text", record: @service
-
-  .col-xs-12
-    = render "shared/show/map", record: @service
-
-  = render "shared/disqus"
-
-  .visible-xs
-    = render "shared/show/contacts", record: @service
+  .tab-content
+    #about.tab-pane.active role="tabpanel"
+      = render "shared/social", count: nil, inline: true
+      = render "services/show/text", record: @service
+    #contacts.tab-pane role="tabpanel"
+      = render "services/show/contacts"
+    #reviews.tab-pane role="tabpanel"
+      = render "services/show/reviews"
+    #gallery.tab-pane role="tabpanel"
+      = render "services/show/pictures"
+/  .col-xs-12
+/    = render @service

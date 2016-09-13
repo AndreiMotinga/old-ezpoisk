@@ -32,10 +32,10 @@ nav.navbar-fixed-top.navbar-main
           li.dropdown
             a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                      data-toggle="dropdown" href="#" role="button"]
-              = image_tag current_user.avatar, class: "img-circle"
+              = image_tag current_user.avatar(:thumb), class: "img-circle"
               span.caret
             ul.dropdown-menu.pull-right
-              li= link_to "Моя страница", profile_path(current_user)
+              li= link_to "Моя страница", user_path(current_user)
               li.dropdown-submenu
                 a.test href="#" tabindex="-1" Мои объявления
                 ul.dropdown-menu

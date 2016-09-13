@@ -1,0 +1,8 @@
+  .col-xs-12.white-block.text
+    .panel.panel-default
+      .panel-body
+        - if record.text.present?
+          div itemprop="description"
+            = markdown record.text
+        - else
+          p Автор не предоставил описания

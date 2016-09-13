@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160913001335) do
+ActiveRecord::Schema.define(version: 20160913154435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -275,6 +275,17 @@ ActiveRecord::Schema.define(version: 20160913001335) do
     t.index ["user_id"], name: "index_re_privates_on_user_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "user_id"
+    t.integer  "rating",     null: false
+    t.text     "text",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_reviews_on_service_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
   create_table "sales", force: :cascade do |t|
     t.string   "title"
     t.string   "category"
@@ -316,12 +327,12 @@ ActiveRecord::Schema.define(version: 20160913001335) do
     t.string   "site"
     t.string   "category"
     t.string   "subcategory"
-    t.text     "text",              default: "", null: false
+    t.text     "text",               default: "", null: false
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "state_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -329,13 +340,21 @@ ActiveRecord::Schema.define(version: 20160913001335) do
     t.float    "lat"
     t.float    "lng"
     t.integer  "zip"
-    t.string   "slug",              default: ""
-    t.string   "fax"
-    t.integer  "impressions_count", default: 0
-    t.integer  "priority",          default: 0,  null: false
-    t.integer  "visits",            default: 0
+    t.string   "slug",               default: ""
+    t.integer  "impressions_count",  default: 0
+    t.integer  "priority",           default: 0,  null: false
+    t.integer  "visits",             default: 0
     t.string   "token"
     t.boolean  "active"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
+    t.string   "vk"
+    t.string   "fb"
+    t.string   "google"
+    t.string   "twitter"
+    t.string   "ok"
     t.index ["city_id"], name: "index_services_on_city_id", using: :btree
     t.index ["state_id"], name: "index_services_on_state_id", using: :btree
     t.index ["user_id"], name: "index_services_on_user_id", using: :btree
@@ -484,6 +503,8 @@ ActiveRecord::Schema.define(version: 20160913001335) do
   add_foreign_key "re_privates", "cities"
   add_foreign_key "re_privates", "states"
   add_foreign_key "re_privates", "users"
+  add_foreign_key "reviews", "services"
+  add_foreign_key "reviews", "users"
   add_foreign_key "sales", "cities"
   add_foreign_key "sales", "states"
   add_foreign_key "sales", "users"

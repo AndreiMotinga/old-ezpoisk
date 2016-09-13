@@ -1,0 +1,11 @@
+.visible-xs
+  = link_to "Настроить фильтр", "",
+            class: "btn mobile-btn btn-block search-modal-trigger",
+            "data-target": "#profiles", "data-toggle": :modal, role: :button
+
+/! Modal
+.modal.fade id="profiles" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-body
+        = render "services/show/menu"

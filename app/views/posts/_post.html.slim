@@ -5,7 +5,7 @@
         .panel-heading.hidden-xs
           .row.author
             .col-sm-2
-              = link_to profile_path(post.user) do
+              = link_to user_path(post.user) do
                 = image_tag post.avatar.url(:thumb),
                             class: "img-responsive center-block img-circle",
                             alt: "автор новости #{post.user.name_to_show}"

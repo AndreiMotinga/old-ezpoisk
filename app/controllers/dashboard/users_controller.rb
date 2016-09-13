@@ -9,10 +9,10 @@ class Dashboard::UsersController < ApplicationController
     if current_user.update(user_params)
       GeocodeJob.perform_async(current_user.id, "User") if address_changed
       redirect_to edit_dashboard_user_path(current_user),
-                  notice: "Ваши личные данные изменены"
+                  notice: I18n.t(:user_updated)
     else
       flash.now[:alert] = "Возникли ошибки"
-      render "dashboard/profiles/edit"
+      render "dashboard/users/edit"
     end
   end
 

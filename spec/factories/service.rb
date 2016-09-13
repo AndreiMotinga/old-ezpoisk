@@ -17,6 +17,12 @@ FactoryGirl.define do
     category { SERVICE_SUBCATEGORIES.keys.sample }
     subcategory { SERVICE_SUBCATEGORIES[category].sample }
 
+    vk { Faker::Internet.email }
+    fb { Faker::Internet.email }
+    ok { Faker::Internet.email }
+    google { Faker::Internet.email }
+    twitter { Faker::Internet.email }
+
     user
 
     trait :re_agency do

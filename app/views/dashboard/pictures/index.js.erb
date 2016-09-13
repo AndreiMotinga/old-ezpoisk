@@ -1,1 +1,1 @@
-$("[data-pictures]").html("<%= j(render(partial: @partial, collection: @pictures)) %>")
+$("[data-pictures]").html("<%= j(render(partial: "dashboard/pictures/picture", collection: @pictures)) %>")

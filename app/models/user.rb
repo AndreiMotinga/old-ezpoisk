@@ -10,11 +10,9 @@ class User < ActiveRecord::Base
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
   after_create :send_emails
-  after_create :create_user_gallery
 
   belongs_to :state
   belongs_to :city
-  has_one :gallery, dependent: :destroy
 
   has_many :re_privates, dependent: :destroy
   has_many :jobs, dependent: :destroy
@@ -30,7 +28,8 @@ class User < ActiveRecord::Base
   has_many :partners, dependent: :destroy
   has_many :points
   has_many :entries
-  has_many :pictures, dependent: :destroy
+  has_many :images, class_name: "Picture", dependent: :destroy
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
 
@@ -38,7 +37,7 @@ class User < ActiveRecord::Base
   scope :today, -> { where("created_at > ?", Date.today) }
 
   has_attached_file(:avatar,
-                    styles: { thumb: "50x50#", medium: "160x160#" },
+                    styles: { thumb: "50x50#", medium: "100x100#" },
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
   attr_reader :avatar_remote_url
@@ -73,7 +72,7 @@ class User < ActiveRecord::Base
   end
 
   def show_url
-    url_helpers.profile_url(self)
+    url_helpers.user_url(self)
   end
 
   def new_email
@@ -94,14 +93,14 @@ class User < ActiveRecord::Base
     admin? or editor?
   end
 
+  def listings
+    entries.listings.includes(enterable: [:state, :city])
+  end
+
   private
 
   def send_emails
     SlackNotifierJob.perform_async(id, "User")
     UserMailerJob.perform_async(id)
-  end
-
-  def create_user_gallery
-    create_gallery
   end
 end

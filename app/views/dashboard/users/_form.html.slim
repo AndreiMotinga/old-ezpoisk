@@ -1,0 +1,44 @@
+= bootstrap_form_for([:dashboard, current_user]) do |f|
+  .white-block
+    .panel
+      .panel-body
+        = link_to "Обновить пароль", edit_user_registration_path
+        hr
+        = f.text_field :name, label: "Ваше имя"
+        = f.text_area :about, label: "Расскажите о себе", rows: 5
+
+  .white-block
+    .panel
+      .panel-body
+        = f.text_field :street, label: "Улица"
+        .row
+          .col-sm-6
+            .field
+              = form_state_select(f)
+          .col-sm-6
+            .field
+              = form_city_select(f, current_user)
+        br
+
+        .row
+          .col-sm-6
+            = f.number_field :phone, label: "Телефон"
+          .col-sm-6
+            = f.email_field :email, id: "profile_user_email", class: "form-control"
+        .row
+          .col-sm-6
+            = f.text_field :site, label: "Ваш сайт", placeholder: "www.yoursite.com"
+          .col-sm-6
+            = f.text_field :facebook, label: "Facebook"
+        .row
+          .col-sm-6
+            = f.text_field :google, label: "Google+"
+          .col-sm-6
+            = f.text_field :vk, label: "Vkontakte"
+        .row
+          .col-sm-6
+            = f.text_field :ok, label: "Odnoklassniki"
+          .col-sm-6
+            = f.text_field :twitter, label: "Twitter"
+
+        .actions= f.submit "Обновить", class: "btn mobile-btn", id: "contacts-save-btn"

@@ -13,8 +13,7 @@
         span  #{count}
     li.fb
       /.fb-share-button data-action="like" data-href=url data-layout="button_count" data-show-faces="true"
-      .fb-like[data-href=url data-layout="standard" data-action="like"
-        data-size="small" data-show-faces="true" data-share="true"]
+      .fb-share-button[data-href=url data-layout="button_count" data-size="small"]
 
 - unless Rails.env.test?
   #fb-root

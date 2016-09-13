@@ -1,12 +1,12 @@
 .row.white-block class=("user-hidden" if service.user_hidden?(current_user)) data-hidden=service.id
   .listing
-    .col-xs-4.logo data-id="logo"
+    .hidden-xs.col-sm-4.logo data-id="logo"
       = link_to service_path(service) do
         = image_tag service.logo.url(:medium),
                     class: "img-responsive center-block", itemprop: "logo",
                     alt: "#{t service.category} #{t service.subcategory} #{service.title} #{service.city.name} #{service.state.name}"
 
-    .col-xs-8
+    .col-xs-12.col-sm-8
       / line 1
       = render "shared/favor_links", record: service
       h4.title.hidden-xs itemprop="name" = service.title

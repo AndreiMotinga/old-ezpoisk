@@ -9,7 +9,9 @@
       li.active role="presentation"
         = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       li role="presentation"
-        = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+        = link_to "Лого", "#logo", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      li role="presentation"
+        = link_to "Галерея", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       /li role="presentation" data-li="payment"
       /  = link_to "Поднять", "#payment", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
@@ -18,8 +20,8 @@
       #form.tab-pane.fade.in.active role="tabpanel"
         = render 'form'
 
-      #pictures.tab-pane.fade role="tabpanel"
-          = render "dashboard/shared/logo", record: @service
+      #logo.tab-pane.fade role="tabpanel"
+          = render "dashboard/services/images_form"
 
-      /#payment.tab-pane.fade role="tabpanel"
-      /  = render "dashboard/services/payment"
+      #pictures.tab-pane.fade role="tabpanel"
+        = render "dashboard/shared/pictures_form", record: @service
