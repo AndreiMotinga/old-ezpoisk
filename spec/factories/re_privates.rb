@@ -15,6 +15,8 @@ FactoryGirl.define do
     state_id 32
     city_id 18_031
     email { Faker::Internet.email }
+    vk { Faker::Internet.email }
+    fb { Faker::Internet.email }
 
     trait :with_geolocation do
       lat { Faker::Address.latitude }

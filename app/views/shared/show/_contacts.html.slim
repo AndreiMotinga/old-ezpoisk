@@ -8,9 +8,13 @@
               = link_to profile_path(record.user), rel: "nofollow" do
                 span itemprop="name" =record.user.name_to_show
 
-        - unless record.try(:source).blank?
+        - unless record.try(:vk).blank?
           li.list-group-item
-            = link_to "Автор объявления", record.source, target: "_blank"
+            = link_to "Я vkontakte", record.vk, target: "_blank"
+
+        - unless record.try(:fb).blank?
+          li.list-group-item
+            = link_to "Я в facebook", record.fb, target: "_blank"
 
         - unless record.try(:fax).blank?
           li.list-group-item
@@ -41,8 +45,8 @@
         li.list-group-item
           | Просмотров #{record.visits}
 
-        li.list-group-item
-          strong * Укажите, что нашли объявление на ezpoisk.com
+        /li.list-group-item
+        /  strong * Укажите, что нашли объявление на ezpoisk.com
 
         li.list-group-item
           = render "shared/social", count: nil, inline: false

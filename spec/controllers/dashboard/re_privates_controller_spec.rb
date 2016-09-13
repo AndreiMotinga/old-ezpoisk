@@ -61,6 +61,8 @@ describe Dashboard::RePrivatesController do
         expect(re_private.city.id).to eq attrs[:city_id]
         expect(re_private.state.id).to eq attrs[:state_id]
         expect(re_private.category).to eq attrs[:category]
+        expect(re_private.vk).to eq attrs[:vk]
+        expect(re_private.fb).to eq attrs[:fb]
         expect(re_private.token).to_not eq nil
         expect(flash[:notice]).to eq I18n.t(:post_created)
 
