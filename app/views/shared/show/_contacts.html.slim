@@ -4,15 +4,15 @@
       ul.list-group
         - if record.user and !record.user.admin?
           li.list-group-item
-            strong= link_to "Автор",  user_path(record.user), rel: "nofollow"
+            strong= link_to "Автор",  user_path(record.user)
 
         - unless record.try(:vk).blank?
           li.list-group-item
-            = link_to "Я vkontakte", record.vk, target: "_blank"
+            = link_to "Я vkontakte", record.vk, target: "_blank", rel: "nofollow"
 
         - unless record.try(:fb).blank?
           li.list-group-item
-            = link_to "Я в facebook", record.fb, target: "_blank"
+            = link_to "Я в facebook", record.fb, target: "_blank", rel: "nofollow"
 
         - if record.try(:phone).present?
           li.list-group-item

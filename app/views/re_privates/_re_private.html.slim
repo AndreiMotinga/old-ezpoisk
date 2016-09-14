@@ -1,9 +1,13 @@
 .row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
   .listing
     .col-xs-12.col-sm-4.logo
-      = link_to re_private_path(re_private) do
+      - if controller_name == "re_privates" && action_name == "show"
         img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
           alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
+      - else
+        = link_to re_private_path(re_private) do
+          img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
+            alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
 
         /- if !re_private.fee && re_private.post_type == "leasing"
         /  h4.capture.capture-desktop.text-center Без комиссии

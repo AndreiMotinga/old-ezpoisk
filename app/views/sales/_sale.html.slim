@@ -2,9 +2,13 @@
   .listing
 
     .col-xs-4.logo data-id="logo"
-      = link_to sale_path(sale) do
+      - if controller_name == "sales" && action_name == "show"
         img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
           alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
+      - else
+        = link_to sale_path(sale) do
+          img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
+            alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
     .col-xs-8
       / line 1
