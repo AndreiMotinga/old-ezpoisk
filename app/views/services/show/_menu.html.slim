@@ -3,7 +3,6 @@
     .panel-body
       ul.list-group
         a.list-group-item aria-controls="about" data-toggle="tab" href="#about" role="tab" Описание
-        a.list-group-item aria-controls="contacts" data-toggle="tab" href="#contacts" role="tab" Контакты
         a.list-group-item aria-controls="reviews" data-toggle="tab" href="#reviews" role="tab" Отзывы
         a.list-group-item aria-controls="gallery" data-toggle="tab" href="#gallery" role="tab" Галерея
         - if user_signed_in? && @service.user == current_user
