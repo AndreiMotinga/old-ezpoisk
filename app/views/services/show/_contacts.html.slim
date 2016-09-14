@@ -4,9 +4,11 @@
       h4.title Контакты
     .panel-body
       table.table.table-hover.text-center
-        tr
-          td email
-          td: a href="mailto:#{@service.email}" =@service.email
+
+        - if @service.email.present?
+          tr
+            td email
+            td: a href="mailto:#{@service.email}" =@service.email
 
         tr
           td phone

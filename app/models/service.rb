@@ -12,7 +12,6 @@ class Service < ActiveRecord::Base
   validates :city_id, presence: true
   validates :street, presence: true
   validates :phone, presence: true
-  validates :email, presence: true
 
   belongs_to :state
   belongs_to :city

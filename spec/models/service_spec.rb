@@ -8,7 +8,6 @@ describe Service do
   it { should validate_presence_of :city_id }
   it { should validate_presence_of :state_id }
   it { should validate_presence_of :phone }
-  it { should validate_presence_of :email }
   it { should have_many(:pictures).dependent(:destroy) }
 
   it { should belong_to(:user) }
