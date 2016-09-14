@@ -1,1 +1,7 @@
-= render @service.reviews
+- unless current_user.try(:reviewed?, @service.id)
+  = link_to "Оставить отзыв",
+            new_dashboard_review_path(service_id: @service.id),
+            class: "btn mobile-btn margin-bottom-10", target: "_blank"
+
+.col-xs-12
+  = render @service.reviews

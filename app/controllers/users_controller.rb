@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @answers = @user.answers.includes(:taggings).page(params[:answers_page])
     @posts = @user.posts.page(params[:posts_page])
     @pictures = @user.pictures.page(params[:pictures_page]).per(20)
+    @reviews = @user.reviews.page(params[:reviews_page])
     set_records
   end
 
@@ -25,6 +26,9 @@ class UsersController < ApplicationController
     elsif params[:pictures_page]
       @param = :pictures_page
       @records = @pictures
+    elsif params[:reviews_page]
+      @param = :reviews_page
+      @records = @reviews
     end
   end
 

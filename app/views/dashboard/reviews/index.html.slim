@@ -1,0 +1,12 @@
+= content_for :sidebar do
+  .sticky
+    = render("shared/filters_btn", id: "dashboards", count: @reviews.total_count)
+    = render("shared/sidebar_links")
+
+= render("shared/filters", id: "dashboards", count: @reviews.total_count)
+
+.col-xs-12 data-id="listings"
+  = render @reviews
+
+.col-xs-12
+  = render "shared/pagination", records: @reviews

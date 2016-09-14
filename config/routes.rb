@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :points, only: [:create]
   resources :subscriptions, only: [:create, :destroy]
 
-  resources :users, only: [:show]
   resources :questions, except: [:destroy] do
     collection do
       get "tag/:tag", to: "questions#tag"
@@ -72,6 +71,8 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :reviews
   end
 
   resources :posts, only: [:index, :show] do
@@ -88,6 +89,7 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
 
+  resources :users, only: [:show]
   get "about", to: "home#about"
   get "contacts", to: "home#contacts"
   get "clean", to: "home#clean"

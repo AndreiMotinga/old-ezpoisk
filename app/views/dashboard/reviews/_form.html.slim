@@ -1,0 +1,28 @@
+.white-block.review-form
+  .panel
+    .panel-body
+      = bootstrap_form_for([:dashboard, @review]) do |f|
+        = f.hidden_field :service_id, value: (params[:service_id] || @review.service_id)
+
+        span.rating
+          input#rating-input-1-5.rating-input name="review[rating]" type="radio" value="5" checked= (@review.rating == 5)
+          label.rating-star for="rating-input-1-5"
+          input#rating-input-1-4.rating-input name="review[rating]" type="radio" value="4" checked= (@review.rating == 4)
+          label.rating-star for="rating-input-1-4"
+          input#rating-input-1-3.rating-input name="review[rating]" type="radio" value="3" checked= (@review.rating == 3)
+          label.rating-star for="rating-input-1-3"
+          input#rating-input-1-2.rating-input name="review[rating]" type="radio" value="2" checked= (@review.rating == 2)
+          label.rating-star for="rating-input-1-2"
+          input#rating-input-1-1.rating-input name="review[rating]" type="radio" value="1" checked= (@review.rating == 1)
+          label.rating-star for="rating-input-1-1"
+
+        br
+        br
+        = f.text_area :text, rows: 5, skip_label: true
+        = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+        - unless @review.new_record?
+          = link_to "Удалить",
+                    dashboard_review_path(@review),
+                    method: :delete,
+                    data: { confirm: I18n.t(:confirm) },
+                    class: "btn mobile-btn btn-danger pull-right"

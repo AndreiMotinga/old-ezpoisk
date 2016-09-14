@@ -1,0 +1,47 @@
+.review {
+  .rating {
+    display: inline-block;
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .rating-input {
+    float: right;
+    height: 16px;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+    padding: 0;
+    width: 16px;
+  }
+
+  .rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+  }
+
+  .rating-star {
+    background: asset-url('star') 0 -16px;
+    display: block;
+    float: right;
+    height: 16px;
+    position: relative;
+    width: 16px;
+  }
+
+  .author {
+    margin-bottom: 0;
+    margin-top: 0;
+
+    .name {
+      margin: 0 0 5px;
+    }
+  }
+
+  .panel-body {
+    padding-top: 5px;
+  }
+
+  .fa {
+    min-width: 0;
+  }
+}

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :questions
   has_many :answers
+  has_many :reviews
 
   has_many :favorites, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
@@ -95,6 +96,11 @@ class User < ActiveRecord::Base
 
   def listings
     entries.listings.includes(enterable: [:state, :city])
+  end
+
+  # todo test
+  def reviewed?(service_id)
+    reviews.where(service_id: service_id).any?
   end
 
   private
