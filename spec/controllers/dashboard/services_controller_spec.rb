@@ -72,7 +72,7 @@ describe Dashboard::ServicesController do
 
       delete :destroy, params: { id: service.id }
 
-      expect(response).to redirect_to(dashboard_path)
+      expect(response).to redirect_to(dashboard_services_path)
       expect(flash[:notice]).to eq I18n.t(:post_removed)
       expect(Service.count).to be 0
       expect(Entry.count).to be 0
@@ -101,7 +101,7 @@ describe Dashboard::ServicesController do
 
         delete :destroy, params: { id: service.id }
 
-        expect(response).to redirect_to(dashboard_path)
+        expect(response).to redirect_to(dashboard_services_path)
         expect(flash[:notice]).to eq I18n.t(:post_removed)
         expect(Service.count).to be 0
 

@@ -135,7 +135,7 @@ describe Dashboard::JobsController do
 
       delete :destroy, params: { id: job.id }
 
-      expect(response).to redirect_to(dashboard_path)
+      expect(response).to redirect_to(dashboard_jobs_path)
       expect(Job.count).to be 0
       expect(Entry.count).to be 0
       expect(Subscription.count).to be 0

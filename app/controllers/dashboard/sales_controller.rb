@@ -1,6 +1,16 @@
 class Dashboard::SalesController < ApplicationController
   before_action :set_sale, only: [:edit, :update, :destroy]
 
+  def index
+    @sales = current_user.sales.includes(:state, :city).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @sales }
+      end
+    end
+  end
+
   def new
     @sale = Sale.new(state_id: current_user.try(:state_id),
                      city_id: current_user.try(:city_id),
@@ -96,5 +106,9 @@ class Dashboard::SalesController < ApplicationController
       :title, :price, :street, :phone, :email, :text, :active,
       :state_id, :city_id, :logo, :category, :source, :vk, :fb
     )
+  end
+
+  def destroy_redirect_path
+    params[:token].present? ? root_path : dashboard_sales_path
   end
 end

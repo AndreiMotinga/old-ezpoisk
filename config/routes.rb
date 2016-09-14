@@ -36,11 +36,18 @@ Rails.application.routes.draw do
   get "update_subcategory", to: "subcategories#update_subcategory"
   get '/tos', to: 'tos#tos'
 
-  resource :dashboard, only: [:show]
   namespace :dashboard do
+    resources :favorites, only: [:index]
+    resources :pictures, only: [:index, :create, :update, :destroy]
+    resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
-    resources :re_privates, only: [:new, :create, :edit, :update, :destroy]
-    resources :posts, only: [:new, :create, :edit, :update, :destroy] do
+    resources :re_privates
+    resources :jobs
+    resources :sales
+    resources :services
+    resources :reviews
+    resources :answers, only: [:index]
+    resources :posts do
       authenticate :user, ->(u) { u.editor? } do
         collection do
           get "all"
@@ -49,15 +56,6 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :jobs, only: [:new, :create, :edit, :update, :destroy]
-    resources :sales, only: [:new, :create, :edit, :update, :destroy]
-    resources :services, only: [:new, :create, :edit, :update, :destroy]
-
-    resources :summernote, only: [:create]
-    resources :pictures, only: [:index, :create, :update, :destroy]
-
-    resources :favorites, only: [:index]
-
     resources :partners, except: [:show] do
       member do
         post "increment", to: "partners#increment"
@@ -71,8 +69,6 @@ Rails.application.routes.draw do
         end
       end
     end
-
-    resources :reviews
   end
 
   resources :posts, only: [:index, :show] do

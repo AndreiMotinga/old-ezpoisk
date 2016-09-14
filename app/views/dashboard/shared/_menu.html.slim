@@ -1,0 +1,15 @@
+.right-block.white-block
+  .panel.panel-default
+    .panel-body
+      ul.list-group
+        = link_to "Моя страница"  , user_path(current_user) , class: "list-group-item"
+        = link_to "Мои Настройки" , edit_dashboard_user_path(current_user) , class: "list-group-item"
+        = link_to "Мои закладки"  , main_app.dashboard_favorites_path      , class: "list-group-item"
+        = link_to "Недвижимость"  , main_app.dashboard_re_privates_path    , class: "list-group-item"
+        = link_to "Работа"        , main_app.dashboard_jobs_path           , class: "list-group-item"
+        = link_to "Продается"     , main_app.dashboard_sales_path          , class: "list-group-item"
+        = link_to "Услуги"        , main_app.dashboard_services_path       , class: "list-group-item"
+        = link_to "Новости"       , main_app.dashboard_posts_path          , class: "list-group-item"
+        = link_to "Ответы"        , main_app.dashboard_answers_path        , class: "list-group-item"
+        = link_to "Отзывы"        , main_app.dashboard_reviews_path        , class: "list-group-item"
+        = link_to "Реклама"       , main_app.dashboard_partners_path       , class: "list-group-item"

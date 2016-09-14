@@ -36,16 +36,18 @@ nav.navbar-fixed-top.navbar-main
               span.caret
             ul.dropdown-menu.pull-right
               li= link_to "Моя страница", user_path(current_user)
+              li= link_to "Mои настройки", main_app.edit_dashboard_user_path(current_user), "data-turbolinks": false
+              li= link_to "Мои закладки", main_app.dashboard_favorites_path
               li.dropdown-submenu
                 a.test href="#" tabindex="-1" Мои объявления
                 ul.dropdown-menu
-                  li = link_to "Недвижимость", main_app.dashboard_path(type: "RePrivate"), tabindex: '-1'
-                  li = link_to "Работа", main_app.dashboard_path(type: "Job"), tabindex: '-1'
-                  li = link_to "Продажи", main_app.dashboard_path(type: "Sale"), tabindex: '-1'
-                  li = link_to "Услуги", main_app.dashboard_path(type: "Service"), tabindex: '-1'
-                  li = link_to "Новости", main_app.dashboard_path(type: "Post"), tabindex: '-1'
+                  li = link_to "Недвижимость", main_app.dashboard_re_privates_path, tabindex: '-1'
+                  li = link_to "Работа", main_app.dashboard_jobs_path, tabindex: '-1'
+                  li = link_to "Продается", main_app.dashboard_sales_path, tabindex: '-1'
+                  li = link_to "Услуги", main_app.dashboard_services_path, tabindex: '-1'
+                  li = link_to "Новости", main_app.dashboard_posts_path, tabindex: '-1'
+                  li = link_to "Ответы", main_app.dashboard_answers_path, tabindex: '-1'
                   li = link_to "Отзывы", main_app.dashboard_reviews_path, tabindex: '-1'
-                  li = link_to "Банеры", main_app.dashboard_partners_path, tabindex: '-1'
                   /li.dropdown-submenu
                   /  a.test href="#"
                   /    | Another dropdown
@@ -56,8 +58,8 @@ nav.navbar-fixed-top.navbar-main
                   /    li
                   /      a href="#"  3rd level dropdown
 
-              li= link_to "Избранное", main_app.dashboard_favorites_path
-              li= link_to "Mои настройки", main_app.edit_dashboard_user_path(current_user), "data-turbolinks": false
+              li.divider role: "separator"
+              li = link_to "Реклама", main_app.dashboard_partners_path, tabindex: '-1'
               li.divider role: "separator"
               li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
         - else

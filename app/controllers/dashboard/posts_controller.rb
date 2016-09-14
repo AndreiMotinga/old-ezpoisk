@@ -2,6 +2,20 @@ class Dashboard::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:edit, :update, :destroy]
 
+  def index
+    @posts = current_user.posts
+                         .includes(:user, :taggings)
+                         .desc
+                         .page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @posts }
+      end
+    end
+  end
+
+
   def new
     @post = Post.new(category: "user")
   end
@@ -36,7 +50,9 @@ class Dashboard::PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to dashboard_path, notice: I18n.t(:post_removed) }
+      format.html do
+        redirect_to dashboard_posts_path, notice: I18n.t(:post_removed)
+      end
       format.js
     end
   end

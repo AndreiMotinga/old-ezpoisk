@@ -1,6 +1,18 @@
 class Dashboard::JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :destroy]
 
+  def index
+    @jobs = current_user.jobs
+                        .includes(:state, :city, :taggings)
+                        .page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @jobs }
+      end
+    end
+  end
+
   def new
     @job = Job.new(state_id: current_user.try(:state_id),
                    city_id: current_user.try(:city_id),
@@ -96,5 +108,9 @@ class Dashboard::JobsController < ApplicationController
                                 :active, :street, :state_id, :city_id,
                                 :logo, :category, :subcategory, :source,
                                 :vk, :fb, tag_list: [])
+  end
+
+  def destroy_redirect_path
+    params[:token].present? ? root_path : dashboard_jobs_path
   end
 end

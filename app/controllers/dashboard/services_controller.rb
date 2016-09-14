@@ -2,6 +2,18 @@ class Dashboard::ServicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_service, only: [:edit, :update, :destroy]
 
+  def index
+    @services = current_user.services
+                            .includes(:state, :city)
+                            .page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @services }
+      end
+    end
+  end
+
   def new
     @service = Service.new(state_id: current_user.try(:state_id),
                            city_id: current_user.try(:city_id),
@@ -43,7 +55,7 @@ class Dashboard::ServicesController < ApplicationController
     SlackNotifierJob.perform_async(@service.id, "Service", 'destroy')
     @service.cancel
     @service.destroy
-    redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
+    redirect_to dashboard_services_path, notice: I18n.t(:post_removed)
   end
 
   private

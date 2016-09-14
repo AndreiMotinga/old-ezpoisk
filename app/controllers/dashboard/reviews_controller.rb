@@ -4,6 +4,12 @@ class Dashboard::ReviewsController < ApplicationController
 
   def index
     @reviews = current_user.reviews.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @reviews }
+      end
+    end
   end
 
   def new

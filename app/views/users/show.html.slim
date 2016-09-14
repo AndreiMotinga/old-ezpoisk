@@ -6,15 +6,13 @@
 = og_image(@user.cover.url(:large))
 
 - content_for :cover, render("users/show/cover")
-- content_for :sidebar, render("users/sidebar")
+- content_for :sidebar, render("users/menu")
 
 = render "users/mob_menu"
 
 .tab-content.profile
   #about.tab-pane.active role="tabpanel"
     = render "users/show/about", record: @service
-  #pictures.tab-pane role="tabpanel"
-    = render "users/show/pictures"
   #listings.tab-pane role="tabpanel"
     = render "users/show/listings"
   #answers.tab-pane role="tabpanel"
@@ -23,3 +21,5 @@
     = render "users/show/posts"
   #reviews.tab-pane role="tabpanel"
     = render "users/show/reviews"
+  #pictures.tab-pane role="tabpanel"
+    = render "users/show/pictures"

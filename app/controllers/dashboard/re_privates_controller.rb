@@ -1,6 +1,18 @@
 class Dashboard::RePrivatesController < ApplicationController
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
+  def index
+    @re_privates = current_user.re_privates
+                               .includes(:state, :city)
+                               .page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @re_privates }
+      end
+    end
+  end
+
   def new
     @re_private = RePrivate.new(state_id: current_user.try(:state_id),
                                 city_id: current_user.try(:city_id),
@@ -91,6 +103,10 @@ class Dashboard::RePrivatesController < ApplicationController
     else
       @re_private = current_user.re_privates.find(params[:id])
     end
+  end
+
+  def destroy_redirect_path
+    params[:token].present? ? root_path : dashboard_re_privates_path
   end
 
   def re_private_params

@@ -33,7 +33,7 @@ describe Dashboard::PostsController do
 
       delete :destroy, params: { id: post.id }
 
-      expect(response).to redirect_to(dashboard_path)
+      expect(response).to redirect_to(dashboard_posts_path)
       expect(Post.count).to eq 0
       expect(flash[:notice]).to eq I18n.t(:post_removed)
       expect(Entry.count).to eq 0

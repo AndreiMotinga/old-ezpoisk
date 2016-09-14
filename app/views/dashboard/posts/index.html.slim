@@ -1,7 +1,1 @@
-= content_for :sidebar, render("shared/sidebar_links")
-
-.col-xs-12
-  = render @posts
-
-.col-xs-12
-  = render "shared/pagination", records: @posts
+= render "dashboard/shared/index", records: @posts

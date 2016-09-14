@@ -132,7 +132,7 @@ describe Dashboard::SalesController do
 
       delete :destroy, params: { id: sale.id }
 
-      expect(response).to redirect_to(dashboard_path)
+      expect(response).to redirect_to(dashboard_sales_path)
       expect(Sale.count).to be 0
       expect(Entry.count).to be 0
       expect(Subscription.count).to be 0
