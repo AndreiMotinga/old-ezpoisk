@@ -1,14 +1,10 @@
-.white-block
-  .panel
-    .panel-body
-      = bootstrap_form_for([:dashboard, @job]) do |f|
+ = bootstrap_form_for([:dashboard, @job]) do |f|
+  .white-block
+    .panel
+      .panel-body
         = hidden_field_tag :token, params[:token]
-
         = f.text_field :title, label: '* Заголовок'
-
         = f.text_area :text, rows: 5, label: 'Описание'
-        hr.white-hr
-
         .row
           .col-xs-12.col-sm-6
             = f.select :category, ru(JOB_CATEGORIES)
@@ -19,24 +15,27 @@
               ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
               { selected: @job.tag_list },
               { multiple: true, name: 'job[tag_list][]', class: "my-dropdown-multiple" }
-        br
 
+  .white-block
+    .panel
+      .panel-body
         .row
           .col-sm-6
             = f.number_field :phone, label: 'Телефон'
           .col-sm-6
             = f.email_field :email
-
+        .row
+          .col-xs-12.col-sm-6
+            = f.text_field :vk, label: 'Я вконтакте'
+          .col-xs-12.col-sm-6
+            = f.text_field :fb, label: 'Я в facebook'
+        = f.text_field :street, label: 'Улица'
         .row
           .col-sm-6
             = form_state_select(f)
           .col-sm-6
             = form_city_select(f, @job)
-        = f.text_field :street, label: 'Улица'
-        hr.white-hr
-
         = f.check_box :active, label: "Активно *"
-
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
         - unless @job.new_record?
           = link_to "Удалить",
@@ -45,7 +44,9 @@
                     data: { confirm: I18n.t(:confirm) },
                     class: "btn mobile-btn btn-danger pull-right"
 
-      br
-      p
-        strong Активно * - #{" "}
-        = t :active_tooltip
+  .white-block
+    .panel
+      .panel-body
+        p
+          strong Активно * - #{" "}
+          = t :active_tooltip

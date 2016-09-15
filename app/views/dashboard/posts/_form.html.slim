@@ -6,9 +6,6 @@
         = f.text_field :title, label: "* Заголовок (5-50 символов)"
         = f.text_area :summary, rows: 3, label: "* Описание (30-400 симоволов)"
         = f.text_area :text, rows: 20, label: "* Текст", class: "summernote post-body"
-        br
-        br
-
         .row
           .col-sm-12
             = label_tag "Тэги", nil
@@ -20,15 +17,11 @@
           - if @post.errors[:tag_list].any?
             ul.list-group-item-danger
               li Добавьте тэги
-
         .row
           .col-sm-3
             = f.check_box :visible
-        br
-        br
         .actions
           = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
           = " "
           - unless @post.new_record?
             = link_to 'Удалить', dashboard_post_path(@post), method: :delete, data: { confirm: I18n.t(:confirm) }, class: "btn mobile-btn btn-danger"
-      br

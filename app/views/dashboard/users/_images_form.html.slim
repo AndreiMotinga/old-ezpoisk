@@ -1,7 +1,7 @@
-.white-block
-  .panel
-    .panel-body
-      = form_for([:dashboard, current_user]) do |f|
+= form_for([:dashboard, current_user]) do |f|
+  .white-block
+    .panel
+      .panel-body
         .row
           .col-sm-3
             label Аватар
@@ -11,6 +11,9 @@
             = image_tag current_user.avatar.url(:medium),
               class: "pull-right thumbnail img-responsive"
 
+  .white-block
+    .panel
+      .panel-body
         .row
           .col-sm-3
             label Обложка
@@ -20,4 +23,7 @@
             = image_tag current_user.cover.url(:large),
               class: "pull-right thumbnail img-responsive"
 
+  .white-block
+    .panel
+      .panel-body
         = f.submit "Сохранить", class: "btn mobile-btn"

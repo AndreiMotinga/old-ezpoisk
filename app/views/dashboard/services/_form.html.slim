@@ -18,20 +18,21 @@
                          class: "subcategory-select"
             - else
               = f.select :subcategory, [], { label: '* Категория' }, class: "subcategory-select"
-
         = f.text_field :title, label: '* Заголовок / Название'
         = f.text_area :text, rows: 5, label: 'Описание'
+        .row
+          .col-xs-6.col-sm-4
+            = f.check_box :active, label: "Активно *"
 
+  .white-block
+    .panel
+      .panel-body
         = f.text_field :street, label: 'Улица *'
         .row
           .col-xs-12.col-sm-6
             = form_state_select(f)
           .col-xs-12.col-sm-6
             = form_city_select(f, @service)
-
-        .row
-          .col-xs-6.col-sm-4
-            = f.check_box :active, label: "Активно *"
 
   .white-block
     .panel
@@ -41,25 +42,21 @@
             = f.number_field :phone, label: '* Телефон (только цифры)'
           .col-xs-12.col-sm-6
             = f.email_field :email
-
         .row
           .col-xs-12.col-sm-6
             = f.text_field :site, label: 'Сайт'
           .col-xs-12.col-sm-6
             = f.text_field :fb, label: 'Facebook'
-
         .row
           .col-xs-12.col-sm-6
             = f.text_field :vk, label: 'Vkontakte'
           .col-xs-12.col-sm-6
             = f.text_field :google, label: 'Google+'
-
         .row
           .col-xs-12.col-sm-6
             = f.text_field :twitter, label: 'Twitter+'
           .col-xs-12.col-sm-6
             = f.text_field :ok, label: 'Odnoklassniki'
-
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
         - unless @service.new_record?
           = link_to "Удалить",
@@ -67,7 +64,10 @@
                     method: :delete,
                     data: { confirm: I18n.t(:confirm) },
                     class: "btn mobile-btn btn-danger pull-right"
-        hr
+
+  .white-block
+    .panel
+      .panel-body
         p
           strong Активно * -
           = t :active_tooltip
