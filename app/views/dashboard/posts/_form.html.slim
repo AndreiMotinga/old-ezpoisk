@@ -3,8 +3,8 @@
     .panel-body
       = bootstrap_form_for([:dashboard, @post]) do |f|
         = f.text_field :image_remote_url, label: "Фото"
-        = f.text_field :title, label: "* Заголовок"
-        = f.text_area :summary, rows: 3, label: "* Описание (80-400 симоволов)"
+        = f.text_field :title, label: "* Заголовок (5-50 символов)"
+        = f.text_area :summary, rows: 3, label: "* Описание (30-400 симоволов)"
         = f.text_area :text, rows: 20, label: "* Текст", class: "summernote post-body"
         br
         br
