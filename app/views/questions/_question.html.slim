@@ -13,8 +13,6 @@
         = markdown question.text
       - if action_name == "show"
         = subscription_links(question)
-        = "  "
-        = link_to 'редактировать', edit_question_path(question), class: "text text-muted qa-links", rel: "nofollow" if current_user == question.user
         br
         br
         = render "shared/social", count: nil, inline: true
