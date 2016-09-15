@@ -187,15 +187,27 @@ describe RePrivatesController do
       expect(response).to render_template(:show)
       expect(assigns(:re_private)).to eq re_private
       expect(flash[:alert]).to be nil
+      expect(IncreaseVisitsJob.jobs.size).to eq 1
     end
 
-    it "redirects to 404 if it's inactive" do
+    it "redirects re_privates_path" do
       re_private = create(:re_private, active: false)
 
       get :show, params: { id: re_private.id }
 
       expect(response).to redirect_to re_privates_path
       expect(flash[:alert]).to eq I18n.t(:post_not_found)
+      expect(IncreaseVisitsJob.jobs.size).to eq 0
+    end
+
+    it "doesn't increase visits if user visits his listsing" do
+      user = create :user
+      sign_in(user)
+      re_private = create(:re_private, user: user)
+
+      get :show, params: { id: re_private.id }
+
+      expect(IncreaseVisitsJob.jobs.size).to eq 0
     end
   end
 end

@@ -95,7 +95,7 @@
 
 @media(min-width:768px){
   .cover .left {
-    .background { height: 260px; }
+    .background { height: 250px; }
     .content img {
       margin-top: 10px;
     }
@@ -103,11 +103,11 @@
 }
 
 @media(min-width:992px){
-  .cover .left .background { height: 333px; }
+  .cover .left .background { height: 323px; }
 }
 
 @media(min-width:1200px){
-  .cover .left .background { height: 400px }
+  .cover .left .background { height: 390px; }
 }
 
 .profile-image {

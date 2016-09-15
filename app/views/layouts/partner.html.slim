@@ -6,6 +6,7 @@ html
     = render "shared/navbar"
     .container.page-wrap
       = render "shared/notice" unless devise_controller?
+      = render "shared/breadcrumbs"
 
       .row
         - if content_for?(:sidebar)

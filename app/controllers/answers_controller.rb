@@ -19,7 +19,7 @@ class AnswersController < ApplicationController
     IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
 
     respond_to do |format|
-      format.html { render :index }
+      format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
     end
   end

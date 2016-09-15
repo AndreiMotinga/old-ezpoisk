@@ -1,1 +1,9 @@
+- breadcrumb :new_dashboard_review_path, current_user
+= title("Оставьте свой отзыв о компании которой вы воспользовались - ezpoisk")
+= desc("Отзывы, рейтинги. Русские компании в США.")
+
+- content_for :sidebar, render("dashboard/shared/menu")
+
+= render "dashboard/shared/mob_menu"
+
 = render "form"

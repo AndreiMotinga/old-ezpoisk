@@ -1,14 +1,15 @@
 .row
-  .hidden-xs.white-block
-    #map.google-maps
+  .hidden-xs
+    .white-block
+      #map.google-maps
 
-  javascript:
-    $(document).ready(function(){
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers(#{raw record.map_marker.to_json});
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(12);
-      });
+javascript:
+  $(document).ready(function(){
+    handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(#{raw record.map_marker.to_json});
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      handler.getMap().setZoom(12);
     });
+  });

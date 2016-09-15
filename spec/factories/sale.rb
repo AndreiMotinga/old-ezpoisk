@@ -14,8 +14,6 @@ FactoryGirl.define do
     vk { Faker::Internet.email }
     fb { Faker::Internet.email }
 
-    association :user
-
     trait :active do
       active true
     end

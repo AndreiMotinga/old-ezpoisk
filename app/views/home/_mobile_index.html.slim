@@ -20,8 +20,9 @@ ul.nav.nav-tabs.mobile-nav-tabs.text-center role="tablist"
     - if user_signed_in?
       = render "dashboard/shared/menu"
 
-      .right-block.white-block
+      .menu.white-block
         ul.list-group
+          = link_to "Моя страница"  , user_path(current_user) , class: "list-group-item"
           = link_to "Выйти", main_app.destroy_user_session_path, method: :delete, class: "list-group-item"
 
 = render "shared/social", count: nil, url: "https://www.ezpoisk.com", inline: true

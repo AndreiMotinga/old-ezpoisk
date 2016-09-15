@@ -1,4 +1,5 @@
 class Dashboard::RePrivatesController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
   def index

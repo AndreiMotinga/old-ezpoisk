@@ -1,9 +1,9 @@
-.right-block.white-block
+.menu.white-block
   .panel.panel-default
     .panel-body
       ul.list-group
-        = link_to "Моя страница"  , user_path(current_user) , class: "list-group-item"
-        = link_to "Мои Настройки" , edit_dashboard_user_path(current_user) , class: "list-group-item"
+        - if user_signed_in?
+          = link_to "Мои настройки" , edit_dashboard_user_path(current_user) , class: "list-group-item"
         = link_to "Мои закладки"  , main_app.dashboard_favorites_path      , class: "list-group-item"
         = link_to "Недвижимость"  , main_app.dashboard_re_privates_path    , class: "list-group-item"
         = link_to "Работа"        , main_app.dashboard_jobs_path           , class: "list-group-item"

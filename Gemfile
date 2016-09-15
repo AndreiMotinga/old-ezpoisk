@@ -14,6 +14,8 @@ gem 'turbolinks', '~> 5.0.1'
 gem "acts_as_commentable_with_threading"
 gem "summernote-rails"
 
+gem "gretel"
+
 gem "koala", "~> 2.2"
 gem "vkontakte_api", '~> 1.4'
 

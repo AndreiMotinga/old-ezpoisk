@@ -23,7 +23,5 @@ FactoryGirl.define do
       lng { Faker::Address.longitude }
       zip { Faker::Address.zip }
     end
-
-    user
   end
 end

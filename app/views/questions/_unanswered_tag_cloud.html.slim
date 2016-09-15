@@ -3,5 +3,5 @@
     .panel-body
       ul.list-group
         - tag_cloud @tags, %w[s m l] do |tag, css_class|
-          span= link_to "##{tag.name}", "/questions/tag/#{tag.name}", class: "tag-in-cloud #{css_class}"
+          span= link_to "##{tag.name}", unanswered_tag_questions_path(tag.name), class: "tag-in-cloud #{css_class}"
           = " "

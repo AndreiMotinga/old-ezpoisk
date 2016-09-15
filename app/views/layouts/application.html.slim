@@ -6,19 +6,19 @@ html
     = render "shared/navbar"
     = render "shared/gads/top"
     .container.page-wrap
-      .row
-        = yield :cover if content_for?(:cover)
-        = render "shared/notice" unless devise_controller?
+      = yield :cover if content_for?(:cover)
+      = render "shared/notice" unless devise_controller?
+      = render "shared/breadcrumbs"
 
       .row
-        .hidden-xs.col-sm-3.col-md-2.left-column
+        .hidden-xs.col-sm-3.col-md-2.side-column
           = yield :sidebar
           .sticky data-id="left"
             = render "partners/left"
 
         .col-xs-12.col-sm-9.col-md-6
           = yield
-        .hidden-xs.hidden-sm.col-md-4
+        .hidden-xs.hidden-sm.col-md-4.side-column
           - if content_for? :right_block
             = yield :right_block
           - else

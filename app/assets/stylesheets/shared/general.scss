@@ -230,7 +230,7 @@ textarea { resize: vertical; }
   font-size: 20px;
 }
 
-.left-column {
+.side-column {
   padding-left: 0;
   padding-right: 0;
 }
@@ -291,4 +291,20 @@ span.social {
     min-width: 0;
     margin: 0 5px;
   }
+}
+
+.menu {
+  .panel-body {
+    padding: 0;
+  }
+
+  .list-group {
+    margin-bottom: 0;
+  }
+}
+
+.breadcrumb-hr {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-top: 1px solid $grey_c;
 }

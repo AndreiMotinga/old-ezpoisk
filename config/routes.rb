@@ -11,15 +11,17 @@ Rails.application.routes.draw do
   resources :points, only: [:create]
   resources :subscriptions, only: [:create, :destroy]
 
-  resources :questions, except: [:destroy] do
+  resources :questions, except: [:edit, :update, :destroy] do
     collection do
-      get "tag/:tag", to: "questions#tag"
+      get "tag/:tag", to: "questions#tag", as: :tag
+      get "unanswered", to: "questions#unanswered"
+      get "unanswered/:tag", to: "questions#unanswered_tag", as: :unanswered_tag
     end
     resources :answers, only: [:new, :edit]
   end
   resources :answers do
     collection do
-      get "tag/:tag", to: "answers#tag"
+      get "tag/:tag", to: "answers#tag", as: :tag
     end
     member do
       put "upvote", to: "answers#upvote"

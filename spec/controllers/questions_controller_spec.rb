@@ -48,31 +48,6 @@ describe QuestionsController do
     end
   end
 
-  describe "GET #edit" do
-    context "user edits his question" do
-      it "render edit template and assign question" do
-        sign_in(@user = create(:user))
-        question = create :question, user: @user
-
-        get :edit, params: { id: question.slug }
-
-        expect(response).to render_template(:edit)
-        expect(assigns(:question)).to eq question
-      end
-    end
-
-    context "user tries to edit someone elses question" do
-      it "redirects" do
-        sign_in(create(:user))
-        question = create :question
-
-        get :edit, params: { id: question.slug }
-
-        expect(response).to redirect_to(answers_path)
-      end
-    end
-  end
-
   describe "POST #create" do
     it "creates question" do
       sign_in(@user = create(:user))
@@ -101,22 +76,6 @@ describe QuestionsController do
 
       post :create, params: { question: attrs }
       expect(Subscription.count).to eq 1
-    end
-  end
-
-  describe "PUT #update" do
-    it "updates question" do
-      sign_in(@user = create(:user))
-      question = create(:question, user: @user)
-      attrs = attributes_for(:question)
-
-      put :update, params: { id: question.slug, question: attrs }
-      updated_q = assigns(:question)
-
-      expect(response).to redirect_to(updated_q)
-      expect(updated_q.title).to eq attrs[:title]
-      expect(updated_q.text).to eq attrs[:text]
-      expect(updated_q.user).to eq @user
     end
   end
 end

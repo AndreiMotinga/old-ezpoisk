@@ -1,3 +1,4 @@
+- breadcrumb @re_private
 - d = strip_tags(@re_private.text).truncate(160)
 - d = d.present? ? d : "#{t @re_private.post_type} жилье в США - ezpoisk.com"
 = desc(d)

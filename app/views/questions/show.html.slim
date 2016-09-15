@@ -1,5 +1,5 @@
+- breadcrumb @question
 = title("#{@question.title} - ezpoisk")
-
 - description = strip_tags(@question.text).truncate(160)
 - description.present? ? description : "#{@question.title} - ezpoisk"
 = desc(description)
@@ -12,7 +12,6 @@
   = link_to "Добавить ответ",
             new_question_answer_path(@question),
             class: "btn mobile-btn btn-block margin-bottom-10"
-  = render("questions/tag_cloud")
 
 = render "questions/search_form"
 

@@ -30,6 +30,10 @@ class RePrivate < ActiveRecord::Base
     street
   end
 
+  def name
+    street? ? street : id
+  end
+
   def edit_link
     url_helpers.edit_dashboard_re_private_path(self)
   end

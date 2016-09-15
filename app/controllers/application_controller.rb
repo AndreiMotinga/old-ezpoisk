@@ -18,13 +18,15 @@ class ApplicationController < ActionController::Base
   end
 
   def get_record(model, id, path)
-    record = model.find(id) if model.exists?(id)
-    if record && record.active?
-      IncreaseVisitsJob.perform_in(11.minutes, record.id, record.class.to_s)
-      if record.visits == 9
-        ListingsNotifierJob.perform_in(12.minutes, record.id, record.class.to_s)
+    item = model.find(id) if model.exists?(id)
+    if item && item.active?
+      unless item.user.present? && item.user == current_user
+        IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)
       end
-      return record
+      if item.visits == 9
+        ListingsNotifierJob.perform_in(12.minutes, item.id, item.class.to_s)
+      end
+      return item
     end
     redirect_to path, alert: I18n.t(:post_not_found)
   end

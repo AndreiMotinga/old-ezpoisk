@@ -1,3 +1,4 @@
+- breadcrumb @sale
 - d = strip_tags(@sale.text).truncate(160)
 - d = d.present? ? d : "Продается #{t @sale.category} #{@sale.title}"
 = desc(d)

@@ -14,7 +14,5 @@ FactoryGirl.define do
 
     state_id 32
     city_id 18_031
-
-    user
   end
 end

@@ -1,3 +1,4 @@
+- breadcrumb @answer
 = title(@answer.title)
 = desc(strip_tags(@answer.text).truncate(160))
 
@@ -6,7 +7,7 @@
 = og_image(@answer.image.url(:medium))
 
 - content_for :sidebar do
-  = link_to "Добавьте ответ",
+  = link_to "Добавить ответ",
             new_question_answer_path(@answer.question),
             class: "btn btn-block mobile-btn margin-bottom-10"
   = render("answers/tag_cloud")
