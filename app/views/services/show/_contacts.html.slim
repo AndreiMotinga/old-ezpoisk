@@ -10,18 +10,28 @@
             td Автор
             td= link_to @service.user.name_to_show, user_path(@service.user), target: "_blank"
 
-        - if @service.email.present?
+        - if @service.email?
           tr
-            td email
+            td
+              strong
+                i.fa.fa-icon.fa-envelope-o
+                | email
             td: a href="mailto:#{@service.email}" =@service.email
 
-        tr
-          td phone
-          td= @service.phone
-
-        - if @service.site.present?
+        - if @service.phone?
           tr
-            td website
+            td
+              strong
+                i.fa.fa-icon.fa-phone
+                | phone
+            td= @service.phone
+
+        - if @service.site?
+          tr
+            td
+              strong
+                i.fa.fa-icon.fa-share-square-o
+                | online
             td= link_to @service.site, site_link(@service.site), target: "_blank", rel: "nofollow"
       hr
       span.social

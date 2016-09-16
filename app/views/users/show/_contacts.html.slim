@@ -5,17 +5,26 @@
     .panel-body
       table.table.table-hover.text-center
         tr
-          td email
+          td
+            strong
+              i.fa.fa-icon.fa-envelope-o
+              | email
           td: a href="mailto:#{@user.email}" =@user.email
 
         - if @user.phone?
           tr
-            td phone
+            td
+              strong
+                i.fa.fa-icon.fa-phone
+                | phone
             td= @user.phone
 
         - if @user.site?
           tr
-            td website
+            td
+              strong
+                i.fa.fa-icon.fa-share-square-o
+                | online
             td= link_to @user.site, site_link(@user.site), target: "_blank", rel: "nofollow"
       hr
       span.social

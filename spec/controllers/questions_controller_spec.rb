@@ -57,7 +57,7 @@ describe QuestionsController do
       question = assigns(:question)
 
       expect(response).to redirect_to(question)
-      expect(question.title).to eq attrs[:title]
+      expect(question.title).to eq attrs[:title] + "?"
       expect(question.text).to eq attrs[:text]
       expect(question.user).to eq @user
 
