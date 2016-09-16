@@ -1,7 +1,7 @@
-- if @service.pictures.any?
-  = render @service.pictures
+.profile data-pictures="" data-id="listings"
+  = render @pictures
+
+- if @pictures.empty?
+  .col-xs-12= render "shared/no_posts_message"
 - else
-  .col-xs-12.white-block.text
-    .panel.panel-default
-      .panel-body
-        p Тут пока ничего
+  .text-center= paginate @pictures, param_name: "pictures_page"

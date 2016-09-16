@@ -3,5 +3,10 @@
             new_dashboard_review_path(service_id: @service.id),
             class: "btn mobile-btn margin-bottom-10", target: "_blank"
 
-.col-xs-12
-  = render @service.reviews
+.col-xs-12 data-id="listings"
+  = render @reviews
+
+- if @reviews.empty?
+  .col-xs-12= render "shared/no_posts_message"
+- else
+  .text-center= paginate @reviews, param_name: "reviews_page"

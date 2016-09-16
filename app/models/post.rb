@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   include MyFriendlyId
   include Filterable
   include ViewHelpers
-  validates :title, presence: true, length: { maximum: 50, minimum: 5 }
+  validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :summary, presence: true, length: {  maximum: 400, minimum: 30 }
   validates :text, presence: true
   CATEGORIES = %w(
