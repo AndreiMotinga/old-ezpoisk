@@ -22,11 +22,11 @@
               = image_tag pic.image.url(:large),
                           alt: "Продается #{t @sale.category} #{@sale.title} #{@sale.city.name} #{@sale.state.name} #{pic.image_file_name}"
 
-= render "shared/gads/leaderboard"
-
 div itemscope="" itemtype="http://schema.org/Product"
   .col-xs-12
     = render @sale
+
+  = render "shared/gads/leaderboard"
 
   /todo move to text partial
   - if @sale.text?
@@ -37,10 +37,10 @@ div itemscope="" itemtype="http://schema.org/Product"
           div itemprop="description"
             = markdown @sale.text
 
+  = render "shared/disqus"
+
   .col-xs-12
     = render 'shared/show/map', record: @sale
-
-  = render "shared/disqus"
 
   .visible-xs
     = render "shared/show/contacts", record: @sale

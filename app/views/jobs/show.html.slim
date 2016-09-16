@@ -19,11 +19,10 @@
     = render @job
 
   = render "shared/gads/leaderboard"
+  = render "shared/disqus"
 
   .col-xs-12
     = render 'shared/show/map', record: @job
-
-  = render "shared/disqus"
 
   .visible-xs
     = render "shared/show/contacts", record: @job
