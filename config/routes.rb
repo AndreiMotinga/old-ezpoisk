@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       get "unanswered", to: "questions#unanswered"
       get "unanswered/:tag", to: "questions#unanswered_tag", as: :unanswered_tag
     end
-    resources :answers, only: [:new, :edit]
   end
   resources :answers do
     collection do

@@ -37,9 +37,13 @@ class AnswersController < ApplicationController
   def create
     user = user_signed_in? ? current_user : User.find(4)
     @answer = user.answers.build(answer_params)
+    @answer.title = @answer.question.title
     if @answer.save
       run_create_notifications(user)
       redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))
+    else
+      flash.now[:alert] = I18n.t(:review_not_saved)
+      render :new
     end
   end
 

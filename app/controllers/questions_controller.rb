@@ -1,6 +1,4 @@
 class QuestionsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
-
   def index
     @questions = Question.includes(:taggings)
                          .by_keyword(params[:keyword])
@@ -63,7 +61,8 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = current_user.questions.build(question_params)
+    @question = Question.new(question_params)
+    @question.user = current_user
     @question.title += "?" unless @question.title.match(/\?$/)
 
     if @question.save

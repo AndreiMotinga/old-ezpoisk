@@ -2,7 +2,7 @@
   .panel
     .panel-body
       = bootstrap_form_for @question do |f|
-        - if current_user.admin?
+        - if current_user.try(:admin?)
           .field
             = f.text_field :image_url, label: "Картинка"
 

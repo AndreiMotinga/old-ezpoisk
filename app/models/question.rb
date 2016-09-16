@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
   acts_as_taggable
   include MyFriendlyId
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :answers
   has_many :subscriptions, as: :subscribable, dependent: :destroy
 

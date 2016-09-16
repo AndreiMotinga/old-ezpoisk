@@ -68,7 +68,7 @@ crumb :tag_answers do |name|
 end
 
 crumb :edit_question_answer_path do |answer|
-  link answer.title, edit_question_answer_path(answer.question, answer)
+  link answer.title, edit_answer_path(answer)
   parent :answers
 end
 

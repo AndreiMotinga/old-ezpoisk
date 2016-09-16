@@ -28,14 +28,6 @@ describe QuestionsController do
   end
 
   describe "GET #new" do
-    context "user is not signed in" do
-      it "redirects to sing in page" do
-        get :new
-
-        expect(response).to redirect_to new_user_session_path
-      end
-    end
-
     context "user signed in" do
       it "renders the new template and assigns @question" do
         sign_in(create(:user))

@@ -60,6 +60,8 @@ module MetaHelper
       desc("#{params[:tag]} - все, что нужно знать иммигранту в америке. - ezpoisk")
     when 'unanswered'
       desc("Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. We're in this together. - ezpoisk")
+    when 'unanswered_tag'
+      desc("#{params[:tag]} - Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. - ezpoisk")
     end
   end
 end

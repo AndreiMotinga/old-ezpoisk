@@ -10,7 +10,7 @@
 
 - content_for :sidebar do
   = link_to "Добавить ответ",
-            new_question_answer_path(@question),
+            new_answer_path(question_id: @question.id),
             class: "btn mobile-btn btn-block margin-bottom-10"
 
 = render "questions/search_form"

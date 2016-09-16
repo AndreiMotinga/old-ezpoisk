@@ -8,7 +8,7 @@
 
 - content_for :sidebar do
   = link_to "Добавить ответ",
-            new_question_answer_path(@answer.question),
+            new_answer_path(question_id: @answer.question_id),
             class: "btn btn-block mobile-btn margin-bottom-10"
   = render("answers/tag_cloud")
 

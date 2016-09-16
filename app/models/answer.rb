@@ -10,6 +10,8 @@ class Answer < ActiveRecord::Base
   has_one :entry, as: :enterable, dependent: :destroy
 
   delegate :name_to_show, to: :user
+  validates :title, presence: true
+  validates :text, presence: true
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
 
