@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160914183958) do
+ActiveRecord::Schema.define(version: 20160916021335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,9 +146,9 @@ ActiveRecord::Schema.define(version: 20160914183958) do
     t.integer  "visits",            default: 0
     t.string   "token"
     t.integer  "priority",          default: 0,     null: false
-    t.boolean  "remote",            default: false, null: false
     t.string   "vk",                default: ""
     t.string   "fb",                default: ""
+    t.boolean  "remote",            default: false
     t.index ["category"], name: "index_jobs_on_category", using: :btree
     t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
     t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree

@@ -15,6 +15,11 @@
               ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
               { selected: @job.tag_list },
               { multiple: true, name: 'job[tag_list][]', class: "my-dropdown-multiple" }
+        .row
+          .col-xs-6.col-sm-6
+            = f.check_box :active, label: "Активно *"
+          .col-xs-6.col-sm-6
+            = f.check_box :remote, label: "Все штаты *"
 
   .white-block
     .panel
@@ -35,7 +40,6 @@
             = form_state_select(f)
           .col-sm-6
             = form_city_select(f, @job)
-        = f.check_box :active, label: "Активно *"
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
         - unless @job.new_record?
           = link_to "Удалить",
@@ -50,3 +54,7 @@
         p
           strong Активно * - #{" "}
           = t :active_tooltip
+        p
+          strong Все штаты * - #{" "}
+          | Работа будет показана в поиске, в независимости от выбранного пользователем штата.
+          |  Веберите эту опцию если работа удаленная, либо доступна в нескольких штатах одновременно.

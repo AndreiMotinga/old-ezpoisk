@@ -29,6 +29,15 @@ class Job < ActiveRecord::Base
     less_than: 1.megabytes
   )
 
+  scope :state_id, ->(id) { where(state_id: id).or(Job.where(remote: true)) }
+  scope :city_id, -> (id) { where(city_id: id).or(Job.where(remote: true)) }
+
+  scope(:geo_scope, lambda do |geo_scope|
+    return if geo_scope[:within].blank? || geo_scope[:origin].blank?
+    within(geo_scope[:within], origin: geo_scope[:origin])
+      .or(Job.where(remote: true))
+  end)
+
   def edit_link
     url_helpers.edit_dashboard_job_path(self)
   end
