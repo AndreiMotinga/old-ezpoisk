@@ -14,3 +14,6 @@
 
     .panel-body
       p= review.text
+    - unless controller_name == "services" && action_name == "show"
+      .panel-footer
+        = link_to review.title, service_path(review.service_id), target: "_blank"

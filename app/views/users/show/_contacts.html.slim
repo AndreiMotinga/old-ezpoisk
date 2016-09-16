@@ -17,7 +17,8 @@
               strong
                 i.fa.fa-icon.fa-phone
                 | phone
-            td= @user.phone
+            td
+              a href="tel:#{@user.phone}" = @user.phone
 
         - if @user.site?
           tr

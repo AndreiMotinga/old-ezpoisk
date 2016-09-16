@@ -21,6 +21,7 @@ class Dashboard::ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.build(review_params)
+    @review.title = @review.service.title
     if @review.save
       run_create_notifications
       redirect_to dashboard_reviews_path, notice: I18n.t(:review_created)
@@ -59,7 +60,11 @@ class Dashboard::ReviewsController < ApplicationController
   end
 
   def set_review
-    @review = current_user.reviews.find(params[:id])
+    if current_user.admin?
+      @review = Review.find(params[:id])
+    else
+      @review = current_user.reviews.find(params[:id])
+    end
   end
 
   def review_params

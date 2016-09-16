@@ -65,4 +65,8 @@ class Service < ActiveRecord::Base
   def show_url
     url_helpers.service_url(self)
   end
+
+  def rating
+    reviews.average(:rating).try(:round)
+  end
 end
