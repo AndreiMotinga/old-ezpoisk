@@ -1,6 +1,6 @@
 class Dashboard::PartnersController < ApplicationController
   layout 'partner'
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:increment, :redirect]
   before_action :set_ad, only: [:edit, :update, :destroy]
 
   def index
@@ -45,6 +45,7 @@ class Dashboard::PartnersController < ApplicationController
 
   def increment
     PartnerImpressionsJob.perform_async(params[:id])
+    render json: {}, status: 200
   end
 
   def redirect
