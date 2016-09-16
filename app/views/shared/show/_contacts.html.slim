@@ -15,10 +15,11 @@
             = link_to "Я в facebook", record.fb, target: "_blank", rel: "nofollow"
 
         - if record.try(:phone).present?
-          li.list-group-item
-            span.glyphicon.glyphicon-earphone
-            a href="tel:#{record.phone}"
-              strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(record.phone, area_code: 1)}
+          - record.phone.split(",").each do |phone|
+            li.list-group-item
+              span.glyphicon.glyphicon-earphone
+              a href="tel:#{phone}"
+                strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(phone, area_code: 1)}
 
         - if record.try(:email).present?
           li.list-group-item

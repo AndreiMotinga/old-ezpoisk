@@ -19,12 +19,13 @@
             td: a href="mailto:#{@service.email}" =@service.email
 
         - if @service.phone?
-          tr
-            td
-              strong
-                i.fa.fa-icon.fa-phone
-                | phone
-            td= @service.phone
+          - @service.phone.split(",").each do |phone|
+            tr
+              td
+                strong
+                  i.fa.fa-icon.fa-phone
+                  | phone
+              td= phone
 
         - if @service.site?
           tr

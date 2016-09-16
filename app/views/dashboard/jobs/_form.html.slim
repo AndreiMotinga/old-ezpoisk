@@ -21,7 +21,7 @@
       .panel-body
         .row
           .col-sm-6
-            = f.number_field :phone, label: 'Телефон'
+            = f.text_field :phone, label: 'Телефоны (только цифры)', placeholder: "9292935385, 3472984343"
           .col-sm-6
             = f.email_field :email
         .row
