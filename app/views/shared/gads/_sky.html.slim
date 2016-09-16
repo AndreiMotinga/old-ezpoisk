@@ -1,0 +1,25 @@
+.sky style="height:600px;" data-id="sky-outer"
+  - if ENV["SHOW_GADS"]
+    /ins.adsbygoogle data-ad-client="ca-pub-1350854790289606" data-ad-slot="6000964174" style="display:inline-block;width:300px;height:250px" class="margin-bottom-10"
+    /javascript:
+    /  (adsbygoogle = window.adsbygoogle || []).push({});
+    /
+    /ins.adsbygoogle data-ad-client="ca-pub-1350854790289606" data-ad-slot="8814829775" style="display:inline-block;width:300px;height:250px" class="margin-bottom-10"
+    /javascript:
+    /  (adsbygoogle = window.adsbygoogle || []).push({});
+
+    ins[class="adsbygoogle margin-bottom-10 pull-right"
+         style="display:inline-block;width:300px;height:600px"
+         data-ad-client="ca-pub-1350854790289606"
+         data-ad-slot="7034568570"
+         data-id="sky-ins"]
+    javascript:
+      (adsbygoogle = window.adsbygoogle || []).push({});
+
+      // if adblock persent remove parent div form flow
+      if(!$("[data-id='sky-ins']:visible").length) {
+        $("[data-id='sky-outer']").remove();
+      }
+
+  - else
+    .green.margin-bottom-10 style="display:inline-block;width:300px;height:600px"

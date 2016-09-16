@@ -18,12 +18,12 @@ html
 
         .col-xs-12.col-sm-9.col-md-6
           = yield
+
         .hidden-xs.hidden-sm.col-md-4.side-column
-          - if content_for? :right_block
-            = yield :right_block
-          - else
-            .sticky data-id="right"
-              = render "partners/right"
+          = yield :right_block if content_for? :right_block
+          = render "shared/gads/sky"
+          .sticky data-id="right"
+            = render "partners/right"
 
     .hidden-xs
       = render "shared/footer"

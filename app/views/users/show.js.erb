@@ -1,15 +1,30 @@
+// send stats
 ga('send', 'pageview');
 
+// update leaderboard
 $("[data-id='leaderboard']").remove();
 $("[data-id='listings']:visible").append("<%= j render('shared/gads/leaderboard') %>");
+
+// render records
 $("[data-id='listings']:visible").append("<%= j render(@records) %>");
-$("[data-id='right']").html("<%= j render('partners/right') %>");
+
+// update left partners
 $("[data-id='left']").html("<%= j render('partners/left') %>");
 
+// update sky
+if($("[data-id='sky-ins']:visible").length) {
+  $("[data-id='right']").html("<%= j render('shared/gads/sky') %>");
+}
+else {
+  $("[data-id='right']").html("<%= j render('partners/right') %>");
+}
+
+// update pagination links
 <% if @records.next_page %>
   $(".pagination:visible").replaceWith("<%= j(paginate @records, param_name: @param) %>")
 <% else  %>
   $(".pagination:visible").remove();
 <% end %>
 
+// send ajax request to increaset impressions on visible partners
 incrementPartners();
