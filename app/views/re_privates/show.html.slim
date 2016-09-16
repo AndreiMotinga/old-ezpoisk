@@ -13,8 +13,8 @@
   = render "shared/show/contacts", record: @re_private
   = render "re_privates/details"
 
-.show
-  - if @re_private.pictures.any?
+- if @re_private.pictures.any?
+  .show
     .white-block
       ul.pgwSlideshow.pictures
         - @re_private.pictures.each do |pic|
