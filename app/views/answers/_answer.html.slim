@@ -21,4 +21,5 @@
         = strip_tags(answer.text).truncate(380)
         = " "
         = link_to "дальше", answer, target: "_blank"
-        p.tags= tag_links(answer)
+        p.tags
+          = sanitize answer.tag_list.map { |tag| link_to "##{tag}", tag_answers_path(tag), class: "tag" }.join
