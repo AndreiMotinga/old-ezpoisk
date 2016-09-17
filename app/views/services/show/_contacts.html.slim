@@ -52,6 +52,8 @@
         - if @service.google?
           = link_to @service.google, rel: "nofollow" do
             i.fa.fa-lg.fa-google-plus
-
-.col-xs-12
-  = render "shared/show/map", record: @service
+        - if @service.address.present?
+          strong
+            = link_to "https://maps.google.com/?q=#{@service.address}", target: "_blank", rel: "nofollow" do
+              i.fa.fa-map-o
+              | Google Map

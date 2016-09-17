@@ -31,9 +31,7 @@
   = render "shared/gads/leaderboard"
   = render "shared/show/text", record: @re_private
   = render "shared/disqus"
-
-  .col-xs-12
-    = render "shared/show/map", record: @re_private
+  = render "shared/show/map", record: @re_private
 
   .visible-xs
     = render "shared/show/contacts", record: @re_private

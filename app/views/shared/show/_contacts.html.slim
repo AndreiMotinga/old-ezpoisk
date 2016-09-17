@@ -8,11 +8,17 @@
 
         - unless record.try(:vk).blank?
           li.list-group-item
-            = link_to "Я vkontakte", record.vk, target: "_blank", rel: "nofollow"
+            strong
+              = link_to record.vk, target: "_blank", rel: "nofollow" do
+                i.fa.fa-lg.fa-vk
+                |  Я vkontakte
 
         - unless record.try(:fb).blank?
           li.list-group-item
-            = link_to "Я в facebook", record.fb, target: "_blank", rel: "nofollow"
+            strong
+              = link_to record.fb, target: "_blank", rel: "nofollow" do
+                i.fa.fa-lg.fa-facebook
+                |  Я в facebook
 
         - if record.try(:phone).present?
           - record.phone.split(",").each do |phone|
@@ -33,9 +39,10 @@
           span  #{record.impressions_count} /  #{record.visits}
 
         li.list-group-item
-          a src="https://maps.google.com/?q=#{record.address}" target="_blank" rel="nofollow"
-            i.fa.fa-map-o
-            | Google Map
+          strong
+            = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
+              i.fa.fa-map-o
+              | Google Map
 
         /li.list-group-item
         /  strong * Укажите, что нашли объявление на ezpoisk.com

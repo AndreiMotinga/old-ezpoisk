@@ -44,3 +44,8 @@
         - if @user.ok?
           = link_to @user.ok, rel: "nofollow" do
             i.fa.fa-lg.fa-odnoklassniki
+        - if @user.address.present?
+          strong
+            = link_to "https://maps.google.com/?q=#{@user.address}", target: "_blank", rel: "nofollow" do
+              i.fa.fa-map-o
+              | Google Map
