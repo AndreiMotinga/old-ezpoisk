@@ -27,4 +27,5 @@
 
       / line 5
       span.glyphicon.glyphicon-earphone
-      span.company-phone  #{service.phone}
+      span.company-phone
+        a href="tel:#{service.phone}"  #{service.phone}

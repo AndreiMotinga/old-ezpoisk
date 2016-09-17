@@ -13,8 +13,9 @@
     .col-xs-8
       / line 1
       = render "shared/favor_links", record: sale
-      h4.title.hidden-xs= sale.title
-      h5.title.visible-xs= sale.title
+      = link_to sale do
+        h4.title.hidden-xs= sale.title
+        h5.title.visible-xs= sale.title
       span.state-city #{sale.city.name}, #{sale.state.name}
       hr.post-devider
 
@@ -35,7 +36,8 @@
       / line 3
       - if sale.phone?
         span.glyphicon.glyphicon-earphone
-        span.company-phone= " " + sale.phone
+        span.company-phone
+          a href="tel:#{sale.phone}"  #{sale.phone}
         hr.post-devider/
 
       / line 4

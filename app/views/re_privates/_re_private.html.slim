@@ -14,7 +14,7 @@
 
     .col-xs-12.col-sm-8
       = render "shared/favor_links", record: re_private
-      h4.title= re_private.title
+      h4.title= link_to re_private.title, re_private
 
       / line 2
       span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}
