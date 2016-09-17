@@ -1,0 +1,5 @@
+$(".city-select").html("<%= j(render partial: 'cities/cities_select') %>");
+$(".city-select").select2({
+  multiple: true,
+  matcher: matcher
+});

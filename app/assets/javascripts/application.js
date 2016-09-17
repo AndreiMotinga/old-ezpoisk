@@ -25,7 +25,7 @@
 //= require pgwslider
 //= require touchTouch
 
-//= require select2
+//= require select2-full
 
 //= require social/vk
 //= require social/vk_2
