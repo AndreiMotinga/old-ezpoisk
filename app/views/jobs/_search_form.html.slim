@@ -1,24 +1,27 @@
-form.form-horizontal action=jobs_path method="get"
-  = render "shared/search_by_address"
+#search-form.white-block
+  .panel
+    .panel-body
+      form.form-horizontal action=jobs_path method="get"
+        = render "shared/search_by_address"
 
-  .row
-    .col-xs-12.col-sm-6
-      = label_tag "Раздел", nil
-      = select_tag :category,
-                   options_for_select(ru(JOB_CATEGORIES), params[:category]),
-                   include_blank: true,
-                   class: "form-control"
-    .col-xs-12.col-sm-6
-      = label_tag "Ключевое слово", nil
-      = text_field_tag :keyword, params[:keyword], class: "form-control"
+        .row
+          .col-xs-12.col-sm-6
+            = label_tag "Раздел", nil
+            = select_tag :category,
+                         options_for_select(ru(JOB_CATEGORIES), params[:category]),
+                         include_blank: true,
+                         class: "form-control"
+          .col-xs-12.col-sm-6
+            = label_tag "Ключевое слово", nil
+            = text_field_tag :keyword, params[:keyword], class: "form-control"
 
-  br
-  = label_tag "Категории", nil
-  = select_tag :tag_list,
-               options_for_select(Job.taggings_list, params[:tag_list]),
-               multiple: true,
-               class: "form-control my-dropdown-multiple"
+        br
+        = label_tag "Категории", nil
+        = select_tag :tag_list,
+                     options_for_select(Job.taggings_list, params[:tag_list]),
+                     multiple: true,
+                     class: "form-control my-dropdown-multiple"
 
-  hr
+        hr
 
-  = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"
+        = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

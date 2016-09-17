@@ -2,10 +2,14 @@
               ["Услуги", "Service"],
               ["Работа", "Job"],
               ["Продается", "Sale" ] ]
-= form_tag dashboard_favorites_path, method: :get, class: "form-horizontal"
-  = label_tag "Раздел", nil,  class: "control-label"
-  = select_tag :type,
-               options_for_select(models, params[:type]),
-               class: "form-control"
-  hr
-  = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"
+
+#search-form.white-block
+  .panel
+    .panel-body
+      = form_tag dashboard_favorites_path, method: :get, class: "form-horizontal"
+        = label_tag "Раздел", nil,  class: "control-label"
+        = select_tag :type,
+                     options_for_select(models, params[:type]),
+                     class: "form-control"
+        hr
+        = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

@@ -309,3 +309,10 @@ span.social {
   margin-bottom: 20px;
   border-top: 1px solid $grey_c;
 }
+
+#search-form {
+  display: none;
+  .nav-tabs > li > a {
+    padding: 10px 12px;
+  }
+}

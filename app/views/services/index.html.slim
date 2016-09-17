@@ -11,7 +11,8 @@
             week: Service.week.count,
             total: Service.count)
 
-= render("shared/filters", id: "services", count: @services.total_count)
+.visible-xs= render("shared/filters_btn", id: "services", count: @services.total_count)
+= render "services/search_form"
 
 .col-xs-12 data-id="listings"
   = render @services

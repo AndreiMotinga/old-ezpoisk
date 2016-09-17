@@ -3,7 +3,7 @@
 = desc("Объявления о продаже и аренде квартир и домов без посредников в США: Нью Йорк, Сан Франциско, Лос Анджелес, Майами")
 
 - content_for :sidebar
-  = render("shared/filters_btn", id: "re_privates", count: @re_privates.total_count)
+  = render("shared/filters_btn", count: @re_privates.total_count)
   = render("shared/listings_count",
             title: "Недвижимость",
             url: re_privates_path,
@@ -11,7 +11,9 @@
             week: RePrivate.week.count,
             total: RePrivate.count)
 
-= render("shared/filters", id: "re_privates", count: @re_privates.total_count)
+.visible-xs= render("shared/filters_btn", count: @re_privates.total_count)
+
+= render "re_privates/search_form"
 
 .col-xs-12 data-id="listings"
   = render @re_privates
