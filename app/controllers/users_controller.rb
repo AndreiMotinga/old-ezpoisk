@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @listings = @user.listings.page(params[:listings_page])
     @answers = @user.answers.includes(:taggings).page(params[:answers_page])
     @posts = @user.posts.page(params[:posts_page])
-    @pictures = @user.pictures.page(params[:pictures_page]).per(20)
+    @pictures = @user.pictures.page(params[:pictures_page]).per(40)
     @reviews = @user.reviews.page(params[:reviews_page])
     set_records
   end

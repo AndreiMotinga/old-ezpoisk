@@ -14,7 +14,7 @@ class ServicesController < ApplicationController
 
   def show
     @service = get_record(Service, params[:id], services_path)
-    @pictures = @service.pictures.page(params[:pictures_page]).per(20)
+    @pictures = @service.pictures.page(params[:pictures_page]).per(40)
     @reviews = @service.reviews.includes(:user).page(params[:reviews_page])
     set_records
   end
