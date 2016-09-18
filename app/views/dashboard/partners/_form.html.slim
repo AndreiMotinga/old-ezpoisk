@@ -1,16 +1,16 @@
 = bootstrap_form_for([:dashboard, @partner]) do |f|
   .row
     .col-xs-12
-      = f.file_field :image, label: "Банер", onchange: "readURL(this);"
+      = f.file_field :image, label: "* Банер", onchange: "readURL(this);"
       span.text-muted слева 200x100px | справа 300x250px
   br
-  = f.text_field :title, label: 'Название', "data-title": ""
-  = f.text_field :text, label: "Описание", "data-text": ""
-  = f.text_field :url, label: "Ссылка", "data-url": ""
-  = f.select :position, ru(PARTNER_POSITIONS), label: "Расположение"
+  = f.text_field :title, label: '* Название', "data-title": ""
+  = f.text_field :text, label: "* Описание", "data-text": ""
+  = f.text_field :url, label: "* Ссылка", "data-url": ""
+  = f.select :position, ru(PARTNER_POSITIONS), label: "* Расположение"
   hr
-  = f.number_field :phone, label: 'Телефон'
+  = f.number_field :phone, label: '* Телефон'
   = f.email_field :email
-  = f.text_field :budget, label: "Ваш бюджет"
+  = f.text_field :budget, label: "* Ваш бюджет"
 
   = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
