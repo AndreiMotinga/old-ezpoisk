@@ -20,10 +20,12 @@ html
           = yield
 
         .hidden-xs.hidden-sm.col-md-4.side-column
-          = yield :right_block if content_for? :right_block
-          = render "shared/gads/sky"
-          .sticky data-id="right"
-            = render "partners/right"
+          - if content_for? :right_block
+            = yield :right_block
+          - else
+            = render "shared/gads/sky"
+            .sticky data-id="right"
+              = render "partners/right"
 
     .hidden-xs
       = render "shared/footer"

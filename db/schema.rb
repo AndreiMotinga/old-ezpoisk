@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160916144450) do
+ActiveRecord::Schema.define(version: 20160918153359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.string   "vk",                default: ""
     t.string   "fb",                default: ""
     t.boolean  "remote",            default: false
+    t.boolean  "featured",          default: false
     t.index ["category"], name: "index_jobs_on_category", using: :btree
     t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
     t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
@@ -268,6 +269,7 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.string   "category"
     t.string   "vk",                default: ""
     t.string   "fb",                default: ""
+    t.boolean  "featured",          default: false
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["price"], name: "index_re_privates_on_price", using: :btree
     t.index ["space"], name: "index_re_privates_on_space", using: :btree
@@ -293,15 +295,15 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.string   "category"
     t.string   "phone"
     t.string   "email"
-    t.text     "text",              default: "", null: false
+    t.text     "text",              default: "",    null: false
     t.boolean  "active"
     t.float    "lat"
     t.float    "lng"
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.integer  "zip"
     t.string   "street"
     t.integer  "impressions_count", default: 0
@@ -309,10 +311,11 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.integer  "price"
     t.string   "source"
     t.integer  "visits",            default: 0
-    t.integer  "priority",          default: 0,  null: false
+    t.integer  "priority",          default: 0,     null: false
     t.string   "token"
     t.string   "vk",                default: ""
     t.string   "fb",                default: ""
+    t.boolean  "featured",          default: false
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
     t.index ["state_id"], name: "index_sales_on_state_id", using: :btree
@@ -329,12 +332,12 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.string   "site"
     t.string   "category"
     t.string   "subcategory"
-    t.text     "text",               default: "", null: false
+    t.text     "text",               default: "",    null: false
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "state_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -344,7 +347,7 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.integer  "zip"
     t.string   "slug",               default: ""
     t.integer  "impressions_count",  default: 0
-    t.integer  "priority",           default: 0,  null: false
+    t.integer  "priority",           default: 0,     null: false
     t.integer  "visits",             default: 0
     t.string   "token"
     t.boolean  "active"
@@ -357,6 +360,7 @@ ActiveRecord::Schema.define(version: 20160916144450) do
     t.string   "google"
     t.string   "twitter"
     t.string   "ok"
+    t.boolean  "featured",           default: false
     t.index ["city_id"], name: "index_services_on_city_id", using: :btree
     t.index ["state_id"], name: "index_services_on_state_id", using: :btree
     t.index ["user_id"], name: "index_services_on_user_id", using: :btree

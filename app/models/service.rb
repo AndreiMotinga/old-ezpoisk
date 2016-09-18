@@ -30,7 +30,8 @@ class Service < ActiveRecord::Base
   delegate :cancelled?, to: :stripe_subscription, allow_nil: true
   delegate :cancel, to: :stripe_subscription, allow_nil: true
 
-  has_attached_file :logo, styles: { medium: "x120", avatar: "100x100#" }
+  has_attached_file :logo, styles: { medium: "x120",
+                                     avatar: "100x100#", right: "300x250#" }
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :logo, matches: [/png\Z/i, /jpe?g\Z/i]
   validates_with(
@@ -64,5 +65,13 @@ class Service < ActiveRecord::Base
 
   def rating
     reviews.average(:rating).try(:round)
+  end
+
+  def side_items
+    Service.featured
+           .category(category)
+           .subcategory(subcategory)
+           .where.not(id: id)
+           .order("priority desc, updated_at desc")
   end
 end

@@ -27,4 +27,24 @@ describe Service do
       expect(result).to eq edit_path
     end
   end
+
+  describe "#featured" do
+    it "returns featured listings in same category and subcategory" do
+      s = create :service
+      create :service
+      3.times do |i|
+        create :service,
+               featured: true,
+               title: "title#{i}",
+               priority: i,
+               category: s.category,
+               subcategory: s.subcategory
+      end
+
+      expected = %w(title2 title1 title0)
+      result = s.featured.pluck :title
+
+      expect(expected).to eq result
+    end
+  end
 end

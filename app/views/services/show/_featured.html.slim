@@ -1,0 +1,7 @@
+- @service.side_items.each do |service|
+  .partner class="right"
+    = link_to service do
+      = image_tag service.logo.url(:right), class: "img-responsive"
+      span.title=service.title
+
+    hr.partner-hr

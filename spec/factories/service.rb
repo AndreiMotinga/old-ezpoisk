@@ -39,5 +39,14 @@ FactoryGirl.define do
       category "Работа"
       subcategory "Агентства по Трудоустройству"
     end
+
+    trait :with_logo do
+      logo {
+        Rack::Test::UploadedFile.new(
+          "#{Rails.root}/spec/support/fixtures/#{(1..10).to_a.sample}.jpg",
+          "image/png"
+        )
+      }
+    end
   end
 end
