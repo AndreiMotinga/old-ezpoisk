@@ -22,7 +22,7 @@
 
       / line 4
       - if service.try(:site).present?
-        = link_to service.site, service.site_link, rel: "nofollow", target: "_blank"
+        = link_to service.site, site_link(service.site), rel: "nofollow", target: "_blank"
         hr.post-devider/
 
       / line 5

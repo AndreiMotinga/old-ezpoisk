@@ -57,8 +57,8 @@ ActiveRecord::Schema.define(version: 20160916144450) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.string   "enterable_type"
     t.integer  "enterable_id"
+    t.string   "enterable_type"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -179,8 +179,8 @@ ActiveRecord::Schema.define(version: 20160916144450) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "imageable_type"
     t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -399,10 +399,10 @@ ActiveRecord::Schema.define(version: 20160916144450) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "taggable_type"
     t.integer  "taggable_id"
-    t.string   "tagger_type"
+    t.string   "taggable_type"
     t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -475,10 +475,10 @@ ActiveRecord::Schema.define(version: 20160916144450) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string   "votable_type"
     t.integer  "votable_id"
-    t.string   "voter_type"
+    t.string   "votable_type"
     t.integer  "voter_id"
+    t.string   "voter_type"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"

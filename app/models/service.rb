@@ -45,10 +45,6 @@ class Service < ActiveRecord::Base
     default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
-  def site_link
-    site.match(/http/).present? ? site : "http://#{site}"
-  end
-
   def trial?
     return false unless stripe_subscription
     stripe_subscription.status == "trial"
