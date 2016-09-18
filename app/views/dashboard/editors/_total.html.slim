@@ -1,0 +1,29 @@
+.row
+  .col-xs-12
+    .white-block
+      table.table.table-hover.table-bordered style="margin-bottom:0"
+        thead
+          tr
+            td.text-center Type
+            td.text-center Unpaid articles
+            td.text-center Total to pay
+            td.text-center= link_to "mark paid", dashboard_editor_path(@user), method: :put
+        tbody
+          tr
+            td.text-center Ответы
+            td.text-center= @answers.count
+            td.text-center= number_to_currency(total_price(@answers), locale: :en)
+            td
+          - if @posts.any?
+            tr
+              td.text-center Новости
+              td.text-center= @posts.count
+              td.text-center= number_to_currency(total_price(@posts), locale: :en)
+              td
+
+          - if @posts.any? && @answers.any?
+            tr
+              td.text-center Всего
+              td.text-center= @answers.count + @posts.count
+              td.text-center= number_to_currency(total_price(@answers) + total_price(@posts), locale: :en)
+              td

@@ -82,16 +82,15 @@ class User < ActiveRecord::Base
   end
 
   def editor?
-    admin? or role == "editor"
+    admin? || role == "editor"
   end
 
-  # refactor it to ask if current_user.can_edit?(record)
-  def can_edit?(current_user)
-    self == current_user or current_user.try(:editor?)
+  def can_edit?(record)
+    self == record.user || admin?
   end
 
   def team_member?
-    admin? or editor?
+    admin? || editor?
   end
 
   def listings

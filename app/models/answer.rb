@@ -2,6 +2,7 @@ class Answer < ActiveRecord::Base
   acts_as_taggable
   include Filterable
   include MyFriendlyId
+  include ViewHelpers
   acts_as_votable
   acts_as_commentable
   belongs_to :user
@@ -14,6 +15,7 @@ class Answer < ActiveRecord::Base
   validates :text, presence: true
 
   scope :by_score, -> { all.sort_by(&:score).reverse }
+  scope :desc, -> { order("created_at desc") }
 
   has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}

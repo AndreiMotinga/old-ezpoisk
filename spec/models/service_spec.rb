@@ -28,7 +28,7 @@ describe Service do
     end
   end
 
-  describe "#featured" do
+  describe "#side_items" do
     it "returns featured listings in same category and subcategory" do
       s = create :service
       create :service
@@ -42,7 +42,7 @@ describe Service do
       end
 
       expected = %w(title2 title1 title0)
-      result = s.featured.pluck :title
+      result = s.side_items.pluck :title
 
       expect(expected).to eq result
     end

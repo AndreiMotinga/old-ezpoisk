@@ -1,0 +1,11 @@
+- content_for :sidebar do
+  = render("dashboard/shared/menu")
+  = render "dashboard/editors/links"
+
+= render "dashboard/shared/mob_menu"
+= render "dashboard/editors/total"
+
+- if @answers.any?
+  = render "dashboard/editors/table", records: @answers, title: "Ответы"
+- if @posts.any?
+  = render "dashboard/editors/table", records: @posts, title: "Новости"

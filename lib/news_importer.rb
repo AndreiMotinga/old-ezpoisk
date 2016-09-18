@@ -3,7 +3,7 @@ require "rss"
 
 # imports news
 class NewsImporter
-  USER_ID = 181 # ez
+  USER_ID = 4 # anonymous
 
   def self.import
     @records = []

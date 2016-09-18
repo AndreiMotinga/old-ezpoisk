@@ -75,4 +75,8 @@ module ViewHelpers
     return user.email if user.present?
     return email if email.present?
   end
+
+  def size
+    ActionView::Base.full_sanitizer.sanitize(text).gsub("\s+", " ").size
+  end
 end

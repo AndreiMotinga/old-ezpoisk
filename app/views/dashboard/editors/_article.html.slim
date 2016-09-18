@@ -1,0 +1,4 @@
+tr
+  td= link_to article.title, article
+  td.text-center= article.size
+  td.text-center= number_to_currency(article.size / 2000.0, locale: :en)

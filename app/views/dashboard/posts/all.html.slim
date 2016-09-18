@@ -12,8 +12,7 @@ table.table.table-striped
   - @posts.each do |post|
     tr data-id="post-#{post.id}"
       td= post.category
-      td= link_to post.title, edit_dashboard_post_path(post), target: "_blank"
-      td= link_to 'удалить', dashboard_post_path(post), method: :delete, remote: true
+      td= link_to post.title, site_link(post.link), target: "_blank", rel: "nofollow"
 
 br
 = form_tag destroy_all_dashboard_posts_path, class: "form-horizontal", method: "post" do

@@ -1,4 +1,4 @@
-- if @answer.user.can_edit?(current_user)
+- if current_user.try(:can_edit?, @answer)
   .dropdown.pull-right
     a#dLabel aria-expanded="false" aria-haspopup="true" data-target="#" data-toggle="dropdown" href=""
       i.fa.fa-lg.fa-icon.fa-ellipsis-v

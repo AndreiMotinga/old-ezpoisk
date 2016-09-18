@@ -5,7 +5,7 @@
     .panel-body
       table.table.table-hover.text-center
 
-        - unless @service.user.team_member?
+        - unless @service.user.admin?
           tr
             td Автор
             td= link_to @service.user.name_to_show, user_path(@service.user), target: "_blank"

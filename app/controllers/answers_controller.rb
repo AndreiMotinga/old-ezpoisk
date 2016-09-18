@@ -94,7 +94,7 @@ class AnswersController < ApplicationController
 
   def set_answer
     @answer = Answer.find(params[:id])
-    @answer = nil unless @answer.user.can_edit?(current_user)
+    @answer = nil unless current_user.try(:can_edit?, @answer)
   end
 
   def answer_params

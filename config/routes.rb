@@ -48,8 +48,9 @@ Rails.application.routes.draw do
     resources :services
     resources :reviews
     resources :answers, only: [:index]
-    resources :posts do
-      authenticate :user, ->(u) { u.editor? } do
+    authenticate :user, ->(u) { u.editor? } do
+      resources :editors, only: [:show, :update]
+      resources :posts do
         collection do
           get "all"
           get "import"

@@ -5,6 +5,7 @@ module Filterable
     delegate :name, to: :state, prefix: true
     delegate :name, to: :city, prefix: true
 
+    scope :unpaid, -> { where(paid: false) }
     scope :today, -> { where("created_at > ?", Date.today) }
     scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
     scope :till_last_week, -> { where("created_at < ?", Date.today.at_beginning_of_week) }

@@ -58,9 +58,12 @@ nav.navbar-fixed-top.navbar-main
                   /    li
                   /      a href="#"  3rd level dropdown
 
-              li.divider role: "separator"
-              li = link_to "Реклама", main_app.dashboard_partners_path, tabindex: '-1'
-              li.divider role: "separator"
+              li.divider role="separator"
+              li = link_to "Реклама", main_app.dashboard_partners_path
+              - if current_user.try(:editor?)
+                li.divider role="separator"
+                li = link_to "Мои Статьи", main_app.dashboard_editor_path(current_user)
+              li.divider role="separator"
               li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
         - else
           li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"
