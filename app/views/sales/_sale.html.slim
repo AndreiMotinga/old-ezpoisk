@@ -36,8 +36,9 @@
       / line 3
       - if sale.phone?
         span.glyphicon.glyphicon-earphone
-        span.company-phone
-          a href="tel:#{sale.phone}"  #{sale.phone}
+        - sale.phone.split(",").each do |phone|
+          span.company-phone
+            a href="tel:#{phone}"  #{phone}
         hr.post-devider/
 
       / line 4
