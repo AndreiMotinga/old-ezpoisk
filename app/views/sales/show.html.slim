@@ -30,16 +30,19 @@ div itemscope="" itemtype="http://schema.org/Product"
 
   /todo move to text partial
   - if @sale.text?
-    .col-xs-12.white-block.text
-      .panel.panel-default
-        .panel-body
-          h1.h1-desc-title itemprop="name"  = @sale.title
-          div itemprop="description"
-            = markdown @sale.text
-
-  = render "shared/disqus"
-  = render 'shared/show/map', record: @sale
+    .row
+      .col-xs-12
+        .white-block.text
+          .panel.panel-default
+            .panel-body
+              h1.h1-desc-title itemprop="name"  = @sale.title
+              div itemprop="description"
+                = markdown @sale.text
 
   .visible-xs
     = render "shared/show/contacts", record: @sale
     = render "sales/details"
+
+  = render "shared/disqus"
+  = render 'shared/show/map', record: @sale
+

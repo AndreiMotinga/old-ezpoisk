@@ -1,33 +1,30 @@
-div class=("col-xs-12" unless service.featured)
-  .row.white-block class=("user-hidden" if service.user_hidden?(current_user)) data-hidden=service.id
-    .listing
-      .hidden-xs.col-sm-4.logo data-id="logo"
-        = link_to service_path(service) do
-          = image_tag service.logo.url(:medium),
-                      class: "img-responsive center-block", itemprop: "logo",
-                      alt: "#{t service.category} #{t service.subcategory} #{service.title} #{service.city.name} #{service.state.name}"
+.row.white-block class=("user-hidden" if service.user_hidden?(current_user)) data-hidden=service.id
+  .listing
+    .hidden-xs.col-sm-4.logo data-id="logo"
+      = link_to service_path(service) do
+        = image_tag service.logo.url(:medium),
+                    class: "img-responsive center-block", itemprop: "logo",
+                    alt: "#{t service.category} #{t service.subcategory} #{service.title} #{service.city.name} #{service.state.name}"
 
-      .col-xs-12.col-sm-8
-        / line 1
-        = render "shared/favor_links", record: service
+    .col-xs-12.col-sm-8
+      / line 1
+      = render "shared/favor_links", record: service
+      h4.title itemprop="name"
+        - if service.featured
+          span.featured Ad
+        = link_to service.title, service_path(service)
 
-        - if controller_name == "services" && action_name == "show"
-          h4.title.hidden-xs itemprop="name"= service.title
-          h5.title.visible-xs itemprop="name" = service.title
-        - else
-          h4.title.hidden-xs itemprop="name"= link_to service.title, service_path(service)
-          h5.title.visible-xs itemprop="name"= link_to service.title, service_path(service)
+      / line 2
+      span.state-city #{service.city.name}, #{service.state.name}
+      hr.post-devider/
 
-        span.state-city #{service.city.name}, #{service.state.name}
+      / line 4
+      - if service.try(:site).present?
+        = link_to service.site, site_link(service.site), rel: "nofollow", target: "_blank"
         hr.post-devider/
 
-        / line 4
-        - if service.try(:site).present?
-          = link_to service.site, site_link(service.site), rel: "nofollow", target: "_blank"
-          hr.post-devider/
-
-        / line 5
-        span.glyphicon.glyphicon-earphone
-        - service.phone.split(",").each do |phone|
-          span.company-phone
-            a href="tel:#{phone}"  #{phone}
+      / line 5
+      span.glyphicon.glyphicon-earphone
+      - service.phone.split(",").each do |phone|
+        span.company-phone
+          a href="tel:#{phone}"  #{phone}

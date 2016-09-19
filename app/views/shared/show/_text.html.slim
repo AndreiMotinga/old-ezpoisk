@@ -1,6 +1,8 @@
 - if record.text.present?
-  .col-xs-12.white-block.text
-    .panel.panel-default
-      .panel-body
-        div itemprop="description"
-          = markdown record.text
+  .row
+    .col-xs-12
+      .white-block.text
+        .panel.panel-default
+          .panel-body
+            div itemprop="description"
+              = markdown record.text

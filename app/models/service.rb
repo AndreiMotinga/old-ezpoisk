@@ -43,7 +43,7 @@ class Service < ActiveRecord::Base
   has_attached_file(
     :cover,
     styles: { large: "780x390#" },
-    default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
+    default_url: "https://s3.amazonaws.com/ezpoisk/pictures/service-default-cover.jpg")
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
   def trial?
@@ -68,10 +68,10 @@ class Service < ActiveRecord::Base
   end
 
   def side_items
-    Service.featured
-           .category(category)
+    Service.category(category)
            .subcategory(subcategory)
            .where.not(id: id)
-           .order("priority desc, updated_at desc")
+           .order("featured desc, priority desc, updated_at desc")
+           .limit(3)
   end
 end

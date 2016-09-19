@@ -316,3 +316,12 @@ span.social {
     padding: 10px 12px;
   }
 }
+
+.featured {
+  display: inline;
+  background-color: $grey_c;
+  color: $white;
+  padding: 3px;
+  margin-right: 5px;
+  font-weight: normal;
+}

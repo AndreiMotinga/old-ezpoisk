@@ -1,10 +1,10 @@
-.partner class=side data-partner="" data-id=partner.id
+.partner.margin-bottom-10 class=side data-partner="" data-id=partner.id
   - if partner.id
     = link_to redirect_dashboard_partner_path(partner), rel: "nofollow", target: "_blank" do
       = image_tag partner.image.url(side),
                   class: "img-responsive",
                   "data-partner-image": side
-      span.title data-partner-title="" =partner.title
+      h5.title data-partner-title="" =partner.title
       /span.url.text-muted data-partner="url" =partner.url
       span.text.text-muted data-partner-text=""
         = partner.text
@@ -13,13 +13,8 @@
     = image_tag partner.image.url(side),
                 class: "img-responsive",
                 "data-partner-image": side
-    span.title data-partner-title="" =partner.title
+    h5.title data-partner-title="" =partner.title
     /span.url.text-muted data-partner="url" =partner.url
     span.text.text-muted data-partner-text=""
       = partner.text
-
-
-
-
-
-  hr.partner-hr
+  hr

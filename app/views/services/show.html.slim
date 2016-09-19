@@ -18,9 +18,9 @@
 
 - content_for :sidebar do
   = render "services/show/menu"
-/- content_for :right_block do
+- content_for :right_block do
   = render "services/show/featured"
-  = render "shared/gads/sky"
+  = render "shared/gads/sky" unless @service.featured
 
 - content_for :cover do
   = render "services/show/cover"

@@ -2,22 +2,20 @@
   &:hover {
     background-color: $grey_d;
   }
+
   a { text-decoration: none; }
-  span { display: block; }
+  .text { color: $black; }
 
   .title {
     color: $darkblue;
     font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 3px;
   }
 
-  .text { color: $black; }
-  .partner-hr {
+  hr {
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     border-top: 1px solid $grey_c;
   }
-}
-
-.partner.right {
-  max-width: 306px;
 }

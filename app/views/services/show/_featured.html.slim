@@ -1,7 +1,10 @@
 - @service.side_items.each do |service|
-  .partner class="right"
+  .partner.pull-right.right.margin-bottom-10
     = link_to service do
-      = image_tag service.logo.url(:right), class: "img-responsive"
-      span.title=service.title
-
-    hr.partner-hr
+      h5.title
+        - if service.featured?
+          span.featured Ad
+        = service.title
+      span.text.text-muted
+        = strip_tags(service.text).truncate(130)
+    hr
