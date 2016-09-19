@@ -9,36 +9,36 @@
 = content_for :sidebar do
   = render("posts/tag_cloud")
 
-.col-xs-12 itemscope="" itemtype="http://schema.org/ScholarlyArticle"
+.article.post.col-xs-12 itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .row.white-block
-    .post
-      .panel.panel-default
-        .panel-heading
-          h1.h1-title itemprop="name" = @post.title
-          .row.author
-            .col-xs-3.col-sm-2
-              = image_tag @post.avatar.url(:thumb),
-                          class: "img-responsive center-block img-circle",
-                          alt: @post.user.name_to_show
-            .col-xs-9.col-sm-10
-              h4.name itemprop="author" = @post.user.name_to_show
-              p.text-muted= @post.created_at.strftime("%d %B %Y")
+    .panel.panel-default
+      .panel-heading
+        h1.h1-title itemprop="name" = @post.title
+        .row.author
+          .col-xs-3.col-sm-2
+            = image_tag @post.avatar.url(:thumb),
+                        class: "img-responsive center-block img-circle",
+                        alt: @post.user.name_to_show
+          .col-xs-9.col-sm-10
+            h4.name itemprop="author" = link_to @post.user.name_to_show, user_path(@post.user), target: "_blank"
 
-        .panel-body
-          - if @post.image?
-            = image_tag @post.logo_url,
-                        class: "img-responsive center-block",
-                        alt: "Новости русского комьюнити в США - #{@post.title}",
-                        "data-id": "post-logo"
-          .post-body itemprop="description"
-            /todo how to use markdown to display videos
-            = raw @post.text
+            p.text-muted= @post.created_at.strftime("%d %B %Y")
 
-            hr
+      .panel-body
+        - if @post.image?
+          = image_tag @post.logo_url,
+                      class: "img-responsive center-block",
+                      alt: "Новости русского комьюнити в США - #{@post.title}",
+                      "data-id": "post-logo"
+        .post-body itemprop="description"
+          /todo how to use markdown to display videos
+          = raw @post.text
 
-          = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
-          - if @post.user == current_user || current_user.try(:editor?)
-            = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
+          hr
+
+        = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
+        - if @post.user == current_user || current_user.try(:editor?)
+          = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
 = render "shared/gads/leaderboard"
 

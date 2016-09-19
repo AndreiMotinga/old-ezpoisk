@@ -1,33 +1,3 @@
-.post {
-  overflow: hidden;
-
-  .title {
-    a {
-      color: $grey4;
-      text-decoration: none;
-    }
-  }
-
-  .author {
-    .name {
-      margin: 0;
-    }
-  }
-
-  .panel-heading {
-    padding: 0 15px;
-  }
-
-  .panel-body {
-    padding-bottom: 20px;
-    padding-top: 5px;
-  }
-
-  .author {
-    margin: 0;
-  }
-}
-
 .side_posts {
   .thumbnail {
     margin-bottom: 0;
