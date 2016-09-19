@@ -21,7 +21,8 @@ class Job < ActiveRecord::Base
   has_many :subscriptions, as: :subscribable, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
-  has_attached_file :logo, styles: { large: "755x425>" }
+  has_attached_file :logo, styles: { large: "755x425>" },
+                    default: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
   validates_with(
     AttachmentSizeValidator,

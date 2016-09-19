@@ -1,17 +1,18 @@
 .row.white-block
   .post
     .panel.panel-default
-      - unless post.user.try(:editor?)
-        .panel-heading.hidden-xs
-          .row.author
-            .col-sm-2
-              = link_to user_path(post.user) do
-                = image_tag post.avatar.url(:thumb),
-                            class: "img-responsive center-block img-circle",
-                            alt: "автор новости #{post.user.name_to_show}"
-            .col-sm-10
-              h4.name= post.user.name_to_show
-              p.text-muted= post.created_at.strftime("%d %B %Y")
+      .panel-heading
+        h4.title= link_to post.title, post
+
+        .row.author
+          .col-xs-3.col-sm-2
+            = link_to user_path(post.user) do
+              = image_tag post.avatar.url(:thumb),
+                          class: "img-responsive center-block img-circle",
+                          alt: "автор новости #{post.user.name_to_show}"
+          .col-xs-9.col-sm-10
+            h4.name= post.user.name_to_show
+            p.text-muted= post.created_at.strftime("%d %B %Y")
 
       .panel-body
         = link_to post_path(post) do
@@ -19,7 +20,6 @@
             = image_tag post.logo_url,
                         class: "img-responsive center-block",
                         alt: "Новости русского комьюнити в США - #{post.title}"
-        h4.title= link_to post.title, post
         p= strip_tags(post.summary)
         p.tags
           = sanitize post.tag_list.map { |tag| link_to "##{tag}", post_tag_posts_path(tag), class: "tag" }.join

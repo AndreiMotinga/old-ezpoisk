@@ -2,6 +2,7 @@
   .panel
     .panel-body
       = bootstrap_form_for([:dashboard, @post]) do |f|
+        = f.hidden_field :visible, value: true
         = f.text_field :image_remote_url, label: "Фото"
         = f.text_field :title, label: "* Заголовок (5-50 символов)"
         = f.text_area :summary, rows: 3, label: "* Описание (30-400 симоволов)"
@@ -17,9 +18,8 @@
           - if @post.errors[:tag_list].any?
             ul.list-group-item-danger
               li Добавьте тэги
-        .row
-          .col-sm-3
-            = f.check_box :visible
+
+        br
         .actions
           = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
           = " "

@@ -35,7 +35,6 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def update
-    visible = @post.visible
     if @post.update(post_params)
       run_update_notifications(visible)
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
@@ -89,11 +88,8 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def run_update_notifications(visible)
-    # post was imported and then updated by editor to be visible
-    if visible != @post.visible
-      FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
-      VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
-    end
+    FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
+    VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
     unless current_user.try(:team_member?)
       SlackNotifierJob.perform_async(@post.id, "Post", 'update')
     end

@@ -1,19 +1,30 @@
 .post {
+  overflow: hidden;
+
   .title {
     a {
       color: $grey4;
       text-decoration: none;
     }
   }
-  overflow: hidden;
+
   .author {
     .name {
       margin: 0;
     }
   }
-  .post-body {
+
+  .panel-heading {
+    padding: 0 15px;
+  }
+
+  .panel-body {
     padding-bottom: 20px;
-    padding-top: 20px;
+    padding-top: 5px;
+  }
+
+  .author {
+    margin: 0;
   }
 }
 

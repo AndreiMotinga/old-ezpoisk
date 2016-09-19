@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     increase_impressions
     @listings = @user.listings.page(params[:listings_page])
     @answers = @user.answers.includes(:taggings).page(params[:answers_page])
-    @posts = @user.posts.page(params[:posts_page])
+    @posts = @user.posts.includes(:taggings).page(params[:posts_page])
     @pictures = @user.pictures.page(params[:pictures_page]).per(40)
     @reviews = @user.reviews.page(params[:reviews_page])
     set_records
