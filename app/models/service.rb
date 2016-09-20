@@ -23,13 +23,6 @@ class Service < ActiveRecord::Base
   has_one :stripe_subscription, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
-  # todo fix when work with services
-  # delegate :active?, to: :stripe_subscription, allow_nil: true
-  delegate :activated?, to: :stripe_subscription, allow_nil: true
-  delegate :active_until, to: :stripe_subscription, allow_nil: true
-  delegate :cancelled?, to: :stripe_subscription, allow_nil: true
-  delegate :cancel, to: :stripe_subscription, allow_nil: true
-
   has_attached_file :logo, styles: { medium: "x120",
                                      avatar: "100x100#", right: "300x250#" }
   validates_attachment_content_type :logo, content_type: %r{\Aimage\/.*\Z}
@@ -40,16 +33,9 @@ class Service < ActiveRecord::Base
     less_than: 1.megabytes
   )
 
-  has_attached_file(
-    :cover,
-    styles: { large: "780x390#" },
+  has_attached_file(:cover, styles: { large: "780x390#" },
     default_url: "https://s3.amazonaws.com/ezpoisk/pictures/service-default-cover.jpg")
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
-
-  def trial?
-    return false unless stripe_subscription
-    stripe_subscription.status == "trial"
-  end
 
   def edit_link
     url_helpers.edit_dashboard_service_path(self)
@@ -73,5 +59,9 @@ class Service < ActiveRecord::Base
            .where.not(id: id)
            .order("featured desc, priority desc, updated_at desc")
            .limit(3)
+  end
+
+  def active?
+    true
   end
 end

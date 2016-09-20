@@ -10,29 +10,6 @@ class StripeSubscriptionsController < ApplicationController
     redirect_to edit_dashboard_service_path(params[:service_id])
   end
 
-  # reactivates cancelled subscription
-  def update
-    sub = current_user.stripe_subscriptions.find(params[:id])
-    begin
-      sub.reactivate
-      flash[:notice] = I18n.t(:stripe_subscription_renewed)
-    rescue => err
-      flash[:alert] = err.message
-    end
-    redirect_to edit_dashboard_service_path(sub.service)
-  end
-
-  def destroy
-    sub = current_user.stripe_subscriptions.find(params[:id])
-    begin
-      sub.cancel
-      flash[:notice] = I18n.t(:stripe_subscription_cancelled)
-    rescue => err
-      flash[:alert] = err.message
-    end
-    redirect_to edit_dashboard_service_path(sub.service)
-  end
-
   private
 
   def update_service_priority

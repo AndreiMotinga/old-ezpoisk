@@ -4,55 +4,34 @@ namespace :db do
     PLANS = [
       {
         stripe_id: :monthly_base,
-        name: "EZPOISK Monthly Base Plan",
-        amount: 2994,
-        total: 2994,
+        name: "EZPOISK Base Plan",
+        select_name: "EZPOISK Base Plan ($99, priority 1)",
+        amount: 9900,
+        total: 9900,
         priority: 1,
         interval: "month"
       },
       {
-        stripe_id: :yearly_base,
-        name: "EZPOISK Yearly Base Plan",
-        amount: 299_28,
-        total: 2994 * 12,
-        priority: 2,
-        interval: "year"
-      },
-      {
         stripe_id: :monthly_standart,
-        name: "EZPOISK Monthly Standart Plan",
-        amount: 5994,
-        total:  5994,
-        priority: 3,
+        name: "EZPOISK Standart Plan",
+        select_name: "EZPOISK Standart Plan ($249, priority 2)",
+        amount: 249_00,
+        total:  249_00,
+        priority: 2,
         interval: "month"
-      },
-      {
-        stripe_id: :yearly_standart,
-        name: "EZPOISK Yearly Standart Plan",
-        amount: 599_28,
-        total:  5994 * 12,
-        priority: 4,
-        interval: "year"
       },
       {
         stripe_id: :monthly_premium,
-        name: "EZPOISK Monthly Premium Plan",
-        amount: 14_494,
-        total: 14_494,
-        priority: 5,
+        name: "EZPOISK Premium Plan",
+        select_name: "EZPOISK Premium Plan ($599, priority 3)",
+        amount: 599_00,
+        total: 599_00,
+        priority: 3,
         interval: "month"
-      },
-      {
-        stripe_id: :yearly_premium,
-        name: "EZPOISK Yearly Premium Plan",
-        amount: 1499_28,
-        total: 14_494 * 12,
-        priority: 6,
-        interval: "year"
       }
-    ]
+    ].freeze
 
-    PLANS.each {|plan| StripePlan.create(plan)}
+    PLANS.each { |plan| StripePlan.create(plan) }
     puts "Loaded Stripe Plans"
   end
 end

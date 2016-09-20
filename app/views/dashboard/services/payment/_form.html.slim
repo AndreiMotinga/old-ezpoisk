@@ -21,10 +21,8 @@
                 label CVC
                 input.form-control data-stripe="cvc" size="4" type="text" placeholder="123"
           .form-group
-            = select_tag :plan, options_from_collection_for_select(@plans, 'stripe_id', 'name'), class: "form-control"
+            = select_tag :plan, options_from_collection_for_select(@plans, 'stripe_id', 'select_name'), class: "form-control"
           input#submit-payment.submit.btn.btn-block.mobile-btn type="submit" value=("Submit Payment")
-
-= render "dashboard/services/payment/plans"
 
 .pk data-key= ENV["STRIPE_PUBLISHABLE_KEY"]
 

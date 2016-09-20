@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919154241) do
+ActiveRecord::Schema.define(version: 20160920030900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -381,8 +381,9 @@ ActiveRecord::Schema.define(version: 20160919154241) do
     t.integer  "amount"
     t.integer  "total"
     t.integer  "priority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "select_name"
   end
 
   create_table "stripe_subscriptions", force: :cascade do |t|

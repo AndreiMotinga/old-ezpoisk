@@ -31,4 +31,7 @@
           = timeago_tag job.updated_at
         .row
           .col-xs-7
-            strong #{job.city.name}, #{job.state.name}
+            - if job.remote?
+              strong Доступна во всех штатах
+            - else
+              strong #{job.city.name}, #{job.state.name}

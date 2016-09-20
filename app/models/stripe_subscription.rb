@@ -20,30 +20,6 @@ class StripeSubscription < ActiveRecord::Base
     Stripe::Customer.retrieve(invoice.customer).delete
   end
 
-  def cancel
-    remote_sub.delete(at_period_end: true)
-    update_attribute(:status, "cancelled")
-  end
-
-  def cancelled?
-    active? && status == "cancelled"
-  end
-
-  def active?
-    active_until.future?
-  end
-
-  def activated?
-    status == "activated"
-  end
-
-  def reactivate
-    stripe_sub = remote_sub
-    stripe_sub.plan = plan
-    stripe_sub.save
-    update_attribute(:status, "activated")
-  end
-
   def remote_sub
     customer = Stripe::Customer.retrieve(customer_id)
     customer.subscriptions.retrieve(sub_id)

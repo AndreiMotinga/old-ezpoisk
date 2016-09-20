@@ -77,41 +77,5 @@ describe Dashboard::ServicesController do
       expect(Service.count).to be 0
       expect(Entry.count).to be 0
     end
-
-    context "removes subscriptions" do
-      before do
-        @stripe_helper = StripeMock.create_test_helper
-        StripeMock.start
-      end
-      after { StripeMock.stop }
-
-      it "cancels stripe_subscription" do
-        @stripe_helper.create_plan(id: "monthly")
-        service = create :service, user: @user
-        customer = Stripe::Customer.create(
-          source: @stripe_helper.generate_card_token,
-          plan: "monthly"
-        )
-        sub = create(:stripe_subscription,
-                     service: service,
-                     customer_id: customer.id,
-                     sub_id: customer.subscriptions.data[0].id,
-                     active_until: 1.month.from_now,
-                     status: "activated")
-
-        delete :destroy, params: { id: service.id }
-
-        expect(response).to redirect_to(dashboard_services_path)
-        expect(flash[:notice]).to eq I18n.t(:post_removed)
-        expect(Service.count).to be 0
-
-        expect(remote_sub(sub).cancel_at_period_end).to eq true
-      end
-    end
   end
-end
-
-def remote_sub(sub)
-  customer = Stripe::Customer.retrieve(sub.customer_id)
-  customer.subscriptions.retrieve(sub.sub_id)
 end

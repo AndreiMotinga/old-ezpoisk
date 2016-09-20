@@ -1,22 +1,9 @@
-- if !@service.stripe_subscription || @service.trial?
+- if !@service.stripe_subscription
   = render "dashboard/services/payment/form"
 
-- elsif @service.activated?
-  .well.well-lg
-    p Объявление активно до #{@service.active_until.strftime("%d %B %Y")}.
-    p Следующий платеж будет произведен автоматически.
-    br
-    p
-      = link_to "Отменить подписку ",
-                stripe_subscription_path(@service.stripe_subscription),
-                method: :delete,
-                data: { confirm: "Вы уверены?" }
-
-- elsif @service.cancelled?
-  p Объявление активно до #{@service.active_until.strftime("%d %B %Y")}.
-  p Подписка отменена.
-  br
-  p
-    = link_to("Активировать подписку",
-              stripe_subscription_path(@service.stripe_subscription),
-              method: :put)
+- else
+  .row
+    .col-xs-12
+      .well.well-lg
+        p Спасибо
+        p Елси вы захотите удалить объявление и отменить последюущие платежи, пожалуйста обратитесь в службу поддержки

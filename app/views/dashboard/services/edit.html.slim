@@ -18,7 +18,7 @@
       li role="presentation"
         = link_to "Галерея", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       /li role="presentation" data-li="payment"
-      /  = link_to "Поднять", "#payment", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+      /  = link_to "Реклама", "#payment", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
     br
     .tab-content
@@ -30,3 +30,6 @@
 
       #pictures.tab-pane.fade role="tabpanel"
         = render "dashboard/shared/pictures_form", record: @service
+
+      #payment.tab-pane.fade role="tabpanel"
+        = render "dashboard/services/payment", record: @service
