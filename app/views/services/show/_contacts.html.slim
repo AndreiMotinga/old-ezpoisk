@@ -15,7 +15,7 @@
             td
               strong
                 i.fa.fa-icon.fa-envelope-o
-                | email
+                |  email
             td: a href="mailto:#{@service.email}" =@service.email
 
         - if @service.phone?
@@ -24,16 +24,16 @@
               td
                 strong
                   i.fa.fa-icon.fa-phone
-                  | phone
+                  |  phone
               td
-                a href="tel:#{phone}" = phone
+                a href="tel:#{phone}" = number_to_phone(phone, area_code: 1)
 
         - if @service.site?
           tr
             td
               strong
                 i.fa.fa-icon.fa-share-square-o
-                | online
+                |  online
             td= link_to @service.site, site_link(@service.site), target: "_blank", rel: "nofollow"
       hr
       span.social
