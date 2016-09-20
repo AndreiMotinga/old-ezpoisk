@@ -31,50 +31,12 @@
 # This will export any new plans to stripe.com so that you can
 # begin using them in your API calls.
 
-Stripe.plan :monthly_base do |plan|
-  plan.name = "EZPOISK Monthly Base Plan"
-  plan.amount = 2994
-  plan.currency = "usd"
-  plan.interval = "month"
-  plan.interval_count = 1
-end
-
-Stripe.plan :yearly_base do |plan|
-  plan.name = "EZPOISK Yearly Base Plan"
-  plan.amount = 299_28
-  plan.currency = "usd"
-  plan.interval = "year"
-  plan.interval_count = 1
-end
-
-Stripe.plan :monthly_standart do |plan|
-  plan.name = "EZPOISK Monthly Standart Plan"
-  plan.amount = 5994
-  plan.currency = "usd"
-  plan.interval = "month"
-  plan.interval_count = 1
-end
-
-Stripe.plan :yearly_standart do |plan|
-  plan.name = "EZPOISK Yearly Standart Plan"
-  plan.amount = 599_28
-  plan.currency = "usd"
-  plan.interval = "year"
-  plan.interval_count = 1
-end
-
-Stripe.plan :monthly_premium do |plan|
-  plan.name = "EZPOISK Monthly Premium Plan"
-  plan.amount = 14_494
-  plan.currency = "usd"
-  plan.interval = "month"
-  plan.interval_count = 1
-end
-
-Stripe.plan :yearly_premium do |plan|
-  plan.name = "EZPOISK Yearly Premium Plan"
-  plan.amount = 1499_28
-  plan.currency = "usd"
-  plan.interval = "year"
-  plan.interval_count = 1
+STRIPE_PLANS.each do |sp|
+  Stripe.plan sp[:stripe_id] do |plan|
+    plan.name = sp[:name]
+    plan.amount = sp[:amount]
+    plan.currency = sp[:currency]
+    plan.interval = sp[:interval]
+    plan.interval_count = sp[:interval_count]
+  end
 end
