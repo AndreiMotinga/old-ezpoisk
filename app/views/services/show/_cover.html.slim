@@ -5,7 +5,7 @@
       = image_tag @service.logo.url(:avatar),
                   class: "img-circle center-block",
                   alt: @service.title
-      .name= @service.title
+      h1.name= @service.title
       .views
         = render "services/show/rating"
         = "#{@service.visits} просмотров"

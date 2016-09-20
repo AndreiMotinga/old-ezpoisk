@@ -6,7 +6,7 @@
         = image_tag @user.avatar.url(:medium),
                     class: "img-circle center-block",
                     alt: @user.name
-      .name= @user.name
+      h1.name= @user.name
       = render "users/show/thanks_link"
       .views
         = "#{@user.impressions_count} просмотров"
