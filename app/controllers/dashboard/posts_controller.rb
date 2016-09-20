@@ -36,7 +36,7 @@ class Dashboard::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      run_update_notifications(visible)
+      run_update_notifications
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -87,7 +87,7 @@ class Dashboard::PostsController < ApplicationController
     @post.create_entry(user: current_user)
   end
 
-  def run_update_notifications(visible)
+  def run_update_notifications
     FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
     VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
     unless current_user.try(:team_member?)
@@ -97,7 +97,7 @@ class Dashboard::PostsController < ApplicationController
   end
 
   def set_post
-    if current_user.editor?
+    if current_user.admin?
       @post = Post.find(params[:id])
     else
       @post = current_user.posts.find(params[:id])
