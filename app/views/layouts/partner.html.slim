@@ -10,7 +10,7 @@ html
 
       .row
         - if content_for?(:sidebar)
-          .hidden-xs.col-sm-3.col-md-2.left-column
+          .hidden-xs.col-sm-3.col-md-2.side-column
             = yield :sidebar
         - if content_for?(:sidebar)
           .col-xs-12.col-sm-9.col-md-6
@@ -18,7 +18,7 @@ html
         - else
           .col-xs-12
             = yield
-        .hidden-xs.hidden-sm.col-md-4
+        .hidden-xs.hidden-sm.col-md-4.side-column
           .pull-right
             = yield :right_block
 
