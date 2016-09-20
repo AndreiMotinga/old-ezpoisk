@@ -4,15 +4,6 @@ describe StripeSubscription do
   it { should belong_to(:service) }
   it { should validate_presence_of(:service_id) }
 
-  describe "#active?" do
-    it "" do
-      sub = create(:stripe_subscription, active_until: 1.month.from_now)
-
-      expect(sub.active?).to be true
-    end
-  end
-
-  # WEBHOOKS
   describe "WEBHOOKS" do
     before do
       @stripe_helper = StripeMock.create_test_helper
