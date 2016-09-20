@@ -19,7 +19,7 @@ class Dashboard::ServicesController < ApplicationController
                            city_id: current_user.try(:city_id),
                            phone: current_user.try(:phone),
                            active: true,
-                           email: current_user.try(:email))
+                           email: current_user.try(:new_email))
   end
 
   def edit
