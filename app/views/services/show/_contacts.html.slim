@@ -38,19 +38,19 @@
       hr
       span.social
         - if @service.fb?
-          = link_to @service.fb, rel: "nofollow" do
+          = link_to @service.fb, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-facebook
         - if @service.vk?
-          = link_to @service.vk, rel: "nofollow" do
+          = link_to @service.vk, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-vk
         - if @service.twitter?
-          = link_to @service.twitter, rel: "nofollow" do
+          = link_to @service.twitter, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-twitter
         - if @service.ok?
-          = link_to @service.ok, rel: "nofollow" do
+          = link_to @service.ok, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-odnoklassniki
         - if @service.google?
-          = link_to @service.google, rel: "nofollow" do
+          = link_to @service.google, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-google-plus
         - if @service.address.present?
           strong

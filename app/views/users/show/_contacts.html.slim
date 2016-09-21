@@ -30,19 +30,19 @@
       hr
       span.social
         - if @user.facebook?
-          = link_to @user.facebook, rel: "nofollow" do
+          = link_to @user.facebook, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-facebook
         - if @user.vk?
-          = link_to @user.vk, rel: "nofollow" do
+          = link_to @user.vk, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-vk
         - if @user.twitter?
-          = link_to @user.twitter, rel: "nofollow" do
+          = link_to @user.twitter, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-twitter
         - if @user.google?
-          = link_to @user.google, rel: "nofollow" do
+          = link_to @user.google, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-google-plus
         - if @user.ok?
-          = link_to @user.ok, rel: "nofollow" do
+          = link_to @user.ok, rel: "nofollow", target: "_blank" do
             i.fa.fa-lg.fa-odnoklassniki
         - if @user.address.present?
           strong
