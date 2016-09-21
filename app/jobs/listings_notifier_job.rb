@@ -3,7 +3,7 @@ class ListingsNotifierJob
   include Sidekiq::Worker
 
   def perform(id, model)
-    # return if Rails.env.development?
+    return if Rails.env.development?
     record = model.constantize.find(id)
     return unless record.contact_email
     return if record.user.try(:id) == 181 # ez

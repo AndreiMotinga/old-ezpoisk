@@ -9,4 +9,4 @@ end
 
 Sidekiq::Cron::Job.create(name: "every 3 hours",
                           cron: "0 */3 * * *",
-                          class: "DataAggregatorJob")
+                          class: "ServiceMixerJob")

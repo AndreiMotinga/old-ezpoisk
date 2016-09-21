@@ -5,7 +5,8 @@ class GeocodeJob
 
   def perform(id, model)
     return if Rails.env.development?
-    @post = model.constantize.find(id)
+    @post = model.constantize.find_by_id(id)
+    return unless @post
     @info = Geokit::Geocoders::GoogleGeocoder.geocode(@post.address)
     @post.update_attributes(info_hash)
   end

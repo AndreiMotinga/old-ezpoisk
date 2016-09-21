@@ -4,6 +4,7 @@ class PartnerImpressionsJob
 
   def perform(id)
     partner = Partner.find(id)
+    return unless partner
     partner.update_column(:impressions_count, partner.impressions_count + 1)
   end
 end
