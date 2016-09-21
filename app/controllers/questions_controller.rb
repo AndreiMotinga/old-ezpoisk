@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.includes(:user).find(params[:id])
+    @question = Question.find(params[:id])
     IncreaseVisitsJob.perform_in(12.minutes, @question.id, "Question")
   end
 

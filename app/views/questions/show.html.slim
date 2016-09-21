@@ -20,6 +20,6 @@
 
   / ANSWERS
   - if @question.has_answers?
-    = render @question.answers.includes(:user).by_score
+    = render @question.answers.includes(:user, :taggings).by_score
   - else
     = render "questions/no_answers_message"
