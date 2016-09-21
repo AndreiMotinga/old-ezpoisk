@@ -12,17 +12,6 @@ class HomeController < ApplicationController
       format.js { render partial: "shared/index",
                          locals: { records: @entries } }
     end
-
-    IncreaseImpressionsJob.perform_in(
-      1.minute,
-      @entries.select{|e| e.enterable_type == "Answer"}.map(&:enterable_id),
-      "Answer"
-    )
-    IncreaseImpressionsJob.perform_in(
-      1.minute,
-      @entries.select{|e| e.enterable_type == "Post"}.map(&:enterable_id),
-      "Post"
-    )
   end
 
   def about
