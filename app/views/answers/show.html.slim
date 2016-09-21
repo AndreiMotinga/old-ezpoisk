@@ -27,12 +27,13 @@
           h4.name itemprop="author" = link_to @answer.name_to_show, user_path(@answer.user), target: "_blank"
           p.text-muted
             = "#{@answer.impressions_count} просмотров |  #{@answer.score} голосов "
+
+      - if @answer.image?
+        = image_tag @answer.image.url(:medium),
+                    class: "img-responsive center-block margin-bottom-10",
+                    alt: "Помощь русским в США - #{@answer.title}"
     .panel-body
       .post-body itemprop="description"
-        - if @answer.image?
-          = image_tag @answer.image.url(:medium),
-                      class: "img-responsive center-block margin-bottom-10",
-                      alt: "Помощь русским в США - #{@answer.title}"
         /todo how to use markdown
         = raw @answer.text
       br
