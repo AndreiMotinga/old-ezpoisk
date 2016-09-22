@@ -1,7 +1,6 @@
 require "rails_helper"
 
 xfeature "user pays for service" do
-  # todo when do services test
   scenario "successfully", js: true do
     user = create_and_login_user
     service = create :service, user: user

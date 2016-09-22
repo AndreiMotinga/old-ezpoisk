@@ -75,7 +75,9 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def set_service
-    if params[:token].present?
+    if current_user.try(:admin?)
+      @service = Service.find(params[:id])
+    elsif params[:token].present?
       @service = Service.find(params[:id])
       @service = nil unless @service.token == params[:token]
     else

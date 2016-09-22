@@ -95,7 +95,9 @@ class Dashboard::JobsController < ApplicationController
   end
 
   def set_job
-    if params[:token].present?
+    if current_user.try(:admin?)
+      @job = Job.find(params[:id])
+    elsif params[:token].present?
       @job = Job.find(params[:id])
       @job = nil unless @job.token == params[:token]
     else

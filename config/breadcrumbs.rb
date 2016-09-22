@@ -57,7 +57,6 @@ crumb :answer do |answer|
 end
 
 crumb :new_answer do |q|
-  # todo #when answers moved to dashboard fix path
   link "Новое", root_path
   parent :answers
 end

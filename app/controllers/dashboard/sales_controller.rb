@@ -93,7 +93,9 @@ class Dashboard::SalesController < ApplicationController
   end
 
   def set_sale
-    if params[:token].present?
+    if current_user.try(:admin?)
+      @sale = Sale.find(params[:id])
+    elsif params[:token].present?
       @sale = Sale.find(params[:id])
       @sale = nil unless @sale.token == params[:token]
     else

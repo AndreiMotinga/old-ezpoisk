@@ -10,7 +10,7 @@
       = link_to "Спрятать", "", class: "mute", rel: "nofollow",
                 "data-id": record.id, "data-type": record.class.to_s
 
-    - if user_signed_in? && record.user_id == current_user.try(:id)
+    - if record.user_id == current_user.try(:id) || current_user.try(:admin?)
       li
         a href="#" data-action="touch" data-id=record.id data-type=record.class.to_s Обновить
 

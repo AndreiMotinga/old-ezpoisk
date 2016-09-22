@@ -8,7 +8,6 @@ describe HomeController do
 
       get :index
 
-      # todo test for entries
       expect(response).to render_template(:index)
       expect(assigns(:entries).size).to eq 1
     end

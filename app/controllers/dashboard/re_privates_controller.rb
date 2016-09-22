@@ -98,7 +98,9 @@ class Dashboard::RePrivatesController < ApplicationController
   end
 
   def set_re_private
-    if params[:token].present?
+    if current_user.try(:admin?)
+      @re_private = RePrivate.find(params[:id])
+     elsif params[:token].present?
       @re_private = RePrivate.find(params[:id])
       @re_private = nil unless @re_private.token == params[:token]
     else
