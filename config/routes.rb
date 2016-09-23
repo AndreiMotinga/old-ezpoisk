@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :services
     resources :reviews
     resources :answers, only: [:index]
+    resources :posts
     authenticate :user, ->(u) { u.editor? } do
       resources :editors, only: [:show, :update]
       resources :posts do
