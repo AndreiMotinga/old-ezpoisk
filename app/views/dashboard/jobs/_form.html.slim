@@ -42,7 +42,7 @@
             = form_city_select(f, @job)
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
         - unless @job.new_record?
-          = link_to "Удалить",
+          = link_to "Удалить Объявление",
                     dashboard_job_path(@job, token: params[:token]),
                     method: :delete,
                     data: { confirm: I18n.t(:confirm) },

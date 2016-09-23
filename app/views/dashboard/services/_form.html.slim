@@ -59,7 +59,7 @@
             = f.text_field :ok, label: 'Odnoklassniki'
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
         - unless @service.new_record?
-          = link_to "Удалить",
+          = link_to "Удалить Объявление",
                     dashboard_service_path(@service, token: params[:token]),
                     method: :delete,
                     data: { confirm: I18n.t(:confirm) },

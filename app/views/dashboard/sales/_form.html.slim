@@ -32,7 +32,7 @@
         = f.check_box :active, label: "Активно *"
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
         - unless @sale.new_record?
-          = link_to "Удалить",
+          = link_to "Удалить Объявление",
                     dashboard_sale_path(@sale, token: params[:token]),
                     method: :delete,
                     data: { confirm: I18n.t(:confirm) },

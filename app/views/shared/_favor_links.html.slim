@@ -14,5 +14,10 @@
       li
         a href="#" data-action="touch" data-id=record.id data-type=record.class.to_s Обновить
 
+      li= link_to "Редактировать", record.edit_link, rel: "nofollow"
+
       li
-        = link_to "Редактировать", record.edit_link, rel: "nofollow"
+        = link_to "Удалить",
+                  destroy_link(record),
+                  method: :delete,
+                  data: { confirm: I18n.t(:confirm) }

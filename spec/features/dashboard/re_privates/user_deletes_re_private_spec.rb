@@ -6,7 +6,7 @@ feature "user deletes re_private" do
     re_p = create :re_private, user: user
 
     visit edit_dashboard_re_private_path(re_p)
-    click_on "Удалить"
+    click_on "Удалить Объявление"
 
     expect(RePrivate.count).to be 0
   end

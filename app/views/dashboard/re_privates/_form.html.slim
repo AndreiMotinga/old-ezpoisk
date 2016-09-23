@@ -51,7 +51,7 @@
         .actions
           = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
           - unless @re_private.new_record?
-            = link_to "Удалить",
+            = link_to "Удалить Объявление",
                       dashboard_re_private_path(@re_private, token: params[:token]),
                       method: :delete,
                       data: { confirm: I18n.t(:confirm) },

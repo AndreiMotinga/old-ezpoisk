@@ -6,7 +6,7 @@ feature "user deletes service" do
     service = create :service, user: user
 
     visit edit_dashboard_service_path(service)
-    click_on "Удалить"
+    click_on "Удалить Объявление"
 
     expect(Service.count).to be 0
   end
