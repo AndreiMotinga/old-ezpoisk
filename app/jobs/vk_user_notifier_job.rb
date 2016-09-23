@@ -6,6 +6,10 @@ class VkUserNotifierJob
     return unless Rails.env.production?
     record = model.constantize.find_by_id(id)
     return unless record || !record.try(:active)
-    VkNotifier.new.send_message(user_id, record)
+    begin
+      VkNotifier.new.send_message(user_id, record)
+    rescue Exception => error
+      puts "=================  FORBIDDEN ===================== "
+    end
   end
 end

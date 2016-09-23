@@ -11,10 +11,10 @@ class Ez
 
   def self.notify_about(record, type)
     name = record.class == User ? record.name_to_show : record.user.try(:name_to_show)
-    string = "#{type} #{record.class} #{record.id} | author #{name} | #{record.category}\n\n"
+    string = "#{type} #{record.class} #{record.id} | author #{name} | #{record.try(:category)}\n\n"
     string += "#{strip_html_tags(record.try(:text))}\n"
     string += "<#{record.show_url}|show>"
-    string += " | <#{record.edit_url_with_token}|edit>"
+    string += " | <#{record.try(:edit_url_with_token)}|edit>"
     notifier.ping(string)
   end
 

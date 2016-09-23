@@ -1,6 +1,7 @@
 # creates listings from posts provided by vk and fb importers
 class VkCreator
-  def initialize(post, group)
+  def initialize(post, group, delay)
+    @delay = delay + 5
     @user_id = 181 # ez
     @state_id = group[:state_id]
     @city_id = group[:city_id]
@@ -25,7 +26,7 @@ class VkCreator
     record.create_entry(user: record.user)
     GeocodeJob.perform_async(record.id, record.class.to_s)
     SlackNotifierJob.perform_async(record.id, record.class.to_s)
-    VkUserNotifierJob.perform_in(10.minutes, @author, record.id, record.class.to_s)
+    VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
   end
 
   def should_create?

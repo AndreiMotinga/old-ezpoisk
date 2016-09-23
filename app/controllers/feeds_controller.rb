@@ -10,4 +10,12 @@ class FeedsController < ApplicationController
       @listings = type.today.includes(:state, :city)
     end
   end
+
+  def importer
+  end
+
+  def import
+    VkImporterJob.perform_async
+    redirect_to root_path
+  end
 end
