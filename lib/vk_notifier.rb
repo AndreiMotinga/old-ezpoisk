@@ -27,8 +27,10 @@ class VkNotifier
   end
 
   def send_message(user_id, record)
+    return unless Rails.env.production?
     messages = @vk.messages.getHistory(user_id: user_id)
-    return unless messages.first == 0 # user already got message from us
-    @vk.messages.send(user_id: @author, message: SocialMessage.message(record))
+    return unless messages.first == 0 # user didn't get message from us yet
+    # @vk.messages.send(user_id: @author, message: SocialMessage.message(record))
+    @vk.messages.send(user_id: 325677385, message: SocialMessage.message(record))
   end
 end

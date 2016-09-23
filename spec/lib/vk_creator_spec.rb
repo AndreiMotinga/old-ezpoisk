@@ -26,6 +26,7 @@ describe VkCreator do
 
       expect(GeocodeJob.jobs.size).to eq 1
       expect(SlackNotifierJob.jobs.size).to eq 1
+      expect(Entry.count).to eq 1
     end
   end
 end
