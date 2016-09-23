@@ -79,4 +79,8 @@ module ViewHelpers
   def size
     ActionView::Base.full_sanitizer.sanitize(text).gsub("\s+", " ").size
   end
+
+  def fresh?
+    created_at > 1.day.ago
+  end
 end

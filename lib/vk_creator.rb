@@ -8,6 +8,7 @@ class VkCreator
     @text = ActionView::Base.full_sanitizer.sanitize(post[:text])
     @date = Time.at(post[:date])
     @author = post[:from_id]
+    @vk = "https://vk.com/id#{@author}"
     create_post
   end
 
@@ -27,8 +28,10 @@ class VkCreator
   end
 
   def should_create?
-    return false if @model.constantize.find_by_text(@text) # post already exists
     return false if @text.match(/\[\w.+\]/).present? # post is a response
+    return false if @model.constantize.find_by_text(@text) # post already exists
+    record = @model.constantize.find_by_vk(@vk)
+    return false if record.try(:fresh?)
     true
   end
 
@@ -42,7 +45,7 @@ class VkCreator
       city_id: @city_id,
       user_id: @user_id,
       updated_at: @date,
-      vk: "https://vk.com/id#{@author}"
+      vk: @vk
     )
   end
 end
