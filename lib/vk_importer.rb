@@ -5,12 +5,12 @@ class VkImporter
     { id: 35762330, topic: 26705408, model: "Job", category: "wanted", state_id: 32, city_id: 18031 },
     { id: 35762330, topic: 29415801, model: "Job", category: "seeking", state_id: 32, city_id: 18031 },
     { id: 2688174, topic: 26691681, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # new york
-    # { id: 12885141, topic: 30593895, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
-    # { id: 20420, topic: 3757285, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
-    # { id: 26834667, topic: 28806915, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
-    # { id: 13511430, topic: 22072755, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
-    # { id: 10519422, topic: 31062964, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
-    # { id: 5891839, topic: 23250392, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
+    { id: 12885141, topic: 30593895, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
+    { id: 20420, topic: 3757285, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
+    { id: 26834667, topic: 28806915, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
+    { id: 13511430, topic: 22072755, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
+    { id: 10519422, topic: 31062964, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
+    { id: 5891839, topic: 23250392, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
     # { id: 63852120, topic: 29158437, model: "Job", category: "wanted", state_id: 9, city_id: 3964 }, # miami
     # { id: 40123, topic: 5173038, model: "Job", category: "wanted", state_id: 9, city_id: 3964 },
     # { id: 12971907, topic: 21841852, model: "Job", category: "wanted", state_id: 9, city_id: 3964 },
