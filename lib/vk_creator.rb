@@ -5,6 +5,7 @@ class VkCreator
     @state_id = group[:state_id]
     @city_id = group[:city_id]
     @model = group[:model]
+    @category = group[:category]
     @text = ActionView::Base.full_sanitizer.sanitize(post[:text])
     @date = Time.at(post[:date])
     @author = post[:from_id]
@@ -38,7 +39,7 @@ class VkCreator
   def create_job
     Job.create(
       title: Title.new(@text).title,
-      category: "wanted",
+      category: @category,
       active: true,
       text: @text,
       state_id: @state_id,
