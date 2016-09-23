@@ -1,6 +1,6 @@
 class VkNotifier
   def initialize
-    @vk = VkontakteApi::Client.new(ENV["VK_GROUP_TOKEN"])
+    @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
   end
 
   def post_to_wall(record)

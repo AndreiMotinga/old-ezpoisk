@@ -6,7 +6,7 @@ class VkImporter
   ].freeze
 
   def self.import
-    vk = VkontakteApi::Client.new(ENV["VK_GROUP_TOKEN"])
+    vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
     GROUPS.each do |group|
       data = vk.board.getComments(group_id: group[:id],
                                   topic_id: group[:topic],

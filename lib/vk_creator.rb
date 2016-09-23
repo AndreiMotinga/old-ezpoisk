@@ -1,7 +1,7 @@
 # creates listings from posts provided by vk and fb importers
 class VkCreator
   def initialize(post, group)
-    @vk = VkontakteApi::Client.new(ENV["VK_GROUP_TOKEN"])
+    @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
     @user_id = 181 # ez
     @state_id = group[:state_id]
     @city_id = group[:city_id]
