@@ -14,7 +14,7 @@ class Ez
     string = "#{type} #{record.class} #{record.id} | author #{name}\n\n"
     string += "#{strip_html_tags(record.try(:text))}\n"
     string += "<#{record.show_url}|show>"
-    string += " | <#{record.edit_url_with_token}|edit>\n"
+    string += " | <#{record.edit_url_with_token}|edit>"
     notifier.ping(string)
   end
 
