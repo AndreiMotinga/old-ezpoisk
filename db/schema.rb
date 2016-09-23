@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920030900) do
+ActiveRecord::Schema.define(version: 20160923002659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,7 +143,6 @@ ActiveRecord::Schema.define(version: 20160920030900) do
     t.string   "street"
     t.integer  "impressions_count", default: 0
     t.string   "slug"
-    t.string   "source"
     t.integer  "visits",            default: 0
     t.string   "token"
     t.integer  "priority",          default: 0,     null: false
@@ -263,7 +262,6 @@ ActiveRecord::Schema.define(version: 20160920030900) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "impressions_count", default: 0
-    t.string   "source"
     t.string   "email"
     t.integer  "visits",            default: 0
     t.integer  "priority",          default: 0,     null: false
@@ -311,7 +309,6 @@ ActiveRecord::Schema.define(version: 20160920030900) do
     t.integer  "impressions_count", default: 0
     t.string   "slug"
     t.integer  "price"
-    t.string   "source"
     t.integer  "visits",            default: 0
     t.integer  "priority",          default: 0,     null: false
     t.string   "token"
