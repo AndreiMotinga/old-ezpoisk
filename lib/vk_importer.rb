@@ -11,8 +11,8 @@ class VkImporter
     { id: 13511430, topic: 22072755, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
     { id: 10519422, topic: 31062964, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
     { id: 5891839, topic: 23250392, model: "Job", category: "wanted", state_id: 32, city_id: 17880 },
-    # { id: 63852120, topic: 29158437, model: "Job", category: "wanted", state_id: 9, city_id: 3964 }, # miami
-    # { id: 40123, topic: 5173038, model: "Job", category: "wanted", state_id: 9, city_id: 3964 },
+    { id: 63852120, topic: 29158437, model: "Job", category: "wanted", state_id: 9, city_id: 3964 }, # miami
+    { id: 40123, topic: 5173038, model: "Job", category: "wanted", state_id: 9, city_id: 3964 },
     # { id: 12971907, topic: 21841852, model: "Job", category: "wanted", state_id: 9, city_id: 3964 },
     # { id: 12971907, topic: 36045928, model: "Job", category: "seeking", state_id: 9, city_id: 3964 },
     # { id: 7661136, topic: 32577617, model: "Job", category: "wanted", state_id: 5, city_id: 1685 }, # LA

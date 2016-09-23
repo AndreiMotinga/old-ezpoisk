@@ -3,7 +3,7 @@ class SlackNotifierJob
   include Sidekiq::Worker
 
   def perform(id, model, type = "new")
-    record = model.constantize.find(id)
+    record = model.constantize.find_by_id(id)
     return unless record
     Ez.notify_about(record, type)
   end
