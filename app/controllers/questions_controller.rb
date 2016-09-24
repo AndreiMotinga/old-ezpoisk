@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     @question.user = current_user
-    @question.title += "?" unless @question.title.match(/\?$/)
+    @question.title += "?" unless @question.title.strip.match(/\?$/)
 
     if @question.save
       SlackNotifierJob.perform_async(@question.id, "Question")
