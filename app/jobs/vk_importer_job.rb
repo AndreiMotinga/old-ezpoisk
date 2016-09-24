@@ -2,7 +2,7 @@
 class VkImporterJob
   include Sidekiq::Worker
 
-  def perform
-    VkImporter.import
+  def perform(type)
+    VkImporter.new("re_privates").import
   end
 end

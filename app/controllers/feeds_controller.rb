@@ -15,7 +15,7 @@ class FeedsController < ApplicationController
   end
 
   def import
-    VkImporterJob.perform_async
-    redirect_to root_path
+    VkImporterJob.perform_async(params[:category])
+    render :importer
   end
 end

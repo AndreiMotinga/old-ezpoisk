@@ -1,1 +1,8 @@
-= link_to "Import", import_path, class: "btn mobile-btn margin-bottom-10"
+.white-block
+  .panel
+    .panel-body
+      form.form-horizontal action=import_path method="get"
+        = label_tag "Раздел", nil
+        = select_tag :category, options_for_select(%w(jobs re_privates sales)), class: "form-control"
+        hr
+        = submit_tag "Обновить", name: nil, class: "btn mobile-btn"
