@@ -11,6 +11,7 @@ class VkCreator
     @date = Time.at(post[:date])
     @author = post[:from_id]
     @vk = "https://vk.com/id#{@author}"
+    @attachments = post[:attachments]
     create_post
   end
 
@@ -21,12 +22,13 @@ class VkCreator
       record = create_job
     when "RePrivate"
       record = create_re_private
+      create_attachments(record)
     end
     return unless record.id
     record.create_entry(user: record.user)
     GeocodeJob.perform_async(record.id, record.class.to_s)
     SlackNotifierJob.perform_async(record.id, record.class.to_s)
-    VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
+    # VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
   end
 
   def should_create?
@@ -48,6 +50,29 @@ class VkCreator
       user_id: @user_id,
       updated_at: @date,
       vk: @vk
+    )
+  end
+
+  def create_re_private
+    RePrivate.create(
+      post_type: "leasing",
+      duration: "monthly",
+      category: "apartment",
+      rooms: "room",
+      active: true,
+      text: @text,
+      user_id: @user_id,
+      state_id: @state_id,
+      city_id: @city_id,
+      updated_at: @date,
+      vk: @vk
+    )
+  end
+
+  def create_attachments(record)
+    return unless @attachments
+    VkImageCreatorJob.perform_async(
+      @attachments.map{ |f| f[:photo][:src_xxxbig] }, record.id, "RePrivate"
     )
   end
 end
