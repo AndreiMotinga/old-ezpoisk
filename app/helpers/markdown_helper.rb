@@ -33,7 +33,7 @@ module MarkdownHelper
     }
 
     extensions = {
-      autolink:           true,
+      # autolink:           true,
       superscript:        true,
       disable_indented_code_blocks: true
     }
