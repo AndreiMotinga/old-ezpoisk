@@ -1,4 +1,4 @@
-class VkTextChecker
+class TextChecker
   def initialize(text, model)
     @text = text
     @model = model

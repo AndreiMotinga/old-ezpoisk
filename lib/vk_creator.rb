@@ -16,7 +16,7 @@ class VkCreator
   end
 
   def create_post
-    return unless VkTextChecker.new(@text, @model).is_cool?
+    return unless TextChecker.new(@text, @model).is_cool?
     case @model
     when "Job"
       record = create_job
@@ -36,7 +36,7 @@ class VkCreator
 
   def create_job
     Job.create(
-      title: Title.new(@text).title,
+      title: Title.new(@text, "Работа").title,
       category: @category,
       active: true,
       text: @text,
@@ -66,7 +66,7 @@ class VkCreator
 
   def create_sale
     Sale.create(
-      title: Title.new(@text).title,
+      title: Title.new(@text, "Продаю").title,
       category: "sales",
       text: @text,
       active: true,

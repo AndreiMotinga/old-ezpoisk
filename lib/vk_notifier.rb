@@ -1,28 +1,41 @@
+# sends listings to vk
 class VkNotifier
-  def initialize
+  def initialize(id, model)
+    @record = model.constantize.find_by_id(id)
+    return unless @record && @record.active
     @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
+    send_notification
   end
 
-  def post_to_wall(record)
+  def send_notification
+    model = @record.class.to_s
+    if model == "Post" || model == "Answer"
+      post_to_wall
+    else
+      post_to_topic
+    end
+  end
+
+  def post_to_wall
     id = -ENV["VK_GROUP_ID"].to_i
-    @vk.wall.post(owner_id: id, from_group: 1, attachments: record.show_url)
+    @vk.wall.post(owner_id: id, from_group: 1, attachments: @record.show_url)
   end
 
-  def post_to_topic(record)
+  def post_to_topic
     @vk.board.createComment(
-      group_id: 112797570,
-      topic_id: topic_id(record),
+      group_id: 112_797_570,
+      topic_id: topic_id,
       from_group: 1,
-      message: record.vk_message,
+      message: @record.vk_message
     )
   end
 
-  def topic_id(record)
-    case record.class.to_s
-    when "RePrivate" then 33955066
-    when "Job" then 33955064
-    when "Sale" then 33955068
-    when "Service" then 33955067
+  def topic_id
+    case @record.class.to_s
+    when "RePrivate" then 339_550_66
+    when "Job" then 339_550_64
+    when "Sale" then 339_550_68
+    when "Service" then 339_550_67
     end
   end
 end
