@@ -36,3 +36,8 @@
       / line 5
       span.hidden-xs data-time=re_private.id
         = timeago_tag re_private.updated_at
+
+  - if re_private.text.present?
+    .col-xs-12.text
+      hr.post-devider-black
+      = simple_format re_private.text
