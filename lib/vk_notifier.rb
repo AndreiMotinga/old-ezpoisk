@@ -25,10 +25,4 @@ class VkNotifier
     when "Service" then 33955067
     end
   end
-
-  def send_message(user_id, record)
-    messages = @vk.messages.getHistory(user_id: user_id)
-    return unless messages.first == 0 # user didn't get message from us yet
-    @vk.messages.send(user_id: user_id, message: SocialMessage.message(record))
-  end
 end

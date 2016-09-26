@@ -1,7 +1,9 @@
 class SocialMessage
   def self.message(record)
     <<-eol
-      Здравствуйте, мы разместили Ваше объявление на
+      Привет, мы разместили Ваше объявление
+      "#{record.text}"
+      на
       #{record.show_url}
       а также в наших группах в vkontakte, facebook и google+.
 

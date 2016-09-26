@@ -31,7 +31,7 @@ class VkCreator
     record.create_entry(user: record.user)
     GeocodeJob.perform_async(record.id, record.class.to_s)
     SlackNotifierJob.perform_async(record.id, record.class.to_s)
-    # VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
+    VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
   end
 
   def should_create?
