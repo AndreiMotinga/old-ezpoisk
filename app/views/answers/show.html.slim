@@ -50,6 +50,9 @@
 
         .col-xs-12.col-md-7
           = render "shared/social", count: nil, inline: true
+      .row
+        p.tags
+          = sanitize @answer.tag_list.map { |tag| link_to "##{tag}", tag_answers_path(tag), class: "tag" }.join
 
 br
 .col-xs-12.col-md-6.col-md-offset-3
@@ -60,3 +63,9 @@ br
 
 #comments.collapse
   = render "shared/disqus"
+
+.col-xs-12
+  .row
+    h4 Похожие вопросы
+    hr.breadcrumb-hr
+  = render @answer.similar

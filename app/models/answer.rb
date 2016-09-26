@@ -39,7 +39,10 @@ class Answer < ActiveRecord::Base
     user.avatar(:thumb)
   end
 
-  def side_posts
-    @posts = Post.visible.last(9)
+  def similar
+    Answer.includes(:user, :taggings)
+          .tagged_with(tag_list, any: true)
+          .order("RANDOM ()")
+          .limit(10)
   end
 end
