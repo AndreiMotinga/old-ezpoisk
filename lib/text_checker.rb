@@ -1,7 +1,8 @@
 class TextChecker
-  def initialize(text, model)
-    @text = text
+  def initialize(model, text, vk)
     @model = model
+    @text = text
+    @vk = vk
   end
 
   def is_cool?

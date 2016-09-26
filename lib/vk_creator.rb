@@ -16,7 +16,7 @@ class VkCreator
   end
 
   def create_post
-    return unless TextChecker.new(@text, @model).is_cool?
+    return unless TextChecker.new(@model, @text, @vk).is_cool?
     case @model
     when "Job"
       record = create_job
