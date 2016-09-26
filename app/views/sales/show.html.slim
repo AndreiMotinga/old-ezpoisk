@@ -28,16 +28,7 @@ div itemscope="" itemtype="http://schema.org/Product"
 
   = render "shared/gads/leaderboard"
 
-  /todo move to text partial
-  - if @sale.text?
-    .row
-      .col-xs-12
-        .white-block.text
-          .panel.panel-default
-            .panel-body
-              h1.h1-desc-title itemprop="name"  = @sale.title
-              div itemprop="description"
-                = markdown @sale.text
+  = render "shared/show/text", record: @sale
 
   .visible-xs
     = render "shared/show/contacts", record: @sale

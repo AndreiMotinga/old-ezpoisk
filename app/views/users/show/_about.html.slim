@@ -5,7 +5,7 @@
     .panel.panel-default
       .panel-body
         - if @user.about?
-          .text.answer= markdown @user.about
+          .text.answer= simple_format @user.about
         - else
           p Пользователь не продаставил информации о себе
 

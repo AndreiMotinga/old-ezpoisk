@@ -19,7 +19,7 @@
           hr
 
         .text itemprop="description"
-          = markdown job.text
+          = simple_format job.text
         p.tags
           - job.tag_list.each do |sub|
             a.tag= " ##{sub} "

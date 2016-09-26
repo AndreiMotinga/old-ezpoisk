@@ -4,5 +4,7 @@
       .white-block.text
         .panel.panel-default
           .panel-body
+            - if record.class.to_s == "Sale"
+              h1.h1-desc-title itemprop="name"  = record.title
             div itemprop="description"
-              = markdown record.text
+              = simple_format record.text

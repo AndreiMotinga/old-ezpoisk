@@ -1,3 +1,4 @@
+# isn't used anymore
 module MarkdownHelper
   class HTMLwithPygments < Redcarpet::Render::HTML
     def autolink(link, link_type)

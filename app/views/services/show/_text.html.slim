@@ -3,6 +3,6 @@
     .panel-body
       - if record.text.present?
         div itemprop="description"
-          = markdown record.text
+          = simple_format record.text
       - else
         p Автор не предоставил описания
