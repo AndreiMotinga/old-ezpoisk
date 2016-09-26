@@ -7,7 +7,7 @@ class VkCreator
     @city_id = group[:city_id]
     @model = group[:model]
     @category = group[:category]
-    @text = ActionView::Base.full_sanitizer.sanitize(post[:text])
+    @text = sanitize_text(post[:text])
     @date = Time.at(post[:date])
     @author = post[:from_id]
     @vk = "https://vk.com/id#{@author}"
@@ -105,5 +105,10 @@ class VkCreator
         x
       end
     end
+  end
+
+  def sanitize_text(text)
+    text.gsub("<br>", "\n")
+        .gsub(/[\u{1F600}-\u{1F6FF}]/, "") # remove emojis
   end
 end
