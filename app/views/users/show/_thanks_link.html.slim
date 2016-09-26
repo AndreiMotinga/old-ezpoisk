@@ -1,4 +1,4 @@
-- if user_signed_in?
+- if user_signed_in? && current_user != @user
   = link_to "Сказать спасибо",
             points_path(user_id: @user.id),
             method: "post",
@@ -7,8 +7,8 @@
             "data-id": "thanks",
             rel: "nofollow"
 
-- else
-  = link_to "Спасибо",
+- elsif !user_signed_in?
+  = link_to "Сказать спасибо",
             "",
             "data-target": "#new_session_modal",
             "data-toggle": "modal",
