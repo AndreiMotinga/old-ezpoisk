@@ -26,6 +26,7 @@ class Dashboard::SalesController < ApplicationController
     @sale = Sale.new(sale_params)
     @sale.user = current_user
     if @sale.save
+      do_maintenance
       run_create_notifications
       redirect_on_create
     else
@@ -37,6 +38,7 @@ class Dashboard::SalesController < ApplicationController
   def update
     address_changed = address_changed?(@sale, sale_params)
     if @sale.update(sale_params)
+      do_maintenance
       GeocodeJob.perform_async(@sale.id, "Sale") if address_changed
       run_update_notifications
       redirect_to update_redirect_path, notice: I18n.t(:post_saved)
@@ -112,5 +114,9 @@ class Dashboard::SalesController < ApplicationController
 
   def destroy_redirect_path
     params[:token].present? ? root_path : dashboard_sales_path
+  end
+
+  def do_maintenance
+    @sale.clear_phone!
   end
 end

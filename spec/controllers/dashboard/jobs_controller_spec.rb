@@ -38,7 +38,7 @@ describe Dashboard::JobsController do
     context "user logged in" do
       it "creates job" do
         sign_in(@user = create(:user))
-        attrs = attributes_for(:job)
+        attrs = attributes_for(:job, phone: "+380-98-5483")
 
         post :create, params: { job: attrs }
         job = assigns(:job)
@@ -49,6 +49,7 @@ describe Dashboard::JobsController do
         expect(job.title).to eq attrs[:title]
         expect(job.vk).to eq attrs[:vk]
         expect(job.fb).to eq attrs[:fb]
+        expect(job.phone).to eq "380985483"
         expect(job.user).to eq @user
         expect(flash[:notice]).to eq I18n.t(:post_created)
 

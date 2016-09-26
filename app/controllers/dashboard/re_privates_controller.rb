@@ -31,6 +31,7 @@ class Dashboard::RePrivatesController < ApplicationController
     @re_private = RePrivate.new(re_private_params)
     @re_private.user = current_user
     if @re_private.save
+      do_maintenance
       run_create_notifications
       redirect_on_create
     else
@@ -42,6 +43,7 @@ class Dashboard::RePrivatesController < ApplicationController
   def update
     address_changed = address_changed?(@re_private, re_private_params)
     if @re_private.update(re_private_params)
+      do_maintenance
       GeocodeJob.perform_async(@re_private.id, "RePrivate") if address_changed
       run_update_notifications
       redirect_to update_redirect_path, notice: I18n.t(:post_saved)
@@ -118,5 +120,9 @@ class Dashboard::RePrivatesController < ApplicationController
       :rooms, :active, :fee, :text, :state_id, :source, :email, :city_id,
       :category, :vk, :fb
     )
+  end
+
+  def do_maintenance
+    @re_private.clear_phone!
   end
 end

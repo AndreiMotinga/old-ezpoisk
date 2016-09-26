@@ -28,6 +28,7 @@ class Dashboard::JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.user = current_user
     if @job.save
+      do_maintenance
       run_create_notifications
       redirect_on_create
     else
@@ -39,6 +40,7 @@ class Dashboard::JobsController < ApplicationController
   def update
     address_changed = address_changed?(@job, job_params)
     if @job.update(job_params)
+      do_maintenance
       GeocodeJob.perform_async(@job.id, "Job") if address_changed
       run_update_notifications
       redirect_to update_redirect_path, notice: I18n.t(:post_saved)
@@ -94,6 +96,8 @@ class Dashboard::JobsController < ApplicationController
     create_subscription(@job)
   end
 
+  private
+
   def set_job
     if current_user.try(:admin?)
       @job = Job.find(params[:id])
@@ -114,5 +118,9 @@ class Dashboard::JobsController < ApplicationController
 
   def destroy_redirect_path
     params[:token].present? ? root_path : dashboard_jobs_path
+  end
+
+  def do_maintenance
+    @job.clear_phone!
   end
 end

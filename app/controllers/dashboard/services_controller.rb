@@ -29,6 +29,7 @@ class Dashboard::ServicesController < ApplicationController
   def create
     @service = current_user.services.build(service_params)
     if @service.save
+      do_maintenance
       run_create_notifications
       redirect_to edit_dashboard_service_path(@service),
                   notice: I18n.t(:post_created)
@@ -41,6 +42,7 @@ class Dashboard::ServicesController < ApplicationController
   def update
     address_changed = address_changed?(@service, service_params)
     if @service.update(service_params)
+      do_maintenance
       GeocodeJob.perform_async(@service.id, "Service") if address_changed
       run_update_notifications
       redirect_to edit_dashboard_service_path(@service),
@@ -91,5 +93,9 @@ class Dashboard::ServicesController < ApplicationController
       :city_id, :logo, :category, :active, :subcategory, :vk, :fb, :ok,
       :google, :twitter, :cover
     )
+  end
+
+  def do_maintenance
+    @service.clear_phone!
   end
 end
