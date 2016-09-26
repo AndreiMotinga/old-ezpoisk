@@ -44,3 +44,8 @@
       / line 4
       span.hidden-xs data-time=sale.id
         = timeago_tag sale.updated_at
+
+  - if sale.text.present?
+    .col-xs-12.text
+      hr.post-devider-black
+      = simple_format sale.text
