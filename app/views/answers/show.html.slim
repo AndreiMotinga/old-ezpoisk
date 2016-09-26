@@ -28,11 +28,11 @@
           p.text-muted
             = "#{@answer.impressions_count} просмотров |  #{@answer.score} голосов "
 
+    .panel-body
       - if @answer.image?
         = image_tag @answer.image.url(:medium),
                     class: "img-responsive center-block margin-bottom-10",
                     alt: "Помощь русским в США - #{@answer.title}"
-    .panel-body
       .post-body itemprop="description"
         = raw @answer.text
       br
