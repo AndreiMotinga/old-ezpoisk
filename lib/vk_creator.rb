@@ -16,7 +16,7 @@ class VkCreator
   end
 
   def create_post
-    return unless should_create?
+    return unless VkTextChecker.new(@text, @model).is_cool?
     case @model
     when "Job"
       record = create_job
@@ -32,14 +32,6 @@ class VkCreator
     GeocodeJob.perform_async(record.id, record.class.to_s)
     SlackNotifierJob.perform_async(record.id, record.class.to_s)
     VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
-  end
-
-  def should_create?
-    return false if @text.match(/\[\w.+\]/).present? # post is a response
-    return false if @model.constantize.find_by_text(@text) # post already exists
-    record = @model.constantize.find_by_vk(@vk)
-    return false if record.try(:fresh?)
-    true
   end
 
   def create_job
