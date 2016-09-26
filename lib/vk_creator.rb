@@ -23,6 +23,9 @@ class VkCreator
     when "RePrivate"
       record = create_re_private
       create_attachments(record)
+    when "Sale"
+      record = create_sale
+      create_attachments(record)
     end
     return unless record.id
     record.create_entry(user: record.user)
@@ -69,10 +72,38 @@ class VkCreator
     )
   end
 
+  def create_sale
+    Sale.create(
+      title: Title.new(@text).title,
+      category: "sales",
+      text: @text,
+      active: true,
+      user_id: @user_id,
+      state_id: @state_id,
+      city_id: @city_id,
+      updated_at: @date,
+      vk: @vk
+    )
+  end
+
   def create_attachments(record)
     return unless @attachments
-    VkImageCreatorJob.perform_async(
-      @attachments.map{ |f| f[:photo][:src_xxxbig] }, record.id, "RePrivate"
-    )
+    VkImageCreatorJob.perform_async(biggest_image, record.id, record.class.to_s)
+  end
+
+  def biggest_image
+    @attachments.map do |f|
+      next if f[:type] != "photo"
+      xxx = f[:photo][:src_xxxbig]
+      xx = f[:photo][:src_xxbig]
+      x = f[:photo][:src_xbig]
+      if xxx.present?
+        xxx
+      elsif xx.present?
+        xx
+      else
+        x
+      end
+    end
   end
 end

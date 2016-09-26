@@ -4,7 +4,7 @@ class VkImporter
     case group
     when "jobs" then @groups = JOBS
     when "re_privates" then @groups = RE_PRIVATES
-    when "jobs" then @groups = SALES
+    when "sales" then @groups = SALES
     end
   end
 
@@ -72,6 +72,24 @@ class VkImporter
   ].freeze
 
   SALES = [
-    { id: 20420, topic: 21430280, model: "RePrivate", state_id: 32, city_id: 17880 },
+    { id: 20420, topic: 27129264, model: "Sale", state_id: 32, city_id: 17880 },
+    { id: 2688174, topic: 26691734, model: "Sale", state_id: 32, city_id: 17880 },
+    { id: 12885141, topic: 32517632, model: "Sale", state_id: 32, city_id: 17880 },
+    { id: 13511430, topic: 29421166, model: "Sale", state_id: 32, city_id: 17880 },
+    { id: 10519422, topic: 29984440, model: "Sale", state_id: 32, city_id: 17880 },
+    { id: 5891839, topic: 27387663, model: "Sale", category: "transportation", state_id: 32, city_id: 17880 },
+    { id: 63852120, topic: 33325421, model: "Sale", state_id: 9, city_id: 3964 },
+    { id: 40123, topic: 23967324, model: "Sale", state_id: 9, city_id: 3964 },
+    { id: 40123, topic: 22888414, model: "Sale", category: "transportation", state_id: 9, city_id: 3964 },
+    { id: 12971907, topic: 28667780, model: "Sale", state_id: 9, city_id: 3964 },
+    { id: 7661136, topic: 33013553, model: "Sale", state_id: 5, city_id: 1685 },
+    { id: 94076941, topic: 32175846, model: "Sale", state_id: 5, city_id: 1685 },
+    { id: 453825, topic: 14230264, model: "Sale", state_id: 5, city_id: 1685 },
+    { id: 13509936, topic: 29417696, model: "Sale", state_id: 5, city_id: 1685 },
+    { id: 13457639, topic: 31796256, model: "Sale", state_id: 21, city_id: 10383 },
+    { id: 35762330, topic: 29391465, model: "Sale", state_id: 32, city_id: 18031 },
+    { id: 13509700, topic: 33109875, model: "Sale", state_id: 43, city_id: 25336 },
+    { id: 13247283, topic: 33700987, model: "Sale", state_id: 13, city_id: 6254 },
+    { id: 11710820, topic: 31680993, model: "Sale", state_id: 51, city_id: 29723 },
   ].freeze
 end
