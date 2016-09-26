@@ -16,9 +16,10 @@
         h1.h1-title itemprop="name" = @post.title
         .row.author
           .col-xs-3.col-sm-2
-            = image_tag @post.avatar.url(:thumb),
-                        class: "img-responsive center-block img-circle",
-                        alt: @post.user.name_to_show
+            = link_to user_path(@post.user), target: "_blank" do
+              = image_tag @post.avatar.url(:thumb),
+                          class: "img-responsive center-block img-circle",
+                          alt: @post.user.name_to_show
           .col-xs-9.col-sm-10
             h4.name itemprop="author" = link_to @post.user.name_to_show, user_path(@post.user), target: "_blank"
 
