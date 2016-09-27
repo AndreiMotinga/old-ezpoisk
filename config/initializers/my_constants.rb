@@ -31,7 +31,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
                fabric-craft-supplies household-goods flower-stores wathces
                jewlery car-parts),
   "other": %w(artists-celebrities business detectives exterminators
-              computers nannies tranlations parcels advertisement
+              computers confectioners nannies tranlations parcels advertisement
               restourants funeral-services sports escort insurance tourism
               dance cleaning finances-taxes photo-video art flowers
               erotics-massage psychic)
