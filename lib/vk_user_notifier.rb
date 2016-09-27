@@ -10,6 +10,7 @@ class VkUserNotifier
   end
 
   def send_message
+    return unless @token
     begin
       puts "ANDREI: Sending message with token #{@i} - #{@token}"
       @vk.messages.send(user_id: @user_id, message: SocialMessage.message(@record))
@@ -29,7 +30,6 @@ class VkUserNotifier
 
   def set_new_token
     @i += 1
-    @i = 0 if @i > TOKENS.size
     @token = TOKENS[@i]
     @vk = VkontakteApi::Client.new(@token)
   end
