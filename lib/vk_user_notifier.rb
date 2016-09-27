@@ -4,18 +4,18 @@ class VkUserNotifier
     @record = model.constantize.find_by_id(id)
     @user_id = user_id
     @i = 0
-    @vk = VkontakteApi::Client.new(TOKENS[@i])
-    # send_message if should_send?
+    @token = TOKENS[@i]
+    @vk = VkontakteApi::Client.new(@token)
+    send_message if should_send?
   end
 
   def send_message
     begin
-      puts "ANDREI: Sending message with token #{@i} - #{@vk}"
+      puts "ANDREI: Sending message with token #{@i} - #{@token}"
       @vk.messages.send(user_id: @user_id, message: SocialMessage.message(@record))
     rescue Exception => error
       puts "ANDREI: Rescuing response error"
-      @i += 1
-      @vk = VkontakteApi::Client.new(TOKENS[@i])
+      set_new_token
       send_message
     end
   end
@@ -27,9 +27,16 @@ class VkUserNotifier
     true
   end
 
+  def set_new_token
+    @i += 1
+    @i = 0 if @i > TOKENS.size
+    @token = TOKENS[@i]
+    @vk = VkontakteApi::Client.new(@token)
+  end
+
   TOKENS = [
     ENV["VK_ANDREI_TOKEN"],
-    ENV["VK_OLEG_TOKEN"],
-    ENV["VK_TITOV_TOKEN"]
+    ENV["VK_TITOV_TOKEN"],
+    ENV["VK_OLEG_TOKEN"]
   ]
 end
