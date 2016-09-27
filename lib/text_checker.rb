@@ -9,6 +9,7 @@ class TextChecker
     "ТОЛЬКО НЬЮ ЙОРК\nАНГЛИЙСКИЙ ЯЗЫК ДЛЯ ВСЕХ!!!!",
     "Rio - это",
     "Хороший знакомый (американец) ищет комнату",
+    "helpdetected.com",
     "hiringman.com"
   ].freeze
   private_constant :BAD_WORDS
