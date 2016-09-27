@@ -45,4 +45,8 @@ class Answer < ActiveRecord::Base
           .order("RANDOM ()")
           .limit(10)
   end
+
+  def active
+    true
+  end
 end
