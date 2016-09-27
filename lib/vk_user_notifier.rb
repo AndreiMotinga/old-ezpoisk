@@ -5,29 +5,29 @@ class VkUserNotifier
     @user_id = user_id
     @i = 0
     @vk = VkontakteApi::Client.new(TOKENS[@i])
-    send_message if should_send?
+    # send_message if should_send?
   end
 
-  def send_message
-    begin
-      @vk.messages.send(user_id: @user_id, message: SocialMessage.message(@record))
-    rescue Exception => error
-      @i += 1
-      @vk = VkontakteApi::Client.new(TOKENS[@i])
-      send_message
-    end
-  end
-
-  def should_send?
-    return if !@record || !@record.try(:active)
-    messages = @vk.messages.getHistory(user_id: @user_id)
-    return if messages.first != 0 # user didn't get message from us yet
-    true
-  end
-
-  TOKENS = [
-    ENV["VK_ANDREI_TOKEN"],
-    ENV["VK_OLEG_TOKEN"],
-    ENV["VK_TITOV_TOKEN"]
-  ]
+  # def send_message
+  #   begin
+  #     @vk.messages.send(user_id: @user_id, message: SocialMessage.message(@record))
+  #   rescue Exception => error
+  #     @i += 1
+  #     @vk = VkontakteApi::Client.new(TOKENS[@i])
+  #     send_message
+  #   end
+  # end
+  #
+  # def should_send?
+  #   return if !@record || !@record.try(:active)
+  #   messages = @vk.messages.getHistory(user_id: @user_id)
+  #   return if messages.first != 0 # user didn't get message from us yet
+  #   true
+  # end
+  #
+  # TOKENS = [
+  #   ENV["VK_ANDREI_TOKEN"],
+  #   ENV["VK_OLEG_TOKEN"],
+  #   ENV["VK_TITOV_TOKEN"]
+  # ]
 end
