@@ -5,7 +5,7 @@ class VkUserNotifier
     @user_id = user_id
     @i = 0
     @vk = VkontakteApi::Client.new(TOKENS[@i])
-    send_message if should_send?
+    # send_message if should_send?
   end
 
   def send_message
