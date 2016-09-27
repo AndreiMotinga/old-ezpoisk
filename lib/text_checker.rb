@@ -18,12 +18,13 @@ class TextChecker
   end
 
   def post_already_exists?
-    @model.constantize.find_by_text(@text)
+    !!@model.constantize.find_by_text(@text)
   end
 
   def post_from_user_is_fresh?
-    record = @model.constantize.find_by_vk(@vk)
-    return true if record.try(:fresh?)
+    @model.constantize.where(vk: @vk).each do |record|
+      return true if record.fresh?
+    end
   end
 
   def post_contains_bad_words?
@@ -41,5 +42,6 @@ class TextChecker
     "ТОЛЬКО НЬЮ ЙОРК\nАНГЛИЙСКИЙ ЯЗЫК ДЛЯ ВСЕХ!!!!",
     "Rio - это",
     "Хороший знакомый (американец) ищет комнату",
+    "hiringman.com",
   ]
 end
