@@ -34,6 +34,7 @@ describe ListingCreator do
       expect(GeocodeJob.jobs.size).to eq 1
       expect(SlackNotifierJob.jobs.size).to eq 1
       expect(VkImageCreatorJob.jobs.size).to eq 0
+      expect(VkUserNotifierJob.jobs.size).to eq 1
       expect(Entry.count).to eq 1
     end
 
@@ -68,6 +69,25 @@ describe ListingCreator do
       expect(SlackNotifierJob.jobs.size).to eq 1
       expect(VkImageCreatorJob.jobs.size).to eq 1
       expect(Entry.count).to eq 1
+    end
+
+    it "creates re_private without attachments" do
+      rp = HashWithIndifferentAccess.new(
+        "from_id": 216_072_410,
+        "date": 1_474_723_701,
+        "text": "Post text",
+      )
+      group = {
+        id: 20_420,
+        topic: 3_757_285,
+        model: "RePrivate",
+        state_id: 32,
+        city_id: 17_880
+      }
+
+      ListingCreator.new(rp, group, 1)
+
+      expect(RePrivate.count).to eq 1
     end
 
     it "creates sale with attachments from vk_response" do

@@ -15,5 +15,15 @@ describe VkImages do
 
       expect(result).to eq %w(image_xxx_url image_xx_url image_x_url)
     end
+
+    it "doesn't blow up" do
+      attachments = [
+        { "type": "video", "photo": { "src_xxxbig": "image_url" } },
+      ]
+
+      result = VkImages.new(attachments).images
+
+      expect(result).to eq []
+    end
   end
 end

@@ -18,16 +18,17 @@ class ListingCreator
   def start
     return unless TextChecker.new(@model, @text, @vk).cool?
     create_post
-    return unless @rec
+    puts "ANDREI: #{@rec.errors.messages}" if @rec.errors.any?
+    return unless @rec.id # id == saved
     create_attachments
     run_notifications
   end
 
   def run_notifications
     @rec.create_entry(user: @rec.user)
-    GeocodeJob.perform_async(@id, @model)
-    SlackNotifierJob.perform_async(@id, @model)
-    VkUserNotifierJob.perform_in(@delay.minutes, @author, @id, @model)
+    GeocodeJob.perform_async(@rec.id, @model)
+    SlackNotifierJob.perform_async(@rec.id, @model)
+    VkUserNotifierJob.perform_in(@delay.minutes, @author, @rec.id, @model)
   end
 
   def create_post
@@ -39,7 +40,6 @@ class ListingCreator
     when "Sale"
       create_sale
     end
-    @id = @rec.id
   end
 
   def create_job
@@ -88,6 +88,7 @@ class ListingCreator
 
   def create_attachments
     return if @model == "Job"
+    return unless @attachments.present?
     pics = VkImages.new(@attachments).images
     return if pics.empty?
     VkImageCreatorJob.perform_async(pics, @id, @model)
