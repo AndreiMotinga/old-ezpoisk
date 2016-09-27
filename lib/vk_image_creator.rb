@@ -1,3 +1,4 @@
+# todo rename to downloader
 class VkImageCreator
   def initialize(pics, id, model)
     @pics = pics

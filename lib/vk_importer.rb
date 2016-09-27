@@ -15,7 +15,7 @@ class VkImporter
                                   topic_id: group[:topic],
                                   sort: "desc")
       data.comments.shift # remove first element
-      data.comments.each_with_index { |p, i| VkCreator.new(p, group, i) }
+      data.comments.each_with_index { |p, i| ListingCreator.new(p, group, i) }
     end
   end
 

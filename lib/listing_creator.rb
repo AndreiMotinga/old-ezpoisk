@@ -1,5 +1,5 @@
 # creates listings from posts provided by vk and fb importers
-class VkCreator
+class ListingCreator
   def initialize(post, group, delay)
     @delay = delay + 5
     @user_id = 181 # ez
@@ -12,30 +12,38 @@ class VkCreator
     @author = post[:from_id]
     @vk = "https://vk.com/id#{@author}"
     @attachments = post[:attachments]
+    start
+  end
+
+  def start
+    return unless TextChecker.new(@model, @text, @vk).cool?
     create_post
+    return unless @rec
+    create_attachments
+    run_notifications
+  end
+
+  def run_notifications
+    @rec.create_entry(user: @rec.user)
+    GeocodeJob.perform_async(@id, @model)
+    SlackNotifierJob.perform_async(@id, @model)
+    VkUserNotifierJob.perform_in(@delay.minutes, @author, @id, @model)
   end
 
   def create_post
-    return unless TextChecker.new(@model, @text, @vk).is_cool?
     case @model
     when "Job"
-      record = create_job
+      create_job
     when "RePrivate"
-      record = create_re_private
-      create_attachments(record)
+      create_re_private
     when "Sale"
-      record = create_sale
-      create_attachments(record)
+      create_sale
     end
-    return unless record.id
-    record.create_entry(user: record.user)
-    GeocodeJob.perform_async(record.id, record.class.to_s)
-    SlackNotifierJob.perform_async(record.id, record.class.to_s)
-    VkUserNotifierJob.perform_in(@delay.minutes, @author, record.id, record.class.to_s)
+    @id = @rec.id
   end
 
   def create_job
-    Job.create(
+    @rec = Job.create(
       title: Title.new(@text, "Работа").title,
       category: @category,
       active: true,
@@ -49,7 +57,7 @@ class VkCreator
   end
 
   def create_re_private
-    RePrivate.create(
+    @rec = RePrivate.create(
       post_type: "leasing",
       duration: "monthly",
       category: "apartment",
@@ -65,7 +73,7 @@ class VkCreator
   end
 
   def create_sale
-    Sale.create(
+    @rec = Sale.create(
       title: Title.new(@text, "Продаю").title,
       category: "sales",
       text: @text,
@@ -78,25 +86,11 @@ class VkCreator
     )
   end
 
-  def create_attachments(record)
-    return unless @attachments
-    VkImageCreatorJob.perform_async(biggest_image, record.id, record.class.to_s)
-  end
-
-  def biggest_image
-    @attachments.map do |f|
-      next if f[:type] != "photo"
-      xxx = f[:photo][:src_xxxbig]
-      xx = f[:photo][:src_xxbig]
-      x = f[:photo][:src_xbig]
-      if xxx.present?
-        xxx
-      elsif xx.present?
-        xx
-      else
-        x
-      end
-    end
+  def create_attachments
+    return if @model == "Job"
+    pics = VkImages.new(@attachments).images
+    return if pics.empty?
+    VkImageCreatorJob.perform_async(pics, @id, @model)
   end
 
   def sanitize_text(text)

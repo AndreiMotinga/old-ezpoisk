@@ -1,3 +1,4 @@
+# todo rename to user with fb
 # creates images for posts, imported from vk
 class VkImageCreatorJob
   include Sidekiq::Worker

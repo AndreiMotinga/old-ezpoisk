@@ -80,10 +80,6 @@ module ViewHelpers
     ActionView::Base.full_sanitizer.sanitize(text).gsub("\s+", " ").size
   end
 
-  def fresh?
-    created_at > 1.day.ago
-  end
-
   def clear_phone!
     return unless self.phone.present?
     cleared = self.phone.split(",").map { |num| num.gsub(/\D/, "") }.join(",")

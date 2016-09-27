@@ -1,38 +1,5 @@
+# prevents from creating listings that don't fit the bill.freeze
 class TextChecker
-  def initialize(model, text, vk)
-    @model = model
-    @text = text
-    @vk = vk
-  end
-
-  def is_cool?
-    return false if post_is_response?
-    return false if post_already_exists?
-    return false if post_from_user_is_fresh?
-    return false if post_contains_bad_words?
-    true
-  end
-
-  def post_is_response?
-    @text.match(/\[\w.+\]/).present?
-  end
-
-  def post_already_exists?
-    !!@model.constantize.find_by_text(@text)
-  end
-
-  def post_from_user_is_fresh?
-    @model.constantize.where(vk: @vk).each do |record|
-      return true if record.fresh?
-    end
-  end
-
-  def post_contains_bad_words?
-    match = false
-    BAD_WORDS.each { |w| match = true if  @text.match(/#{w}/i).present? }
-    match
-  end
-
   BAD_WORDS = [
     "Russian America",
     "russian-america",
@@ -42,6 +9,39 @@ class TextChecker
     "ТОЛЬКО НЬЮ ЙОРК\nАНГЛИЙСКИЙ ЯЗЫК ДЛЯ ВСЕХ!!!!",
     "Rio - это",
     "Хороший знакомый (американец) ищет комнату",
-    "hiringman.com",
-  ]
+    "hiringman.com"
+  ].freeze
+  private_constant :BAD_WORDS
+
+  def initialize(model, text, vk)
+    @model = model
+    @text = text
+    @vk = vk
+  end
+
+  def cool?
+    return if post_is_response?
+    return if post_already_exists?
+    return if post_from_user_is_fresh?
+    return if post_contains_bad_words?
+    true
+  end
+
+  private
+
+  def post_is_response?
+    @text.match(/\[\w.+\]/).present?
+  end
+
+  def post_already_exists?
+    @model.constantize.find_by_text(@text).present?
+  end
+
+  def post_from_user_is_fresh?
+    @model.constantize.where("vk = ? AND created_at > ?", @vk, 1.day.ago).any?
+  end
+
+  def post_contains_bad_words?
+    BAD_WORDS.any? { |word| @text.include?(word) }
+  end
 end

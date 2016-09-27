@@ -23,10 +23,10 @@ describe Title do
       expect(result).to eq text
     end
 
-    it "returns 'Работа' for non of the obove" do
+    it "returns default title for non of the obove" do
       text = "Ищем сотрудника в оффис звонить писать имеилы really long sentenc"
 
-      result = Title.new(text).title
+      result = Title.new(text, "Работа").title
       expect(result).to eq "Работа"
     end
   end

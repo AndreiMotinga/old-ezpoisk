@@ -1,5 +1,5 @@
 class Title
-  def initialize(text, title)
+  def initialize(text, title = "")
     @default_title = title
     @text = text
     @dot = @text.split(".").first
