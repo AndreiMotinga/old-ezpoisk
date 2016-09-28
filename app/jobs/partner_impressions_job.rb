@@ -3,7 +3,7 @@ class PartnerImpressionsJob
   include Sidekiq::Worker
 
   def perform(id)
-    partner = Partner.find(id)
+    partner = Partner.find_by_id(id)
     return unless partner
     partner.update_column(:impressions_count, partner.impressions_count + 1)
   end
