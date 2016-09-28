@@ -10,7 +10,7 @@ class ListingCreator
     @category = group[:category]
 
     @text = sanitize_text(post[:text])
-    @date = Time.at(post[:date])
+    @date = post[:date]
     @attachments = post[:attachments]
     @author = post[:from_id]
     @vk = post[:vk]
@@ -56,6 +56,7 @@ class ListingCreator
       city_id: @city_id,
       user_id: @user_id,
       updated_at: @date,
+      fb: @fb,
       vk: @vk
     )
   end
@@ -72,6 +73,7 @@ class ListingCreator
       state_id: @state_id,
       city_id: @city_id,
       updated_at: @date,
+      fb: @fb,
       vk: @vk
     )
   end
@@ -86,16 +88,15 @@ class ListingCreator
       state_id: @state_id,
       city_id: @city_id,
       updated_at: @date,
+      fb: @fb,
       vk: @vk
     )
   end
 
   def create_attachments
     return if @model == "Job"
-    return unless @attachments.present?
-    pics = VkImages.new(@attachments).images
-    return if pics.empty?
-    VkImageCreatorJob.perform_async(pics, @id, @model)
+    return unless @attachments.any?
+    VkImageCreatorJob.perform_async(@attachments, @rec.id, @model)
   end
 
   def sanitize_text(text)

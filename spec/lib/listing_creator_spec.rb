@@ -7,11 +7,14 @@ describe ListingCreator do
   end
 
   describe "#init" do
-    it "creates regular post from vk_response" do
+    it "creates post without attachments" do
       post = HashWithIndifferentAccess.new(
         from_id: 325_677_385,
-        date: 1_474_560_879,
-        text: "Ищу работу. На кэщ. Манхэттен или Бруклин."
+        date: Time.at(1_474_560_879),
+        text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
+        vk: "https://vk.com/id325677385",
+        fb: "",
+        attachments: []
       )
       group = {
         id: 20_420,
@@ -38,14 +41,15 @@ describe ListingCreator do
       expect(Entry.count).to eq 1
     end
 
-    it "creates re_private with attachments from vk_response" do
+    it "creates re_private with attachments" do
       rp = HashWithIndifferentAccess.new(
-        "from_id": 216_072_410,
-        "date": 1_474_723_701,
-        "text": "Post text",
-        "attachments": [
-          { "type": "photo", "photo": { "src_xxxbig": "image_url" } }
-        ]
+        from_id: 325677385,
+        date: Time.at(1_474_560_879),
+        text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
+        text: "Post text",
+        vk: "https://vk.com/id325677385",
+        fb: "",
+        attachments: ["foo.com/image"]
       )
       group = {
         id: 20_420,
@@ -54,14 +58,14 @@ describe ListingCreator do
         state_id: 32,
         city_id: 17_880
       }
-      stub_request(:get, rp[:attachments][0][:photo][:src_xxxbig])
+      stub_request(:get, "foo.com/image")
 
       ListingCreator.new(rp, group, 1)
 
       expect(RePrivate.count).to eq 1
       rp = RePrivate.first
       expect(rp.text).to eq "Post text"
-      expect(rp.vk).to eq "https://vk.com/id216072410"
+      expect(rp.vk).to eq "https://vk.com/id325677385"
       expect(rp.state_id).to eq 32
       expect(rp.city_id).to eq 17_880
 
@@ -71,33 +75,14 @@ describe ListingCreator do
       expect(Entry.count).to eq 1
     end
 
-    it "creates re_private without attachments" do
-      rp = HashWithIndifferentAccess.new(
-        "from_id": 216_072_410,
-        "date": 1_474_723_701,
-        "text": "Post text",
-      )
-      group = {
-        id: 20_420,
-        topic: 3_757_285,
-        model: "RePrivate",
-        state_id: 32,
-        city_id: 17_880
-      }
-
-      ListingCreator.new(rp, group, 1)
-
-      expect(RePrivate.count).to eq 1
-    end
-
-    it "creates sale with attachments from vk_response" do
-      rp = HashWithIndifferentAccess.new(
-        "from_id": 216_072_410,
-        "date": 1_474_723_701,
-        "text": "Post text",
-        "attachments": [
-          { "type": "photo", "photo": { "src_xxxbig": "image_url" } }
-        ]
+    it "creates sale" do
+      sale = HashWithIndifferentAccess.new(
+        from_id: 325677385,
+        date: Time.at(1_474_560_879),
+        text: "Post text",
+        vk: "https://vk.com/id325677385",
+        fb: "",
+        attachments: ["foo.com/image"]
       )
       group = {
         id: 20_420,
@@ -106,14 +91,14 @@ describe ListingCreator do
         state_id: 32,
         city_id: 17_880
       }
-      stub_request(:get, rp[:attachments][0][:photo][:src_xxxbig])
+      stub_request(:get, "foo.com/image")
 
-      ListingCreator.new(rp, group, 1)
+      ListingCreator.new(sale, group, 1)
 
       expect(Sale.count).to eq 1
       rp = Sale.first
       expect(rp.text).to eq "Post text"
-      expect(rp.vk).to eq "https://vk.com/id216072410"
+      expect(rp.vk).to eq "https://vk.com/id325677385"
       expect(rp.state_id).to eq 32
       expect(rp.city_id).to eq 17_880
 
