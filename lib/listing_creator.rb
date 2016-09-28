@@ -1,17 +1,21 @@
 # creates listings from posts provided by vk and fb importers
 class ListingCreator
   def initialize(post, group, delay)
-    @delay = delay + 5
     @user_id = 181 # ez
+    @delay = delay + 5
+
     @state_id = group[:state_id]
     @city_id = group[:city_id]
     @model = group[:model]
     @category = group[:category]
+
     @text = sanitize_text(post[:text])
     @date = Time.at(post[:date])
-    @author = post[:from_id]
-    @vk = "https://vk.com/id#{@author}"
     @attachments = post[:attachments]
+    @author = post[:from_id]
+    @vk = post[:vk]
+    @fb = post[:fb]
+
     start
   end
 
