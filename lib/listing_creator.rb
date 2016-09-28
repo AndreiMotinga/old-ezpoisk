@@ -20,7 +20,7 @@ class ListingCreator
   end
 
   def start
-    return unless TextChecker.new(@model, @text, @vk).cool?
+    return unless TextChecker.new(@model, @text, @vk, @fb).cool?
     create_post
     puts "ANDREI: #{@rec.errors.messages}" if @rec.errors.any?
     return unless @rec.id # id == saved

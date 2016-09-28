@@ -14,23 +14,26 @@ class TextChecker
   ].freeze
   private_constant :BAD_WORDS
 
-  def initialize(model, text, vk)
+  def initialize(model, text, vk, fb)
     @model = model
     @text = text
     @vk = vk
+    @fb = fb
   end
 
   def cool?
-    return if post_is_response?
     return if post_already_exists?
-    return if post_from_user_is_fresh?
     return if post_contains_bad_words?
+    return if vk_post_is_response?
+    return if vk_post_from_user_is_fresh?
+    return if fb_post_from_user_is_fresh?
     true
   end
 
   private
 
-  def post_is_response?
+  def vk_post_is_response?
+    return unless @vk.present?
     @text.match(/\[\w.+\]/).present?
   end
 
@@ -38,8 +41,14 @@ class TextChecker
     @model.constantize.find_by_text(@text).present?
   end
 
-  def post_from_user_is_fresh?
+  def vk_post_from_user_is_fresh?
+    return unless @vk.present?
     @model.constantize.where("vk = ? AND created_at > ?", @vk, 1.day.ago).any?
+  end
+
+  def fb_post_from_user_is_fresh?
+    return unless @fb.present?
+    @model.constantize.where("fb = ? AND created_at > ?", @fb, 1.day.ago).any?
   end
 
   def post_contains_bad_words?
