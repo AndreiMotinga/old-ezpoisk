@@ -10,6 +10,7 @@ class PostChecker
     "Rio - это",
     "Хороший знакомый (американец) ищет комнату",
     "helpdetected.com",
+    "Американский визовый центр",
     "hiringman.com"
   ].freeze
   private_constant :BAD_WORDS

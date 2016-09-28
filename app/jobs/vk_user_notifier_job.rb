@@ -5,6 +5,6 @@ class VkUserNotifierJob
 
   def perform(user_id, id, model)
     return if Rails.env.development?
-    VkUserNotifier.new(user_id, id, model)
+    VkUserNotifier.new(user_id, id, model).notify
   end
 end
