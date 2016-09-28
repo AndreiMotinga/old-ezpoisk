@@ -1,4 +1,4 @@
-class SocialMessage
+class Message
   def self.message(record)
     <<-eol
       Привет, мы разместили Ваше объявление
