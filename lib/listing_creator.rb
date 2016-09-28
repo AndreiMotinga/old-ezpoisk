@@ -20,7 +20,7 @@ class ListingCreator
     @rec.create_entry(user: @rec.user)
     GeocodeJob.perform_async(@rec.id, @model)
     SlackNotifierJob.perform_async(@rec.id, @model)
-    VkUserNotifierJob.perform_in(@delay.minutes, @post[:from_id], @rec.id, @model)
+    VkUserNotifierJob.perform_in(@delay.minutes, @rec.id, @model)
   end
 
   def create_post

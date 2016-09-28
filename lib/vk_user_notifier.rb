@@ -12,9 +12,9 @@ class VkUserNotifier
 
   @@vk = VkontakteApi::Client.new(TOKENS[0])
 
-  def initialize(user_id, id, model)
-    @record = model.constantize.find_by_id(id)
-    @user_id = user_id
+  def initialize(record)
+    @record = record
+    @user_id = vk_user_id
   end
 
   def notify
@@ -45,15 +45,15 @@ class VkUserNotifier
 
   private
 
+  def vk_user_id
+    return "" unless @record
+    @record.vk.gsub(/\D/, "")
+  end
+
   def should_notify?
-    return if !@record || !@record.try(:active)
-    return unless valid_token? # cycled through all valid tokens
+    return unless @@vk.token.present? # cycled through all valid tokens
     messages = @@vk.messages.getHistory(user_id: @user_id)
     return if messages.first != 0 # user didn't get message from us yet
     true
-  end
-
-  def valid_token?
-    @@vk.token.present?
   end
 end

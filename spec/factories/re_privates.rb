@@ -15,7 +15,7 @@ FactoryGirl.define do
     state_id 32
     city_id 18_031
     email { Faker::Internet.email }
-    vk { Faker::Internet.email }
+    vk "https://vk.com/id129328692"
     fb { Faker::Internet.email }
 
     trait :with_geolocation do
