@@ -22,6 +22,7 @@ class TextChecker
   end
 
   def cool?
+    return if too_short?
     return if vk_post_is_response?
     return if post_contains_bad_words?
     return if vk_post_from_user_is_fresh?
@@ -31,6 +32,10 @@ class TextChecker
   end
 
   private
+
+  def too_short?
+    @text.size < 10
+  end
 
   def vk_post_is_response?
     @text.match(/\[\w.+\]/).present?

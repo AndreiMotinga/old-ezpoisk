@@ -2,6 +2,11 @@ require "rails_helper"
 
 describe TextChecker do
   describe "#cool?" do
+    it "returns false if post is too short" do
+      result = TextChecker.new("Job", "too short", "foo", "bar").cool?
+
+      expect(result).to be_falsy
+    end
     it "returns false if post with similar text already exists" do
       job = create :job
 
