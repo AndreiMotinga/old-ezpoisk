@@ -1,5 +1,5 @@
 # prevents from creating listings that don't fit the bill.freeze
-class TextChecker
+class PostChecker
   BAD_WORDS = [
     "Russian America",
     "russian-america",
@@ -14,11 +14,11 @@ class TextChecker
   ].freeze
   private_constant :BAD_WORDS
 
-  def initialize(model, text, vk, fb)
+  def initialize(model, post)
     @model = model
-    @text = text
-    @vk = vk
-    @fb = fb
+    @text = post[:text]
+    @vk = post[:vk]
+    @fb = post[:fb]
   end
 
   def cool?

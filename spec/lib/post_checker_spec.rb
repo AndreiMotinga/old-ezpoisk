@@ -1,46 +1,51 @@
 require "rails_helper"
 
-describe TextChecker do
+describe PostChecker do
   describe "#cool?" do
     it "returns false if post is too short" do
-      result = TextChecker.new("Job", "too short", "foo", "bar").cool?
+      rec = { text: "too short" }
+      result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end
     it "returns false if post with similar text already exists" do
       job = create :job
+      rec = { text: job.text }
 
-      result = TextChecker.new("Job", job.text, "foo", "bar").cool?
+      result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end
 
     it "returns false if post is a response" do
-      job = create :job, text: "[Andrei,] rfr lrkf?"
+      rec = { text: "[Andrei,] rfr lrkf?" }
 
-      result = TextChecker.new("Job", job.text, "foo", "bar").cool?
+      result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end
 
     it "returns false if there is a fresh vk post from this user" do
       job = create :job
+      rec = { text: job.text, vk: job.vk }
 
-      result = TextChecker.new("Job", "foo", job.vk, "bar").cool?
+      result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end
 
     it "returns false if there is a fresh fb post from this user" do
       job = create :job
+      rec = { text: job.text, fb: job.fb }
 
-      result = TextChecker.new("Job", "foo", "foo", job.fb).cool?
+      result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end
 
     it "returns false if post contains blocked words" do
-      result = TextChecker.new("Job", "Russian America", "foo", "bar").cool?
+      rec = { text: "Russian America ищет друзей" }
+      result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end

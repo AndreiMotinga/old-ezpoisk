@@ -9,6 +9,8 @@ class ListingCreator
     @model = group[:model]
     @category = group[:category]
 
+    @post = post
+    # todo move it to separate class
     @text = sanitize_text(post[:text])
     @date = post[:date]
     @attachments = post[:attachments]
@@ -20,7 +22,7 @@ class ListingCreator
   end
 
   def start
-    return unless TextChecker.new(@model, @text, @vk, @fb).cool?
+    return unless PostChecker.new(@model, @post).cool?
     create_post
     puts "ANDREI: #{@rec.errors.messages}" if @rec.errors.any?
     return unless @rec.id # id == saved

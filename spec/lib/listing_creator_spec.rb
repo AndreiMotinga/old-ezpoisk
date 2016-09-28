@@ -46,7 +46,7 @@ describe ListingCreator do
         from_id: 325677385,
         date: Time.at(1_474_560_879),
         text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
-        text: "Post text",
+        text: "Post long text",
         vk: "https://vk.com/id325677385",
         fb: "",
         attachments: ["foo.com/image"]
@@ -64,7 +64,7 @@ describe ListingCreator do
 
       expect(RePrivate.count).to eq 1
       rp = RePrivate.first
-      expect(rp.text).to eq "Post text"
+      expect(rp.text).to eq "Post long text"
       expect(rp.vk).to eq "https://vk.com/id325677385"
       expect(rp.state_id).to eq 32
       expect(rp.city_id).to eq 17_880
@@ -79,7 +79,7 @@ describe ListingCreator do
       sale = HashWithIndifferentAccess.new(
         from_id: 325677385,
         date: Time.at(1_474_560_879),
-        text: "Post text",
+        text: "Post long text",
         vk: "https://vk.com/id325677385",
         fb: "",
         attachments: ["foo.com/image"]
@@ -97,7 +97,7 @@ describe ListingCreator do
 
       expect(Sale.count).to eq 1
       rp = Sale.first
-      expect(rp.text).to eq "Post text"
+      expect(rp.text).to eq "Post long text"
       expect(rp.vk).to eq "https://vk.com/id325677385"
       expect(rp.state_id).to eq 32
       expect(rp.city_id).to eq 17_880
