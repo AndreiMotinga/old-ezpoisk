@@ -22,23 +22,22 @@ class TextChecker
   end
 
   def cool?
-    return if post_already_exists?
-    return if post_contains_bad_words?
     return if vk_post_is_response?
+    return if post_contains_bad_words?
     return if vk_post_from_user_is_fresh?
     return if fb_post_from_user_is_fresh?
+    return if post_already_exists?
     true
   end
 
   private
 
   def vk_post_is_response?
-    return unless @vk.present?
     @text.match(/\[\w.+\]/).present?
   end
 
-  def post_already_exists?
-    @model.constantize.find_by_text(@text).present?
+  def post_contains_bad_words?
+    BAD_WORDS.any? { |word| @text.include?(word) }
   end
 
   def vk_post_from_user_is_fresh?
@@ -51,7 +50,7 @@ class TextChecker
     @model.constantize.where("fb = ? AND created_at > ?", @fb, 1.day.ago).any?
   end
 
-  def post_contains_bad_words?
-    BAD_WORDS.any? { |word| @text.include?(word) }
+  def post_already_exists?
+    @model.constantize.find_by_text(@text).present?
   end
 end
