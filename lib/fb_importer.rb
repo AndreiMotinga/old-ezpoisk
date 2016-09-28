@@ -12,14 +12,17 @@ class FbImporter
     graph = Koala::Facebook::API.new(ENV["FB_TOKEN"])
     @groups.each do |group|
       data = graph.get_connections(
-        group[:id], "feed", fields: %w("message", "from", "attachments")
+        group[:id], "feed", fields: %w(from message created_time attachments)
       )
-      data.each_with_index { |p, i| FbCreator.new(p, group, i) }
+      data.each_with_index do |post, i|
+        record = FbListingUnifier.new(post).post
+        ListingCreator.new(record, group, i).create
+      end
     end
   end
 
   JOBS = [
-    { id: 22558194, model: "Job", state_id: 32, city_id: 17880 }, # USA
+    { id: 249106225164786, model: "Job", state_id: 32, city_id: 17880 }
   ].freeze
 
   RE_PRIVATES = [

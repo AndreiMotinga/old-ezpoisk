@@ -4,10 +4,9 @@ class VkListingUnifier
 
   def initialize(post)
     @post = HashWithIndifferentAccess.new(
-      from_id: post[:from_id],
       date: Time.at(post[:date]),
       text: PostSanitizer.new(post[:text]).clean,
-      vk:  "https://vk.com/id#{post[:from_id]}",
+      vk: "https://vk.com/id#{post[:from_id]}",
       fb: "",
       attachments: attachments(post[:attachments])
     )

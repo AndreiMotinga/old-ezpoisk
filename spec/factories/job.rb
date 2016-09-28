@@ -10,7 +10,7 @@ FactoryGirl.define do
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
     vk "https://vk.com/id129328692"
-    fb { Faker::Internet.email }
+    fb "https://www.facebook.com/101"
 
     state_id 32
     city_id 18_031

@@ -10,7 +10,6 @@ class ListingCreator
   def create
     return unless PostChecker.new(@model, @post).cool?
     create_post
-    puts "ANDREI: #{@rec.errors.messages}" if @rec.errors.any?
     return unless @rec.id # id == saved
     create_attachments
     run_notifications
@@ -20,7 +19,7 @@ class ListingCreator
     @rec.create_entry(user: @rec.user)
     GeocodeJob.perform_async(@rec.id, @model)
     SlackNotifierJob.perform_async(@rec.id, @model)
-    VkUserNotifierJob.perform_in(@delay.minutes, @rec.id, @model)
+    SocialUserNotifierJob.perform_in(@delay.minutes, @rec.id, @model)
   end
 
   def create_post
@@ -37,7 +36,7 @@ class ListingCreator
   def create_job
     @rec = Job.create(
       title: Title.new(@post[:text], "Работа").title,
-      category: @group[:category],
+      category: @group[:category] || "wanted",
       active: true,
       text: @post[:text],
       state_id: @group[:state_id],

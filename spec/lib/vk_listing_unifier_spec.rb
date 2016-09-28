@@ -14,7 +14,6 @@ describe VkListingUnifier do
 
       result = VkListingUnifier.new(post).post
 
-      expect(result[:from_id]).to eq post[:from_id]
       expect(result[:date]).to eq Time.at(post[:date])
       expect(result[:text]).to eq post[:text]
       expect(result[:vk]).to eq "https://vk.com/id#{post[:from_id]}"
