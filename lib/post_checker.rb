@@ -16,12 +16,11 @@ class PostChecker
 
   def initialize(model, post)
     @model = model
-    @text = post[:text]
-    @vk = post[:vk]
-    @fb = post[:fb]
+    @post = post
   end
 
   def cool?
+    return if too_old?
     return if too_short?
     return if vk_post_is_response?
     return if post_contains_bad_words?
@@ -33,29 +32,35 @@ class PostChecker
 
   private
 
+  def too_old?
+    @post[:date] < 7.days.ago
+  end
+
   def too_short?
-    @text.size < 10
+    @post[:text].size < 10
   end
 
   def vk_post_is_response?
-    @text.match(/\[\w.+\]/).present?
+    @post[:text].match(/\[\w.+\]/).present?
   end
 
   def post_contains_bad_words?
-    BAD_WORDS.any? { |word| @text.include?(word) }
+    BAD_WORDS.any? { |word| @post[:text].include?(word) }
   end
 
   def vk_post_from_user_is_fresh?
-    return unless @vk.present?
-    @model.constantize.where("vk = ? AND created_at > ?", @vk, 1.day.ago).any?
+    return unless @post[:vk].present?
+    @model.constantize
+          .where("vk = ? AND created_at > ?", @post[:vk], 1.day.ago).any?
   end
 
   def fb_post_from_user_is_fresh?
-    return unless @fb.present?
-    @model.constantize.where("fb = ? AND created_at > ?", @fb, 1.day.ago).any?
+    return unless @post[:fb].present?
+    @model.constantize
+          .where("fb = ? AND created_at > ?", @post[:fb], 1.day.ago).any?
   end
 
   def post_already_exists?
-    @model.constantize.find_by_text(@text).present?
+    @model.constantize.find_by_text(@post[:text]).present?
   end
 end

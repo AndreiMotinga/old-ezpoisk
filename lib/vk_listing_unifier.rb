@@ -1,11 +1,12 @@
 # changes post received from vk api
 class VkListingUnifier
   attr_reader :post
+
   def initialize(post)
     @post = HashWithIndifferentAccess.new(
       from_id: post[:from_id],
       date: Time.at(post[:date]),
-      text: post[:text],
+      text: PostSanitizer.new(post[:text]).clean,
       vk:  "https://vk.com/id#{post[:from_id]}",
       fb: "",
       attachments: attachments(post[:attachments])

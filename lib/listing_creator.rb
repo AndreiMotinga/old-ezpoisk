@@ -1,27 +1,13 @@
 # creates listings from posts provided by vk and fb importers
 class ListingCreator
   def initialize(post, group, delay)
-    @user_id = 181 # ez
-    @delay = delay + 5
-
-    @state_id = group[:state_id]
-    @city_id = group[:city_id]
-    @model = group[:model]
-    @category = group[:category]
-
     @post = post
-    # todo move it to separate class
-    @text = sanitize_text(post[:text])
-    @date = post[:date]
-    @attachments = post[:attachments]
-    @author = post[:from_id]
-    @vk = post[:vk]
-    @fb = post[:fb]
-
-    start
+    @group = group
+    @delay = delay + 3
+    @model = group[:model]
   end
 
-  def start
+  def create
     return unless PostChecker.new(@model, @post).cool?
     create_post
     puts "ANDREI: #{@rec.errors.messages}" if @rec.errors.any?
@@ -34,7 +20,7 @@ class ListingCreator
     @rec.create_entry(user: @rec.user)
     GeocodeJob.perform_async(@rec.id, @model)
     SlackNotifierJob.perform_async(@rec.id, @model)
-    VkUserNotifierJob.perform_in(@delay.minutes, @author, @rec.id, @model)
+    VkUserNotifierJob.perform_in(@delay.minutes, @post[:from_id], @rec.id, @model)
   end
 
   def create_post
@@ -50,16 +36,16 @@ class ListingCreator
 
   def create_job
     @rec = Job.create(
-      title: Title.new(@text, "Работа").title,
-      category: @category,
+      title: Title.new(@post[:text], "Работа").title,
+      category: @group[:category],
       active: true,
-      text: @text,
-      state_id: @state_id,
-      city_id: @city_id,
-      user_id: @user_id,
-      updated_at: @date,
-      fb: @fb,
-      vk: @vk
+      text: @post[:text],
+      state_id: @group[:state_id],
+      city_id: @group[:city_id],
+      user_id: 181,
+      updated_at: @post[:date],
+      fb: @post[:fb],
+      vk: @post[:vk]
     )
   end
 
@@ -70,39 +56,34 @@ class ListingCreator
       category: "apartment",
       rooms: "room",
       active: true,
-      text: @text,
-      user_id: @user_id,
-      state_id: @state_id,
-      city_id: @city_id,
-      updated_at: @date,
-      fb: @fb,
-      vk: @vk
+      text: @post[:text],
+      user_id: 181,
+      state_id: @group[:state_id],
+      city_id: @group[:city_id],
+      updated_at: @post[:date],
+      fb: @post[:fb],
+      vk: @post[:vk]
     )
   end
 
   def create_sale
     @rec = Sale.create(
-      title: Title.new(@text, "Продаю").title,
+      title: Title.new(@post[:text], "Продаю").title,
       category: "sales",
-      text: @text,
+      text: @post[:text],
       active: true,
-      user_id: @user_id,
-      state_id: @state_id,
-      city_id: @city_id,
-      updated_at: @date,
-      fb: @fb,
-      vk: @vk
+      user_id: 181,
+      state_id: @group[:state_id],
+      city_id: @group[:city_id],
+      updated_at: @post[:date],
+      fb: @post[:fb],
+      vk: @post[:vk]
     )
   end
 
   def create_attachments
     return if @model == "Job"
-    return unless @attachments.any?
-    ImageDownloaderJob.perform_async(@attachments, @rec.id, @model)
-  end
-
-  def sanitize_text(text)
-    text.gsub("<br>", "\n")
-        .gsub(/[\u{1F600}-\u{1F6FF}]/, "") # remove emojis
+    return unless @post[:attachments].any?
+    ImageDownloaderJob.perform_async(@post[:attachments], @rec.id, @model)
   end
 end

@@ -17,7 +17,7 @@ class VkImporter
       data.comments.shift # remove first element
       data.comments.each_with_index do |post, i|
         record = VkListingUnifier.new(post).post
-        ListingCreator.new(record, group, i)
+        ListingCreator.new(record, group, i).create
       end
     end
   end

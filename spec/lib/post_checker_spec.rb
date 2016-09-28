@@ -2,15 +2,23 @@ require "rails_helper"
 
 describe PostChecker do
   describe "#cool?" do
-    it "returns false if post is too short" do
-      rec = { text: "too short" }
+    it "returns false if post is older than a week" do
+      rec = { date: 8.day.ago }
       result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy
     end
+
+    it "returns false if post is too short" do
+      rec = { date: 1.day.ago, text: "too short" }
+      result = PostChecker.new("Job", rec).cool?
+
+      expect(result).to be_falsy
+    end
+
     it "returns false if post with similar text already exists" do
       job = create :job
-      rec = { text: job.text }
+      rec = { date: 1.day.ago, text: job.text }
 
       result = PostChecker.new("Job", rec).cool?
 
@@ -18,7 +26,7 @@ describe PostChecker do
     end
 
     it "returns false if post is a response" do
-      rec = { text: "[Andrei,] rfr lrkf?" }
+      rec = { date: 1.day.ago, text: "[Andrei,] rfr lrkf?" }
 
       result = PostChecker.new("Job", rec).cool?
 
@@ -27,7 +35,7 @@ describe PostChecker do
 
     it "returns false if there is a fresh vk post from this user" do
       job = create :job
-      rec = { text: job.text, vk: job.vk }
+      rec = { date: 1.day.ago, text: job.text, vk: job.vk }
 
       result = PostChecker.new("Job", rec).cool?
 
@@ -36,7 +44,7 @@ describe PostChecker do
 
     it "returns false if there is a fresh fb post from this user" do
       job = create :job
-      rec = { text: job.text, fb: job.fb }
+      rec = { date: 1.day.ago, text: job.text, fb: job.fb }
 
       result = PostChecker.new("Job", rec).cool?
 
@@ -44,7 +52,7 @@ describe PostChecker do
     end
 
     it "returns false if post contains blocked words" do
-      rec = { text: "Russian America ищет друзей" }
+      rec = { date: 1.day.ago, text: "Russian America ищет друзей" }
       result = PostChecker.new("Job", rec).cool?
 
       expect(result).to be_falsy

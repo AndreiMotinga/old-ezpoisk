@@ -24,7 +24,7 @@ describe ListingCreator do
         city_id: 17_880
       }
 
-      ListingCreator.new(post, group, 1)
+      ListingCreator.new(post, group, 1).create
 
       expect(Job.count).to eq 1
       job = Job.first
@@ -60,7 +60,7 @@ describe ListingCreator do
       }
       stub_request(:get, "foo.com/image")
 
-      ListingCreator.new(rp, group, 1)
+      ListingCreator.new(rp, group, 1).create
 
       expect(RePrivate.count).to eq 1
       rp = RePrivate.first
@@ -93,7 +93,7 @@ describe ListingCreator do
       }
       stub_request(:get, "foo.com/image")
 
-      ListingCreator.new(sale, group, 1)
+      ListingCreator.new(sale, group, 1).create
 
       expect(Sale.count).to eq 1
       rp = Sale.first
