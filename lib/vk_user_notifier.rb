@@ -19,15 +19,11 @@ class VkUserNotifier
 
   def notify
     return unless should_notify?
-    send_message if valid_token?
-  end
-
-  def send_message
     begin
       @@vk.messages.send(user_id: @user_id, message: Message.message(@record))
     rescue VkontakteApi::Error
       update_vk
-      send_message if valid_token?
+      notify
     end
   end
 
@@ -36,10 +32,6 @@ class VkUserNotifier
     index = TOKENS.index(token)
     new_token = TOKENS[index + 1]
     @@vk = VkontakteApi::Client.new(new_token)
-  end
-
-  def valid_token?
-    @@vk.token.present?
   end
 
   def self.vk
@@ -59,5 +51,9 @@ class VkUserNotifier
     messages = @@vk.messages.getHistory(user_id: @user_id)
     return if messages.first != 0 # user didn't get message from us yet
     true
+  end
+
+  def valid_token?
+    @@vk.token.present?
   end
 end

@@ -41,11 +41,13 @@ describe VkUserNotifier do
       allow(Message).to receive(:message).with(job).and_return(msg)
       stub_empty_hostory
       st = stub_failed_sending(msg)
+      history = stub_empty_hostory(ENV["VK_TITOV_TOKEN"]) # other admin user
       new_st = stub_successful_sending(msg, ENV["VK_TITOV_TOKEN"])
 
       VkUserNotifier.new(1929, job.id, job.class.to_s).notify
 
       expect(st).to have_been_requested
+      expect(history).to have_been_requested
       expect(new_st).to have_been_requested
     end
 
@@ -54,6 +56,9 @@ describe VkUserNotifier do
       msg = "test message"
       allow(Message).to receive(:message).with(job).and_return(msg)
       stub_empty_hostory
+      stub_empty_hostory(ENV["VK_TITOV_TOKEN"]) # other admin user
+      stub_empty_hostory(ENV["VK_OLEG_TOKEN"]) # other admin user
+      new_st = stub_successful_sending(msg, ENV["VK_TITOV_TOKEN"])
       first  = stub_failed_sending(msg, ENV["VK_ANDREI_TOKEN"])
       second = stub_failed_sending(msg, ENV["VK_TITOV_TOKEN"])
       third = stub_successful_sending(msg, ENV["VK_OLEG_TOKEN"])
