@@ -96,7 +96,7 @@ class ListingCreator
   def create_attachments
     return if @model == "Job"
     return unless @attachments.any?
-    VkImageCreatorJob.perform_async(@attachments, @rec.id, @model)
+    ImageDownloaderJob.perform_async(@attachments, @rec.id, @model)
   end
 
   def sanitize_text(text)

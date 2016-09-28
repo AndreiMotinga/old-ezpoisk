@@ -36,7 +36,7 @@ describe ListingCreator do
 
       expect(GeocodeJob.jobs.size).to eq 1
       expect(SlackNotifierJob.jobs.size).to eq 1
-      expect(VkImageCreatorJob.jobs.size).to eq 0
+      expect(ImageDownloaderJob.jobs.size).to eq 0
       expect(VkUserNotifierJob.jobs.size).to eq 1
       expect(Entry.count).to eq 1
     end
@@ -71,7 +71,7 @@ describe ListingCreator do
 
       expect(GeocodeJob.jobs.size).to eq 1
       expect(SlackNotifierJob.jobs.size).to eq 1
-      expect(VkImageCreatorJob.jobs.size).to eq 1
+      expect(ImageDownloaderJob.jobs.size).to eq 1
       expect(Entry.count).to eq 1
     end
 
@@ -104,7 +104,7 @@ describe ListingCreator do
 
       expect(GeocodeJob.jobs.size).to eq 1
       expect(SlackNotifierJob.jobs.size).to eq 1
-      expect(VkImageCreatorJob.jobs.size).to eq 1
+      expect(ImageDownloaderJob.jobs.size).to eq 1
       expect(Entry.count).to eq 1
     end
   end
