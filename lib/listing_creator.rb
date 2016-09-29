@@ -54,6 +54,7 @@ class ListingCreator
       duration: "monthly",
       category: "apartment",
       rooms: "room",
+      baths: 1,
       active: true,
       text: @post[:text],
       user_id: 181,

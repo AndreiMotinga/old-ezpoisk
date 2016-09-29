@@ -11,9 +11,9 @@ class FavoritesController < ApplicationController
   end
 
   def touch
-    @record = record_params["type"].constantize.find(record_params[:id])
-    @record.touch
-    @record.entry.touch
+    @rec = record_params["type"].constantize.find(record_params[:id])
+    @rec.touch
+    @rec.entry.touch
   end
 
   private

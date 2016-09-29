@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :partners, dependent: :destroy
   has_many :points
   has_many :entries
+  has_many :deactivations
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
 
@@ -100,6 +101,11 @@ class User < ActiveRecord::Base
   # todo test
   def reviewed?(service_id)
     reviews.where(service_id: service_id).any?
+  end
+
+  def can_deactivate?(rec)
+    deactivations.exists?(deactivatable_id: rec.id,
+                          deactivatable_type: rec.class.to_s)
   end
 
   private

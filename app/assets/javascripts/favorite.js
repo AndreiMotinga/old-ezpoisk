@@ -44,6 +44,9 @@ function getCookieValue(cookieName) {
 }
 
 function createFavorite(el) {
+  var id = $(el).data("id");
+  $("[data-i=" + id + "]").toggleClass("hidden");
+
   $.ajax({
     url: "/favorites",
     type: 'POST',
@@ -74,6 +77,28 @@ function createHidden(el, id) {
         "saved": false,
         "hidden": true
       }
+    }
+  });
+}
+
+$(document).on('click','[data-action="deactivate"]', function(e){
+  e.preventDefault();
+  var user_logged_in = getCookieValue("signed_in=1");
+  if(user_logged_in) {
+    var id = $(this).data("id");
+        type = $(this).data("type");
+    deactivate(id, type);
+  } else {
+    $("#login_link").trigger("click");
+  }
+});
+
+function deactivate(id, type){
+  $.ajax({
+    url: "/deactivations",
+    type: 'POST',
+    data: {
+      deactivation: { deactivatable_id: id, deactivatable_type: type }
     }
   });
 }

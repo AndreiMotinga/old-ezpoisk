@@ -1,6 +1,3 @@
-.menu.white-block
-  .panel.panel-default
-    .panel-body
-      ul.list-group
-        - User.where(role: "editor").or(User.where(admin: true)).each do |user|
-          = link_to user.name_to_show, dashboard_editor_path(user), class: "list-group-item"
+ul.list-group.menu.white-block
+  - User.where(role: "editor").or(User.where(admin: true)).each do |user|
+    = link_to user.name_to_show, dashboard_editor_path(user), class: "list-group-item"

@@ -12,20 +12,20 @@
       h4.title itemprop="name"
         - if service.featured
           span.featured Ad
-        = link_to service.title, service_path(service)
+        = link_to dashboard_favorites_path(type: "Service")
+          i.fa.fa-star-o.golden[class=("hidden" unless service.favorite?(current_user))
+                                data-i=service.id ]
+        = link_to service.title, service
 
       / line 2
       span.state-city #{service.city.name}, #{service.state.name}
       hr.post-devider/
 
       / line 4
-      - if service.try(:site).present?
-        = link_to service.site, site_link(service.site), rel: "nofollow", target: "_blank"
-        hr.post-devider/
-
-      / line 5
-      i.fa.fa-phone
-      - service.phone.split(",").each do |phone|
-        span.company-phone
-          a href="tel:#{phone}"  #{number_to_phone(phone, area_code: 1)}
-          = " "
+      = render "shared/indicators", record: service
+      .pull-right= render "services/show/rating", service: service
+      hr.post-devider/
+  - if service.text.present?
+    .col-xs-12.text
+      hr.post-devider-black
+      = simple_format service.text

@@ -1,14 +1,14 @@
 .row.review
   .col-xs-12
-    = link_to new_dashboard_review_path(service_id: @service.id) do
+    = link_to new_dashboard_review_path(service_id: service.id) do
       span.rating
-        input#rating-input-1-5.rating-input type="radio" disabled="" checked= (@service.rating == 5)
+        input#rating-input-1-5.rating-input type="radio" disabled="" checked= (service.rating == 5)
         label.rating-star for="rating-input-1-5"
-        input#rating-input-1-4.rating-input type="radio" disabled="" checked= (@service.rating == 4)
+        input#rating-input-1-4.rating-input type="radio" disabled="" checked= (service.rating == 4)
         label.rating-star for="rating-input-1-4")
-        input#rating-input-1-3.rating-input type="radio" disabled="" checked= (@service.rating == 3)
+        input#rating-input-1-3.rating-input type="radio" disabled="" checked= (service.rating == 3)
         label.rating-star for="rating-input-1-3"
-        input#rating-input-1-2.rating-input type="radio" disabled="" checked= (@service.rating == 2)
+        input#rating-input-1-2.rating-input type="radio" disabled="" checked= (service.rating == 2)
         label.rating-star for="rating-input-1-2"
-        input#rating-input-1-1.rating-input type="radio" disabled="" checked= (@service.rating == 1)
+        input#rating-input-1-1.rating-input type="radio" disabled="" checked= (service.rating == 1)
         label.rating-star for="rating-input-1-1"

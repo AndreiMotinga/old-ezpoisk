@@ -3,6 +3,6 @@ class CommentMailer < ApplicationMailer
   def new_comment(comment, email)
     @comment = comment
     mail to: email,
-         subject: "eZpoisk - новый коментарий под:  #{@comment.commentable.title}"
+         subject: "eZpoisk - новый комментарий под:  #{@comment.commentable.title}"
   end
 end

@@ -1,0 +1,20 @@
+- if record.street.present?
+  i.fa.fa-map-o
+- if record.class.method_defined?(:pictures) && record.has_attachments
+  i.fa.fa-picture-o
+- if record.try(:site).present?
+  i.fa.fa.fa-share-square-o
+- if record.phone.present?
+  i.fa.fa-phone
+- if record.email.present?
+  i.fa.fa-envelope-o
+- if record.fb.present?
+  i.fa.fa-facebook
+- if record.vk.present?
+  i.fa.fa-vk.text-muted
+
+- if record.class.to_s != "Service"
+  span[class=("hidden" if record.deactivations.count == 0) data-span="deactivation"
+       data-id=record.id data-type=record.class.to_s ]
+    i.fa.fa-thumbs-down.text-muted
+    span data-id="counter" = record.deactivations.count

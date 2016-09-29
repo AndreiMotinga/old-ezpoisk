@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create]
   post "favorites/touch", to: "favorites#touch"
 
+  resources :deactivations, only: [:create]
   resources :comments, only: [:create]
   resources :points, only: [:create]
   resources :subscriptions, only: [:create, :destroy]

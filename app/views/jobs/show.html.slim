@@ -17,9 +17,9 @@
 .div itemscope="" itemtype="http://schema.org/JobPosting"
   .col-xs-12
     = render @job
-  = render "shared/gads/leaderboard"
+  /= render "shared/gads/leaderboard"
   .visible-xs
     = render "shared/show/contacts", record: @job
   = render "shared/disqus"
   = render 'shared/show/map', record: @job
-
+  = render "shared/show/similar", record: @job

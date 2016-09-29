@@ -3,7 +3,7 @@ h4 Здравствуйте
 p
   = @comment.user.name_to_show
   = " "
-  | оставил коментарий под
+  | оставил комментарий под
   = " "
   = link_to @comment.commentable.title, @comment.commentable.show_url, target: "_blank"
 

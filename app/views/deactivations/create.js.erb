@@ -1,0 +1,7 @@
+$("[data-action='deactivate'][data-id='<%= @rec.id %>']").remove();
+$("[data-span='deactivation'][data-id='<%= @rec.id %>']").removeClass("hidden");
+$("[data-span='deactivation'][data-id='<%= @rec.id %>'] span").text("<%= @rec.deactivations.count %>");
+
+<% if !@rec.active %>
+  $("[data-hidden=<%= @rec.id %>]").remove();
+<% end %>

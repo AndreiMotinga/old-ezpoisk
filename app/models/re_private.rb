@@ -22,6 +22,7 @@ class RePrivate < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   has_many :pictures, as: :imageable, dependent: :destroy
+  has_many :deactivations, as: :deactivatable, dependent: :destroy
   has_many :favorites, as: :favorable, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
   has_many :subscriptions, as: :subscribable, dependent: :destroy
@@ -48,5 +49,18 @@ class RePrivate < ActiveRecord::Base
 
   def temporary?
     post_type == "leasing" || post_type == "renting"
+  end
+
+  def similar
+    RePrivate.includes(:state, :city)
+             .active
+             .state_id(state_id)
+             .city_id(city_id)
+             .post_type(post_type)
+             .category(category)
+             .duration(duration)
+             .older(updated_at)
+             .desc
+             .limit(10)
   end
 end

@@ -5,10 +5,13 @@ module Filterable
     delegate :name, to: :state, prefix: true
     delegate :name, to: :city, prefix: true
 
+    scope :random, -> { order("RANDOM()") }
     scope :unpaid, -> { where(paid: false) }
     scope :today, -> { where("created_at > ?", Date.today) }
     scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
     scope :till_last_week, -> { where("created_at < ?", Date.today.at_beginning_of_week) }
+    scope :older, ->(date) { where("created_at < ?", date) }
+    scope :desc, -> { order("updated_at desc") }
 
     scope :active, -> { where(active: true) }
     scope :featured, -> { where(featured: true) }

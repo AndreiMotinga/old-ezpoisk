@@ -1,51 +1,53 @@
-.menu.white-block.contacts
-  .panel.panel-default
-    .panel-body
-      ul.list-group
-        - if record.user and !record.user.admin?
-          li.list-group-item
-            strong= link_to "Автор",  user_path(record.user)
+.row
+  .col-xs-12
+    .menu.white-block.contacts
+      .panel.panel-default
+        .panel-body
+          ul.list-group
+            - if record.user and !record.user.admin?
+              li.list-group-item
+                strong= link_to "Автор",  user_path(record.user)
 
-        - unless record.try(:vk).blank?
-          li.list-group-item
-            strong
-              = link_to record.vk, target: "_blank", rel: "nofollow" do
-                i.fa.fa-lg.fa-vk
-                |  Я vkontakte
+            - unless record.try(:vk).blank?
+              li.list-group-item
+                strong
+                  = link_to record.vk, target: "_blank", rel: "nofollow" do
+                    i.fa.fa-lg.fa-vk
+                    |  Я vkontakte
 
-        - unless record.try(:fb).blank?
-          li.list-group-item
-            strong
-              = link_to record.fb, target: "_blank", rel: "nofollow" do
-                i.fa.fa-lg.fa-facebook
-                |  Я в facebook
+            - unless record.try(:fb).blank?
+              li.list-group-item
+                strong
+                  = link_to record.fb, target: "_blank", rel: "nofollow" do
+                    i.fa.fa-lg.fa-facebook
+                    |  Я в facebook
 
-        - if record.try(:phone).present?
-          - record.phone.split(",").each do |phone|
+            - if record.try(:phone).present?
+              - record.phone.split(",").each do |phone|
+                li.list-group-item
+                  span.glyphicon.glyphicon-earphone
+                  a href="tel:#{phone}"
+                    strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(phone, area_code: 1)}
+
+            - if record.try(:email).present?
+              li.list-group-item
+                strong
+                  a href="mailto:#{record.email}" target="_top" itemprop=("email" unless record.class.to_s == "RePrivate")
+                    i.fa.fa-envelope-o
+                    | email
+
             li.list-group-item
-              span.glyphicon.glyphicon-earphone
-              a href="tel:#{phone}"
-                strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(phone, area_code: 1)}
+              i.fa.fa-eye
+              span  #{record.impressions_count} /  #{record.visits}
 
-        - if record.try(:email).present?
-          li.list-group-item
-            strong
-              a href="mailto:#{record.email}" target="_top" itemprop=("email" unless record.class.to_s == "RePrivate")
-                i.fa.fa-envelope-o
-                | email
+            li.list-group-item
+              strong
+                = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
+                  i.fa.fa-map-o
+                  | Google Map
 
-        li.list-group-item
-          i.fa.fa-eye
-          span  #{record.impressions_count} /  #{record.visits}
+            /li.list-group-item
+            /  strong * Укажите, что нашли объявление на ezpoisk.com
 
-        li.list-group-item
-          strong
-            = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
-              i.fa.fa-map-o
-              | Google Map
-
-        /li.list-group-item
-        /  strong * Укажите, что нашли объявление на ezpoisk.com
-
-        li.list-group-item
-          = render "shared/social", count: nil, inline: false
+            li.list-group-item
+              = render "shared/social", count: nil, inline: false

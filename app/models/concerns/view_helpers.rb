@@ -20,7 +20,7 @@ module ViewHelpers
 
   def address
     if street.present?
-      "#{street} #{city.try(:name)} #{state.try(:name)}, #{zip}"
+      "#{street} #{city.try(:name)} #{state.try(:name)} #{zip}"
     elsif zip && zip != 0
       "#{city.try(:name)} #{state.try(:name)}, #{zip}"
     else

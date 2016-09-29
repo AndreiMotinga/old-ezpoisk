@@ -220,6 +220,6 @@ crumb :edit_dashboard_review_path do |user, review|
 end
 
 crumb :new_dashboard_review_path do |user|
-  link "Новое", new_dashboard_review_path
+  link "Оставить отзыв", new_dashboard_review_path
   parent :dashboard_reviews_path, user
 end

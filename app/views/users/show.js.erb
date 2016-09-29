@@ -2,8 +2,8 @@
 ga('send', 'pageview');
 
 // update leaderboard
-$("[data-id='leaderboard']").remove();
-$("[data-id='listings']:visible").append("<%= j render('shared/gads/leaderboard') %>");
+// $("[data-id='leaderboard']").remove();
+// $("[data-id='listings']:visible").append("<%= j render('shared/gads/leaderboard') %>");
 
 // render records
 $("[data-id='listings']:visible").append("<%= j render(@records) %>");

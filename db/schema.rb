@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928022630) do
+ActiveRecord::Schema.define(version: 20160930011538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 20160928022630) do
     t.datetime "updated_at"
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "deactivations", force: :cascade do |t|
+    t.string   "deactivatable_type"
+    t.integer  "deactivatable_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["deactivatable_type", "deactivatable_id"], name: "index_deactivations_on_deactivatable_type_and_deactivatable_id", using: :btree
+    t.index ["user_id", "deactivatable_id", "deactivatable_type"], name: "deactivatable_index", unique: true, using: :btree
+    t.index ["user_id"], name: "index_deactivations_on_user_id", using: :btree
   end
 
   create_table "entries", force: :cascade do |t|
@@ -184,8 +195,6 @@ ActiveRecord::Schema.define(version: 20160928022630) do
   create_table "pictures", force: :cascade do |t|
     t.string   "imageable_type"
     t.integer  "imageable_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -272,6 +281,7 @@ ActiveRecord::Schema.define(version: 20160928022630) do
     t.string   "vk",                default: ""
     t.string   "fb",                default: ""
     t.boolean  "featured",          default: false
+    t.boolean  "has_attachments",   default: false
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["fb"], name: "index_re_privates_on_fb", using: :btree
     t.index ["price"], name: "index_re_privates_on_price", using: :btree
@@ -319,6 +329,7 @@ ActiveRecord::Schema.define(version: 20160928022630) do
     t.string   "vk",                default: ""
     t.string   "fb",                default: ""
     t.boolean  "featured",          default: false
+    t.boolean  "has_attachments",   default: false
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["fb"], name: "index_sales_on_fb", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
@@ -366,6 +377,7 @@ ActiveRecord::Schema.define(version: 20160928022630) do
     t.string   "twitter"
     t.string   "ok"
     t.boolean  "featured",           default: false
+    t.boolean  "has_attachments",    default: false
     t.index ["city_id"], name: "index_services_on_city_id", using: :btree
     t.index ["state_id"], name: "index_services_on_state_id", using: :btree
     t.index ["user_id"], name: "index_services_on_user_id", using: :btree
@@ -501,6 +513,7 @@ ActiveRecord::Schema.define(version: 20160928022630) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
+  add_foreign_key "deactivations", "users"
   add_foreign_key "entries", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "galleries", "users"

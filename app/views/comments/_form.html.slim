@@ -1,4 +1,4 @@
 = bootstrap_form_for @new_comment, remote: true do |f|
   = f.hidden_field :commentable_id, value: @new_comment.commentable_id
   = f.hidden_field :commentable_type, value: @new_comment.commentable_type
-  = f.text_area :body, required: "", skip_label: true, placeholder: "Добавьте свой коментарий...", rows: 1, "data-action": "enter"
+  = f.text_area :body, required: "", skip_label: true, placeholder: "Добавьте свой комментарий...", rows: 1, "data-action": "enter"

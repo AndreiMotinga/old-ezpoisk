@@ -2,22 +2,15 @@
   a#dLabel aria-expanded="false" aria-haspopup="true" data-target="#" data-toggle="dropdown" href=""
     i.fa.fa-lg.fa-icon.fa-ellipsis-v
   ul.dropdown-menu aria-labelledby="dLabel"
-    li
-      = link_to "В закладки", "", class: "favor", rel: "nofollow",
-                "data-id": record.id, "data-type": record.class.to_s
-
-    li
-      = link_to "Спрятать", "", class: "mute", rel: "nofollow",
-                "data-id": record.id, "data-type": record.class.to_s
+    li: a.favor src="" rel="nofollow" data-id=record.id data-type=record.class.to_s В закладки
+    li: a.mute src="" rel="nofollow" data-id=record.id data-type=record.class.to_s Спрятать
+    - unless current_user.try(:can_deactivate?, record)
+      li: a.deactivate[href="#" data-action="deactivate"
+                       data-id=record.id data-type=record.class.to_s ] Деактивировать
 
     - if record.user_id == current_user.try(:id) || current_user.try(:admin?)
-      li
-        a href="#" data-action="touch" data-id=record.id data-type=record.class.to_s Обновить
-
+      li.divider role="separator"
+      - unless record.class.to_s == "Service"
+        li: a href="#" data-action="touch" data-id=record.id data-type=record.class.to_s Обновить
       li= link_to "Редактировать", record.edit_link, rel: "nofollow"
-
-      li
-        = link_to "Удалить",
-                  destroy_link(record),
-                  method: :delete,
-                  data: { confirm: I18n.t(:confirm) }
+      li= link_to "Удалить", destroy_link(record), method: :delete, data: { confirm: I18n.t(:confirm) }

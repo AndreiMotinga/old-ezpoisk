@@ -42,7 +42,7 @@ class Answer < ActiveRecord::Base
   def similar
     Answer.includes(:user, :taggings)
           .tagged_with(tag_list, any: true)
-          .order("RANDOM ()")
+          .random
           .limit(10)
   end
 

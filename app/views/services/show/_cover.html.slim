@@ -7,7 +7,7 @@
                   alt: @service.title
       h1.name= @service.title
       .views
-        = render "services/show/rating"
+        = render "services/show/rating", service: @service
         = "#{@service.visits} просмотров"
 
   .col-sm-8.right-side

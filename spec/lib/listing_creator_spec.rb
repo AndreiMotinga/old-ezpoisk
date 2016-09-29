@@ -9,7 +9,7 @@ describe ListingCreator do
   describe "#init" do
     it "creates post" do
       post = HashWithIndifferentAccess.new(
-        date: Time.at(1_474_560_879),
+        date: Time.zone.now,
         text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
         vk: "https://vk.com/id325677385",
         fb: "",
@@ -43,7 +43,7 @@ describe ListingCreator do
     context "attachments" do
       it "creates re_private with attachments" do
         rp = HashWithIndifferentAccess.new(
-          date: Time.at(1_474_560_879),
+          date: Time.zone.now,
           text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
           text: "Post long text",
           vk: "https://vk.com/id325677385",
@@ -78,7 +78,7 @@ describe ListingCreator do
     context "sale" do
       it "creates sale" do
         sale = HashWithIndifferentAccess.new(
-          date: Time.at(1_474_560_879),
+          date: Time.zone.now,
           text: "Post long text",
           vk: "https://vk.com/id325677385",
           fb: "",

@@ -18,6 +18,7 @@ class Job < ActiveRecord::Base
   belongs_to :user, optional: true
 
   has_many :favorites, as: :favorable, dependent: :destroy
+  has_many :deactivations, as: :deactivatable, dependent: :destroy
   has_many :subscriptions, as: :subscribable, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
@@ -60,5 +61,16 @@ class Job < ActiveRecord::Base
     ActsAsTaggableOn::Tag.joins(:taggings)
                          .where("taggings.taggable_type = ?", "Job")
                          .uniq
+  end
+
+  def similar
+    Job.includes(:state, :city)
+       .active
+       .state_id(state_id)
+       .city_id(city_id)
+       .category(category)
+       .older(updated_at)
+       .desc
+       .limit(10)
   end
 end

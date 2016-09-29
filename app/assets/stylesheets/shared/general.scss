@@ -309,7 +309,7 @@ span.social {
 
 .breadcrumb-hr {
   margin-top: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   border-top: 1px solid $grey_c;
 }
 
@@ -327,4 +327,12 @@ span.social {
   padding: 3px;
   margin-right: 5px;
   font-weight: normal;
+}
+
+.golden { color: $golden; }
+
+.favor,
+.deactivate,
+.mute {
+  cursor: pointer;
 }

@@ -28,8 +28,7 @@
   .col-xs-12
     = render @re_private
 
-  = render "shared/gads/leaderboard"
-  = render "shared/show/text", record: @re_private
+  /= render "shared/gads/leaderboard"
 
   .visible-xs
     = render "shared/show/contacts", record: @re_private
@@ -37,3 +36,4 @@
 
   = render "shared/disqus"
   = render "shared/show/map", record: @re_private
+  = render "shared/show/similar", record: @re_private

@@ -26,9 +26,7 @@ div itemscope="" itemtype="http://schema.org/Product"
   .col-xs-12
     = render @sale
 
-  = render "shared/gads/leaderboard"
-
-  = render "shared/show/text", record: @sale
+  /= render "shared/gads/leaderboard"
 
   .visible-xs
     = render "shared/show/contacts", record: @sale
@@ -36,4 +34,4 @@ div itemscope="" itemtype="http://schema.org/Product"
 
   = render "shared/disqus"
   = render 'shared/show/map', record: @sale
-
+  = render "shared/show/similar", record: @sale

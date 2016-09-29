@@ -5,7 +5,7 @@
 = og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
 
 - content_for :sidebar do
-  = render("shared/sidebar_links")
+  .margin-bottom-10= render("shared/sidebar_links")
   = render("shared/listings_count",
             title: "Объявления",
             url: root_path,

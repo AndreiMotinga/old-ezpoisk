@@ -4,10 +4,11 @@
       - if job.title.present?
         .panel-heading
           = render "shared/favor_links", record: job
-          - if controller_name == "jobs" && action_name == "show"
-            h4= job.title
-          - else
-            h4= link_to job.title, job_path(job)
+          h4.title
+            = link_to dashboard_favorites_path(type: "Job")
+              i.fa.fa-star-o.golden[class=("hidden" unless job.favorite?(current_user))
+                                    data-i=job.id ]
+            = link_to job.title, job
 
       .panel-body
         - if job.logo?
@@ -29,6 +30,8 @@
         = " "
         span data-time=job.id
           = timeago_tag job.updated_at
+        = " | "
+        = render "shared/indicators", record: job
         .row
           .col-xs-7
             - if job.remote?

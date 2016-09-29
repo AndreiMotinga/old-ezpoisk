@@ -1,49 +1,39 @@
 .row.white-block class=("user-hidden" if sale.user_hidden?(current_user)) data-hidden=sale.id
   .listing
 
-    .col-xs-4.logo data-id="logo"
+    .col-xs-12.col-sm-4.logo data-id="logo"
       - if controller_name == "sales" && action_name == "show"
-        img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
+        img.hidden-xs.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
           alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
       - else
         = link_to sale_path(sale) do
           img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
             alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
-    .col-xs-8
+    .col-xs-12.col-sm-8
       / line 1
       = render "shared/favor_links", record: sale
-      = link_to sale do
-        h4.title.hidden-xs= sale.title
-        h5.title.visible-xs= sale.title
+      h4.title
+        = link_to dashboard_favorites_path(type: "Sale")
+          i.fa.fa-star-o.golden[class=("hidden" unless sale.favorite?(current_user))
+                                data-i=sale.id ]
+        = link_to sale.title, sale
+
       span.state-city #{sale.city.name}, #{sale.state.name}
       hr.post-devider
 
-      /line 2
-      .hidden-xs
-        - if sale.street?
-          = sale.street
-          hr.post-devider/
-
       /line 3
-
       - if sale.price?
         span itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"
           strong: span content="USD" itemprop="priceCurrency"  $
-          strong: span content="1000.00" itemprop="price"  #{sale.price}
+          strong: span content=sale.price itemprop="price"  #{sale.price}
           hr.post-devider/
 
-      / line 3
-      - if sale.phone?
-        span.glyphicon.glyphicon-earphone
-        - sale.phone.split(",").each do |phone|
-          span.company-phone
-            a href="tel:#{phone}"  #{phone}
-        hr.post-devider/
-
       / line 4
-      span.hidden-xs data-time=sale.id
+      span data-time=sale.id
         = timeago_tag sale.updated_at
+      = " | "
+      = render "shared/indicators", record: sale
 
   - if sale.text.present?
     .col-xs-12.text

@@ -2,7 +2,7 @@
   .listing
     .col-xs-12.col-sm-4.logo
       - if controller_name == "re_privates" && action_name == "show"
-        img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
+        img.hidden-xs.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
           alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
       - else
         = link_to re_private_path(re_private) do
@@ -14,28 +14,45 @@
 
     .col-xs-12.col-sm-8
       = render "shared/favor_links", record: re_private
-      h4.title= link_to re_private.title, re_private
+      h4.title
+        = link_to dashboard_favorites_path(type: "RePrivate")
+          i.fa.fa-star-o.golden[class=("hidden" unless re_private.favorite?(current_user))
+                                data-i=re_private.id ]
+        = link_to re_private.title, re_private
 
       / line 2
-      span.state-city #{t re_private.category} |  #{re_private.city.name}, #{re_private.state.name}
+      span.state-city
+        = link_to "#{t re_private.category}", re_privates_path(category: re_private.category)
+        = " | "
+        = link_to re_private.city.name, re_privates_path("city_id[]": re_private.city_id)
+        = " | "
+        = link_to re_private.state.name, re_privates_path("state_id[]": re_private.state_id)
       hr.post-devider
 
       / line 3
-      span= "#{t re_private.post_type} | "
-      strong= "$#{re_private.price}"
-      - if re_private.temporary?
-        span.hidden-xs= " | #{t re_private.duration}"
+      = link_to "#{t re_private.post_type}", re_privates_path(post_type: re_private.post_type)
+      = " | "
+      = link_to "#{t re_private.rooms}", re_privates_path(rooms: re_private.rooms)
+      - if re_private.price.present?
+        = " | "
+        strong= "$#{re_private.price}"
       hr.post-devider
 
       / line 4
-      = t re_private.rooms
-      = " | ванные: #{re_private.baths}" unless re_private.baths.blank?
-      = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
-      hr.post-devider
+      - if re_private.temporary?
+        = link_to "#{t re_private.duration}", re_privates_path(duration: re_private.duration)
+      - if re_private.baths.present?
+        = link_to " | ванные: #{re_private.baths}", re_privates_path(baths: re_private.baths)
+      - if re_private.space.present?
+        = " | площадь:  #{re_private.space} ft" unless re_private.space.blank?
+      - if re_private.temporary? || re_private.baths.present? || re_private.space.present?
+        hr.post-devider
 
       / line 5
-      span.hidden-xs data-time=re_private.id
+      span data-time=re_private.id
         = timeago_tag re_private.updated_at
+      = " | "
+      = render "shared/indicators", record: re_private
 
   - if re_private.text.present?
     .col-xs-12.text

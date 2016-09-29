@@ -7,7 +7,9 @@
             td.text-center Type
             td.text-center Unpaid articles
             td.text-center Total to pay
-            td.text-center= link_to "mark paid", dashboard_editor_path(@user), method: :put
+            td.text-center= link_to "mark paid",
+                                     dashboard_editor_path(@user),
+                                     method: :put, data: { confirm: I18n.t(:confirm) }
         tbody
           tr
             td.text-center Ответы
