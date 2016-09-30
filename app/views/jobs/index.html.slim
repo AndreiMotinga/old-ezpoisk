@@ -7,9 +7,9 @@
   = render("shared/listings_count",
             title: "Работа",
             url: jobs_path,
-            today: Job.today.count,
-            week: Job.week.count,
-            total: Job.count)
+            today: Job.active.today.count,
+            week: Job.active.week.count,
+            total: Job.active.count)
 
 .visible-xs= render("shared/filters_btn", count: @jobs.total_count)
 = render "jobs/search_form"

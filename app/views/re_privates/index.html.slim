@@ -7,9 +7,9 @@
   = render("shared/listings_count",
             title: "Недвижимость",
             url: re_privates_path,
-            today: RePrivate.today.count,
-            week: RePrivate.week.count,
-            total: RePrivate.count)
+            today: RePrivate.active.today.count,
+            week: RePrivate.active.week.count,
+            total: RePrivate.active.count)
 
 .visible-xs= render("shared/filters_btn", count: @re_privates.total_count)
 

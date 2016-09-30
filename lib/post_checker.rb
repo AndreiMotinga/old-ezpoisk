@@ -11,6 +11,8 @@ class PostChecker
     "Хороший знакомый (американец) ищет комнату",
     "helpdetected.com",
     "Американский визовый центр",
+    "almaz89.ilgamos.com",
+    "Billionaire.goldandcrypto.com",
     "hiringman.com"
   ].freeze
   private_constant :BAD_WORDS
