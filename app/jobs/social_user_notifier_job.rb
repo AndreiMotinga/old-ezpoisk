@@ -10,7 +10,7 @@ class SocialUserNotifierJob
     if @record.vk.present?
       VkUserNotifier.new(@record).notify
     elsif @record.fb.present?
-      FbUserNotifier.new(@record).notify
+      # FbUserNotifier.new(@record).notify
     end
   end
 end

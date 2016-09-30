@@ -33,6 +33,41 @@ describe FbListingUnifier do
 
         expect(result[:attachments]).to eq %w(image_url)
       end
+
+      it "returns empty array when there are no pictures" do
+        post = HashWithIndifferentAccess.new(
+          from: { name: "Marianna Sumina", id: "101" },
+          message: "У нас на работе есть вакансия",
+          created_time: "2016-09-23T21:37:02+0000",
+          attachments: { data: [{}] }
+        )
+
+        result = FbListingUnifier.new(post).post
+
+        expect(result[:attachments]).to eq []
+      end
+
+      it "returns subattachments" do
+        post = HashWithIndifferentAccess.new(
+          from: { name: "Marianna Sumina", id: "101" },
+          message: "У нас на работе есть вакансия",
+          created_time: "2016-09-23T21:37:02+0000",
+          attachments: {
+            data: [{
+              subattachments: {
+                data: [
+                  { media: { image: { src: "foo" } } },
+                  { media: { image: { src: "bar" } } }
+                ]
+              }
+            }]
+          }
+        )
+
+        result = FbListingUnifier.new(post).post
+
+        expect(result[:attachments]).to eq %w(foo bar)
+      end
     end
   end
 end

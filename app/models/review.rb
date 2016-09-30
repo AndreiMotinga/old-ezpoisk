@@ -8,4 +8,8 @@ class Review < ApplicationRecord
   validates :text, presence: true
   validates :service_id, presence: true
   validates :user_id, presence: true
+
+  def show_url
+    url_helpers.service_url(service)
+  end
 end

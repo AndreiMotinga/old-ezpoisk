@@ -17,7 +17,19 @@ class FbListingUnifier
 
   def attachments(atts)
     return [] unless atts.present?
-    src = atts['data'][0]['media']['image']['src']
+    data = atts['data'].first
+    return media(data) if data["media"]
+    return subattachments(data) if data["subattachments"]
+    []
+  end
+
+  def media(data)
+    src = data['media']['image']['src']
     [src]
+  end
+
+  def subattachments(data)
+    data = data["subattachments"]["data"]
+    data.map { |obj| obj["media"]["image"]["src"] }
   end
 end
