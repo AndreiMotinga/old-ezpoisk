@@ -89,7 +89,9 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(u) { u.admin? } do
     get "feeds", to: "feeds#index"
-    get "import/:id", to: "feeds#import"
+    get "importer", to: "feeds#importer"
+    get "import_vk", to: "feeds#import_vk"
+    get "import_fb", to: "feeds#import_fb"
     mount Sidekiq::Web => "/sidekiq_monstro"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end

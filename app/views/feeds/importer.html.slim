@@ -1,8 +1,27 @@
-.white-block
-  .panel
-    .panel-body
-      form.form-horizontal action=import_path method="get"
-        = label_tag "Раздел", nil
-        = select_tag :category, options_for_select(%w(jobs re_privates sales)), class: "form-control"
-        hr
-        = submit_tag "Обновить", name: nil, class: "btn mobile-btn"
+.row
+  .col-xs-12
+    .white-block
+      .panel
+        .panel-body
+          form.form-horizontal action=import_vk_path method="get"
+            .row
+              .col-sm-1
+                | vk
+              .col-sm-5
+                = select_tag :category, options_for_select(%w(jobs re_privates sales), params[:category]), class: "form-control"
+              .col-sm-6
+                = submit_tag "Обновить", name: nil, class: "btn mobile-btn"
+
+.row
+  .col-xs-12
+    .white-block
+      .panel
+        .panel-body
+          form.form-horizontal action=import_fb_path method="get"
+            .row
+              .col-sm-1
+                | fb
+              .col-sm-5
+                = select_tag :category, options_for_select(%w(jobs re_privates), params[:category]), class: "form-control"
+              .col-sm-6
+                = submit_tag "Обновить", name: nil, class: "btn mobile-btn"

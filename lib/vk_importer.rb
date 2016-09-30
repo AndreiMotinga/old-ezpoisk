@@ -5,6 +5,8 @@ class VkImporter
     when "jobs" then @groups = JOBS
     when "re_privates" then @groups = RE_PRIVATES
     when "sales" then @groups = SALES
+    else
+      []
     end
   end
 
