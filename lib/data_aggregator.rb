@@ -25,11 +25,11 @@ class DataAggregator
   end
 
   def this_week
-    models.map{ |m| m.week.count }.sum
+    models.map{ |m| m.active.week.count }.sum
   end
 
   def this_day
-    models.map{ |m| m.today.count }.sum
+    models.map{ |m| m.active.today.count }.sum
   end
 
   def models
