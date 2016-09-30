@@ -55,7 +55,7 @@ class Post < ActiveRecord::Base
     url_helpers.post_url(self)
   end
 
-  def active?
+  def active
     true
   end
 end
