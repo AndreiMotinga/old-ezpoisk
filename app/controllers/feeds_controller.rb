@@ -1,4 +1,5 @@
 class FeedsController < ApplicationController
+  # todo clean up
   def index
     type = params[:type].present? ? params[:type].constantize : RePrivate
 
@@ -11,11 +12,8 @@ class FeedsController < ApplicationController
     end
   end
 
-  def importer
-  end
-
   def import
-    VkImporterJob.perform_async(params[:category])
-    render :importer
+    ImporterJob.perform_async(params[:id])
+    redirect_to root_path
   end
 end
