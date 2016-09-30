@@ -13,6 +13,11 @@ class PostChecker
     "Американский визовый центр",
     "almaz89.ilgamos.com",
     "Billionaire.goldandcrypto.com",
+    "hrimmigration91@yahoo.com",
+    "Продаю SSN",
+    "https://crp.center",
+    "https://vk.com/englishdiscussion",
+    "АРЕНДА АВТО! ЛЕТНЯЯ АКЦИЯ!",
     "hiringman.com"
   ].freeze
   private_constant :BAD_WORDS
