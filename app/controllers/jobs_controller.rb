@@ -1,8 +1,6 @@
 class JobsController < ApplicationController
   def index
-    # todo what to do about raggings
-    # @jobs = Job.includes(:state, :city, :taggings)
-    @jobs = Job.includes(:state, :city)
+    @jobs = Job.includes(:state, :city, :taggings)
                .filter(sliced_params)
                .page(params[:page])
     IncreaseImpressionsJob.perform_async(@jobs.pluck(:id), "Job")

@@ -1,24 +1,15 @@
 .row.white-block class=("user-hidden" if job.user_hidden?(current_user)) data-hidden=job.id
   .listing
     .panel.panel-default
-      - if job.title.present?
-        .panel-heading
-          = render "shared/favor_links", record: job
-          h4.title
-            = link_to dashboard_favorites_path(type: "Job")
-              i.fa.fa-star-o.golden[class=("hidden" unless job.favorite?(current_user))
-                                    data-i=job.id ]
-            = link_to job.title, job
+      .panel-heading
+        = render "shared/favor_links", record: job
+        h4.title
+          = link_to dashboard_favorites_path(type: "Job")
+            i.fa.fa-star-o.golden[class=("hidden" unless job.favorite?(current_user))
+                                  data-i=job.id ]
+          = link_to job.title, job
 
       .panel-body
-        - if job.logo?
-          = link_to job_path(job) do
-            = image_tag job.logo.url(:large),
-                        alt: "#{job.title} #{t job.category} в #{job.city.name} #{job.state.name}",
-                        class: "img-responsive center-block",
-                        itemprop: "image"
-          hr
-
         .text itemprop="description"
           = simple_format job.text
         p.tags
@@ -26,15 +17,18 @@
             a.tag= " ##{sub} "
 
       .panel-footer
-        span #{t job.category} |
-        = " "
+        strong= link_to t(job.category), jobs_path(category: job.category)
+        = " | "
         span data-time=job.id
           = timeago_tag job.updated_at
         = " | "
         = render "shared/indicators", record: job
         .row
           .col-xs-7
-            - if job.remote?
-              strong Доступна во всех штатах
-            - else
-              strong #{job.city.name}, #{job.state.name}
+            strong
+              - if job.remote?
+                | Доступна во всех штатах
+              - else
+                = link_to job.city.name, jobs_path("city_id[]": job.city_id)
+                = ", "
+                = link_to job.state.name, jobs_path("state_id[]": job.state_id)
