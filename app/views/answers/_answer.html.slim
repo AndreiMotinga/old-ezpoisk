@@ -3,7 +3,7 @@
     .panel.panel-default
       .panel-heading
         - unless controller_name == "questions"
-          h4.title= link_to answer.title, answer, target: "_blank"
+          h1.title= link_to answer.title, answer, target: "_blank"
         .row.author
           .col-xs-3.col-sm-2
             = link_to user_path(answer.user), target: "_blank" do

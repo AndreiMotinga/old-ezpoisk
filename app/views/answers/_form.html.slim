@@ -1,7 +1,7 @@
-.white-block
+.white-block.article
   .panel
     .panel-body
-      h1.h1-title= @answer.question.title
+      h1.title= @answer.question.title
       br
       = bootstrap_form_for @answer do |f|
         = f.hidden_field :question_id, value: (params[:question_id] || @answer.question_id)
