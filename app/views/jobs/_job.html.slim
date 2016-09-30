@@ -13,8 +13,7 @@
         .text itemprop="description"
           = simple_format job.text
         p.tags
-          - job.tag_list.each do |sub|
-            a.tag= " ##{sub} "
+          = sanitize job.tag_list.map { |tag| link_to "##{tag}", tag_jobs_path(tag), class: "tag" }.join
 
       .panel-footer
         strong= link_to t(job.category), jobs_path(category: job.category)

@@ -81,7 +81,11 @@ Rails.application.routes.draw do
   resources :sales, only: [:index, :show]
   resources :services, only: [:index, :show]
   resources :re_privates, only: [:index, :show]
-  resources :jobs, only: [:index, :show]
+  resources :jobs, only: [:index, :show] do
+    collection do
+      get "tag/:tag", to: "jobs#tag", as: :tag
+    end
+  end
 
   authenticate :user, ->(u) { u.admin? } do
     get "feeds", to: "feeds#index"
