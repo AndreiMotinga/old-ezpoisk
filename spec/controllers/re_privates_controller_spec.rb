@@ -4,7 +4,7 @@ describe RePrivatesController do
   before { sign_in(@user = create(:user)) }
 
   describe "GET #index" do
-    it "renders the index template, assigns @re_privates, and schedules job" do
+    it "renders the index template, assigns @re_privates" do
       2.times { create :re_private }
 
       get :index
@@ -12,13 +12,9 @@ describe RePrivatesController do
       re_privates = assigns(:re_privates)
       expect(response).to render_template(:index)
       expect(re_privates.size).to eq 2
-      expect(IncreaseImpressionsJob.jobs.size).to eq 1
-      job = IncreaseImpressionsJob.jobs.first
-      expect(job["args"].first).to eq re_privates.pluck :id
-      expect(job["args"].second).to eq "RePrivate"
     end
 
-    it "return only active models" do
+    it "returns only active models" do
       2.times { create :re_private }
       create :re_private, active: false
 
@@ -27,24 +23,50 @@ describe RePrivatesController do
       expect(assigns(:re_privates).size).to eq 2
     end
 
-    describe "search" do
-      it "filters by state_id" do
+    it "schedules IncreaseImpressionsJob" do
+      2.times { create :re_private }
+
+      get :index
+
+      expect(IncreaseImpressionsJob.jobs.size).to eq 1
+      job = IncreaseImpressionsJob.jobs.first
+      expect(job["args"].size).to eq 2
+      expect(job["args"].second).to eq "RePrivate"
+    end
+
+    context "search" do
+      xit "doesn't redirect when search params inlcude geoscope" do
+        prms = { geo_scope: { origin: 20, within: "east 18th Brooklyn NY" } }
+        get :index, params: prms
+        # todo how to stub it
+        stub_request(:get, /.*/).to_return(status: 200, body: "")
+
+        expect(response).to render_template :index
+      end
+
+      it "redirects to search if there are search params" do
+        prms = { state: "new-york" }
+        get :index, params: prms
+
+        expect(response).to redirect_to(search_re_privates_path(prms))
+      end
+
+      it "filters by state" do
         2.times { create :re_private, state_id: 1 }
         create :re_private, state_id: 32
 
-        get :index, params: { state_id: 32 }
+        get :index, params: { state: "new-york" }
 
         expect(assigns(:re_privates).size).to eq 1
       end
 
-      it "filters by city_id" do
+      it "filters by city" do
         2.times { create :re_private, city_id: 18_030 }
-        create :re_private,  city_id: 18_031
-        create :re_private, city_id: 18_032
+        create :re_private,  city_id: 18_033
 
-        get :index, params: { city_id: [18_032, 18_031] }
+        get :index, params: { city: "brooklyn" }
 
-        expect(assigns(:re_privates).size).to eq 2
+        expect(assigns(:re_privates).size).to eq 1
       end
 
       it "filters by fee" do
@@ -91,16 +113,6 @@ describe RePrivatesController do
         create :re_private, baths: 3
 
         get :index, params: { baths: 2 }
-
-        expect(assigns(:re_privates).size).to eq 2
-      end
-
-      it "filters by space" do
-        create :re_private, space: 1000
-        create :re_private, space: 2000
-        create :re_private, space: 3000
-
-        get :index, params: { space: 2000 }
 
         expect(assigns(:re_privates).size).to eq 2
       end

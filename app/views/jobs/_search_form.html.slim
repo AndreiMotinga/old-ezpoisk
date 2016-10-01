@@ -9,7 +9,6 @@
             = label_tag "Раздел", nil
             = select_tag :category,
                          options_for_select(ru(JOB_CATEGORIES), params[:category]),
-                         include_blank: true,
                          class: "form-control"
           .col-xs-12.col-sm-6
             = label_tag "Ключевое слово", nil

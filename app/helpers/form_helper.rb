@@ -1,14 +1,18 @@
 module FormHelper
-  def state_id
-    params[:state_id] || current_user.try(:state_id) || 1
+  def state
+    return params[:state] if params[:state]
+    return State.find(current_user.try(:state_id)).slug if current_user.try(:state_id)
+    "new-york"
   end
 
-  def city_id
-    params[:city_id] || current_user.try(:city_id)
+  def city
+    return params[:city] if params[:city]
+    return City.find(current_user.try(:city_id)).slug if current_user.try(:city_id)
+    "brooklyn"
   end
 
   def state_cities
-    City.where(state_id: state_id)
+    State.find_by_slug(state).cities
   end
 
   def sort_select
@@ -19,6 +23,7 @@ module FormHelper
                   "Поновее"   => "updated_at desc" }
     select_tag(:sorted,
                options_for_select(sort_opts, params[:sorted]),
+               include_blank: true,
                class: "form-control")
   end
 
@@ -54,7 +59,7 @@ module FormHelper
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
              { label: "* Штат", include_blank: true },
-             class: "state-select my-dropdown"
+             class: "state-select-id my-dropdown"
   end
 
   def form_city_select(f, record)
@@ -65,7 +70,7 @@ module FormHelper
                { label: "* Город" },
                class: "city-select my-dropdown-multiple"
     else
-      f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown-multiple"
+      f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown"
     end
   end
 

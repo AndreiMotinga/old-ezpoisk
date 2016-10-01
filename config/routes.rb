@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
   get "sitemaps/sitemap:id.:format.:compression", to: "sitemap#show_id"
-  get "update_cities", to: "cities#update_cities"
+  resources :cities, only: :index
   get "update_subcategory", to: "subcategories#update_subcategory"
   get '/tos', to: 'tos#tos'
 
@@ -78,12 +78,27 @@ Rails.application.routes.draw do
   resources :posts, only: [:index, :show] do
     get "tag/:tag", to: "posts#tag", as: "post_tag", on: :collection
   end
-  resources :sales, only: [:index, :show]
-  resources :services, only: [:index, :show]
-  resources :re_privates, only: [:index, :show]
+  resources :sales, only: [:index, :show] do
+    collection do
+      get ":state(/:city(/:category))", state: /\D*?/, to: "sales#search", as: "search"
+    end
+  end
+
+  resources :services, only: [:index, :show] do
+    collection do
+      get ":state(/:city(/:category(/:subcategory)))",
+          state: /\D*?/, to: "services#search", as: "search"
+    end
+  end
+  resources :re_privates, only: [:index, :show], path: "real-estate" do
+    collection do
+      get ':state(/:city(/:category(/:post_type)))', state: /\D*?/, to: "re_privates#search", as: "search"
+    end
+  end
   resources :jobs, only: [:index, :show] do
     collection do
       get "tag/:tag", to: "jobs#tag", as: :tag
+      get ":state(/:city(/:category))", state: /\D*?/, to: "jobs#search", as: "search"
     end
   end
 

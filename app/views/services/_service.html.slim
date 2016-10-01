@@ -18,7 +18,16 @@
         = link_to service.title, service
 
       / line 2
-      span.state-city #{service.city.name}, #{service.state.name}
+      span.state-city
+        = link_to service.city.name, search_services_path(state: service.state.slug, city: service.city.slug)
+        = " | "
+        = link_to service.state.name, search_services_path(state: service.state.slug)
+      hr.post-devider
+
+      /line 3
+      = link_to t(service.category), services_path(category: service.category)
+      = " | "
+      = link_to t(service.subcategory), services_path(subcategory: service.subcategory)
       hr.post-devider/
 
       / line 4

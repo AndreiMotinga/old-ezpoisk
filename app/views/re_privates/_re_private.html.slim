@@ -1,13 +1,9 @@
 .row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
   .listing
     .col-xs-12.col-sm-4.logo
-      - if controller_name == "re_privates" && action_name == "show"
-        img.hidden-xs.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
+      = link_to re_private_path(re_private) do
+        img.img-responsive.center-block[class=("hidden-xs" if controller_name == "re_privates" && action_name == "show") src=re_private.logo_url data-id="logo" itemprop="logo"
           alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
-      - else
-        = link_to re_private_path(re_private) do
-          img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
-            alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
 
         /- if !re_private.fee && re_private.post_type == "leasing"
         /  h4.capture.capture-desktop.text-center Без комиссии
@@ -24,9 +20,11 @@
       span.state-city
         = link_to "#{t re_private.category}", re_privates_path(category: re_private.category)
         = " | "
-        = link_to re_private.city.name, re_privates_path("city_id[]": re_private.city_id)
+        = link_to re_private.city.name,
+                  search_re_privates_path(state: re_private.state.slug, city: re_private.city.slug)
         = " | "
-        = link_to re_private.state.name, re_privates_path("state_id[]": re_private.state_id)
+        = link_to re_private.state.name,
+                  search_re_privates_path(state: re_private.state.slug)
       hr.post-devider
 
       / line 3

@@ -4,6 +4,20 @@
       form.form-horizontal action=re_privates_path method="get"
         = render "shared/search_by_address"
 
+        .row
+          .col-xs-12.col-sm-6
+            = label_tag "Категория", nil
+            = select_tag :category,
+                         options_for_select(ru(RePrivate::CATEGORIES), params[:category]),
+                         class: "form-control", "data-id": "re_private_category"
+
+          .col-xs-12.col-sm-6
+            = label_tag "Тип объявления", nil
+            = select_tag :post_type,
+                         options_for_select(ru(RePrivate::TYPES), params[:post_type]),
+                         class: "form-control"
+        br
+
         .col-xs-12
           .form-group
             = label_tag "Цена", nil
@@ -12,20 +26,6 @@
                 = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
               .col-xs-6
                 = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
-        br
-
-        .row
-          .col-xs-12.col-sm-6
-            = label_tag "Тип объявления", nil
-            = select_tag :post_type,
-                         options_for_select(ru(RePrivate::TYPES), params[:post_type]),
-                         class: "form-control"
-
-          .col-xs-12.col-sm-6
-            = label_tag "Категория", nil
-            = select_tag :category,
-                         options_for_select(ru(RePrivate::CATEGORIES), params[:category]),
-                         class: "form-control", "data-id": "re_private_category"
         br
 
         .row data-id="apartment_fields"

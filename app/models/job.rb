@@ -2,7 +2,6 @@ class Job < ActiveRecord::Base
   acts_as_taggable
   acts_as_mappable
   acts_as_commentable
-  include MyFriendlyId
   include Filterable
   include ViewHelpers
   include Tokenable

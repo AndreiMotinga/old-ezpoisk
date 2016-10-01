@@ -1,7 +1,6 @@
 class CitiesController < ApplicationController
-  def update_cities
-    state_id = params[:state_id]
-    return @cities = State.find(state_id).cities if state_id.present?
-    @cities = []
+  def index
+    @cities = State.find_by_slug(params[:state_slug]).cities if params[:state_slug]
+    @cities = State.find(params[:state_id]).cities if params[:state_id]
   end
 end

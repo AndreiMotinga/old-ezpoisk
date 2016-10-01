@@ -1,11 +1,24 @@
 document.addEventListener("turbolinks:load", function() {
-  $(".state-select").change(function(){
+  $(".state-select-slug").change(function(){
+    console.log($(".state-select :selected").val())
     $.ajax({
-      url: "/update_cities",
+      url: "/cities",
       type: 'GET',
       dataType: 'script',
       data: {
-        state_id: $(".state-select :selected").val()
+        state_slug: $(".state-select-slug :selected").val()
+      }
+    });
+  });
+
+  $(".state-select-id").change(function(){
+    console.log($(".state-select :selected").val())
+    $.ajax({
+      url: "/cities",
+      type: 'GET',
+      dataType: 'script',
+      data: {
+        state_id: $(".state-select-id :selected").val()
       }
     });
   });

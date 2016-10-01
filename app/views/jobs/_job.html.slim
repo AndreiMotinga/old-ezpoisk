@@ -28,6 +28,6 @@
               - if job.remote?
                 | Доступна во всех штатах
               - else
-                = link_to job.city.name, jobs_path("city_id[]": job.city_id)
+                = link_to job.city.name, search_jobs_path(state: job.state.slug, city: job.city.slug)
                 = ", "
-                = link_to job.state.name, jobs_path("state_id[]": job.state_id)
+                = link_to job.state.name, search_jobs_path(state: job.state.slug)

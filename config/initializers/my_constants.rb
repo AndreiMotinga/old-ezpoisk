@@ -1,5 +1,5 @@
 SALE_CATEGORIES = %w(transportation home kids clothes electronics pets plants
-                     sales).freeze
+                     sale).freeze
 JOB_CATEGORIES = %w(wanted seeking).freeze
 PARTNER_POSITIONS = %w(left right).freeze
 
@@ -37,6 +37,7 @@ SERVICE_SUBCATEGORIES = HashWithIndifferentAccess.new(
               erotics-massage psychic)
 ).freeze
 
+# remove
 STATES = [
   [ "Alabama", 1 ],
   [ "Alaska", 2 ],

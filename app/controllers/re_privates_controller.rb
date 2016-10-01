@@ -1,7 +1,9 @@
 class RePrivatesController < ApplicationController
   def index
+    redirect_to search_re_privates_path(sliced_params) if search?
     @re_privates = RePrivate.includes(:state, :city)
-                            .filter(sliced_params).page(params[:page])
+                            .filter(sliced_params)
+                            .page(params[:page])
     IncreaseImpressionsJob.perform_async(@re_privates.pluck(:id), "RePrivate")
 
     respond_to do |format|
@@ -11,14 +13,19 @@ class RePrivatesController < ApplicationController
     end
   end
 
-  def show
-    @re_private = get_record(RePrivate, params[:id], re_privates_path)
+  def search
+    @re_privates = RePrivate.includes(:state, :city)
+                            .filter(sliced_params)
+                            .page(params[:page])
+    IncreaseImpressionsJob.perform_async(@re_privates.pluck(:id), "RePrivate")
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render partial: "shared/index",
+                         locals: { records: @re_privates } }
+    end
   end
 
-  private
-
-  def sliced_params
-    params.slice(:state_id, :city_id, :geo_scope, :fee, :duration, :post_type,
-                 :space, :baths, :rooms, :min_price, :max_price, :sorted)
+  def show
+    @re_private = get_record(RePrivate, params[:id], re_privates_path)
   end
 end

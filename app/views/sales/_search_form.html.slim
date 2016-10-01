@@ -6,14 +6,14 @@
 
         .row
           .col-xs-12.col-sm-6
-            = label_tag "Сортировать", nil
-            = sort_select
-          .col-xs-12.col-sm-6
             = label_tag "Раздел", nil
             = select_tag :category,
                           options_for_select(ru(SALE_CATEGORIES), params[:category]),
                           include_blank: true,
                           class: "form-control"
+          .col-xs-12.col-sm-6
+            = label_tag "Сортировать", nil
+            = sort_select
         br
 
         = label_tag "Ключевое слово", nil

@@ -1,6 +1,5 @@
 class Service < ActiveRecord::Base
   acts_as_mappable
-  include MyFriendlyId
   include Filterable
   include ViewHelpers
   include Tokenable

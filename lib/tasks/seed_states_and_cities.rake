@@ -13,6 +13,7 @@ namespace :db do
   def create_states
     puts "Seeding States"
     STATES.each { |s| State.create(name: s.first) }
+    State.find_each{|s| s.update_column(:slug, s.name.to_slug.normalize.to_s) }
   end
 
   def create_cities
@@ -28,13 +29,14 @@ namespace :db do
     parsed_csv.each_with_object([]) do |row, cities|
       new_state_name = state_name_from(row)
       city_name = city_name_from(row)
+      city_slug = city_name.to_slug.normalize.to_s
 
       if new_state_name != state_name
         state_name = new_state_name
         state_id = State.find_by_name(state_name).id
       end
 
-      cities << [state_id, city_name]
+      cities << [state_id, city_name, city_slug]
     end
   end
 
@@ -49,8 +51,8 @@ namespace :db do
   end
 
   def load_cities(cities)
-    cities.map! { |record| "('#{record.first}', '#{record.last}')" }
-    sql = "INSERT INTO cities (state_id, name) VALUES #{cities.join(', ')}"
+    cities.map! { |record| "('#{record[0]}', '#{record[1]}', '#{record[2]}')" }
+    sql = "INSERT INTO cities (state_id, name, slug) VALUES #{cities.join(', ')}"
     connection = ActiveRecord::Base.connection()
     connection.execute(sql)
   end

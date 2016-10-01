@@ -20,12 +20,12 @@ module MetaHelper
     t(arg)
   end
 
-  def state_title(ids)
-    State.find(ids).map(&:name).join(" ")
+  def state_title(slug)
+    State.find_by_slug(slug).name
   end
 
-  def city_title(ids)
-    City.find(ids).map(&:name).join(" ")
+  def city_title(slug)
+    City.find_by_slug(slug).name
   end
 
   def title(default, prefix = "")
@@ -39,8 +39,8 @@ module MetaHelper
     string =  "#{tr params[:post_type]} " if params[:post_type].present?
     string += "#{tr params[:category]} " if params[:category].present?
     string += "#{tr params[:subcategory]} | " if params[:subcategory].present?
-    string += "#{city_title(params[:city_id])} " if params[:city_id].present?
-    string += "#{state_title(params[:state_id])} " if params[:state_id].present?
+    string += "#{city_title(params[:city])} " if params[:city].present?
+    string += "#{state_title(params[:state])} " if params[:state].present?
     string += "США - ezpoisk"
   end
 
@@ -52,6 +52,18 @@ module MetaHelper
     return true if params[:post_type]
   end
 
+  def question_title
+    case params[:action]
+    when 'index'
+      title("Есть вопрос? задавайте! Комьюнити наших в америке - ezpoisk")
+    when 'tag'
+      titledesc("Наши в США. Вопросы на тему #{params[:tag]} - ezpoisk")
+    when 'unanswered'
+      titledesc("Неотвеченные вопросы. - ezpoisk")
+    when 'unanswered_tag'
+      titledesc("Неотвеченные вопросы на тему #{params[:tag]} -  ezpoisk")
+    end
+  end
   def question_desc
     case params[:action]
     when 'index'
@@ -62,6 +74,24 @@ module MetaHelper
       desc("Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. We're in this together. - ezpoisk")
     when 'unanswered_tag'
       desc("#{params[:tag]} - Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. - ezpoisk")
+    end
+  end
+
+  def post_title
+    case params[:action]
+    when 'index'
+      title("Новости, информация об иммиграции в США - ezpoisk")
+    when 'tag'
+      desc("Наши в США. Статьи на тему #{params[:tag]} - ezpoisk")
+    end
+  end
+
+  def post_desc
+    case params[:action]
+    when 'index'
+      desc("Новости русской иммиграции в США. Информцаия о наших от Бостона до Сан Франциско")
+    when 'tag'
+      desc("Наши в США. Статьи на тему #{params[:tag]} - ezpoisk")
     end
   end
 end

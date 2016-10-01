@@ -24,27 +24,6 @@ describe JobsController do
 
       expect(assigns(:jobs).size).to eq 2
     end
-
-    describe "#filter" do
-      it "filters by state_id" do
-        create_pair(:job, state_id: 1)
-        create :job,  state_id: 32
-
-        get :index, params: { state_id: 32 }
-
-        expect(assigns(:jobs).size).to eq 1
-      end
-
-      it "filters by city_id" do
-        create_pair(:job, city_id: 18_030)
-        create :job, city_id: 18_031
-        create :job, city_id: 18_032
-
-        get :index, params: { city_id: [18_031, 18_032] }
-
-        expect(assigns(:jobs).size).to eq 2
-      end
-    end
   end
 
   describe "GET @show" do

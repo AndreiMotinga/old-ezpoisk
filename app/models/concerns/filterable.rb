@@ -2,6 +2,7 @@ module Filterable
   extend ActiveSupport::Concern
 
   included do
+    # todo remove
     delegate :name, to: :state, prefix: true
     delegate :name, to: :city, prefix: true
 
@@ -17,6 +18,8 @@ module Filterable
     scope :featured, -> { where(featured: true) }
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, -> (id) { where(city_id: id) }
+    scope :state, ->(slug) { where(state_id: State.find_by_slug(slug).try(:id)) }
+    scope :city, -> (slug) { where(city_id: City.where(slug: slug).pluck(:id)) }
     scope :fee, -> (fee) { where(fee: fee) }
     scope :post_type, -> (type) { where(post_type: type) }
     scope :category, -> (category) { where(category: category) }

@@ -25,43 +25,7 @@ describe SalesController do
       expect(assigns(:sales).size).to eq 2
     end
 
-    # external api calls
-    # describe "search" do
-    #   it "returns geoscoped records" do
-    #     searched_record = create :sale,
-    #                              :active,
-    #                              lat: 40.602088,
-    #                              lng: -73.954382
-    #     create :sale, :active
-    #     create :sale, :active
-    #
-    #     get :index, within: 1, origin: "1970 East 18th str Brooklyn New York"
-    #
-    #     expect(assigns(:sales).size).to eq 1
-    #     expect(assigns(:sales)).to eq [searched_record]
-    #   end
-    # end
-
     describe "#filter" do
-      it "filters by state_id" do
-        2.times { create :sale, :active, state_id: 1 }
-        create :sale, :active,  state_id: 32
-
-        get :index, params: { state_id: 32 }
-
-        expect(assigns(:sales).size).to eq 1
-      end
-
-      it "filters by city_id" do
-        2.times { create :sale, :active, city_id: 18_030 }
-        create :sale, :active,  city_id: 18_031
-        create :sale, :active, city_id: 18_032
-
-        get :index, params: { city_id: [18_031, 18_032] }
-
-        expect(assigns(:sales).size).to eq 2
-      end
-
       it "filters by keyword" do
         first = create :sale, :active, title: "Computer table"
         second = create :sale, :active, text: "Computer desk"

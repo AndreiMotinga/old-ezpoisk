@@ -2,13 +2,10 @@
   .listing
 
     .col-xs-12.col-sm-4.logo data-id="logo"
-      - if controller_name == "sales" && action_name == "show"
-        img.hidden-xs.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
+      = link_to sale_path(sale) do
+        img.img-responsive.center-block [class=("hidden-xs" if controller_name == "sales" && action_name == "show")
+        src=sale.logo_url data-id="logo" itemprop="image"
           alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
-      - else
-        = link_to sale_path(sale) do
-          img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
-            alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
     .col-xs-12.col-sm-8
       / line 1
@@ -19,15 +16,20 @@
                                 data-i=sale.id ]
         = link_to sale.title, sale
 
-      span.state-city #{sale.city.name}, #{sale.state.name}
+      span.state-city
+        = link_to sale.city.name, search_sales_path(state: sale.state.slug, city: sale.city.slug)
+        = " | "
+        = link_to sale.state.name, search_sales_path(state: sale.state.slug)
       hr.post-devider
 
       /line 3
+      = link_to t(sale.category), sales_path(category: sale.category)
       - if sale.price?
+        span= " | "
         span itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"
           strong: span content="USD" itemprop="priceCurrency"  $
           strong: span content=sale.price itemprop="price"  #{sale.price}
-          hr.post-devider/
+      hr.post-devider/
 
       / line 4
       span data-time=sale.id

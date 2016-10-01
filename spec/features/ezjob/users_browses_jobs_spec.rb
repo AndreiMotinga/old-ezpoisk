@@ -7,13 +7,3 @@ feature "User browses jobs" do
     expect(page).to have_content("Настроить фильтр")
   end
 end
-
-feature "User browses job" do
-  scenario "success" do
-    j = create :job
-
-    visit job_path(j)
-
-    expect(page).to have_content j.text
-  end
-end

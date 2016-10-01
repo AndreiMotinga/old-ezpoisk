@@ -17,43 +17,6 @@ describe ServicesController do
     end
 
     describe "#filter" do
-      it "filters by state_id" do
-        2.times { create :service, state_id: 1 }
-        create :service, state_id: 32
-
-        get :index, params: { state_id: 32 }
-
-        expect(assigns(:services).size).to eq 1
-      end
-
-      it "filters by city_id" do
-        2.times { create :service, city_id: 18_030 }
-        create :service, city_id: 18_031
-        create :service, city_id: 18_032
-
-        get :index, params: { city_id: [18_031, 18_032] }
-
-        expect(assigns(:services).size).to eq 2
-      end
-
-      it "filters by category" do
-        2.times { create :service, category: SERVICE_SUBCATEGORIES.keys.first }
-        create :service, category: SERVICE_SUBCATEGORIES.keys.second
-
-        get :index, params: { category: SERVICE_SUBCATEGORIES.keys.first }
-
-        expect(assigns(:services).size).to eq 2
-      end
-
-      it "filters by subcategory" do
-        2.times { create :service, subcategory: "Салоны красоты" }
-        create :service, subcategory: "other"
-
-        get :index, params: { subcategory: "Салоны красоты" }
-
-        expect(assigns(:services).size).to eq 2
-      end
-
       xit "returns records according to priority" do
         create :service, :job_agency, title: "third", priority: 0
         create :service, :job_agency, title: "second", priority: 1
