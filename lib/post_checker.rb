@@ -41,7 +41,7 @@ class PostChecker
   private
 
   def too_old?
-    @post[:date] < 7.days.ago
+    @post[:date] < 2.days.ago
   end
 
   def too_short?
