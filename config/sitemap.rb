@@ -20,130 +20,115 @@ SitemapGenerator::Sitemap.create do
   # Usage: add(path, options={})
   #        (default options are used if you don't specify)
   #
-  # Defaults: :priority => 0.5, :changefreq => 'weekly',
-  #           :lastmod => Time.now, :host => default_host
+  # Defaults: priority: 0.5, changefreq: 'weekly', lastmod: Time.now, host: default_host
   #
   # Examples:
   #
   # Add '/articles'
-  #
   #   add articles_path, :priority => 0.7, :changefreq => 'daily'
   #
   # Add all articles:
-  #
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
-  ##############################################################
-  #
   #     REAL ESTATE
-  #
-  ##############################################################
-
   add re_privates_path, priority: 0.8, changefreq: "daily"
-  RePrivate.active.find_each do |post|
-    add re_private_path(post), priority: 0.6, lastmod: post.updated_at
+
+  ids = RePrivate.uniq.pluck(:city_id)
+  ids.each do |id|
+    city = City.find(id)
+    state_slug = city.state.slug
+    city_slug = city.slug
+    add search_re_privates_path(state: state_slug, city: city_slug),
+        priority: 0.7,
+        lastmod: Time.zone.now,
+        changefreq: "daily"
   end
 
-  ##############################################################
-  #
-  #     REAL ESTATE ///
-  #
-  ##############################################################
+  RePrivate.active.find_each do |rec|
+    add re_private_path(rec),
+        priority: 0.1,
+        lastmod: rec.updated_at,
+        changefreq: "yearly"
+  end
 
-  ##############################################################
-  #
   #     SALES
-  #
-  ##############################################################
+  add sales_path, priority: 0.8, changefreq: "daily"
 
-  add sales_path, priority: 0.6, changefreq: "daily"
+  ids = Sale.uniq.pluck(:city_id)
+  ids.each do |id|
+    city = City.find(id)
+    state_slug = city.state.slug
+    city_slug = city.slug
+    add search_sales_path(state: state_slug, city: city_slug),
+        priority: 0.7,
+        lastmod: Time.zone.now,
+        changefreq: "daily"
+  end
+
   Sale.active.find_each do |post|
     add sale_path(post),
-        priority: 0.6,
-        lastmod: post.updated_at
+        priority: 0.1,
+        lastmod: post.updated_at,
+        changefreq: "yearly"
   end
 
-  ##############################################################
-  #
-  #     SALES ///
-  #
-  ##############################################################
-
-  ##############################################################
-  #
   #     SERVICES
-  #
-  ##############################################################
+  add services_path, priority: 0.8, changefreq: "daily"
 
-  add services_path, priority: 0.6, changefreq: "daily"
+  ids = Service.uniq.pluck(:city_id)
+  ids.each do |id|
+    city = City.find(id)
+    state_slug = city.state.slug
+    city_slug = city.slug
+    add search_services_path(state: state_slug, city: city_slug),
+        priority: 0.7,
+        lastmod: Time.zone.now,
+        changefreq: "daily"
+  end
+
   Service.find_each do |post|
     add service_path(post),
-        priority: 0.6,
-        lastmod: post.updated_at
+        priority: 0.1,
+        lastmod: post.updated_at,
+        changefreq: "yearly"
   end
 
-  ##############################################################
-  #
-  #     SERVICES ///
-  #
-  ##############################################################
-
-  ##############################################################
-  #
   #     JOBS
-  #
-  ##############################################################
-
   add jobs_path, priority: 0.8, changefreq: "daily"
+
+  ids = Job.uniq.pluck(:city_id)
+  ids.each do |id|
+    city = City.find(id)
+    state_slug = city.state.slug
+    city_slug = city.slug
+    add search_jobs_path(state: state_slug, city: city_slug),
+        priority: 0.7,
+        lastmod: Time.zone.now,
+        changefreq: "daily"
+  end
+
   Job.active.find_each do |post|
     add job_path(post),
-        priority: 0.6,
-        lastmod: post.updated_at
+        priority: 0.1,
+        lastmod: post.updated_at,
+        changefreq: "yearly"
   end
-
-  ##############################################################
-  #
-  #     JOBS ///
-  #
-  ##############################################################
-
-  ##############################################################
-  #
-  #     / EZANSWER
-  #
-  ##############################################################
 
   add answers_path, priority: 0.8, changefreq: "weekly"
   Answer.find_each do |answer|
     add answer_path(answer),
-        priority: 0.7,
-        lastmod: answer.updated_at
+        priority: 0.6,
+        lastmod: answer.updated_at,
+        changefreq: "yearly"
   end
 
-  ##############################################################
-  #
-  #     // EZANSWER
-  #
-  ##############################################################
-
-  ##############################################################
-  #
-  #     NEWS
-  #
-  ##############################################################
-
-  # add posts_path, priority: 0.8, changefreq: "daily"
-  # Post.visible.find_each do |post|
-  #   add post_path(post),
-  #       priority: 0.6,
-  #       lastmod: post.updated_at
-  # end
-
-  ##############################################################
-  #
-  #     NEWS ///
-  #
-  ##############################################################
+  add posts_path, priority: 0.8, changefreq: "daily"
+  Post.visible.find_each do |post|
+    add post_path(post),
+        priority: 0.5,
+        lastmod: post.updated_at,
+        changefreq: "yearly"
+  end
 end
