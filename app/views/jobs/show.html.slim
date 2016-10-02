@@ -4,7 +4,7 @@
 = desc(d)
 
 - t = @job.title.present? ? @job.title : t(@job.category)
-= title("#{t} #{@job.city_name} #{@job.state_name}")
+= title("#{t} #{@job.city.name} #{@job.state.name}")
 
 = og_type("article")
 = og_url(job_url(@job))
@@ -12,7 +12,6 @@
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @job
-  = render "jobs/details"
 
 .div itemscope="" itemtype="http://schema.org/JobPosting"
   .col-xs-12
@@ -20,6 +19,5 @@
   /= render "shared/gads/leaderboard"
   .visible-xs
     = render "shared/show/contacts", record: @job
-  = render "shared/disqus"
   = render 'shared/show/map', record: @job
   = render "shared/show/similar", record: @job

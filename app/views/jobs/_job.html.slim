@@ -1,13 +1,9 @@
-.row.white-block class=("user-hidden" if job.user_hidden?(current_user)) data-hidden=job.id
+.row.white-block data-listing-id=job.id
   .listing
     .panel.panel-default
       .panel-heading
         = render "shared/favor_links", record: job
-        h4.title
-          = link_to dashboard_favorites_path(type: "Job")
-            i.fa.fa-star-o.golden[class=("hidden" unless job.favorite?(current_user))
-                                  data-i=job.id ]
-          = link_to job.title, job
+        h4.title= link_to job.title, job
 
       .panel-body
         .text itemprop="description"

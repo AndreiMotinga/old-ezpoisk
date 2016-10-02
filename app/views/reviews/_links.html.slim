@@ -3,5 +3,5 @@
     a#dLabel aria-expanded="false" aria-haspopup="true" data-target="#" data-toggle="dropdown" href=""
       i.fa.fa-lg.fa-icon.fa-ellipsis-v
     ul.dropdown-menu aria-labelledby="dLabel"
-      li= link_to "Редактировать", edit_dashboard_review_path(review), class: "text-muted qa-link"
-      li= link_to 'Удалить', dashboard_review_path(review), class: "text-muted qa-link", method: :delete, data: { confirm: I18n.t(:confirm) }
+      li= link_to "Редактировать", edit_dashboard_review_path(review), class: "text-muted"
+      li= link_to 'Удалить', dashboard_review_path(review), class: "text-muted", method: :delete, data: { confirm: I18n.t(:confirm) }

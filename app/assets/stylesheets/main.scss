@@ -4,11 +4,10 @@
 @import "dropzone/dropzone";
 @import "rails_bootstrap_forms";
 @import "summernote";
-@import "shared/colors";
-@import "shared/fonts";
 
+@import "shared/colors";
 @import "shared/helpers";
-@import "shared/ez";
+@import "variables";
 
 @import "mobile";
 
@@ -18,19 +17,12 @@
 @import "shared/select2";
  @import "shared/autocomplete";
 
-@import "home";
-@import "contact";
-@import "news";
-
-@import "questions";
 @import "session";
 @import "partners";
+@import "pictures";
 @import "shared/sidebar";
-@import "users";
-@import "charges";
-@import "post";
+@import "cover";
 @import "answer";
-@import "job";
 @import "comment";
 @import "review-form";
 @import "review";

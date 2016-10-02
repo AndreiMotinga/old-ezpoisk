@@ -9,4 +9,8 @@
 - if @reviews.empty?
   .col-xs-12= render "shared/no_posts_message"
 - else
-  .text-center= paginate @reviews, param_name: "reviews_page"
+  .text-center
+    = image_tag "downloading",
+                class: "img-responsive center-block downloading hidden",
+                "data-id": "downloading", alt: "downloading", title: "downloading"
+    = paginate @reviews, param_name: "reviews_page"

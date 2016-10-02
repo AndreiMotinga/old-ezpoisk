@@ -2,6 +2,7 @@ class RePrivatesController < ApplicationController
   def index
     redirect_to search_re_privates_path(sliced_params) if search?
     @re_privates = RePrivate.includes(:state, :city)
+                            .where.not(id: favorites("RePrivate"))
                             .filter(sliced_params)
                             .page(params[:page])
     IncreaseImpressionsJob.perform_async(@re_privates.pluck(:id), "RePrivate")

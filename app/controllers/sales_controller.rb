@@ -2,6 +2,7 @@ class SalesController < ApplicationController
   def index
     redirect_to search_sales_path(sliced_params) if search?
     @sales = Sale.includes(:state, :city)
+                 .where.not(id: favorites("Sale"))
                  .filter(sliced_params)
                  .page(params[:page])
     IncreaseImpressionsJob.perform_async(@sales.pluck(:id), "Sale")

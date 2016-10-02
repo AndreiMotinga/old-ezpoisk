@@ -24,7 +24,7 @@ feature "user updates sale" do
     expect(sale.email).to eq attrs.email
     expect(sale.category).to eq attrs.category
     expect(sale.active).to be true
-    expect(sale.state_name).to eq "Alabama"
+    expect(sale.state.name).to eq "Alabama"
     expect(sale.city.name).to eq "Abbeville"
   end
 end

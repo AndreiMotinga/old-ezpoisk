@@ -19,7 +19,7 @@ class AnswersController < ApplicationController
     IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
 
     respond_to do |format|
-      format.html
+      format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @answers } }
     end
   end
@@ -67,17 +67,20 @@ class AnswersController < ApplicationController
   def upvote
     @answer = Answer.find(params[:id])
     @answer.upvote_by current_user
+    @answer.update_column(:votes_count, @answer.score)
   end
 
   def downvote
     @answer = Answer.find(params[:id])
     @answer.unvote_by current_user if current_user.voted_for? @answer
     @answer.downvote_by current_user
+    @answer.update_column(:votes_count, @answer.score)
   end
 
   def unvote
     @answer = Answer.find(params[:id])
     @answer.unvote_by current_user
+    @answer.update_column(:votes_count, @answer.score)
   end
 
   private

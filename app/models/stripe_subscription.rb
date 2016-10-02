@@ -14,8 +14,6 @@ class StripeSubscription < ActiveRecord::Base
   end
 
   after_invoice_payment_failed! do |invoice, _event|
-    # todo send email when customer is deleted
-    # todo send notification to slack
     StripeSubscription.find_by_customer_id(invoice.customer).destroy
     Stripe::Customer.retrieve(invoice.customer).delete
   end

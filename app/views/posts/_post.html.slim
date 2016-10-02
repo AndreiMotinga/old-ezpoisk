@@ -22,7 +22,7 @@
                         alt: "Новости русского комьюнити в США - #{post.title}"
         p= strip_tags(post.summary)
         p.tags
-          = sanitize post.tag_list.map { |tag| link_to "##{tag}", post_tag_posts_path(tag), class: "tag" }.join
+          = sanitize post.tag_list.map { |tag| link_to "##{tag}", tag_posts_path(tag), class: "tag" }.join
 
       .panel-footer
         .row

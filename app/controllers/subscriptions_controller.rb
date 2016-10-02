@@ -19,6 +19,9 @@ class SubscriptionsController < ApplicationController
   private
 
   def set_record
-    @record = params[:type].constantize.find(params[:id])
+    model = [RePrivate, Job, Sale, Service, Question].find do |m|
+      m.name == params[:type]
+    end
+    @record = model.find(params[:id])
   end
 end

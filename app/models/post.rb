@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   acts_as_taggable
   include MyFriendlyId
   include Filterable
-  include ViewHelpers
+  include ListingHelpers
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :summary, presence: true, length: {  maximum: 400, minimum: 30 }
   validates :text, presence: true
@@ -48,11 +48,11 @@ class Post < ActiveRecord::Base
   end
 
   def edit_link
-    url_helpers.edit_dashboard_post_path(self)
+    Rails.application.routes.url_helpers.edit_dashboard_post_path(self)
   end
 
   def show_url
-    url_helpers.post_url(self)
+    Rails.application.routes.url_helpers.post_url(self)
   end
 
   def active

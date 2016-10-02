@@ -2,9 +2,10 @@
 class PartnerImpressionsJob
   include Sidekiq::Worker
 
-  def perform(id)
-    partner = Partner.find_by_id(id)
-    return unless partner
-    partner.update_column(:impressions_count, partner.impressions_count + 1)
+  def perform(ids)
+    partners = Partner.where(id: ids)
+    partners.each do |partner|
+      partner.update_column(:impressions_count, partner.impressions_count + 1)
+    end
   end
 end

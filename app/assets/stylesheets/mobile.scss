@@ -1,8 +1,6 @@
-// navbar
-// tabs
+// navbar tabs
 .mobile-nav-tabs > li {
   width: 50%;
-
   a { padding: 5px; }
 }
 
@@ -11,14 +9,6 @@
   margin-right: 15px;
 }
 
-.mobile-search { text-align: right; }
-.indented { padding-left: 30px; }
-
-.mobile-link {
-  color: $grey3;
-  li:active { background-color: $body_background_color; }
-}
-
 .downloading {
-  max-height: 200px;
+  max-height: 100px;
 }

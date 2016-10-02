@@ -1,4 +1,4 @@
-.row.white-block class=("user-hidden" if sale.user_hidden?(current_user)) data-hidden=sale.id
+.row.white-block data-listing-id=sale.id
   .listing
 
     .col-xs-12.col-sm-4.logo data-id="logo"
@@ -10,13 +10,9 @@
     .col-xs-12.col-sm-8
       / line 1
       = render "shared/favor_links", record: sale
-      h4.title
-        = link_to dashboard_favorites_path(type: "Sale")
-          i.fa.fa-star-o.golden[class=("hidden" unless sale.favorite?(current_user))
-                                data-i=sale.id ]
-        = link_to sale.title, sale
+      h4.title= link_to sale.title, sale
 
-      span.state-city
+      strong
         = link_to sale.city.name, search_sales_path(state: sale.state.slug, city: sale.city.slug)
         = " | "
         = link_to sale.state.name, search_sales_path(state: sale.state.slug)
@@ -39,5 +35,5 @@
 
   - if sale.text.present?
     .col-xs-12.text
-      hr.post-devider-black
+      hr.post-devider-gray
       = simple_format sale.text

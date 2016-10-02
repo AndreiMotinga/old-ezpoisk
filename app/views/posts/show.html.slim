@@ -7,7 +7,9 @@
 = og_image(@post.logo_url)
 
 = content_for :sidebar do
-  = render("posts/tag_cloud")
+  = render "shared/tag_cloud",
+            tags: Post.tag_counts.sort_by(&:name),
+            url: "/posts/tag/"
 
 .article.post.col-xs-12 itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .row.white-block
@@ -41,8 +43,6 @@
           = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
 /= render "shared/gads/leaderboard"
-
-= render "shared/disqus"
 
 .col-xs-12 data-id="listings"
   = render @posts

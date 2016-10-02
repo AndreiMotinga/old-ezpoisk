@@ -23,6 +23,7 @@ class Dashboard::ReviewsController < ApplicationController
     @review = current_user.reviews.build(review_params)
     @review.title = @review.service.title
     if @review.save
+      @review.service.update_rating
       run_create_notifications
       redirect_to dashboard_reviews_path, notice: I18n.t(:review_created)
     else
@@ -33,6 +34,7 @@ class Dashboard::ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
+      @review.service.update_rating
       run_update_notifications
       redirect_to dashboard_reviews_path, notice: I18n.t(:review_saved)
     else
@@ -43,6 +45,7 @@ class Dashboard::ReviewsController < ApplicationController
 
   def destroy
     SlackNotifierJob.perform_async(@review.id, "Review", 'destroyed')
+    @review.service.update_rating
     @review.destroy
     redirect_to dashboard_reviews_path, notice: I18n.t(:review_removed)
   end

@@ -1,4 +1,5 @@
-# frozen_string_literal: true
+# isn't used anymore
+# imports news from rss feeds
 require "rss"
 
 # imports news

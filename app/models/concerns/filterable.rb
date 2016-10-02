@@ -2,10 +2,6 @@ module Filterable
   extend ActiveSupport::Concern
 
   included do
-    # todo remove
-    delegate :name, to: :state, prefix: true
-    delegate :name, to: :city, prefix: true
-
     scope :random, -> { order("RANDOM()") }
     scope :unpaid, -> { where(paid: false) }
     scope :today, -> { where("created_at > ?", Date.today) }
@@ -40,13 +36,6 @@ module Filterable
 
     scope(:keyword, lambda do |keyword|
       query = "LOWER(title) LIKE ? OR LOWER(text) LIKE ?"
-      keyword = "%#{keyword.mb_chars.downcase}%"
-      where(query, keyword, keyword)
-    end)
-
-    scope(:street, lambda do |keyword|
-      # todo rename street to title
-      query = "LOWER(street) LIKE ? OR LOWER(text) LIKE ?"
       keyword = "%#{keyword.mb_chars.downcase}%"
       where(query, keyword, keyword)
     end)

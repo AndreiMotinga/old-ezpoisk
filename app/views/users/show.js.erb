@@ -24,6 +24,7 @@ else {
   $(".pagination:visible").replaceWith("<%= j(paginate @records, param_name: @param) %>")
 <% else  %>
   $(".pagination:visible").remove();
+  $("[data-id='downloading']").remove();
 <% end %>
 
 // send ajax request to increaset impressions on visible partners

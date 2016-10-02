@@ -25,7 +25,7 @@
             - if record.try(:phone).present?
               - record.phone.split(",").each do |phone|
                 li.list-group-item
-                  span.glyphicon.glyphicon-earphone
+                  i.fa.fa-phone
                   a href="tel:#{phone}"
                     strong itemprop=("telephone" unless record.class.to_s == "Sale")  #{number_to_phone(phone, area_code: 1)}
 

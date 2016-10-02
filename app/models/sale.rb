@@ -2,7 +2,7 @@ class Sale < ActiveRecord::Base
   acts_as_mappable
   acts_as_commentable
   include Filterable
-  include ViewHelpers
+  include ListingHelpers
   include Tokenable
   validates_with SourceValidator
 
@@ -25,11 +25,11 @@ class Sale < ActiveRecord::Base
   end
 
   def edit_url_with_token
-    url_helpers.edit_dashboard_sale_url(self, token: token)
+    Rails.application.routes.url_helpers.edit_dashboard_sale_url(self, token: token)
   end
 
   def show_url
-    url_helpers.sale_url(self)
+    Rails.application.routes.url_helpers.sale_url(self)
   end
 
   def similar

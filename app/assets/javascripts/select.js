@@ -1,3 +1,8 @@
+document.addEventListener("turbolinks:before-cache", function() {
+  $('.my-dropdown').select2('destroy');
+  $('.my-dropdown-multiple').select2('destroy');
+});
+
 document.addEventListener("turbolinks:load", function() {
   $('.my-dropdown').each(function (i, obj) {
     if (!$(obj).hasClass('select2-hidden-accessible')) {

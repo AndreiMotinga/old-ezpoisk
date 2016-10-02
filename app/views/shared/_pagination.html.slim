@@ -1,4 +1,8 @@
 - if records.empty?
   .col-xs-12= render "shared/no_posts_message"
 - else
-  .text-center= paginate records
+  .text-center
+    = image_tag "downloading",
+                class: "img-responsive center-block downloading hidden",
+                "data-id": "downloading", alt: "downloading", title: "downloading"
+    = paginate records

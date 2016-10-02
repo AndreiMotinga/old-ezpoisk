@@ -1,3 +1,7 @@
+.navbar {
+  box-shadow: $box-shadow;
+}
+
 .navbar-main {
   background-color: $white;
   margin-bottom: 0;
@@ -27,7 +31,7 @@
 .navbar-nav > li > a:hover,
 .navbar-nav > li > a:focus {
   background-color: $white;
-  color: $link-blue;
+  color: $blue;
   font-weight: bold;
 }
 

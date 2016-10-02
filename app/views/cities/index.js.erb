@@ -1,2 +1,2 @@
-$(".city-select").html("<%= j(render partial: 'cities/cities_select') %>");
+$(".city-select").html("<%= j(select_tag "", options_from_collection_for_select(@cities, @id, "name")) %>");
 $(".city-select").select2({ matcher: matcher });

@@ -37,13 +37,13 @@
               = f.password_field :password, placeholder: "Пароль", hide_label: true
               = f.check_box :remember_me, label: "Запомнить", label_class: 'text-muted'
 
-              = f.submit "Войти", class: "btn btn-lg btn-block btn-blue"
+              = f.submit "Войти", class: "btn btn-lg btn-block mobile-btn"
               - unless controller_name == "sessions" || controller_name == "registrations"
-                button.btn.btn-lg.btn-block.btn-blue aria-label="Close" data-dismiss="modal" type="button" Закрыть
+                button.btn.btn-lg.btn-block.mobile-btn aria-label="Close" data-dismiss="modal" type="button" Закрыть
 
 
               - else
-                = link_to "Закрыть", root_path, class: "btn btn-lg btn-block btn-blue"
+                = link_to "Закрыть", root_path, class: "btn btn-lg btn-block mobile-btn"
 
             br/
             = render "devise/shared/links"
@@ -54,4 +54,4 @@
                 = f.email_field :email, required: true, placeholder: "Email", hide_label: true
                 = f.password_field :password, required: true, placeholder: "Password", hide_label: true
               div
-                = f.submit "Вливайся !!!", class: "btn btn-lg btn-block btn-blue"
+                = f.submit "Вливайся !!!", class: "btn btn-lg btn-block mobile-btn"

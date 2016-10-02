@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_rack_mini_profiler
-    # Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    Rack::MiniProfiler.authorize_request if current_user.try(:admin)
   end
 
   def get_record(model, id, path)
@@ -85,5 +85,10 @@ class ApplicationController < ActionController::Base
       prms[:city]  = params[:city]  if params[:city].present?
     end
     prms
+  end
+
+  def favorites(type)
+    return [] unless current_user
+    current_user.favorites.where(favorable_type: type).pluck(:favorable_id)
   end
 end

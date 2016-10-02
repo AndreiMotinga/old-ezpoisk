@@ -1,10 +1,12 @@
-- breadcrumb :answers
-= title("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
-= desc("Информация о жизни русскоговорящих людей в америке. Полезная информация об иммиграции в США")
+- answer_breadcrumb
+= answer_title
+= answer_desc
 
 - content_for :sidebar do
   = link_to "Все вопросы", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
-  = render("answers/tag_cloud")
+  = render "shared/tag_cloud",
+            tags: Answer.tag_counts.sort_by(&:name),
+            url: "/answers/tag/"
 
 = render "questions/search_form"
 

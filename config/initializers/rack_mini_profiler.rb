@@ -1,4 +1,5 @@
 # https://github.com/MiniProfiler/rack-mini-profiler/issues/134#issuecomment-126647212
+
 require 'rack-mini-profiler'
 
 Rack::MiniProfilerRails.initialize!(Rails.application)

@@ -42,6 +42,11 @@ crumb :posts do
   link "Новости", posts_path
 end
 
+crumb :tag_posts do |name|
+  link name, tag_posts_path(name)
+  parent :posts
+end
+
 crumb :post do |post|
   link post.title, post
   parent :posts

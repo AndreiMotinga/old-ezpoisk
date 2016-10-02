@@ -11,11 +11,14 @@ ul.nav.nav-tabs[role="tablist"]
     .row
       .col-xs-12.col-sm-6
         = label_tag "Штат", nil,  class: "control-label"
-        = select_tag :state, options_from_collection_for_select(State.all, :slug, :name, state), class: "form-control state-select-slug my-dropdown"
+        = select_tag :state, options_for_select(STATES, state), include_blank: true, class: "form-control state-select-slug my-dropdown"
 
       .col-xs-12.col-sm-6
         = label_tag "Город", nil,  class: "control-label"
-        = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city), class: "form-control city-select my-dropdown"
+        = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),
+                     include_blank: true,
+                     class: "form-control city-select my-dropdown"
+
 
   #radius.tab-pane[role="tabpanel"]
     .row

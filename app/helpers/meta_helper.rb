@@ -57,13 +57,14 @@ module MetaHelper
     when 'index'
       title("Есть вопрос? задавайте! Комьюнити наших в америке - ezpoisk")
     when 'tag'
-      titledesc("Наши в США. Вопросы на тему #{params[:tag]} - ezpoisk")
+      title("Наши в США. Вопросы на тему #{params[:tag]} - ezpoisk")
     when 'unanswered'
-      titledesc("Неотвеченные вопросы. - ezpoisk")
+      title("Неотвеченные вопросы. - ezpoisk")
     when 'unanswered_tag'
-      titledesc("Неотвеченные вопросы на тему #{params[:tag]} -  ezpoisk")
+      title("Неотвеченные вопросы на тему #{params[:tag]} -  ezpoisk")
     end
   end
+
   def question_desc
     case params[:action]
     when 'index'
@@ -74,6 +75,19 @@ module MetaHelper
       desc("Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. We're in this together. - ezpoisk")
     when 'unanswered_tag'
       desc("#{params[:tag]} - Помощь иммигрантам в США, добавьте свой ответ, помогите получить информацию. - ezpoisk")
+    end
+  end
+
+  def question_breadcrumb
+    case params[:action]
+    when 'index'
+      breadcrumb :questions
+    when 'tag'
+      breadcrumb :tag_questions_path, params[:tag]
+    when 'unanswered'
+      breadcrumb :unanswered_questions_path
+    when 'unanswered_tag'
+      breadcrumb :unanswered_tag_questions_path, params[:tag]
     end
   end
 
@@ -92,6 +106,42 @@ module MetaHelper
       desc("Новости русской иммиграции в США. Информцаия о наших от Бостона до Сан Франциско")
     when 'tag'
       desc("Наши в США. Статьи на тему #{params[:tag]} - ezpoisk")
+    end
+  end
+
+  def post_breadcrumb
+    case params[:action]
+    when 'index'
+      breadcrumb :posts
+    when 'tag'
+      breadcrumb :tag_posts, params[:tag]
+    end
+  end
+
+  def answer_title
+    case params[:action]
+    when 'index'
+      desc("Полезная информация о русских в америке, все, что нужно знать - ezpoisk")
+    when 'tag'
+      desc("#{params[:tag]}Полезная информация о русских в америке - ezpoisk")
+    end
+  end
+
+  def answer_desc
+    case params[:action]
+    when 'index'
+      desc("Информация о жизни русскоговорящих людей в америке. Полезная информация об иммиграции в США")
+    when 'tag'
+      desc("#{params[:tag]} Полезная информация об иммиграции в США")
+    end
+  end
+
+  def answer_breadcrumb
+    case params[:action]
+    when 'index'
+      breadcrumb :answers
+    when 'tag'
+      breadcrumb :tag_answers, params[:tag]
     end
   end
 end

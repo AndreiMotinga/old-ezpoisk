@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include OmniLogin
   acts_as_voter
   acts_as_mappable
-  include ViewHelpers
+  include ListingHelpers
   # Include default devise modules. Others available are:
   # :validatable, :confirmable, :timeoutable,
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -64,17 +64,8 @@ class User < ActiveRecord::Base
     name.present? ? name : email
   end
 
-  def favorite(prms)
-    favorites.where(
-      favorable_id: prms[:favorable_id],
-      favorable_type: prms[:favorable_type],
-      saved: prms[:saved],
-      hidden: prms[:hidden]
-    ).first
-  end
-
   def show_url
-    url_helpers.user_url(self)
+    Rails.application.routes.url_helpers.user_url(self)
   end
 
   def new_email
@@ -98,14 +89,17 @@ class User < ActiveRecord::Base
     entries.listings.includes(enterable: [:state, :city])
   end
 
-  # todo test
   def reviewed?(service_id)
     reviews.where(service_id: service_id).any?
   end
 
-  def can_deactivate?(rec)
-    deactivations.exists?(deactivatable_id: rec.id,
-                          deactivatable_type: rec.class.to_s)
+  def find_favorite(prms)
+    favorites.where(
+      favorable_id: prms[:favorable_id],
+      favorable_type: prms[:favorable_type],
+      saved: prms[:saved],
+      hidden: prms[:hidden]
+    ).first
   end
 
   private

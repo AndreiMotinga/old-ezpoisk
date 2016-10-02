@@ -1,6 +1,7 @@
 .partner {
+  padding: 0 5px;
   &:hover {
-    background-color: $grey_d;
+    background-color: $white;
   }
 
   a { text-decoration: none; }
@@ -16,6 +17,6 @@
   hr {
     margin-top: 5px;
     margin-bottom: 0;
-    border-top: 1px solid $grey_c;
+    border-top: 1px solid $grey;
   }
 }

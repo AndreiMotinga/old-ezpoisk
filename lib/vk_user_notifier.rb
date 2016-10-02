@@ -1,6 +1,6 @@
-# todo figure out a way to reset it.  options are
-# manually via herokur restart
+# manually via heroku restart
 # run a bg job once 12? hours to call VkUserNotifier.vk_reset
+# every time you tun importer, reset it beforehand
 
 # sends message to vk user about listing added on his behalf
 class VkUserNotifier

@@ -14,11 +14,11 @@
       - if action_name == "show"
         = subscription_links(question)
         = " "
-        = link_to "комментировать", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
+        /= link_to "комментировать", "#comments", class: "text text-muted", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
         br
         br
         = render "shared/social", count: nil, inline: true
       p.tags= tag_links(question)
 
-#comments.collapse
-  = render "shared/disqus"
+/#comments.collapse
+  /= render "shared/disqus"

@@ -14,7 +14,7 @@ module QuestionsHelper
             "data-target" => "#new_session_modal",
             "data-toggle" => "modal",
             id: "login_link",
-            class: "text text-muted qa-links",
+            class: "text text-muted",
             rel: "nofollow"
   end
 end

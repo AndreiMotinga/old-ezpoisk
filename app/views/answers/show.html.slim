@@ -10,7 +10,9 @@
   = link_to "Добавить ответ",
             new_answer_path(question_id: @answer.question_id),
             class: "btn btn-block mobile-btn margin-bottom-10"
-  = render("answers/tag_cloud")
+  = render "shared/tag_cloud",
+            tags: Answer.tag_counts.sort_by(&:name),
+            url: "/answers/tag/"
 
 .article.answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel.panel-default
@@ -46,7 +48,7 @@
           - else
             = link_to "Войдите, что бы голосовать", "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link"
           br
-          = link_to "комментировать ", "#comments", class: "text text-muted qa-links", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
+          /= link_to "комментировать ", "#comments", class: "text text-muted", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
 
         .col-xs-12.col-md-7
           = render "shared/social", count: nil, inline: true
@@ -61,8 +63,8 @@ br
               @answer.question,
               class: "btn mobile-btn btn-block other-answers"
 
-#comments.collapse
-  = render "shared/disqus"
+/#comments.collapse
+/  comments here
 
 .col-xs-12
   .row

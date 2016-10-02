@@ -1,7 +1,7 @@
 class Service < ActiveRecord::Base
   acts_as_mappable
   include Filterable
-  include ViewHelpers
+  include ListingHelpers
   include Tokenable
 
   validates :title, presence: true, length: { maximum: 44, minimum: 3 }
@@ -37,19 +37,20 @@ class Service < ActiveRecord::Base
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
   def edit_link
-    url_helpers.edit_dashboard_service_path(self)
+    Rails.application.routes.url_helpers.edit_dashboard_service_path(self)
   end
 
   def edit_url_with_token
-    url_helpers.edit_dashboard_service_url(self, token: token)
+    Rails.application.routes.url_helpers
+                            .edit_dashboard_service_url(self, token: token)
   end
 
   def show_url
-    url_helpers.service_url(self)
+    Rails.application.routes.url_helpers.service_url(self)
   end
 
-  def rating
-    reviews.average(:rating).try(:round)
+  def update_rating
+    update_column(:rating).reviews.average(:rating).round
   end
 
   def side_items

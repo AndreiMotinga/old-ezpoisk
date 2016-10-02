@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/MiniProfiler/rack-mini-profiler.git
+  revision: faece4848dc04bd9aaa028becb4d561d0063666c
+  branch: master
+  specs:
+    rack-mini-profiler (0.10.1)
+      rack (>= 1.2.0)
+
+GIT
   remote: git://github.com/afcapel/rack-pjax.git
   revision: c776a9a9eaa0641636e9ece5cfe88fc739339072
   specs:
@@ -334,8 +342,6 @@ GEM
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
     rack-cors (0.4.0)
-    rack-mini-profiler (0.10.1)
-      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0)
@@ -486,6 +492,8 @@ GEM
     tilt (2.0.5)
     timecop (0.8.1)
     tool (0.2.3)
+    traceroute (0.5.0)
+      rails (>= 3.0.0)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -569,7 +577,7 @@ DEPENDENCIES
   pry-byebug
   puma
   rack-cors
-  rack-mini-profiler
+  rack-mini-profiler!
   rack-pjax!
   rack-protection!
   rails (~> 5.0)
@@ -599,6 +607,7 @@ DEPENDENCIES
   summernote-rails
   thin
   timecop
+  traceroute
   turbolinks (~> 5.0.1)
   uglifier
   underscore-rails

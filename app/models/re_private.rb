@@ -8,7 +8,7 @@ class RePrivate < ActiveRecord::Base
   acts_as_mappable
   acts_as_commentable
   include Filterable
-  include ViewHelpers
+  include ListingHelpers
   include Tokenable
 
   validates :rooms, presence: true
@@ -36,15 +36,15 @@ class RePrivate < ActiveRecord::Base
   end
 
   def edit_link
-    url_helpers.edit_dashboard_re_private_path(self)
+    Rails.application.routes.url_helpers.edit_dashboard_re_private_path(self)
   end
 
   def edit_url_with_token
-    url_helpers.edit_dashboard_re_private_url(self, token: token)
+    Rails.application.routes.url_helpers.edit_dashboard_re_private_url(self, token: token)
   end
 
   def show_url
-    url_helpers.re_private_url(self)
+    Rails.application.routes.url_helpers.re_private_url(self)
   end
 
   def temporary?

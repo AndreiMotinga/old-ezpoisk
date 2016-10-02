@@ -1,23 +1,21 @@
-.row.white-block class=("user-hidden" if re_private.user_hidden?(current_user)) data-hidden=re_private.id
+.row.white-block data-listing-id=re_private.id
   .listing
     .col-xs-12.col-sm-4.logo
       = link_to re_private_path(re_private) do
-        img.img-responsive.center-block[class=("hidden-xs" if controller_name == "re_privates" && action_name == "show") src=re_private.logo_url data-id="logo" itemprop="logo"
-          alt="#{t re_private.post_type} частную недвижимость без посредников - #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
-
-        /- if !re_private.fee && re_private.post_type == "leasing"
-        /  h4.capture.capture-desktop.text-center Без комиссии
+        img.img-responsive.center-block[
+          class=("hidden-xs" if controller_name == "re_privates" && action_name == "show")
+          src=re_private.logo_url data-id="logo" itemprop="logo"
+          alt="#{t re_private.post_type} частную недвижимость без посредников -
+               #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
 
     .col-xs-12.col-sm-8
       = render "shared/favor_links", record: re_private
-      h4.title
-        = link_to dashboard_favorites_path(type: "RePrivate")
-          i.fa.fa-star-o.golden[class=("hidden" unless re_private.favorite?(current_user))
-                                data-i=re_private.id ]
-        = link_to re_private.title, re_private
+      h4.title= link_to re_private.title, re_private
 
       / line 2
-      span.state-city
+      - if !re_private.fee && re_private.post_type == "leasing"
+        span.no-fee= link_to "NO FEE", re_privates_path(fee: false)
+      strong
         = link_to "#{t re_private.category}", re_privates_path(category: re_private.category)
         = " | "
         = link_to re_private.city.name,
@@ -54,5 +52,5 @@
 
   - if re_private.text.present?
     .col-xs-12.text
-      hr.post-devider-black
+      hr.post-devider-gray
       = simple_format re_private.text

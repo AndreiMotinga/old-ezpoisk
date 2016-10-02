@@ -1,4 +1,4 @@
-.profile-image
+.gallery-image
   = link_to picture.image.url, "data-action": "touchTouch" do
     = image_tag picture.image.url(:thumbnail), alt: "", class: "img-responsive gallery-thumb", id: "picture-#{picture.id}"
   - if picture.user_id == current_user.try(:id)

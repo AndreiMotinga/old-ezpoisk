@@ -10,6 +10,6 @@ class Review < ApplicationRecord
   validates :user_id, presence: true
 
   def show_url
-    url_helpers.service_url(service)
+    Rails.application.routes.url_helpers.service_url(service)
   end
 end

@@ -1,6 +1,6 @@
 .partner.margin-bottom-10 class=side data-partner="" data-id=partner.id
   - if partner.id
-    = link_to redirect_dashboard_partner_path(partner), rel: "nofollow", target: "_blank" do
+    = link_to dashboard_partner_path(partner), rel: "nofollow", target: "_blank" do
       = image_tag partner.image.url(side),
                   class: "img-responsive",
                   "data-partner-image": side

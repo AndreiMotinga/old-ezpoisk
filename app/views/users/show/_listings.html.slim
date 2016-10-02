@@ -4,4 +4,8 @@
 - if @listings.empty?
   .col-xs-12= render "shared/no_posts_message"
 - else
-  .text-center= paginate @listings, param_name: "listings_page"
+  .text-center
+    = image_tag "downloading",
+                class: "img-responsive center-block downloading hidden",
+                "data-id": "downloading", alt: "downloading", title: "downloading"
+    = paginate @listings, param_name: "listings_page"

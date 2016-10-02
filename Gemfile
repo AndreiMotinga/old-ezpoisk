@@ -57,7 +57,7 @@ gem "slack-notifier"
 gem "acts_as_votable"
 gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 
-gem "rack-mini-profiler", require: false
+gem "rack-mini-profiler", github: "MiniProfiler/rack-mini-profiler", branch: "master", require: false
 gem "rack-cors", require: "rack/cors"
 
 gem "omniauth-facebook"
@@ -95,8 +95,9 @@ group :development do
   gem "web-console"
 
   # code quality
-  gem "brakeman", :require => false # security vulnerabilities
-  gem "rails_best_practices", :require => false
+  gem "rails_best_practices", require: false
+  gem "brakeman", require: false # security vulnerabilities
+  gem "traceroute", require: false # find unused routes
 end
 
 group :test do

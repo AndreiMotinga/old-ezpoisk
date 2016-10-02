@@ -33,8 +33,8 @@ feature "user updates service" do
     expect(service.street).to eq attrs.street
     expect(service.category).to eq attrs.category
     expect(service.subcategory).to eq attrs.subcategory
-    expect(service.state_name).to eq "Alabama"
-    expect(service.city_name).to eq "Abbeville"
+    expect(service.state.name).to eq "Alabama"
+    expect(service.city.name).to eq "Abbeville"
     expect(service.user_id).to_not be nil
     expect(service.phone).to eq attrs.phone
     expect(service.email).to eq attrs.email

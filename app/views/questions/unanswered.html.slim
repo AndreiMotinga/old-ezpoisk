@@ -1,9 +1,9 @@
-- breadcrumb :unanswered_questions_path
-= title("Полезная информация о русских в америке, неотвеченные вопросы - ezpoisk")
+- question_breadcrumb
+= question_title
 = question_desc
 
 - content_for :sidebar do
-  = render "questions/unanswered_tag_cloud"
+  = render "shared/tag_cloud", tags: @tags, url: "/questions/unanswered/"
 
 = render "questions/search_form"
 

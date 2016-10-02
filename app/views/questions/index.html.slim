@@ -1,12 +1,10 @@
-- breadcrumb :questions
+- question_breadcrumb
 = question_title
 = question_desc
 
 - content_for :sidebar do
   = link_to "Неотвеченные", unanswered_questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
-  = render "questions/tag_cloud"
-- content_for :right_block do
-  /= link_to "Ответить", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
+  = render "shared/tag_cloud", tags: @tags, url: "/questions/tag/"
 
 = render "questions/search_form"
 

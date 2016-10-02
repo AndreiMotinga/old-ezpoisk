@@ -37,19 +37,15 @@ describe DeactivationsController do
 
     it "deactivates record when it was marked inactive more then 5 times" do
       sign_in(@user = create(:user))
-      rp = create :re_private
-      5.times { create :deactivation,
-                       user_id: (create(:user)).id,
-                       deactivatable_id: rp.id,
-                       deactivatable_type: rp.class.to_s }
+      rp = create :re_private, deactivations_count: 5
       attrs = attributes_for :deactivation,
                              deactivatable_id: rp.id,
                              deactivatable_type: rp.class.to_s
 
       post :create, params: { deactivation: attrs }
 
-      expect(Deactivation.count).to eq 6
       rp.reload
+      expect(rp.deactivations_count).to eq 6
       expect(rp.active).to eq false
     end
   end

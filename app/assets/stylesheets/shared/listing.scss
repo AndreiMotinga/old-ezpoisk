@@ -8,25 +8,9 @@
 }
 
 .listing {
-  position: relative;
-
   a {
-    color: $grey4;
+    color: $darkgrey;
     text-decoration: none;
-  }
-
-  .capture {
-    background-color: $capture_background;
-    bottom: 0;
-    color: $white;
-    left: 0;
-    margin: 0;
-    padding: 5px 10px;
-    position: absolute;
-  }
-
-  .capture-desktop {
-    width: 100%;
   }
 
   .title {
@@ -40,19 +24,12 @@
     overflow: hidden;
   }
 
-  .state-city {
-    display: block;
-  }
-
   .logo {
     padding: 0;
   }
 
   .dropdown {
     top: 5px;
-    i {
-      min-width: 0;
-    }
   }
 
   .panel-body {
@@ -61,6 +38,15 @@
   .fa {
     padding-right: 5px;
   }
+
+  .no-fee {
+    background-color: $body-bg;
+    font-size: 12px;
+    padding: 2px 5px;
+    font-weight: 500;
+    margin-right: 3px;
+    color: black;
+  }
 }
 
 .google-maps {
@@ -68,26 +54,17 @@
   overflow: hidden;
   padding-bottom: 75%; // This is the aspect ratio
   position: relative;
-}
 
-.google-maps iframe {
-  height: 100% !important;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100% !important;
-}
-
-.contacts {
-  margin-bottom: 10px;
-
-  .scroll {
-    overflow-x: scroll;
+  iframe {
+    height: 100% !important;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100% !important;
   }
 }
-.author { margin: 10px; }
 
-.post-devider-black {
+.post-devider-gray {
     margin-top: 5px;
     margin-bottom: 5px;
     border: 0;

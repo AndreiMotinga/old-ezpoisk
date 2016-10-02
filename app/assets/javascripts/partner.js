@@ -25,11 +25,13 @@ document.addEventListener("turbolinks:load", incrementPartners);
 
 function incrementPartners(){
   var all = $('[data-partner]:visible');
-  $.map(all, function(val, i){
-    var id = $(val).data('id');
-    $.ajax({
-      url: "/dashboard/partners/"+ id +"/increment",
-      type: 'POST'
-    });
+  var ids = $.map(all, function(val, i) {
+    return $(val).data('id');
+  });
+
+  $.ajax({
+    type: 'POST',
+    url: "/dashboard/partners/increment",
+    data: { "ids[]": ids }
   });
 }

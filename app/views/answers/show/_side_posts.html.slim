@@ -1,8 +1,0 @@
-.white-block
-  .panel.panel-default
-    .panel-body
-      ul.list-unstyled
-        - @answer.side_posts.each do |post|
-          li
-            h5= link_to post.title, post, class: "link", target: "_blank"
-          hr.devider

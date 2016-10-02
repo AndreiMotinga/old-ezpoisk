@@ -1,0 +1,8 @@
+h2= t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions')
+= bootstrap_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+  = devise_error_messages!
+  div
+    = f.email_field :email
+  div
+    = f.submit t('.resend_confirmation_instructions', :default => 'Resend confirmation instructions')
+= render "devise/shared/links"

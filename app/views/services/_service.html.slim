@@ -1,4 +1,4 @@
-.row.white-block class=("user-hidden" if service.user_hidden?(current_user)) data-hidden=service.id
+.row.white-block data-listing-id=service.id
   .listing
     .hidden-xs.col-sm-4.logo data-id="logo"
       = link_to service_path(service) do
@@ -12,13 +12,10 @@
       h4.title itemprop="name"
         - if service.featured
           span.featured Ad
-        = link_to dashboard_favorites_path(type: "Service")
-          i.fa.fa-star-o.golden[class=("hidden" unless service.favorite?(current_user))
-                                data-i=service.id ]
         = link_to service.title, service
 
       / line 2
-      span.state-city
+      strong
         = link_to service.city.name, search_services_path(state: service.state.slug, city: service.city.slug)
         = " | "
         = link_to service.state.name, search_services_path(state: service.state.slug)
@@ -36,5 +33,5 @@
       hr.post-devider/
   - if service.text.present?
     .col-xs-12.text
-      hr.post-devider-black
+      hr.post-devider-gray
       = simple_format service.text

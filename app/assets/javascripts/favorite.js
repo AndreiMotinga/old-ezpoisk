@@ -45,7 +45,7 @@ function getCookieValue(cookieName) {
 
 function createFavorite(el) {
   var id = $(el).data("id");
-  $("[data-i=" + id + "]").toggleClass("hidden");
+  $("[data-listing-id=" + id + "]").remove();
 
   $.ajax({
     url: "/favorites",
@@ -64,8 +64,7 @@ function createFavorite(el) {
 function createHidden(el, id) {
   // toggle color of the star glyphicon
   var id = $(el).data("id");
-  var selector = $("[data-hidden=" + id + "]");
-  selector.toggleClass("user-hidden");
+  $("[data-listing-id=" + id + "]").remove();
 
   $.ajax({
     url: "/favorites",

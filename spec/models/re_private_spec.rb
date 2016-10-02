@@ -28,22 +28,10 @@ describe RePrivate do
   end
 
   describe "#logo_url" do
-    it "returns logo url with appropriate style when logo is set" do
-      re_private = create(:re_private)
-      create(:picture, :re_private, imageable_id: re_private.id)
-      logo = create(:picture,
-                    :re_private,
-                    imageable_id: re_private.id,
-                    logo: true)
-
-      expect(re_private.logo_url(:thumb)).to eq logo.image.url(:thumb)
-      expect(re_private.logo_url(:medium)).to eq logo.image.url(:medium)
-    end
-
     it "return missing-small.png url when logo isn't set" do
       re_private = create(:re_private)
 
-      expect(re_private.logo_url(:thumb)).to eq "https://s3.amazonaws.com/ezpoisk/missing-small.png"
+      expect(re_private.logo_url).to eq "https://s3.amazonaws.com/ezpoisk/missing-small.png"
     end
   end
 

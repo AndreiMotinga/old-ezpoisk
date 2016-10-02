@@ -2,7 +2,7 @@
 - d = strip_tags(@sale.text).truncate(160)
 - d = d.present? ? d : "Продается #{t @sale.category} #{@sale.title}"
 = desc(d)
-= title("#{@sale.title}, #{@sale.city_name} #{@sale.state_name} - ezpoisk")
+= title("#{@sale.title}, #{@sale.city.name} #{@sale.state.name} - ezpoisk")
 
 = og_type("article")
 = og_url(sale_url(@sale))
@@ -10,7 +10,6 @@
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @sale
-  = render "sales/details"
 
 - if @sale.pictures.any?
   .show
@@ -30,8 +29,6 @@ div itemscope="" itemtype="http://schema.org/Product"
 
   .visible-xs
     = render "shared/show/contacts", record: @sale
-    = render "sales/details"
 
-  = render "shared/disqus"
   = render 'shared/show/map', record: @sale
   = render "shared/show/similar", record: @sale

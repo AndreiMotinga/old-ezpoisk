@@ -1,7 +1,7 @@
 class Dashboard::PartnersController < ApplicationController
   layout 'partner'
-  before_action :authenticate_user!, except: [:increment, :redirect]
-  before_action :set_ad, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:increment, :show]
+  before_action :set_ad, only: [:show, :edit, :update, :destroy]
 
   def index
     @partners = current_user.partners.order("created_at")
@@ -10,6 +10,15 @@ class Dashboard::PartnersController < ApplicationController
   def new
     @partner = Partner.new(phone: current_user.phone,
                            email: current_user.email)
+  end
+
+  def show
+    @partner.update_column(:clicks, @partner.clicks + 1)
+    begin
+      redirect_to URI.parse(@partner.url).to_s
+    rescue URI::InvalidURIError
+      redirect_to root_path, alert: "Что-то пошло не так, проверьте url"
+    end
   end
 
   def create
@@ -44,14 +53,8 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def increment
-    PartnerImpressionsJob.perform_async(params[:id])
+    PartnerImpressionsJob.perform_async(params[:ids])
     render json: {}, status: 200
-  end
-
-  def redirect
-    partner = Partner.find(params[:id])
-    partner.update_column(:clicks, partner.clicks + 1)
-    redirect_to partner.redirect_url
   end
 
   private

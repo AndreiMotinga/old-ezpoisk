@@ -16,19 +16,10 @@
     line-height: 1.25;
     margin: 5px 0;
     font-size: 18px;
-
-    a {
-      color: $grey4;
-      text-decoration: none;
-    }
   }
 
   .panel-heading {
     padding: 0 15px;
-    a {
-      color: $grey4;
-      text-decoration: none;
-    }
   }
 
   .panel-body {
@@ -37,6 +28,6 @@
   }
 
   .post-body img {
-    margin: 10px;
+    padding: 10px;
   }
 }

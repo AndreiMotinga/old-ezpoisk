@@ -1,18 +1,17 @@
 module FormHelper
+  def state_cities
+    return [] unless state
+    City.where(state_slug: state)
+  end
+
   def state
     return params[:state] if params[:state]
-    return State.find(current_user.try(:state_id)).slug if current_user.try(:state_id)
-    "new-york"
+    return current_user.try(:state_slug) if current_user.try(:state_slug)
   end
 
   def city
     return params[:city] if params[:city]
-    return City.find(current_user.try(:city_id)).slug if current_user.try(:city_id)
-    "brooklyn"
-  end
-
-  def state_cities
-    State.find_by_slug(state).cities
+    return current_user.try(:city_slug) if current_user.try(:city_slug)
   end
 
   def sort_select
@@ -68,7 +67,7 @@ module FormHelper
       f.select :city_id,
                state.cities.collect { |city| [city.name, city.id] },
                { label: "* Город" },
-               class: "city-select my-dropdown-multiple"
+               class: "city-select my-dropdown"
     else
       f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown"
     end

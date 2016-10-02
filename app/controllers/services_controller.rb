@@ -2,6 +2,7 @@ class ServicesController < ApplicationController
   def index
     redirect_to search_services_path(sliced_params) if search?
     @services = Service.includes(:state, :city)
+                       .where.not(id: favorites("Service"))
                        .filter(sliced_params)
                        .page(params[:page])
     IncreaseImpressionsJob.perform_async(@services.pluck(:id), "Service")

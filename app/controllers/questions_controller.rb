@@ -13,6 +13,19 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def tag
+    @questions  = Question.includes(:taggings)
+    @questions = @questions.tagged_with(params[:tag]) if params[:tag].present?
+    @questions = @questions.by_views.page(params[:page])
+    IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
+    @tags = Question.tag_counts.sort_by(&:name)
+    respond_to do |format|
+      format.html { render :index }
+      format.js { render partial: "shared/index", locals: { records: @questions } }
+    end
+  end
+
+
   def unanswered
     @questions = Question.unanswered.includes(:taggings)
                           .by_keyword(params[:keyword])
@@ -32,21 +45,9 @@ class QuestionsController < ApplicationController
                          .by_keyword(params[:keyword])
                          .page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
-    @tags = Question.unanswered.tag_counts.sort_by(&:name)
+  @tags = Question.unanswered.tag_counts.sort_by(&:name)
     respond_to do |format|
-      format.html
-      format.js { render partial: "shared/index", locals: { records: @questions } }
-    end
-  end
-
-  def tag
-    @questions  = Question.includes(:taggings)
-    @questions = @questions.tagged_with(params[:tag]) if params[:tag].present?
-    @questions = @questions.by_views.page(params[:page])
-    IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
-    @tags = Question.tag_counts.sort_by(&:name)
-    respond_to do |format|
-      format.html
+      format.html { render :unanswered }
       format.js { render partial: "shared/index", locals: { records: @questions } }
     end
   end

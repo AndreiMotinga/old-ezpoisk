@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
   get "sitemaps/sitemap:id.:format.:compression", to: "sitemap#show_id"
   resources :cities, only: :index
-  get "update_subcategory", to: "subcategories#update_subcategory"
+  resources :subcategories, only: :index
   get '/tos', to: 'tos#tos'
 
   namespace :dashboard do
@@ -43,16 +43,16 @@ Rails.application.routes.draw do
     resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
-    resources :re_privates
-    resources :jobs
-    resources :sales
-    resources :services
-    resources :reviews
+    resources :re_privates, except: :show
+    resources :jobs, except: :show
+    resources :sales, except: :show
+    resources :services, except: :show
+    resources :reviews, except: :show
     resources :answers, only: [:index]
-    resources :posts
+    resources :posts, except: :show
     authenticate :user, ->(u) { u.editor? } do
       resources :editors, only: [:show, :update]
-      resources :posts do
+      resources :posts, except: :show do
         collection do
           get "all"
           get "import"
@@ -60,23 +60,13 @@ Rails.application.routes.draw do
         end
       end
     end
-    resources :partners, except: [:show] do
-      member do
-        post "increment", to: "partners#increment"
-        get "redirect", to: "partners#redirect"
-      end
-      resources :charges, only: [:new] do
-        collection do
-          post "week", action: "week", as: "week"
-          post "biweek", action: "biweek", as: "biweek"
-          post "quadroweek", action: "quadroweek", as: "quadroweek"
-        end
-      end
+    resources :partners do
+      post "increment", to: "partners#increment", on: :collection
     end
   end
 
   resources :posts, only: [:index, :show] do
-    get "tag/:tag", to: "posts#tag", as: "post_tag", on: :collection
+    get "tag/:tag", to: "posts#tag", as: "tag", on: :collection
   end
   resources :sales, only: [:index, :show] do
     collection do
@@ -103,10 +93,12 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, ->(u) { u.admin? } do
-    get "feeds", to: "feeds#index"
-    get "importer", to: "feeds#importer"
-    get "import_vk", to: "feeds#import_vk"
-    get "import_fb", to: "feeds#import_fb"
+    resources :imports, only: :index do
+      collection do
+        get "vk", to: "imports#vk"
+        get "fb", to: "imports#fb"
+      end
+    end
     mount Sidekiq::Web => "/sidekiq_monstro"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end

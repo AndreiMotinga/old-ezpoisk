@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
   acts_as_mappable
   acts_as_commentable
   include Filterable
-  include ViewHelpers
+  include ListingHelpers
   include Tokenable
 
   validates :title, presence: true, length: { maximum: 90 }
@@ -40,7 +40,7 @@ class Job < ActiveRecord::Base
   end)
 
   def edit_link
-    url_helpers.edit_dashboard_job_path(self)
+    Rails.application.routes.url_helpers.edit_dashboard_job_path(self)
   end
 
   def self.subcategory(subs)
@@ -49,11 +49,12 @@ class Job < ActiveRecord::Base
   end
 
   def show_url
-    url_helpers.job_url(self)
+    Rails.application.routes.url_helpers.job_url(self)
   end
 
   def edit_url_with_token
-    url_helpers.edit_dashboard_job_url(self, token: token)
+    Rails.application.routes.url_helpers
+                            .edit_dashboard_job_url(self, token: token)
   end
 
   def self.taggings_list

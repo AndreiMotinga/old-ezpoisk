@@ -1,6 +1,5 @@
 document.addEventListener("turbolinks:load", function() {
   $(".state-select-slug").change(function(){
-    console.log($(".state-select :selected").val())
     $.ajax({
       url: "/cities",
       type: 'GET',
@@ -12,7 +11,6 @@ document.addEventListener("turbolinks:load", function() {
   });
 
   $(".state-select-id").change(function(){
-    console.log($(".state-select :selected").val())
     $.ajax({
       url: "/cities",
       type: 'GET',

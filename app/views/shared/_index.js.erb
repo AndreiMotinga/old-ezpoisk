@@ -24,6 +24,7 @@ else {
   $(".pagination").replaceWith("<%= j(paginate records) %>")
 <% else  %>
   $(".pagination").remove();
+  $("[data-id='downloading']").remove();
 <% end %>
 
 // send ajax request to increaset impressions on visible partners
