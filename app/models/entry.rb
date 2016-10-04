@@ -5,7 +5,6 @@ class Entry < ActiveRecord::Base
 
   validates :user_id, presence: true
 
-  scope :desc, -> { order("created_at desc") }
   scope :articles, -> { where(enterable_type: %w(Answer Post)) }
   scope :news, -> { where(enterable_type: %w(Answer Post Review Question)) }
   scope :listings, -> { where(enterable_type: %w(RePrivate Sale Service Job)) }
