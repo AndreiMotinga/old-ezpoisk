@@ -6,7 +6,7 @@
         = f.text_area :text, rows: 5, label: 'Описание'
         .row
           .col-xs-12.col-sm-6
-            = f.select :category, ru(SALE_CATEGORIES), include_blank: true, label: '* Категория'
+            = f.select :category, ru(SALE_CATEGORIES), label: '* Категория'
           .col-xs-12.col-sm-6
             = f.number_field :price, label: 'Цена'
 
