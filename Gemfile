@@ -57,7 +57,7 @@ gem "slack-notifier"
 gem "acts_as_votable"
 gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 
-gem "rack-mini-profiler", github: "MiniProfiler/rack-mini-profiler", branch: "master", require: false
+gem "rack-mini-profiler", github: "MiniProfiler/rack-mini-profiler", branch: "master"
 gem "rack-cors", require: "rack/cors"
 
 gem "omniauth-facebook"
