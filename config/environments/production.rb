@@ -12,16 +12,17 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
     "Cache-Control" => "public, s-maxage=31536000, maxage=15552000",
     "Expires" => "#{1.year.from_now.to_formatted_s(:rfc822)}"
   }
+
+  config.action_controller.perform_caching = true
+  config.cache_store = :redis_store, ENV["REDISCLOUD_URL"]
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -45,7 +46,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

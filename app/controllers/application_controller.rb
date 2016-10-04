@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_rack_mini_profiler
-  before_action :redirect_to_https
+  # before_action :redirect_to_https
 
   private
 
@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
   end
 
   def check_rack_mini_profiler
-    Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    return unless current_user.try(:admin?)
+    return Rack::MiniProfiler.authorize_request if Rails.env.development?
+    return Rack::MiniProfiler.authorize_request if current_user.try(:admin)
   end
 
   def get_record(model, id, path)
