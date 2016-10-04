@@ -5,7 +5,7 @@ class PartnerImpressionsJob
   def perform(ids)
     partners = Partner.where(id: ids)
     partners.each do |partner|
-      partner.update_column(:impressions_count, partner.impressions_count + 1)
+      partner.increment!(:impressions_count)
     end
   end
 end

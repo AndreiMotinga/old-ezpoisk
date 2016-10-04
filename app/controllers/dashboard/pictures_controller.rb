@@ -17,7 +17,7 @@ class Dashboard::PicturesController < ApplicationController
   def update
     @picture = current_user.images.find(params[:id])
     @picture.imageable.unset_logo
-    @picture.imageable.update_column(:logo_url, @picture.image.url(:medium))
+    @picture.imageable.update_attribute(:logo_url, @picture.image.url(:medium))
     @picture.update_attribute(:logo, true)
   end
 

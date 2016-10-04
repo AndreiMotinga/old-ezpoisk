@@ -13,7 +13,7 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def show
-    @partner.update_column(:clicks, @partner.clicks + 1)
+    @partner.increment!(:clicks)
     begin
       redirect_to URI.parse(@partner.url).to_s
     rescue URI::InvalidURIError

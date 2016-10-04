@@ -182,7 +182,7 @@ describe RePrivatesController do
             create :re_private, space: 100
             create :re_private, space: 300
 
-            get :index, params: { sorted: "updated_at asc" }
+            get :index, params: { sorted: "created_at asc" }
             expect(assigns(:re_privates).pluck(:space)).to eq [200, 100, 300]
           end
         end

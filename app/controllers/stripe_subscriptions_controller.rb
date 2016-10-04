@@ -14,7 +14,7 @@ class StripeSubscriptionsController < ApplicationController
 
   def update_service_priority
     plan = StripePlan.find_by_stripe_id(params[:plan])
-    Service.find(params[:service_id]).update_column(:priority, plan.priority)
+    Service.find(params[:service_id]).update_attribute(:priority, plan.priority)
   end
 
   def attributes

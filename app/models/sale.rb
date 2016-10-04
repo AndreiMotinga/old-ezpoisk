@@ -38,7 +38,7 @@ class Sale < ActiveRecord::Base
        .state_id(state_id)
        .city_id(city_id)
        .category(category)
-       .older(updated_at)
+       .older(created_at)
        .desc
        .limit(10)
   end

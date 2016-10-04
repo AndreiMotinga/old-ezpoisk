@@ -67,20 +67,20 @@ class AnswersController < ApplicationController
   def upvote
     @answer = Answer.find(params[:id])
     @answer.upvote_by current_user
-    @answer.update_column(:votes_count, @answer.score)
+    @answer.update_attribute(:votes_count, @answer.score)
   end
 
   def downvote
     @answer = Answer.find(params[:id])
     @answer.unvote_by current_user if current_user.voted_for? @answer
     @answer.downvote_by current_user
-    @answer.update_column(:votes_count, @answer.score)
+    @answer.update_attribute(:votes_count, @answer.score)
   end
 
   def unvote
     @answer = Answer.find(params[:id])
     @answer.unvote_by current_user
-    @answer.update_column(:votes_count, @answer.score)
+    @answer.update_attribute(:votes_count, @answer.score)
   end
 
   private

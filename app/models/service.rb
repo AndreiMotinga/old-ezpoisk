@@ -50,14 +50,14 @@ class Service < ActiveRecord::Base
   end
 
   def update_rating
-    update_column(:rating).reviews.average(:rating).round
+    update_attribute(:rating).reviews.average(:rating).round
   end
 
   def side_items
     Service.category(category)
            .subcategory(subcategory)
            .where.not(id: id)
-           .order("featured desc, priority desc, updated_at desc")
+           .order("featured desc, priority desc, created_at desc")
            .limit(3)
   end
 

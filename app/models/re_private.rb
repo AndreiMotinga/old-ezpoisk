@@ -59,7 +59,7 @@ class RePrivate < ActiveRecord::Base
              .post_type(post_type)
              .category(category)
              .duration(duration)
-             .older(updated_at)
+             .older(created_at)
              .desc
              .limit(10)
   end

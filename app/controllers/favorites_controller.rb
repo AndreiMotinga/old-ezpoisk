@@ -12,7 +12,7 @@ class FavoritesController < ApplicationController
 
   def touch
     @rec = model.find(rec_params[:id])
-    @rec.touch
+    @rec.touch(:created_at)
     @rec.entry.touch
   end
 

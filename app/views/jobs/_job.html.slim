@@ -15,7 +15,7 @@
         strong= link_to t(job.category), jobs_path(category: job.category)
         = " | "
         span data-time=job.id
-          = timeago_tag job.updated_at
+          = timeago_tag job.created_at
         = " | "
         = render "shared/indicators", record: job
         .row

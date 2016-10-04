@@ -4,8 +4,8 @@ class DeactivationsController < ApplicationController
     deactivation = current_user.deactivations.build(deactivation_params)
     @rec = deactivation.deactivatable
     if deactivation.save
-      @rec.update_column(:deactivations_count, @rec.deactivations_count + 1)
-      @rec.update_column(:active, false) if @rec.deactivations_count > 5
+      @rec.increment!(:deactivations_count)
+      @rec.update_attribute(:active, false) if @rec.deactivations_count > 5
     end
     render "create.js.erb" # spec won't pass
   end

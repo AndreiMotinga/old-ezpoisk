@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161003235037) do
+ActiveRecord::Schema.define(version: 20161004223447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20161003235037) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "enterable_id"
     t.string   "enterable_type"
+    t.integer  "enterable_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -167,8 +167,8 @@ ActiveRecord::Schema.define(version: 20161003235037) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.integer  "imageable_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -401,13 +401,12 @@ ActiveRecord::Schema.define(version: 20161003235037) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       limit: 128
-    t.datetime "created_at"
+    t.integer "tag_id"
+    t.string  "taggable_type"
+    t.integer "taggable_id"
+    t.string  "tagger_type"
+    t.integer "tagger_id"
+    t.string  "context",       limit: 128
     t.index ["context"], name: "index_taggings_on_context", using: :btree
     t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
     t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
@@ -480,10 +479,10 @@ ActiveRecord::Schema.define(version: 20161003235037) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
     t.string   "votable_type"
-    t.integer  "voter_id"
+    t.integer  "votable_id"
     t.string   "voter_type"
+    t.integer  "voter_id"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"

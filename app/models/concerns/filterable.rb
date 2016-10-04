@@ -8,7 +8,7 @@ module Filterable
     scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
     scope :till_last_week, -> { where("created_at < ?", Date.today.at_beginning_of_week) }
     scope :older, ->(date) { where("created_at < ?", date) }
-    scope :desc, -> { order("updated_at desc") }
+    scope :desc, -> { order("created_at desc") }
 
     scope :active, -> { where(active: true) }
     scope :featured, -> { where(featured: true) }
@@ -43,7 +43,7 @@ module Filterable
 
   module ClassMethods
     def filter(params)
-      results = params[:sorted] ? active : active.order("featured desc, priority desc, updated_at desc")
+      results = params[:sorted] ? active : active.order("featured desc, priority desc, created_at desc")
       params.each do |key, value|
         results = results.public_send(key, value) unless value.blank?
       end

@@ -42,7 +42,7 @@ class ListingCreator
       state_id: @group[:state_id],
       city_id: @group[:city_id],
       user_id: 181,
-      updated_at: @post[:date],
+      created_at: @post[:date],
       fb: @post[:fb],
       vk: @post[:vk]
     )
@@ -60,7 +60,7 @@ class ListingCreator
       user_id: 181,
       state_id: @group[:state_id],
       city_id: @group[:city_id],
-      updated_at: @post[:date],
+      created_at: @post[:date],
       fb: @post[:fb],
       vk: @post[:vk]
     )
@@ -75,7 +75,7 @@ class ListingCreator
       user_id: 181,
       state_id: @group[:state_id],
       city_id: @group[:city_id],
-      updated_at: @post[:date],
+      created_at: @post[:date],
       fb: @post[:fb],
       vk: @post[:vk]
     )

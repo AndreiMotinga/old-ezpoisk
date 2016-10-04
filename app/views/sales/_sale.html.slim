@@ -29,7 +29,7 @@
 
       / line 4
       span data-time=sale.id
-        = timeago_tag sale.updated_at
+        = timeago_tag sale.created_at
       = " | "
       = render "shared/indicators", record: sale
 

@@ -5,6 +5,6 @@ class HasAttachmentsJob
   def perform(id)
     pic = Picture.find(id)
     return if !pic || pic.imageable.pictures.count > 1
-    pic.imageable.update_column(:has_attachments, true)
+    pic.imageable.update_attribute(:has_attachments, true)
   end
 end

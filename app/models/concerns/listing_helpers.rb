@@ -61,6 +61,6 @@ module ListingHelpers
   def clear_phone!
     return unless self.phone.present?
     cleared = self.phone.split(",").map { |num| num.gsub(/\D/, "") }.join(",")
-    self.update_column(:phone, cleared)
+    self.update_attribute(:phone, cleared)
   end
 end
