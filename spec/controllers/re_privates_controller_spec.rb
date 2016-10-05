@@ -38,7 +38,7 @@ describe RePrivatesController do
       xit "doesn't redirect when search params inlcude geoscope" do
         prms = { geo_scope: { origin: 20, within: "east 18th Brooklyn NY" } }
         get :index, params: prms
-        # todo how to stub it
+        # fix how to stub it
         stub_request(:get, /.*/).to_return(status: 200, body: "")
 
         expect(response).to render_template :index
@@ -209,16 +209,6 @@ describe RePrivatesController do
 
       expect(response).to redirect_to re_privates_path
       expect(flash[:alert]).to eq I18n.t(:post_not_found)
-      expect(IncreaseVisitsJob.jobs.size).to eq 0
-    end
-
-    it "doesn't increase visits if user visits his listsing" do
-      user = create :user
-      sign_in(user)
-      re_private = create(:re_private, user: user)
-
-      get :show, params: { id: re_private.id }
-
       expect(IncreaseVisitsJob.jobs.size).to eq 0
     end
   end

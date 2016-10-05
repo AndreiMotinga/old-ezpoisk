@@ -6,7 +6,9 @@
   = render "shared/tag_cloud", tags: Post.tag_counts.sort_by(&:name), url: "/posts/tag/"
 
 .col-xs-12 data-id="listings"
-  = render @posts
+  - cache @posts
+    - @posts.each do |post|
+      = render post
 
 .row
   .col-xs-12

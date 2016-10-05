@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_mappable
   include ListingHelpers
+  include Cachable
   # Include default devise modules. Others available are:
   # :validatable, :confirmable, :timeoutable,
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
@@ -10,6 +11,14 @@ class User < ActiveRecord::Base
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
   after_create :send_emails
+  after_save :invalidate_cache
+
+  def self.serialize_from_session(key, salt)
+    single_key = key.is_a?(Array) ? key.first : key
+    Rails.cache.fetch("user:#{single_key}") do
+       User.where(id: single_key).entries.first
+    end
+  end
 
   belongs_to :state
   belongs_to :city
@@ -107,5 +116,9 @@ class User < ActiveRecord::Base
   def send_emails
     SlackNotifierJob.perform_async(id, "User")
     UserMailerJob.perform_async(id)
+  end
+
+  def invalidate_cache
+    Rails.cache.delete("user:#{id}")
   end
 end

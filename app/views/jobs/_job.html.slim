@@ -1,29 +1,30 @@
-.row.white-block data-listing-id=job.id
-  .listing
-    .panel.panel-default
-      .panel-heading
-        = render "shared/favor_links", record: job
-        h4.title= link_to job.title, job
+- cache [job, current_user.try(:role)]
+  .row.white-block data-listing-id=job.id
+    .listing
+      .panel.panel-default
+        .panel-heading
+          = render "shared/favor_links", record: job
+          h4.title= link_to job.title, job
 
-      .panel-body
-        .text itemprop="description"
-          = simple_format job.text
-        p.tags
-          = sanitize job.tag_list.map { |tag| link_to "##{tag}", tag_jobs_path(tag), class: "tag" }.join
+        .panel-body
+          .text itemprop="description"
+            = simple_format job.text
+          p.tags
+            = sanitize job.tag_list.map { |tag| link_to "##{tag}", tag_jobs_path(tag), class: "tag" }.join
 
-      .panel-footer
-        strong= link_to t(job.category), jobs_path(category: job.category)
-        = " | "
-        span data-time=job.id
-          = timeago_tag job.created_at
-        = " | "
-        = render "shared/indicators", record: job
-        .row
-          .col-xs-7
-            strong
-              - if job.remote?
-                | Доступна во всех штатах
-              - else
-                = link_to job.city.name, search_jobs_path(state: job.state.slug, city: job.city.slug)
-                = ", "
-                = link_to job.state.name, search_jobs_path(state: job.state.slug)
+        .panel-footer
+          strong= link_to t(job.category), jobs_path(category: job.category)
+          = " | "
+          span data-time=job.id
+            = timeago_tag job.created_at
+          = " | "
+          = render "shared/indicators", record: job
+          .row
+            .col-xs-7
+              strong
+                - if job.remote?
+                  | Доступна во всех штатах
+                - else
+                  = link_to job.cached_city.name, search_jobs_path(state: job.state.slug, city: job.cached_city.slug)
+                  = ", "
+                  = link_to job.cached_state.name, search_jobs_path(state: job.cached_state.slug)

@@ -1,6 +1,6 @@
 class DataAggregator
   def initialize
-    @listings_count = models.map{|m| m.till_last_week.count}.sum
+    @listings_count = models.map{|m| m.last_week.count}.sum
     # @listings_goal = (@listings_count * 0.33).round
     @listings_goal = 400
 

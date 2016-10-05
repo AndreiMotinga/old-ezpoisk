@@ -3,7 +3,7 @@ module Filterable
 
   module ClassMethods
     def filter(params)
-      results = params[:sorted] ? active : active.order("featured desc, priority desc, created_at desc")
+      results = params[:sorted] ? active : active.default
       params.each do |key, value|
         results = results.public_send(key, value) unless value.blank?
       end
@@ -12,14 +12,17 @@ module Filterable
   end
 
   included do
+    scope :default , -> { order("featured desc, priority desc,
+                                #{table_name}.created_at desc") }
+    scope :today, -> { where("#{table_name}.created_at > ?", Date.today) }
+    scope :week, -> { where("#{table_name}.created_at > ?",
+                            Date.today.at_beginning_of_week) }
+    scope :last_week, -> { where("#{table_name}.created_at < ?",
+                                      Date.today.at_beginning_of_week) }
+    scope :desc, -> { order("#{table_name}.created_at desc") }
+    scope :older, ->(date) { where("#{table_name}.created_at < ?", date) }
     scope :random, -> { order("RANDOM()") }
     scope :unpaid, -> { where(paid: false) }
-    scope :today, -> { where("created_at > ?", Date.today) }
-    scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
-    scope :till_last_week, -> { where("created_at < ?", Date.today.at_beginning_of_week) }
-    scope :older, ->(date) { where("created_at < ?", date) }
-    scope :desc, -> { order("created_at desc") }
-
     scope :active, -> { where(active: true) }
     scope :featured, -> { where(featured: true) }
     scope :state_id, ->(id) { where(state_id: id) }

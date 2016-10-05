@@ -4,6 +4,7 @@ class Sale < ActiveRecord::Base
   include Filterable
   include ListingHelpers
   include Tokenable
+  include Cachable
   validates_with SourceValidator
 
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }

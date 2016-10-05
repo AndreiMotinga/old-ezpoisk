@@ -2,7 +2,7 @@
 - d = strip_tags(@sale.text).truncate(160)
 - d = d.present? ? d : "Продается #{t @sale.category} #{@sale.title}"
 = desc(d)
-= title("#{@sale.title}, #{@sale.city.name} #{@sale.state.name} - ezpoisk")
+= title("#{@sale.title}, #{@sale.cached_city.name} #{@sale.cached_state.name} - ezpoisk")
 
 = og_type("article")
 = og_url(sale_url(@sale))
@@ -11,15 +11,7 @@
 - content_for :sidebar do
   = render "shared/show/contacts", record: @sale
 
-- if @sale.pictures.any?
-  .show
-    .white-block
-      ul.pgwSlideshow
-        - @sale.pictures.each do |pic|
-          li itemscope="" itemtype="http://schema.org/ImageObject"
-            = link_to pic.image.url, itemprop: "contentUrl" do
-              = image_tag pic.image.url(:large),
-                          alt: "Продается #{t @sale.category} #{@sale.title} #{@sale.city.name} #{@sale.state.name} #{pic.image_file_name}"
+= render "shared/show/pictures", record: @sale
 
 div itemscope="" itemtype="http://schema.org/Product"
   .col-xs-12

@@ -13,6 +13,6 @@ feature "User browses re_private" do
 
     visit re_private_path(rp)
 
-    expect(page).to have_content rp.title
+    expect(page).to have_content rp.id
   end
 end

@@ -9,17 +9,13 @@ class ApplicationController < ActionController::Base
 
   def check_rack_mini_profiler
     return Rack::MiniProfiler.authorize_request if Rails.env.development?
-    # todo fix for production
-    # return Rack::MiniProfiler.authorize_request if current_user.try(:admin)
-    Rack::MiniProfiler.authorize_request
+    Rack::MiniProfiler.authorize_request if current_user.try(:admin)
   end
 
   def get_record(model, id, path)
     item = model.cached_find(id)
     if item && item.active?
-      unless item.user.present? && item.user == current_user
-        IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)
-      end
+      IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)
       if item.visits == 9
         ListingsNotifierJob.perform_in(12.minutes, item.id, item.class.to_s)
       end

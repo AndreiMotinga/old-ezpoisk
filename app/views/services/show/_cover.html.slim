@@ -1,14 +1,15 @@
-.row.cover
-  .left.col-xs-12.col-sm-4
-    .background style="background-image: url(#{@service.cover.url(:large)})"
-    .content.text-center
-      = image_tag @service.logo.url(:avatar),
-                  class: "img-circle center-block",
-                  alt: @service.title
-      h1.name= @service.title
-      .views
-        = render "services/show/rating", service: @service
-        = "#{@service.visits} просмотров"
+- cache [@service, :show_cover]
+  .row.cover
+    .left.col-xs-12.col-sm-4
+      .background style="background-image: url(#{@service.cover.url(:large)})"
+      .content.text-center
+        = image_tag @service.logo.url(:avatar),
+                    class: "img-circle center-block",
+                    alt: @service.title
+        h1.name= @service.title
+        .views
+          = render "services/show/rating", service: @service
+          = "#{@service.visits} просмотров"
 
-  .col-sm-8.right-side
-    = image_tag @service.cover.url(:large), class: "img-responsive"
+    .col-sm-8.right-side
+      = image_tag @service.cover.url(:large), class: "img-responsive"

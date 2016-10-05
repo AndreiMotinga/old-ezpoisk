@@ -7,7 +7,6 @@ class ImageDownloaderJob
     @record = model.constantize.find_by_id(id)
     return unless @record
     download(pics)
-    @record.update_attribute(:has_attachments, true) if @record.pictures.count > 1
   end
 
   def download(pics)

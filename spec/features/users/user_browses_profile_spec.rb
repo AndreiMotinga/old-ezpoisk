@@ -25,7 +25,7 @@ feature "User browses profile" do
 
     visit user_path(user)
     first(:link, "Объявления").click
-    expect(page).to have_content re_private.title
+    expect(page).to have_content re_private.street
   end
 
   scenario "visits answers" do

@@ -1,32 +1,33 @@
-ul.nav.nav-tabs[role="tablist"]
-  li.active[role="presentation"]
-    a[href="#city" aria-controls="city" role="tab" data-toggle="tab"]
-      | Выбрать город
-  li[role="presentation"]
-    a[href="#radius" aria-controls="radius" role="tab" data-toggle="tab"]
-      | Радиус поиска
+- cache :index_address_search
+  ul.nav.nav-tabs[role="tablist"]
+    li.active[role="presentation"]
+      a[href="#city" aria-controls="city" role="tab" data-toggle="tab"]
+        | Выбрать город
+    li[role="presentation"]
+      a[href="#radius" aria-controls="radius" role="tab" data-toggle="tab"]
+        | Радиус поиска
 
-.tab-content
-  #city.tab-pane.active role="tabpanel" data-id="address"
-    .row
-      .col-xs-12.col-sm-6
-        = label_tag "Штат", nil,  class: "control-label"
-        = select_tag :state, options_for_select(STATES, state), include_blank: true, class: "form-control state-select-slug my-dropdown"
+  .tab-content
+    #city.tab-pane.active role="tabpanel" data-id="address"
+      .row
+        .col-xs-12.col-sm-6
+          = label_tag "Штат", nil,  class: "control-label"
+          = select_tag :state, options_for_select(STATES, state), include_blank: true, class: "form-control state-select-slug my-dropdown"
 
-      .col-xs-12.col-sm-6
-        = label_tag "Город", nil,  class: "control-label"
-        = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),
-                     include_blank: true,
-                     class: "form-control city-select my-dropdown"
+        .col-xs-12.col-sm-6
+          = label_tag "Город", nil,  class: "control-label"
+          = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),
+                       include_blank: true,
+                       class: "form-control city-select my-dropdown"
 
 
-  #radius.tab-pane[role="tabpanel"]
-    .row
-      .col-xs-12.col-sm-3
-        = label_tag "Радиус (миль)", nil,  class: "control-label"
-        = within_text_field_param
-      .col-xs-12.col-sm-9
-        = label_tag "от (address / zipcode)", nil,  class: "control-label"
-        = origin_text_field_param
+    #radius.tab-pane[role="tabpanel"]
+      .row
+        .col-xs-12.col-sm-3
+          = label_tag "Радиус (миль)", nil,  class: "control-label"
+          = within_text_field_param
+        .col-xs-12.col-sm-9
+          = label_tag "от (address / zipcode)", nil,  class: "control-label"
+          = origin_text_field_param
 
-hr
+  hr

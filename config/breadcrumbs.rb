@@ -7,7 +7,7 @@ crumb :re_privates do
 end
 
 crumb :re_private do |re_private|
-  link re_private.name, re_private
+  link re_private.id, re_private
   parent :re_privates
 end
 
@@ -140,7 +140,7 @@ crumb :dashboard_re_privates_path do |user|
 end
 
 crumb :edit_dashboard_re_private_path do |user, re_private|
-  link re_private.name, edit_dashboard_re_private_path(re_private)
+  link re_private.id, edit_dashboard_re_private_path(re_private)
   parent :dashboard_re_privates_path, user
 end
 

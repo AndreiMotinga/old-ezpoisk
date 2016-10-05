@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     @posts = Post.includes(:user, :taggings)
                  .visible
                  .desc
-                 .page(params[:page]).per(10)
+                 .page(params[:page])
     IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
     respond_to do |format|
       format.html

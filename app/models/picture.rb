@@ -1,7 +1,5 @@
 class Picture < ActiveRecord::Base
-  belongs_to :imageable, polymorphic: true
-
-  delegate :logo, to: :imageable, prefix: true
+  belongs_to :imageable, polymorphic: true, touch: true
 
   has_attached_file :image, styles: { medium: "x120",
                                       thumbnail: "100x100#",

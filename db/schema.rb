@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161005135559) do
+ActiveRecord::Schema.define(version: 20161005232447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,8 @@ ActiveRecord::Schema.define(version: 20161005135559) do
     t.datetime "image_updated_at"
     t.boolean  "logo"
     t.integer  "user_id"
+    t.datetime "created_at",         default: '2016-10-05 22:32:55', null: false
+    t.datetime "updated_at",         default: '2016-10-05 22:32:55', null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
     t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
@@ -227,36 +229,34 @@ ActiveRecord::Schema.define(version: 20161005135559) do
   end
 
   create_table "re_privates", force: :cascade do |t|
-    t.string   "street",              default: "",                                                   null: false
-    t.string   "post_type",           default: "",                                                   null: false
-    t.string   "duration",            default: "",                                                   null: false
-    t.string   "phone",               default: "",                                                   null: false
+    t.string   "street",              default: "",    null: false
+    t.string   "post_type",           default: "",    null: false
+    t.string   "duration",            default: "",    null: false
+    t.string   "phone",               default: "",    null: false
     t.integer  "price"
     t.integer  "baths"
     t.integer  "space"
-    t.string   "rooms",                                                                              null: false
+    t.string   "rooms",                               null: false
     t.integer  "zip"
     t.float    "lat"
     t.float    "lng"
     t.boolean  "active",              default: false
     t.boolean  "fee",                 default: false
-    t.text     "text",                default: "",                                                   null: false
+    t.text     "text",                default: "",    null: false
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",                                                                         null: false
-    t.datetime "updated_at",                                                                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "impressions_count",   default: 0
     t.string   "email"
     t.integer  "visits",              default: 0
-    t.integer  "priority",            default: 0,                                                    null: false
+    t.integer  "priority",            default: 0,     null: false
     t.string   "token"
     t.string   "category"
     t.string   "vk",                  default: ""
     t.string   "fb",                  default: ""
     t.boolean  "featured",            default: false
-    t.boolean  "has_attachments",     default: false
-    t.string   "logo_url",            default: "https://s3.amazonaws.com/ezpoisk/missing-small.png"
     t.integer  "deactivations_count", default: 0
     t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
     t.index ["fb"], name: "index_re_privates_on_fb", using: :btree
@@ -285,28 +285,26 @@ ActiveRecord::Schema.define(version: 20161005135559) do
     t.string   "category"
     t.string   "phone"
     t.string   "email"
-    t.text     "text",                default: "",                                                   null: false
+    t.text     "text",                default: "",    null: false
     t.boolean  "active"
     t.float    "lat"
     t.float    "lng"
     t.integer  "user_id"
     t.integer  "state_id"
     t.integer  "city_id"
-    t.datetime "created_at",                                                                         null: false
-    t.datetime "updated_at",                                                                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "zip"
     t.string   "street"
     t.integer  "impressions_count",   default: 0
     t.string   "slug"
     t.integer  "price"
     t.integer  "visits",              default: 0
-    t.integer  "priority",            default: 0,                                                    null: false
+    t.integer  "priority",            default: 0,     null: false
     t.string   "token"
     t.string   "vk",                  default: ""
     t.string   "fb",                  default: ""
     t.boolean  "featured",            default: false
-    t.boolean  "has_attachments",     default: false
-    t.string   "logo_url",            default: "https://s3.amazonaws.com/ezpoisk/missing-small.png"
     t.integer  "deactivations_count", default: 0
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["fb"], name: "index_sales_on_fb", using: :btree
@@ -326,12 +324,12 @@ ActiveRecord::Schema.define(version: 20161005135559) do
     t.string   "site"
     t.string   "category"
     t.string   "subcategory"
-    t.text     "text",               default: "",                                                   null: false
+    t.text     "text",               default: "",    null: false
     t.integer  "user_id"
     t.integer  "city_id"
     t.integer  "state_id"
-    t.datetime "created_at",                                                                        null: false
-    t.datetime "updated_at",                                                                        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "logo_file_name"
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
@@ -341,7 +339,7 @@ ActiveRecord::Schema.define(version: 20161005135559) do
     t.integer  "zip"
     t.string   "slug",               default: ""
     t.integer  "impressions_count",  default: 0
-    t.integer  "priority",           default: 0,                                                    null: false
+    t.integer  "priority",           default: 0,     null: false
     t.integer  "visits",             default: 0
     t.string   "token"
     t.boolean  "active"
@@ -355,9 +353,6 @@ ActiveRecord::Schema.define(version: 20161005135559) do
     t.string   "twitter"
     t.string   "ok"
     t.boolean  "featured",           default: false
-    t.boolean  "has_attachments",    default: false
-    t.string   "logo_url",           default: "https://s3.amazonaws.com/ezpoisk/missing-small.png"
-    t.integer  "rating",             default: 0
     t.index ["city_id"], name: "index_services_on_city_id", using: :btree
     t.index ["state_id"], name: "index_services_on_state_id", using: :btree
     t.index ["user_id"], name: "index_services_on_user_id", using: :btree

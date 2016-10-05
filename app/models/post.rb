@@ -27,8 +27,6 @@ class Post < ActiveRecord::Base
     end
   end
 
-  scope :desc, -> { order("posts.created_at desc") }
-  scope :older, ->(date) { where("posts.created_at < ?", date) }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
 

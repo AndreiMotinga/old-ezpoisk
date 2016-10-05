@@ -7,15 +7,17 @@
   = render("shared/listings_count",
             title: "Продажи",
             url: sales_path,
-            today: Sale.active.today.count,
-            week: Sale.active.week.count,
-            total: Sale.active.count)
+            today: Sale.cached_active_today_count,
+            week: Sale.cached_active_week_count,
+            total: Sale.cached_active_count)
 
 .visible-xs= render("shared/filters_btn", id: "sales", count: @sales.total_count)
 = render "sales/search_form"
 
 .col-xs-12 data-id="listings"
-  = render @sales
+  - cache @sales
+    - @sales.each do |sale|
+      = render sale
 
 .row
   .col-xs-12

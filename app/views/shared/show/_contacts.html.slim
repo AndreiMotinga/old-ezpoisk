@@ -4,9 +4,9 @@
       .panel.panel-default
         .panel-body
           ul.list-group
-            - if record.user and !record.user.admin?
+            - if record.cached_user and !record.cached_user.admin?
               li.list-group-item
-                strong= link_to "Автор",  user_path(record.user)
+                strong= link_to "Автор",  user_path(record.cached_user)
 
             - unless record.try(:vk).blank?
               li.list-group-item

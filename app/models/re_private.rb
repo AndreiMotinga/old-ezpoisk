@@ -28,16 +28,6 @@ class RePrivate < ActiveRecord::Base
   has_one :entry, as: :enterable, dependent: :destroy
   has_many :subscriptions, as: :subscribable, dependent: :destroy
 
-  after_commit :flush_cache
-
-  def title
-    street
-  end
-
-  def name
-    street? ? street : id
-  end
-
   def edit_link
     Rails.application.routes.url_helpers.edit_dashboard_re_private_path(self)
   end
@@ -55,18 +45,15 @@ class RePrivate < ActiveRecord::Base
   end
 
   def similar
-    # todo move to cachable?
-    Rails.cache.fetch([self.class.name, id, :similar]) do
-      RePrivate.includes(:state, :city)
-               .active
-               .state_id(state_id)
-               .city_id(city_id)
-               .post_type(post_type)
-               .category(category)
-               .duration(duration)
-               .older(created_at)
-               .desc
-               .limit(10)
-    end
+    RePrivate.includes(:state, :city)
+             .active
+             .state_id(state_id)
+             .city_id(city_id)
+             .post_type(post_type)
+             .category(category)
+             .duration(duration)
+             .older(created_at)
+             .desc
+             .limit(10)
   end
 end

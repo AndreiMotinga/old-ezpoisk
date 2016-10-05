@@ -2,26 +2,25 @@ module ListingHelpers
   extend ActiveSupport::Concern
 
   def og_image_url
-    logo.present? ? logo.image.url(:large) : "https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
+    cached_logo.present? ? cached_logo.image.url(:large) : "https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
   end
 
-  def logo
-    pictures.find_by_logo(true)
+  def logo_url
+    if cached_logo.present?
+      cached_logo.image.url(:large)
+    else
+      "https://s3.amazonaws.com/ezpoisk/missing-small.png"
+    end
   end
 
   def unset_logo
-    return unless logo
-    logo.update_attribute(:logo, false)
+    return unless cached_logo
+    cached_logo.update_attribute(:logo, false)
+    Rails.cache.delete([self.class.name, id, :cached_logo])
   end
 
   def address
-    if street.present?
-      "#{street} #{cached_city_name} #{state.try(:name)} #{zip}"
-    elsif zip && zip != 0
-      "#{cached_city_name} #{state.try(:name)}, #{zip}"
-    else
-      "#{cached_city_name} #{state.try(:name)}"
-    end
+    "#{street} #{cached_city.try(:name)} #{cached_state.try(:name)} #{zip}".strip
   end
 
   def map_marker

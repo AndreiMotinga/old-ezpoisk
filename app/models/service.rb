@@ -3,6 +3,7 @@ class Service < ActiveRecord::Base
   include Filterable
   include ListingHelpers
   include Tokenable
+  include Cachable
 
   validates :title, presence: true, length: { maximum: 44, minimum: 3 }
   validates :category, presence: true
@@ -49,8 +50,10 @@ class Service < ActiveRecord::Base
     Rails.application.routes.url_helpers.service_url(self)
   end
 
-  def update_rating
-    update_attribute(:rating).reviews.average(:rating).round
+  def rating
+    avg = reviews.average(:rating)
+    return 0 unless avg
+    avg.round
   end
 
   def side_items

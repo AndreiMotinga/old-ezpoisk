@@ -31,7 +31,7 @@ describe Job do
                      city_id: 18_031,
                      zip: 11_229,
                      street: ""
-        address = "Astoria New York, 11229"
+        address = "Astoria New York 11229"
         expect(job.address).to eq address
       end
 
@@ -39,7 +39,7 @@ describe Job do
         job = build :job,
                      state_id: 32,
                      city_id: 18_031,
-                     zip: 0,
+                     zip: nil,
                      street: ""
         address = "Astoria New York"
         expect(job.address).to eq address

@@ -6,7 +6,6 @@ class Dashboard::PicturesController < ApplicationController
   def create
     @picture = current_user.images.build(picture_params)
     if @picture.save
-      HasAttachmentsJob.perform_async(@picture.id)
       render json: { message: "success", fileID: @picture.id }
     else
       render json: { error: @picture.errors.full_messages.join(",") },
@@ -17,7 +16,6 @@ class Dashboard::PicturesController < ApplicationController
   def update
     @picture = current_user.images.find(params[:id])
     @picture.imageable.unset_logo
-    @picture.imageable.update_attribute(:logo_url, @picture.image.url(:medium))
     @picture.update_attribute(:logo, true)
   end
 

@@ -4,7 +4,7 @@
 = desc(d)
 
 - t = @job.title.present? ? @job.title : t(@job.category)
-= title("#{t} #{@job.city.name} #{@job.state.name}")
+= title("#{t} #{@job.cached_city.name} #{@job.cached_state.name}")
 
 = og_type("article")
 = og_url(job_url(@job))

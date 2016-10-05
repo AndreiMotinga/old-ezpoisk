@@ -11,7 +11,9 @@
 = render "questions/search_form"
 
 .col-xs-12 data-id="listings"
-  = render @answers
+  - cache @answers
+    - @answers.each do |answer|
+      = render answer
 
 .row
   .col-xs-12

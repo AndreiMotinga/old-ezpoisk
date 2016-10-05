@@ -5,6 +5,7 @@ class Job < ActiveRecord::Base
   include Filterable
   include ListingHelpers
   include Tokenable
+  include Cachable
 
   validates :title, presence: true, length: { maximum: 90 }
   validates :text, presence: true, length: { minimum: 10 }

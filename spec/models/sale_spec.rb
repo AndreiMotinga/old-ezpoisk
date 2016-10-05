@@ -22,7 +22,7 @@ describe Sale do
                     city_id: 18_031,
                     zip: 123
 
-      expect(sale.address).to eq "Astoria New York, 123"
+      expect(sale.address).to eq "Astoria New York 123"
     end
   end
 

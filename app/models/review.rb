@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
   acts_as_taggable # homepage entry taggings include
-  belongs_to :service
+  belongs_to :service, touch: true
   belongs_to :user
   has_one :entry, as: :enterable, dependent: :destroy
 

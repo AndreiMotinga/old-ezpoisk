@@ -23,7 +23,7 @@ describe RePrivate do
                     imageable_id: re_private.id,
                     logo: true)
 
-      expect(re_private.logo).to eq logo
+      expect(re_private.cached_logo).to eq logo
     end
   end
 

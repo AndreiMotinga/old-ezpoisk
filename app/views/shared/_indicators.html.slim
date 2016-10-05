@@ -1,6 +1,6 @@
 - if record.street.present?
   i.fa.fa-map-o
-- if record.class.method_defined?(:pictures) && record.has_attachments
+- if record.class.method_defined?(:pictures) && record.cached_pictures_count > 1
   i.fa.fa-picture-o
 - if record.try(:site).present?
   i.fa.fa.fa-share-square-o

@@ -13,22 +13,11 @@
   = render "shared/show/contacts", record: @re_private
   = render "re_privates/details"
 
-- if @re_private.pictures.any?
-  .show
-    .white-block
-      ul.pgwSlideshow.pictures
-        - @re_private.pictures.each do |pic|
-          li itemscope="" itemtype="http://schema.org/ImageObject"
-            = link_to pic.image.url, itemprop: "contentUrl" do
-              = image_tag pic.image.url(:large),
-                          alt: "#{t @re_private.post_type} #{t @re_private.rooms} #{@re_private.city.name} \
-                                #{@re_private.state.name} #{@re_private.zip} #{pic.image_file_name}"
+= render "shared/show/pictures", record: @re_private
 
 .div itemscope="" itemtype="http://schema.org/ApartmentComplex"
   .col-xs-12
     = render @re_private
-
-  /= render "shared/gads/leaderboard"
 
   .visible-xs
     = render "shared/show/contacts", record: @re_private
