@@ -28,9 +28,9 @@ class Post < ActiveRecord::Base
   end
 
   scope :desc, -> { order("posts.created_at desc") }
+  scope :older, ->(date) { where("posts.created_at < ?", date) }
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
-  scope :older, ->(date) { where("posts.created_at < ?", date) }
 
   def self.convert_keyword(keyword)
     keyword.gsub(/[^0-9a-zа-я ]/i, "")

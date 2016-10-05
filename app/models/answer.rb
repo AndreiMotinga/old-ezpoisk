@@ -24,6 +24,9 @@ class Answer < ActiveRecord::Base
     end
   end
 
+  scope :desc, -> { order("answers.created_at desc") }
+  scope :older, ->(date) { where("answers.created_at < ?", date) }
+
   def score
     get_upvotes.count - get_downvotes.count
   end
