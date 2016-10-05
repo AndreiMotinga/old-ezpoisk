@@ -4,23 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_rack_mini_profiler
-  # before_action :redirect_to_https
 
   private
 
-  def redirect_to_https
-    return unless Rails.env.production?
-    redirect_to protocol: "https://" unless request.ssl? || request.local?
-  end
-
   def check_rack_mini_profiler
-    return unless current_user.try(:admin?)
     return Rack::MiniProfiler.authorize_request if Rails.env.development?
-    return Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    # todo fix for production
+    # return Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    Rack::MiniProfiler.authorize_request
   end
 
   def get_record(model, id, path)
-    item = model.find(id) if model.exists?(id)
+    item = model.cached_find(id)
     if item && item.active?
       unless item.user.present? && item.user == current_user
         IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)

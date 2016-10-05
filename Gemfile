@@ -73,6 +73,10 @@ gem "stripe-rails"
 
 gem "rails-timeago", "~> 2.0"
 
+# todo put back to dev/test
+gem "factory_girl_rails"
+gem "faker"
+
 group :production do
   gem "puma"
   gem "rails_12factor"
@@ -82,8 +86,6 @@ end
 group :development, :test do
   gem "thin"
   gem "pry-byebug"
-  gem "factory_girl_rails"
-  gem "faker"
   gem "awesome_print"
 end
 

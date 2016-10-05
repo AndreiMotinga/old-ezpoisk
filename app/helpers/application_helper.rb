@@ -16,4 +16,8 @@ module ApplicationHelper
       dashboard_service_path(record)
     end
   end
+
+  def dashboard_controller?
+    controller.class.name.split("::").first == "Dashboard"
+  end
 end

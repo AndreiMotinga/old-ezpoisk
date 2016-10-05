@@ -29,9 +29,11 @@ function incrementPartners(){
     return $(val).data('id');
   });
 
-  $.ajax({
-    type: 'POST',
-    url: "/dashboard/partners/increment",
-    data: { "ids[]": ids }
-  });
+  if(ids.length){
+    $.ajax({
+      type: 'POST',
+      url: "/dashboard/partners/increment",
+      data: { "ids[]": ids }
+    });
+  }
 }

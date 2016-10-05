@@ -7,16 +7,18 @@
   = render("shared/listings_count",
             title: "Недвижимость",
             url: re_privates_path,
-            today: RePrivate.active.today.count,
-            week: RePrivate.active.week.count,
-            total: RePrivate.active.count)
+            today: RePrivate.cached_active_today_count,
+            week: RePrivate.cached_active_week_count,
+            total: RePrivate.cached_active_count)
 .visible-xs= render("shared/filters_btn", count: @re_privates.total_count)
 
 - cache
   = render "re_privates/search_form"
 
 .col-xs-12 data-id="listings"
-  = render @re_privates
+  - cache @re_privates
+    - @re_privates.each do |re_private|
+      = render re_private
 
 .row
   .col-xs-12
