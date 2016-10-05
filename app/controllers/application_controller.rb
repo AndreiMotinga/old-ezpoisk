@@ -8,9 +8,10 @@ class ApplicationController < ActionController::Base
   private
 
   def check_rack_mini_profiler
-    return unless current_user.try(:admin?)
     return Rack::MiniProfiler.authorize_request if Rails.env.development?
-    return Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    # todo fix for production
+    # return Rack::MiniProfiler.authorize_request if current_user.try(:admin)
+    Rack::MiniProfiler.authorize_request
   end
 
   def get_record(model, id, path)
