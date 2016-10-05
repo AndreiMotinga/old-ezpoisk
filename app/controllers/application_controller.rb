@@ -4,14 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :check_rack_mini_profiler
-  # before_action :redirect_to_https
 
   private
-
-  def redirect_to_https
-    return unless Rails.env.production?
-    redirect_to protocol: "https://" unless request.ssl? || request.local?
-  end
 
   def check_rack_mini_profiler
     return unless current_user.try(:admin?)
