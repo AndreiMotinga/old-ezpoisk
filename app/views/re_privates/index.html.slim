@@ -12,7 +12,8 @@
             total: RePrivate.active.count)
 .visible-xs= render("shared/filters_btn", count: @re_privates.total_count)
 
-= render "re_privates/search_form"
+- cache
+  = render "re_privates/search_form"
 
 .col-xs-12 data-id="listings"
   = render @re_privates
