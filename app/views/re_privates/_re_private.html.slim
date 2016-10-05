@@ -1,4 +1,4 @@
-- cache re_private
+- cache [re_private, current_user.try(:role)]
   .row.white-block data-listing-id=re_private.id
     .listing
       .col-xs-12.col-sm-4.logo
@@ -7,7 +7,7 @@
             class=("hidden-xs" if controller_name == "re_privates" && action_name == "show")
             src=re_private.logo_url data-id="logo" itemprop="logo"
             alt="#{t re_private.post_type} частную недвижимость без посредников -
-                 #{re_private.street} #{re_private.city.name} #{re_private.state.name}"]
+                 #{re_private.street} #{re_private.cached_city_name} #{re_private.state.name}"]
 
       .col-xs-12.col-sm-8
         = render "shared/favor_links", record: re_private
@@ -19,7 +19,7 @@
         strong
           = link_to "#{t re_private.category}", re_privates_path(category: re_private.category)
           = " | "
-          = link_to re_private.city.name,
+          = link_to re_private.cached_city_name,
                     search_re_privates_path(state: re_private.state.slug, city: re_private.city.slug)
           = " | "
           = link_to re_private.state.name,

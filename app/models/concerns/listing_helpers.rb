@@ -16,11 +16,11 @@ module ListingHelpers
 
   def address
     if street.present?
-      "#{street} #{city.try(:name)} #{state.try(:name)} #{zip}"
+      "#{street} #{cached_city_name} #{state.try(:name)} #{zip}"
     elsif zip && zip != 0
-      "#{city.try(:name)} #{state.try(:name)}, #{zip}"
+      "#{cached_city_name} #{state.try(:name)}, #{zip}"
     else
-      "#{city.try(:name)} #{state.try(:name)}"
+      "#{cached_city_name} #{state.try(:name)}"
     end
   end
 

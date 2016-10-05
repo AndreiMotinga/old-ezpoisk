@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_record(model, id, path)
-    item = model.find(id) if model.exists?(id)
+    item = model.cached_find(id)
     if item && item.active?
       unless item.user.present? && item.user == current_user
         IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)

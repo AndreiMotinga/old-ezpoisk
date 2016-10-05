@@ -1,6 +1,16 @@
 module Filterable
   extend ActiveSupport::Concern
 
+  module ClassMethods
+    def filter(params)
+      results = params[:sorted] ? active : active.order("featured desc, priority desc, created_at desc")
+      params.each do |key, value|
+        results = results.public_send(key, value) unless value.blank?
+      end
+      results
+    end
+  end
+
   included do
     scope :random, -> { order("RANDOM()") }
     scope :unpaid, -> { where(paid: false) }
@@ -39,15 +49,5 @@ module Filterable
       keyword = "%#{keyword.mb_chars.downcase}%"
       where(query, keyword, keyword)
     end)
-  end
-
-  module ClassMethods
-    def filter(params)
-      results = params[:sorted] ? active : active.order("featured desc, priority desc, created_at desc")
-      params.each do |key, value|
-        results = results.public_send(key, value) unless value.blank?
-      end
-      results
-    end
   end
 end
