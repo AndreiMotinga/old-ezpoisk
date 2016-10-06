@@ -35,4 +35,4 @@
     - if service.text.present?
       .col-xs-12.text
         hr.post-devider-gray
-        = simple_format service.text
+        = simple_format service.text, sanitize: true

@@ -1,5 +1,5 @@
 # prevents from creating listings that don't fit the bill.freeze
-class PostChecker
+class SocialPostValidator
   BAD_WORDS = [
     "Russian America",
     "russian-america",
@@ -59,13 +59,13 @@ class PostChecker
   def vk_post_from_user_is_fresh?
     return unless @post[:vk].present?
     @model.constantize
-          .where("vk = ? AND created_at > ?", @post[:vk], 1.day.ago).any?
+          .where("vk = ? AND created_at > ?", @post[:vk], 7.day.ago).any?
   end
 
   def fb_post_from_user_is_fresh?
     return unless @post[:fb].present?
     @model.constantize
-          .where("fb = ? AND created_at > ?", @post[:fb], 1.day.ago).any?
+          .where("fb = ? AND created_at > ?", @post[:fb], 7.day.ago).any?
   end
 
   def post_already_exists?

@@ -8,7 +8,7 @@ class ListingCreator
   end
 
   def create
-    return unless PostChecker.new(@model, @post).cool?
+    return unless SocialPostValidator.new(@model, @post).cool?
     create_post
     return unless @rec.id # id == saved
     create_attachments
@@ -35,7 +35,7 @@ class ListingCreator
 
   def create_job
     @rec = Job.create(
-      title: Title.new(@post[:text], "Работа").title,
+      title: SocialTitle.new(@post[:text], "Работа").title,
       category: @group[:category] || "wanted",
       active: true,
       text: @post[:text],
@@ -56,6 +56,7 @@ class ListingCreator
       rooms: "room",
       baths: 1,
       active: true,
+      fee: true,
       text: @post[:text],
       user_id: 1,
       state_id: @group[:state_id],
@@ -68,8 +69,8 @@ class ListingCreator
 
   def create_sale
     @rec = Sale.create(
-      title: Title.new(@post[:text], "Продаю").title,
-      category: "sales",
+      title: SocialTitle.new(@post[:text], "Продаю").title,
+      category: "sale",
       text: @post[:text],
       active: true,
       user_id: 1,

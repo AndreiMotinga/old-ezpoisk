@@ -1,4 +1,5 @@
-- cache [re_private, current_user.try(:role)]
+/- todo fix cache [re_private, current_user.try(:role)]
+- cache re_private
   .row.white-block data-listing-id=re_private.id
     .listing
       .col-xs-12.col-sm-4.logo
@@ -54,4 +55,4 @@
     - if re_private.text.present?
       .col-xs-12.text
         hr.post-devider-gray
-        = simple_format re_private.text
+        = simple_format re_private.text, sanitize: true

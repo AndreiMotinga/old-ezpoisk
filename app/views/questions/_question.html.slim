@@ -10,7 +10,7 @@
         = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
     .panel-body
       p.text
-        = simple_format question.text
+        = simple_format question.text, sanitize: true
       - if action_name == "show"
         = subscription_links(question)
         = " "

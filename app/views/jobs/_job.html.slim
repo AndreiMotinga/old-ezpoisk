@@ -8,12 +8,13 @@
 
         .panel-body
           .text itemprop="description"
-            = simple_format job.text
+            = simple_format job.text, sanitize: true
           p.tags
             = sanitize job.tag_list.map { |tag| link_to "##{tag}", tag_jobs_path(tag), class: "tag" }.join
 
         .panel-footer
-          strong= link_to t(job.category), jobs_path(category: job.category)
+          strong
+            = link_to t(job.category), search_jobs_path(state: job.state.slug, city: job.cached_city.slug, category: job.category)
           = " | "
           span data-time=job.id
             = timeago_tag job.created_at

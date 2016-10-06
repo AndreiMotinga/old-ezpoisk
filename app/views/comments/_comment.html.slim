@@ -5,7 +5,7 @@
         span.pull-right= timeago_tag comment.created_at
         span= comment.user.name_to_show
       .panel-body
-        = simple_format comment.body
+        = simple_format comment.body, sanitize: true
         span.comment-nav
           a.comment-reply href="#" data-href="comment-reply-#{comment.id}" reply
         .reply-form

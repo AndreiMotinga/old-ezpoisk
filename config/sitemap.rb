@@ -131,4 +131,11 @@ SitemapGenerator::Sitemap.create do
         lastmod: post.updated_at,
         changefreq: "yearly"
   end
+
+  User.find_each do |user|
+    add user_path(user),
+        priority: 0.1,
+        lastmod: user.updated_at,
+        changefreq: "monthly"
+  end
 end

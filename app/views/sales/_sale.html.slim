@@ -37,4 +37,4 @@
     - if sale.text.present?
       .col-xs-12.text
         hr.post-devider-gray
-        = simple_format sale.text
+        = simple_format sale.text, sanitize: true

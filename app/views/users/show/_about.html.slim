@@ -5,7 +5,7 @@
     .panel.panel-default
       .panel-body
         - if @user.about?
-          .text.answer= simple_format @user.about
+          .text.answer= simple_format @user.about, sanitize: true
         - else
           p Пользователь не продоставил информации о себе
 
