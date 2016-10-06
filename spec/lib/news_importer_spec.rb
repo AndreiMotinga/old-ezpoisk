@@ -2,7 +2,7 @@
 #
 # describe "NewsImporter" do
 #   it "imports news" do
-#     user = create(:user, id: 181)
+#     user = create(:user, id: 1)
 #     stub_xml
 #
 #     NewsImporter.import

@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe ListingCreator do
   before do
-    create :user, id: 181
+    create :user, id: 1
     Sidekiq::Worker.clear_all
   end
 

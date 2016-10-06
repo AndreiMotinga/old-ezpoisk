@@ -6,7 +6,7 @@ class ListingsNotifierJob
     return if Rails.env.development?
     record = model.constantize.find_by_id(id)
     return unless record.contact_email
-    return if record.user.try(:id) == 181 # ez
+    return if record.user.try(:id) == 1 # ez
     ListingsMailer.ten_visits(record).deliver_now
   end
 end
