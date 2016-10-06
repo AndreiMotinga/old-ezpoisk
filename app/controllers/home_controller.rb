@@ -14,12 +14,6 @@ class HomeController < ApplicationController
     end
   end
 
-  def about
-  end
-
-  def contacts
-  end
-
   def clean
   end
 

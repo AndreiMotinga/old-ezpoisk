@@ -104,8 +104,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
-  get "about", to: "home#about"
-  get "contacts", to: "home#contacts"
   get "clean", to: "home#clean"
   root to: "home#index"
 end
