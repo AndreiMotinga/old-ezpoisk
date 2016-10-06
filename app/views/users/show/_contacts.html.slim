@@ -4,13 +4,13 @@
       h4.title Контакты
     .panel-body
       table.table.table-hover.text-center
-        - if @user.email == "ez@ezpoisk.com"
-        tr
-          td
-            strong
-              i.fa.fa-icon.fa-envelope-o
-              |  email
-          td: a href="mailto:#{@user.email}" =@user.email
+        - if @user.show_email?
+          tr
+            td
+              strong
+                i.fa.fa-icon.fa-envelope-o
+                |  email
+            td: a href="mailto:#{@user.email}" =@user.email
 
         - if @user.phone?
           tr
