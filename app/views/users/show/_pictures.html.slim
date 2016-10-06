@@ -1,5 +1,8 @@
+/todo-cache
 .profile data-pictures="" data-id="listings"
-  = render @pictures
+  - cache @pictures
+    - @pictures.each do |pictures|
+      = render picture
 
 - if @pictures.empty?
   .col-xs-12= render "shared/no_posts_message"

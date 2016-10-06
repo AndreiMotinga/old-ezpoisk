@@ -1,5 +1,8 @@
+/todo-cache
 .col-xs-12 data-id="listings"
-  = render @reviews
+  - cache @reviews
+    - @reviews.each do |review|
+      = render review
 
 - if @reviews.empty?
   .col-xs-12= render "shared/no_posts_message"
