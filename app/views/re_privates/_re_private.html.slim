@@ -3,9 +3,7 @@
     .listing
       .col-xs-12.col-sm-4.logo
         = link_to re_private_path(re_private) do
-          img.img-responsive.center-block[
-            class=("hidden-xs" if controller_name == "re_privates" && action_name == "show")
-            src=re_private.logo_url data-id="logo" itemprop="logo"
+          img.img-responsive.center-block[src=re_private.logo_url data-id="logo" itemprop="logo"
             alt="#{t re_private.post_type} частную недвижимость без посредников -
                  #{re_private.street} #{re_private.cached_city.name} #{re_private.cached_state.name}"]
 

@@ -4,8 +4,7 @@
 
       .col-xs-12.col-sm-4.logo data-id="logo"
         = link_to sale_path(sale) do
-          img.img-responsive.center-block [class=("hidden-xs" if controller_name == "sales" && action_name == "show")
-          src=sale.logo_url data-id="logo" itemprop="image"
+          img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
             alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
       .col-xs-12.col-sm-8

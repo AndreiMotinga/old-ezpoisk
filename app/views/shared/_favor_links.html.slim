@@ -8,7 +8,7 @@
       li: a.deactivate[href="#" data-action="deactivate"
                        data-id=record.id data-type=record.class.to_s ] Деактивировать
 
-    - if current_user.try(:can_edit?, record) && dashboard_controller?
+    - if dashboard_controller? && current_user.try(:can_edit?, record)
       li.divider role="separator"
       - unless record.class.to_s == "Service"
         li: a href="#" data-action="touch" data-id=record.id data-type=record.class.to_s Обновить
