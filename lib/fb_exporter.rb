@@ -1,5 +1,5 @@
 # posts messages to facebook walls
-class FacebookNotifier
+class FbExporter
   def self.post(record)
     page = record.class.to_s.upcase
     id = ENV["FB_EZ_#{page}_ID"]

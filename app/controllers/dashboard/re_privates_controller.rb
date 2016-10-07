@@ -93,8 +93,8 @@ class Dashboard::RePrivatesController < ApplicationController
   def run_create_notifications
     SlackNotifierJob.perform_async(@re_private.id, "RePrivate")
     GeocodeJob.perform_async(@re_private.id, "RePrivate")
-    FacebookNotifierJob.perform_in(27.minutes, @re_private.id, "RePrivate")
-    VkNotifierJob.perform_in(23.minutes, @re_private.id, "RePrivate")
+    FbExporterJob.perform_in(27.minutes, @re_private.id, "RePrivate")
+    VkExporterJob.perform_in(23.minutes, @re_private.id, "RePrivate")
     @re_private.create_entry(user: current_user)
     create_subscription(@re_private)
   end

@@ -8,5 +8,3 @@
         a.list-group-item aria-controls="posts" data-toggle="tab" href="#posts" role="tab" Новости
         a.list-group-item aria-controls="reviews" data-toggle="tab" href="#reviews" role="tab" Отзывы
         a.list-group-item aria-controls="pictures" data-toggle="tab" href="#pictures" role="tab" Галерея
-        - if @user == current_user
-          = link_to "Mои Настройки", edit_dashboard_user_path(@user), "data-turbolinks": false, class: "list-group-item"

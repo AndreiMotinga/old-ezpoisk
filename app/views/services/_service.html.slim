@@ -1,4 +1,4 @@
-- cache [service, current_user.try(:role)]
+- cache_unless dashboard_controller?, service
   .row.white-block data-listing-id=service.id
     .listing
       .hidden-xs.col-sm-4.logo data-id="logo"

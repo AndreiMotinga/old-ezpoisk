@@ -82,14 +82,14 @@ class Dashboard::PostsController < ApplicationController
 
   def run_create_notifications
     SlackNotifierJob.perform_async(@post.id, "Post")
-    FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
-    VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
+    FbExporterJob.perform_in(9.minutes, @post.id, "Post")
+    VkExporterJob.perform_in(14.minutes, @post.id, "Post")
     @post.create_entry(user: current_user)
   end
 
   def run_update_notifications
-    FacebookNotifierJob.perform_in(9.minutes, @post.id, "Post")
-    VkNotifierJob.perform_in(14.minutes, @post.id, "Post")
+    FbExporterJob.perform_in(9.minutes, @post.id, "Post")
+    VkExporterJob.perform_in(14.minutes, @post.id, "Post")
     unless current_user.try(:team_member?)
       SlackNotifierJob.perform_async(@post.id, "Post", 'update')
     end

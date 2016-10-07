@@ -1,4 +1,4 @@
-- cache [job, current_user.try(:role)]
+- cache_unless dashboard_controller?, job
   .row.white-block data-listing-id=job.id
     .listing
       .panel.panel-default

@@ -1,9 +1,9 @@
 # imports records from vk
-class FbImporterJob
+class FbListingImporterJob
   include Sidekiq::Worker
   sidekiq_options queue: 'critical'
 
   def perform(type)
-    FbImporter.new(type).import
+    FbListingImporter.new(type).import
   end
 end

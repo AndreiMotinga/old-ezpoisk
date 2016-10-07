@@ -3,23 +3,23 @@ require "rails_helper"
 describe VkUserNotifier do
   before { VkUserNotifier.vk_reset }
 
-  context "shouldn't send message" do
-    it "when history between users exists" do
-      job = create :job, vk: "123"
-      st = stub_history(job.vk)
-
-      VkUserNotifier.new(job).notify
-
-      expect(st).to have_been_requested
-    end
-  end
+  # context "shouldn't send message" do
+  #   it "when history between users exists" do
+  #     job = create :job, vk: "123"
+  #     st = stub_history(job.vk)
+  #
+  #     VkUserNotifier.new(job).notify
+  #
+  #     expect(st).to have_been_requested
+  #   end
+  # end
 
   context "sending messages" do
     it "sends message" do
       job = create :job, vk: "123"
       msg = "test message"
-      allow(Message).to receive(:message).with(job).and_return(msg)
-      stub_empty_history(job.vk)
+      allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
+      # stub_empty_history(job.vk)
       st = stub_successful_sending(job.vk, msg)
 
       VkUserNotifier.new(job).notify
@@ -32,27 +32,26 @@ describe VkUserNotifier do
     it "uses new token in case of error" do
       job = create :job, vk: "123"
       msg = "test message"
-      allow(Message).to receive(:message).with(job).and_return(msg)
-      stub_empty_history(job.vk)
+      allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
+      # stub_empty_history(job.vk)
       st = stub_failed_sending(job.vk, msg)
-      history = stub_empty_history(job.vk, ENV["VK_TITOV_TOKEN"])
+      # history = stub_empty_history(job.vk, ENV["VK_TITOV_TOKEN"])
       new_st = stub_successful_sending(job.vk, msg, ENV["VK_TITOV_TOKEN"])
 
       VkUserNotifier.new(job).notify
 
       expect(st).to have_been_requested
-      expect(history).to have_been_requested
+      # expect(history).to have_been_requested
       expect(new_st).to have_been_requested
     end
 
     it "uses new third token in case of second error" do
       job = create :job, vk: "123"
       msg = "test message"
-      allow(Message).to receive(:message).with(job).and_return(msg)
-      stub_empty_history(job.vk)
-      stub_empty_history(job.vk, ENV["VK_TITOV_TOKEN"]) # other admin user
-      stub_empty_history(job.vk, ENV["VK_OLEG_TOKEN"]) # other admin user
-      new_st = stub_successful_sending(job.vk, msg, ENV["VK_TITOV_TOKEN"])
+      allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
+      # stub_empty_history(job.vk)
+      # stub_empty_history(job.vk, ENV["VK_TITOV_TOKEN"]) # other admin user
+      # stub_empty_history(job.vk, ENV["VK_OLEG_TOKEN"]) # other admin user
       first  = stub_failed_sending(job.vk, msg, ENV["VK_ANDREI_TOKEN"])
       second = stub_failed_sending(job.vk, msg, ENV["VK_TITOV_TOKEN"])
       third = stub_successful_sending(job.vk, msg, ENV["VK_OLEG_TOKEN"])

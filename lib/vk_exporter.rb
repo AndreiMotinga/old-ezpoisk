@@ -1,5 +1,5 @@
 # sends listings to vk
-class VkNotifier
+class VkExporter
   def initialize(id, model)
     @record = model.constantize.find_by_id(id)
     return unless @record && @record.active

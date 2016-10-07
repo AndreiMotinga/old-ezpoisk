@@ -54,8 +54,8 @@ describe Dashboard::JobsController do
         expect(flash[:notice]).to eq I18n.t(:post_created)
 
         expect(GeocodeJob.jobs.size).to eq 1
-        expect(FacebookNotifierJob.jobs.size).to eq 1
-        expect(VkNotifierJob.jobs.size).to eq 1
+        expect(FbExporterJob.jobs.size).to eq 1
+        expect(VkExporterJob.jobs.size).to eq 1
 
         entry = Entry.last
         expect(Entry.count).to eq 1

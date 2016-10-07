@@ -1,4 +1,4 @@
-- cache [sale, current_user.try(:role)]
+- cache_unless dashboard_controller?, sale
   .row.white-block data-listing-id=sale.id
     .listing
 

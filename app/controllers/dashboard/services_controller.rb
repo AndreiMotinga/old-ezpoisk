@@ -71,8 +71,8 @@ class Dashboard::ServicesController < ApplicationController
   def run_create_notifications
     SlackNotifierJob.perform_async(@service.id, "Service")
     GeocodeJob.perform_async(@service.id, "Service")
-    FacebookNotifierJob.perform_in(18.minutes, @service.id, "Service")
-    VkNotifierJob.perform_in(17.minutes, @service.id, "Service")
+    FbExporterJob.perform_in(18.minutes, @service.id, "Service")
+    VkExporterJob.perform_in(17.minutes, @service.id, "Service")
     @service.create_entry(user: current_user)
   end
 

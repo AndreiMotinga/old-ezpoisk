@@ -90,8 +90,8 @@ class Dashboard::JobsController < ApplicationController
   def run_create_notifications
     SlackNotifierJob.perform_async(@job.id, "Job")
     GeocodeJob.perform_async(@job.id, "Job")
-    FacebookNotifierJob.perform_in(23.minutes, @job.id, "Job")
-    VkNotifierJob.perform_in(21.minutes, @job.id, "Job")
+    FbExporterJob.perform_in(23.minutes, @job.id, "Job")
+    VkExporterJob.perform_in(21.minutes, @job.id, "Job")
     @job.create_entry(user: current_user)
     create_subscription(@job)
   end

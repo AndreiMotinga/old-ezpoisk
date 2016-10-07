@@ -20,8 +20,8 @@ describe Dashboard::PostsController do
       expect(article.category).to eq attrs[:category]
       expect(article.summary).to eq attrs[:summary]
 
-      expect(FacebookNotifierJob.jobs.size).to eq 1
-      expect(VkNotifierJob.jobs.size).to eq 1
+      expect(FbExporterJob.jobs.size).to eq 1
+      expect(VkExporterJob.jobs.size).to eq 1
       expect(Entry.count).to eq 1
     end
   end

@@ -27,7 +27,6 @@ class RePrivatesController < ApplicationController
   end
 
   def show
-    # todo-cache how to return 304?
     @re_private = get_record(RePrivate, params[:id], re_privates_path)
   end
 end

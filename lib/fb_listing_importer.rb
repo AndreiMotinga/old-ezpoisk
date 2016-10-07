@@ -1,25 +1,17 @@
 # import posts form fb and calls listing creator to load them into db
-class FbImporter
-  def initialize(group)
-    case group
-    when "jobs" then @groups = JOBS
-    when "re_privates" then @groups = RE_PRIVATES
-    when "sales" then @groups = SALES
-    end
-  end
-
-  def import
+class FbListingImporter
+  def self.import
     graph = Koala::Facebook::API.new(ENV["FB_TOKEN"])
-    @groups.each do |group|
+    GROUPS.each do |group|
       data = graph.get_connections(group[:id], "feed", fields: %w(from message created_time attachments))
       data.each_with_index do |post, i|
         record = FbListingUnifier.new(post).post
-        ListingCreator.new(record, group, i).create
+        SocialListingCreator.new(record, group, i).create
       end
     end
   end
 
-  JOBS = [
+  GROUPS = [
     { id: 473109486227904, model: "Job", state_id: 32, city_id: 17880 },
     { id: 1030398037015054, model: "Job", state_id: 32, city_id: 17880 },
     { id: 137863963079459, model: "Job", state_id: 9, city_id: 3964 }, # miami
@@ -33,9 +25,8 @@ class FbImporter
     { id: 398984013638015, model: "Job", state_id: 3, city_id: 1416 }, # poenix
     { id: 916738071690195, model: "Job", state_id: 51, city_id: 29723 }, # DC
     { id: 118841781880515, model: "Job", state_id: 5, city_id: 2303 },
-  ].freeze
 
-  RE_PRIVATES = [
+  # RE_PRIVATES
     { id: 374704915873674, model: "RePrivate", state_id: 32, city_id: 17880 },
     { id: 234474186756047, model: "RePrivate", state_id: 9, city_id: 3964 }, #miami
     { id: 897633366949647, model: "Job", state_id: 9, city_id: 3964 },

@@ -1,9 +1,9 @@
 # notifies vk group of new listings
-class VkNotifierJob
+class VkExporterJob
   include Sidekiq::Worker
 
   def perform(id, model)
     return unless Rails.env.production?
-    VkNotifier.new(id, model)
+    VkExporter.new(id, model)
   end
 end

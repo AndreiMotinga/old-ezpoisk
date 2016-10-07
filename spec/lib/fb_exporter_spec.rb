@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe FacebookNotifier do
+describe FbExporter do
   describe ".post" do
     context "re_privates" do
       it "makes request to correct group with correct record" do
@@ -11,7 +11,7 @@ describe FacebookNotifier do
         stub_fb_request(id, token, rp.show_url)
         mock_graph(graph, id, token, rp.show_url)
 
-        FacebookNotifier.post(rp)
+        FbExporter.post(rp)
 
         expect(graph)
           .to have_received(:put_connections)
@@ -28,7 +28,7 @@ describe FacebookNotifier do
         stub_fb_request(id, token, job.show_url)
         mock_graph(graph, id, token, job.show_url)
 
-        FacebookNotifier.post(job)
+        FbExporter.post(job)
 
         expect(graph)
           .to have_received(:put_connections)
@@ -45,7 +45,7 @@ describe FacebookNotifier do
         stub_fb_request(id, token, sale.show_url)
         mock_graph(graph, id, token, sale.show_url)
 
-        FacebookNotifier.post(sale)
+        FbExporter.post(sale)
 
         expect(graph)
           .to have_received(:put_connections)
@@ -62,7 +62,7 @@ describe FacebookNotifier do
         stub_fb_request(id, token, service.show_url)
         mock_graph(graph, id, token, service.show_url)
 
-        FacebookNotifier.post(service)
+        FbExporter.post(service)
 
         expect(graph)
           .to have_received(:put_connections)
@@ -79,7 +79,7 @@ describe FacebookNotifier do
         stub_fb_request(id, token, answer.show_url)
         mock_graph(graph, id, token, answer.show_url)
 
-        FacebookNotifier.post(answer)
+        FbExporter.post(answer)
 
         expect(graph)
           .to have_received(:put_connections)
@@ -96,7 +96,7 @@ describe FacebookNotifier do
         stub_fb_request(id, token, post.show_url)
         mock_graph(graph, id, token, post.show_url)
 
-        FacebookNotifier.post(post)
+        FbExporter.post(post)
 
         expect(graph)
           .to have_received(:put_connections)

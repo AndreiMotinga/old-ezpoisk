@@ -20,7 +20,7 @@ class VkUserNotifier
   def notify
     return unless should_notify?
     begin
-      @@vk.messages.send(user_id: @user_id, message: Message.message(@record))
+      @@vk.messages.send(user_id: @user_id, message: SocialMessage.msg(@record))
     rescue VkontakteApi::Error
       update_vk
       notify
@@ -51,9 +51,15 @@ class VkUserNotifier
   end
 
   def should_notify?
-    return unless @@vk.token.present? # cycled through all valid tokens
-    messages = @@vk.messages.getHistory(user_id: @user_id)
-    return if messages.first != 0 # user didn't get message from us yet
-    true
+    true if @@vk.token.present? # cycled through all valid tokens
   end
+
+  # def message
+  #   messages = @@vk.messages.getHistory(user_id: @user_id)
+  #   if messages.first == 0 # user didn't get message from us yet
+  #     SocialMessage.first_msg(@record)
+  #   else
+  #     SocialMessage.subsequent_msg(@record)
+  #   end
+  # end
 end

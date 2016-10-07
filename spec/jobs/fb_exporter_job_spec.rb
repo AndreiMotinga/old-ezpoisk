@@ -1,18 +1,18 @@
 require "rails_helper"
 
-describe FacebookNotifierJob do
+describe FbExporterJob do
   it "posts to facebook" do
     re_private = create(:re_private)
     stub_facebook_notifier(re_private)
 
-    FacebookNotifierJob.perform_async(re_private.id, "RePrivate")
-    FacebookNotifierJob.drain
+    FbExporterJob.perform_async(re_private.id, "RePrivate")
+    FbExporterJob.drain
 
-    expect(FacebookNotifier).to have_received(:post).with(re_private)
+    expect(FbExporter).to have_received(:post).with(re_private)
   end
 
   def stub_facebook_notifier(record)
-    allow(FacebookNotifier)
+    allow(FbExporter)
       .to receive(:post)
       .with(record)
   end

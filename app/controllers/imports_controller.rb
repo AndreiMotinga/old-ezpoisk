@@ -3,12 +3,12 @@ class ImportsController < ApplicationController
   end
 
   def vk
-    VkImporterJob.perform_async(params[:category])
+    VkListingImporterJob.import
     render :index
   end
 
   def fb
-    FbImporterJob.perform_async(params[:category])
+    FbListingImporterJob.import
     render :index
   end
 end

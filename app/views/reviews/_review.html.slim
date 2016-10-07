@@ -1,20 +1,20 @@
-/- todo-cache [review, current_user.try(:role)]
-.row.white-block.review
-  .panel.panel-default
-    .panel-heading
-      = render "reviews/links", review: review
-      .row.author
-        .col-xs-3.col-sm-2
-          = link_to user_path(review.user), target: "_blank" do
-            = image_tag review.user.avatar(:thumb),
-                        alt: "автор ответа #{review.user.name_to_show}",
-                        class: "img-responsive img-circle center-block"
-        .col-xs-9.col-sm-10
-          h4.name= link_to review.user.name_to_show, user_path(review.user), target: "_blank"
-          = render "reviews/rating", review: review
+- cache review
+  .row.white-block.review
+    .panel.panel-default
+      .panel-heading
+        = render "reviews/links", review: review
+        .row.author
+          .col-xs-3.col-sm-2
+            = link_to user_path(review.user), target: "_blank" do
+              = image_tag review.user.avatar(:thumb),
+                          alt: "автор ответа #{review.user.name_to_show}",
+                          class: "img-responsive img-circle center-block"
+          .col-xs-9.col-sm-10
+            h4.name= link_to review.user.name_to_show, user_path(review.user), target: "_blank"
+            = render "reviews/rating", review: review
 
-    .panel-body
-      p= review.text
-    - unless controller_name == "services" && action_name == "show"
-      .panel-footer
-        = link_to review.title, service_path(review.service_id), target: "_blank"
+      .panel-body
+        p= review.text
+      - unless controller_name == "services" && action_name == "show"
+        .panel-footer
+          = link_to review.title, service_path(review.service_id), target: "_blank"

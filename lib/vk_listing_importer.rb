@@ -1,30 +1,23 @@
 # import posts form vk and calls listing creator to load them into db
-class VkImporter
-  def initialize(group)
-    case group
-    when "jobs" then @groups = JOBS
-    when "re_privates" then @groups = RE_PRIVATES
-    when "sales" then @groups = SALES
-    else
-      []
-    end
-  end
-
-  def import
+class VkListingImporter
+  def self.import
     vk = VkontakteApi::Client.new(ENV["VK_YURA_TOKEN"])
-    @groups.each do |group|
+    # if slow replace each with map
+    # create array and isert in into table with one shot
+
+    GROUPS.each do |group|
       data = vk.board.getComments(group_id: group[:id],
                                   topic_id: group[:topic],
                                   sort: "desc")
       data.comments.shift # remove first element
       data.comments.each_with_index do |post, i|
         record = VkListingUnifier.new(post).post
-        ListingCreator.new(record, group, i).create
+        SocialListingCreator.new(record, group, i).create
       end
     end
   end
 
-  JOBS = [
+  GROUPS = [
     { id: 22558194, topic: 24112410, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
     { id: 22558194, topic: 26241726, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
     { id: 35762330, topic: 34071351, model: "Job", category: "seeking", state_id: 32, city_id: 18031 }, # brooklyn
@@ -50,9 +43,8 @@ class VkImporter
     { id: 13247283, topic: 22522116, model: "Job", category: "wanted", state_id: 13, city_id: 6254 }, # Chicago
     { id: 11710820, topic: 23839499, model: "Job", category: "wanted", state_id: 51, city_id: 29723 }, # Washington DC
     { id: 387962, topic: 23983429, model: "Job", category: "wanted", state_id: 47, city_id: 27588 }, # Washington
-  ].freeze
 
-  RE_PRIVATES = [
+  # re_privates
     { id: 20420, topic: 21430280, model: "RePrivate", state_id: 32, city_id: 17880 },
     { id: 2688174, topic: 22787899, model: "RePrivate", state_id: 32, city_id: 17880 },
     { id: 12885141, topic: 31459649, model: "RePrivate", state_id: 32, city_id: 17880 },
@@ -74,9 +66,8 @@ class VkImporter
     { id: 13247283, topic: 28066478, model: "RePrivate", state_id: 13, city_id: 6254 },
     { id: 11710820, topic: 21874759, model: "RePrivate", state_id: 51, city_id: 29723 },
     { id: 387962, topic: 27461153, model: "RePrivate", state_id: 47, city_id: 27588 },
-  ].freeze
 
-  SALES = [
+  # sales
     { id: 20420, topic: 27129264, model: "Sale", state_id: 32, city_id: 17880 },
     { id: 2688174, topic: 26691734, model: "Sale", state_id: 32, city_id: 17880 },
     { id: 12885141, topic: 32517632, model: "Sale", state_id: 32, city_id: 17880 },

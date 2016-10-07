@@ -38,8 +38,8 @@ describe Dashboard::ServicesController do
       expect(service.active).to be true
 
       expect(GeocodeJob.jobs.size).to eq 1
-      expect(FacebookNotifierJob.jobs.size).to eq 1
-      expect(VkNotifierJob.jobs.size).to eq 1
+      expect(FbExporterJob.jobs.size).to eq 1
+      expect(VkExporterJob.jobs.size).to eq 1
     end
   end
 
