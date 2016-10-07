@@ -35,7 +35,7 @@ SitemapGenerator::Sitemap.create do
   #     REAL ESTATE
   add re_privates_path, priority: 0.8, changefreq: "daily"
 
-  ids = RePrivate.uniq.pluck(:city_id)
+  ids = RePrivate.active.uniq.pluck(:city_id)
   ids.each do |id|
     city = City.find(id)
     state_slug = city.state.slug
@@ -48,15 +48,15 @@ SitemapGenerator::Sitemap.create do
 
   RePrivate.active.find_each do |rec|
     add re_private_path(rec),
-        priority: 0.1,
+        priority: 0.4,
         lastmod: rec.updated_at,
-        changefreq: "yearly"
+        changefreq: "monthly"
   end
 
   #     SALES
   add sales_path, priority: 0.8, changefreq: "daily"
 
-  ids = Sale.uniq.pluck(:city_id)
+  ids = Sale.active.uniq.pluck(:city_id)
   ids.each do |id|
     city = City.find(id)
     state_slug = city.state.slug
@@ -69,15 +69,15 @@ SitemapGenerator::Sitemap.create do
 
   Sale.active.find_each do |post|
     add sale_path(post),
-        priority: 0.1,
+        priority: 0.4,
         lastmod: post.updated_at,
-        changefreq: "yearly"
+        changefreq: "monthly"
   end
 
   #     SERVICES
   add services_path, priority: 0.8, changefreq: "daily"
 
-  ids = Service.uniq.pluck(:city_id)
+  ids = Service.active.uniq.pluck(:city_id)
   ids.each do |id|
     city = City.find(id)
     state_slug = city.state.slug
@@ -90,15 +90,15 @@ SitemapGenerator::Sitemap.create do
 
   Service.find_each do |post|
     add service_path(post),
-        priority: 0.1,
+        priority: 0.4,
         lastmod: post.updated_at,
-        changefreq: "yearly"
+        changefreq: "monthly"
   end
 
   #     JOBS
   add jobs_path, priority: 0.8, changefreq: "daily"
 
-  ids = Job.uniq.pluck(:city_id)
+  ids = Job.active.uniq.pluck(:city_id)
   ids.each do |id|
     city = City.find(id)
     state_slug = city.state.slug
@@ -111,9 +111,9 @@ SitemapGenerator::Sitemap.create do
 
   Job.active.find_each do |post|
     add job_path(post),
-        priority: 0.1,
+        priority: 0.4,
         lastmod: post.updated_at,
-        changefreq: "yearly"
+        changefreq: "monthly"
   end
 
   add answers_path, priority: 0.8, changefreq: "weekly"
@@ -121,7 +121,7 @@ SitemapGenerator::Sitemap.create do
     add answer_path(answer),
         priority: 0.6,
         lastmod: answer.updated_at,
-        changefreq: "yearly"
+        changefreq: "monthly"
   end
 
   add posts_path, priority: 0.8, changefreq: "daily"
@@ -129,12 +129,12 @@ SitemapGenerator::Sitemap.create do
     add post_path(post),
         priority: 0.5,
         lastmod: post.updated_at,
-        changefreq: "yearly"
+        changefreq: "monthly"
   end
 
   User.find_each do |user|
     add user_path(user),
-        priority: 0.1,
+        priority: 0.4,
         lastmod: user.updated_at,
         changefreq: "monthly"
   end

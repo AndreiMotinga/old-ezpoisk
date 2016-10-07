@@ -23,7 +23,7 @@ describe SocialListingCreator do
         city_id: 17_880
       }
 
-      SocialListingCreator.new(post, group, 1).create
+      SocialListingCreator.new(post, group).create
 
       expect(Job.count).to eq 1
       job = Job.first
@@ -58,7 +58,7 @@ describe SocialListingCreator do
           city_id: 17_880
         }
 
-        SocialListingCreator.new(rp, group, 1).create
+        SocialListingCreator.new(rp, group).create
 
         expect(RePrivate.count).to eq 1
         rp = RePrivate.first
@@ -92,7 +92,7 @@ describe SocialListingCreator do
           city_id: 17_880
         }
 
-        SocialListingCreator.new(sale, group, 1).create
+        SocialListingCreator.new(sale, group).create
 
         expect(Sale.count).to eq 1
         rp = Sale.first
