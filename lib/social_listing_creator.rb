@@ -1,25 +1,18 @@
 # creates listings from posts provided by vk and fb importers
 class SocialListingCreator
-  def initialize(post, group, delay)
+  def initialize(post, group)
     @post = post
     @group = group
-    @delay = delay + 3
     @model = group[:model]
   end
 
   def create
-    return unless SocialPostValidator.new(@model, @post).cool?
     create_post
-    return unless @rec.id # id == saved
     create_attachments
-    run_notifications
-  end
-
-  def run_notifications
     @rec.create_entry(user: @rec.user)
     SlackNotifierJob.perform_async(@rec.id, @model)
-    GeocodeJob.perform_in(@delay.minutes, @rec.id, @model)
-    SocialUserNotifierJob.perform_in(@delay.minutes, @rec.id, @model)
+    GeocodeJob.perform_in(1.minutes, @rec.id, @model)
+    SocialUserNotifierJob.perform_in(1.minutes, @rec.id, @model)
   end
 
   def create_post
@@ -85,6 +78,6 @@ class SocialListingCreator
   def create_attachments
     return if @model == "Job"
     return unless @post[:attachments].any?
-    ImageDownloaderJob.perform_in(@delay.minutes, @post[:attachments], @rec.id, @model)
+    ImageDownloaderJob.perform_in(1.minutes, @post[:attachments], @rec.id, @model)
   end
 end

@@ -5,8 +5,9 @@ class FbListingImporter
     GROUPS.each do |group|
       data = graph.get_connections(group[:id], "feed", fields: %w(from message created_time attachments))
       data.each_with_index do |post, i|
+        delay = 2.minutes + i.seconds
         record = FbListingUnifier.new(post).post
-        SocialListingCreator.new(record, group, i).create
+        SocialListingCreatorJob.perform_in(delay, record, group)
       end
     end
   end

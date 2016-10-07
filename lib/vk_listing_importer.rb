@@ -2,17 +2,15 @@
 class VkListingImporter
   def self.import
     vk = VkontakteApi::Client.new(ENV["VK_YURA_TOKEN"])
-    # if slow replace each with map
-    # create array and isert in into table with one shot
-
     GROUPS.each do |group|
       data = vk.board.getComments(group_id: group[:id],
                                   topic_id: group[:topic],
                                   sort: "desc")
       data.comments.shift # remove first element
       data.comments.each_with_index do |post, i|
+        delay = 2.minutes + i.seconds
         record = VkListingUnifier.new(post).post
-        SocialListingCreator.new(record, group, i).create
+        SocialListingCreatorJob.perform_in(delay, record, group)
       end
     end
   end
