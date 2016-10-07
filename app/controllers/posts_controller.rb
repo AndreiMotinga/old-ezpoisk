@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.includes(:user, :taggings)
+    @posts = Post.includes(:user)
                  .visible
                  .desc
                  .page(params[:page])
@@ -13,7 +13,7 @@ class PostsController < ApplicationController
 
   def tag
     @posts = Post.visible
-                   .includes(:user, :taggings)
+                   .includes(:user)
                    .tagged_with(params[:tag], any: true)
                    .page(params[:page])
     IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
@@ -28,7 +28,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     IncreaseVisitsJob.perform_in(14.minutes, @post.id, 'Post') if @post
 
-    @posts = Post.includes(:user, :taggings)
+    # todo move to similar
+    @posts = Post.includes(:user)
                  .visible
                  .older(@post.created_at)
                  .desc

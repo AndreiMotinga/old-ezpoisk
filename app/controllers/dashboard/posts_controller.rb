@@ -26,6 +26,7 @@ class Dashboard::PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
+      @post.update_cached_tags
       run_create_notifications
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else
@@ -36,6 +37,7 @@ class Dashboard::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
+      @post.update_cached_tags
       run_update_notifications
       redirect_to post_path(@post), notice: I18n.t(:post_saved)
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006154412) do
+ActiveRecord::Schema.define(version: 20161007064652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161006154412) do
     t.datetime "image_updated_at"
     t.boolean  "paid",               default: false
     t.integer  "votes_count",        default: 0
+    t.string   "cached_tags",        default: ""
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["slug"], name: "index_answers_on_slug", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
@@ -73,8 +74,8 @@ ActiveRecord::Schema.define(version: 20161006154412) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "enterable_id"
     t.string   "enterable_type"
+    t.integer  "enterable_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -167,16 +168,16 @@ ActiveRecord::Schema.define(version: 20161006154412) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.integer  "imageable_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "logo"
     t.integer  "user_id"
-    t.datetime "created_at",         default: '2016-10-07 01:45:30', null: false
-    t.datetime "updated_at",         default: '2016-10-07 01:45:30', null: false
+    t.datetime "created_at",         default: '2016-10-05 22:32:55', null: false
+    t.datetime "updated_at",         default: '2016-10-05 22:32:55', null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
     t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
@@ -210,6 +211,7 @@ ActiveRecord::Schema.define(version: 20161006154412) do
     t.integer  "visits",             default: 0
     t.string   "source"
     t.boolean  "paid",               default: false
+    t.string   "cached_tags",        default: ""
     t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
@@ -397,10 +399,10 @@ ActiveRecord::Schema.define(version: 20161006154412) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.integer  "tagger_id"
+    t.integer  "taggable_id"
     t.string   "tagger_type"
+    t.integer  "tagger_id"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -476,10 +478,10 @@ ActiveRecord::Schema.define(version: 20161006154412) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
     t.string   "votable_type"
-    t.integer  "voter_id"
+    t.integer  "votable_id"
     t.string   "voter_type"
+    t.integer  "voter_id"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"

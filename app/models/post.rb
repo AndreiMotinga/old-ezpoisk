@@ -53,6 +53,10 @@ class Post < ActiveRecord::Base
     Rails.application.routes.url_helpers.post_url(self)
   end
 
+  def update_cached_tags
+    update_column(:cached_tags, tags.pluck(:name).join(", "))
+  end
+
   def active
     true
   end

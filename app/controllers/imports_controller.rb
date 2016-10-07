@@ -3,12 +3,14 @@ class ImportsController < ApplicationController
   end
 
   def vk
-    VkListingImporterJob.import
+    VkListingImporterJob.perform_async
+    flash.now[:notice] = "Magic' in the air"
     render :index
   end
 
   def fb
-    FbListingImporterJob.import
+    FbListingImporterJob.perform_async
+    flash.now[:notice] = "Not so much, but who knows"
     render :index
   end
 end

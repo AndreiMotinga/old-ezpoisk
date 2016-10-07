@@ -36,6 +36,10 @@
         .post-body itemprop="description"
           = raw @post.text
 
+          p.tags
+            - @post.cached_tags.split(", ").map do |tag|
+              = sanitize link_to "##{tag}", tag_posts_path(tag), class: "tag"
+
           hr
 
         = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true

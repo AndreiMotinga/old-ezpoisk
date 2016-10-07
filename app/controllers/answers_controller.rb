@@ -3,8 +3,7 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:edit, :update, :destroy]
 
   def index
-    @answers = Answer.includes(:user, :taggings)
-                     .page(params[:page]).per(10)
+    @answers = Answer.includes(:user).page(params[:page]).per(10)
     IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
     respond_to do |format|
       format.html
@@ -13,7 +12,7 @@ class AnswersController < ApplicationController
   end
 
   def tag
-    @answers = Answer.includes(:user, :taggings)
+    @answers = Answer.includes(:user)
                      .tagged_with(params[:tag], any: true)
                      .page(params[:page])
     IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
@@ -38,6 +37,8 @@ class AnswersController < ApplicationController
     user = user_signed_in? ? current_user : User.find(4)
     @answer = user.answers.build(answer_params)
     @answer.title = @answer.question.title
+    @answer.cached_tags = @answer.question.tags.pluck(:name).join(", ")
+
     if @answer.save
       run_create_notifications(user)
       redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))

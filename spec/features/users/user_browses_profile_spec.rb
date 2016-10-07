@@ -37,12 +37,4 @@ feature "User browses profile" do
     first(:link, "Ответы").click
     expect(page).to have_content answer.title
   end
-
-  scenario "visits his own profile" do
-    user = create_and_login_user
-
-    visit user_path(user)
-
-    expect(page).to have_content "Настройки"
-  end
 end

@@ -37,7 +37,7 @@ class Answer < ActiveRecord::Base
   end
 
   def similar
-    Answer.includes(:user, :taggings)
+    Answer.includes(:user)
           .tagged_with(tag_list, any: true)
           .random
           .limit(10)

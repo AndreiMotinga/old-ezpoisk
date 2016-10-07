@@ -17,7 +17,6 @@
 .article.answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel.panel-default
     .panel-heading
-      = render "answers/links", record: @answer
       h1.title itemprop="name" = @answer.title
       .row.author
         .col-xs-3.col-sm-2
@@ -29,6 +28,8 @@
           h4.name itemprop="author" = link_to @answer.name_to_show, user_path(@answer.user), target: "_blank"
           p.text-muted
             = "#{@answer.impressions_count} просмотров |  #{@answer.score} голосов "
+            br
+            = render "answers/links", record: @answer
 
     .panel-body
       - if @answer.image?
@@ -54,7 +55,8 @@
           = render "shared/social", count: nil, inline: true
       .row
         p.tags
-          = sanitize @answer.tag_list.map { |tag| link_to "##{tag}", tag_answers_path(tag), class: "tag" }.join
+          - @answer.cached_tags.split(", ").map do |tag|
+            = sanitize link_to "##{tag}", tag_answers_path(tag), class: "tag"
 
 br
 .col-xs-12.col-md-6.col-md-offset-3
