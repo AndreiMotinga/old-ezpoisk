@@ -12,8 +12,13 @@ class FavoritesController < ApplicationController
 
   def touch
     @rec = model.find(rec_params[:id])
-    @rec.touch(:created_at)
-    @rec.entry.touch
+    if current_user.try(:can_edit?, @rec)
+      @rec.touch(:created_at)
+      @rec.entry.touch
+      render :touch
+    else
+      render json: { status: 403 }
+    end
   end
 
   private
