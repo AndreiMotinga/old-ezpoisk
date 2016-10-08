@@ -5,14 +5,22 @@
     margin-bottom: 0;
     margin-top: 5px;
 
+    .name-block {
+      padding-left: 0;
+    }
+
     .name {
       margin: 0;
+      font-weight: 300;
+    }
+
+    .date {
+      font-size: 12px;
     }
   }
 
   .title {
-    font-weight: bold;
-    letter-spacing: -.5px;
+    font-weight: 500;
     line-height: 1.25;
     margin: 5px 0;
     font-size: 18px;
@@ -23,7 +31,9 @@
   }
 
   .panel-body {
-    padding-bottom: 20px;
+    font-family: Georgia,Times,"Times New Roman",serif;
+    font-size: 15px;
+    padding-bottom: 0;
     padding-top: 5px;
   }
 

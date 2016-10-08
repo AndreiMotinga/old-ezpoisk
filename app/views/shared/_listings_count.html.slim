@@ -1,18 +1,15 @@
 .menu.white-block
-  .panel.panel-default
-    .panel-heading
-      h1.h1-side-block = link_to title, url, rel: "nofollow"
-    .panel-body
-      ul.list-group
-        li.list-group-item
-          | Сегодня
-          span.pull-right= today
-        li.list-group-item
-          | Неделя
-          span.pull-right= week
-        li.list-group-item
-          | Всего
-          span.pull-right= total
-        /li.list-group-item
-        /  | Изипипл
-        /  span.pull-right= User.count
+    h1.h1-side-block = link_to title, url, rel: "nofollow"
+    ul.list-group
+      li.list-group-item
+        | Сегодня
+        span.pull-right= today
+      li.list-group-item
+        | Неделя
+        span.pull-right= week
+      li.list-group-item
+        | Всего
+        span.pull-right= total
+      /li.list-group-item
+      /  | Изипипл
+      /  span.pull-right= User.count

@@ -1,7 +1,7 @@
 - cache answer
   .row.white-block
     .article.answer
-      .panel.panel-default
+      .panel
 
         .panel-heading
           - unless controller_name == "questions"
@@ -12,9 +12,9 @@
                 = image_tag answer.avatar,
                             alt: "автор ответа #{answer.name_to_show}",
                             class: "img-responsive img-circle center-block"
-            .col-xs-9.col-sm-10
+            .col-xs-9.col-sm-10.name-block
               h4.name= link_to answer.name_to_show, user_path(answer.user), target: "_blank"
-              p.text-muted= "#{answer.impressions_count} просмотров |  #{answer.votes_count} голосов "
+              p.date.text-muted= "#{answer.impressions_count} просмотров |  #{answer.votes_count} голосов "
 
         .panel-body
           - if answer.image?
@@ -27,3 +27,9 @@
           p.tags
             - answer.cached_tags.split(", ").map do |tag|
               = sanitize link_to "##{tag}", tag_answers_path(tag), class: "tag"
+
+        .panel-footer
+          h6 style="display:inline" #{time_ago_in_words answer.created_at} назад |
+          = " "
+          i.fa.fa-eye.text-muted
+          span  #{answer.impressions_count}/#{answer.visits}

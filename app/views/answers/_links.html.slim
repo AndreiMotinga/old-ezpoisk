@@ -1,4 +1,0 @@
-- if current_user.try(:can_edit?, @answer)
-  = link_to "Редактировать", edit_answer_path(@answer), class: "text-muted"
-  = " "
-  = link_to 'Удалить', answer_path(@answer), class: "text-muted", method: :delete, data: { confirm: I18n.t(:confirm) }

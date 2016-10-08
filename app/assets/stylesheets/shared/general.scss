@@ -44,7 +44,7 @@ footer {
   background-color: $white;
   border-radius: 2px;
   box-shadow: $box-shadow;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   padding: 2px;
 }
 
@@ -64,6 +64,8 @@ footer {
 
 .social-share {
   font-size: 1px;
+
+  ul { margin-bottom: 0; }
 
   li {
     vertical-align: middle;
@@ -119,19 +121,14 @@ footer {
 }
 
 .tags {
-  margin: 10px 0 0;
+  margin: 5px 0;
   overflow: hidden;
 
   .tag {
-    background-color: $body-bg;
-    border-radius: 10px;
-    color: $black;
     font-family: Georgia,Times,"Times New Roman",serif;
-    padding: 1px 10px;
-    margin: 2px;
+    padding-right: 3px;
+    color: $darkgrey;
   }
-
-  a { text-decoration: none; }
 }
 
 .dropzone {
@@ -146,8 +143,10 @@ textarea { resize: vertical; }
 }
 
 .h1-side-block {
+  a { color: $darkgrey; text-decoration: none; }
+
   font-size: 16px;
-  margin: 0;
+  margin: 3px 5px 6px;
 }
 
 .side-column {
@@ -215,6 +214,17 @@ span.social {
 
   .list-group {
     margin-bottom: 0;
+
+    .list-group-item {
+      &:first-child {
+        border-top-right-radius: 2px;
+        border-top-left-radius: 2px;
+      }
+      &:last-child {
+        border-bottom-right-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+    }
   }
 }
 

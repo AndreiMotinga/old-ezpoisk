@@ -1,10 +1,12 @@
-- @service.side_items.each do |service|
-  .partner.pull-right.right.margin-bottom-10
+.white-block.pull-right.service-similar
+  span.header Похожие объявления
+  hr.breadcrumb-hr
+  - @service.side_items.each do |service|
     = link_to service do
       h5.title
         - if service.featured?
           span.featured Ad
         = service.title
-      span.text.text-muted
+      span.text
         = strip_tags(service.text).truncate(130)
     hr

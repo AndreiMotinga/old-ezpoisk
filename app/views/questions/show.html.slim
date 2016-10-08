@@ -22,4 +22,7 @@
   - if @question.has_answers?
     = render @question.answers.includes(:user, :taggings)
   - else
-    = render "questions/no_answers_message"
+    h3= link_to new_answer_path(question_id: @question.id) do
+        |  Можете ответить на этот вопрос?
+        = "  "
+        .fa.fa-pencil

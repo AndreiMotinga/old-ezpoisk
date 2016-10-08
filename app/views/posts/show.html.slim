@@ -13,7 +13,7 @@
 
 .article.post.col-xs-12 itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .row.white-block
-    .panel.panel-default
+    .panel
       .panel-heading
         h1.title itemprop="name" = @post.title
         .row.author
@@ -22,10 +22,13 @@
               = image_tag @post.avatar.url(:thumb),
                           class: "img-responsive center-block img-circle",
                           alt: @post.user.name_to_show
-          .col-xs-9.col-sm-10
+          .col-xs-9.col-sm-10.name-block
             h4.name itemprop="author" = link_to @post.user.name_to_show, user_path(@post.user), target: "_blank"
-
-            p.text-muted= @post.created_at.strftime("%d %B %Y")
+            p.date.text-muted
+              = @post.created_at.strftime("%d %B %Y")
+              br
+              - if current_user.try(:can_edit?, @post)
+                = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
       .panel-body
         - if @post.image?
@@ -40,15 +43,16 @@
             - @post.cached_tags.split(", ").map do |tag|
               = sanitize link_to "##{tag}", tag_posts_path(tag), class: "tag"
 
-          hr
-
+      .panel-footer
         = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
-        - if @post.user == current_user || current_user.try(:editor?)
-          = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
 
 /= render "shared/gads/leaderboard"
 
 .col-xs-12 data-id="listings"
+  hr.breadcrumb-hr
+  hr.breadcrumb-hr
+  hr.breadcrumb-hr
+  .margin-bottom-10
   = render @posts
 
 .row

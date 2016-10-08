@@ -1,18 +1,25 @@
-.white-block.article
-  .panel
-    .panel-body
-      h1.title= @answer.question.title
-      br
-      = bootstrap_form_for @answer do |f|
-        = f.hidden_field :question_id, value: (params[:question_id] || @answer.question_id)
-        -  @answer.question.tag_list.each do |tag|
-          = hidden_field_tag 'answer[tag_list][]', tag
+= bootstrap_form_for @answer do |f|
+  .white-block.article
+    .panel
+      .panel-heading
+        h1.title= @answer.question.title
 
-        .field
-          = f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
-        .field
-          = f.text_field :image_remote_url, label: "Картинка"
+      .panel-body
+          = f.hidden_field :question_id, value: (params[:question_id] || @answer.question_id)
+          -  @answer.question.tag_list.each do |tag|
+            = hidden_field_tag 'answer[tag_list][]', tag
 
-        br
+          .field
+            = f.text_area :text, rows: 20, label: "Ваш ответ", class: "summernote"
+          .field
+            = f.text_field :image_remote_url, label: "Картинка"
+
+      .panel-footer
         .actions
           = f.submit 'Сохранить', class: "btn mobile-btn"
+          - unless @answer.new_record?
+            = link_to 'Удалить',
+                      answer_path(@answer),
+                      class: "text-muted",
+                      method: :delete,
+                      data: { confirm: I18n.t(:confirm) }

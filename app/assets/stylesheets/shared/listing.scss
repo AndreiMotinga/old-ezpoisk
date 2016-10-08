@@ -1,8 +1,4 @@
-.post-devider {
-  margin-bottom: 5px;
-  margin-top: 0;
-}
-
+// todo delete
 .user-hidden {
   opacity: .2;
 }
@@ -11,6 +7,10 @@
   a {
     color: $darkgrey;
     text-decoration: none;
+  }
+
+  .panel-body {
+    padding: 0 15px;
   }
 
   .title {
@@ -32,9 +32,6 @@
     top: 5px;
   }
 
-  .panel-body {
-    padding: 0 15px;
-  }
   .fa {
     padding-right: 5px;
   }
@@ -62,6 +59,11 @@
     top: 0;
     width: 100% !important;
   }
+}
+
+.post-devider {
+  margin-bottom: 5px;
+  margin-top: 0;
 }
 
 .post-devider-gray {

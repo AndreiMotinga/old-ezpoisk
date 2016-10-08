@@ -1,5 +1,5 @@
 .row.article.white-block
-  .panel.panel-default
+  .panel
     .panel-heading
       h1.title
         - if action_name == "index" || "tag"
@@ -7,18 +7,18 @@
         - else
           = question.title
       p.text-muted
-        = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
-    .panel-body
-      p.text
-        = simple_format question.text, sanitize: true
-      - if action_name == "show"
+        = link_to new_answer_path(question_id: question.id) do
+          i.fa.fa-pencil
+          |  Ответить  |
+        = "  "
         = subscription_links(question)
-        = " "
-        /= link_to "комментировать", "#comments", class: "text text-muted", "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
         br
-        br
+        = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
+      - if question.text.present?
+        .panel-body
+          .text= simple_format question.text, sanitize: true
+      p.tags
+        = tag_links(question)
+    - if action_name == "show"
+      .panel-footer
         = render "shared/social", count: nil, inline: true
-      p.tags= tag_links(question)
-
-/#comments.collapse
-  /= render "shared/disqus"

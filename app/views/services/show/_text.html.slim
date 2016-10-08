@@ -1,8 +1,7 @@
-.white-block.text
-  .panel.panel-default
+.white-block.text.about itemprop="description"
+  .panel
     .panel-body
       - if record.text.present?
-        div itemprop="description"
-          = simple_format record.text, sanitize: true
+        = simple_format record.text, sanitize: true
       - else
         p Автор не предоставил описания

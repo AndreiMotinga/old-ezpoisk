@@ -1,7 +1,7 @@
 - cache post
   .row.white-block
     .article.post
-      .panel.panel-default
+      .panel
         .panel-heading
           h1.title= link_to post.title, post
 
@@ -11,9 +11,9 @@
                 = image_tag post.avatar.url(:thumb),
                             class: "img-responsive center-block img-circle",
                             alt: "автор новости #{post.user.name_to_show}"
-            .col-xs-9.col-sm-10
+            .col-xs-9.col-sm-10.name-block
               h4.name= link_to post.user.name_to_show, user_path(post.user), target: "_blank"
-              p.text-muted= post.created_at.strftime("%d %B %Y")
+              p.date.text-muted= post.created_at.strftime("%d %B %Y")
 
         .panel-body
           = link_to post_path(post) do

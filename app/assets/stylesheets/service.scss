@@ -1,0 +1,20 @@
+.service-similar {
+  max-width: 300px;
+  padding: 0 10px;
+
+  .header {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 3px 0 6px;
+  }
+
+  a {
+    color: $darkgrey;
+    text-decoration: none;
+  }
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+}
