@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   database: <%= ENV["DATABASE_URL"] || "ezpoisk_prod" %>
 
-  # 1(web_concurrency) * 5(threads) + 13(sidekiq concurrency) + 1(rails console) <= 20 (connections limit on heroku)
+  # 1(web_concurrency) * 5(threads) + 13(sidekiq concurrency) + 1(rails console) <= 20 (pg connections limit)
   pool: <%= ENV["MAX_THREADS"] || 5 %>
 
 development:
