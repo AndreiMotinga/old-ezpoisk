@@ -2,7 +2,7 @@
 
 .profile
   .white-block
-    .panel.panel-default
+    .panel
       .panel-body
         - if @user.about?
           .text.answer= simple_format @user.about, sanitize: true
