@@ -27,13 +27,8 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     IncreaseVisitsJob.perform_in(14.minutes, @post.id, 'Post') if @post
-
-    # todo move to similar
-    @posts = Post.includes(:user)
-                 .visible
-                 .older(@post.created_at)
-                 .desc
-                 .page(params[:page]).per(10)
+    @posts = Post.includes(:user).visible.older(@post.created_at)
+                                         .desc.page(params[:page])
     IncreaseImpressionsJob.perform_async(@posts.pluck(:id), "Post")
     respond_to do |format|
       format.html

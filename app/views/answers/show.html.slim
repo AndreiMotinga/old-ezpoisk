@@ -10,7 +10,6 @@
   = link_to "Добавить ответ",
             new_answer_path(question_id: @answer.question_id),
             class: "btn btn-block mobile-btn margin-bottom-10"
-  /todo fix do I need to sort it?
   = render "shared/tag_cloud",
             tags: Answer.tag_counts.sort_by(&:name),
             url: "/answers/tag/"

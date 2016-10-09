@@ -2,10 +2,7 @@
   .panel
     .panel-heading
       h1.title
-        - if action_name == "index" || "tag"
-          = link_to question.title, question
-        - else
-          = question.title
+        = link_to question.title, question
       p.text-muted
         = link_to new_answer_path(question_id: question.id) do
           i.fa.fa-pencil
@@ -13,7 +10,7 @@
         = "  "
         = subscription_links(question)
         br
-        = "#{question.impressions_count} просмотров, #{question.answers.count} ответов"
+        = "#{question.impressions_count} просмотров, #{question.answers_count} ответов"
       - if question.text.present?
         .panel-body
           .text= simple_format question.text, sanitize: true
