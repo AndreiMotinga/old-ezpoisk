@@ -62,7 +62,7 @@ class Job < ActiveRecord::Base
     ActsAsTaggableOn::Tag.joins(:taggings)
                          .where("taggings.taggable_type = ?", "Job")
                          .order("name")
-                         .uniq
+                         .distinct
   end
 
   def similar
