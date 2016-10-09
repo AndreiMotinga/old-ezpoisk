@@ -34,10 +34,11 @@ class Sale < ActiveRecord::Base
   end
 
   def similar
-    Job.includes(:state, :city)
+    Sale.includes(:state, :city)
        .active
        .state_id(state_id)
        .city_id(city_id)
+       .post_type(post_type)
        .category(category)
        .older(created_at)
        .desc

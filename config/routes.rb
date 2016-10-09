@@ -70,7 +70,7 @@ Rails.application.routes.draw do
   end
   resources :sales, only: [:index, :show] do
     collection do
-      get ":state(/:city(/:category))", state: /\D*?/, to: "sales#search", as: "search"
+      get ":state(/:city(/:post_type(/:category)))", state: /\D*?/, to: "sales#search", as: "search"
     end
   end
 

@@ -64,6 +64,7 @@ class SocialListingCreator
     @rec = Sale.create(
       title: title,
       category: "sale",
+      post_type: "selling",
       text: @post[:text],
       active: true,
       user_id: 1,
@@ -84,7 +85,7 @@ class SocialListingCreator
   private
 
   def title
-    ActionView::Base.full_sanitizer.sanitize(@post[:text])
-                    .slice(0, 50).mb_chars.downcase.capitalize.strip.to_s
+    s = ActionView::Base.full_sanitizer.sanitize(@post[:text]).slice(0, 48)
+    s + "...".mb_chars.downcase.capitalize.strip.to_s
   end
 end

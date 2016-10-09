@@ -6,6 +6,7 @@ FactoryGirl.define do
     category { SALE_CATEGORIES.sample}
     state_id 32
     city_id 18031
+    post_type { %w(buying selling giving).sample }
 
     text { Faker::Lorem.paragraph(5) }
     lat { Faker::Address.latitude }

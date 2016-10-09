@@ -1,5 +1,5 @@
-SALE_CATEGORIES = %w(sale transportation home kids clothes electronics pets
-                     plants).freeze
+SALE_CATEGORIES = %w(kids home pets clothes sale plants transportation  electronics).freeze
+SALE_TYPES = %w(selling buying giving)
 JOB_CATEGORIES = %w(wanted seeking).freeze
 PARTNER_POSITIONS = %w(left right).freeze
 

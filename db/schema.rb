@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009004933) do
+ActiveRecord::Schema.define(version: 20161009014854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -309,6 +309,7 @@ ActiveRecord::Schema.define(version: 20161009004933) do
     t.string   "fb",                  default: ""
     t.boolean  "featured",            default: false
     t.integer  "deactivations_count", default: 0
+    t.string   "post_type",           default: "",    null: false
     t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
     t.index ["fb"], name: "index_sales_on_fb", using: :btree
     t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree

@@ -5,7 +5,7 @@
       .col-xs-12.col-sm-4.logo data-id="logo"
         = link_to sale_path(sale) do
           img.img-responsive.center-block [src=sale.logo_url data-id="logo" itemprop="image"
-            alt="Продается #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
+            alt="#{t sale.post_type} #{t sale.category} #{sale.title} #{sale.city.name} #{sale.state.name}"]
 
       .col-xs-12.col-sm-8
         / line 1
@@ -19,6 +19,8 @@
         hr.post-devider
 
         /line 3
+        = link_to t(sale.post_type), sales_path(post_type: sale.post_type)
+        span= " | "
         = link_to t(sale.category), sales_path(category: sale.category)
         - if sale.price?
           span= " | "

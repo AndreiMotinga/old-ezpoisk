@@ -2,13 +2,17 @@
   .white-block
     .panel
       .panel-body
-        = f.text_field :title, label: '* Заголовок'
+        .row
+          .col-xs-12.col-sm-9
+            = f.text_field :title, label: '* Заголовок'
+          .col-xs-12.col-sm-3
+            = f.number_field :price, label: 'Цена'
         = f.text_area :text, rows: 5, label: 'Описание'
         .row
           .col-xs-12.col-sm-6
-            = f.select :category, ru(SALE_CATEGORIES), label: '* Категория'
+            = f.select :post_type, ru(SALE_TYPES), label: '* Раздел'
           .col-xs-12.col-sm-6
-            = f.number_field :price, label: 'Цена'
+            = f.select :category, ru(SALE_CATEGORIES), label: '* Категория'
 
   .white-block
     .panel
