@@ -8,11 +8,8 @@ class SocialListingCreator
 
   def create
     create_post
-    create_attachments
-    @rec.create_entry(user: @rec.user)
-    SlackNotifierJob.perform_async(@rec.id, @model)
-    GeocodeJob.perform_in(1.minutes, @rec.id, @model)
-    SocialUserNotifierJob.perform_in(1.minutes, @rec.id, @model)
+    do_maintenance
+    run_notifications
   end
 
   def create_post
@@ -80,6 +77,18 @@ class SocialListingCreator
     return if @model == "Job"
     return unless @post[:attachments].any?
     ImageDownloaderJob.perform_in(1.minutes, @post[:attachments], @rec.id, @model)
+  end
+
+  def do_maintenance
+    create_attachments
+    @rec.create_entry(user: @rec.user)
+    SocialTagCreatorJob.perform_in(1.minutes, @rec.id, @model) if @model == "Job"
+  end
+
+  def run_notifications
+    SlackNotifierJob.perform_async(@rec.id, @model)
+    GeocodeJob.perform_in(1.minutes, @rec.id, @model)
+    SocialUserNotifierJob.perform_in(1.minutes, @rec.id, @model)
   end
 
   private
