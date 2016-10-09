@@ -24,9 +24,7 @@
           = strip_tags(answer.text).truncate(380)
           = " "
           = link_to "дальше", answer, target: "_blank"
-          p.tags
-            - answer.cached_tags.split(",").map do |tag|
-              = sanitize link_to "##{tag}", tag_answers_path(tag), class: "tag"
+          = render "shared/tags", record: answer
 
         .panel-footer
           h6 style="display:inline" #{time_ago_in_words answer.created_at} назад |

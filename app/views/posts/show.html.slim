@@ -38,10 +38,7 @@
                       "data-id": "post-logo"
         .post-body itemprop="description"
           = raw @post.text
-
-          p.tags
-            - @post.cached_tags.split(", ").map do |tag|
-              = sanitize link_to "##{tag}", tag_posts_path(tag), class: "tag"
+          = render "shared/tags", record: @post
 
       .panel-footer
         = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true

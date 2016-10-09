@@ -7,10 +7,7 @@
       .panel-body
         .text itemprop="description"
           = simple_format job.text, sanitize: true
-        - if job.cached_tags.present?
-          p.tags
-            - job.cached_tags.split(",").map do |tag|
-              = link_to "##{tag}", tag_jobs_path(tag), class: "tag"
+        = render "shared/tags", record: job
 
         .panel-footer
           .row

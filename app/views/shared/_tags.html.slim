@@ -1,0 +1,4 @@
+- if record.cached_tags.present?
+  p.tags
+    - record.cached_tags.split(",").map do |tag|
+      = sanitize link_to "##{tag}", "/#{record.class.table_name}/tag/#{tag}", class: "tag"

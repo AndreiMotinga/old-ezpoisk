@@ -10,6 +10,7 @@
   = link_to "Добавить ответ",
             new_answer_path(question_id: @answer.question_id),
             class: "btn btn-block mobile-btn margin-bottom-10"
+  /todo fix do I need to sort it?
   = render "shared/tag_cloud",
             tags: Answer.tag_counts.sort_by(&:name),
             url: "/answers/tag/"
@@ -39,10 +40,8 @@
                     alt: "Помощь русским в США - #{@answer.title}"
       .post-body itemprop="description"
         = raw @answer.text
+      = render "shared/tags", record: @answer
 
-      p.tags
-        - @answer.cached_tags.split(", ").map do |tag|
-          = sanitize link_to "##{tag}", tag_answers_path(tag), class: "tag"
     .panel-footer
       .row
         .col-xs-12.col-md-5

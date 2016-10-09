@@ -17,8 +17,8 @@
       - if question.text.present?
         .panel-body
           .text= simple_format question.text, sanitize: true
-      p.tags
-        = tag_links(question)
+      = render "shared/tags", record: question
+
     - if action_name == "show"
       .panel-footer
         = render "shared/social", count: nil, inline: true
