@@ -12,7 +12,7 @@
             = label_tag "Категории", nil
             = collection_select :job,
               :tag_list,
-              Job.taggings_list, :name, :name,
+              ActsAsTaggableOn::Tag.order(:name), :name, :name,
               { selected: @job.tag_list },
               { multiple: true, name: 'job[tag_list][]', class: "my-dropdown-multiple" }
         .row
