@@ -25,7 +25,7 @@
           = " "
           = link_to "дальше", answer, target: "_blank"
           p.tags
-            - answer.cached_tags.split(", ").map do |tag|
+            - answer.cached_tags.split(",").map do |tag|
               = sanitize link_to "##{tag}", tag_answers_path(tag), class: "tag"
 
         .panel-footer

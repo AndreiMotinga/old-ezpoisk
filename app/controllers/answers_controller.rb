@@ -37,7 +37,7 @@ class AnswersController < ApplicationController
     user = user_signed_in? ? current_user : User.find(4)
     @answer = user.answers.build(answer_params)
     @answer.title = @answer.question.title
-    @answer.cached_tags = @answer.question.tags.pluck(:name).join(", ")
+    @answer.cached_tags = @answer.question.tags.pluck(:name).join(",")
 
     if @answer.save
       run_create_notifications(user)
