@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007064652) do
+ActiveRecord::Schema.define(version: 20161009004933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20161007064652) do
     t.boolean  "remote",              default: false
     t.boolean  "featured",            default: false
     t.integer  "deactivations_count", default: 0
+    t.string   "cached_tags",         default: ""
     t.index ["category"], name: "index_jobs_on_category", using: :btree
     t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
     t.index ["fb"], name: "index_jobs_on_fb", using: :btree

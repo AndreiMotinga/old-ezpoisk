@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   def index
     redirect_to search_jobs_path(sliced_params) if search?
-    @jobs = Job.includes(:state, :city, :taggings)
+    @jobs = Job.includes(:state, :city)
                 .where.not(id: favorites("Job"))
                .filter(sliced_params)
                .page(params[:page])
@@ -14,7 +14,7 @@ class JobsController < ApplicationController
   end
 
   def tag
-    @jobs = Job.includes(:state, :city, :taggings)
+    @jobs = Job.includes(:state, :city)
                .tagged_with(params[:tag], any: true)
                .page(params[:page])
     IncreaseImpressionsJob.perform_in(1.minute, @jobs.pluck(:id), "Job")
@@ -25,7 +25,7 @@ class JobsController < ApplicationController
   end
 
   def search
-    @jobs = Job.includes(:state, :city, :taggings)
+    @jobs = Job.includes(:state, :city)
                .filter(sliced_params)
                .page(params[:page])
     IncreaseImpressionsJob.perform_async(@jobs.pluck(:id), "Job")

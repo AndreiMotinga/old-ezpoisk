@@ -7,8 +7,10 @@
       .panel-body
         .text itemprop="description"
           = simple_format job.text, sanitize: true
-        p.tags
-          = sanitize job.tag_list.map {|tag| link_to "##{tag}", tag_jobs_path(tag), class: "tag" }.join
+        - if job.cached_tags.present?
+          p.tags
+            - job.cached_tags.split(",").map do |tag|
+              = link_to "##{tag}", tag_jobs_path(tag), class: "tag"
 
         .panel-footer
           .row

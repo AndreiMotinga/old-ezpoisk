@@ -61,6 +61,7 @@ class Job < ActiveRecord::Base
   def self.taggings_list
     ActsAsTaggableOn::Tag.joins(:taggings)
                          .where("taggings.taggable_type = ?", "Job")
+                         .order("name")
                          .uniq
   end
 
@@ -73,5 +74,9 @@ class Job < ActiveRecord::Base
        .older(created_at)
        .desc
        .limit(10)
+  end
+
+  def update_cached_tags
+    update_column(:cached_tags, tags.pluck(:name).join(","))
   end
 end

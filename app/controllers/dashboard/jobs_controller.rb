@@ -2,9 +2,8 @@ class Dashboard::JobsController < ApplicationController
   before_action :set_job, only: [:edit, :update, :destroy]
 
   def index
-    @jobs = current_user.jobs
-                        .includes(:state, :city, :taggings)
-                        .page(params[:page])
+    @jobs = current_user.jobs.includes(:state, :city)
+                             .page(params[:page])
     respond_to do |format|
       format.html
       format.js do
@@ -122,5 +121,6 @@ class Dashboard::JobsController < ApplicationController
 
   def do_maintenance
     @job.clear_phone!
+    @job.update_cached_tags
   end
 end
