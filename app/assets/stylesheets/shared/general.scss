@@ -215,16 +215,16 @@ span.social {
 
   .list-group {
     margin-bottom: 0;
+  }
 
-    .list-group-item {
-      &:first-child {
-        border-top-right-radius: 2px;
-        border-top-left-radius: 2px;
-      }
-      &:last-child {
-        border-bottom-right-radius: 2px;
-        border-bottom-left-radius: 2px;
-      }
+  .list-group-item {
+    &:first-child {
+      border-top-right-radius: 2px;
+      border-top-left-radius: 2px;
+    }
+    &:last-child {
+      border-bottom-right-radius: 2px;
+      border-bottom-left-radius: 2px;
     }
   }
 }
@@ -272,4 +272,11 @@ hr.black-line { border-top: 5px solid $black; }
   .nav-tabs > li > a {
     padding: 10px 12px;
   }
+}
+
+body.modal-open{
+  width:100%!important;
+  padding-right:0!important;
+  overflow-y:scroll!important;
+  position:fixed!important;
 }
