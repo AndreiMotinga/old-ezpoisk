@@ -5,7 +5,7 @@ class FbListingUnifier
   def initialize(post)
     @post = HashWithIndifferentAccess.new(
       date: post["created_time"],
-      text: SocialTextSanitizer.new(post["message"]).clean,
+      text: SocialTextSanitizer.clean(post["message"]),
       vk: "",
       fb: "https://www.facebook.com/#{post['from']['id']}",
       attachments: attachments(post['attachments'])
