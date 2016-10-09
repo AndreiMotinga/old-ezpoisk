@@ -28,7 +28,7 @@ class SocialListingCreator
 
   def create_job
     @rec = Job.create(
-      title: SocialTitle.new(@post[:text], "Работа").title,
+      title: title,
       category: @group[:category] || "wanted",
       active: true,
       text: @post[:text],
@@ -62,7 +62,7 @@ class SocialListingCreator
 
   def create_sale
     @rec = Sale.create(
-      title: SocialTitle.new(@post[:text], "Продаю").title,
+      title: title,
       category: "sale",
       text: @post[:text],
       active: true,
@@ -79,5 +79,12 @@ class SocialListingCreator
     return if @model == "Job"
     return unless @post[:attachments].any?
     ImageDownloaderJob.perform_in(1.minutes, @post[:attachments], @rec.id, @model)
+  end
+
+  private
+
+  def title
+    ActionView::Base.full_sanitizer.sanitize(@post[:text])
+                    .slice(0, 50).mb_chars.downcase.capitalize.strip.to_s
   end
 end
