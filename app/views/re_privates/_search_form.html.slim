@@ -47,7 +47,7 @@
         .row
           .col-xs-12.col-sm-6
             = label_tag "Сортировать", nil
-            = sort_select
+            = sort_select(rp_sort_opts)
           .col-xs-12.col-sm-6 data-id="apartment_fields"
             br
             = label_tag :fee, "Без комиссии"

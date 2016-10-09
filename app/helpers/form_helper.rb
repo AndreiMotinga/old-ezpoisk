@@ -14,14 +14,23 @@ module FormHelper
     return current_user.try(:city_slug) if current_user.try(:city_slug)
   end
 
-  def sort_select
-    sort_opts = { "Подешевле" => "price asc",
-                  "Подороже"  => "case when price is null then -1 else price end desc",
-                  "Поменьше"  => "space asc",
-                  "Побольше"  => "space desc",
-                  "Поновее"   => "created_at desc" }
+  def rp_sort_opts
+    { "Подешевле": "price asc",
+      "Подороже": "case when price is null then -1 else price end desc",
+      "Поменьше": "space asc",
+      "Побольше": "space desc",
+      "Поновее": "created_at desc" }
+  end
+
+  def sale_sort_opts
+    { "Подешевле": "price asc",
+      "Подороже": "case when price is null then -1 else price end desc",
+      "Поновее": "created_at desc" }
+  end
+
+  def sort_select(opts)
     select_tag(:sorted,
-               options_for_select(sort_opts, params[:sorted]),
+               options_for_select(opts, params[:sorted]),
                include_blank: true,
                class: "form-control")
   end
