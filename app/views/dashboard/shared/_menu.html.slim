@@ -1,4 +1,4 @@
-ul.list-group.menu.white-block
+ul.list-group.menu
   - if user_signed_in?
     = link_to "Мои настройки" , edit_dashboard_user_path(current_user) , class: "list-group-item"
   = link_to "Мои закладки"  , main_app.dashboard_favorites_path      , class: "list-group-item"

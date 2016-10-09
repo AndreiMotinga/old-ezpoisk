@@ -7,8 +7,6 @@
 - content_for :sidebar do
   .margin-bottom-10= render("shared/sidebar_links")
   = render("shared/listings_count",
-            title: "Объявления",
-            url: root_path,
             today: Entry.today.count,
             week: Entry.week.count,
             total: Entry.count)

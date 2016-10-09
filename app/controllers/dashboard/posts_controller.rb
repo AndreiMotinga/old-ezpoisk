@@ -3,10 +3,7 @@ class Dashboard::PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = current_user.posts
-                         .includes(:user, :taggings)
-                         .desc
-                         .page(params[:page])
+    @posts = current_user.posts.includes(:user).desc.page(params[:page])
     respond_to do |format|
       format.html
       format.js do
