@@ -1,6 +1,6 @@
 module QuestionsHelper
   def tag_links(question)
-    sanitize question.tag_list
+    sanitize question.cached_tags.split(",")
       .map { |tag| link_to "##{tag}", tag_path(tag), class: "tag" }.join
   end
 

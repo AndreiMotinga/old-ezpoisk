@@ -2,11 +2,7 @@ class HomeController < ApplicationController
   layout :resolve_layout
 
   def index
-    @entries = Entry.includes(enterable: [:user, :taggings])
-                    .news
-                    .desc
-                    .page(params[:page]).per(10)
-
+    @entries = Entry.includes(enterable: :user).news.desc.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index",

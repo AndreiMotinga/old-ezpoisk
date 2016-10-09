@@ -62,6 +62,7 @@ class QuestionsController < ApplicationController
     if @question.save
       SlackNotifierJob.perform_async(@question.id, "Question")
       create_subscription
+      @question.update_cached_tags
       @question.create_entry(user: current_user)
       redirect_to @question, notice: I18n.t(:q_created)
     else
