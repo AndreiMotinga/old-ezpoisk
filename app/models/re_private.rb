@@ -28,6 +28,8 @@ class RePrivate < ActiveRecord::Base
   has_one :entry, as: :enterable, dependent: :destroy
   has_many :subscriptions, as: :subscribable, dependent: :destroy
 
+  alias_attribute :title, :street
+
   def edit_link
     Rails.application.routes.url_helpers.edit_dashboard_re_private_path(self)
   end
