@@ -3,17 +3,6 @@ require "rails_helper"
 describe VkUserNotifier do
   before { VkUserNotifier.vk_reset }
 
-  # context "shouldn't send message" do
-  #   it "when history between users exists" do
-  #     job = create :job, vk: "123"
-  #     st = stub_history(job.vk)
-  #
-  #     VkUserNotifier.new(job).notify
-  #
-  #     expect(st).to have_been_requested
-  #   end
-  # end
-
   context "sending messages" do
     it "sends message" do
       job = create :job, vk: "123"
@@ -35,8 +24,8 @@ describe VkUserNotifier do
       allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
       # stub_empty_history(job.vk)
       st = stub_failed_sending(job.vk, msg)
-      # history = stub_empty_history(job.vk, ENV["VK_TITOV_TOKEN"])
-      new_st = stub_successful_sending(job.vk, msg, ENV["VK_TITOV_TOKEN"])
+      # history = stub_empty_history(job.vk, ENV["VK_EZ_TOKEN"])
+      new_st = stub_successful_sending(job.vk, msg, ENV["VK_OLEG_TOKEN"])
 
       VkUserNotifier.new(job).notify
 
@@ -50,11 +39,11 @@ describe VkUserNotifier do
       msg = "test message"
       allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
       # stub_empty_history(job.vk)
-      # stub_empty_history(job.vk, ENV["VK_TITOV_TOKEN"]) # other admin user
+      # stub_empty_history(job.vk, ENV["VK_EZ_TOKEN"]) # other admin user
       # stub_empty_history(job.vk, ENV["VK_OLEG_TOKEN"]) # other admin user
-      first  = stub_failed_sending(job.vk, msg, ENV["VK_ANDREI_TOKEN"])
-      second = stub_failed_sending(job.vk, msg, ENV["VK_TITOV_TOKEN"])
-      third = stub_successful_sending(job.vk, msg, ENV["VK_OLEG_TOKEN"])
+      first  = stub_failed_sending(job.vk, msg, ENV["VK_EZ_TOKEN"])
+      second = stub_failed_sending(job.vk, msg, ENV["VK_OLEG_TOKEN"])
+      third = stub_successful_sending(job.vk, msg, ENV["VK_ANDREI_TOKEN"])
 
       VkUserNotifier.new(job).notify
 
@@ -65,7 +54,7 @@ describe VkUserNotifier do
   end
 end
 
-def stub_failed_sending(user_id, msg, token = ENV["VK_ANDREI_TOKEN"])
+def stub_failed_sending(user_id, msg, token = ENV["VK_EZ_TOKEN"])
   body = '{
     "error":{
       "error_code":100,
@@ -82,7 +71,7 @@ def stub_failed_sending(user_id, msg, token = ENV["VK_ANDREI_TOKEN"])
     .to_return(status: 200, body: body)
 end
 
-def stub_successful_sending(user_id, msg, token = ENV["VK_ANDREI_TOKEN"])
+def stub_successful_sending(user_id, msg, token = ENV["VK_EZ_TOKEN"])
   body = '{"response": 4431}'
   url = "https://api.vk.com/method/messages.send?access_token=#{token}"
   stub_request(:post, url)

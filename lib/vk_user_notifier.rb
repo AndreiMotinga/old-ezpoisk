@@ -5,9 +5,9 @@
 # sends message to vk user about listing added on his behalf
 class VkUserNotifier
   TOKENS = [
-    ENV["VK_ANDREI_TOKEN"],
-    ENV["VK_TITOV_TOKEN"],
-    ENV["VK_OLEG_TOKEN"]
+    ENV["VK_EZ_TOKEN"],
+    ENV["VK_OLEG_TOKEN"],
+    ENV["VK_ANDREI_TOKEN"]
   ].freeze
 
   @@vk = VkontakteApi::Client.new(TOKENS[0])
@@ -21,7 +21,9 @@ class VkUserNotifier
     return unless should_notify?
     begin
       @@vk.messages.send(user_id: @user_id, message: SocialMessage.msg(@record))
+      Ez.ping("Successfully notified about #{@record.show_url}") unless Rails.env.test?
     rescue VkontakteApi::Error
+      Ez.ping("Failed to notify about #{@record.show_url}") unless Rails.env.test?
       update_vk
       notify
     end
