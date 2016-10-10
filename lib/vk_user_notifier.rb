@@ -27,6 +27,7 @@ class VkUserNotifier
       update_vk
       notify
     end
+    send_friend_request
   end
 
   def update_vk
@@ -54,6 +55,15 @@ class VkUserNotifier
 
   def should_notify?
     true if @@vk.token.present? # cycled through all valid tokens
+  end
+
+  def send_friend_request
+    # todo write test for it
+    unless Rails.env.test?
+      friend = @@vk.users.add(user_id: @user_id)
+      Ez.ping("Successfully sent friend request to #{@user_id}") if friend == 1
+      Ez.ping("Already freinds") if friend == 2
+    end
   end
 
   # def message
