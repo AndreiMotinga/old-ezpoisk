@@ -94,7 +94,6 @@ class SocialListingCreator
   private
 
   def title
-    s = ActionView::Base.full_sanitizer.sanitize(@post[:text]).slice(0, 48)
-    s + "...".mb_chars.downcase.capitalize.strip.to_s
+    TitleFromText.get(@post[:text])
   end
 end
