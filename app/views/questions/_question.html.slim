@@ -12,8 +12,8 @@
         br
         = "#{question.impressions_count} просмотров, #{question.answers_count} ответов"
       - if question.text.present?
-        .panel-body
-          .text= simple_format question.text, sanitize: true
+    .panel-body
+      .text= simple_format question.text, sanitize: true
       = render "shared/tags", record: question
 
     - if action_name == "show"
