@@ -7,7 +7,7 @@ module ListingHelpers
 
   def logo_url
     if cached_logo.present?
-      cached_logo.image.url(:large)
+      cached_logo.image.url(:medium)
     else
       "https://s3.amazonaws.com/ezpoisk/missing-small.png"
     end
