@@ -103,6 +103,8 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
 
+  get '/re_privates/:id', to: redirect('/real-estate/%{id}')
+
   resources :users, only: [:show]
   get "clean", to: "home#clean"
   root to: "home#index"
