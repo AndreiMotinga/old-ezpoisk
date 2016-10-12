@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009032025) do
+ActiveRecord::Schema.define(version: 20161012174943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,12 @@ ActiveRecord::Schema.define(version: 20161009032025) do
     t.boolean  "paid",               default: false
     t.integer  "votes_count",        default: 0
     t.string   "cached_tags",        default: ""
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.index ["city_id"], name: "index_answers_on_city_id", using: :btree
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
     t.index ["slug"], name: "index_answers_on_slug", using: :btree
+    t.index ["state_id"], name: "index_answers_on_state_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
 
@@ -168,6 +172,15 @@ ActiveRecord::Schema.define(version: 20161009032025) do
     t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
 
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string   "imageable_type"
     t.integer  "imageable_id"
@@ -227,13 +240,17 @@ ActiveRecord::Schema.define(version: 20161009032025) do
     t.string  "image_url",         default: ""
     t.integer "visits",            default: 0
     t.string  "cached_tags"
+    t.integer "city_id"
+    t.integer "state_id"
+    t.index ["city_id"], name: "index_questions_on_city_id", using: :btree
     t.index ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
+    t.index ["state_id"], name: "index_questions_on_state_id", using: :btree
     t.index ["title"], name: "index_questions_on_title", using: :btree
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
   end
 
   create_table "re_privates", force: :cascade do |t|
-    t.string   "street",              default: "",    null: false
+    t.string   "title",               default: "",    null: false
     t.string   "post_type",           default: "",    null: false
     t.string   "duration",            default: "",    null: false
     t.string   "phone",               default: "",    null: false

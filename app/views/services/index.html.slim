@@ -14,7 +14,7 @@
 .visible-xs= render("shared/filters_btn", id: "services", count: @services.total_count)
 = render "services/search_form"
 
-.col-xs-12 data-id="listings"
+.col-xs-12 data-id="listings" data-term=params[:term]
   - cache @services
     - @services.each do |service|
       = render service

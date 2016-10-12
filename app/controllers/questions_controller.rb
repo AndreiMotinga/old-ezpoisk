@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def index
-    @questions = Question.by_keyword(params[:keyword]).page(params[:page])
+    @questions = Question.search(params[:term]).page(params[:page])
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
     @tags = Question.tag_counts.sort_by(&:name)
     respond_to do |format|
@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def tag
-    @questions = Question.tagged_with(params[:tag]).by_views.page(params[:page])
+    @questions = Question.tagged_with(params[:tag]).page(params[:page])
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
     @tags = Question.tag_counts.sort_by(&:name)
     respond_to do |format|
@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
 
 
   def unanswered
-    @questions = Question.unanswered.by_keyword(params[:keyword])
+    @questions = Question.unanswered.search(params[:term])
                                     .page(params[:page])
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
     @tags = Question.unanswered.tag_counts.sort_by(&:name)
@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
 
   def unanswered_tag
     @questions = Question.unanswered.tagged_with(params[:tag])
-                                    .by_keyword(params[:keyword])
+                                    .search(params[:term])
                                     .page(params[:page])
     IncreaseImpressionsJob.perform_async(@questions.pluck(:id), "Question")
   @tags = Question.unanswered.tag_counts.sort_by(&:name)

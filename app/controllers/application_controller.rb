@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
     prms[:subcategory] = params[:subcategory] if params[:subcategory].present?
     prms[:category]    = params[:category]    if params[:category].present?
     prms[:tag_list]    = params[:tag_list]    if params[:tag_list].present?
-    prms[:keyword]     = params[:keyword]     if params[:keyword].present?
+    prms[:term]        = params[:term]        if params[:term].present?
     prms[:post_type]   = params[:post_type]   if params[:post_type].present?
     prms[:min_price]   = params[:min_price]   if params[:min_price].present?
     prms[:max_price]   = params[:max_price]   if params[:max_price].present?

@@ -2,26 +2,10 @@
 #new.modal.fade aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
   .modal-dialog role="document"
     .modal-content
-      .modal-header
-        button.close aria-label="Close" data-dismiss="modal" type="button"
-          span aria-hidden="true" ×
-        h4#myModalLabel.modal-title Подайте объявление
-
       .modal-body
         .home.menu
           ul.nav.accordion
             ul.list-group.panel
-
-              /a.list-group-item data-parent=".accordion" data-toggle="collapse" href="#realty-nav-2"
-              /  span.sidebar-icon
-              /    i.fa.fa-hospital-o
-              /  | Недвижимость
-              /  .pull-right
-              /    span.caret
-              /#realty-nav-2.collapse
-              /  li= link_to "Частная Недвижимость", new_dashboard_re_private_path
-              /  li= link_to "Коммерческая Недвижимость", new_dashboard_re_commercial_path
-
               a.list-group-item href=new_dashboard_re_private_path data-turbolinks="false"
                 span.sidebar-icon
                   i.fa.fa-hospital-o
@@ -52,5 +36,4 @@
                   i.fa.fa-question
                 | Задать вопрос
 
-      .modal-footer
         button.btn.btn-block.mobile-btn aria-label="Close" data-dismiss="modal" type="button" = t(:close)

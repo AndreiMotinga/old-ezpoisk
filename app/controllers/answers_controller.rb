@@ -3,7 +3,7 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:edit, :update, :destroy]
 
   def index
-    @answers = Answer.includes(:user).page(params[:page]).per(10)
+    @answers = Answer.includes(:user).search(params[:term]).page(params[:page])
     IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
     respond_to do |format|
       format.html

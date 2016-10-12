@@ -12,7 +12,7 @@
 
 = render "re_privates/search_form"
 
-.col-xs-12 data-id="listings"
+.col-xs-12 data-id="listings" data-term=params[:term]
   - cache @re_privates
     - @re_privates.each do |re_private|
       = render re_private

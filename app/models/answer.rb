@@ -5,14 +5,16 @@ class Answer < ActiveRecord::Base
   include ListingHelpers
   acts_as_votable
   acts_as_commentable
+
   belongs_to :user
   belongs_to :question
-
+  belongs_to :state
+  belongs_to :city
   has_one :entry, as: :enterable, dependent: :destroy
 
-  delegate :name_to_show, to: :user
   validates :title, presence: true
   validates :text, presence: true
+  delegate :name_to_show, to: :user
 
   has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
@@ -30,6 +32,10 @@ class Answer < ActiveRecord::Base
 
   def show_url
     Rails.application.routes.url_helpers.answer_url(self)
+  end
+
+  def edit_url_with_token
+    Rails.application.routes.url_helpers.edit_answer_url(self)
   end
 
   def avatar

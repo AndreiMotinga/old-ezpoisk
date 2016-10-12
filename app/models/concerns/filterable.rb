@@ -12,6 +12,8 @@ module Filterable
   end
 
   included do
+    include Searchable
+    scope :term, -> (term) { search(term) }
     scope :default , -> { order("featured desc, priority desc,
                                 #{table_name}.created_at desc") }
     scope :today, -> { where("#{table_name}.created_at > ?", Date.today) }
@@ -45,12 +47,6 @@ module Filterable
     scope(:geo_scope, lambda do |geo_scope|
       return if geo_scope[:within].blank? || geo_scope[:origin].blank?
       within(geo_scope[:within], origin: geo_scope[:origin])
-    end)
-
-    scope(:keyword, lambda do |keyword|
-      query = "LOWER(title) LIKE ? OR LOWER(text) LIKE ?"
-      keyword = "%#{keyword.mb_chars.downcase}%"
-      where(query, keyword, keyword)
     end)
   end
 end

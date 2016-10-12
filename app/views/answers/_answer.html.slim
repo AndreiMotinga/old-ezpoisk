@@ -21,7 +21,7 @@
             = image_tag answer.image.url(:medium),
                         class: "img-responsive center-block margin-bottom-10",
                         alt: "Помощь русским в США - #{answer.title}"
-          = strip_tags(answer.text).truncate(380)
+          .text= strip_tags(answer.text).truncate(380)
           = " "
           = link_to "дальше", answer, target: "_blank"
           = render "shared/tags", record: answer

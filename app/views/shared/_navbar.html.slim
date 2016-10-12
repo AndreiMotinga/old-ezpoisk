@@ -1,30 +1,22 @@
 nav.navbar-fixed-top.navbar-main
   .container
-    .navbar-header.pull-left
-      = link_to root_path do
-        = image_tag "navbar-logo", class: "img-responsive"
-
-    ul.nav.navbar-nav.navbar-left.hidden-xs
-      li
-        button.hamburger.is-closed data-toggle="offcanvas" type="button"
-          span.hamb-top
-          span.hamb-middle
-          span.hamb-bottom
-          span.hamb-menu MENU
-    .navbar-header.pull-right.visible-xs
-      a.btn.mobile-btn.mobile-btn-new data-target="#new" data-toggle="modal" role="button" + Подать новое
-
-    .navbar-header.pull-right.hidden-xs
+    .pull-left
       ul.nav.navbar-nav
-        - unless controller_name == 'questions' || controller_name == 'answers'
-          li.visible-md.visible-lg
-            form.navbar-form.navbar-right role="search" method="get" action=questions_path
-              .input-group
-                input#navbar-search.q-search.form-control[placeholder="Задайте свой вопрос здесь.."
-                  type="text" name="keyword" value=params[:keyword] ]
-                  span.input-group-btn
-                    button.btn.btn-default type="submit"
-                      i.fa.fa-search
+        li
+          button.hamburger.is-closed data-toggle="offcanvas" type="button"
+            span.hamb-top
+            span.hamb-middle
+            span.hamb-bottom
+      = link_to root_path do
+        = image_tag "navbar-logo", class: "img-responsive navbar-logo"
+
+    .pull-right.visible-xs
+      a.btn.mobile-btn.mobile-btn-new data-target="#new" data-toggle="modal" role="button" + Новое
+
+    .pull-right.hidden-xs
+      ul.nav.navbar-nav
+        li.visible-md.visible-lg
+          = render "shared/navbar_search_form"
 
         li= link_to "Подать объявление", "#new", "data-toggle": "modal"
 

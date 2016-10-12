@@ -30,17 +30,6 @@ class Post < ActiveRecord::Base
   scope :visible, -> { where(visible: true) }
   scope :invisible, -> { where(visible: false) }
 
-  def self.convert_keyword(keyword)
-    keyword.gsub(/[^0-9a-zа-я ]/i, "")
-           .split(" ")
-           .map { |key| "%#{key.mb_chars.downcase}%" }
-  end
-
-  def self.category(category)
-    return all unless category.present?
-    where(category: category)
-  end
-
   def logo_url(style = :medium)
     image.url(style)
   end

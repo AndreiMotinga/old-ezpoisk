@@ -2,8 +2,7 @@ class RePrivate < ActiveRecord::Base
   CATEGORIES = %w(apartment office sales industry parking other).freeze
   TYPES = %w(leasing renting selling buying).freeze
   DURATION = %w(monthly weekly daily hourly).freeze
-  ROOMS = %w(room bed studio 1-bebroom 2-bebroom 3-bebroom 4-bebroom
-             5-bebroom 6-bebroom 7-bebroom 8-bebroom 9-bebroom).freeze
+  ROOMS = %w(bed room studio 1-room 2-room 3-room 4-room 5-room).freeze
 
   acts_as_mappable
   acts_as_commentable
@@ -28,7 +27,7 @@ class RePrivate < ActiveRecord::Base
   has_one :entry, as: :enterable, dependent: :destroy
   has_many :subscriptions, as: :subscribable, dependent: :destroy
 
-  alias_attribute :title, :street
+  alias_attribute :street, :title
 
   def edit_link
     Rails.application.routes.url_helpers.edit_dashboard_re_private_path(self)

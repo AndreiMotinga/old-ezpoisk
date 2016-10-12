@@ -9,7 +9,7 @@ describe VkUserNotifier do
       msg = "test message"
       allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
       # stub_empty_history(job.vk)
-      stub_friend_request
+      # stub_friend_request
       st = stub_successful_sending(job.vk, msg)
 
       VkUserNotifier.new(job).notify

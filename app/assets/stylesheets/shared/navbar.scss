@@ -1,16 +1,19 @@
-.navbar {
-  box-shadow: $box-shadow;
+.navbar-nav {
+  margin: 0;
 }
 
 .navbar-main {
+  box-shadow: $box-shadow;
   background-color: $white;
   margin-bottom: 0;
 
-  .navbar-brand {
-    float: left;
-    font-family: "Lucida Grande", Times, serif;
-    font-size: 25px;
-    font-weight: 900;
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-logo {
+    margin-left: 45px;
   }
 
   .avatar {
@@ -35,19 +38,8 @@
   font-weight: bold;
 }
 
-@media(max-width:767px){}
-@media(min-width:768px){}
-@media(min-width:992px){
-  #navbar-search {
-    width: 300px;
-  }
-}
-@media(min-width:1200px){
-  #navbar-search {
-    width: 500px;
-    border-bottom-left-radius: 4px;
-    border-top-left-radius: 4px;
-  }
+.navbar-form {
+  input { width: 300px !important; }
 }
 
 .dropdown-submenu {

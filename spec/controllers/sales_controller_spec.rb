@@ -26,12 +26,12 @@ describe SalesController do
     end
 
     describe "#filter" do
-      it "filters by keyword" do
+      it "filters by term" do
         first = create :sale, :active, title: "Computer table"
         second = create :sale, :active, text: "Computer desk"
         create :sale, :active, title: "Supercar", text: "Foobar"
 
-        get :index, params: { keyword: "comput" }
+        get :index, params: { term: "comput" }
         sales = assigns(:sales)
 
         expect(sales.map(&:title)).to match_array [first.title, second.title]

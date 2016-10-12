@@ -6,14 +6,16 @@
 
         .row
           .col-xs-12.col-sm-6
-            = label_tag "Раздел", nil
             = select_tag :category,
-                         options_for_select(ru(SERVICE_SUBCATEGORIES.keys), params[:category]),
-                         include_blank: true,
+                         options_for_select([["Раздел", ""]] + ru(SERVICE_SUBCATEGORIES.keys), params[:category]),
                          class: "form-control category-select", "data-type": "Service"
           .col-xs-12.col-sm-6
-            = label_tag "Категория", nil
             = select_tag :subcategory, service_subcategories_options, class: "form-control subcategory-select"
+
+        br
+        = text_field_tag :term,
+                         params[:term],
+                         class: "form-control", placeholder: "Ключевое слово..."
 
         hr/
         = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

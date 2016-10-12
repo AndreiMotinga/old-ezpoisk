@@ -12,7 +12,7 @@
 .visible-xs= render("shared/filters_btn", count: @jobs.total_count)
 = render "jobs/search_form"
 
-.col-xs-12 data-id="listings"
+.col-xs-12 data-id="listings" data-term=params[:term]
   - cache @jobs
     - @jobs.each do |job|
       = render job

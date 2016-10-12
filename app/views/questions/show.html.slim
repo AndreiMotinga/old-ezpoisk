@@ -19,7 +19,7 @@
   = render @question
 
   / ANSWERS
-  - if @question.has_answers?
+  - if @question.answers_count > 0
     = render @question.answers.includes(:user)
   - else
     h3= link_to new_answer_path(question_id: @question.id) do

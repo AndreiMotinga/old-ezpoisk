@@ -15,7 +15,8 @@ module FormHelper
   end
 
   def rp_sort_opts
-    { "Подешевле": "price asc",
+    { "Сортировать": "",
+      "Подешевле": "price asc",
       "Подороже": "case when price is null then -1 else price end desc",
       "Поменьше": "space asc",
       "Побольше": "space desc",
@@ -23,7 +24,8 @@ module FormHelper
   end
 
   def sale_sort_opts
-    { "Подешевле": "price asc",
+    { "Сортировать": "",
+      "Подешевле": "price asc",
       "Подороже": "case when price is null then -1 else price end desc",
       "Поновее": "created_at desc" }
   end
@@ -31,14 +33,14 @@ module FormHelper
   def sort_select(opts)
     select_tag(:sorted,
                options_for_select(opts, params[:sorted]),
-               include_blank: true,
                class: "form-control")
   end
 
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
-    options_for_select(ru(SERVICE_SUBCATEGORIES[category]), params[:subcategory])
+    opts = [["Категория", ""]] + ru(SERVICE_SUBCATEGORIES[category])
+    options_for_select(opts, params[:subcategory])
   end
 
   def origin
@@ -52,14 +54,14 @@ module FormHelper
   def origin_text_field_param
     text_field_tag "geo_scope[origin]",
                    origin,
-                   placeholder: "2424 Coney Island ave Brooklyn New York or 11229",
+                   placeholder: "2424 Coney Island ave, Brooklyn New York or 11229",
                    class: "form-control"
   end
 
   def within_text_field_param
     text_field_tag "geo_scope[within]",
                    within,
-                   placeholder: "e.g 20",
+                   placeholder: "20",
                    class: "form-control"
   end
 
