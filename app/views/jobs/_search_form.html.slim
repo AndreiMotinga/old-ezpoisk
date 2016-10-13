@@ -7,7 +7,7 @@
         .row
           .col-xs-12.col-sm-6
             = select_tag :category,
-                         options_for_select(ru(JOB_CATEGORIES), params[:category]),
+                         options_for_select(ru(Job::TYPES), params[:category]),
                          class: "form-control"
           .col-xs-12.col-sm-6
             = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."

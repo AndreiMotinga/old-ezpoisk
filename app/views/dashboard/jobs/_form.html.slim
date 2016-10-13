@@ -7,7 +7,7 @@
         = f.text_area :text, rows: 5, label: 'Описание'
         .row
           .col-xs-12.col-sm-6
-            = f.select :category, ru(JOB_CATEGORIES)
+            = f.select :category, ru(Job::TYPES)
           .col-xs-12.col-sm-6
             = label_tag "Категории", nil
             = collection_select :job,

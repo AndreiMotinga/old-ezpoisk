@@ -14,8 +14,8 @@ FactoryGirl.define do
     lng { Faker::Address.longitude }
     zip { Faker::Address.zip }
 
-    category { SERVICE_SUBCATEGORIES.keys.sample }
-    subcategory { SERVICE_SUBCATEGORIES[category].sample }
+    category { Service::SUBCATEGORIES.keys.sample }
+    subcategory { Service::SUBCATEGORIES[category].sample }
 
     vk { Faker::Internet.email }
     fb { Faker::Internet.email }

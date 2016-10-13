@@ -39,7 +39,7 @@ module FormHelper
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
-    opts = [["Категория", ""]] + ru(SERVICE_SUBCATEGORIES[category])
+    opts = [["Категория", ""]] + ru(Service::SUBCATEGORIES[category])
     options_for_select(opts, params[:subcategory])
   end
 

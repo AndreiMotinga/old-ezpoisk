@@ -7,7 +7,7 @@
   = f.text_field :title, label: '* Название', "data-title": ""
   = f.text_field :text, label: "* Описание", "data-text": ""
   = f.text_field :url, label: "* Ссылка", "data-url": ""
-  = f.select :position, ru(PARTNER_POSITIONS), label: "* Расположение"
+  = f.select :position, ru(Partner::POSITIONS), label: "* Расположение"
   hr
   = f.number_field :phone, label: '* Телефон'
   = f.email_field :email

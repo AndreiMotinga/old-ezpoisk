@@ -7,11 +7,11 @@
         .row
           .col-xs-12.col-sm-6
             = select_tag :post_type,
-                          options_for_select(ru(SALE_TYPES), params[:post_type]),
+                          options_for_select(ru(Sale::TYPES), params[:post_type]),
                           class: "form-control"
           .col-xs-12.col-sm-6
             = select_tag :category,
-                         options_for_select([["Категория", ""]] + ru(SALE_CATEGORIES), params[:category]),
+                         options_for_select([["Категория", ""]] + ru(Sale::CATEGORIES), params[:category]),
                          class: "form-control"
         br
 

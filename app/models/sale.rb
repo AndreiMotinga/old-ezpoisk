@@ -1,4 +1,6 @@
 class Sale < ActiveRecord::Base
+  TYPES = %w(selling buying giving)
+  CATEGORIES = %w(kids home pets clothes sale plants transportation electronics).freeze
   acts_as_mappable
   acts_as_commentable
   include Filterable

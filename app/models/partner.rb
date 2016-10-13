@@ -1,4 +1,5 @@
 class Partner < ActiveRecord::Base
+  POSITIONS = %w(left right).freeze
   belongs_to :user
 
   has_attached_file :image, styles: { thumb: "100x50",

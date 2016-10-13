@@ -1,4 +1,5 @@
 class Job < ActiveRecord::Base
+  TYPES = %w(wanted seeking).freeze
   acts_as_taggable
   acts_as_mappable
   acts_as_commentable

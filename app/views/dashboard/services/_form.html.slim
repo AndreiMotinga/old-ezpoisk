@@ -6,14 +6,14 @@
         .row
           .col-xs-12.col-sm-6
             = f.select :category,
-                        ru(SERVICE_SUBCATEGORIES.keys),
+                        ru(Service::SUBCATEGORIES.keys),
                         { include_blank: true, label: '* Раздел' },
                         class: "category-select",
                         "data-type": "Service"
           .col-xs-12.col-sm-6
             - if @service.category
               = f.select :subcategory,
-                         ru(SERVICE_SUBCATEGORIES[@service.category]),
+                         ru(Service::SUBCATEGORIES[@service.category]),
                          { label: '* Категория' },
                          class: "subcategory-select"
             - else

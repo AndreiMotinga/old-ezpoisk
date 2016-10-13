@@ -4,7 +4,7 @@ class SubcategoriesController < ApplicationController
   def index
     category = attrs[:category]
     type = attrs[:type]
-    @subcategories = SERVICE_SUBCATEGORIES[category] if type == "Service"
+    @subcategories = Service::SUBCATEGORIES[category] if type == "Service"
   end
 
   private

@@ -10,9 +10,9 @@
         = f.text_area :text, rows: 5, label: 'Описание'
         .row
           .col-xs-12.col-sm-6
-            = f.select :post_type, ru(SALE_TYPES), label: '* Раздел'
+            = f.select :post_type, ru(Sale::TYPES), label: '* Раздел'
           .col-xs-12.col-sm-6
-            = f.select :category, ru(SALE_CATEGORIES), label: '* Категория'
+            = f.select :category, ru(Sale::CATEGORIES), label: '* Категория'
 
   .white-block
     .panel
