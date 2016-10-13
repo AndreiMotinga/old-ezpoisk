@@ -2,15 +2,15 @@ document.addEventListener("turbolinks:load", highlight);
 $(document).ajaxComplete(highlight);
 
 function highlight(){
-  var term = $("[data-id='listings']").data("term");
+  var el = $("[data-id='listings']");
+  var term = el.data("term");
+
   if(!!term) {
-    $(".text").each(function(){
-      var html = $(this).html();
-      $.each(words.split(" "), function(i, word){
-        var regex = new RegExp(word, "gi");
-        html = html.replace(regex, "<mark>"+word+"</mark>")
-      });
-      $(this).html(html);
+    var html = el.html();
+    $.each(term.split(" "), function(i, word){
+      var regex = new RegExp(word, "gi");
+      html = html.replace(regex, "<mark>"+word+"</mark>");
     });
+    el.html(html);
   }
 }

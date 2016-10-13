@@ -7,14 +7,21 @@
         = f.text_area :text, rows: 5, label: 'Описание'
         .row
           .col-xs-12.col-sm-6
-            = f.select :category, ru(Job::TYPES)
+            = f.select :post_type, ru(Job::TYPES), label: "Раздел"
           .col-xs-12.col-sm-6
-            = label_tag "Категории", nil
+            = f.select :category,
+                       ru(Job::CATEGORIES),
+                       include_blank: true, label: "Категория"
+
+        .row
+          .col-xs-12
+            = label_tag "Тэги", nil
             = collection_select :job,
               :tag_list,
               ActsAsTaggableOn::Tag.order(:name), :name, :name,
               { selected: @job.tag_list },
               { multiple: true, name: 'job[tag_list][]', class: "my-dropdown-multiple" }
+
         .row
           .col-xs-6.col-sm-6
             = f.check_box :active, label: "Активно *"

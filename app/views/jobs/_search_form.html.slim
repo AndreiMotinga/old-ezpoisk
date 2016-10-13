@@ -6,12 +6,16 @@
 
         .row
           .col-xs-12.col-sm-6
-            = select_tag :category,
-                         options_for_select(ru(Job::TYPES), params[:category]),
+            = select_tag :post_type,
+                         options_for_select(ru(Job::TYPES), params[:post_type]),
                          class: "form-control"
           .col-xs-12.col-sm-6
-            = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
+            = select_tag :category,
+                         options_for_select(ru(Job::CATEGORIES), params[:category]),
+                         include_blank: true, class: "form-control"
 
+        br
+        = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
         br
         - cache :job_taggings
           = select_tag :tag_list,

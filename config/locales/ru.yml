@@ -615,7 +615,7 @@ ru:
   business: Бизнес, партнерства
   detectives: Детективы, охрана
   exterminators: Истребление насекомых
-  computers: Компьютеры, интернет
+  computers: Компьютеры, IT
   confectioners: Кондитеры
   nannies: Няни, гувернантки
   tranlations: Переводы, печатные работы
@@ -631,7 +631,7 @@ ru:
   cleaning: Уборка помещений
   finances-taxes: Финансы, налоги
   photo-video: Фото, Видео
-  art: Художники, искусство
+  art: Искусство
   flowers: Цветы
   erotics-massage: Эротический Массаж
   psychic: Экстрасенсы
@@ -669,4 +669,11 @@ ru:
   right: Справа
   we_contact_shortly: Спасибо за ваше участие, мы свяжемся с вами в ближайшее время
 
-
+  # jobs
+  home-attendants: Сиделки
+  drivers: Водители
+  factories: Производства
+  security: Охрана
+  management: Управление
+  journalism: Журналистика
+  temporary: Временная

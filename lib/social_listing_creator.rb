@@ -39,8 +39,9 @@ class SocialListingCreator
   def create_job
     @rec = Job.create(
       title: title,
-      category: @group[:category] || "wanted",
+      category: "other",
       active: true,
+      post_type: @group[:category] || "wanted",
       text: @post[:text],
       state_id: @group[:state_id],
       city_id: @group[:city_id],

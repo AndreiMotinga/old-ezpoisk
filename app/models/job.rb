@@ -1,5 +1,10 @@
 class Job < ActiveRecord::Base
   TYPES = %w(wanted seeking).freeze
+  CATEGORIES = %w(autoservices drivers temporary journalism art
+    computers medical real-estate nannies education office security factories
+    advertisement restourants beauty-salons home-attendants escort sports
+    construction sales cleaning management finances-taxes other).freeze
+
   acts_as_taggable
   acts_as_mappable
   acts_as_commentable

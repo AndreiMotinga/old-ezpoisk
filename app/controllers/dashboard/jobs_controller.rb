@@ -111,7 +111,7 @@ class Dashboard::JobsController < ApplicationController
     params.require(:job).permit(:title, :phone, :email, :text,
                                 :active, :street, :state_id, :city_id,
                                 :logo, :category, :subcategory, :source,
-                                :vk, :fb, :remote, tag_list: [])
+                                :vk, :fb, :post_type, :remote, tag_list: [])
   end
 
   def destroy_redirect_path

@@ -47,6 +47,8 @@ describe Dashboard::JobsController do
           edit_dashboard_job_path(job)
         )
         expect(job.title).to eq attrs[:title]
+        expect(job.post_type).to eq attrs[:post_type]
+        expect(job.category).to eq attrs[:category]
         expect(job.vk).to eq attrs[:vk]
         expect(job.fb).to eq attrs[:fb]
         expect(job.phone).to eq "380985483"

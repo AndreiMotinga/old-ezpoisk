@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show] do
     collection do
       get "tag/:tag", to: "jobs#tag", as: :tag
-      get ":state(/:city(/:category))", state: /\D*?/, to: "jobs#search", as: "search"
+      get ":state(/:city(/:post_type(/:category)))", state: /\D*?/, to: "jobs#search", as: "search"
     end
   end
 
