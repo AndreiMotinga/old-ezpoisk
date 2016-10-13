@@ -4,7 +4,6 @@ class VkListingImporterJob
   sidekiq_options queue: 'critical'
 
   def perform
-    VkUserNotifier.vk_reset
     VkListingImporter.import
   end
 end

@@ -1,57 +1,44 @@
 require "rails_helper"
 
 describe VkUserNotifier do
-  before { VkUserNotifier.vk_reset }
+  before do
+    VkUserNotifier.vk_reset
+    @id = "4010889"
+    @job = create :job, vk: "foo/#{@id}"
+    @msg = "test message"
+    allow(SocialMessage).to receive(:msg).with(@job).and_return(@msg)
+  end
 
   context "sending messages" do
     it "sends message" do
-      job = create :job, vk: "123"
-      msg = "test message"
-      allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
-      # stub_empty_history(job.vk)
-      # stub_friend_request
-      st = stub_successful_sending(job.vk, msg)
+      st = stub_successful_sending(@id, @msg)
 
-      VkUserNotifier.new(job).notify
+      VkUserNotifier.new(@job)
 
       expect(st).to have_been_requested
     end
   end
 
-  context "new token" do
-    it "uses new token in case of error" do
-      job = create :job, vk: "123"
-      msg = "test message"
-      allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
-      # stub_empty_history(job.vk)
-      st = stub_failed_sending(job.vk, msg)
-      # history = stub_empty_history(job.vk, ENV["VK_EZ_TOKEN"])
-      new_st = stub_successful_sending(job.vk, msg, ENV["VK_OLEG_TOKEN"])
+  it "uses new token in case of error" do
+    failed = stub_failed_sending(@id, @msg)
+    success = stub_successful_sending(@id, @msg, ENV["VK_OLEG_TOKEN"])
 
-      VkUserNotifier.new(job).notify
+    VkUserNotifier.new(@job)
 
-      expect(st).to have_been_requested
-      # expect(history).to have_been_requested
-      expect(new_st).to have_been_requested
-    end
+    expect(failed).to have_been_requested
+    expect(success).to have_been_requested
+  end
 
-    it "uses new third token in case of second error" do
-      job = create :job, vk: "123"
-      msg = "test message"
-      allow(SocialMessage).to receive(:msg).with(job).and_return(msg)
-      # stub_empty_history(job.vk)
-      # stub_empty_history(job.vk, ENV["VK_EZ_TOKEN"]) # other admin user
-      # stub_empty_history(job.vk, ENV["VK_OLEG_TOKEN"]) # other admin user
-      first  = stub_failed_sending(job.vk, msg, ENV["VK_EZ_TOKEN"])
-      second = stub_failed_sending(job.vk, msg, ENV["VK_OLEG_TOKEN"])
-      third = stub_successful_sending(job.vk, msg, ENV["VK_ANDREI_TOKEN"])
+  it "uses new third token in case of second error" do
+    first  = stub_failed_sending(@id, @msg, ENV["VK_EZ_TOKEN"])
+    second = stub_failed_sending(@id, @msg, ENV["VK_OLEG_TOKEN"])
+    third = stub_successful_sending(@id, @msg, ENV["VK_ANDREI_TOKEN"])
 
-      VkUserNotifier.new(job).notify
+    VkUserNotifier.new(@job)
 
-      expect(first).to have_been_requested
-      expect(second).to have_been_requested
-      expect(third).to have_been_requested
-    end
+    expect(first).to have_been_requested
+    expect(second).to have_been_requested
+    expect(third).to have_been_requested
   end
 end
 
@@ -63,12 +50,12 @@ def stub_failed_sending(user_id, msg, token = ENV["VK_EZ_TOKEN"])
       "request_params": [
         {"key":"oauth","value":"1"},
         {"key":"method","value":"messages.send"},
-        {"key":"user_id","value":"123"}
+        {"key":"user_id","value":"4010889"}
       ]
     }}'
   url = "https://api.vk.com/method/messages.send?access_token=#{token}"
   stub_request(:post, url)
-    .with(body: { message: msg, user_id: user_id })
+    .with(body: { message: msg, user_id: user_id, "v": "5.33" })
     .to_return(status: 200, body: body)
 end
 
@@ -76,22 +63,6 @@ def stub_successful_sending(user_id, msg, token = ENV["VK_EZ_TOKEN"])
   body = '{"response": 4431}'
   url = "https://api.vk.com/method/messages.send?access_token=#{token}"
   stub_request(:post, url)
-    .with(body: { message: msg, user_id: user_id })
-    .to_return(status: 200, body: body)
-end
-
-def stub_empty_history(user_id, token = ENV["VK_ANDREI_TOKEN"])
-  url = "https://api.vk.com/method/messages.getHistory?access_token=#{token}"
-  body = '{"response":[0]}'
-  stub_request(:post, url)
-    .with(body: { user_id: user_id })
-    .to_return(status: 200, body: body)
-end
-
-def stub_history(user_id, token = ENV["VK_ANDREI_TOKEN"])
-  body = '{"response":[1]}' # not 0, meaning there are messages
-  url = "https://api.vk.com/method/messages.getHistory?access_token=#{token}"
-  stub_request(:post, url)
-    .with(body: { user_id: user_id })
+    .with(body: { message: msg, user_id: user_id, "v": "5.33" })
     .to_return(status: 200, body: body)
 end

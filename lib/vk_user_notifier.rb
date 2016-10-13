@@ -1,7 +1,3 @@
-# manually via heroku restart
-# run a bg job once 12? hours to call VkUserNotifier.vk_reset
-# every time you tun importer, reset it beforehand
-
 # sends message to vk user about listing added on his behalf
 class VkUserNotifier
   TOKENS = [
@@ -14,31 +10,19 @@ class VkUserNotifier
 
   def initialize(record)
     @record = record
-    @user_id = vk_user_id
+    notify if should_notify?
   end
 
   def notify
-    return unless should_notify?
     begin
-      @@vk.messages.send(user_id: @user_id, message: SocialMessage.msg(@record))
-      Ez.ping("Successfully notified about #{@record.show_url}") unless Rails.env.test?
+      @@vk.messages.send(user_id: user_id, message: message)
+      ping_ez("success", @record.show_url)
     rescue VkontakteApi::Error
-      Ez.ping("Failed to notify about #{@record.show_url}") unless Rails.env.test?
+      ping_ez("fail", @record.show_url)
       update_vk
       notify
     end
     send_friend_request
-  end
-
-  def update_vk
-    token = @@vk.token
-    index = TOKENS.index(token)
-    new_token = TOKENS[index + 1]
-    @@vk = VkontakteApi::Client.new(new_token)
-  end
-
-  def self.vk
-    @@vk
   end
 
   # only for testing purposes
@@ -48,30 +32,33 @@ class VkUserNotifier
 
   private
 
-  def vk_user_id
-    return "" unless @record
-    @record.vk.gsub(/\D/, "")
+  def send_friend_request
+    return if Rails.env.test? # gem blows up. with no apparent reason
+    status = @@vk.friends.add(user_id: user_id)
+    ping_ez(status, "friend-request#{user_id}")
+  end
+
+  def update_vk
+    token = @@vk.token
+    index = TOKENS.index(token)
+    new_token = TOKENS[index + 1]
+    @@vk = VkontakteApi::Client.new(new_token)
+  end
+
+  def user_id
+    @vk_user_id ||= @record.vk.gsub(/\D/, "")
+  end
+
+  def message
+    SocialMessage.msg(@record)
   end
 
   def should_notify?
     true if @@vk.token.present? # cycled through all valid tokens
   end
 
-  def send_friend_request
-    # todo write test for it
-    unless Rails.env.test?
-      friend = @@vk.users.add(user_id: @user_id)
-      Ez.ping("Successfully sent friend request to #{@user_id}") if friend == 1
-      Ez.ping("Already freinds") if friend == 2
-    end
+  def ping_ez(status, msg)
+    return if Rails.env.test?
+    Ez.ping("#{@@vk.token.slice(1..5)}|#{status} - #{msg}")
   end
-
-  # def message
-  #   messages = @@vk.messages.getHistory(user_id: @user_id)
-  #   if messages.first == 0 # user didn't get message from us yet
-  #     SocialMessage.first_msg(@record)
-  #   else
-  #     SocialMessage.subsequent_msg(@record)
-  #   end
-  # end
 end

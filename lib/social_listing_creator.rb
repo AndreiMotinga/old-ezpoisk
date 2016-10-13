@@ -23,6 +23,19 @@ class SocialListingCreator
     end
   end
 
+  def do_maintenance
+    @rec.create_entry(user: @rec.user)
+    SocialTagCreatorJob.perform_async(@rec.id, @model) if @model == "Job"
+    return if @model == "Job" || @post[:attachments].empty?
+    ImageDownloaderJob.perform_async(@post[:attachments], @rec.id, @model)
+  end
+
+  def run_notifications
+    SlackNotifierJob.perform_in(1.minute, @rec.id, @model)
+    GeocodeJob.perform_in(1.minute, @rec.id, @model)
+    SocialUserNotifierJob.perform_in(3.minutes, @rec.id, @model)
+  end
+
   def create_job
     @rec = Job.create(
       title: title,
@@ -71,24 +84,6 @@ class SocialListingCreator
       fb: @post[:fb],
       vk: @post[:vk]
     )
-  end
-
-  def create_attachments
-    return if @model == "Job"
-    return unless @post[:attachments].any?
-    ImageDownloaderJob.perform_in(1.minutes, @post[:attachments], @rec.id, @model)
-  end
-
-  def do_maintenance
-    create_attachments
-    @rec.create_entry(user: @rec.user)
-    SocialTagCreatorJob.perform_in(1.minutes, @rec.id, @model) if @model == "Job"
-  end
-
-  def run_notifications
-    SlackNotifierJob.perform_async(@rec.id, @model)
-    GeocodeJob.perform_in(1.minutes, @rec.id, @model)
-    SocialUserNotifierJob.perform_in(1.minutes, @rec.id, @model)
   end
 
   private

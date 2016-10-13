@@ -8,7 +8,7 @@ class VkListingImporter
                                   sort: "desc")
       data.comments.shift # remove first element
       data.comments.each_with_index do |post, i|
-        delay = 2.minutes + i.seconds
+        delay = 1.minute + i.seconds
         record = VkListingUnifier.new(post).post
         SocialListingCreatorJob.perform_in(delay, record, group)
       end
