@@ -16,13 +16,17 @@
             = f.number_field :price, label: 'Цена'
           .col-xs-12.col-sm-6
             = f.number_field :space, label: "Площадь (sq. feet)"
-        .row data-id="apartment_fields"
-          .col-xs-12.col-sm-4
-            = f.select :rooms, ru(RePrivate::ROOMS), label: "* Комнат"
-          .col-xs-12.col-sm-4
-            = f.select :duration, ru(RePrivate::DURATION), label: "Продолжительность"
-          .col-xs-12.col-sm-4
-            = f.number_field :baths, label: 'Ванные'
+        .div data-id="apartment_fields"
+          .row
+            .col-xs-12.col-sm-4
+              = f.select :rooms, ru(RePrivate::ROOMS), label: "* Комнат"
+            .col-xs-12.col-sm-4
+              = f.select :duration, ru(RePrivate::DURATION), label: "Продолжительность"
+            .col-xs-12.col-sm-4
+              = f.number_field :baths, label: 'Ванные'
+          .row
+            .col-xs-12
+              = f.check_box :fee, label: "Комиссия *"
 
   .white-block
     .panel
@@ -44,10 +48,8 @@
           .col-xs-12.col-sm-6
             = f.text_field :fb, label: 'Я в facebook'
         .row
-          .col-xs-6.col-sm-4
+          .col-xs-12
             = f.check_box :active, label: "Активно *"
-          .col-xs-6.col-sm-4
-            = f.check_box :fee, label: "Комиссия *"
         .actions
           = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
           - unless @re_private.new_record?

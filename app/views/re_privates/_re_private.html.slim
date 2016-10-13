@@ -12,7 +12,7 @@
         h4.title= link_to re_private.street, re_private
 
         / line 2
-        - if !re_private.fee && re_private.post_type == "leasing"
+        - if re_private.show_no_fee?
           span.no-fee= link_to "NO FEE", re_privates_path(fee: false)
         strong
           = link_to "#{t re_private.category}", re_privates_path(category: re_private.category)
