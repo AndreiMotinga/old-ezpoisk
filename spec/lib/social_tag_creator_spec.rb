@@ -4,12 +4,12 @@ describe SocialTagCreator do
   describe ".create_tags" do
     it "adds tags to record" do
       job = create :job, text: "Ищем на работу электрики"
-      ActsAsTaggableOn::Tag.create(name: "электрики")
+      ActsAsTaggableOn::Tag.create(name: "электрик")
       ActsAsTaggableOn::Tag.create(name: "foo")
 
       SocialTagCreator.create_tags(job)
 
-      expect(job.cached_tags).to eq "электрики"
+      expect(job.cached_tags).to eq "электрик"
     end
 
     it "handes dashes" do
@@ -33,16 +33,6 @@ describe SocialTagCreator do
 
     it "handes case" do
       job = create :job, text: "Ищем на работу в Офис"
-      ActsAsTaggableOn::Tag.create(name: "офис")
-
-      SocialTagCreator.create_tags(job)
-
-      expect(job.cached_tags).to eq "офис"
-    end
-
-    it "doesn't add tag 'работа'" do
-      job = create :job, text: "Ищем на работа в Офис"
-      ActsAsTaggableOn::Tag.create(name: "удаленная-работа")
       ActsAsTaggableOn::Tag.create(name: "офис")
 
       SocialTagCreator.create_tags(job)

@@ -1,20 +1,14 @@
 class SocialTagCreator
-  def self.create_tags(rec)
-    text = rec.text.mb_chars.downcase.to_s
-    tags = ActsAsTaggableOn::Tag.all.map {|t| matching?(t, text)}
-    rec.update_attribute(:tag_list, tags)
-    rec.update_cached_tags
+  def self.create_tags(job)
+    ActsAsTaggableOn::Tag.find_each do |tag|
+      job.tag_list << tag if matching?(tag, job)
+    end
+    job.save
+    job.update_cached_tags
   end
 
-  def self.matching?(tag, text)
-    tag if tag.name
-              .split("-")
-              .select { |word| word.size > 3 } # remove prepositions
-              .reject { |word| GENERIC_WORDS.include?(word) }
-              .any? { |word| text.include?(word) }
+  def self.matching?(tag, job)
+    tag.name.split("-")
+            .any? { |word| Job.where(id: job.id).search(word).any? }
   end
-
-  GENERIC_WORDS = [
-    "работа"
-  ]
 end
