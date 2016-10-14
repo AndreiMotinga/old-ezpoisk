@@ -13,13 +13,13 @@
           .row
             strong
               = link_to t(job.post_type),
-                          search_jobs_path(state: job.state.slug,
+                          search_jobs_path(state: job.cached_state.slug,
                                            city: job.cached_city.slug,
                                            post_type: job.post_type)
               = " | "
               - if job.category.present?
                 = link_to t(job.category),
-                          search_jobs_path(state: job.state.slug,
+                          search_jobs_path(state: job.cached_state.slug,
                                            city: job.cached_city.slug,
                                            post_type: job.post_type,
                                            category: job.category)
@@ -34,6 +34,6 @@
                 | Доступна во всех штатах
               - else
                 /todo cached state?
-                = link_to job.cached_city.name, search_jobs_path(state: job.state.slug, city: job.cached_city.slug)
+                = link_to job.cached_city.name, search_jobs_path(state: job.cached_state.slug, city: job.cached_city.slug)
                 = ", "
                 = link_to job.cached_state.name, search_jobs_path(state: job.cached_state.slug)
