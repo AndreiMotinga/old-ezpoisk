@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161013200053) do
+ActiveRecord::Schema.define(version: 20161014155833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,18 +51,13 @@ ActiveRecord::Schema.define(version: 20161013200053) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "commentable_id"
+    t.integer  "user_id"
     t.string   "commentable_type"
-    t.string   "title"
-    t.text     "body"
-    t.string   "subject"
-    t.integer  "user_id",          null: false
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
+    t.integer  "commentable_id"
+    t.text     "text"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
@@ -78,8 +73,8 @@ ActiveRecord::Schema.define(version: 20161013200053) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer  "enterable_id"
     t.string   "enterable_type"
+    t.integer  "enterable_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
@@ -183,16 +178,16 @@ ActiveRecord::Schema.define(version: 20161013200053) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.integer  "imageable_id"
     t.string   "imageable_type"
+    t.integer  "imageable_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "logo"
     t.integer  "user_id"
-    t.datetime "created_at",         default: '2016-10-07 07:19:18', null: false
-    t.datetime "updated_at",         default: '2016-10-07 07:19:18', null: false
+    t.datetime "created_at",         default: '2016-10-05 22:32:55', null: false
+    t.datetime "updated_at",         default: '2016-10-05 22:32:55', null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
     t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
@@ -420,10 +415,10 @@ ActiveRecord::Schema.define(version: 20161013200053) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.integer  "tagger_id"
+    t.integer  "taggable_id"
     t.string   "tagger_type"
+    t.integer  "tagger_id"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -499,10 +494,10 @@ ActiveRecord::Schema.define(version: 20161013200053) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
     t.string   "votable_type"
-    t.integer  "voter_id"
+    t.integer  "votable_id"
     t.string   "voter_type"
+    t.integer  "voter_id"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
@@ -515,6 +510,7 @@ ActiveRecord::Schema.define(version: 20161013200053) do
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
+  add_foreign_key "comments", "users"
   add_foreign_key "deactivations", "users"
   add_foreign_key "entries", "users"
   add_foreign_key "favorites", "users"

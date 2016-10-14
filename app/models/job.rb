@@ -7,11 +7,11 @@ class Job < ActiveRecord::Base
 
   acts_as_taggable
   acts_as_mappable
-  acts_as_commentable
   include Filterable
   include ListingHelpers
   include Tokenable
   include Cachable
+  include Commentable
 
   validates :title, presence: true, length: { maximum: 90 }
   validates :text, presence: true, length: { minimum: 10 }

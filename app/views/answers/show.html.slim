@@ -27,7 +27,9 @@
         .col-xs-9.col-sm-10.name-block
           h4.name itemprop="author" = link_to @answer.name_to_show, user_path(@answer.user), target: "_blank"
           p.date.text-muted
-            = "#{@answer.impressions_count} просмотров |  #{@answer.score} голосов "
+            = "#{@answer.impressions_count} просмотров | "
+            = "#{@answer.score} голосов "
+
             br
             - if current_user.try(:can_edit?, @answer)
               = link_to "Редактировать", edit_answer_path(@answer), class: "text-muted"
@@ -41,7 +43,6 @@
         = raw @answer.text
       = render "shared/tags", record: @answer
 
-    .panel-footer
       .row
         .col-xs-12.col-md-5
           - if user_signed_in?
@@ -59,6 +60,10 @@
                      "aria-expanded": "false", "data-toggle": "collapse", rel: "nofollow"
         .col-xs-12.col-md-7
           = render "shared/social", count: nil, inline: true
+
+    .panel-footer
+      .row
+        = render "shared/comments", record: @answer
 
 .col-xs-12.col-md-6.col-md-offset-3
   - if @answer.question.answers_count > 1

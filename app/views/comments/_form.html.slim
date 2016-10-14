@@ -1,4 +1,11 @@
-= bootstrap_form_for @new_comment, remote: true do |f|
-  = f.hidden_field :commentable_id, value: @new_comment.commentable_id
-  = f.hidden_field :commentable_type, value: @new_comment.commentable_type
-  = f.text_area :body, required: "", skip_label: true, placeholder: "Добавьте свой комментарий...", rows: 1, "data-action": "enter"
+.row.comment
+  .col-xs-1
+    = image_tag Comment.new.logo, class: "center-block avatar"
+  .col-xs-11
+    = bootstrap_form_for Comment.new, remote: true do |f|
+      = f.hidden_field :user_id, value: current_user.try(:id)
+      = f.hidden_field :commentable_id, value: record.id
+      = f.hidden_field :commentable_type, value: record.class.name
+      = f.text_area :text, required: "", skip_label: true,
+                    placeholder: "Добавьте свой комментарий...", rows: 1,
+                    "data-action": "enter", "data-id": "new-comment"

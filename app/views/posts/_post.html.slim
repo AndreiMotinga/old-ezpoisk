@@ -25,7 +25,6 @@
           = render "shared/tags", record: post
 
         .panel-footer
-          h6 style="display:inline" #{time_ago_in_words post.created_at} назад |
-          = " "
-          i.fa.fa-eye.text-muted
-          span  #{post.impressions_count}/#{post.visits}
+          .row
+            = render "shared/comments", record: post
+

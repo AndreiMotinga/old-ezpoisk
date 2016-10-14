@@ -19,6 +19,8 @@
   .col-xs-12
     = render @re_private
 
+  = render "shared/comments", record: @re_private
+
   .visible-xs
     = render "shared/show/contacts", record: @re_private
     = render "re_privates/details"

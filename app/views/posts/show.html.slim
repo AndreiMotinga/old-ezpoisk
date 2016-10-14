@@ -25,7 +25,8 @@
           .col-xs-9.col-sm-10.name-block
             h4.name itemprop="author" = link_to @post.user.name_to_show, user_path(@post.user), target: "_blank"
             p.date.text-muted
-              = @post.created_at.strftime("%d %B %Y")
+              = "#{@post.created_at.strftime("%d %B %Y")} | "
+              = "#{@post.impressions_count} просмотров"
               br
               - if current_user.try(:can_edit?, @post)
                 = link_to "Редактировать ", edit_dashboard_post_path(@post), class: "text-muted"
@@ -40,8 +41,10 @@
           = raw @post.text
           = render "shared/tags", record: @post
 
-      .panel-footer
         = render "shared/social", count: "#{@post.impressions_count}/#{@post.visits}", inline: true
+
+      .panel-footer
+        = render "shared/comments", record: @post
 
 /= render "shared/gads/leaderboard"
 

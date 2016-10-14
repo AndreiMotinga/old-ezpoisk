@@ -2,6 +2,7 @@ class Question < ActiveRecord::Base
   acts_as_taggable
   include MyFriendlyId
   include Searchable
+  include Commentable
 
   belongs_to :user, optional: true
   belongs_to :state

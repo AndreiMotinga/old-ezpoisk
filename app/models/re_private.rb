@@ -5,11 +5,11 @@ class RePrivate < ActiveRecord::Base
   ROOMS = %w(bed room studio 1-room 2-room 3-room 4-room 5-room).freeze
 
   acts_as_mappable
-  acts_as_commentable
   include Filterable
   include ListingHelpers
   include Tokenable
   include Cachable
+  include Commentable
 
   validates :rooms, presence: true
   validates :duration, presence: true

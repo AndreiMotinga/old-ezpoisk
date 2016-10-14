@@ -3,8 +3,8 @@ class Answer < ActiveRecord::Base
   include Filterable
   include MyFriendlyId
   include ListingHelpers
+  include Commentable
   acts_as_votable
-  acts_as_commentable
 
   belongs_to :user
   belongs_to :question

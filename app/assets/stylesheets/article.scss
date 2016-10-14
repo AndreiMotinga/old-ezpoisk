@@ -26,6 +26,10 @@
     font-size: 18px;
   }
 
+  .panel {
+    box-shadow: none;
+  }
+
   .panel-heading {
     padding: 0 15px;
   }
@@ -37,9 +41,16 @@
     padding-top: 5px;
   }
 
+  .panel-footer {
+    padding: 10px 15px 0;
+  }
+
   .post-body img {
     padding: 10px;
   }
 
   p { margin: 0 0 5px; }
+  .comments {
+    margin-bottom: 0;
+  }
 }

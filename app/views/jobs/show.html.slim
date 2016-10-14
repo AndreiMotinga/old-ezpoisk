@@ -16,6 +16,7 @@
 .div itemscope="" itemtype="http://schema.org/JobPosting"
   .col-xs-12
     = render @job
+  = render "shared/comments", record: @job
   /= render "shared/gads/leaderboard"
   .visible-xs
     = render "shared/show/contacts", record: @job

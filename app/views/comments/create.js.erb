@@ -1,8 +1,7 @@
+<% id = @comment.commentable_id %>
+<% type = @comment.commentable_type %>
+
 $('input[name="comment[body]"]').val("")
-$('[data-comment="count"]').html("<%= @comment.commentable.comment_threads.count %>")
-<% if @comment.parent  %>
-  $("a[data-href='comment-reply-<%= @comment.parent.id %>']").click();
-  $('div[data-target="comment-children-<%= @comment.parent.id %>"]').prepend('<%= j render @comment %>')
-<% else %>
-  $("div[data-target='comments-container']").prepend('<%= j render @comment %>')
-<% end %>
+
+var el = $("div[data-target='comments-<%= type %>-<%= id  %>']");
+el.append('<%= j render @comment %>')

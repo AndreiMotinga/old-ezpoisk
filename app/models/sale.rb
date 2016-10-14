@@ -2,11 +2,11 @@ class Sale < ActiveRecord::Base
   TYPES = %w(selling buying giving)
   CATEGORIES = %w(kids home pets clothes sale plants transportation electronics).freeze
   acts_as_mappable
-  acts_as_commentable
   include Filterable
   include ListingHelpers
   include Tokenable
   include Cachable
+  include Commentable
   validates_with SourceValidator
 
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
