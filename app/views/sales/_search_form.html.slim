@@ -17,9 +17,9 @@
 
         .row
           .col-xs-12.col-sm-6
-            = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
-          .col-xs-12.col-sm-6
             = sort_select(sale_sort_opts)
+          .col-xs-12.col-sm-6
+            = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
         hr/
 
         = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

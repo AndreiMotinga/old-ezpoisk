@@ -13,6 +13,7 @@
       .row
         .col-xs-12.col-sm-6
           = select_tag :state, options_for_select([["Штат", ""]] + STATES, state), class: "form-control state-select-slug my-dropdown"
+          .visible-xs: br
 
         .col-xs-12.col-sm-6
           = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),

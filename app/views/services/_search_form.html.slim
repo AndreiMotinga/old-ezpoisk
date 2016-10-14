@@ -10,7 +10,9 @@
                          options_for_select([["Раздел", ""]] + ru(Service::SUBCATEGORIES.keys), params[:category]),
                          class: "form-control category-select", "data-type": "Service"
           .col-xs-12.col-sm-6
-            = select_tag :subcategory, service_subcategories_options, class: "form-control subcategory-select"
+            = select_tag :subcategory,
+              service_subcategories_options,
+              class: "form-control subcategory-select"
 
         br
         = text_field_tag :term,
