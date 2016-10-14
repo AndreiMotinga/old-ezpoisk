@@ -4,12 +4,16 @@ class FbListingImporter
     graph = Koala::Facebook::API.new(ENV["FB_TOKEN"])
     GROUPS.each do |group|
       data = graph.get_connections(group[:id], "feed", fields: %w(from message created_time attachments))
-      data.each_with_index do |post, i|
-        delay = 2.minutes + i.seconds
+      fresh(data).each do |post|
         record = FbListingUnifier.new(post).post
-        SocialListingCreatorJob.perform_in(delay, record, group)
+        SocialListingCreatorJob.perform_in(1.minute, record, group)
       end
     end
+  end
+
+  def self.fresh(data)
+    return data if data.empty?
+    data.select { |item| item["created_time"] > 1.hour.ago }
   end
 
   GROUPS = [

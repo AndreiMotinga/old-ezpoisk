@@ -6,13 +6,15 @@ class VkListingImporter
       data = vk.board.getComments(group_id: group[:id],
                                   topic_id: group[:topic],
                                   sort: "desc")
-      data.comments.shift # remove first element
-      data.comments.each_with_index do |post, i|
-        delay = 1.minute + i.seconds
+      fresh(data).each do |post|
         record = VkListingUnifier.new(post).post
-        SocialListingCreatorJob.perform_in(delay, record, group)
+        SocialListingCreatorJob.perform_in(1.minute, record, group)
       end
     end
+  end
+
+  def self.fresh(data)
+    data.items.select { |item| item[:date] > 1.hour.ago.to_i }
   end
 
   GROUPS = [
