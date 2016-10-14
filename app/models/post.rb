@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
   delegate :avatar, to: :user
   has_one :entry, as: :enterable, dependent: :destroy
 
-  has_attached_file :image, styles: { medium: "810", thumb: "x160#" }
+  has_attached_file :image, styles: { medium: "x330>", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url
   def image_remote_url=(url_value)
