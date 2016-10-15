@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014155833) do
+ActiveRecord::Schema.define(version: 20161015013516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -227,17 +227,19 @@ ActiveRecord::Schema.define(version: 20161014155833) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string  "title"
-    t.text    "text",              default: ""
-    t.integer "user_id"
-    t.integer "impressions_count", default: 0
-    t.integer "answers_count",     default: 0
-    t.string  "slug"
-    t.string  "image_url",         default: ""
-    t.integer "visits",            default: 0
-    t.string  "cached_tags"
-    t.integer "city_id"
-    t.integer "state_id"
+    t.string   "title"
+    t.text     "text",              default: ""
+    t.integer  "user_id"
+    t.integer  "impressions_count", default: 0
+    t.integer  "answers_count",     default: 0
+    t.string   "slug"
+    t.string   "image_url",         default: ""
+    t.integer  "visits",            default: 0
+    t.string   "cached_tags"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["city_id"], name: "index_questions_on_city_id", using: :btree
     t.index ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
     t.index ["state_id"], name: "index_questions_on_state_id", using: :btree

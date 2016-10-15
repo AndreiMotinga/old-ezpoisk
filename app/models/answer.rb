@@ -7,7 +7,7 @@ class Answer < ActiveRecord::Base
   acts_as_votable
 
   belongs_to :user
-  belongs_to :question
+  belongs_to :question, touch: true
   belongs_to :state
   belongs_to :city
   has_one :entry, as: :enterable, dependent: :destroy

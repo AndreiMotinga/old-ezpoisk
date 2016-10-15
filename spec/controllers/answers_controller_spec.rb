@@ -25,6 +25,7 @@ describe AnswersController do
       expect(response).to redirect_to(answer)
       expect(answer.text).to eq attrs[:text]
       expect(answer.user).to eq @user
+      expect(answer.question.answers_count).to eq 1
 
       expect(FbExporterJob.jobs.size).to eq 1
       expect(VkExporterJob.jobs.size).to eq 1
