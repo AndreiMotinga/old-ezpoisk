@@ -25,10 +25,10 @@ class SocialListingCreator
   def do_maintenance
     @rec.create_entry(user: @rec.user)
     SocialTagCreatorJob.perform_async(@rec.id, @model) if @model == "Job"
-    return if @model == "Job" || @post[:attachments].empty?
-    ImageDownloaderJob.perform_async(@post[:attachments], @rec.id, @model)
     SlackNotifierJob.perform_in(2.minute, @rec.id, @model)
     SocialUserNotifierJob.perform_in(10.minutes, @rec.id, @model)
+    return if @model == "Job" || @post[:attachments].empty?
+    ImageDownloaderJob.perform_async(@post[:attachments], @rec.id, @model)
   end
 
   def create_job

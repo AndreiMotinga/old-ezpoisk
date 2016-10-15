@@ -15,22 +15,23 @@ describe AnswersController do
   describe "POST #create" do
     it "creates answer and entry" do
       sign_in(@user = create(:user))
-      question = create :question
+      question = create :question, updated_at: 1.day.ago
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 
       post :create, params: { answer: attrs }
       answer = assigns(:answer)
+      question.reload
 
       expect(response).to redirect_to(answer)
       expect(answer.text).to eq attrs[:text]
       expect(answer.user).to eq @user
-      expect(answer.question.answers_count).to eq 1
 
       expect(FbExporterJob.jobs.size).to eq 1
       expect(VkExporterJob.jobs.size).to eq 1
-
       expect(Entry.count).to eq 1
+      expect(question.updated_at).to eq Time.zone.now
+      expect(question.answers_count).to eq 1
     end
 
     it "subscribes answer's author for answer's question" do
@@ -80,12 +81,14 @@ describe AnswersController do
     it "increases score by 1" do
       sign_in(@user = create(:user))
       question = create(:question, user: @user)
-      answer = create(:answer, question: question, user: @user)
+      answer = create(:answer, question: question, user: @user,
+                                                   created_at: 1.day.ago)
 
       put :upvote, xhr: true, params: { id: answer.id }
 
       answer.reload
       expect(answer.score).to eq 1
+      expect(answer.updated_at).to eq Time.zone.now
     end
   end
 
@@ -99,6 +102,7 @@ describe AnswersController do
 
       answer.reload
       expect(answer.score).to eq -1
+      expect(answer.updated_at).to eq Time.zone.now
     end
   end
 
@@ -115,6 +119,7 @@ describe AnswersController do
 
       answer.reload
       expect(answer.score).to eq 0
+      expect(answer.updated_at).to eq Time.zone.now
     end
   end
 end
