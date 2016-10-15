@@ -13,7 +13,7 @@ class FavoritesController < ApplicationController
   def touch
     @rec = model.find(rec_params[:id])
     if current_user.try(:can_edit?, @rec)
-      @rec.touch(:created_at)
+      @rec.touch
       @rec.entry.touch
       render :touch
     else

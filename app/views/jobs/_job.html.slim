@@ -25,7 +25,7 @@
                                            category: job.category)
                 = " | "
             span data-time=job.id
-              = timeago_tag job.created_at
+              = timeago_tag job.updated_at
             = " | "
             = render "shared/indicators", record: job
           .row

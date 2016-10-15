@@ -15,7 +15,7 @@ module Filterable
     include Searchable
     scope :term, -> (term) { search(term) }
     scope :default , -> { order("featured desc, priority desc,
-                                #{table_name}.created_at desc") }
+                                #{table_name}.updated_at desc") }
     scope :today, -> { where("#{table_name}.created_at > ?", Date.today) }
     scope :week, -> { where("#{table_name}.created_at > ?",
                             Date.today.at_beginning_of_week) }
