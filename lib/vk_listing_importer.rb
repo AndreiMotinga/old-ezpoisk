@@ -6,9 +6,10 @@ class VkListingImporter
       data = vk.board.getComments(group_id: group[:id],
                                   topic_id: group[:topic],
                                   sort: "desc")
-      fresh(data).each do |post|
+      fresh(data).each_with_index do |post, i|
+        delay = 1.minute + i*5.seconds
         record = VkListingUnifier.new(post).post
-        SocialListingCreatorJob.perform_in(1.minute, record, group)
+        SocialListingCreatorJob.perform_in(delay, record, group)
       end
     end
   end
