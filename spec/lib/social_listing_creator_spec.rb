@@ -33,7 +33,6 @@ describe SocialListingCreator do
       expect(job.city_id).to eq 17_880
       expect(job.title).to_not eq nil
 
-      expect(GeocodeJob.jobs.size).to eq 1
       expect(SlackNotifierJob.jobs.size).to eq 1
       expect(SocialUserNotifierJob.jobs.size).to eq 1
       expect(ImageDownloaderJob.jobs.size).to eq 0
@@ -67,7 +66,6 @@ describe SocialListingCreator do
         expect(rp.state_id).to eq 32
         expect(rp.city_id).to eq 17_880
 
-        expect(GeocodeJob.jobs.size).to eq 1
         expect(SlackNotifierJob.jobs.size).to eq 1
         expect(SocialUserNotifierJob.jobs.size).to eq 1
         expect(ImageDownloaderJob.jobs.size).to eq 1
@@ -101,7 +99,6 @@ describe SocialListingCreator do
         expect(rp.state_id).to eq 32
         expect(rp.city_id).to eq 17_880
 
-        expect(GeocodeJob.jobs.size).to eq 1
         expect(SlackNotifierJob.jobs.size).to eq 1
         expect(SocialUserNotifierJob.jobs.size).to eq 1
         expect(ImageDownloaderJob.jobs.size).to eq 1
