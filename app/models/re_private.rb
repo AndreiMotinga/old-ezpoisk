@@ -60,8 +60,7 @@ class RePrivate < ActiveRecord::Base
 
   def show_no_fee?
     return if fee
-    return if %w(renting selling buying).include?(post_type)
-    return if %(room bed).include?(rooms)
+    return if %w(selling buying).include?(post_type)
     true
   end
 end
