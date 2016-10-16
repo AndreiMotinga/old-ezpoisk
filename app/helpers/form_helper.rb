@@ -1,7 +1,7 @@
 module FormHelper
   def state_cities
     return [] unless state
-    City.where(state_slug: state)
+    City.where(state_slug: state).or(City.where(slug: City::ALL))
   end
 
   def state
