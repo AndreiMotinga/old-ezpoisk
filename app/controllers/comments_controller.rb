@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.save
+    Ez.ping("new comment #{@comment.commentable.show_url}")
     render "create.js.erb"
   end
 
