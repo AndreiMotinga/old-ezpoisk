@@ -13,6 +13,24 @@ describe Job do
   it { should have_many(:favorites).dependent(:destroy) }
   it { should have_many(:subscriptions).dependent(:destroy) }
 
+  describe "textValidator" do
+    it "errors when similar record was recently created" do
+      old = create :job
+      attrs = attributes_for :job, text: old.text
+      job = Job.new(attrs)
+      job.save
+      expect(job.errors.size).to eq 1
+    end
+
+    it "only accounts for recent records" do
+      old = create :job, created_at: 3.days.ago
+      attrs = attributes_for :job, text: old.text
+      job = Job.new(attrs)
+      job.save
+      expect(job.errors.size).to eq 0
+    end
+  end
+
   describe "address" do
     context "full string" do
       it "returns full address" do

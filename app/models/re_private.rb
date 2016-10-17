@@ -17,6 +17,7 @@ class RePrivate < ActiveRecord::Base
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates_with SourceValidator
+  validates_with TextValidator, on: :create
 
   belongs_to :user, optional: true
   belongs_to :state

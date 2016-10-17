@@ -8,6 +8,7 @@ class Sale < ActiveRecord::Base
   include Cachable
   include Commentable
   validates_with SourceValidator
+  validates_with TextValidator, on: :create
 
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :category, presence: true
