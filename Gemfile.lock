@@ -200,6 +200,9 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.1.0)
     devise-i18n-views (0.3.7)
+    devise_lastseenable (0.0.6)
+      devise
+      rails (>= 3.0.4)
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.20160615)
@@ -566,6 +569,7 @@ DEPENDENCIES
   devise-async!
   devise-i18n
   devise-i18n-views
+  devise_lastseenable
   dropzonejs-rails
   factory_girl_rails
   faker
