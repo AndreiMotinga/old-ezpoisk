@@ -112,6 +112,10 @@ class User < ActiveRecord::Base
     ).first
   end
 
+  def online?
+    last_seen > 5.minutes.ago
+  end
+
   private
 
   def send_emails

@@ -1,0 +1,21 @@
+h4 Здравствуйте
+
+p
+  = @comment.user.name_to_show
+  = " "
+  | оставил комментарий под
+  = " "
+  = link_to @comment.title, @comment.show_url, target: "_blank"
+
+p
+  = @comment.text
+
+p
+  = link_to "Ответить", @comment.show_url, target: "_blank"
+
+br
+br
+p
+  | с уважением,
+  br
+  | команда ezpoisk

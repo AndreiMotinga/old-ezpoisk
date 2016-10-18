@@ -11,11 +11,12 @@ describe CommentsController do
       post :create, params: { comment: attrs }
 
       expect(response).to render_template("create.js.erb")
+      rp.reload
       comment = Comment.last
       expect(comment.user).to eq @user
       expect(comment.text).to eq attrs[:text]
-      rp.reload
       expect(rp.updated_at).to eq Time.zone.now
+      expect(CommentNotifierJob.jobs.size).to eq 1
     end
   end
 end

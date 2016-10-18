@@ -23,5 +23,9 @@ FactoryGirl.define do
       lng { Faker::Address.longitude }
       zip { Faker::Address.zip }
     end
+
+    trait :with_user  do
+      user
+    end
   end
 end

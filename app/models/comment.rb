@@ -7,9 +7,21 @@ class Comment < ActiveRecord::Base
   validates :user_id, presence: true
 
   delegate :show_url, to: :commentable
+  delegate :title, to: :commentable
 
   # todo move to user and use delegate
   def logo
     user.avatar(:thumb)
+  end
+
+  def emails
+    subscribers.reject(&:online?).map(&:email)
+  end
+
+  def subscribers
+    subscribers = []
+    subscribers << commentable.user if commentable.user
+    subscribers << parent.user if parent
+    subscribers
   end
 end
