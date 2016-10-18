@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    @comment = Comment.new(comment_params)
+    @comment = current_user.comments.new(comment_params)
     @comment.save
-    Ez.ping("new comment #{@comment.commentable.show_url}")
+    SlackNotifierJob.perform_async(@comment.id, "Comment")
     render "create.js.erb"
   end
 
@@ -10,6 +12,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:commentable_id, :commentable_type, :text,
-                                   :user_id)
+                                   :parent_id)
   end
 end

@@ -6,4 +6,7 @@
       span.name= link_to comment.user.name_to_show, user_path(comment.user)
     span= sanitize comment.text
     br
-    span.text-muted= timeago_tag comment.created_at
+    span.text-muted
+      = timeago_tag comment.created_at
+      = " | "
+      a.respond src="#" data-action="respond" data-name=comment.user.name data-id=comment.id ответить

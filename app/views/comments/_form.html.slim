@@ -1,9 +1,10 @@
+- image_url = user_signed_in? ? current_user.avatar(:thumb) : "default-avatar"
 .row.comment
   .col-xs-1
-    = image_tag Comment.new.logo, class: "center-block avatar"
+    = image_tag image_url, class: "center-block avatar"
   .col-xs-11
     = bootstrap_form_for Comment.new, remote: true do |f|
-      = f.hidden_field :user_id, value: current_user.try(:id)
+      = f.hidden_field :parent_id, value: nil, "data-parent": ""
       = f.hidden_field :commentable_id, value: record.id
       = f.hidden_field :commentable_type, value: record.class.name
       = f.text_area :text, required: "", skip_label: true,

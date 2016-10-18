@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :reviews
+  has_many :comments
 
   has_many :favorites, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
