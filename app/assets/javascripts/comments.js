@@ -7,6 +7,13 @@ $(document).on('keypress','[data-action="enter"]', function(e){
   }
 });
 
+$(document).on('focus','[data-action="enter"]', function(e){
+  var user_logged_in = getCookieValue("signed_in=1");
+  if(!user_logged_in) {
+    $("#login_link").trigger("click");
+  }
+});
+
 document.addEventListener("turbolinks:load", function(){
   var observe;
   if (window.attachEvent) {
@@ -37,7 +44,7 @@ document.addEventListener("turbolinks:load", function(){
     observe(el, 'keydown', delayedResize);
 
     // el.focus();
-    el.select();
+    // el.select();
     resize();
   });
 });
