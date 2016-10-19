@@ -53,7 +53,6 @@ class Dashboard::ServicesController < ApplicationController
   end
 
   def destroy
-    SlackNotifierJob.perform_async(@service.id, "Service", "destroy")
     @service.destroy
     redirect_to dashboard_services_path, notice: I18n.t(:post_removed)
   end
