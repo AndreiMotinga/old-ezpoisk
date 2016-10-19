@@ -21,7 +21,6 @@ class Sale < ActiveRecord::Base
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :deactivations, as: :deactivatable, dependent: :destroy
   has_many :favorites, as: :favorable, dependent: :destroy
-  has_many :subscriptions, as: :subscribable, dependent: :destroy
   has_one :entry, as: :enterable, dependent: :destroy
 
   def edit_link

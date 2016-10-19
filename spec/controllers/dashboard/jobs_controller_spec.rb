@@ -64,8 +64,6 @@ describe Dashboard::JobsController do
         expect(entry.enterable_id).to eq job.id
         expect(entry.enterable_type).to eq job.class.to_s
         expect(entry.user_id).to eq @user.id
-
-        expect(Subscription.count).to eq 1
       end
     end
 
@@ -134,14 +132,12 @@ describe Dashboard::JobsController do
     it "removes record" do
       sign_in(@user = create(:user))
       job = create(:job, user: @user)
-      job.subscriptions.create(user: @user)
 
       delete :destroy, params: { id: job.id }
 
       expect(response).to redirect_to(dashboard_jobs_path)
       expect(Job.count).to be 0
       expect(Entry.count).to be 0
-      expect(Subscription.count).to be 0
     end
   end
 

@@ -96,7 +96,6 @@ class Dashboard::RePrivatesController < ApplicationController
     FbExporterJob.perform_in(27.minutes, @re_private.id, "RePrivate")
     VkExporterJob.perform_in(23.minutes, @re_private.id, "RePrivate")
     @re_private.create_entry(user: current_user)
-    create_subscription(@re_private)
   end
 
   def set_re_private

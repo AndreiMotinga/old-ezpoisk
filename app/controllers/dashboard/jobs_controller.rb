@@ -91,7 +91,6 @@ class Dashboard::JobsController < ApplicationController
     FbExporterJob.perform_in(23.minutes, @job.id, "Job")
     VkExporterJob.perform_in(21.minutes, @job.id, "Job")
     @job.create_entry(user: current_user)
-    create_subscription(@job)
   end
 
   private

@@ -13,7 +13,6 @@ describe Sale do
 
   it { should have_many(:pictures).dependent(:destroy) }
   it { should have_many(:favorites).dependent(:destroy) }
-  it { should have_many(:subscriptions).dependent(:destroy) }
 
   describe "#address" do
     it "returns properly formatted address" do

@@ -91,7 +91,6 @@ class Dashboard::SalesController < ApplicationController
     FbExporterJob.perform_in(23.minutes, @sale.id, "Sale")
     VkExporterJob.perform_in(19.minutes, @sale.id, "Sale")
     @sale.create_entry(user: current_user)
-    create_subscription(@sale)
   end
 
   def set_sale
