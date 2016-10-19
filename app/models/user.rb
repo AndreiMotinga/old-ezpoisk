@@ -116,6 +116,10 @@ class User < ActiveRecord::Base
     last_seen > 5.minutes.ago
   end
 
+  def logo
+    avatar(:thumb)
+  end
+
   private
 
   def send_emails

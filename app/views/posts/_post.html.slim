@@ -8,7 +8,7 @@
           .row.author
             .col-xs-3.col-sm-2
               = link_to user_path(post.user) do
-                = image_tag post.avatar.url(:thumb),
+                = image_tag post.logo,
                             class: "img-responsive center-block img-circle",
                             alt: "автор новости #{post.user.name_to_show}"
             .col-xs-9.col-sm-10.name-block

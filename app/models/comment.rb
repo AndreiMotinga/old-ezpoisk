@@ -8,11 +8,7 @@ class Comment < ActiveRecord::Base
 
   delegate :show_url, to: :commentable
   delegate :title, to: :commentable
-
-  # todo move to user and use delegate
-  def logo
-    user.avatar(:thumb)
-  end
+  delegate :logo, to: :user
 
   def emails
     subscribers.reject(&:online?).map(&:email)

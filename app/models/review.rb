@@ -9,6 +9,8 @@ class Review < ApplicationRecord
   validates :service_id, presence: true
   validates :user_id, presence: true
 
+  delegate :logo, to: :user
+
   def show_url
     Rails.application.routes.url_helpers.service_url(service)
   end

@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   has_many :favorites, as: :favorable, dependent: :destroy
-  delegate :avatar, to: :user
+  delegate :logo, to: :user
   has_one :entry, as: :enterable, dependent: :destroy
 
   has_attached_file :image, styles: { medium: "x330>", thumb: "x160#" }
