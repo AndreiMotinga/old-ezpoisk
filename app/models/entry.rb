@@ -2,7 +2,7 @@ class Entry < ActiveRecord::Base
   belongs_to :enterable, polymorphic: true
   belongs_to :user
 
-  scope :desc, -> { order("#{table_name}.created_at desc") }
+  scope :desc, -> { order("#{table_name}.updated_at desc") }
   scope :today, -> { where("#{table_name}.created_at > ?", Date.today) }
   scope :week, -> { where("#{table_name}.created_at > ?",
                           Date.today.at_beginning_of_week) }
