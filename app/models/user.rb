@@ -83,6 +83,11 @@ class User < ActiveRecord::Base
     email
   end
 
+  def new_phone
+    return "" if admin?
+    phone
+  end
+
   def editor?
     admin? || role == "editor"
   end

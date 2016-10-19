@@ -15,7 +15,7 @@ class Dashboard::JobsController < ApplicationController
     @job = Job.new(state_id: current_user.try(:state_id),
                    city_id: current_user.try(:city_id),
                    active: true,
-                   phone: current_user.try(:phone),
+                   phone: current_user.try(:new_phone),
                    email: current_user.try(:new_email))
   end
 

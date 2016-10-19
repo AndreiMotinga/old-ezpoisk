@@ -14,7 +14,7 @@ class Dashboard::SalesController < ApplicationController
   def new
     @sale = Sale.new(state_id: current_user.try(:state_id),
                      city_id: current_user.try(:city_id),
-                     phone: current_user.try(:phone),
+                     phone: current_user.try(:new_phone),
                      active: true,
                      email: current_user.try(:new_email))
   end

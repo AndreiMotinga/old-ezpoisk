@@ -20,7 +20,7 @@ class Dashboard::RePrivatesController < ApplicationController
                                 email: current_user.try(:new_email),
                                 baths: 1,
                                 duration: "помесячно",
-                                phone: current_user.try(:phone))
+                                phone: current_user.try(:new_phone))
   end
 
   def edit
