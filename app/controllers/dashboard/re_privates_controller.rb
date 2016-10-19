@@ -3,9 +3,8 @@ class Dashboard::RePrivatesController < ApplicationController
   before_action :set_re_private, only: [:edit, :update, :destroy]
 
   def index
-    @re_privates = current_user.re_privates
-                               .includes(:state, :city)
-                               .page(params[:page])
+    @re_privates = current_user.re_privates.desc.includes(:state, :city)
+                                                 .page(params[:page])
     respond_to do |format|
       format.html
       format.js do

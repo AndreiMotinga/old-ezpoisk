@@ -2,7 +2,7 @@ class Dashboard::SalesController < ApplicationController
   before_action :set_sale, only: [:edit, :update, :destroy]
 
   def index
-    @sales = current_user.sales.includes(:state, :city).page(params[:page])
+    @sales = current_user.sales.desc.includes(:state, :city).page(params[:page])
     respond_to do |format|
       format.html
       format.js do

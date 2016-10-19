@@ -3,9 +3,8 @@ class Dashboard::ServicesController < ApplicationController
   before_action :set_service, only: [:edit, :update, :destroy]
 
   def index
-    @services = current_user.services
-                            .includes(:state, :city)
-                            .page(params[:page])
+    @services = current_user.services.desc.includes(:state, :city)
+                                          .page(params[:page])
     respond_to do |format|
       format.html
       format.js do

@@ -3,7 +3,7 @@ class Dashboard::ReviewsController < ApplicationController
   before_action :set_review, only: [:edit, :update, :destroy]
 
   def index
-    @reviews = current_user.reviews.page(params[:page])
+    @reviews = current_user.reviews.order("created_at desc").page(params[:page])
     respond_to do |format|
       format.html
       format.js do

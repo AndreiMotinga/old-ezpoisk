@@ -2,7 +2,7 @@ class Dashboard::AnswersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @answers = current_user.answers.page(params[:page])
+    @answers = current_user.answers.desc.page(params[:page])
     respond_to do |format|
       format.html
       format.js do
