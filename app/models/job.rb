@@ -3,7 +3,7 @@ class Job < ActiveRecord::Base
   CATEGORIES = %w(autoservices drivers temporary journalism art
     computers medical real-estate nannies education office security factories
     advertisement restourants beauty-salons home-attendants escort sports
-    construction sales cleaning management finances-taxes other).freeze
+    construction sales management finances-taxes other).freeze
 
   acts_as_taggable
   acts_as_mappable
