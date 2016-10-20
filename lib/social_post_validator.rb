@@ -69,6 +69,7 @@ class SocialPostValidator
   end
 
   def post_already_exists?
+    # todo = limit by 1 week
     @model.constantize.find_by_text(@post[:text]).present?
   end
 end

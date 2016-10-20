@@ -3,7 +3,7 @@ class SocialListingCreatorJob
   sidekiq_options queue: 'critical'
 
   def perform(record, group)
-    # symbolize keys
+    # todo use symbolize keys instead
     record = record.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     group = group.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     return unless SocialPostValidator.new(group[:model], record).cool?
