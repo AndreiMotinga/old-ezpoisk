@@ -1,4 +1,5 @@
 class Review < ApplicationRecord
+  include Commentable
   acts_as_taggable # homepage entry taggings include
   belongs_to :service, touch: true
   belongs_to :user
