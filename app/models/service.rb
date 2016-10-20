@@ -72,7 +72,7 @@ class Service < ActiveRecord::Base
     "auto": %w(car-rentals autoservices carwash auto-stores driver-schools
                auto-auction moving carservice),
     "lawers": %w(general accidents business paralegal immigration criminal
-                 heritage realty family),
+                 heritage real-estate family),
     "beauty": %w(beauty-salons spa correction epilation tatoo sauna),
     "medical": %w(hospitals farmacies alternative-medicine veterinary-clinics
                   allergist venereologist gynecologis dermotolog nutritionist
