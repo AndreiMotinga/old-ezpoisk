@@ -46,6 +46,11 @@ class Answer < ActiveRecord::Base
           .limit(10)
   end
 
+  # extract to concern
+  def update_cached_tags
+    update_column(:cached_tags, tags.pluck(:name).join(", "))
+  end
+
   def active
     true
   end
