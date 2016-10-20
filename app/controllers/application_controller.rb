@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_record(model, id, path)
-    item = model.cached_find(id)
+    item = model.find_by_id(id)
     if item && item.active?
       IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)
       if item.visits == 9

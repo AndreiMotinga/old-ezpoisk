@@ -3,9 +3,9 @@ module Cachable
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def cached_find(id)
-      Rails.cache.fetch([name, id]) { find_by_id(id) }
-    end
+    # def cached_find(id)
+    #   Rails.cache.fetch([name, id]) { find_by_id(id) }
+    # end
 
     def cached_active_count
       Rails.cache.fetch([name, :cached_active_count]) { active.count }
@@ -29,7 +29,7 @@ module Cachable
   end
 
   def flush_cache
-    Rails.cache.delete([self.class.name, id])
+    # Rails.cache.delete([self.class.name, id])
     Rails.cache.delete([self.class.name, :cached_active_count])
     Rails.cache.delete([self.class.name, :cached_active_week_count])
     Rails.cache.delete([self.class.name, :cached_active_today_count])
