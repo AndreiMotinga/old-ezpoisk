@@ -7,7 +7,7 @@ class VkListingImporter
                                   topic_id: group[:topic],
                                   sort: "desc")
       fresh(data).each_with_index do |post, i|
-        delay = 1.minute + i*5.seconds
+        delay = 1.minute + i*20.seconds
         record = VkListingUnifier.new(post).post
         SocialListingCreatorJob.perform_in(delay, record, group)
       end
