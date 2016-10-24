@@ -22,7 +22,7 @@ class VkListingImporter
   GROUPS = [
     { id: 22558194, topic: 24112410, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
     { id: 22558194, topic: 26241726, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
-    { id: 35762330, topic: 34071351, model: "Job", category: "seeking", state_id: 32, city_id: 18031 }, # brooklyn
+    # { id: 35762330, topic: 34071351, model: "Job", category: "seeking", state_id: 32, city_id: 18031 }, # brooklyn
     { id: 35762330, topic: 26705408, model: "Job", category: "wanted", state_id: 32, city_id: 18031 },
     { id: 35762330, topic: 29415801, model: "Job", category: "seeking", state_id: 32, city_id: 18031 },
     { id: 2688174, topic: 26691681, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # new york
