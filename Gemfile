@@ -27,7 +27,6 @@ gem "devise-i18n-views"
 gem "devise-i18n"
 gem "devise-async", github: "mhfs/devise-async", branch: "devise-4.x"
 gem "devise_lastseenable"
-gem "redcarpet", "~> 3.3", ">= 3.3.4"
 
 gem "bootstrap_form"
 gem "kaminari", "~> 0.17.0"
@@ -62,6 +61,7 @@ gem "acts_as_votable"
 gem "acts-as-taggable-on", github: "mbleigh/acts-as-taggable-on"
 
 gem "rack-mini-profiler", github: "MiniProfiler/rack-mini-profiler", branch: "master"
+gem "memory_profiler"
 gem "rack-cors", require: "rack/cors"
 
 gem "omniauth-facebook"
