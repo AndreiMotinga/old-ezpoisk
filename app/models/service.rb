@@ -100,6 +100,6 @@ class Service < ActiveRecord::Base
                 computers confectioners nannies tranlations parcels advertisement
                 restourants funeral-services sports escort insurance tourism
                 dance cleaning finances-taxes photo-video art flowers
-                erotics-massage psychic)
+                erotics-massage psychic other)
   ).freeze
 end
