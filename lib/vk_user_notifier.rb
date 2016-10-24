@@ -1,11 +1,13 @@
 # sends message to vk user about listing added on his behalf
 class VkUserNotifier
+  # todo why use tokens as env vars?
   TOKENS = [
     ENV["VK_EZ_TOKEN"],
     ENV["VK_OLEG_TOKEN"],
     ENV["VK_ANDREI_TOKEN"]
   ].freeze
 
+  # todo replace class var with class instance var
   @@vk = VkontakteApi::Client.new(TOKENS[0])
 
   def initialize(record)

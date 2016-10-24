@@ -68,6 +68,7 @@ class Service < ActiveRecord::Base
     true
   end
 
+  # todo extract to module constants
   SUBCATEGORIES = HashWithIndifferentAccess.new(
     "auto": %w(car-rentals autoservices carwash auto-stores driver-schools
                auto-auction moving carservice),

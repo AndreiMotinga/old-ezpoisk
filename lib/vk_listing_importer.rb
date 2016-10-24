@@ -18,6 +18,7 @@ class VkListingImporter
     data.items.select { |item| item[:date] > 1.hour.ago.to_i }
   end
 
+  # todo extract to module constants, use set instead of array
   GROUPS = [
     { id: 22558194, topic: 24112410, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
     { id: 22558194, topic: 26241726, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
