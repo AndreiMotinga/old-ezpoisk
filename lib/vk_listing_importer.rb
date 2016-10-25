@@ -1,4 +1,12 @@
 # import posts form vk and calls listing creator to load them into db
+# load all post into @posts
+# select only fresh posts
+# select only uniq posts
+# unify them
+# schedule creation job
+# bring post validator here
+# use same importer for both vk and fb importer
+
 class VkListingImporter
   def self.import
     vk = VkontakteApi::Client.new(ENV["VK_YURA_TOKEN"])
@@ -19,6 +27,7 @@ class VkListingImporter
   end
 
   # todo extract to module constants, use set instead of array
+  # learn memory usage when creating hashes with keys
   GROUPS = [
     { id: 22558194, topic: 24112410, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
     { id: 22558194, topic: 26241726, model: "Job", category: "wanted", state_id: 32, city_id: 17880 }, # USA
