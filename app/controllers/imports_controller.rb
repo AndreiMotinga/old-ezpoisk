@@ -3,14 +3,12 @@ class ImportsController < ApplicationController
   end
 
   def vk
-    VkListingImporterJob.perform_async
-    flash.now[:notice] = "Magic' in the air"
+    MediaImporterJob.perform_async("public/vk_groups.json", Vk::GroupLoader)
     render :index
   end
 
   def fb
-    FbListingImporterJob.perform_async
-    flash.now[:notice] = "Not so much, but who knows"
+    MediaImporterJob.perform_async("public/fb_groups.json", Fb::GroupLoader)
     render :index
   end
 end

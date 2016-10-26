@@ -8,9 +8,9 @@ class SocialUserNotifierJob
     @record = model.constantize.find_by_id(id)
     return if !@record || !@record.try(:active)
     if @record.vk.present?
-      VkUserNotifier.new(@record)
+      Vk::UserNotifier.new(@record)
     elsif @record.fb.present?
-      FbUserNotifier.new(@record)
+      Fb::UserNotifier.new(@record)
     end
   end
 end

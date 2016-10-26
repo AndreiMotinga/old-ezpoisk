@@ -13,10 +13,14 @@ describe StripeSubscriptionsController do
   describe "POST #create" do
     context "first time subscription" do
       it "creates stripe_subscription and cusomter on stripe server" do
-        @stripe_helper.create_plan(id: "monthly_base")
         service = create :service, user: @user
+        prms = { service_id: service.id,
+                 stripeToken: @stripe_helper.generate_card_token,
+                 plan: "monthly_base",
+                 stripeEmail: @user.email }
+        @stripe_helper.create_plan(id: "monthly_base")
 
-        post :create, params: valid_attrs(service)
+        post :create, params: prms
 
         expect(response).to redirect_to edit_dashboard_service_path(service.id)
         expect(flash[:notice]).to eq I18n.t(:stripe_subscription_created)
@@ -41,11 +45,16 @@ describe StripeSubscriptionsController do
 
     context "something went wrong" do
       it "doesn't create stripe_subscription, displays error alert" do
+        service = create :service, user: @user
+        prms = { service_id: service.id,
+                 stripeToken: "",
+                 plan: "monthly_base",
+                 stripeEmail: @user.email }
+
         StripeMock.prepare_card_error(:processing_error)
         @stripe_helper.create_plan(id: "monthly_base")
-        service = create :service, user: @user
 
-        post :create, params: invalid_attrs(service)
+        post :create, params: prms
 
         expect(response).to redirect_to edit_dashboard_service_path(service.id)
         expect(flash[:alert]).to_not be nil
@@ -54,22 +63,4 @@ describe StripeSubscriptionsController do
       end
     end
   end
-end
-
-def valid_attrs(service)
-  {
-    service_id: service.id,
-    stripeToken: @stripe_helper.generate_card_token,
-    plan: "monthly_base",
-    stripeEmail: @user.email
-  }
-end
-
-def invalid_attrs(service)
-  {
-    service_id: service.id,
-    stripeToken: "",
-    plan: "monthly_base",
-    stripeEmail: @user.email
-  }
 end

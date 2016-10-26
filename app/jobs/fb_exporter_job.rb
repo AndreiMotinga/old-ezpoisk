@@ -6,6 +6,6 @@ class FbExporterJob
     return if Rails.env.development?
     record = model.constantize.find_by_id(id)
     return unless record
-    FbExporter.post(record)
+    Fb::Exporter.post(record)
   end
 end

@@ -4,6 +4,6 @@ class VkExporterJob
 
   def perform(id, model)
     return unless Rails.env.production?
-    VkExporter.new(id, model)
+    Vk::Exporter.new(id, model)
   end
 end
