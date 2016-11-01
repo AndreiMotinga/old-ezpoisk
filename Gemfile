@@ -83,7 +83,7 @@ end
 
 group :development, :test do
   gem "thin"
-  gem "pry-byebug"
+  # gem "pry-byebug"
   gem "awesome_print"
   gem "factory_girl_rails"
   gem "faker"
