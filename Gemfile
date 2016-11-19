@@ -13,6 +13,8 @@ gem "select2-rails"
 gem 'turbolinks', '~> 5.0.1'
 gem "summernote-rails"
 
+gem "autoprefixer-rails"
+
 gem "pg_search"
 
 gem "redis-rails"
