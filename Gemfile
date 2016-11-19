@@ -14,6 +14,7 @@ gem 'turbolinks', '~> 5.0.1'
 gem "summernote-rails"
 
 gem "autoprefixer-rails"
+gem "flutie"
 
 gem "pg_search"
 
