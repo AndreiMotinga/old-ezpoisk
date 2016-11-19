@@ -33,7 +33,6 @@ gem "kaminari", "~> 0.17.0"
 gem "font-awesome-rails"
 gem "paperclip"
 gem "dropzonejs-rails"
-gem "figaro"
 gem "aws-sdk"
 
 gem "slim-rails"
@@ -83,10 +82,11 @@ end
 
 group :development, :test do
   gem "thin"
-  # gem "pry-byebug"
+  gem "pry-byebug"
   gem "awesome_print"
   gem "factory_girl_rails"
   gem "faker"
+  gem "dotenv-rails"
 end
 
 group :development do

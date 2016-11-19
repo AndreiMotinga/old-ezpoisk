@@ -12,6 +12,7 @@
 !/log/.keep
 /tmp
 .rubocop.yml
+.env
 tags
 brakeman
 
