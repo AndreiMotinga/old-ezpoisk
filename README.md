@@ -1,4 +1,4 @@
-# ezpoisk.com
+# ezpoisk.com ... outdated
 
 __Ezpoisk__ (**ez** - *easy*, **poisk** - *search* (from Russian "поиск")) is an
 online platform for Russian-speaking people in the US.
