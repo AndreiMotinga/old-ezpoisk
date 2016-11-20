@@ -187,8 +187,8 @@ ActiveRecord::Schema.define(version: 20161018173907) do
     t.datetime "image_updated_at"
     t.boolean  "logo"
     t.integer  "user_id"
-    t.datetime "created_at",         default: '2016-10-05 22:32:55', null: false
-    t.datetime "updated_at",         default: '2016-10-05 22:32:55', null: false
+    t.datetime "created_at",         default: '2016-11-20 00:41:35', null: false
+    t.datetime "updated_at",         default: '2016-11-20 00:41:35', null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
     t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
