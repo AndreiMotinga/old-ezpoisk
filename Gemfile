@@ -92,6 +92,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "listen"
   gem "bullet"
   gem "better_errors"
   gem "meta_request"
