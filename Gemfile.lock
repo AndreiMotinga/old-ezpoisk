@@ -395,6 +395,8 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    recipient_interceptor (0.1.2)
+      mail
     redis (3.3.1)
     redis-actionpack (5.0.0)
       actionpack (>= 4.0.0, < 6)
@@ -611,6 +613,7 @@ DEPENDENCIES
   rails_admin!
   rails_admin_tag_list
   rails_best_practices
+  recipient_interceptor
   redis-rails
   remotipart!
   rspec-rails
