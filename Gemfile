@@ -79,9 +79,11 @@ gem "stripe-rails"
 
 gem "rails-timeago", "~> 2.0"
 
-group :production do
-  gem "puma"
-  gem "rails_12factor"
+gem "puma"
+
+group :staging, :production do
+  gem "rack-timeout"
+  gem "rails_stdout_logging"
 end
 
 group :development, :test do

@@ -24,11 +24,11 @@ Rails.application.configure do
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
   config.middleware.use Rack::Deflater
   config.public_file_server.headers = {
     "Cache-Control" => "public, max-age=31557600",
   }
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }
 
   config.paperclip_defaults = {
     storage: :s3,
@@ -44,3 +44,4 @@ Rails.application.configure do
 
   config.cache_store = :redis_store, ENV["REDISCLOUD_URL"]
 end
+Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
