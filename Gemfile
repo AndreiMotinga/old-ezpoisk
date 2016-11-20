@@ -81,7 +81,6 @@ gem "rails-timeago", "~> 2.0"
 group :production do
   gem "puma"
   gem "rails_12factor"
-  # gem 'heroku-deflater'
 end
 
 group :development, :test do
