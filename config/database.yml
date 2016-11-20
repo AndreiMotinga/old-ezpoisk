@@ -1,10 +1,12 @@
 default: &default
   adapter: postgresql
-  encoding: unicode
   database: <%= ENV["DATABASE_URL"] || "ezpoisk_prod" %>
-
+  encoding: utf8
+  min_messages: warning
   # 1(web_concurrency) * 5(threads) + 13(sidekiq concurrency) + 1(rails console) <= 20 (pg connections limit)
   pool: <%= ENV["MAX_THREADS"] || 5 %>
+  reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
+  timeout: 5000
 
 development:
   <<: *default

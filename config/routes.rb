@@ -2,7 +2,6 @@ require "sidekiq/web"
 require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
-  default_url_options host: "https://www.ezpoisk.com"
   resources :stripe_subscriptions, only: [:create]
   resources :favorites, only: [:create]
   post "favorites/touch", to: "favorites#touch"
