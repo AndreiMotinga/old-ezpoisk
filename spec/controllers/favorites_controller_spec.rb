@@ -47,8 +47,8 @@ describe FavoritesController do
           re_private = create(:re_private)
           attrs = {
             favorable_id: re_private.id,
-            favorable_type: re_private.class,
-            favorite: false,
+            favorable_type: re_private.class.name,
+            saved: false,
             hidden: true
           }
 

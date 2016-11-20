@@ -4,15 +4,12 @@ FactoryGirl.define do
     street { Faker::Address.street_name }
     phone "1234567890"
     email { Faker::Internet.email }
-    state_id 32
+    state_id 33
     city_id 18031
     active true
 
     site { Faker::Internet.url("example.com") }
     text { Faker::Lorem.paragraph(5) }
-    lat { Faker::Address.latitude }
-    lng { Faker::Address.longitude }
-    zip { Faker::Address.zip }
 
     category { Service::SUBCATEGORIES.keys.sample }
     subcategory { Service::SUBCATEGORIES[category].sample }

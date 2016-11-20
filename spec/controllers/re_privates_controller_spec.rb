@@ -53,7 +53,7 @@ describe RePrivatesController do
 
       it "filters by state" do
         2.times { create :re_private, state_id: 1 }
-        create :re_private, state_id: 32
+        create :re_private, state_id: 33
 
         get :index, params: { state: "new-york" }
 

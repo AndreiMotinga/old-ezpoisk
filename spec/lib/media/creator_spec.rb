@@ -15,7 +15,7 @@ describe Media::Creator do
         fb: "",
         attachments: [],
         model: "Job",
-        state_id: 32,
+        state_id: 33,
         city_id: 17_880
       }
 
@@ -25,7 +25,7 @@ describe Media::Creator do
       job = Job.first
       expect(job.text).to eq "Ищу работу. На кэщ. Манхэттен или Бруклин."
       expect(job.vk).to eq "https://vk.com/id325677385"
-      expect(job.state_id).to eq 32
+      expect(job.state_id).to eq 33
       expect(job.city_id).to eq 17_880
       expect(job.title).to_not eq nil
 
@@ -44,7 +44,7 @@ describe Media::Creator do
           fb: "",
           attachments: ["foo.com/image"],
           model: "RePrivate",
-          state_id: 32,
+          state_id: 33,
           city_id: 17_880
         }
 
@@ -54,7 +54,7 @@ describe Media::Creator do
         rp = RePrivate.first
         expect(rp.text).to eq "item long text"
         expect(rp.vk).to eq "https://vk.com/id325677385"
-        expect(rp.state_id).to eq 32
+        expect(rp.state_id).to eq 33
         expect(rp.city_id).to eq 17_880
 
         expect(SlackNotifierJob.jobs.size).to eq 1
@@ -73,7 +73,7 @@ describe Media::Creator do
           fb: "",
           attachments: ["foo.com/image"],
           model: "Sale",
-          state_id: 32,
+          state_id: 33,
           city_id: 17_880
         }
 
@@ -83,7 +83,7 @@ describe Media::Creator do
         rp = Sale.first
         expect(rp.text).to eq "item long text"
         expect(rp.vk).to eq "https://vk.com/id325677385"
-        expect(rp.state_id).to eq 32
+        expect(rp.state_id).to eq 33
         expect(rp.city_id).to eq 17_880
 
         expect(SlackNotifierJob.jobs.size).to eq 1

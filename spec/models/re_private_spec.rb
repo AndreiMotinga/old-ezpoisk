@@ -38,7 +38,7 @@ describe RePrivate do
   describe "#address" do
     it "returns address string" do
       re_private = build :re_private,
-                         state_id: 32,
+                         state_id: 33,
                          city_id: 18_031,
                          zip: 11_229,
                          street: "1970 East 18th"

@@ -98,6 +98,7 @@ group :test do
   gem "database_cleaner"
   gem "fuubar"
   gem "launchy"
+  gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "stripe-ruby-mock", "~> 2.2.4", require: "stripe_mock"

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe StripeSubscriptionsController do
+xdescribe StripeSubscriptionsController do
   before do
     @stripe_helper = StripeMock.create_test_helper
     sign_in(@user = create(:user))

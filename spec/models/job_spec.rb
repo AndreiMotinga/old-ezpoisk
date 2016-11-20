@@ -34,7 +34,7 @@ describe Job do
     context "full string" do
       it "returns full address" do
         job = build :job,
-                     state_id: 32,
+                     state_id: 33,
                      city_id: 18_031,
                      zip: 11_229,
                      street: "1970 East 18th"
@@ -44,7 +44,7 @@ describe Job do
 
       it "returns address without street" do
         job = build :job,
-                     state_id: 32,
+                     state_id: 33,
                      city_id: 18_031,
                      zip: 11_229,
                      street: ""
@@ -54,7 +54,7 @@ describe Job do
 
       it "returns address without street and zip" do
         job = build :job,
-                     state_id: 32,
+                     state_id: 33,
                      city_id: 18_031,
                      zip: nil,
                      street: ""

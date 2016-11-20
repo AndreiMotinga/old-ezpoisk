@@ -12,7 +12,7 @@ FactoryGirl.define do
     post_type { RePrivate::TYPES.sample }
     duration { RePrivate::DURATION.sample }
     fee { [true, false].sample }
-    state_id 32
+    state_id 33
     city_id 18_031
     email { Faker::Internet.email }
     vk "https://vk.com/id129328692"

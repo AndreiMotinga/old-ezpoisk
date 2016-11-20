@@ -10,12 +10,12 @@ describe Partner do
 
   describe "#random" do
     it "returns featured first" do
-      create :partner, position: "left"
-      featured = create :partner, position: "left", featured: true
-      create :partner, position: "left"
+      create :partner, position: "left", approved: true
+      create :partner, position: "left", approved: true
+      ad = create :partner, position: "left", approved: true, featured: true
 
       first = Partner.random("left", 2).first
-      expect(first).to eq featured
+      expect(first).to eq ad
     end
   end
 end

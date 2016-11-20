@@ -1,9 +1,11 @@
 require_relative 'boot'
+require_relative '../app/middleware/search_suggestions'
 require 'rails/all'
 Bundler.require(*Rails.groups)
 module Ezpoisk
   class Application < Rails::Application
     config.assets.quiet = true
+    config.action_controller.action_on_unpermitted_parameters = :raise
     # todo before redesign - remove
     config.action_view.prefix_partial_path_with_controller_namespace = false
     config.eager_load_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
@@ -17,9 +19,8 @@ module Ezpoisk
       generate.test_framework :rspec
       generate.view_specs false
     end
-    config.action_controller.action_on_unpermitted_parameters = :raise
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
 
@@ -36,6 +37,6 @@ module Ezpoisk
       end
     end
 
-    config.middleware.insert_before 0, "SearchSuggestions"
+    config.middleware.insert_before 0, SearchSuggestions
   end
 end

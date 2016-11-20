@@ -6,7 +6,7 @@ describe Vk::Unifier do
       group = { id: 225_581_94,
                 topic: 241_124_10,
                 model: "Job",
-                state_id: 32,
+                state_id: 33,
                 city_id: 17_880 }
 
       item = HashWithIndifferentAccess.new(
@@ -30,7 +30,7 @@ describe Vk::Unifier do
       expect(result[:text]).to eq item[:text]
       expect(result[:vk]).to eq "https://vk.com/id#{item[:from_id]}"
       expect(result[:fb]).to eq ""
-      expect(result[:state_id]).to eq 32
+      expect(result[:state_id]).to eq 33
       expect(result[:city_id]).to eq 17_880
       expect(Vk::Attachments)
         .to have_received(:new)

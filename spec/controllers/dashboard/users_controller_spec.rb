@@ -5,7 +5,7 @@ describe Dashboard::UsersController do
       it "updates the record" do
         user = create :user
         sign_in(user)
-        attrs = attributes_for(:user, state_id: 32, city_id: 18033)
+        attrs = attributes_for(:user, state_id: 33, city_id: 18033)
 
         put :update, params: { id: user.id, user: attrs }
 

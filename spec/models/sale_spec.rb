@@ -17,7 +17,7 @@ describe Sale do
   describe "#address" do
     it "returns properly formatted address" do
       sale = create :sale,
-                    state_id: 32,
+                    state_id: 33,
                     city_id: 18_031,
                     zip: 123
 

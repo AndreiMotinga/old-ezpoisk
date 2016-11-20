@@ -1,6 +1,6 @@
 require "csv"
 
-desc "Seeds db with states and cities"
+desc "Loads db with states and cities"
 namespace :db do
   task load: :environment do
     create_states
