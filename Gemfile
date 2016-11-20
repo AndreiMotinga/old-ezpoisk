@@ -17,6 +17,7 @@ gem "recipient_interceptor"
 
 gem "autoprefixer-rails"
 gem "flutie"
+gem "rack-canonical-host"
 
 gem "pg_search"
 
