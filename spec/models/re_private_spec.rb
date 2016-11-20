@@ -16,14 +16,13 @@ describe RePrivate do
 
   describe "#logo" do
     it "returns logo image of the re_private" do
-      re_private = create(:re_private)
-      create(:picture, :re_private, imageable_id: re_private.id)
-      logo = create(:picture,
-                    :re_private,
-                    imageable_id: re_private.id,
-                    logo: true)
+      rp = create(:re_private)
+      Picture.create(imageable_type: "RePrivate", imageable_id: rp.id)
+      logo = Picture.create(imageable_type: "RePrivate",
+                            imageable_id: rp.id,
+                            logo: true)
 
-      expect(re_private.cached_logo).to eq logo
+      expect(rp.cached_logo).to eq logo
     end
   end
 
@@ -31,7 +30,8 @@ describe RePrivate do
     it "return missing-small.png url when logo isn't set" do
       re_private = create(:re_private)
 
-      expect(re_private.logo_url).to eq "https://s3.amazonaws.com/ezpoisk/missing-small.png"
+      expect(re_private.logo_url)
+        .to eq "https://s3.amazonaws.com/ezpoisk/missing-small.png"
     end
   end
 

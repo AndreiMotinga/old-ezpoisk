@@ -4,7 +4,7 @@ feature "Voting on answers" do
   context "user logged in" do
     scenario "user upvotes answer", js: true do
       user = create_and_login_user
-      answer = create(:answer, :with_question, user: user)
+      answer = create(:answer, user: user)
 
       visit answer_path(answer)
       click_on "Upvote"
@@ -17,7 +17,7 @@ feature "Voting on answers" do
 
     scenario "user downvotes answer", js: true do
       user = create_and_login_user
-      answer = create(:answer, :with_question, user: user)
+      answer = create(:answer, user: user)
 
       visit answer_path(answer)
       click_on "Downvote"

@@ -1,4 +1,4 @@
---require spec_helper
 --color
---order rand
 --format Fuubar
+--order rand
+--require spec_helper

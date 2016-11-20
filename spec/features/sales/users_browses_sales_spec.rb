@@ -9,7 +9,7 @@ end
 
 feature "User browses sale" do
   scenario "success" do
-    s = create :sale, :active
+    s = create :sale
 
     visit sale_path(s)
 

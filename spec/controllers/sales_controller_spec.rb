@@ -3,7 +3,7 @@ require "rails_helper"
 describe SalesController do
   describe "GET #index" do
     it "renders the index template, assigns @sales, schedules job" do
-      2.times { create :sale, :active }
+      2.times { create :sale }
 
       get :index
 
@@ -17,7 +17,7 @@ describe SalesController do
     end
 
     it "return only active models" do
-      2.times { create :sale, :active }
+      2.times { create :sale }
       create :sale, active: false
 
       get :index
@@ -27,9 +27,9 @@ describe SalesController do
 
     describe "#filter" do
       it "filters by term" do
-        first = create :sale, :active, title: "Computer table"
-        second = create :sale, :active, text: "Computer desk"
-        create :sale, :active, title: "Supercar", text: "Foobar"
+        first = create :sale, title: "Computer table"
+        second = create :sale, text: "Computer desk"
+        create :sale, title: "Supercar", text: "Foobar"
 
         get :index, params: { term: "comput" }
         sales = assigns(:sales)
@@ -40,8 +40,8 @@ describe SalesController do
 
       context "filters by category" do
         it "with existing records" do
-          2.times { create :sale, :active, category: Sale::CATEGORIES.second }
-          create :sale, :active, category: Sale::CATEGORIES.third
+          2.times { create :sale, category: Sale::CATEGORIES.second }
+          create :sale, category: Sale::CATEGORIES.third
 
           get :index, params: { category: Sale::CATEGORIES.second }
 
@@ -49,8 +49,8 @@ describe SalesController do
         end
 
         it "with non existing records" do
-          2.times { create :sale, :active, category: Sale::CATEGORIES.second }
-          create :sale, :active, category: Sale::CATEGORIES.third
+          2.times { create :sale, category: Sale::CATEGORIES.second }
+          create :sale, category: Sale::CATEGORIES.third
 
           get :index, params: { category: Sale::CATEGORIES.fourth }
 
@@ -62,7 +62,7 @@ describe SalesController do
 
   describe "GET @show" do
     it "renders the show template and assigns @sale if its active" do
-      sale = create(:sale, :active)
+      sale = create(:sale)
 
       get :show, params: { id: sale.id }
 

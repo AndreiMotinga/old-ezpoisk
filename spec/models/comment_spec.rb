@@ -8,7 +8,7 @@ describe Comment do
   describe "#subscribers" do
     context "comment is first" do
       it "returns commentable author" do
-        rp = create :re_private, :with_user
+        rp = create :re_private
         comment = create :comment, commentable: rp
 
         expect(comment.subscribers).to match [rp.user]
@@ -17,7 +17,7 @@ describe Comment do
 
     context "comment is a response" do
       it "returns commentable author and parent comment's author" do
-        rp = create :re_private, :with_user
+        rp = create :re_private
         comment = create :comment, commentable: rp
         response = create :comment, commentable: rp, parent_id: comment.id
 
