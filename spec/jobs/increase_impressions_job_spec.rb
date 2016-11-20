@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe IncreaseImpressionsJob do
+  before { Timecop.freeze(Time.now) }
+  after { Timecop.return }
   it "increases impressions when user visits index page" do
     increased = create_list(:re_private, 10)
     untouched = create_list(:re_private, 5)

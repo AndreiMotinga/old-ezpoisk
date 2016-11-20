@@ -1,6 +1,9 @@
 require "rails_helper"
 
 describe CommentsController do
+  before { Timecop.freeze(Time.now) }
+  after { Timecop.return }
+
   describe "POST #create" do
     it "creates record" do
       sign_in(@user = create(:user))

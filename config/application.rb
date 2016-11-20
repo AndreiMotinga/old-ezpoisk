@@ -20,6 +20,7 @@ module Ezpoisk
       generate.view_specs false
     end
 
+    # todo this needs to be fixed
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'

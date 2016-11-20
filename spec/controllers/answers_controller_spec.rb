@@ -1,6 +1,9 @@
 require "rails_helper"
 
 describe AnswersController do
+  before { Timecop.freeze(Time.now) }
+  after { Timecop.return }
+
   describe "GET #index" do
     it "renders the index template and returns answers" do
       2.times { create :answer }
