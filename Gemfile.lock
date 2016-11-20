@@ -1,13 +1,13 @@
 GIT
-  remote: git://github.com/MiniProfiler/rack-mini-profiler.git
-  revision: faece4848dc04bd9aaa028becb4d561d0063666c
+  remote: https://github.com/MiniProfiler/rack-mini-profiler.git
+  revision: 083abe5dc9ac37de0103e27dd92eca74a5786541
   branch: master
   specs:
     rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
 
 GIT
-  remote: git://github.com/afcapel/rack-pjax.git
+  remote: https://github.com/afcapel/rack-pjax.git
   revision: c776a9a9eaa0641636e9ece5cfe88fc739339072
   specs:
     rack-pjax (0.8.0)
@@ -15,7 +15,7 @@ GIT
       rack (>= 1.1)
 
 GIT
-  remote: git://github.com/geokit/geokit-rails.git
+  remote: https://github.com/geokit/geokit-rails.git
   revision: 8696f764952ef4dde5c1b051428b04211e3f921b
   branch: rails5-test
   specs:
@@ -24,14 +24,14 @@ GIT
       rails (>= 3.0)
 
 GIT
-  remote: git://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 8990a39c1c26f166c8006e140fb7f4ab972b5a63
+  remote: https://github.com/mbleigh/acts-as-taggable-on.git
+  revision: 8e64c3d4a81cfbb8af621228eae36a65c1f94501
   specs:
-    acts-as-taggable-on (4.0.0.pre)
+    acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
 
 GIT
-  remote: git://github.com/mhfs/devise-async.git
+  remote: https://github.com/mhfs/devise-async.git
   revision: 177f6363a002f7ff28f1d289c8cab7ad8d9cb8c5
   branch: devise-4.x
   specs:
@@ -39,24 +39,24 @@ GIT
       devise (>= 4.0)
 
 GIT
-  remote: git://github.com/mshibuya/remotipart.git
-  revision: 88d9a7d55bde66acb6cf3a3c6036a5a1fc991d5e
+  remote: https://github.com/mshibuya/remotipart.git
+  revision: cd653ddc43bb09767b8f2802d6e27b3e00ef992f
   specs:
-    remotipart (1.2.1)
+    remotipart (1.3.1)
 
 GIT
-  remote: git://github.com/norman/friendly_id.git
-  revision: 8531cdce5737df541bc2dbf9c0fa3ee4824b6fc8
+  remote: https://github.com/norman/friendly_id.git
+  revision: 971fecfcc55c43048ea992f0e1c80e490271ffc8
   branch: master
   specs:
-    friendly_id (5.2.0.beta.1)
+    friendly_id (5.2.0)
       activerecord (>= 4.0.0)
 
 GIT
-  remote: git://github.com/sferik/rails_admin.git
-  revision: eefa8acce1f07024c46efbdf560d2ff1b6dec43d
+  remote: https://github.com/sferik/rails_admin.git
+  revision: 81f612f5bc16da61dbdd5356b7ac594c53a11836
   specs:
-    rails_admin (1.0.0.rc)
+    rails_admin (1.1.0)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
       font-awesome-rails (>= 3.0, < 5)
@@ -67,24 +67,19 @@ GIT
       nested_form (~> 0.3)
       rack-pjax (>= 0.7)
       rails (>= 4.0, < 6)
-      remotipart (~> 1.0)
+      remotipart (~> 1.3)
       sass-rails (>= 4.0, < 6)
 
 GIT
-  remote: git://github.com/sinatra/rack-protection.git
-  revision: 8d4f9d488d0591ac7b360d9137b94f8d68901f16
+  remote: https://github.com/sinatra/sinatra.git
+  revision: af6dad2a6c31e31617712b15f455b2a3d3eb1c06
   specs:
-    rack-protection (2.0.0)
+    rack-protection (2.0.0.beta2)
       rack
-
-GIT
-  remote: git://github.com/sinatra/sinatra.git
-  revision: 3e2379d7175ea7f5896f7a6f9c010c56e587ff03
-  specs:
-    sinatra (2.0.0.pre.alpha)
-      mustermann (~> 0.4)
+    sinatra (2.0.0.beta2)
+      mustermann (= 1.0.0.beta2)
       rack (~> 2.0)
-      rack-protection (~> 2.0)
+      rack-protection (= 2.0.0.beta2)
       tilt (~> 2.0)
 
 GEM
@@ -292,8 +287,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mustermann (0.4.0)
-      tool (~> 0.2)
+    mustermann (1.0.0.beta2)
     nested_form (0.3.2)
     netrc (0.11.0)
     nio4r (1.2.1)
@@ -509,7 +503,6 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     timecop (0.8.1)
-    tool (0.2.3)
     traceroute (0.5.0)
       rails (>= 3.0.0)
     turbolinks (5.0.1)
@@ -601,7 +594,6 @@ DEPENDENCIES
   rack-cors
   rack-mini-profiler!
   rack-pjax!
-  rack-protection!
   rails (~> 5.0)
   rails-controller-testing
   rails-timeago (~> 2.0)

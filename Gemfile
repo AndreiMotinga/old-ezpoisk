@@ -43,7 +43,6 @@ gem "slim-rails"
 gem "sidekiq"
 gem "sidekiq-cron"
 gem "sinatra", require: nil, github: "sinatra/sinatra"
-gem "rack-protection", github: "sinatra/rack-protection"
 
 gem "geokit-rails", github: "geokit/geokit-rails", branch: "rails5-test"
 gem "gmaps4rails"
