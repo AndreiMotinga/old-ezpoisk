@@ -64,7 +64,7 @@ GIT
 
 GIT
   remote: git://github.com/sinatra/sinatra.git
-  revision: af6dad2a6c31e31617712b15f455b2a3d3eb1c06
+  revision: 63e81bc539b36778c6bd50a303750ab52ee2b2fb
   specs:
     rack-protection (2.0.0.beta2)
       rack
@@ -318,7 +318,7 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     public_suffix (2.0.4)
-    puma (3.6.0)
+    puma (3.6.1)
     rack (2.0.1)
     rack-canonical-host (0.2.2)
       addressable (> 0, < 3)
