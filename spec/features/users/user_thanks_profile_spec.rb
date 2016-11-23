@@ -1,3 +1,4 @@
+#todo  move to features
 require "rails_helper"
 
 feature "user thanks profile" do

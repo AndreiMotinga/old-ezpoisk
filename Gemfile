@@ -18,7 +18,7 @@ gem "autoprefixer-rails"
 gem "flutie"
 gem "rack-canonical-host"
 
-gem "pg_search"
+gem "pg_search" # todo clean up remove
 gem "redis-rails"
 gem "koala", "~> 2.2"
 gem "vkontakte_api", '~> 1.4'
@@ -67,7 +67,6 @@ gem "omniauth-vkontakte"
 gem "friendly_id", github: "norman/friendly_id", branch: "master"
 gem "babosa" # todo remove? handle russian
 
-gem "stripe-rails"
 gem "rails-timeago", "~> 2.0"
 gem "puma"
 
@@ -76,6 +75,10 @@ group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
+
+  gem "rails_best_practices", require: false # code quality
+  gem "brakeman", require: false # security vulnerabilities
+  gem "traceroute", require: false # find unused routes
 end
 
 group :development, :test do
@@ -101,7 +104,6 @@ group :test do
   gem "rails-controller-testing"
   gem "shoulda-matchers"
   gem "simplecov", require: false
-  gem "stripe-ruby-mock", "~> 2.2.4", require: "stripe_mock"
   gem "timecop"
   gem "webmock"
 end

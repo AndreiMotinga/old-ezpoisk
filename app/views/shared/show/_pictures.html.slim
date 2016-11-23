@@ -5,4 +5,4 @@
         - record.pictures.each do |pic|
           li itemscope="" itemtype="http://schema.org/ImageObject"
             = link_to pic.image.url, itemprop: "contentUrl" do
-              = image_tag pic.image.url(:large), alt: alt_text(record)
+              = image_tag pic.image.url(:large)

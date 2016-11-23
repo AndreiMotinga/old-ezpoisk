@@ -1,6 +1,8 @@
+# todo remove
 class Sale < ActiveRecord::Base
-  TYPES = %w(selling buying giving)
-  CATEGORIES = %w(kids home pets clothes sale plants transportation electronics).freeze
+  CATEGORIES = %w(selling buying giving)
+  SUBCATEGORIES = %w(kids home pets clothes sale plants transportation
+                     electronics).freeze
   acts_as_mappable
   include Filterable
   include ListingHelpers
@@ -8,7 +10,6 @@ class Sale < ActiveRecord::Base
   include Cachable
   include Commentable
   validates_with SourceValidator
-  validates_with TextValidator, on: :create
 
   validates :title, presence: true, length: { maximum: 90, minimum: 5 }
   validates :category, presence: true
@@ -21,7 +22,6 @@ class Sale < ActiveRecord::Base
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :deactivations, as: :deactivatable, dependent: :destroy
   has_many :favorites, as: :favorable, dependent: :destroy
-  has_one :entry, as: :enterable, dependent: :destroy
 
   def edit_link
     Rails.application.routes.url_helpers.edit_dashboard_sale_path(self)

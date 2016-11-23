@@ -51,12 +51,10 @@ class Dashboard::ReviewsController < ApplicationController
 
   def run_update_notifications
     SlackNotifierJob.perform_async(@review.id, "Review", "update")
-    @review.entry.try(:touch)
   end
 
   def run_create_notifications
     SlackNotifierJob.perform_async(@review.id, "Review")
-    @review.create_entry(user: current_user)
   end
 
   def set_review

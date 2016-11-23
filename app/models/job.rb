@@ -1,6 +1,7 @@
+# todo remove
 class Job < ActiveRecord::Base
-  TYPES = %w(wanted seeking).freeze
-  CATEGORIES = %w(autoservices drivers temporary formen journalism art
+  CATEGORIES = %w(wanted seeking).freeze
+  SUBCATEGORIES = %w(autoservices drivers temporary formen journalism art
     computers medical real-estate nannies education office security factories
     advertisement restourants beauty-salons escort sports
     construction sales management finances-taxes other).freeze
@@ -18,7 +19,6 @@ class Job < ActiveRecord::Base
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates_with SourceValidator
-  validates_with TextValidator, on: :create
 
   belongs_to :state
   belongs_to :city
@@ -26,7 +26,6 @@ class Job < ActiveRecord::Base
 
   has_many :favorites, as: :favorable, dependent: :destroy
   has_many :deactivations, as: :deactivatable, dependent: :destroy
-  has_one :entry, as: :enterable, dependent: :destroy
 
   has_attached_file :logo, styles: { large: "755x425>" },
                     default: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png"

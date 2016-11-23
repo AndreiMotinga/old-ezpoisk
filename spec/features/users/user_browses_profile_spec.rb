@@ -1,3 +1,4 @@
+# replace with view/request spec
 require "rails_helper"
 
 feature "User browses profile" do
@@ -20,12 +21,12 @@ feature "User browses profile" do
 
   scenario "visits listings" do
     user = create :user
-    re_private = create :re_private, user: user
-    re_private.create_entry(user: user)
+    listing = create :listing, user: user
 
     visit user_path(user)
     first(:link, "Объявления").click
-    expect(page).to have_content re_private.street
+
+    expect(page).to have_content listing.title
   end
 
   scenario "visits answers" do

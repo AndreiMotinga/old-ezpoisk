@@ -7,6 +7,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
   config.public_file_server.enabled = true
   config.assets.js_compressor = :uglifier
+  config.force_ssl = true
 
   config.assets.compile = true
   config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))

@@ -1,4 +1,7 @@
 ru:
+  jobs: Работа
+  sales: Продажи
+  services: Услуги
   apartment: Квартира
   office: Офис
   sales: Торговля
@@ -66,7 +69,7 @@ ru:
   new_post: Создать новое
   close: Закрыть
   category: Раздел
-  post_created: Обьявление успешно сохранено. В течение часа мы добавим Ваше объявление в наши группы vk, facebook и google+. Спасибо за объявление.
+  post_created: Обьявление успешно сохранено.
   review_created: Спасибо за ваш отзыв.
   review_saved: Отзыв успешно обновлен.
   review_not_saved: О-о... что-то пошло не так.
@@ -89,9 +92,6 @@ ru:
   active_tooltip: Объявление будет показано в поиске, только если оно активно. Это сделано для того, чтобы Вы могли "включать и выключать" объявление, не удаляя и создавая его заново.
   commission_tooltip: Если это поле отмечено, значит сделка предполагает допольнительные платежи (т.е квартира сдается не напрямую владельцем).
   save_tooltip: Сохраните объявление, потом добавьте фотографии
-  stripe_subscription_created: Объявление успешно активировано
-  stripe_subscription_cancelled: Подписка отменена
-  stripe_subscription_renewed: Подписка возобнавлена
   activerecord:
     errors:
       messages:
@@ -99,14 +99,6 @@ ru:
         restrict_dependent_destroy:
           has_one: 'Невозможно удалить запись, так как существует зависимость: %{record}'
           has_many: 'Невозможно удалить запись, так как существуют зависимости: %{record}'
-
-    attributes:
-      re_private:
-        price: Цена
-        post_type: Тип объявления
-        state_id: Штат
-        city_id: Город
-        street: Улица
   date:
     abbr_day_names:
     - Вс

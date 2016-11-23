@@ -1,25 +1,44 @@
 require "rails_helper"
 
 describe Fb::Unifier do
+  before { Timecop.freeze(Time.now) }
+  after { Timecop.return }
+
   describe "#unified" do
     it "returns formatted post" do
-      group = { id: 1_614_363_378_884_490,
-                model: "RePrivate",
+      group = { kind: "real-estate",
                 state_id: 43,
                 city_id: 24_757 }
-      post = HashWithIndifferentAccess.new(
+      item = HashWithIndifferentAccess.new(
+        attachments: [],
         from: { name: "Marianna Sumina", id: "101" },
         message: "У нас на работе есть вакансия",
-        created_time: "2016-09-23T21:37:02+0000",
-        id: "249106225164786_1151928844882515"
+        created_time: 5.minutes.ago
       )
 
-      result = Fb::Unifier.new(post, group).unified
+      atts = double(Fb::Attachments)
+      allow(Fb::Attachments).to(receive(:new))
+                            .with(item[:attachments])
+                            .and_return(atts)
+      allow(atts).to receive(:attachments)
 
-      expect(result[:date]).to eq post[:created_time]
-      expect(result[:text]).to eq post[:message]
-      expect(result[:vk]).to eq ""
-      expect(result[:fb]).to eq "https://www.facebook.com/101"
+      result = Fb::Unifier.new(item, group).unified
+
+      kind = group[:kind].to_sym
+      expected_attrs = {
+        kind: group[:kind],
+        category: KINDS[kind][:categories].first,
+        subcategory: KINDS[kind][:subcategories].first,
+        text: item[:message],
+        state_id: group[:state_id],
+        city_id: group[:city_id],
+        user_id: 1,
+        fb: "https://www.facebook.com/#{item[:from][:id]}",
+        created_at: 5.minutes.ago
+      }
+      expect(result[:attributes]).to eq expected_attrs
+      expect(Fb::Attachments).to have_received(:new).with(item[:attachments])
+      expect(atts).to have_received(:attachments)
     end
   end
 end

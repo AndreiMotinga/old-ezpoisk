@@ -3,43 +3,31 @@ require "rails_helper"
 describe Media::Validator do
   describe "#clean?" do
     it "returns false if post is older than 1 hour" do
-      rec = { date: 2.hours.ago, text: "foo bar baz", model: "Job" }
+      rec = { created_at: 2.hours.ago }
+
       result = Media::Validator.new(rec).valid?
 
       expect(result).to be_falsy
     end
 
     it "removes short posts" do
-      rec = { date: 1.day.ago, text: "too short", model: "Job" }
+      rec = { created_at: 1.minute.ago, text: "too short" }
       result = Media::Validator.new(rec).valid?
 
       expect(result).to be_falsy
-    end
-
-    it "returns false if post with similar text already exists" do
-      job = create :job, created_at: 8.days.ago
-      good = { date: Time.zone.now, text: job.text, model: "Job" }
-      fresh_job = create :job, created_at: 1.day.ago
-      bad = { date: Time.zone.now, text: fresh_job.text, model: "Job" }
-
-      valid = Media::Validator.new(good).valid?
-      not_valid = Media::Validator.new(bad).valid?
-
-      expect(valid).to be_truthy
-      expect(not_valid).to be_falsy
     end
 
     it "removes posts that are responses to other users" do
-      rec = { date: 1.day.ago, text: "[Andrei,1908] sup?", model: "Job" }
+      rec = { created_at: 1.minute.ago, text: "[Andrei,1908] sup?" }
 
       result = Media::Validator.new(rec).valid?
 
       expect(result).to be_falsy
     end
 
-    it "removes it if there is a fresh vk post from this user" do
-      job = create :job
-      rec = { date: 1.day.ago, text: job.text, vk: job.vk, model: "Job" }
+    it "removes it if there is an active vk post from this user" do
+      listing = create :listing, active: true
+      rec = { created_at: 1.minute.ago, text: listing.text, vk: listing.vk }
 
       result = Media::Validator.new(rec).valid?
 
@@ -47,8 +35,8 @@ describe Media::Validator do
     end
 
     it "removes it if there is a fresh fb post from this user" do
-      job = create :job
-      rec = { date: 1.day.ago, text: job.text, fb: job.fb, model: "Job" }
+      listing = create :listing, active: true
+      rec = { created_at: 1.minute.ago, text: listing.text, fb: listing.fb }
 
       result = Media::Validator.new(rec).valid?
 
@@ -56,7 +44,7 @@ describe Media::Validator do
     end
 
     it "returns false if post contains blocked words" do
-      rec = { date: 1.day.ago, text: "Russian America т.. ", model: "Job" }
+      rec = { created_at: 1.minute.ago, text: "Russian America т.. " }
       result = Media::Validator.new(rec).valid?
 
       expect(result).to be_falsy

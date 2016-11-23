@@ -2,14 +2,12 @@ require "rails_helper"
 
 describe FbExporterJob do
   it "posts to facebook" do
-    re_private = create(:re_private)
-    allow(Fb::Exporter)
-      .to receive(:post)
-      .with(re_private)
+    listing = create(:listing)
+    allow(Fb::Exporter).to receive(:post).with(listing)
 
-    FbExporterJob.perform_async(re_private.id, "RePrivate")
+    FbExporterJob.perform_async(listing.id, "Listing")
     FbExporterJob.drain
 
-    expect(Fb::Exporter).to have_received(:post).with(re_private)
+    expect(Fb::Exporter).to have_received(:post).with(listing)
   end
 end

@@ -8,7 +8,7 @@ describe Comment do
   describe "#subscribers" do
     context "comment is first" do
       it "returns commentable author" do
-        rp = create :re_private
+        rp = create :listing
         comment = create :comment, commentable: rp
 
         expect(comment.subscribers).to match [rp.user]
@@ -17,7 +17,7 @@ describe Comment do
 
     context "comment is a response" do
       it "returns commentable author and parent comment's author" do
-        rp = create :re_private
+        rp = create :listing
         comment = create :comment, commentable: rp
         response = create :comment, commentable: rp, parent_id: comment.id
 
@@ -29,7 +29,7 @@ describe Comment do
     describe "#emails" do
       it "returns users who should be notified" do
         offline = create :user, last_seen: 1.day.ago
-        rp = create :re_private, user: offline
+        rp = create :listing, user: offline
         online = create :user, last_seen: 1.minute.ago
         create :comment
         comment = create :comment, commentable: rp, user: online

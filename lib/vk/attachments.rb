@@ -9,16 +9,15 @@ module Vk
 
     def attachments
       return [] if files.blank?
-      files.map { |file| largest_image(file) }.compact
+      files.map { |file| largest_image(file[:photo]) }.compact
     end
 
     private
 
-    def largest_image(file)
-      return if file[:type] != "photo"
-      return file[:photo][:src_xxxbig] if file[:photo][:src_xxxbig].present?
-      return file[:photo][:src_xxbig] if file[:photo][:src_xxbig].present?
-      file[:photo][:src_xbig]
+    def largest_image(photo)
+      return unless photo
+      largest = photo.keys.select { |key| key =~ /photo/ }.last
+      photo[largest]
     end
   end
 end

@@ -31,7 +31,6 @@ module Filterable
     scope :city_id, -> (id) { where(city_id: id) }
     scope :state, ->(slug) { where(state_id: State.find_by_slug(slug).try(:id)) }
     scope :fee, -> (fee) { where(fee: fee) }
-    scope :post_type, -> (type) { where(post_type: type) }
     scope :category, -> (category) { where(category: category) }
     scope :subcategory, -> (subcategory) { where(subcategory: subcategory) }
     scope :duration, -> (type) { where(duration: type) }
@@ -42,6 +41,7 @@ module Filterable
     scope :max_price, -> (num) { where("price <= ?", num.to_i) }
     scope :sorted, ->(type) { order type }
     scope :tag_list, -> (tags) { tagged_with(tags, any: true) }
+    scope :kind, -> (kind) { where(kind: kind) }
 
     scope(:city, lambda do |slug|
       where(city_id: City.where(slug: slug).pluck(:id)) unless slug == City::ALL

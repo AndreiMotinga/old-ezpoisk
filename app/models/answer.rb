@@ -10,7 +10,6 @@ class Answer < ActiveRecord::Base
   belongs_to :question, touch: true
   belongs_to :state
   belongs_to :city
-  has_one :entry, as: :enterable, dependent: :destroy
 
   validates :title, presence: true
   validates :text, presence: true

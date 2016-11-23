@@ -24,9 +24,9 @@ describe Ez do
   describe ".notify about" do
     it "notifies channel of a record" do
       stub_post = stub_request(:post, ENV["SLACK_URL"])
-      re_private = build_stubbed(:re_private)
+      listing = build_stubbed(:listing)
 
-      Ez.notify_about(re_private, "new")
+      Ez.notify_about(listing, "new")
 
       expect(stub_post).to have_requested(:post, ENV["SLACK_URL"])
     end

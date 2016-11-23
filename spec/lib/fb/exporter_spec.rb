@@ -2,9 +2,9 @@ require "rails_helper"
 
 describe Fb::Exporter do
   describe ".post" do
-    context "re_privates" do
+    context "real-estate" do
       it "makes request to correct group with correct record" do
-        rp = create(:re_private)
+        rp = create(:listing)
         id = ENV["FB_EZ_REPRIVATE_ID"]
         token = ENV["FB_EZ_REPRIVATE_TOKEN"]
         graph = double()
@@ -21,7 +21,7 @@ describe Fb::Exporter do
 
     context "jobs" do
       it "makes request to correct group with correct record" do
-        job = create(:job)
+        job = create(:listing)
         id = ENV["FB_EZ_JOB_ID"]
         token = ENV["FB_EZ_JOB_TOKEN"]
         graph = double()
@@ -38,7 +38,7 @@ describe Fb::Exporter do
 
     context "sales" do
       it "makes request to correct group with correct record" do
-        sale = create(:sale)
+        sale = create(:listing)
         id = ENV["FB_EZ_SALE_ID"]
         token = ENV["FB_EZ_SALE_TOKEN"]
         graph = double()
@@ -55,7 +55,7 @@ describe Fb::Exporter do
 
     context "services" do
       it "makes request to correct group with correct record" do
-        service = create(:service)
+        service = create(:listing)
         id = ENV["FB_EZ_SERVICE_ID"]
         token = ENV["FB_EZ_SERVICE_TOKEN"]
         graph = double()

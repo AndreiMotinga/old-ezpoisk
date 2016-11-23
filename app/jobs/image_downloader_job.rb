@@ -2,9 +2,10 @@
 class ImageDownloaderJob
   include Sidekiq::Worker
 
-  def perform(pics, id, model)
+  def perform(id, pics)
     return if Rails.env.development?
-    @record = model.constantize.find_by_id(id)
+    return if pics.empty?
+    @record = Listing.find_by_id(id)
     return unless @record
     download(pics)
   end
@@ -13,9 +14,9 @@ class ImageDownloaderJob
     pics.each_with_index do |pic, i|
       Picture.create(
         imageable_id: @record.id,
-        imageable_type: @record.class.to_s,
+        imageable_type: "Listing",
         user_id: 1,
-        logo: i == 0,
+        logo: i.zero?,
         image_remote_url: pic
       )
     end

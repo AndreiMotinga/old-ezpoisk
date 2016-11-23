@@ -3,7 +3,7 @@ require "rails_helper"
 describe CommentMailer do
   describe "new_comment" do
     it "" do
-      rp = create :re_private
+      rp = create :listing
       comment = create :comment, commentable: rp
       CommentMailer.new_comment(comment, rp.contact_email).deliver_now
 

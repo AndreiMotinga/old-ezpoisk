@@ -1,10 +1,10 @@
 module Media
   # validate that listing is fresh, not yet persisted etc
   class Validator
-    attr_reader :post
+    attr_reader :attrs
 
-    def initialize(post)
-      @post = post
+    def initialize(attrs)
+      @attrs = attrs
     end
 
     BAD_WORDS = [
@@ -33,16 +33,15 @@ module Media
       return if too_short?
       return if vk_post_is_response?
       return if post_contains_bad_words?
-      return if vk_post_from_user_is_fresh?
-      return if fb_post_from_user_is_fresh?
-      return if post_already_exists?
+      return if vk_post_from_user_exists?
+      return if fb_post_from_user_exists?
       true
     end
 
     private
 
     def too_old?
-      post[:date] < 1.hour.ago
+      attrs[:created_at] < 1.hour.ago
     end
 
     def too_short?
@@ -57,34 +56,20 @@ module Media
       BAD_WORDS.any? { |word| text.include?(word) }
     end
 
-    def vk_post_from_user_is_fresh?
+    def vk_post_from_user_exists?
+      vk = attrs[:vk]
       return unless vk.present?
-      model.where("vk = ? AND created_at > ?", vk, 1.week.ago).any?
+      Listing.active.where(text: text, vk: vk).any?
     end
 
-    def fb_post_from_user_is_fresh?
+    def fb_post_from_user_exists?
+      fb = attrs[:fb]
       return unless fb.present?
-      model.where("fb = ? AND created_at > ?", fb, 1.week.ago).any?
-    end
-
-    def post_already_exists?
-      model.where("text = ? AND created_at > ?", text, 1.week.ago).any?
-    end
-
-    def model
-      @model ||= post[:model].constantize
-    end
-
-    def vk
-      @vk ||= post[:vk]
-    end
-
-    def fb
-      @fb ||= post[:fb]
+      Listing.active.where(text: text, fb: fb).any?
     end
 
     def text
-      post[:text]
+      attrs[:text]
     end
   end
 end

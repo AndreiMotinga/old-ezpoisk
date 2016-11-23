@@ -3,13 +3,27 @@ require "rails_helper"
 describe Vk::Attachments do
   it "returns array of image urls" do
     atts = [
-      { "type": "video", "photo": { "src_xxxbig": "image_url" } },
-      { "type": "photo", "photo": { "src_xxxbig": "image_xxx_url" } },
-      { "type": "photo", "photo": { "src_xxbig": "image_xx_url" } },
-      { "type": "photo", "photo": { "src_xbig": "image_x_url" } },
-      { "type": "photo", "photo": { "src": "foo" } }
+      HashWithIndifferentAccess.new(
+        "type" => "photo",
+        "photo" => {
+          "photo_75" => "small",
+          "photo_130" => "medium",
+          "photo_604" => "large",
+          "width" => 810
+        }
+      ),
+      HashWithIndifferentAccess.new(
+        "type" => "photo",
+        "photo" => {
+          "photo_75" => "small_1",
+          "photo_130" => "medium_1",
+          "photo_1280" => "large_1",
+          "width" => 810
+        }
+      )
     ]
+
     result = Vk::Attachments.new(atts).attachments
-    expect(result).to eq %w(image_xxx_url image_xx_url image_x_url)
+    expect(result).to eq %w(large large_1)
   end
 end

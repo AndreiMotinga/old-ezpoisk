@@ -1,0 +1,23 @@
+#search-form.white-block
+  .panel
+    .panel-body
+      form.form-horizontal action=search_listings_path(kind: "services") method="get"
+        = render "shared/search_by_address"
+
+        .row
+          .col-xs-12.col-sm-6
+            = select_tag :category,
+              options_for_select([["Раздел", ""]] + ru(KINDS[:services][:categories]), params[:category]),
+                         class: "form-control", id: "service_category"
+          .col-xs-12.col-sm-6
+            = select_tag :subcategory,
+                         service_subcategories_options,
+                         class: "form-control", "data-id": "listing_subcategory"
+
+        br
+        = text_field_tag :term,
+                         params[:term],
+                         class: "form-control", placeholder: "Ключевое слово..."
+
+        hr/
+        = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

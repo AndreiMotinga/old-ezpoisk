@@ -1,3 +1,4 @@
+# todo remove
 class Service < ActiveRecord::Base
   acts_as_mappable
   include Filterable
@@ -19,9 +20,6 @@ class Service < ActiveRecord::Base
   has_many :favorites, as: :favorable, dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :reviews
-
-  has_one :stripe_subscription, dependent: :destroy
-  has_one :entry, as: :enterable, dependent: :destroy
 
   has_attached_file :logo, styles: { medium: "x120",
                                      avatar: "100x100#", right: "300x250#" }
@@ -68,7 +66,8 @@ class Service < ActiveRecord::Base
     true
   end
 
-  # todo extract to module constants
+  CATEGORIES = %w(auto lawers beauty medical real-estate education work repairs
+                  construction stores other).freeze
   SUBCATEGORIES = HashWithIndifferentAccess.new(
     "auto": %w(car-rentals autoservices carwash auto-stores driver-schools
                auto-auction moving carservice),

@@ -92,7 +92,6 @@ class AnswersController < ApplicationController
     FbExporterJob.perform_in(11.minutes, @answer.id, "Answer")
     VkExporterJob.perform_in(23.minutes, @answer.id, "Answer")
     question.update_attribute(:answers_count, question.answers_count + 1)
-    @answer.create_entry(user: user)
     create_subscription(user)
   end
 

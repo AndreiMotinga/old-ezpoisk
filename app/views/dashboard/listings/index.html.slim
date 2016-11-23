@@ -1,0 +1,9 @@
+= render "dashboard/shared/mob_menu"
+
+table.table.table-hover.white-block
+  tbody data-id="listings"
+    - @listings.each do |listing|
+      = render "dashboard/listings/listing", listing: listing
+
+.col-xs-12
+  = render "shared/pagination", records: @listings

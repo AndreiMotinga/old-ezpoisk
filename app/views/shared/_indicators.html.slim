@@ -13,8 +13,8 @@
 - if record.vk.present?
   i.fa.fa-vk.text-muted
 
-- if record.class.to_s != "Service"
-  span[class=("hidden" if record.deactivations_count == 0) data-span="deactivation"
-       data-id=record.id data-type=record.class.to_s ]
-    i.fa.fa-thumbs-down.text-muted
-    span data-id="counter" = record.deactivations_count
+/- if record.class.to_s != "Service"
+/  span[class=("hidden" if record.deactivations_count == 0) data-span="deactivation"
+/       data-id=record.id data-type=record.class.to_s ]
+/    i.fa.fa-thumbs-down.text-muted
+/    span data-id="counter" = record.deactivations_count

@@ -6,7 +6,6 @@ module Ezpoisk
   class Application < Rails::Application
     config.assets.quiet = true
     config.action_controller.action_on_unpermitted_parameters = :raise
-    config.action_view.prefix_partial_path_with_controller_namespace = false
     config.eager_load_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
     config.generators do |generate|
       generate.helper false

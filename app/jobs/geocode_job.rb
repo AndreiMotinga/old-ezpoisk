@@ -3,6 +3,7 @@
 class GeocodeJob
   include Sidekiq::Worker
 
+  # todo remove model - user listing
   def perform(id, model)
     return if Rails.env.development?
     @post = model.constantize.find_by_id(id)

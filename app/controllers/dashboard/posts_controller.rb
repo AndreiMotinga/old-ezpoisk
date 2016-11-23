@@ -55,35 +55,12 @@ class Dashboard::PostsController < ApplicationController
     end
   end
 
-  def destroy_all
-    if params[:category]
-      Post.invisible.category(params[:category]).delete_all
-    else
-      Post.invisible.delete_all
-    end
-
-    redirect_to all_dashboard_posts_path
-  end
-
-  def all
-    @posts = Post.invisible
-                 .category(params[:category])
-                 .order('title desc')
-                 .today
-  end
-
-  def import
-    NewsImporterJob.perform_async
-    redirect_to all_dashboard_posts_path
-  end
-
   private
 
   def run_create_notifications
     SlackNotifierJob.perform_async(@post.id, "Post")
     FbExporterJob.perform_in(9.minutes, @post.id, "Post")
     VkExporterJob.perform_in(14.minutes, @post.id, "Post")
-    @post.create_entry(user: current_user)
   end
 
   def run_update_notifications
@@ -92,7 +69,6 @@ class Dashboard::PostsController < ApplicationController
     unless current_user.try(:team_member?)
       SlackNotifierJob.perform_async(@post.id, "Post", 'update')
     end
-    @post.entry ? @post.entry.touch : @post.create_entry(user: current_user)
   end
 
   def set_post

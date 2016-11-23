@@ -1,0 +1,44 @@
+.row.white-block data-listing-id=listing.id
+  .listing
+    .col-xs-12.col-sm-4.logo
+      = link_to listing do
+        img.img-responsive.center-block src=listing.logo_url data-id="logo" itemprop="logo"
+
+    .col-xs-12.col-sm-8
+      /line 0
+      = render "shared/favor_links", record: listing
+      h4.title= link_to listing.title, listing
+
+      / line 1
+      = "#{t listing.category} | #{t listing.subcategory}"
+
+      / line 2
+      hr.post-devider
+      = link_to listing.cached_state.name, search_listings_path(kind: listing.kind, state: listing.cached_state.slug)
+      = " | "
+      = link_to listing.cached_city.name, search_listings_path(kind: listing.kind, state: listing.cached_state.slug, city: listing.cached_city.slug)
+      hr.post-devider
+
+      / line 3
+      = "#{t listing.rooms}" if listing.rooms?
+      = " | $#{listing.price}" if listing.price?
+      - if listing.rooms? || listing.price?
+        hr.post-devider
+
+      / line 4
+      = t(listing.duration) if listing.duration?
+      = " | ванные: #{listing.baths}" if listing.baths?
+      = " | площадь:  #{listing.space} ft" if listing.space?
+      - if listing.duration? || listing.baths.present? || listing.space?
+        hr.post-devider
+
+      / line 5
+      span data-time=listing.id
+        = timeago_tag listing.updated_at
+      = " | "
+      = render "shared/indicators", record: listing
+
+    - if listing.text.present?
+      .col-xs-12.text
+        hr.post-devider-gray
+        = simple_format listing.text, sanitize: true

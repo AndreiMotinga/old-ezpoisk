@@ -52,13 +52,6 @@ describe QuestionsController do
       expect(question.title).to eq attrs[:title] + "?"
       expect(question.text).to eq attrs[:text]
       expect(question.user).to eq @user
-
-      entry = Entry.last
-      expect(Entry.count).to eq 1
-      expect(entry.enterable_id).to eq question.id
-      expect(entry.enterable_type).to eq question.class.to_s
-      expect(entry.user_id).to eq @user.id
-
       expect(Subscription.count).to eq 1
     end
 

@@ -2,14 +2,14 @@ require "rails_helper"
 
 describe SlackNotifierJob do
   it "sends messsages to slack" do
-    sale = build_stubbed(:sale)
-    allow(Sale).to receive(:find_by_id).with(sale.id).and_return(sale)
-    allow(Ez).to receive(:notify_about).with(sale, "new")
+    listing = build_stubbed(:listing)
+    allow(Listing).to receive(:find_by_id).with(listing.id).and_return(listing)
+    allow(Ez).to receive(:notify_about).with(listing, "new")
 
-    SlackNotifierJob.perform_async(sale.id, sale.class.to_s)
+    SlackNotifierJob.perform_async(listing.id, listing.class.to_s)
     SlackNotifierJob.drain
 
-    expect(Sale).to have_received(:find_by_id).with(sale.id)
-    expect(Ez).to have_received(:notify_about).with(sale, "new")
+    expect(Listing).to have_received(:find_by_id).with(listing.id)
+    expect(Ez).to have_received(:notify_about).with(listing, "new")
   end
 end

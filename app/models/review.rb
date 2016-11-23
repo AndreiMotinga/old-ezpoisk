@@ -1,9 +1,8 @@
 class Review < ApplicationRecord
   include Commentable
-  acts_as_taggable # homepage entry taggings include
+  acts_as_taggable # remove it?
   belongs_to :service, touch: true
   belongs_to :user
-  has_one :entry, as: :enterable, dependent: :destroy
 
   validates :rating, presence: true
   validates :text, presence: true

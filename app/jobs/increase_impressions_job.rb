@@ -2,6 +2,7 @@
 class IncreaseImpressionsJob
   include Sidekiq::Worker
 
+  # todo remove model - use listing
   def perform(ids, model)
     model.constantize.where(id: ids).each do |rec|
       next unless rec

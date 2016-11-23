@@ -8,11 +8,6 @@ form.navbar-form role="search" method="get" action=searches_path data-destinatio
         span.caret
       ul.dropdown-menu
         li: a href="#" data-path=searches_path data-action="navbar-search" По сайту
-        li: a href="#" data-path=re_privates_path data-action="navbar-search" Недвижимость
-        li: a href="#" data-path=jobs_path data-action="navbar-search" Работа
-        li: a href="#" data-path=sales_path data-action="navbar-search" Продажи
-        li: a href="#" data-path=services_path data-action="navbar-search" Услуги
-        li: a href="#" data-path=answers_path data-action="navbar-search" Ответы
     input.form-control[placeholder="Поиск ..." type="text" name="term"
                         value=(params[:term] if controller_name == "home" || \
                                                 controller_name == "searches")]

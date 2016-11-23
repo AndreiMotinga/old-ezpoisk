@@ -32,87 +32,11 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
-  #     REAL ESTATE
-  add re_privates_path, priority: 0.8, changefreq: "daily"
-
-  ids = RePrivate.active.uniq.pluck(:city_id)
-  ids.each do |id|
-    city = City.find(id)
-    state_slug = city.state.slug
-    city_slug = city.slug
-    add search_re_privates_path(state: state_slug, city: city_slug),
-        priority: 0.7,
-        lastmod: Time.zone.now,
-        changefreq: "daily"
-  end
-
-  RePrivate.active.find_each do |rec|
-    add re_private_path(rec),
+  add listings_path, priority: 0.8, changefreq: "daily"
+  Listing.active.find_each do |listing|
+    add listing_path(listing),
         priority: 0.4,
-        lastmod: rec.updated_at,
-        changefreq: "monthly"
-  end
-
-  #     SALES
-  add sales_path, priority: 0.8, changefreq: "daily"
-
-  ids = Sale.active.uniq.pluck(:city_id)
-  ids.each do |id|
-    city = City.find(id)
-    state_slug = city.state.slug
-    city_slug = city.slug
-    add search_sales_path(state: state_slug, city: city_slug),
-        priority: 0.7,
-        lastmod: Time.zone.now,
-        changefreq: "daily"
-  end
-
-  Sale.active.find_each do |post|
-    add sale_path(post),
-        priority: 0.4,
-        lastmod: post.updated_at,
-        changefreq: "monthly"
-  end
-
-  #     SERVICES
-  add services_path, priority: 0.8, changefreq: "daily"
-
-  ids = Service.active.uniq.pluck(:city_id)
-  ids.each do |id|
-    city = City.find(id)
-    state_slug = city.state.slug
-    city_slug = city.slug
-    add search_services_path(state: state_slug, city: city_slug),
-        priority: 0.7,
-        lastmod: Time.zone.now,
-        changefreq: "daily"
-  end
-
-  Service.find_each do |post|
-    add service_path(post),
-        priority: 0.4,
-        lastmod: post.updated_at,
-        changefreq: "monthly"
-  end
-
-  #     JOBS
-  add jobs_path, priority: 0.8, changefreq: "daily"
-
-  ids = Job.active.uniq.pluck(:city_id)
-  ids.each do |id|
-    city = City.find(id)
-    state_slug = city.state.slug
-    city_slug = city.slug
-    add search_jobs_path(state: state_slug, city: city_slug),
-        priority: 0.7,
-        lastmod: Time.zone.now,
-        changefreq: "daily"
-  end
-
-  Job.active.find_each do |post|
-    add job_path(post),
-        priority: 0.4,
-        lastmod: post.updated_at,
+        lastmod: listing.updated_at,
         changefreq: "monthly"
   end
 

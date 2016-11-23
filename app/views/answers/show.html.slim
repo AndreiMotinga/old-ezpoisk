@@ -5,13 +5,10 @@
 = og_url(answer_path(@answer))
 = og_image(@answer.image.url(:medium))
 
-- content_for :sidebar do
-  = link_to "Добавить ответ",
-            new_answer_path(question_id: @answer.question_id),
-            class: "btn btn-block mobile-btn margin-bottom-10"
-  = render "shared/tag_cloud",
-            tags: Answer.tag_counts.sort_by(&:name),
-            url: "/answers/tag/"
+/- content_for :sidebar do
+/  = render "shared/tag_cloud",
+/            tags: Answer.tag_counts.sort_by(&:name),
+/            url: "/answers/tag/"
 
 .article.answer.white-block itemscope="" itemtype="http://schema.org/ScholarlyArticle"
   .panel
@@ -40,6 +37,7 @@
                     alt: "Помощь русским в США - #{@answer.title}"
       .post-body itemprop="description"
         = raw @answer.text
+    .panel-footer
       = render "shared/tags", record: @answer
 
       .row
@@ -60,9 +58,6 @@
         .col-xs-12.col-md-7
           = render "shared/social", count: nil, inline: true
 
-    .panel-footer
-      .row
-        = render "shared/comments", record: @answer
 
 .col-xs-12.col-md-6.col-md-offset-3
   - if @answer.question.answers_count > 1
@@ -70,17 +65,19 @@
               @answer.question,
               class: "btn mobile-btn btn-block other-answers"
 
-/#comments.collapse
-/  comments here
+.row
+  .col-xs-12
+    = link_to "Добавить ответ",
+              new_answer_path(question_id: @answer.question_id),
+              class: "btn mobile-btn margin-bottom-10"
 
-.col-xs-12
-  hr.breadcrumb-hr
-  hr.breadcrumb-hr
-  hr.breadcrumb-hr
-  .margin-bottom-10
-
-.col-xs-12
-  .row
-    h4 Похожие темы
+.row
+  .col-xs-12
     hr.breadcrumb-hr
-  = render @answer.similar
+    hr.breadcrumb-hr
+    hr.breadcrumb-hr
+    .margin-bottom-10
+
+.row
+  .col-xs-12
+    = render "shared/comments", record: @answer

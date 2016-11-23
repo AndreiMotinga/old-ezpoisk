@@ -4,7 +4,7 @@ class FbImporterJob
   sidekiq_options queue: 'critical'
 
   def perform
-    MediaImporterJob.perform_async("public/fb_groups.json", Fb::GroupLoader)
+    Media::Importer.new("public/fb_groups.json", Fb::GroupLoader).import
   end
 end
 

@@ -16,7 +16,7 @@ Rails.application.configure do
   config.after_initialize do
     Bullet.enable = true
     Bullet.console = true
-    # Bullet.alert = true
+    Bullet.alert = true
     Bullet.bullet_logger = true
     Bullet.rails_logger = true
   end
@@ -24,7 +24,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.active_support.deprecation = :log
   config.active_record.migration_error = :page_load
-  config.assets.debug = true
+  config.assets.debug = false
   config.assets.quiet = true
   config.action_view.raise_on_missing_translations = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker

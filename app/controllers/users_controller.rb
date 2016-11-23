@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     increase_impressions
-    @listings = @user.listings.page(params[:listings_page])
+    @listings = @user.listings.includes(:state, :city).page(params[:listings_page])
     @answers = @user.answers.page(params[:answers_page])
     @posts = @user.posts.page(params[:posts_page])
     @pictures = @user.pictures.page(params[:pictures_page]).per(40)

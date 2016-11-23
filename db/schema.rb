@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018173907) do
+ActiveRecord::Schema.define(version: 20161129024135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,16 +71,6 @@ ActiveRecord::Schema.define(version: 20161018173907) do
     t.index ["deactivatable_type", "deactivatable_id"], name: "index_deactivations_on_deactivatable_type_and_deactivatable_id", using: :btree
     t.index ["user_id", "deactivatable_id", "deactivatable_type"], name: "deactivatable_index", unique: true, using: :btree
     t.index ["user_id"], name: "index_deactivations_on_user_id", using: :btree
-  end
-
-  create_table "entries", force: :cascade do |t|
-    t.string   "enterable_type"
-    t.integer  "enterable_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.integer  "user_id"
-    t.index ["enterable_type", "enterable_id"], name: "index_entries_on_enterable_type_and_enterable_id", using: :btree
-    t.index ["user_id"], name: "index_entries_on_user_id", using: :btree
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -147,6 +137,46 @@ ActiveRecord::Schema.define(version: 20161018173907) do
     t.index ["vk"], name: "index_jobs_on_vk", using: :btree
   end
 
+  create_table "listings", force: :cascade do |t|
+    t.string   "title"
+    t.text     "text"
+    t.string   "category"
+    t.string   "subcategory"
+    t.integer  "impressions_count", default: 0
+    t.string   "token"
+    t.boolean  "active"
+    t.integer  "priority"
+    t.boolean  "featured"
+    t.integer  "user_id"
+    t.integer  "state_id"
+    t.integer  "city_id"
+    t.string   "street"
+    t.float    "lat"
+    t.float    "lng"
+    t.integer  "zip"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "site"
+    t.string   "vk"
+    t.string   "fb"
+    t.string   "gl"
+    t.string   "tw"
+    t.string   "ok"
+    t.string   "duration"
+    t.integer  "price"
+    t.integer  "baths"
+    t.integer  "space"
+    t.string   "rooms"
+    t.boolean  "fee"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "kind"
+    t.integer  "visits",            default: 0
+    t.index ["city_id"], name: "index_listings_on_city_id", using: :btree
+    t.index ["state_id"], name: "index_listings_on_state_id", using: :btree
+    t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
+  end
+
   create_table "partners", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "url"
@@ -179,16 +209,16 @@ ActiveRecord::Schema.define(version: 20161018173907) do
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "imageable_type"
     t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "logo"
     t.integer  "user_id"
-    t.datetime "created_at",         default: '2016-11-20 00:41:35', null: false
-    t.datetime "updated_at",         default: '2016-11-20 00:41:35', null: false
+    t.datetime "created_at",         default: '2016-10-07 07:19:18', null: false
+    t.datetime "updated_at",         default: '2016-10-07 07:19:18', null: false
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
     t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
@@ -223,6 +253,7 @@ ActiveRecord::Schema.define(version: 20161018173907) do
     t.string   "source"
     t.boolean  "paid",               default: false
     t.string   "cached_tags",        default: ""
+    t.string   "type"
     t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
@@ -398,16 +429,6 @@ ActiveRecord::Schema.define(version: 20161018173907) do
     t.string   "select_name"
   end
 
-  create_table "stripe_subscriptions", force: :cascade do |t|
-    t.integer  "service_id"
-    t.string   "customer_id"
-    t.string   "sub_id"
-    t.datetime "active_until"
-    t.string   "status"
-    t.string   "plan"
-    t.index ["service_id"], name: "index_stripe_subscriptions_on_service_id", using: :btree
-  end
-
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.string  "subscribable_type"
@@ -418,10 +439,10 @@ ActiveRecord::Schema.define(version: 20161018173907) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "taggable_type"
     t.integer  "taggable_id"
-    t.string   "tagger_type"
+    t.string   "taggable_type"
     t.integer  "tagger_id"
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
     t.index ["context"], name: "index_taggings_on_context", using: :btree
@@ -498,10 +519,10 @@ ActiveRecord::Schema.define(version: 20161018173907) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.string   "votable_type"
     t.integer  "votable_id"
-    t.string   "voter_type"
+    t.string   "votable_type"
     t.integer  "voter_id"
+    t.string   "voter_type"
     t.boolean  "vote_flag"
     t.string   "vote_scope"
     t.integer  "vote_weight"
@@ -516,11 +537,13 @@ ActiveRecord::Schema.define(version: 20161018173907) do
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "users"
   add_foreign_key "deactivations", "users"
-  add_foreign_key "entries", "users"
   add_foreign_key "favorites", "users"
   add_foreign_key "jobs", "cities"
   add_foreign_key "jobs", "states"
   add_foreign_key "jobs", "users"
+  add_foreign_key "listings", "cities"
+  add_foreign_key "listings", "states"
+  add_foreign_key "listings", "users"
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "points", "users"
@@ -537,6 +560,5 @@ ActiveRecord::Schema.define(version: 20161018173907) do
   add_foreign_key "services", "cities"
   add_foreign_key "services", "states"
   add_foreign_key "services", "users"
-  add_foreign_key "stripe_subscriptions", "services"
   add_foreign_key "subscriptions", "users"
 end

@@ -22,21 +22,18 @@ describe Dashboard::PostsController do
 
       expect(FbExporterJob.jobs.size).to eq 1
       expect(VkExporterJob.jobs.size).to eq 1
-      expect(Entry.count).to eq 1
     end
   end
 
   describe "DELETE #destroy" do
-    it "removes record and entry" do
+    it "removes record" do
       post = create(:post, user: @user)
-      post.create_entry
 
       delete :destroy, params: { id: post.id }
 
       expect(response).to redirect_to(dashboard_posts_path)
       expect(Post.count).to eq 0
       expect(flash[:notice]).to eq I18n.t(:post_removed)
-      expect(Entry.count).to eq 0
     end
   end
 end

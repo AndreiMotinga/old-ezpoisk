@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe ListingsNotifierJob do
   it "sends email to proper email" do
-    rp = build_stubbed(:re_private)
+    rp = build_stubbed(:listing)
     mailer = double("ListingsMailer")
     allow(RePrivate).to receive(:find_by_id).with(rp.id).and_return(rp)
     allow(ListingsMailer).to receive(:ten_visits).with(rp).and_return(mailer)

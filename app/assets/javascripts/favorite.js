@@ -18,23 +18,6 @@ $(document).on('click','.mute', function(e){
   }
 });
 
-$(document).on('click','[data-action="touch"]', function(e){
-  e.preventDefault();
-  var id = $(this).data("id");
-      type = $(this).data("type");
-  touchRecord(id, type);
-});
-
-function touchRecord(id, type){
-  $.ajax({
-    url: "/favorites/touch",
-    type: 'POST',
-    data: {
-      record: { id: id, type: type }
-    }
-  });
-}
-
 // find cookie to see wether user sidned_in
 function getCookieValue(cookieName) {
   var ca = document.cookie.split('; ');

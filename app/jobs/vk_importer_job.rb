@@ -4,10 +4,10 @@ class VkImporterJob
   sidekiq_options queue: "critical"
 
   def perform
-    MediaImporterJob.perform_async("public/vk_groups.json", Vk::GroupLoader)
+    Media::Importer.new("public/vk_groups.json", Vk::GroupLoader).import
   end
 end
 
-Sidekiq::Cron::Job.create(name: "VkImporterJob - every 1 hours",
+Sidekiq::Cron::Job.create(name: "VkImporterJob - every hour",
                           cron: "0 */1 * * *",
                           class: "VkImporterJob")

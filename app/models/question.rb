@@ -7,7 +7,6 @@ class Question < ActiveRecord::Base
   belongs_to :user, optional: true
   belongs_to :state
   belongs_to :city
-  has_one :entry, as: :enterable, dependent: :destroy
   has_many :answers
   has_many :subscriptions, as: :subscribable, dependent: :destroy
 
@@ -19,7 +18,7 @@ class Question < ActiveRecord::Base
     qs.map!{ |q| { value: "/questions/#{q[1]}", label: q[0]}}
     qs << { value: "/answers?term=#{term.gsub(" ", "+")}", label: "Искать:  \"#{term}\"" }
     qs << { value: "/questions/new?question=#{term}",
-            label: "Спросить:  \"#{term}\"" }
+            label: "Создать вопрос:  \"#{term}\"" }
   end
 
   def self.unanswered

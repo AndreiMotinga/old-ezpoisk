@@ -18,12 +18,14 @@ module Media
       Media::Groups.new(file).groups
     end
 
-    def data
-      groups.map! { |group| loader.new(group).data }.flatten
+    def posts
+      groups.map! { |group| loader.new(group).data }
+            .flatten
+            .uniq { |post| post[:attributes][:text] }
     end
 
     def valid_posts
-      Media::Cleaner.new(data).cleaned
+      posts.select { |post| Media::Validator.new(post[:attributes]).valid? }
     end
   end
 end

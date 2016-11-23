@@ -4,13 +4,6 @@
 = og_url("https://www.ezpoisk.com")
 = og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
 
-- content_for :sidebar do
-  .margin-bottom-10= render("shared/sidebar_links")
-  = render("shared/listings_count",
-            today: Entry.today.count,
-            week: Entry.week.count,
-            total: Entry.count)
-
 .col-sm-12 data-id="listings" data-term=params[:term]
   = render @documents
 

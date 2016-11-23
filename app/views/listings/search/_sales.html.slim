@@ -1,0 +1,25 @@
+#search-form.white-block
+  .panel
+    .panel-body
+      form.form-horizontal action=search_listings_path method="get"
+        = render "shared/search_by_address"
+
+        .row
+          .col-xs-12.col-sm-6
+            = select_tag :post_type,
+              options_for_select(ru(KINDS[:sales][:categories]), params[:category]),
+                          class: "form-control"
+          .col-xs-12.col-sm-6
+            = select_tag :category,
+              options_for_select([["Категория", ""]] + ru(KINDS[:sales][:subcategories]), params[:category]),
+                         class: "form-control"
+        br
+
+        .row
+          .col-xs-12.col-sm-6
+            = sort_select(sale_sort_opts)
+          .col-xs-12.col-sm-6
+            = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
+        hr/
+
+        = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"

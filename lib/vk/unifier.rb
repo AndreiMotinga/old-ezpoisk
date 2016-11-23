@@ -1,25 +1,33 @@
-# changes post received from vk api
+# modifies vk post for easy creation of the listing
 module Vk
   class Unifier
-    attr_reader :post, :group
+    attr_reader :post, :group, :unified
 
     def initialize(post, group)
       @post = post
       @group = group
-    end
-
-    def unified
-      { date: Time.at(post[:date]),
-        text: Media::Sanitizer.clean(post[:text]),
-        vk: "https://vk.com/id#{post[:from_id]}",
-        fb: "",
-        attachments: attachments,
-        state_id: group[:state_id],
-        city_id: group[:city_id],
-        model: group[:model] }
+      @unified = unify
     end
 
     private
+
+    def unify
+      kind = group[:kind].to_sym
+      {
+        attachments: attachments,
+        attributes: {
+          kind: kind,
+          category: KINDS[kind][:categories].first,
+          subcategory: KINDS[kind][:subcategories].first,
+          text: Media::Sanitizer.clean(post[:text]),
+          vk: "https://vk.com/id#{post[:from_id]}",
+          state_id: group[:state_id],
+          city_id: group[:city_id],
+          user_id: 1,
+          created_at: Time.at(post[:date])
+        }
+      }
+    end
 
     def attachments
       Vk::Attachments.new(post[:attachments]).attachments

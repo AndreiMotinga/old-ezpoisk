@@ -17,7 +17,6 @@ class Post < ActiveRecord::Base
   belongs_to :city
   has_many :favorites, as: :favorable, dependent: :destroy
   delegate :logo, to: :user
-  has_one :entry, as: :enterable, dependent: :destroy
 
   has_attached_file :image, styles: { medium: "x330>", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}

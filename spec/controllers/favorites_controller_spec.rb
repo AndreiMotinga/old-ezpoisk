@@ -7,14 +7,14 @@ describe FavoritesController do
         it "creates favorite" do
           user = create(:user)
           sign_in(user)
-          re_private = create(:re_private)
+          listing = create(:listing)
 
-          post :create, params: { favorite: favorite_attrs(re_private) }
+          post :create, params: { favorite: favorite_attrs(listing) }
           result = user.favorites.first
 
           expect(result.user_id).to eq user.id
-          expect(result.favorable_id).to eq re_private.id
-          expect(result.favorable_type).to eq re_private.class.to_s
+          expect(result.favorable_id).to eq listing.id
+          expect(result.favorable_type).to eq listing.class.to_s
           expect(result.hidden).to eq false
         end
       end
@@ -23,15 +23,15 @@ describe FavoritesController do
         it "destroys favorite" do
           user = create(:user)
           sign_in(user)
-          re_private = create(:re_private)
+          listing = create(:listing)
           create(:favorite,
                  user_id: user.id,
-                 favorable_id: re_private.id,
-                 favorable_type: re_private.class.to_s,
+                 favorable_id: listing.id,
+                 favorable_type: listing.class.to_s,
                  saved: true,
                  hidden: false)
 
-          post :create, params: { favorite: favorite_attrs(re_private) }
+          post :create, params: { favorite: favorite_attrs(listing) }
           result = user.favorites.count
 
           expect(result).to eq 0
@@ -44,10 +44,10 @@ describe FavoritesController do
         it "creates hidden" do
           user = create(:user)
           sign_in(user)
-          re_private = create(:re_private)
+          listing = create(:listing)
           attrs = {
-            favorable_id: re_private.id,
-            favorable_type: re_private.class.name,
+            favorable_id: listing.id,
+            favorable_type: listing.class.name,
             saved: false,
             hidden: true
           }
@@ -56,8 +56,8 @@ describe FavoritesController do
           result = user.favorites.first
 
           expect(result.user_id).to eq user.id
-          expect(result.favorable_id).to eq re_private.id
-          expect(result.favorable_type).to eq re_private.class.to_s
+          expect(result.favorable_id).to eq listing.id
+          expect(result.favorable_type).to eq listing.class.to_s
           expect(result.hidden).to eq true
         end
       end
@@ -66,18 +66,18 @@ describe FavoritesController do
         it "destroys favorite" do
           user = create(:user)
           sign_in(user)
-          re_private = create(:re_private)
+          listing = create(:listing)
           create(
             :favorite,
             user_id: user.id,
-            favorable_id: re_private.id,
-            favorable_type: re_private.class.to_s,
+            favorable_id: listing.id,
+            favorable_type: listing.class.to_s,
             saved: false,
             hidden: true
           )
           attrs = {
-            favorable_id: re_private.id,
-            favorable_type: re_private.class,
+            favorable_id: listing.id,
+            favorable_type: listing.class,
             saved: false,
             hidden: true
           }

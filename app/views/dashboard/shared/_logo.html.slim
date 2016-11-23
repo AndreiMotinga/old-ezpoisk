@@ -1,8 +1,0 @@
-.white-block
-  .panel
-    .panel-body
-      p Максимальный размер 5 Мб
-      = form_for([:dashboard, record]) do |f|
-        = f.file_field :logo
-        br
-        = f.submit "Сохранить", class: "btn mobile-btn"

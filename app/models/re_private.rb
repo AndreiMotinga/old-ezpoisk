@@ -1,6 +1,7 @@
+# todo remove
 class RePrivate < ActiveRecord::Base
-  CATEGORIES = %w(apartment office sales industry parking other).freeze
-  TYPES = %w(leasing renting selling buying).freeze
+  CATEGORIES = %w(leasing renting selling buying).freeze
+  SUBCATEGORIES = %w(apartment office sales industry parking other).freeze
   DURATION = %w(monthly weekly daily hourly).freeze
   ROOMS = %w(bed room studio 1-room 2-room 3-room 4-room 5-room).freeze
 
@@ -17,7 +18,6 @@ class RePrivate < ActiveRecord::Base
   validates :state_id, presence: true
   validates :city_id, presence: true
   validates_with SourceValidator
-  validates_with TextValidator, on: :create
 
   belongs_to :user, optional: true
   belongs_to :state
@@ -25,7 +25,6 @@ class RePrivate < ActiveRecord::Base
   has_many :pictures, as: :imageable, dependent: :destroy
   has_many :deactivations, as: :deactivatable, dependent: :destroy
   has_many :favorites, as: :favorable, dependent: :destroy
-  has_one :entry, as: :enterable, dependent: :destroy
 
   alias_attribute :street, :title
 

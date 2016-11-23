@@ -16,18 +16,17 @@ class User < ActiveRecord::Base
   def self.serialize_from_session(key, salt)
     single_key = key.is_a?(Array) ? key.first : key
     Rails.cache.fetch("user:#{single_key}") do
-       User.where(id: single_key).entries.first
+      User.where(id: single_key).entries.first
     end
   end
 
   belongs_to :state
   belongs_to :city
 
-  has_many :re_privates, dependent: :destroy
+  has_many :listings, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :sales, dependent: :destroy
   has_many :services, dependent: :destroy
-  has_many :stripe_subscriptions, through: :services
   has_many :posts, dependent: :destroy
   has_many :questions
   has_many :answers
@@ -38,7 +37,6 @@ class User < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :partners, dependent: :destroy
   has_many :points
-  has_many :entries
   has_many :deactivations
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
@@ -98,10 +96,6 @@ class User < ActiveRecord::Base
 
   def team_member?
     admin? || editor?
-  end
-
-  def listings
-    entries.listings.includes(enterable: [:state, :city])
   end
 
   def reviewed?(service_id)

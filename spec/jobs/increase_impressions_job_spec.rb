@@ -4,10 +4,10 @@ describe IncreaseImpressionsJob do
   before { Timecop.freeze(Time.now) }
   after { Timecop.return }
   it "increases impressions when user visits index page" do
-    increased = create_list(:re_private, 10)
-    untouched = create_list(:re_private, 5)
+    increased = create_list(:listing, 10)
+    untouched = create_list(:listing, 5)
 
-    IncreaseImpressionsJob.perform_async(increased.pluck(:id), "RePrivate")
+    IncreaseImpressionsJob.perform_async(increased.pluck(:id), "Listing")
     IncreaseImpressionsJob.drain
 
     ones = increased.map(&:reload).pluck(:impressions_count)
@@ -34,9 +34,9 @@ describe IncreaseImpressionsJob do
   end
 
   it "doesn't touch rp" do
-    rp = create :re_private, updated_at: 1.week.ago
+    rp = create :listing, updated_at: 1.week.ago
 
-    IncreaseImpressionsJob.perform_async([rp.id], "RePrivate")
+    IncreaseImpressionsJob.perform_async([rp.id], "Listing")
     IncreaseImpressionsJob.drain
     rp.reload
 

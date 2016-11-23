@@ -39,7 +39,7 @@ module FormHelper
   def service_subcategories_options
     category = params[:category]
     return unless category.present?
-    opts = [["Категория", ""]] + ru(Service::SUBCATEGORIES[category])
+    opts = [["Категория", ""]] + ru(KINDS[:services][:subcategories][category])
     options_for_select(opts, params[:subcategory])
   end
 
@@ -86,6 +86,25 @@ module FormHelper
 
   def ru(opts)
     return "" unless opts
-    opts.map{ |k| [t(k), k] }
+    opts.map { |key| [t(key), key] }
+  end
+
+  def listing_categories
+    kind = @listing.kind
+    return [] unless kind
+    opts = ru(KINDS[kind][:categories])
+    options_for_select(opts, @listing.category)
+  end
+
+  def listing_subcategories
+    kind = @listing.kind
+    return [] unless kind
+    options_for_select(listing_sub_opts, @listing.subcategory)
+  end
+
+  def listing_sub_opts
+    kind = @listing.kind
+    return ru(KINDS[kind][:subcategories]) unless kind == "services"
+    ru(KINDS[kind][:subcategories][kind])
   end
 end

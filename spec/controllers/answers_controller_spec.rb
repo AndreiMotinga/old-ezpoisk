@@ -16,7 +16,7 @@ describe AnswersController do
   end
 
   describe "POST #create" do
-    it "creates answer and entry" do
+    it "creates answer" do
       sign_in(@user = create(:user))
       question = create :question, updated_at: 1.day.ago
       attrs = attributes_for(:answer)
@@ -32,7 +32,6 @@ describe AnswersController do
 
       expect(FbExporterJob.jobs.size).to eq 1
       expect(VkExporterJob.jobs.size).to eq 1
-      expect(Entry.count).to eq 1
       expect(question.updated_at).to eq Time.zone.now
       expect(question.answers_count).to eq 1
     end
@@ -40,7 +39,6 @@ describe AnswersController do
     it "subscribes answer's author for answer's question" do
       sign_in(@user = create(:user))
       question = create :question
-      question.create_entry(user: @user)
       attrs = attributes_for(:answer)
       attrs[:question_id] = question.id
 

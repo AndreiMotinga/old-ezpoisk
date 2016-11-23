@@ -3,10 +3,9 @@ require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
   default_url_options host: ENV.fetch("APPLICATION_HOST")
-  resources :stripe_subscriptions, only: [:create]
   resources :favorites, only: [:create]
-  post "favorites/touch", to: "favorites#touch"
 
+  # remove with pg_search
   resources :searches, only: [:index]
   resources :deactivations, only: [:create]
   resources :comments, only: [:create]
@@ -36,61 +35,41 @@ Rails.application.routes.draw do
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
   get "sitemaps/sitemap:id.:format.:compression", to: "sitemap#show_id"
   resources :cities, only: :index
-  resources :subcategories, only: :index
-  get '/tos', to: 'tos#tos'
+  get "/tos", to: "tos#tos"
 
   namespace :dashboard do
     resources :favorites, only: [:index]
     resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
-    resources :re_privates, except: :show
-    resources :jobs, except: :show
-    resources :sales, except: :show
-    resources :services, except: :show
+    namespace :listings do
+      # todo move there categories somehere else
+      resources :categories, only: [:index, :show]
+    end
+    resources :listings, expect: :show
     resources :reviews, except: :show
     resources :answers, only: [:index]
     resources :posts, except: :show
     authenticate :user, ->(u) { u.editor? } do
       resources :editors, only: [:show, :update]
-      resources :posts, except: :show do
-        collection do
-          get "all"
-          get "import"
-          delete "destroy_all"
-        end
-      end
     end
     resources :partners do
       post "increment", to: "partners#increment", on: :collection
     end
   end
 
-  resources :posts, only: [:index, :show] do
-    get "tag/:tag", to: "posts#tag", as: "tag", on: :collection
-  end
-  resources :sales, only: [:index, :show] do
+  resources :listings, only: [:index, :show] do
     collection do
-      get ":state(/:city(/:post_type(/:category)))", state: /\D*?/, to: "sales#search", as: "search"
+      get :subcategories
+      get(":kind(/:state(/:city(/:category(/:subcategory))))",
+          kind: /real-estate|jobs|services|sales/,
+          to: "listings#search",
+          as: "search")
     end
   end
 
-  resources :services, only: [:index, :show] do
-    collection do
-      get ":state(/:city(/:category(/:subcategory)))",
-          state: /\D*?/, to: "services#search", as: "search"
-    end
-  end
-  resources :re_privates, only: [:index, :show], path: "real-estate" do
-    collection do
-      get ':state(/:city(/:category(/:post_type)))', state: /\D*?/, to: "re_privates#search", as: "search"
-    end
-  end
-  resources :jobs, only: [:index, :show] do
-    collection do
-      get "tag/:tag", to: "jobs#tag", as: :tag
-      get ":state(/:city(/:post_type(/:category)))", state: /\D*?/, to: "jobs#search", as: "search"
-    end
+  resources :posts, only: [:index, :show] do
+    get "tag/:tag", to: "posts#tag", as: "tag", on: :collection
   end
 
   authenticate :user, ->(u) { u.admin? } do
@@ -104,9 +83,6 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
 
-  get "/re_privates/:id", to: redirect("/real-estate/%{id}")
-
   resources :users, only: [:show]
-
   root to: "home#index"
 end

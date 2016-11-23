@@ -1,0 +1,16 @@
+= title("Объявления в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами - ezpoisk")
+= desc("Объявления для русскоговорящих людей в США")
+
+#show-search.btn.mobile-btn.margin-bottom-10
+  | Настроить фильтр | #{@listings.total_count}
+
+= render "listings/search/#{params[:kind]}"
+
+.col-xs-12 data-id="listings" data-term=params[:term]
+  - cache @listings
+    - @listings.each do |listing|
+      = render listing
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @listings

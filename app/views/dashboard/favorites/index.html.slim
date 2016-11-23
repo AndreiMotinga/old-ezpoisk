@@ -1,14 +1,10 @@
-- content_for :sidebar
-  = render("shared/filters_btn", count: @records.total_count)
-  = render("dashboard/shared/menu")
-
 = render "dashboard/shared/mob_menu"
 
-.visible-xs= render("shared/filters_btn", count: @records.total_count)
 = render "dashboard/favorites/search_form"
 
 .col-xs-12 data-id="listings"
-  = render @records
+  - @records.each do |record|
+    = render "listings/listing", listing: record.favorable
 
 .col-xs-12
   = render "shared/pagination", records: @records
