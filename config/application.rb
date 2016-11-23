@@ -19,6 +19,9 @@ module Ezpoisk
       generate.view_specs false
     end
 
+    config.i18n.load_path += Dir[Rails.root.join("config", "locales",
+                                                 "**", "*.{rb,yml}")]
+
     # todo this needs to be fixed
     config.middleware.insert_before 0, Rack::Cors do
       allow do
