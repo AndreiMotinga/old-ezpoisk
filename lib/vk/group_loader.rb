@@ -4,7 +4,7 @@ module Vk
     attr_reader :group, :vk
 
     def initialize(group)
-      @vk = VkontakteApi::Client.new(ENV["VK_YURA_TOKEN"])
+      @vk = VkontakteApi::Client.new
       @group = group
     end
 
