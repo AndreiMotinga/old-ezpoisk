@@ -1,5 +1,4 @@
 class Dashboard::PartnersController < ApplicationController
-  layout 'partner'
   before_action :authenticate_user!, except: [:increment, :show]
   before_action :set_ad, only: [:show, :edit, :update, :destroy]
 

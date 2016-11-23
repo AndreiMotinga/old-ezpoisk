@@ -1,13 +1,13 @@
 doctype html
-html
+html lang="ru"
   head
     = render "layouts/head"
   body class= body_class
-    = render "shared/navbar"
+    = render "navbar"
     /= render "shared/gads/top"
     .container.page-wrap
       = yield :cover if content_for?(:cover)
-      = render "shared/notice" unless devise_controller?
+      = render "notice" unless devise_controller?
       = render "shared/breadcrumbs"
 
       .row
@@ -37,3 +37,4 @@ html
     = render "shared/new_post_modal"
     = render "shared/new_session_modal"
     = render "shared/main_sidebar"
+    = render "javascript"

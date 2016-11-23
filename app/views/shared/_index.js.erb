@@ -1,5 +1,7 @@
 // send stats
-ga('send', 'pageview');
+<% if ENV["SEGMENT_KEY"] %>
+  ga('send', 'pageview');
+<% end %>
 
 // update leaderboard
 // $("[data-id='leaderboard']").remove();
