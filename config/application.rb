@@ -22,21 +22,11 @@ module Ezpoisk
     config.i18n.load_path += Dir[Rails.root.join("config", "locales",
                                                  "**", "*.{rb,yml}")]
 
-    # todo this needs to be fixed
+    # TODO: remove when no longer use font-awesome
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-
-        resource '/cors',
-          :headers => :any,
-          :methods => [:post],
-          :credentials => true,
-          :max_age => 0
-
-        resource '*',
-          :headers => :any,
-          :methods => [:get, :post, :delete, :put, :patch, :options, :head],
-          :max_age => 0
+        origins "*"
+        resource "*", headers: :any, methods: [:get, :post, :options]
       end
     end
 
