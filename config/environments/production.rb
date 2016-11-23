@@ -8,7 +8,7 @@ Rails.application.configure do
   config.public_file_server.enabled = true
   config.assets.js_compressor = :uglifier
 
-  config.assets.compile = false
+  config.assets.compile = true
   config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
   config.log_level = :debug
   config.log_tags = [ :request_id ]
