@@ -16,7 +16,7 @@ feature "user creates sale" do
 
     click_on "Сохранить"
 
-    expect(page).to have_content sale.title
+    expect(page).to have_content I18n.t(:post_created)
 
     saved_sale = Sale.last
     expect(saved_sale.active).to be true

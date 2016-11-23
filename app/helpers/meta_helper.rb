@@ -78,19 +78,6 @@ module MetaHelper
     end
   end
 
-  def question_breadcrumb
-    case params[:action]
-    when 'index'
-      breadcrumb :questions
-    when 'tag'
-      breadcrumb :tag_questions_path, params[:tag]
-    when 'unanswered'
-      breadcrumb :unanswered_questions_path
-    when 'unanswered_tag'
-      breadcrumb :unanswered_tag_questions_path, params[:tag]
-    end
-  end
-
   def post_title
     case params[:action]
     when 'index'
@@ -109,15 +96,6 @@ module MetaHelper
     end
   end
 
-  def post_breadcrumb
-    case params[:action]
-    when 'index'
-      breadcrumb :posts
-    when 'tag'
-      breadcrumb :tag_posts, params[:tag]
-    end
-  end
-
   def answer_title
     case params[:action]
     when 'index'
@@ -133,15 +111,6 @@ module MetaHelper
       desc("Информация о жизни русскоговорящих людей в америке. Полезная информация об иммиграции в США")
     when 'tag'
       desc("#{params[:tag]} Полезная информация об иммиграции в США")
-    end
-  end
-
-  def answer_breadcrumb
-    case params[:action]
-    when 'index'
-      breadcrumb :answers
-    when 'tag'
-      breadcrumb :tag_answers, params[:tag]
     end
   end
 end

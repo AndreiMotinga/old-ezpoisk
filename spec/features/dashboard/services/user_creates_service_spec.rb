@@ -16,7 +16,7 @@ feature "user creates service" do
     fill_in "Телефон", with: service.phone
     click_on "details-save-btn"
 
-    expect(page).to have_content service.title
+    expect(page).to have_content I18n.t(:post_created)
 
     record = Service.last
     expect(record.category).to eq service.category

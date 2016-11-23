@@ -22,9 +22,8 @@ feature "User create re_private" do
     check("Комиссия")
     click_on "Сохранить"
 
-    expect(page).to have_content "Недвижимость"
+    expect(page).to have_content I18n.t(:post_created)
     rp = RePrivate.last
-    expect(page).to have_content rp.id
     expect(rp.active).to be true
     expect(rp.fee).to be true
     expect(rp.phone).to eq re_private.phone

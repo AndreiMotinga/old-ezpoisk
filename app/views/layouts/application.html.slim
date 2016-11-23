@@ -8,7 +8,6 @@ html lang="ru"
     .container.page-wrap
       = yield :cover if content_for?(:cover)
       = render "notice" unless devise_controller?
-      = render "shared/breadcrumbs"
 
       .row
         - if content_for?(:sidebar)

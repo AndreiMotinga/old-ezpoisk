@@ -20,7 +20,6 @@ gem "rack-canonical-host"
 
 gem "pg_search"
 gem "redis-rails"
-gem "gretel"
 gem "koala", "~> 2.2"
 gem "vkontakte_api", '~> 1.4'
 
