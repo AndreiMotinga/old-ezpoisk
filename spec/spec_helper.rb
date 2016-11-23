@@ -12,14 +12,7 @@ end
 require "webmock/rspec"
 
 RSpec.configure do |config|
-  config.expect_with :rspec do |expectations|
-    #todo remove
-    expectations.syntax = :expect
-  end
-
   config.mock_with :rspec do |mocks|
-    #todo remove?
-    mocks.syntax = :expect
     mocks.verify_partial_doubles = true
   end
 
