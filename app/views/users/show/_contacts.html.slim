@@ -27,7 +27,7 @@
               strong
                 i.fa.fa-icon.fa-share-square-o
                 |  online
-            td= link_to @user.site, site_link(@user.site), target: "_blank", rel: "nofollow"
+            td= link_to @user.site, @user.site, target: "_blank", rel: "nofollow"
       hr
       span.social
         - if @user.facebook?

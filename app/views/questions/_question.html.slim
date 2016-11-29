@@ -9,7 +9,7 @@
           |  Ответить
         br
         = "#{question.answers_count} ответов"
-      - if question.text.present?
+      - if question.text?
     .panel-body
       .text= simple_format question.text, sanitize: true
       = render "shared/tags", record: question

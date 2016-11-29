@@ -49,5 +49,12 @@ describe Media::Validator do
 
       expect(result).to be_falsy
     end
+
+    it "returns true when all is ok" do
+      rec = { created_at: 1.minute.ago, text: "Сдаю квартиру" }
+      result = Media::Validator.new(rec).valid?
+
+      expect(result).to be_truthy
+    end
   end
 end

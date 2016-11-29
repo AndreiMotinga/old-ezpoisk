@@ -2,7 +2,7 @@
 - d = "#{t @listing.category} #{d}"
 = desc(d)
 
-- t = @listing.title.present? ? @listing.title : t(@listing.category)
+- t = @listing.title? ? @listing.title : t(@listing.category)
 = title("#{t} #{@listing.city.name} #{@listing.state.name}")
 
 = og_type("article")

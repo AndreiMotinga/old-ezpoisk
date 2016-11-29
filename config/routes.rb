@@ -39,9 +39,9 @@ Rails.application.routes.draw do
     resources :users, only: [:edit, :update]
     namespace :listings do
       # todo move there categories somehere else
-      resources :categories, only: [:index, :show]
+      resources :categories, only: [:index]
     end
-    resources :listings, expect: :show
+    resources :listings, except: :show
     resources :reviews, except: :show
     resources :answers, only: [:index]
     authenticate :user, ->(u) { u.editor? } do
@@ -63,12 +63,6 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, ->(u) { u.admin? } do
-    resources :imports, only: :index do
-      collection do
-        get "vk", to: "imports#vk"
-        get "fb", to: "imports#fb"
-      end
-    end
     mount Sidekiq::Web => "/sidekiq_monstro"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end

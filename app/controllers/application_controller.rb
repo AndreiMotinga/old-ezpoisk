@@ -4,17 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  private
-
-  def get_record(model, id, path)
-    item = model.find_by_id(id)
-    if item && item.active?
-      return item
-    else
-      redirect_to path, alert: I18n.t(:post_not_found)
-    end
-  end
-
   protected
 
   def address_changed?(record, prms)
@@ -31,11 +20,6 @@ class ApplicationController < ActionController::Base
   def fields
     [:name, :phone, :email, :password, :slug, :state_id, :city_id, :lat, :lng,
      :password_confirmation, :remember_me, :current_password, :avatar, :site]
-  end
-
-  def search?
-    return false if params[:geo_scope] && params[:geo_scope][:origin].present?
-    return true if params[:state].present?
   end
 
   def sliced_params

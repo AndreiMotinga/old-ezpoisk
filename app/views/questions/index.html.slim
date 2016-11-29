@@ -1,6 +1,3 @@
-= question_title
-= question_desc
-
 - content_for :sidebar do
   = link_to "Неотвеченные", unanswered_questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
   = render "shared/tag_cloud", tags: @tags, url: "/questions/tag/"

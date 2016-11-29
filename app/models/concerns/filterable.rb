@@ -13,35 +13,31 @@ module Filterable
 
   included do
     include Searchable
-    scope :term, -> (term) { search(term) }
+    scope :term, ->(term) { search(term) }
     scope :default , -> { order("featured desc, priority desc,
                                 #{table_name}.updated_at desc") }
     scope :today, -> { where("#{table_name}.created_at > ?", Date.today) }
     scope :week, -> { where("#{table_name}.created_at > ?",
                             Date.today.at_beginning_of_week) }
-    scope :last_week, -> { where("#{table_name}.created_at < ?",
-                                      Date.today.at_beginning_of_week) }
     scope :desc, -> { order("#{table_name}.created_at desc") }
-    scope :older, ->(date) { where("#{table_name}.created_at < ?", date) }
     scope :random, -> { order("RANDOM()") }
     scope :unpaid, -> { where(paid: false) }
     scope :active, -> { where(active: true) }
-    scope :featured, -> { where(featured: true) }
     scope :state_id, ->(id) { where(state_id: id) }
-    scope :city_id, -> (id) { where(city_id: id) }
+    scope :city_id, ->(id) { where(city_id: id) }
     scope :state, ->(slug) { where(state_id: State.find_by_slug(slug).try(:id)) }
-    scope :fee, -> (fee) { where(fee: fee) }
-    scope :category, -> (category) { where(category: category) }
-    scope :subcategory, -> (subcategory) { where(subcategory: subcategory) }
-    scope :duration, -> (type) { where(duration: type) }
-    scope :rooms, -> (rooms) { where(rooms: rooms) }
-    scope :baths, -> (num) { where("baths >= ?", num.to_i) }
-    scope :space, -> (num) { where("space >= ?", num.to_i) }
-    scope :min_price, -> (num) { where("price >= ?", num.to_i) }
-    scope :max_price, -> (num) { where("price <= ?", num.to_i) }
+    scope :fee, ->(fee) { where(fee: fee) }
+    scope :category, ->(category) { where(category: category) }
+    scope :subcategory, ->(subcategory) { where(subcategory: subcategory) }
+    scope :duration, ->(type) { where(duration: type) }
+    scope :rooms, ->(rooms) { where(rooms: rooms) }
+    scope :baths, ->(num) { where("baths >= ?", num.to_i) }
+    scope :space, ->(num) { where("space >= ?", num.to_i) }
+    scope :min_price, ->(num) { where("price >= ?", num.to_i) }
+    scope :max_price, ->(num) { where("price <= ?", num.to_i) }
     scope :sorted, ->(type) { order type }
-    scope :tag_list, -> (tags) { tagged_with(tags, any: true) }
-    scope :kind, -> (kind) { where(kind: kind) }
+    scope :tag_list, ->(tags) { tagged_with(tags, any: true) }
+    scope :kind, ->(kind) { where(kind: kind) }
 
     scope(:city, lambda do |slug|
       where(city_id: City.where(slug: slug).pluck(:id)) unless slug == City::ALL

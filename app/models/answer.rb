@@ -2,7 +2,6 @@ class Answer < ActiveRecord::Base
   acts_as_taggable
   include Filterable
   include MyFriendlyId
-  include ListingHelpers
   include Commentable
   acts_as_votable
 

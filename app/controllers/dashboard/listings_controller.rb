@@ -1,4 +1,5 @@
 class Dashboard::ListingsController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :new, :create]
   before_action :set_listing, only: [:edit, :update, :destroy]
 
   def index
@@ -29,8 +30,8 @@ class Dashboard::ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     if @listing.save
-      # do_maintenance
-      # run_create_notifications
+      @listing.clear_phone!
+      run_create_notifications
       redirect_on_create
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -41,9 +42,9 @@ class Dashboard::ListingsController < ApplicationController
   def update
     address_changed = address_changed?(@listing, listing_params)
     if @listing.update(listing_params)
-      # do_maintenance
+      @listing.clear_phone!
       GeocodeJob.perform_async(@listing.id, "Listing") if address_changed
-      # run_update_notifications
+      run_update_notifications
       redirect_to update_redirect_path, notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -81,9 +82,8 @@ class Dashboard::ListingsController < ApplicationController
   end
 
   def run_update_notifications
-    unless current_user.try(:team_member?)
-      SlackNotifierJob.perform_async(@listing.id, "Listing", 'update')
-    end
+    return if current_user.try(:team_member?)
+    SlackNotifierJob.perform_async(@listing.id, "Listing", "update")
   end
 
   def run_create_notifications
@@ -113,9 +113,5 @@ class Dashboard::ListingsController < ApplicationController
 
   def destroy_redirect_path
     params[:token].present? ? root_path : dashboard_listings_path
-  end
-
-  def do_maintenance
-    @listing.clear_phone!
   end
 end

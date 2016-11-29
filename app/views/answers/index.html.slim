@@ -1,12 +1,3 @@
-= answer_title
-= answer_desc
-
-/- content_for :sidebar do
-/  = link_to "Все вопросы", questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
-/  = render "shared/tag_cloud",
-/            tags: Answer.tag_counts.sort_by(&:name),
-/            url: "/answers/tag/"
-
 = render "questions/search_form"
 
 .col-xs-12 data-id="listings" data-term=params[:term]

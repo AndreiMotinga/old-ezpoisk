@@ -1,22 +1,13 @@
 class User < ActiveRecord::Base
   include OmniLogin
+  include Mappable
   acts_as_voter
   acts_as_mappable
-  include ListingHelpers # todo shouldnt be her
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :lockable, :async, :omniauthable, :lastseenable,
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
-  after_create :send_emails
-  after_save :invalidate_cache
-
-  # todo what is it for?
-  def self.serialize_from_session(key, salt)
-    single_key = key.is_a?(Array) ? key.first : key
-    Rails.cache.fetch("user:#{single_key}") do
-      User.where(id: single_key).entries.first
-    end
-  end
+  after_create :run_notifications
 
   belongs_to :state
   belongs_to :city
@@ -92,14 +83,14 @@ class User < ActiveRecord::Base
     avatar(:thumb)
   end
 
-  private
-
-  def send_emails
-    SlackNotifierJob.perform_async(id, "User")
-    UserMailerJob.perform_async(id)
+  def address
+    "#{street} #{city.try(:name)} #{state.try(:name)} #{zip}".strip
   end
 
-  def invalidate_cache
-    Rails.cache.delete("user:#{id}")
+  private
+
+  def run_notifications
+    SlackNotifierJob.perform_async(id, "User")
+    UserMailerJob.perform_async(id)
   end
 end

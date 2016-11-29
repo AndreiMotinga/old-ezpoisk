@@ -7,9 +7,9 @@ feature "user creates listing" do
     visit new_dashboard_listing_path
     listing = build :listing, :job
 
-    find("option[value='#{listing.kind}']").select_option
-    find("option[value='#{listing.category}']").select_option
-    find("option[value='#{listing.subcategory}']").select_option
+    select(I18n.t(listing.kind), from: "Раздел")
+    select(I18n.t(listing.category), from: "Категория")
+    select(I18n.t(listing.subcategory), from: "Подкатегория")
 
     fill_in "Заголовок", with: listing.title
     fill_in "Описание", with: listing.text

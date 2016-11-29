@@ -26,10 +26,6 @@ class Partner < ActiveRecord::Base
       .order("RANDOM()")
   end
 
-  def redirect_url
-    url.match(/http/).present? ? url : "http://#{url}"
-  end
-
   def show_url
     ActionMailer::Base.default_url_options[:host] + "/teacup/partners/#{id}/edit"
   end
