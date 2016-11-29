@@ -1,7 +1,5 @@
 .profile data-pictures="" data-id="listings"
-  - cache @pictures
-    - @pictures.each do |picture|
-      = render picture
+  = render @pictures
 
 - if @pictures.empty?
   .col-xs-12= render "shared/no_posts_message"

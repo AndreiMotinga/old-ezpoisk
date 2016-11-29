@@ -6,8 +6,8 @@
 
         .row
           .col-xs-12.col-sm-6
-            = select_tag :post_type,
-              options_for_select(ru(KINDS[:jobs][:categories]), params[:post_type]),
+            = select_tag :category,
+              options_for_select(ru(KINDS[:jobs][:categories]), params[:category]),
                          class: "form-control"
           .col-xs-12.col-sm-6
             = select_tag :category,

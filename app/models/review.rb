@@ -1,17 +1,11 @@
 class Review < ApplicationRecord
-  include Commentable
-  acts_as_taggable # remove it?
-  belongs_to :service, touch: true
+  belongs_to :listing
   belongs_to :user
 
-  validates :rating, presence: true
-  validates :text, presence: true
-  validates :service_id, presence: true
-  validates :user_id, presence: true
+  validates_presence_of :user
+  validates_presence_of :listing
+  validates_presence_of :text
+  validates_presence_of :rating
 
   delegate :logo, to: :user
-
-  def show_url
-    Rails.application.routes.url_helpers.service_url(service)
-  end
 end

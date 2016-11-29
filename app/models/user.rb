@@ -2,10 +2,7 @@ class User < ActiveRecord::Base
   include OmniLogin
   acts_as_voter
   acts_as_mappable
-  include ListingHelpers
-  include Cachable
-  # Include default devise modules. Others available are:
-  # :validatable, :confirmable, :timeoutable,
+  include ListingHelpers # todo shouldnt be her
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :lockable, :async, :omniauthable, :lastseenable,
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
@@ -13,6 +10,7 @@ class User < ActiveRecord::Base
   after_create :send_emails
   after_save :invalidate_cache
 
+  # todo what is it for?
   def self.serialize_from_session(key, salt)
     single_key = key.is_a?(Array) ? key.first : key
     Rails.cache.fetch("user:#{single_key}") do
@@ -24,20 +22,12 @@ class User < ActiveRecord::Base
   belongs_to :city
 
   has_many :listings, dependent: :destroy
-  has_many :jobs, dependent: :destroy
-  has_many :sales, dependent: :destroy
-  has_many :services, dependent: :destroy
-  has_many :posts, dependent: :destroy
   has_many :questions
   has_many :answers
   has_many :reviews
   has_many :comments
 
-  has_many :favorites, dependent: :destroy
-  has_many :subscriptions, dependent: :destroy
   has_many :partners, dependent: :destroy
-  has_many :points
-  has_many :deactivations
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
 
@@ -63,10 +53,6 @@ class User < ActiveRecord::Base
     styles: { large: "780x390#" },
     default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
-
-  def subscribed?(id, type)
-    subscriptions.exists?(subscribable_type: type, subscribable_id: id)
-  end
 
   def name_to_show
     name.present? ? name : email
@@ -96,19 +82,6 @@ class User < ActiveRecord::Base
 
   def team_member?
     admin? || editor?
-  end
-
-  def reviewed?(service_id)
-    reviews.where(service_id: service_id).any?
-  end
-
-  def find_favorite(prms)
-    favorites.where(
-      favorable_id: prms[:favorable_id],
-      favorable_type: prms[:favorable_type],
-      saved: prms[:saved],
-      hidden: prms[:hidden]
-    ).first
   end
 
   def online?

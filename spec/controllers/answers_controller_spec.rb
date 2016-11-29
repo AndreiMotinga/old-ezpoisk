@@ -30,21 +30,8 @@ describe AnswersController do
       expect(answer.text).to eq attrs[:text]
       expect(answer.user).to eq @user
 
-      expect(FbExporterJob.jobs.size).to eq 1
-      expect(VkExporterJob.jobs.size).to eq 1
       expect(question.updated_at).to eq Time.zone.now
       expect(question.answers_count).to eq 1
-    end
-
-    it "subscribes answer's author for answer's question" do
-      sign_in(@user = create(:user))
-      question = create :question
-      attrs = attributes_for(:answer)
-      attrs[:question_id] = question.id
-
-      post :create, params: { answer: attrs }
-
-      expect(Subscription.count).to eq 1
     end
   end
 

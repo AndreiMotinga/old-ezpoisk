@@ -8,7 +8,6 @@ class Question < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   has_many :answers
-  has_many :subscriptions, as: :subscribable, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
   validates_presence_of :tag_list
@@ -28,10 +27,6 @@ class Question < ActiveRecord::Base
   def image
     return image_url if image_url.present?
     "https://s3.amazonaws.com/ezpoisk/missing.png"
-  end
-
-  def subscribers_emails
-    subscriptions.map(&:user).pluck(:email)
   end
 
   def show_url

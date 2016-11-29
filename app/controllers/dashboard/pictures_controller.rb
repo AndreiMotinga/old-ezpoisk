@@ -31,7 +31,7 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def klass
-    [User, RePrivate, Sale, Service, Listing].find do |class_name|
+    [User, Listing].find do |class_name|
       class_name.name == params["type"].classify
     end
   end

@@ -3,14 +3,10 @@ require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
   default_url_options host: ENV.fetch("APPLICATION_HOST")
-  resources :favorites, only: [:create]
 
   # remove with pg_search
   resources :searches, only: [:index]
-  resources :deactivations, only: [:create]
   resources :comments, only: [:create]
-  resources :points, only: [:create]
-  resources :subscriptions, only: [:create, :destroy]
 
   resources :questions, except: [:edit, :update, :destroy] do
     collection do
@@ -38,7 +34,6 @@ Rails.application.routes.draw do
   get "/tos", to: "tos#tos"
 
   namespace :dashboard do
-    resources :favorites, only: [:index]
     resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
@@ -49,7 +44,6 @@ Rails.application.routes.draw do
     resources :listings, expect: :show
     resources :reviews, except: :show
     resources :answers, only: [:index]
-    resources :posts, except: :show
     authenticate :user, ->(u) { u.editor? } do
       resources :editors, only: [:show, :update]
     end
@@ -66,10 +60,6 @@ Rails.application.routes.draw do
           to: "listings#search",
           as: "search")
     end
-  end
-
-  resources :posts, only: [:index, :show] do
-    get "tag/:tag", to: "posts#tag", as: "tag", on: :collection
   end
 
   authenticate :user, ->(u) { u.admin? } do

@@ -7,9 +7,7 @@
 = render "listings/search/#{params[:kind]}"
 
 .col-xs-12 data-id="listings" data-term=params[:term]
-  - cache @listings
-    - @listings.each do |listing|
-      = render listing
+  = render @listings
 
 .row
   .col-xs-12

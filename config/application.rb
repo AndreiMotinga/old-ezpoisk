@@ -6,6 +6,7 @@ module Ezpoisk
   class Application < Rails::Application
     config.assets.quiet = true
     config.action_controller.action_on_unpermitted_parameters = :raise
+    # todo remove it when use delayed job
     config.eager_load_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
     config.generators do |generate|
       generate.helper false

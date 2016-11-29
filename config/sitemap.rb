@@ -48,14 +48,6 @@ SitemapGenerator::Sitemap.create do
         changefreq: "monthly"
   end
 
-  add posts_path, priority: 0.8, changefreq: "daily"
-  Post.visible.find_each do |post|
-    add post_path(post),
-        priority: 0.5,
-        lastmod: post.updated_at,
-        changefreq: "monthly"
-  end
-
   User.find_each do |user|
     add user_path(user),
         priority: 0.4,

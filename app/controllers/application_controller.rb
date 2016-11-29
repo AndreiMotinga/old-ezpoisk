@@ -9,13 +9,10 @@ class ApplicationController < ActionController::Base
   def get_record(model, id, path)
     item = model.find_by_id(id)
     if item && item.active?
-      IncreaseVisitsJob.perform_in(11.minutes, item.id, item.class.to_s)
-      if item.visits == 9
-        ListingsNotifierJob.perform_in(12.minutes, item.id, item.class.to_s)
-      end
       return item
+    else
+      redirect_to path, alert: I18n.t(:post_not_found)
     end
-    redirect_to path, alert: I18n.t(:post_not_found)
   end
 
   protected
@@ -64,10 +61,5 @@ class ApplicationController < ActionController::Base
       prms[:city]  = params[:city]  if params[:city].present?
     end
     prms
-  end
-
-  def favorites(type)
-    return [] unless current_user
-    current_user.favorites.where(favorable_type: type).pluck(:favorable_id)
   end
 end

@@ -6,11 +6,6 @@
                   class: "img-circle center-block",
                   alt: @user.name
       h1.name= @user.name
-      = render "users/show/thanks_link"
-      .views
-        = "#{@user.impressions_count} просмотров"
-        = " | спасибо "
-        span data-id="thanks"= @user.points.count
 
   .col-sm-8.right-side
     = image_tag @user.cover.url(:large), class: "img-responsive"

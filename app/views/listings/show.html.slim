@@ -3,22 +3,20 @@
 = desc(d)
 
 - t = @listing.title.present? ? @listing.title : t(@listing.category)
-= title("#{t} #{@listing.cached_city.name} #{@listing.cached_state.name}")
+= title("#{t} #{@listing.city.name} #{@listing.state.name}")
 
 = og_type("article")
 = og_url(@listing.show_url)
-= og_image(@listing.og_image_url)
 
 - content_for :sidebar do
   = render "shared/show/contacts", record: @listing
 
 = render "shared/show/pictures", record: @listing
 
-.div itemscope="" itemtype="http://schema.org/JobPosting"
-  .col-xs-12
-    = render @listing
-  = render "shared/comments", record: @listing
-  /= render "shared/gads/leaderboard"
-  .visible-xs
-    = render "shared/show/contacts", record: @listing
-  = render "shared/show/map", record: @listing
+.col-xs-12
+  = render @listing
+= render "shared/comments", record: @listing
+/= render "shared/gads/leaderboard"
+.visible-xs
+  = render "shared/show/contacts", record: @listing
+= render "shared/show/map", record: @listing

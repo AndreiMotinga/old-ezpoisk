@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129024135) do
+ActiveRecord::Schema.define(version: 20161129190351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,7 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.integer  "question_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.integer  "impressions_count",  default: 0
     t.string   "slug"
-    t.integer  "visits",             default: 0
     t.string   "title"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -62,28 +60,6 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "deactivations", force: :cascade do |t|
-    t.string   "deactivatable_type"
-    t.integer  "deactivatable_id"
-    t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["deactivatable_type", "deactivatable_id"], name: "index_deactivations_on_deactivatable_type_and_deactivatable_id", using: :btree
-    t.index ["user_id", "deactivatable_id", "deactivatable_type"], name: "deactivatable_index", unique: true, using: :btree
-    t.index ["user_id"], name: "index_deactivations_on_user_id", using: :btree
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "favorable_id"
-    t.string  "favorable_type"
-    t.boolean "saved",          default: false, null: false
-    t.boolean "hidden",         default: false, null: false
-    t.index ["user_id", "favorable_id", "favorable_type", "hidden"], name: "quadro_index_on_hidden", unique: true, using: :btree
-    t.index ["user_id", "favorable_id", "favorable_type", "saved"], name: "quadro_index_on_favorite", unique: true, using: :btree
-    t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
-  end
-
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -96,53 +72,11 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
-  create_table "jobs", force: :cascade do |t|
-    t.string   "title"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "post_type"
-    t.text     "text",                default: "",    null: false
-    t.boolean  "active"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.integer  "user_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "zip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "street"
-    t.integer  "impressions_count",   default: 0
-    t.string   "slug"
-    t.integer  "visits",              default: 0
-    t.string   "token"
-    t.integer  "priority",            default: 0,     null: false
-    t.string   "vk",                  default: ""
-    t.string   "fb",                  default: ""
-    t.boolean  "remote",              default: false
-    t.boolean  "featured",            default: false
-    t.integer  "deactivations_count", default: 0
-    t.string   "cached_tags",         default: ""
-    t.string   "category",            default: "",    null: false
-    t.index ["city_id"], name: "index_jobs_on_city_id", using: :btree
-    t.index ["fb"], name: "index_jobs_on_fb", using: :btree
-    t.index ["post_type"], name: "index_jobs_on_post_type", using: :btree
-    t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
-    t.index ["state_id"], name: "index_jobs_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
-    t.index ["vk"], name: "index_jobs_on_vk", using: :btree
-  end
-
   create_table "listings", force: :cascade do |t|
     t.string   "title"
     t.text     "text"
     t.string   "category"
     t.string   "subcategory"
-    t.integer  "impressions_count", default: 0
     t.string   "token"
     t.boolean  "active"
     t.integer  "priority"
@@ -168,10 +102,9 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.integer  "space"
     t.string   "rooms"
     t.boolean  "fee"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "kind"
-    t.integer  "visits",            default: 0
     t.index ["city_id"], name: "index_listings_on_city_id", using: :btree
     t.index ["state_id"], name: "index_listings_on_state_id", using: :btree
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
@@ -223,50 +156,13 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
   end
 
-  create_table "points", force: :cascade do |t|
-    t.integer  "author_id"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["user_id", "author_id"], name: "index_points_on_user_id_and_author_id", unique: true, using: :btree
-    t.index ["user_id"], name: "index_points_on_user_id", using: :btree
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.text     "text",               default: "",    null: false
-    t.integer  "user_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.text     "image_remote_url"
-    t.integer  "impressions_count",  default: 0
-    t.string   "slug"
-    t.string   "link"
-    t.boolean  "visible",            default: true
-    t.string   "category"
-    t.text     "summary"
-    t.integer  "visits",             default: 0
-    t.string   "source"
-    t.boolean  "paid",               default: false
-    t.string   "cached_tags",        default: ""
-    t.string   "type"
-    t.index ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
-    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
-  end
-
   create_table "questions", force: :cascade do |t|
     t.string   "title"
-    t.text     "text",              default: ""
+    t.text     "text",          default: ""
     t.integer  "user_id"
-    t.integer  "impressions_count", default: 0
-    t.integer  "answers_count",     default: 0
+    t.integer  "answers_count", default: 0
     t.string   "slug"
-    t.string   "image_url",         default: ""
-    t.integer  "visits",            default: 0
+    t.string   "image_url",     default: ""
     t.string   "cached_tags"
     t.integer  "city_id"
     t.integer  "state_id"
@@ -279,135 +175,17 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
   end
 
-  create_table "re_privates", force: :cascade do |t|
-    t.string   "title",               default: "",    null: false
-    t.string   "post_type",           default: "",    null: false
-    t.string   "duration",            default: "",    null: false
-    t.string   "phone",               default: "",    null: false
-    t.integer  "price"
-    t.integer  "baths"
-    t.integer  "space"
-    t.string   "rooms",                               null: false
-    t.integer  "zip"
-    t.float    "lat"
-    t.float    "lng"
-    t.boolean  "active",              default: false
-    t.boolean  "fee",                 default: false
-    t.text     "text",                default: "",    null: false
-    t.integer  "user_id"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "impressions_count",   default: 0
-    t.string   "email"
-    t.integer  "visits",              default: 0
-    t.integer  "priority",            default: 0,     null: false
-    t.string   "token"
-    t.string   "category"
-    t.string   "vk",                  default: ""
-    t.string   "fb",                  default: ""
-    t.boolean  "featured",            default: false
-    t.integer  "deactivations_count", default: 0
-    t.index ["city_id"], name: "index_re_privates_on_city_id", using: :btree
-    t.index ["fb"], name: "index_re_privates_on_fb", using: :btree
-    t.index ["price"], name: "index_re_privates_on_price", using: :btree
-    t.index ["space"], name: "index_re_privates_on_space", using: :btree
-    t.index ["state_id"], name: "index_re_privates_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_re_privates_on_user_id", using: :btree
-    t.index ["vk"], name: "index_re_privates_on_vk", using: :btree
-  end
-
   create_table "reviews", force: :cascade do |t|
-    t.integer  "service_id"
+    t.integer  "listing_id"
     t.integer  "user_id"
     t.integer  "rating",     null: false
     t.text     "text",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "title"
-    t.index ["service_id", "user_id"], name: "index_reviews_on_service_id_and_user_id", unique: true, using: :btree
-    t.index ["service_id"], name: "index_reviews_on_service_id", using: :btree
+    t.index ["listing_id", "user_id"], name: "index_reviews_on_listing_id_and_user_id", unique: true, using: :btree
+    t.index ["listing_id"], name: "index_reviews_on_listing_id", using: :btree
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
-  end
-
-  create_table "sales", force: :cascade do |t|
-    t.string   "title"
-    t.string   "category"
-    t.string   "phone"
-    t.string   "email"
-    t.text     "text",                default: "",    null: false
-    t.boolean  "active"
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "user_id"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.integer  "zip"
-    t.string   "street"
-    t.integer  "impressions_count",   default: 0
-    t.string   "slug"
-    t.integer  "price"
-    t.integer  "visits",              default: 0
-    t.integer  "priority",            default: 0,     null: false
-    t.string   "token"
-    t.string   "vk",                  default: ""
-    t.string   "fb",                  default: ""
-    t.boolean  "featured",            default: false
-    t.integer  "deactivations_count", default: 0
-    t.string   "post_type",           default: "",    null: false
-    t.index ["city_id"], name: "index_sales_on_city_id", using: :btree
-    t.index ["fb"], name: "index_sales_on_fb", using: :btree
-    t.index ["slug"], name: "index_sales_on_slug", unique: true, using: :btree
-    t.index ["state_id"], name: "index_sales_on_state_id", using: :btree
-    t.index ["text"], name: "index_sales_on_text", using: :btree
-    t.index ["title"], name: "index_sales_on_title", using: :btree
-    t.index ["user_id"], name: "index_sales_on_user_id", using: :btree
-    t.index ["vk"], name: "index_sales_on_vk", using: :btree
-  end
-
-  create_table "services", force: :cascade do |t|
-    t.string   "title"
-    t.string   "street"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "site"
-    t.string   "category"
-    t.string   "subcategory"
-    t.text     "text",               default: "",    null: false
-    t.integer  "user_id"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "zip"
-    t.string   "slug",               default: ""
-    t.integer  "impressions_count",  default: 0
-    t.integer  "priority",           default: 0,     null: false
-    t.integer  "visits",             default: 0
-    t.string   "token"
-    t.boolean  "active"
-    t.string   "cover_file_name"
-    t.string   "cover_content_type"
-    t.integer  "cover_file_size"
-    t.datetime "cover_updated_at"
-    t.string   "vk"
-    t.string   "fb"
-    t.string   "google"
-    t.string   "twitter"
-    t.string   "ok"
-    t.boolean  "featured",           default: false
-    t.index ["city_id"], name: "index_services_on_city_id", using: :btree
-    t.index ["state_id"], name: "index_services_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_services_on_user_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -415,26 +193,6 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.string "abbr"
     t.string "slug"
     t.index ["slug"], name: "index_states_on_slug", using: :btree
-  end
-
-  create_table "stripe_plans", force: :cascade do |t|
-    t.string   "name"
-    t.string   "stripe_id"
-    t.string   "interval"
-    t.integer  "amount"
-    t.integer  "total"
-    t.integer  "priority"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "select_name"
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "subscribable_type"
-    t.integer "subscribable_id"
-    t.index ["subscribable_type", "subscribable_id"], name: "index_subscriptions_on_subscribable_type_and_subscribable_id", using: :btree
-    t.index ["user_id"], name: "index_subscriptions_on_user_id", using: :btree
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -496,7 +254,6 @@ ActiveRecord::Schema.define(version: 20161129024135) do
     t.string   "cover_content_type"
     t.integer  "cover_file_size"
     t.datetime "cover_updated_at"
-    t.integer  "impressions_count",      default: 0
     t.text     "about",                  default: ""
     t.string   "street",                 default: ""
     t.string   "facebook",               default: ""
@@ -536,29 +293,11 @@ ActiveRecord::Schema.define(version: 20161129024135) do
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "users"
-  add_foreign_key "deactivations", "users"
-  add_foreign_key "favorites", "users"
-  add_foreign_key "jobs", "cities"
-  add_foreign_key "jobs", "states"
-  add_foreign_key "jobs", "users"
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"
   add_foreign_key "listings", "users"
   add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
-  add_foreign_key "points", "users"
-  add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"
-  add_foreign_key "re_privates", "cities"
-  add_foreign_key "re_privates", "states"
-  add_foreign_key "re_privates", "users"
-  add_foreign_key "reviews", "services"
   add_foreign_key "reviews", "users"
-  add_foreign_key "sales", "cities"
-  add_foreign_key "sales", "states"
-  add_foreign_key "sales", "users"
-  add_foreign_key "services", "cities"
-  add_foreign_key "services", "states"
-  add_foreign_key "services", "users"
-  add_foreign_key "subscriptions", "users"
 end

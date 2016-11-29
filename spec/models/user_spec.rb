@@ -3,7 +3,6 @@ require 'rails_helper'
 describe User do
   it { should have_many(:pictures).dependent(:destroy) }
   it { should have_many(:listings).dependent(:destroy) }
-  it { should have_many(:posts) }
 
   describe "#online?" do
     it "true if user last seen less than 5 min ago" do

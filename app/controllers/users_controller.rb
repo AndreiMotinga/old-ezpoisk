@@ -2,10 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
-    increase_impressions
     @listings = @user.listings.includes(:state, :city).page(params[:listings_page])
     @answers = @user.answers.page(params[:answers_page])
-    @posts = @user.posts.page(params[:posts_page])
     @pictures = @user.pictures.page(params[:pictures_page]).per(40)
     @reviews = @user.reviews.page(params[:reviews_page])
     set_records
@@ -20,9 +18,6 @@ class UsersController < ApplicationController
     elsif params[:answers_page]
       @param = :answers_page
       @records = @answers
-    elsif params[:posts_page]
-      @param = :posts_page
-      @records = @posts
     elsif params[:pictures_page]
       @param = :pictures_page
       @records = @pictures
@@ -30,12 +25,6 @@ class UsersController < ApplicationController
       @param = :reviews_page
       @records = @reviews
     end
-  end
-
-  def increase_impressions
-    return if current_user == @user
-    @user.increment!(:impressions_count)
-    ProfileNotifierJob.perform_async(@user.id) if @user.impressions_count == 10
   end
 
   def set_user

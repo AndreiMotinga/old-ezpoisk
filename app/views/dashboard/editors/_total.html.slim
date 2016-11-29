@@ -16,16 +16,3 @@
             td.text-center= @answers.count
             td.text-center= number_to_currency(total_price(@answers), locale: :en)
             td
-          - if @posts.any?
-            tr
-              td.text-center Новости
-              td.text-center= @posts.count
-              td.text-center= number_to_currency(total_price(@posts), locale: :en)
-              td
-
-          - if @posts.any? && @answers.any?
-            tr
-              td.text-center Всего
-              td.text-center= @answers.count + @posts.count
-              td.text-center= number_to_currency(total_price(@answers) + total_price(@posts), locale: :en)
-              td

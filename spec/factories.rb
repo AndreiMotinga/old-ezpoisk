@@ -76,10 +76,6 @@ FactoryGirl.define do
     user
   end
 
-  factory :favorite do
-    association :favorable, factory: :listing
-  end
-
   factory :partner do
     title { Faker::Lorem.sentence.truncate(45) }
     text { Faker::Lorem.sentence.truncate(45) }
@@ -94,20 +90,6 @@ FactoryGirl.define do
         "image/png"
       )
     end
-    user
-  end
-
-  factory :post do
-    title "Sample title for post"
-    text { Faker::Lorem.paragraph 40 }
-    summary { Faker::Lorem.paragraph 5 }
-    category "user"
-    user
-  end
-
-  factory :review do
-    text { Faker::Lorem.sentence(5) }
-    service
     user
   end
 

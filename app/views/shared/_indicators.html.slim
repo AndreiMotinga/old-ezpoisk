@@ -1,6 +1,6 @@
 - if record.street.present?
   i.fa.fa-map-o
-- if record.class.method_defined?(:pictures) && record.cached_pictures_count > 1
+- if record.pictures.count > 1
   i.fa.fa-picture-o
 - if record.try(:site).present?
   i.fa.fa.fa-share-square-o
@@ -12,9 +12,3 @@
   i.fa.fa-facebook.text-muted
 - if record.vk.present?
   i.fa.fa-vk.text-muted
-
-/- if record.class.to_s != "Service"
-/  span[class=("hidden" if record.deactivations_count == 0) data-span="deactivation"
-/       data-id=record.id data-type=record.class.to_s ]
-/    i.fa.fa-thumbs-down.text-muted
-/    span data-id="counter" = record.deactivations_count

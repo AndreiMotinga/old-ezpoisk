@@ -1,26 +1,22 @@
 module ListingHelpers
   extend ActiveSupport::Concern
 
-  def og_image_url
-    cached_logo.present? ? cached_logo.image.url(:large) : "https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
+  def logo_url
+    return logo.image.url(:medium) if logo.present?
+    "https://s3.amazonaws.com/ezpoisk/missing-small.png"
   end
 
-  def logo_url
-    if cached_logo.present?
-      cached_logo.image.url(:medium)
-    else
-      "https://s3.amazonaws.com/ezpoisk/missing-small.png"
-    end
+  def logo
+    pictures.where(logo: true).first
   end
 
   def unset_logo
-    return unless cached_logo
-    cached_logo.update_attribute(:logo, false)
-    Rails.cache.delete([self.class.name, id, :cached_logo])
+    return unless logo
+    logo.update_attribute(:logo, false)
   end
 
   def address
-    "#{street} #{cached_city.try(:name)} #{cached_state.try(:name)} #{zip}".strip
+    "#{street} #{city.try(:name)} #{state.try(:name)} #{zip}".strip
   end
 
   def map_marker
@@ -40,9 +36,10 @@ module ListingHelpers
     user.email
   end
 
+  # todo do I use it?
   def vk_message
     html = "#{title}\n"
-    html += "#{I18n.t(self.try(:post_type))}\n" if self.try(:post_type).present?
+    html += "#{I18n.t(self.try(:kind))}\n" if self.try(:kind).present?
     html += "#{I18n.t(self.try(:category))}\n" if self.try(:category).present?
     if self.try(:subcategory).present?
       html += "#{I18n.t(self.try(:subcategory))}\n"

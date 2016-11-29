@@ -4,7 +4,6 @@ class AnswersController < ApplicationController
 
   def index
     @answers = Answer.includes(:user).search(params[:term]).page(params[:page])
-    IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
@@ -15,7 +14,6 @@ class AnswersController < ApplicationController
     @answers = Answer.includes(:user)
                      .tagged_with(params[:tag], any: true)
                      .page(params[:page])
-    IncreaseImpressionsJob.perform_in(1.minute, @answers.pluck(:id), "Answer")
 
     respond_to do |format|
       format.html { render :index }
@@ -25,7 +23,6 @@ class AnswersController < ApplicationController
 
   def show
     @answer = Answer.find(params[:id])
-    IncreaseImpressionsJob.perform_in(1.minutes, [@answer.id], 'Answer')
   end
 
   def new
@@ -88,11 +85,7 @@ class AnswersController < ApplicationController
 
   def run_create_notifications(user)
     SlackNotifierJob.perform_async(@answer.id, "Answer")
-    QuestionNotificatorJob.perform_async(question.id)
-    FbExporterJob.perform_in(11.minutes, @answer.id, "Answer")
-    VkExporterJob.perform_in(23.minutes, @answer.id, "Answer")
     question.update_attribute(:answers_count, question.answers_count + 1)
-    create_subscription(user)
   end
 
   def set_answer
@@ -103,19 +96,6 @@ class AnswersController < ApplicationController
   def answer_params
     params.require(:answer).permit(:text, :question_id, :title,
                                    :image_remote_url, tag_list: [])
-  end
-
-  def create_subscription(user)
-    return if Subscription.exists?(
-      user_id: user.id,
-      subscribable_id: @answer.id,
-      subscribable_type: @answer.class.to_s
-    )
-    Subscription.create(
-      user_id: user.id,
-      subscribable_id: @answer.id,
-      subscribable_type: @answer.class.to_s
-    )
   end
 
   def question

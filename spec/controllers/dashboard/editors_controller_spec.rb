@@ -12,17 +12,15 @@ describe Dashboard::EditorsController do
       end
     end
 
-    it "assings @user, @answers and @posts" do
+    it "assings @user, @answers" do
       sign_in(@user = create(:user))
       answer = create :answer, user: @user
-      p = create :post, user: @user
 
       get :show, params: { id: @user.id }
 
       expect(response).to render_template(:show)
       expect(assigns(:user)).to eq @user
       expect(assigns(:answers)).to match_array([answer])
-      expect(assigns(:posts)).to match_array([p])
     end
   end
 end

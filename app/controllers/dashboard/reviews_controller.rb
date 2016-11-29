@@ -21,13 +21,13 @@ class Dashboard::ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.build(review_params)
-    @review.title = @review.service.title
+    @review.title = @review.listing.title
     if @review.save
       run_create_notifications
       redirect_to dashboard_reviews_path, notice: I18n.t(:review_created)
     else
       flash.now[:alert] = I18n.t(:review_not_saved)
-      render :new, service_id: params[:service_id]
+      render :new, listing_id: params[:listing_id]
     end
   end
 
@@ -66,6 +66,6 @@ class Dashboard::ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:rating, :text, :service_id)
+    params.require(:review).permit(:rating, :text, :listing_id)
   end
 end

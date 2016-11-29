@@ -15,20 +15,6 @@ RailsAdmin.config do |config|
   end
   config.excluded_models = ["State", "City", "User"]
 
-  config.model "Post" do
-    include_all_fields
-    edit do
-      field :text do
-        render do
-          bindings[:view].render(
-            partial: "text",
-            locals: { key: text, field: self, form: bindings[:form] }
-          )
-        end
-      end
-    end
-  end
-
   config.model "Question" do
     include_all_fields
     configure :tag_list  do

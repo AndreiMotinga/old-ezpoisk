@@ -1,3 +1,4 @@
+# todo fix test, mdoel?
 require "rails_helper"
 
 describe Fb::GroupLoader do

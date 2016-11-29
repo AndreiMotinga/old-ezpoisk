@@ -19,7 +19,6 @@ describe CommentsController do
       expect(comment.user).to eq @user
       expect(comment.text).to eq attrs[:text]
       expect(rp.updated_at).to eq Time.zone.now
-      expect(CommentNotifierJob.jobs.size).to eq 1
     end
   end
 end

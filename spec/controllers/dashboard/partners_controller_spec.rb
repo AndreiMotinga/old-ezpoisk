@@ -61,7 +61,6 @@ describe Dashboard::PartnersController do
       expect(partner.email).to eq attrs[:email]
       expect(partner.approved).to eq false
       expect(partner.clicks).to eq 0
-      expect(partner.impressions_count).to eq 0
       expect(partner.user).to eq @user
 
       expect(flash[:notice]).to eq I18n.t(:we_contact_shortly)

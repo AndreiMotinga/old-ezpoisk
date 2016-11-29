@@ -4,7 +4,6 @@ class Listing < ApplicationRecord
   include Filterable
   include ListingHelpers
   include Tokenable
-  include Cachable
   include Commentable
   acts_as_mappable
 
@@ -12,13 +11,10 @@ class Listing < ApplicationRecord
   belongs_to :state
   belongs_to :city
   has_many :pictures, as: :imageable, dependent: :destroy
-  has_many :favorites, as: :favorable, dependent: :destroy
-  has_many :deactivations, as: :deactivatable, dependent: :destroy
 
   validates_presence_of :user
   validates_presence_of :state
   validates_presence_of :city
-  # validates_presence_of :
   validates_with SourceValidator
 
   def edit_link

@@ -10,15 +10,6 @@ feature "User browses profile" do
     expect(page).to have_content user.about
   end
 
-  scenario "visits posts" do
-    user = create :user
-    news_post = create :post, user: user
-
-    visit user_path(user)
-    first(:link, "Новости").click
-    expect(page).to have_content news_post.title
-  end
-
   scenario "visits listings" do
     user = create :user
     listing = create :listing, user: user

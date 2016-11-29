@@ -6,11 +6,9 @@
       p.text-muted
         = link_to new_answer_path(question_id: question.id) do
           i.fa.fa-pencil
-          |  Ответить  |
-        = "  "
-        = subscription_links(question)
+          |  Ответить
         br
-        = "#{question.impressions_count} просмотров, #{question.answers_count} ответов"
+        = "#{question.answers_count} ответов"
       - if question.text.present?
     .panel-body
       .text= simple_format question.text, sanitize: true

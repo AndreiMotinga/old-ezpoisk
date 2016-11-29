@@ -7,11 +7,6 @@
 = og_url(question_url(@question))
 = og_image(@question.image)
 
-- content_for :sidebar do
-  = link_to "Добавить ответ",
-            new_answer_path(question_id: @question.id),
-            class: "btn mobile-btn btn-block margin-bottom-10"
-
 = render "questions/search_form"
 
 .col-xs-12

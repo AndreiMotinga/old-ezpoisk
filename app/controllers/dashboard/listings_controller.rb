@@ -89,8 +89,6 @@ class Dashboard::ListingsController < ApplicationController
   def run_create_notifications
     SlackNotifierJob.perform_async(@listing.id, "Listing")
     GeocodeJob.perform_async(@listing.id, "Listing")
-    FbExporterJob.perform_in(23.minutes, @listing.id, "Listing")
-    VkExporterJob.perform_in(21.minutes, @listing.id, "Listing")
   end
 
   def set_listing

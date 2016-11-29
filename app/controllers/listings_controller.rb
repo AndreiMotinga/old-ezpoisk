@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
   def index
     @listings = Listing.includes(:state, :city)
-                       .where.not(id: favorites("Listing"))
                        .filter(sliced_params)
                        .page(params[:page])
     respond_to do |format|
@@ -16,7 +15,6 @@ class ListingsController < ApplicationController
     @listings = Listing.includes(:state, :city)
                        .filter(sliced_params)
                        .page(params[:page])
-    # IncreaseImpressionsJob.perform_async(@jobs.pluck(:id), "Job")
     respond_to do |format|
       format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @listings } }
@@ -26,10 +24,6 @@ class ListingsController < ApplicationController
   def show
     @listing = Listing.includes(:state, :city, :pictures).find(params[:id])
     if @listing && @listing.active?
-      IncreaseVisitsJob.perform_in(11.minutes, @listing.id, "Listing")
-      if @listing.visits == 9
-        ListingsNotifierJob.perform_in(12.minutes, @listing.id, "Listing")
-      end
     else
       redirect_to root_path, alert: I18n.t(:post_not_found)
     end

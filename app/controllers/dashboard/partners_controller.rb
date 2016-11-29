@@ -52,7 +52,6 @@ class Dashboard::PartnersController < ApplicationController
   end
 
   def increment
-    PartnerImpressionsJob.perform_async(params[:ids])
     render json: {}, status: 200
   end
 

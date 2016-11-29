@@ -1,29 +1,28 @@
-- cache answer
-  .row.white-block
-    .article.answer
-      .panel
+.row.white-block
+  .article.answer
+    .panel
 
-        .panel-heading
-          - unless controller_name == "questions"
-            h1.title= link_to answer.title, answer
-          .row.author
-            .col-xs-3.col-sm-2
-              = link_to user_path(answer.user) do
-                = image_tag answer.logo,
-                            alt: "автор ответа #{answer.name_to_show}",
-                            class: "img-responsive img-circle center-block"
-            .col-xs-9.col-sm-10.name-block
-              h4.name= link_to answer.name_to_show, user_path(answer.user)
-              p.date.text-muted= "#{answer.impressions_count} просмотров |  #{answer.votes_count} голосов "
+      .panel-heading
+        - unless controller_name == "questions"
+          h1.title= link_to answer.title, answer
+        .row.author
+          .col-xs-3.col-sm-2
+            = link_to user_path(answer.user) do
+              = image_tag answer.logo,
+                          alt: "автор ответа #{answer.name_to_show}",
+                          class: "img-responsive img-circle center-block"
+          .col-xs-9.col-sm-10.name-block
+            h4.name= link_to answer.name_to_show, user_path(answer.user)
+            p.date.text-muted= "#{answer.votes_count} голосов "
 
-        .panel-body
-          - if answer.image?
-            = link_to answer do
-              = image_tag answer.image.url(:medium),
-                          class: "img-responsive center-block margin-bottom-10",
-                          alt: "Помощь русским в США - #{answer.title}"
-          .text= strip_tags(answer.text).truncate(380)
+      .panel-body
+        - if answer.image?
+          = link_to answer do
+            = image_tag answer.image.url(:medium),
+                        class: "img-responsive center-block margin-bottom-10",
+                        alt: "Помощь русским в США - #{answer.title}"
+        .text= strip_tags(answer.text).truncate(380)
 
-        .panel-footer
-          = link_to "дальше", answer
-          = render "shared/tags", record: answer
+      .panel-footer
+        = link_to "дальше", answer
+        = render "shared/tags", record: answer

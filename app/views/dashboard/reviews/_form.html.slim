@@ -2,7 +2,7 @@
   .panel
     .panel-body
       = bootstrap_form_for([:dashboard, @review]) do |f|
-        = f.hidden_field :service_id, value: (params[:service_id] || @review.service_id)
+        = f.hidden_field :listing_id, value: (params[:listing_id] || @review.listing_id)
 
         span.rating
           input#rating-input-1-5.rating-input name="review[rating]" type="radio" value="5" checked= (@review.rating == 5)

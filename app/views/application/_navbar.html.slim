@@ -27,9 +27,7 @@ nav.navbar-fixed-top.navbar-main
             ul.dropdown-menu.pull-right
               li= link_to "Моя страница", user_path(current_user)
               li= link_to "Mои настройки", main_app.edit_dashboard_user_path(current_user), "data-turbolinks": false
-              li= link_to "Мои закладки", main_app.dashboard_favorites_path
               li = link_to "Мои Объявления", main_app.dashboard_listings_path
-              /li = link_to "Мои Новости", main_app.dashboard_posts_path, tabindex: '-1'
               li = link_to "Мои Ответы", main_app.dashboard_answers_path, tabindex: '-1'
               /li = link_to "Мои Отзывы", main_app.dashboard_reviews_path, tabindex: '-1'
               li.divider role="separator"

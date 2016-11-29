@@ -1,5 +1,5 @@
 # wraps Slack::Notifier.
-# used to post messages directly to ez channel
+# posts messages directly to ez channel
 class Ez
   def self.notifier
     Slack::Notifier.new ENV["SLACK_URL"], channel: ENV["SLACK_CHANNEL"]

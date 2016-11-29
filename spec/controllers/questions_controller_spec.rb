@@ -52,15 +52,6 @@ describe QuestionsController do
       expect(question.title).to eq attrs[:title] + "?"
       expect(question.text).to eq attrs[:text]
       expect(question.user).to eq @user
-      expect(Subscription.count).to eq 1
-    end
-
-    it "creates subscription" do
-      sign_in(@user = create(:user))
-      attrs = attributes_for(:question)
-
-      post :create, params: { question: attrs }
-      expect(Subscription.count).to eq 1
     end
   end
 end

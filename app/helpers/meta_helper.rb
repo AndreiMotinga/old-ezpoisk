@@ -36,7 +36,7 @@ module MetaHelper
 
   def params_title_string
     string = ""
-    string =  "#{tr params[:post_type]} " if params[:post_type].present?
+    string =  "#{tr params[:kind]} " if params[:kind].present?
     string += "#{tr params[:category]} " if params[:category].present?
     string += "#{tr params[:subcategory]} | " if params[:subcategory].present?
     string += "#{city_title(params[:city])} " if params[:city].present?
@@ -49,7 +49,7 @@ module MetaHelper
     return true if params[:subcategory]
     return true if params[:state_id]
     return true if params[:city_id]
-    return true if params[:post_type]
+    return true if params[:kind]
   end
 
   def question_title
@@ -78,6 +78,7 @@ module MetaHelper
     end
   end
 
+  # todo remove?
   def post_title
     case params[:action]
     when 'index'
@@ -87,6 +88,7 @@ module MetaHelper
     end
   end
 
+  # todo remove?
   def post_desc
     case params[:action]
     when 'index'
