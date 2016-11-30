@@ -79,3 +79,5 @@
           .col-sm-6
             = form_city_select(f, @listing)
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+        - if current_user.admin?
+          = link_to " Удалить", dashboard_listing_path(@listing), method: :delete, class: "btn pull-right"
