@@ -1,5 +1,10 @@
 tr id=listing.id
-  td = link_to listing.title, listing
+  td
+    - if listing.title?
+      = link_to listing.title, listing
+    - else
+      = link_to listing.text, listing
+
   td = timeago_tag listing.updated_at
   td.text-center
     - if listing.active
