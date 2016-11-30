@@ -53,8 +53,14 @@ class Dashboard::ListingsController < ApplicationController
   end
 
   def destroy
+    @id = @listing.id
     @listing.destroy
-    redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
+    respond_to do |format|
+      format.html do
+        redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
+      end
+      format.js
+    end
   end
 
   private
@@ -95,6 +101,7 @@ class Dashboard::ListingsController < ApplicationController
     if current_user.try(:admin?)
       @listing = Listing.includes(:state, :city).find(params[:id])
     elsif params[:token].present?
+      # todo why not just look by token?
       @listing = Listing.find(params[:id])
       @listing = nil unless @listing.token == params[:token]
     else

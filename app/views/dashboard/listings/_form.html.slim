@@ -34,15 +34,12 @@
               .col-xs-12
                 = f.check_box :fee, label: "Комиссия *"
 
-  h3 Общее
+  h3 Описание
   .white-block
     .panel
       .panel-body
-        = f.text_field :title, label: '* Заголовок'
+        = f.text_field :title, label: "Заголовок"
         = f.text_area :text, rows: 5, label: 'Описание'
-        .row
-          .col-xs-6.col-sm-6
-            = f.check_box :active, label: "Активно *"
 
   h3 Контакты
   .white-block
@@ -67,7 +64,6 @@
           .col-xs-12.col-sm-6
             = f.text_field :site, label: 'Я online (website)'
 
-
   h3 Адрес
   .white-block
     .panel
@@ -78,6 +74,11 @@
             = form_state_select(f)
           .col-sm-6
             = form_city_select(f, @listing)
+
+  .white-block
+    .panel
+      .panel-body
+        = f.check_box :active, label: "Активно *"
         = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-        - if current_user.try(:admin?)
-          = link_to " Удалить", dashboard_listing_path(@listing), method: :delete, class: "btn pull-right"
+        - unless @listing.new_record?
+          = link_to "Удалить", dashboard_listing_path(@listing), method: :delete, class: "btn pull-right"

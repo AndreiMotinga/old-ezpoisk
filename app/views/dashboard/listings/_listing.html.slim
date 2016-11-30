@@ -1,19 +1,16 @@
 tr id=listing.id
-  td
-    - if listing.title?
-      = link_to listing.title, listing
-    - else
-      = link_to listing.text, listing
-
-  td = timeago_tag listing.updated_at
   td.text-center
-    - if listing.active
-      i.fa.fa-eye aria-hidden="true"
-    - else
-      i.fa.fa-eye-slash aria-hidden="true"
+    = link_to dashboard_listing_path(listing, token: params[:token]),
+              method: :delete,
+              data: { remote: true, confirm: confirm? } do
+      i.fa.fa-trash aria-hidden="true"
   td.text-center
     = link_to edit_dashboard_listing_path(listing) do
       i.fa.fa-pencil aria-hidden="true"
   td.text-center
-    = link_to dashboard_listing_path(listing, token: params[:token]), method: :delete, data: { remote: true, confirm: I18n.t(:confirm) } do
-      i.fa.fa-trash aria-hidden="true"
+    - if listing.active?
+      i.fa.fa-eye aria-hidden="true"
+    - else
+      i.fa.fa-eye-slash aria-hidden="true"
+  td style="min-width:90px" = timeago_tag listing.updated_at
+  td = listing.title? ? link_to(listing.title, listing) : listing.text

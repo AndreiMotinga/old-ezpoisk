@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Answers" do
+describe "Answers" do
   it "renders index" do
     user = create_and_login_user
     answer = create :answer, user: user

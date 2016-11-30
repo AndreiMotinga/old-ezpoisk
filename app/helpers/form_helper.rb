@@ -107,4 +107,8 @@ module FormHelper
     return ru(KINDS[kind][:subcategories]) unless kind == "services"
     ru(KINDS[kind][:subcategories][kind])
   end
+
+  def confirm?
+    current_user.try(:admin?) ? false : I18n.t(:confirm)
+  end
 end
