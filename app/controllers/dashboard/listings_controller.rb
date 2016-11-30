@@ -95,7 +95,7 @@ class Dashboard::ListingsController < ApplicationController
     if current_user.try(:admin?)
       @listing = Listing.includes(:state, :city).find(params[:id])
     elsif params[:token].present?
-      @listing = listing.find(params[:id])
+      @listing = Listing.find(params[:id])
       @listing = nil unless @listing.token == params[:token]
     else
       @listing = current_user.listings.find(params[:id])

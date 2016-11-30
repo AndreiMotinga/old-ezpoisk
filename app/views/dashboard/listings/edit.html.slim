@@ -10,7 +10,7 @@
         = link_to "Фото", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
       li role="presentation"
         = link_to "Просмотр", "#preview", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-      - if current_user.admin?
+      - if current_user.try(:admin?)
         li role="presentation"
           = link_to "Message", "#message", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
@@ -26,6 +26,6 @@
         .col-xs-12
           = render "listings/listing", listing: @listing
 
-      - if current_user.admin?
+      - if current_user.try(:admin?)
         #message.tab-pane.fade role="tabpanel"
           = render "shared/spam_message", record: @listing
