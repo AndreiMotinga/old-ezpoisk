@@ -252,6 +252,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    material_design_lite-rails (1.2.1)
+      railties (>= 3.1)
+    material_icons (2.2.0)
+      railties (>= 3.2)
     method_source (0.8.2)
     mime-types (2.99.3)
     mimemagic (0.3.2)
@@ -536,6 +540,8 @@ DEPENDENCIES
   koala (~> 2.2)
   launchy
   listen
+  material_design_lite-rails (~> 1.2)
+  material_icons
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-vkontakte

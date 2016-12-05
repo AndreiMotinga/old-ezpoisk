@@ -3,5 +3,7 @@
   *= require pgwslider
   *= require touchTouch
   *= require select2
+  *= require material
+  *= require material_icons
   *= require main
 */

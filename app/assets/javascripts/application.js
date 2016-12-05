@@ -10,6 +10,8 @@
 //= require summernote
 //= require summernote_init
 
+//= require material
+
 //= require pgwslider
 //= require touchTouch
 

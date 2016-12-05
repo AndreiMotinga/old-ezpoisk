@@ -13,6 +13,9 @@ gem "select2-rails"
 gem "turbolinks", "~> 5.0.1"
 gem "summernote-rails"
 
+gem "material_design_lite-rails", "~> 1.2"
+gem "material_icons"
+
 gem "recipient_interceptor"
 gem "autoprefixer-rails"
 gem "flutie"
