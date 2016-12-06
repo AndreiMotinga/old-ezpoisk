@@ -1,10 +1,8 @@
 doctype html
 html lang="ru"
-  head
-    = render "layouts/head"
+  = render "head"
   body class= body_class
     = render "navbar"
-    /= render "shared/gads/top"
     .container.page-wrap
       = yield :cover if content_for?(:cover)
       = render "notice" unless devise_controller?
@@ -20,19 +18,10 @@ html lang="ru"
           = yield
 
         .hidden-xs.hidden-sm.col-md-4.side-column
-          - if content_for? :right_block
-            = yield :right_block
-          - else
+          .sticky data-id="right"
             = render "shared/gads/sky"
-            .sticky data-id="right"
-              /= render "partners/right"
 
-    .hidden-xs
-      = render "footer"
-    a#scrollUp href="#top"
-      i.fa.fa-chevron-up
-
-    / MODALS & services
+    = render "footer"
     = render "shared/new_session_modal"
     = render "shared/main_sidebar"
     = render "javascript"

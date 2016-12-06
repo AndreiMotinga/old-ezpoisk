@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout "plain"
+
   def index
     @answers = Answer.includes(:user).desc.page(params[:page])
     respond_to do |format|

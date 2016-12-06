@@ -1,4 +1,4 @@
-footer.text-center
+footer.text-center.hidden-xs
   ul.list-inline
     li.hidden-sm= link_to "Недвижимость", main_app.search_listings_path(kind: "real-estate")
     li.hidden-sm= link_to "Работа", main_app.search_listings_path(kind: "jobs")
@@ -19,3 +19,6 @@ footer.text-center
       = link_to "https://twitter.com/ezpoisk", target: "_blank" do
         i.fa.fa-twitter
     li: h5 Copyright © ezpoisk #{Time.now.year}
+
+a#scrollUp href="#top"
+  i.fa.fa-chevron-up
