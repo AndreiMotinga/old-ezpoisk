@@ -1,0 +1,61 @@
+// Breakpoints
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+// // Typography
+// $base-font-family: $font-stack-system;
+// $heading-font-family: $base-font-family;
+//
+// // Font Sizes
+// $base-font-size: 1em;
+
+// // Line height
+// $base-line-height: 1.5;
+// $heading-line-height: 1.2;
+//
+// // Other Sizes
+// $base-border-radius: 3px;
+// $base-spacing: $base-line-height * 1em;
+// $small-spacing: $base-spacing / 2;
+// $base-z-index: 0;
+$base-spacing: 10px;
+$border-radius: 0;
+
+// Colors
+$body-bg: #edeef0;
+
+$orange: #e07a01;
+$red: #f00;
+$white: #fff;
+$green: #008000;
+$black: #000;
+
+$blue: #029be0;
+$light-blue: lighten($blue, 50%);
+$dark-blue: darken($blue, 10%);
+
+$gray: #ccc;
+$light-gray: lighten($gray, 10%);
+$dark-gray: darken($gray, 50%);
+
+$btn-vk: #45668e;
+$btn-gl: rgb(234, 67, 53);
+$btn-fb: #3b5998;
+
+
+// // Font Colors
+// $base-font-color: $dark-gray;
+$action-color: $blue;
+
+// // Background Colors
+// $base-background-color: #fff;
+// $secondary-background-color: tint($base-border-color, 75%);
+//
+// // Forms
+// $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+// $form-box-shadow-focus: $form-box-shadow, 0 0 5px adjust-color($action-color, $lightness: -5%, $alpha: -0.3);
+//
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;

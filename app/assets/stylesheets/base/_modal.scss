@@ -1,0 +1,10 @@
+body.modal-open{
+  overflow-y: scroll !important;
+  padding-right: 0 !important;
+  position: fixed !important;
+  width: 100% !important;
+}
+
+.modal-content {
+  border-radius: $border-radius;
+}

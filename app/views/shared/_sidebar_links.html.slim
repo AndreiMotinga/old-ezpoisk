@@ -1,4 +1,7 @@
 ul.list-group.menu
+  = link_to "Подать объявление", new_dashboard_listing_path, class: "list-group-item"
+
+ul.list-group.menu
   a.list-group-item href=search_listings_path(kind: "real-estate")
     span.sidebar-icon
       i.fa.fa-hospital-o

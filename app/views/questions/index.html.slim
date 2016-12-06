@@ -2,7 +2,7 @@
   = link_to "Неотвеченные", unanswered_questions_path, class: "btn btn-block mobile-btn margin-bottom-10"
   = render "shared/tag_cloud", tags: @tags, url: "/questions/tag/"
 
-= render "questions/search_form"
+= render "questions/search"
 
 .col-xs-12 data-id="listings"
   = render @questions

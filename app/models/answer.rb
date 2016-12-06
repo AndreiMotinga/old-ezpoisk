@@ -37,13 +37,6 @@ class Answer < ActiveRecord::Base
     Rails.application.routes.url_helpers.edit_answer_url(self)
   end
 
-  def similar
-    Answer.includes(:user)
-          .tagged_with(tag_list, any: true)
-          .random
-          .limit(10)
-  end
-
   # extract to concern
   def update_cached_tags
     update_column(:cached_tags, tags.pluck(:name).join(", "))

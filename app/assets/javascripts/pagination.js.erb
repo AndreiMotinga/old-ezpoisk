@@ -1,0 +1,15 @@
+document.addEventListener("turbolinks:load", function() {
+  if($(".pagination").length) {
+    $("[data-id='downloading']").removeClass("hidden");
+    $(window).scroll(function(){
+      var url = $(".pagination .next a:visible").attr("href");
+      var scrollTop = $(window).scrollTop();
+      var bottom = $(document).height() - $(window).height() - 450;
+      if(url && scrollTop > bottom) {
+        $(".pagination:visible").html("");
+        $.getScript(url);
+      }
+    });
+    $(window).scroll();
+  }
+});

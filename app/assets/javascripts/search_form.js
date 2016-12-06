@@ -1,3 +1,3 @@
-$(document).on("click", "#show-search", function() {
+$(document).on("click", "#search-toggle", function() {
   $("#search-form").slideToggle();
 });

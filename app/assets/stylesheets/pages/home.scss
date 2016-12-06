@@ -1,0 +1,62 @@
+.home-index {
+
+  // links
+  .links {
+    padding-top: 20px;
+
+    @media(max-width: 767px) {
+      margin-top: -35px;
+    }
+  }
+
+  .mdl-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .material-icons {
+    background-color: $white;
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .home {
+    color: $blue;
+  }
+
+  .job {
+    color: $green;
+  }
+
+  .sale {
+    color: $orange;
+  }
+
+  .service {
+    color: $dark-blue;
+  }
+
+  .section-heading {
+    margin-left: 5px;
+  }
+
+  .separator {
+    margin-bottom: 40px;
+    margin-top: 40px;
+  }
+
+  // listings
+  .listings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .mdl-card {
+    flex: 1 1 200px;
+    height: 250px;
+    margin: 5px;
+    max-width: 218px;
+  }
+}

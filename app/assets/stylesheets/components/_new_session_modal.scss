@@ -1,0 +1,36 @@
+.session {
+  min-height: 400px;
+
+  .nav-tabs > li {
+    width: 50%;
+  }
+
+  .social-buttons {
+    margin-bottom: 0;
+
+    li {
+      a {
+        border-radius: 100%;
+        color: $white;
+        display: block;
+        font-size: 20px;
+        height: 40px;
+        line-height: 40px;
+        outline: none;
+        width: 40px;
+      }
+    }
+  }
+
+  .vk-bg {
+    background-color: $btn-vk;
+  }
+
+  .facebook-bg {
+    background-color: $btn-fb;
+  }
+
+  .google-bg {
+    background-color: $btn-gl;
+  }
+}

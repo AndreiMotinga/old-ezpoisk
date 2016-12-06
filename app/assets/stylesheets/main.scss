@@ -1,32 +1,33 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "font-awesome";
-@import "dropzone/dropzone";
 @import "rails_bootstrap_forms";
 @import "summernote";
 
-@import "shared/colors";
-@import "shared/helpers";
-@import "variables";
+@import "base/_base";
+@import "_helpers"; // todo fix
 
-@import "mobile";
+@import "components/questions/_search";
+@import "components/_answer";
+@import "components/_comment";
+@import "components/_fa";
+@import "components/_footer";
+@import "components/_gallery_image";
+@import "components/_listing";
+@import "components/_menu";
+@import "components/_navbar";
+@import "components/_new_session_modal";
+@import "components/_panel";
+@import "components/_pagination";
+@import "components/_partner";
+@import "components/_review";
+@import "components/_review_form";
+@import "components/_scroll_up";
+@import "components/_social";
+@import "components/_sidebar";
+@import "components/_tag_cloud";
+@import "components/_tags";
 
-@import "shared/navbar";
-@import "shared/general";
-@import "shared/listing";
-@import "shared/select2";
- @import "shared/autocomplete";
-
-@import "session";
-@import "partners";
-@import "pictures";
-@import "shared/sidebar";
-@import "cover";
-@import "answer";
-@import "comment";
-@import "review-form";
-@import "review";
-@import "article";
-@import "right";
-@import "user";
-@import "home";
+@import "pages/listings";
+@import "pages/articles";
+@import "pages/home";
+@import "pages/users";

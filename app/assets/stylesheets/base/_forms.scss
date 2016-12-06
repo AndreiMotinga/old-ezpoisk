@@ -1,0 +1,42 @@
+textarea {
+  resize: vertical;
+}
+
+.form-control {
+  -webkit-appearance: none;
+  border-radius: $border-radius;
+}
+
+// select2
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #f5f5f5;
+}
+
+.select2-container,
+.select2-container--open {
+  width: 100% !important;
+}
+
+.select2-container--default .select2-selection--multiple {
+  border-radius: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  border-radius: 2px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  padding-right: 5px;
+}
+
+@media(max-width:767px){
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    padding-left: 5px;
+    padding-right: 10px;
+  }
+}
+
+// dropzone
+.dropzone {
+  min-height: 120px;
+}

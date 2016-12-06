@@ -1,0 +1,26 @@
+html,
+body {
+  background-color: $body-bg;
+  height: 100%;
+  padding-top: 35px;
+}
+
+.page-wrap {
+  margin-bottom: -60px;  // equal to footer height
+  min-height: 100%;
+
+  &::after {
+    content: "";
+    display: block;
+  }
+}
+
+footer,
+.page-wrap::after {
+  height: 40px;
+}
+
+.side-column {
+  padding-left: 0;
+  padding-right: 0;
+}

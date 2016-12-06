@@ -33,8 +33,7 @@
         = image_tag @answer.image.url(:medium),
                     class: "img-responsive center-block margin-bottom-10",
                     alt: "Помощь русским в США - #{@answer.title}"
-      .post-body
-        = raw @answer.text
+      .text= raw @answer.text
     .panel-footer
       = render "shared/tags", record: @answer
 
@@ -61,7 +60,7 @@
   - if @answer.question.answers_count > 1
     = link_to "Просмотреть другие ответы #{@answer.question.answers_count}",
               @answer.question,
-              class: "btn mobile-btn btn-block other-answers"
+              class: "btn mobile-btn btn-block"
 
 .row
   .col-xs-12
@@ -69,13 +68,7 @@
               new_answer_path(question_id: @answer.question_id),
               class: "btn mobile-btn margin-bottom-10"
 
-.row
-  .col-xs-12
-    hr.breadcrumb-hr
-    hr.breadcrumb-hr
-    hr.breadcrumb-hr
-    .margin-bottom-10
-
+hr
 .row
   .col-xs-12
     = render "shared/comments", record: @answer

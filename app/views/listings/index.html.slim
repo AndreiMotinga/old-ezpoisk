@@ -1,10 +1,14 @@
 = title("Объявления в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами - ezpoisk")
 = desc("Объявления для русскоговорящих людей в США")
 
-#show-search.btn.mobile-btn.margin-bottom-10
+#search-toggle.btn.mobile-btn.margin-bottom-10
   | Настроить фильтр | #{@listings.total_count}
 
-= render "listings/search/#{params[:kind]}"
+
+#search-form.search-form.white-block.mdl-shadow--3dp
+  .panel
+    .panel-body
+      = render "listings/search/#{params[:kind]}"
 
 .col-xs-12 data-id="listings" data-term=params[:term]
   = render @listings

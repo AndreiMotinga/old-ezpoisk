@@ -65,9 +65,6 @@
 }
 
 .pgwSlideshow .ps-list {
-    /* border-top: 1px solid #555; */
-    /* box-shadow: 0 10px 10px -5px #333 inset; */
-    /* background: #555; */
     overflow: hidden;
     position: relative;
 }

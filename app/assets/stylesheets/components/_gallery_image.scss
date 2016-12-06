@@ -1,0 +1,22 @@
+.gallery-image {
+  display: inline-block;
+  position: relative;
+
+  .delete-link {
+    background-color: $light-gray;
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  &:hover .delete-link {
+    display: block;
+  }
+
+  .gallery-thumb {
+    margin: 1px;
+    display: inline;
+  }
+}

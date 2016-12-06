@@ -1,0 +1,12 @@
+footer {
+  background-color: $light-gray;
+  margin-top: 20px;
+  .list-inline { margin-bottom: 0; }
+
+  a {
+    color: $dark-gray;
+    text-decoration: none;
+  }
+
+  li { padding: 2px; }
+}

@@ -1,4 +1,4 @@
-nav.navbar-fixed-top.navbar-main
+nav#navbar-main.navbar-fixed-top.navbar-main
   .container
     .pull-left
       ul.nav.navbar-nav
@@ -8,18 +8,15 @@ nav.navbar-fixed-top.navbar-main
             span.hamb-middle
             span.hamb-bottom
       = link_to root_path do
+        / todo replace navbar-logo with ezpoisk
         = image_tag "navbar-logo", class: "img-responsive navbar-logo"
-
-    .pull-right.visible-xs
-      a.btn.mobile-btn.mobile-btn-new data-target="#new" data-toggle="modal" role="button" + Новое
 
     .pull-right.hidden-xs
       ul.nav.navbar-nav
-        li.visible-md.visible-lg
         li= link_to "Подать объявление", new_dashboard_listing_path
 
         - if user_signed_in?
-          li.dropdown
+          li.dropdown.hidden-xs
             a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                      data-toggle="dropdown" href="#" role="button"]
               = image_tag current_user.logo, class: "img-circle"

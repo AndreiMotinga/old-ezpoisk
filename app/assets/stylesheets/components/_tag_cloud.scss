@@ -1,0 +1,13 @@
+.tag-cloud {
+  line-height: 18px;
+  margin-bottom: 20px;
+
+  .s { font-size: 12px; }
+  .m { font-size: 16px; }
+  .l { font-size: 20px; }
+
+  .tag-in-cloud {
+    color: $dark-gray;
+    font-family: Georgia,Times,"Times New Roman",serif;
+  }
+}

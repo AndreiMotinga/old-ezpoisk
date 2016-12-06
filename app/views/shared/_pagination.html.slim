@@ -2,7 +2,5 @@
   .col-xs-12= render "shared/no_posts_message"
 - else
   .text-center
-    = image_tag "downloading",
-                class: "img-responsive center-block downloading hidden",
-                "data-id": "downloading", alt: "downloading", title: "downloading"
+    #p2.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
     = paginate records

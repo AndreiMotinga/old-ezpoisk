@@ -1,0 +1,11 @@
+.tags {
+  margin: 5px 0;
+  overflow: hidden;
+
+  .tag {
+    color: $dark-gray;
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 13px;
+    padding-right: 3px;
+  }
+}

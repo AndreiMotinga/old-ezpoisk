@@ -26,7 +26,7 @@ $("[data-id='listings']").append("<%= j render(records) %>");
   $(".pagination").replaceWith("<%= j(paginate records) %>")
 <% else  %>
   $(".pagination").remove();
-  $("[data-id='downloading']").remove();
+  $("#p2").remove();
 <% end %>
 
 // incrementPartners();

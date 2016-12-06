@@ -23,7 +23,7 @@
         .row
           .col-sm-6
             = f.number_field :phone, label: "Телефон"
-          .col-sm-6#user-email
+          .col-sm-6.user-email
             = f.email_field :email, id: "profile_user_email", class: "form-control"
             = f.check_box :show_email, label: "Показать email на моей странице"
         .row

@@ -1,0 +1,33 @@
+.article {
+  overflow: hidden;
+
+  .author {
+    margin-bottom: 0;
+    margin-top: 5px;
+
+    .name-block {
+      padding-left: 0;
+    }
+
+    .name {
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .date {
+      font-size: 12px;
+    }
+  }
+
+  .title {
+    font-weight: 500;
+    line-height: 1.25;
+    margin: 5px 0;
+    font-size: 18px;
+  }
+
+  p { margin: 0 0 5px; }
+  .comments {
+    margin-bottom: 0;
+  }
+}

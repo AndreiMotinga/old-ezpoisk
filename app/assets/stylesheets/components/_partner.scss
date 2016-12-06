@@ -1,0 +1,22 @@
+.partner {
+  padding: 0 5px;
+  &:hover {
+    background-color: $white;
+  }
+
+  a { text-decoration: none; }
+  .text { color: $black; }
+
+  .title {
+    color: $dark-blue;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-bottom: 3px;
+  }
+
+  hr {
+    margin-top: 5px;
+    margin-bottom: 0;
+    border-top: 1px solid $gray;
+  }
+}

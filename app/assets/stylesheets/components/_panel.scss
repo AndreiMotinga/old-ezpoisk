@@ -1,0 +1,23 @@
+.panel {
+  background-color: $white;
+  margin-bottom: 0;
+
+  .panel-heading {
+    border: 0;
+
+    a {
+      color: $dark-gray;
+      text-decoration: none;
+    }
+  }
+
+  .panel-body {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 15px;
+    // padding: 0;
+  }
+
+  .panel-footer {
+    padding: 10px 15px 0;
+  }
+}

@@ -1,0 +1,53 @@
+.navbar-nav {
+  margin: 0;
+}
+
+.navbar-main {
+  background-color: $white;
+  margin-bottom: 0;
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .navbar-logo {
+    margin-left: 45px;
+  }
+
+  .avatar {
+    // bottom(5) + top(5) + img(40) = navbar height(50)
+    padding-bottom: 5px;
+    padding-top: 5px;
+
+
+    img {
+      display: inline;
+      margin-right: 10px;
+      max-height: 40px;
+    }
+  }
+}
+
+.navbar-nav > li > a,
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  background-color: $white;
+  color: $blue;
+  font-weight: bold;
+}
+
+.navbar-form {
+  input { width: 300px !important; }
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: auto;
+  right: 100%;
+  margin-top: -1px;
+}
