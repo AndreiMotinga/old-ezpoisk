@@ -16,11 +16,6 @@
             p.date.text-muted= "#{answer.votes_count} голосов "
 
       .panel-body
-        - if answer.image?
-          = link_to answer do
-            = image_tag answer.image.url(:medium),
-                        class: "img-responsive center-block margin-bottom-10",
-                        alt: "Помощь русским в США - #{answer.title}"
         .text= strip_tags(answer.text).truncate(380)
 
       .panel-footer

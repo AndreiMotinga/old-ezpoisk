@@ -19,7 +19,7 @@ class Listing < ApplicationRecord
 
   def logo_url
     return logo.image.url(:medium) if logo.present?
-    "https://s3.amazonaws.com/ezpoisk/missing-small.png"
+    "https://s3.amazonaws.com/ezpoisk/missing.png"
   end
 
   def logo

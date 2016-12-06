@@ -2,11 +2,7 @@ class HomeController < ApplicationController
   layout "plain"
 
   def index
-    @answers = Answer.includes(:user).desc.page(params[:page])
-    respond_to do |format|
-      format.html
-      format.js { render partial: "shared/index",
-                         locals: { records: @answers } }
-    end
+    @listings = Listing.active.desc.limit(25)
+    @answers = Answer.includes(:user).desc.limit(5)
   end
 end

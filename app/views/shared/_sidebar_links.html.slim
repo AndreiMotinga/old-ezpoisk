@@ -33,3 +33,15 @@ ul.list-group.menu
     span.sidebar-icon
       i.fa.fa-phone
     | Контакты
+
+ul.list-group.menu
+  - if user_signed_in?
+    = link_to "Моя страница"  , user_path(current_user) , class: "list-group-item"
+    = link_to "Мои настройки" , edit_dashboard_user_path(current_user) , class: "list-group-item"
+    = link_to "Мои объявления"  , dashboard_listings_path         , class: "list-group-item"
+    = link_to "Мои ответы"        , dashboard_answers_path        , class: "list-group-item"
+    = link_to "Выйти", main_app.destroy_user_session_path, method: :delete, class: "list-group-item"
+  - else
+    a#login_link.list-group-item src=""  data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+
+.margin-bottom-10 style="height: 1px;"

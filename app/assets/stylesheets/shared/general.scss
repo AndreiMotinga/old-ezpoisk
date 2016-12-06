@@ -275,3 +275,7 @@ body.modal-open{
   overflow-y:scroll!important;
   position:fixed!important;
 }
+
+.separator {
+  border: thin solid $grey;
+}

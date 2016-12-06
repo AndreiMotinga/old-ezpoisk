@@ -4,13 +4,42 @@
 = og_url("https://www.ezpoisk.com")
 = og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
 
-.row
-  .visible-xs.col-xs-12
-    = render "home/mobile_index"
+section.links
+  .mdl-list
+    .mdl-list__item
+      span.mdl-list__item-primary-content
+        i.material-icons.mdl-list__item-avatar.home home
+        span= link_to "Недвижимость", search_listings_path(kind: "real-estate")
+    .mdl-list__item
+      span.mdl-list__item-primary-content
+        i.material-icons.mdl-list__item-avatar.job card_travel
+        span= link_to "Работа", search_listings_path(kind: "jobs")
+    .mdl-list__item
+      span.mdl-list__item-primary-content
+        i.material-icons.mdl-list__item-avatar.sale shopping_cart
+        span= link_to "Продается", search_listings_path(kind: "sales")
+      span.mdl-list__item-secondary-content
+    .mdl-list__item
+      span.mdl-list__item-primary-content
+        i.material-icons.mdl-list__item-avatar.service build
+        span= link_to "Услуги", search_listings_path(kind: "services")
+      span.mdl-list__item-secondary-content
 
-.col-sm-12 data-id="listings"
-  = render @answers
+h4.section-heading ПОСЛЕДНИЕ ОБЪЯВЛЕНИЯ
+section.listings
+  - @listings.each do |listing|
+    = render "home/listing", listing: listing
+hr.separator
 
-.row
+h4.section-heading ПОСЛЕДНИЕ ОТВЕТЫ
+section.answers
+  = render "questions/search_form"
   .col-xs-12
-    = render "shared/pagination", records: @answers
+    = render @answers
+hr.separator
+
+.white-block
+  .panel.panel-default
+    .panel-body
+      p.text
+        | Бесплатные объявления в США на ezpoisk.com - здесь вы найдете все, что вам нужно для плавного перехода к жизни в америке! Нажав на кнопку "#{link_to 'Подать объявление', new_dashboard_listing_path}", вы перейдете на форму, заполнив которую, сможете разместить объявление на любую необходимую тематику легко и абсолютно бесплатно. С помощью сайта объявлений ezpoisk вы сможете купить или продать из рук в руки практически все, что угодно, ознакомиться с инетерущей вас информацией, найти помощь.
