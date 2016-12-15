@@ -44,4 +44,3 @@ Rails.application.configure do
 
   config.cache_store = :redis_store, ENV["REDISCLOUD_URL"]
 end
-Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i

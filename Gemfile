@@ -110,8 +110,3 @@ group :test do
   gem "timecop"
   gem "webmock"
 end
-
-group :staging, :production do
-  gem "rack-timeout"
-  gem "rails_stdout_logging"
-end
