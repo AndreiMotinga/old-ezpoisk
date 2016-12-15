@@ -1,6 +1,5 @@
-Dropzone.autoDiscover = false;
-
-document.addEventListener("turbolinks:load", function() {
+$(document).ready(function(){
+  Dropzone.autoDiscover = false;
   if ($(".dropzone").length) {
     var type = $("#pictures-data").data("type");
     var id = $("#pictures-data").data("id");

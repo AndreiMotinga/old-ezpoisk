@@ -1,15 +1,4 @@
-$(document).ready(ready);
-document.addEventListener("turbolinks:load", ready)
-
-function ready(){
-  // look for div initialized by summernote
-  var initialized = $(".summernote + .note-editor").length;
-  if(!initialized) {
-    initSummernote();
-  }
-}
-
-function initSummernote(){
+$(document).ready(function(){
   $(".summernote").summernote({
     toolbar: [
       // [groupName, [list of button]]
@@ -35,24 +24,24 @@ function initSummernote(){
       }
     }
   });
-}
 
-function sendFile(file) {
-  var type = $("#pictures-data").data("type"),
-      id = $("#pictures-data").data("id"),
-      data = new FormData();
-  data.append('picture[image]', file);
-  data.append('picture[imageable_id]', id);
-  data.append('picture[imageable_type]', type);
-  return $.ajax({
-    data: data,
-    type: 'POST',
-    url: '/dashboard/summernote',
-    cache: false,
-    contentType: false,
-    processData: false,
-    success: function(data) {
-      return $(".summernote").summernote("insertImage", data.url);
-    }
-  });
-}
+  function sendFile(file) {
+    var type = $("#pictures-data").data("type"),
+    id = $("#pictures-data").data("id"),
+    data = new FormData();
+    data.append('picture[image]', file);
+    data.append('picture[imageable_id]', id);
+    data.append('picture[imageable_type]', type);
+    return $.ajax({
+      data: data,
+      type: 'POST',
+      url: '/dashboard/summernote',
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(data) {
+        return $(".summernote").summernote("insertImage", data.url);
+      }
+    });
+  }
+});

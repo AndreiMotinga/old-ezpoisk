@@ -23,7 +23,7 @@ $(document).on('click','[data-action="respond"]', function(e){
   form.find("textarea").val(name + ", ").focus();
 });
 
-document.addEventListener("turbolinks:load", function(){
+$(document).ready(function(){
   var observe;
   if (window.attachEvent) {
     observe = function (element, event, handler) {
@@ -57,3 +57,11 @@ document.addEventListener("turbolinks:load", function(){
     resize();
   });
 });
+
+// find cookie to see wether user sidned_in
+function getCookieValue(cookieName) {
+  var ca = document.cookie.split('; ');
+  return _.find(ca, function (cookie) {
+    return cookie.indexOf(cookieName) === 0;
+  });
+}

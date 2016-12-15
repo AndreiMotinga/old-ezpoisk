@@ -470,9 +470,6 @@ GEM
     timecop (0.8.1)
     traceroute (0.5.0)
       rails (>= 3.0.0)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.3)
@@ -581,7 +578,6 @@ DEPENDENCIES
   summernote-rails
   timecop
   traceroute
-  turbolinks (~> 5.0.1)
   uglifier
   underscore-rails
   vkontakte_api (~> 1.4)

@@ -10,7 +10,6 @@ gem "jquery-rails"
 gem "jquery-ui-rails"
 gem "bootstrap-sass"
 gem "select2-rails"
-gem "turbolinks", "~> 5.0.1"
 gem "summernote-rails"
 gem "neat"
 

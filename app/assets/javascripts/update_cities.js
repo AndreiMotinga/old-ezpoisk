@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).ready(function(){
   $(".state-select-slug").change(function(){
     $.ajax({
       url: "/cities",

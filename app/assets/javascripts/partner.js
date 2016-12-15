@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load", function() {
+$(document).ready(function(){
   $("[data-title]").on("change keyup paste", function(){
     var title = $("[data-partner-title]");
     var new_title = $("[data-title]").val();
@@ -19,21 +19,19 @@ document.addEventListener("turbolinks:load", function() {
     var length = 45 - new_desc.length;
     $("label[for=partner_text]").html("Описание " + length);
   });
-});
 
-document.addEventListener("turbolinks:load", incrementPartners);
-
-function incrementPartners(){
-  var all = $('[data-partner]:visible');
-  var ids = $.map(all, function(val, i) {
-    return $(val).data('id');
-  });
-
-  if(ids.length){
-    $.ajax({
-      type: 'POST',
-      url: "/dashboard/partners/increment",
-      data: { "ids[]": ids }
+  function incrementPartners(){
+    var all = $('[data-partner]:visible');
+    var ids = $.map(all, function(val, i) {
+      return $(val).data('id');
     });
+
+    if(ids.length){
+      $.ajax({
+        type: 'POST',
+        url: "/dashboard/partners/increment",
+        data: { "ids[]": ids }
+      });
+    }
   }
-}
+});
