@@ -1,0 +1,23 @@
+nav.js-menu.sliding-panel-content
+  ul
+    li= link_to "Подать объявление", new_dashboard_listing_path
+    li= link_to "Недвижимость", search_listings_path(kind: "real-estate")
+    li= link_to "Работа", search_listings_path(kind: "jobs")
+    li= link_to "Продается", search_listings_path(kind: "sales")
+    li= link_to "Услуги", search_listings_path(kind: "services")
+    li= link_to "Ответы", answers_path
+    li= link_to "Контакты", user_path(1)
+
+  /br
+  /ul
+  /  - if user_signed_in?
+  /    li= link_to "Моя страница"  , user_path(current_user)
+  /    li= link_to "Мои настройки" , edit_dashboard_user_path(current_user)
+  /    li= link_to "Мои объявления"  , dashboard_listings_path
+  /    li= link_to "Мои ответы"        , dashboard_answers_path
+  /    li= link_to "Выйти", main_app.destroy_user_session_path, method: :delete
+  /  - else
+  /    li
+  /      a#login_link.list-group-item src=""  data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+
+.js-menu-screen.sliding-panel-fade-screen

@@ -1,0 +1,142 @@
+ru:
+  services: Услуги
+  services-description: "Поиск услуг в США: Адвокаты, Врачи, Бухгалтеры, Недвижимость, Работа. Отзывы, рейтинги, помощь в выборе качественного представителя."
+
+  # categories
+  auto: Автоуслуги
+  lawers: Адвокаты
+  beauty: Красота
+  medical: Медицина
+  real-estate: Недвижимость
+  education: Образование
+  work: Работа
+  repairs: Ремонт
+  construction: Строительство
+  stores: Магазины
+
+  #subcategories
+  car-rentals: Авто в аренду
+  autoservices: Автосервисы
+  carwash: Автомойки
+  auto-stores: Автомагазины
+  driver-schools: Автошколы
+  auto-auction: Дилеры, аукционы
+  moving: Moving, грузоперевозки
+  carservice: Такси, CarService
+  general: Общий профиль
+  accidents: Аварии, Медицинские ошибки
+  business: Бизнес, Финансы, Банкротство
+  paralegal: Нотариальные услуги
+  immigration: Иммиграция
+  criminal: Криминал
+  heritage: Наследство, Завещания
+  realtors: Агентства недвижимости
+  financing: Финансирование
+  family: Семейное право
+  beauty-salons: Салоны красоты, парикмахерские
+  spa: SPA, солярий, массаж, уход за телом
+  correction: Коррекция фигуры и лица
+  epilation: Эпиляция, лазерная косметология
+  tatoo: Татуировка, татуаж
+  sauna: Бани, Сауны
+  hospitals: Медицинский офис, Госпиталь
+  farmacies: Аптеки
+  alternative-medicine: Альтернативная медицина
+  veterinary-clinics: Ветеринарные клиники
+  allergist: Аллерголог
+  venereologist: Венеролог
+  gynecologis: Гинеколог, акушер
+  dermotolog: Дермотолог
+  nutritionist: Диетолог
+  immunologist: Иммунолог
+  cardiologist: Кардиолог
+  beautician: Косметолог
+  ent: ЛОР
+  chiropractor: Мануальный терапевт
+  neurologist: Невролог
+  dentist: Стоматолог
+  oncologist: Онколог
+  orthopedist: Ортопед
+  ophthalmologist: Офтальмолог
+  pediatrician: Педиатр
+  plastic-surgeon: Пластический хирург
+  psychiatrist: Психиатр, нарколог
+  psychologist: Психолог
+  seksopatolog: Сексопатолог
+  family-doctor: Семейный доктор
+  therapist: Терапевт
+  urologist: Уролог, андролог
+  surgeon: Хирург, проктолог
+  physiotherapist: Физиотерапевт, массажист, хиропрактор
+  endocrinologist: Эндокринолог
+  realty: Агентства Недвижимости
+  fanancing: Финансирование
+  schools: Университеты, Колледжы, Школы
+  art-education: Танцы, Музыка, Искусство
+  kinder-gardens: Детские сады
+  english-lessons: Курсы английского
+  teachers: Репетиторы
+  sport-schools: Спортивные школы
+  trainings: Обучение профессии
+  job-agencies: Агентства по Трудоустройству
+  cellphone-repair: Ремонт и сервис телефонов
+  computer-repair: Ремонт компьютеров
+  appliances-repair: Ремонт бытовой техники, электроники
+  clothes-repais: Ремонт, пошив одежды, обуви
+  musical-instruments-repair-tuning: Ремонт, настройка музыкальных инструментов
+  construction-companies: Строительные компании
+  electicians: Электрики
+  plumbers: Сантехники
+  painters: Маляры
+  handymen: Мастер на все руки, Handyman
+  furniture: Изготовление мебели
+  alarm-video-surveillance: Сигнализация, Видеонаблюдение
+  locks: Замки
+  fences-welding: Заборы, Сварка
+  garbage: Снос зданий, Мусор
+  interior-design: Ремонт и дизайн помещений
+  air-conditioning: Кондиционеры, Отопление
+  kid-goods: Детские товары
+  stores-with-delivery: Магазины с доставкой
+  pet-stores: Зоотовары
+  online-stores: Интернет-магазины
+  stationery: Канцелярские товары
+  book-stores: Книги, печатная продукция
+  clothes-stores: Одежда
+  shoe-stores: Обувь
+  perfumes-cosmetics-stores: Парфюмерия и косметика
+  gift-stores: Подарки, сувениры
+  food: Продукты
+  garden: Сад и огород
+  fabric-craft-supplies: Ткани и товары для рукоделия
+  sport-goods: Товары для спорта
+  household-goods: Хозтовары
+  flower-stores: Цветы
+  wathces: Часы
+  jewlery: Ювелирные изделия
+  car-parts: Автозапчасти
+  artists-celebrities: Артисты, праздники
+  business: Бизнес, партнерства
+  detectives: Детективы, охрана
+  exterminators: Истребление насекомых
+  computers: Компьютеры, IT
+  confectioners: Кондитеры
+  nannies: Няни, сиделки
+  tranlations: Переводы, печатные работы
+  parcels: Посылки, грузы
+  advertisement: Реклама и PR
+  restourants: Рестораны, развлечения
+  funeral-services: Ритуальные услуги
+  sports: Спорт, фитнес
+  escort: Сопровождение на встречах и отдыхе
+  insurance: Страхование
+  tourism: Туристические фирмы
+  dance: Танцы
+  cleaning: Уборка помещений
+  finances-taxes: Финансы, налоги
+  photo-video: Фото, Видео
+  art: Искусство
+  flowers: Цветы
+  erotics-massage: Эротический Массаж
+  psychic: Экстрасенсы
+  training: Специализированые курсы

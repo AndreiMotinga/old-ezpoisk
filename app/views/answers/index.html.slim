@@ -1,6 +1,5 @@
-= render "answers/search"
-
-div data-id="listings" data-term=params[:term]
+.container data-id="listings" data-term=params[:term]
+  = render "answers/search"
   = render @answers
 
 .row

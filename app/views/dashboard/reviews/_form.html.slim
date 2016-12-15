@@ -19,10 +19,10 @@
         br
         br
         = f.text_area :text, rows: 5, skip_label: true
-        = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
+        = f.submit "Сохранить", id: "details-save-btn", class: "btn btn-ez"
         - unless @review.new_record?
           = link_to "Удалить",
                     dashboard_review_path(@review),
                     method: :delete,
                     data: { confirm: I18n.t(:confirm) },
-                    class: "btn mobile-btn btn-danger pull-right"
+                    class: "btn btn-ez btn-danger pull-right"

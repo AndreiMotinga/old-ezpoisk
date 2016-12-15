@@ -2,47 +2,28 @@ form.form-horizontal action=search_listings_path(kind: "real-estate") method="ge
   = render "shared/search_by_address"
 
   .row
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.col-md-3
       = select_tag :category,
         options_for_select(ru(KINDS["real-estate"][:categories]), params[:category]),
                    class: "form-control"
-
-    .col-xs-12.col-sm-6
       = select_tag :subcategory,
                    options_for_select(ru(KINDS["real-estate"][:subcategories]), params[:subcategory]),
                    class: "form-control"
-  br
-
-  .row
-    .col-xs-6
+    .col-xs-12.col-sm-6.col-md-3
       = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
-    .col-xs-6
       = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
-  br
 
-  .row data-id="apartment_fields"
-    .col-xs-12.col-sm-4
+    .col-xs-12.col-sm-6.col-md-3
       = select_tag :duration,
                    options_for_select([["Период", ""]] + ru(KINDS["real-estate"][:duration]), params[:duration]),
                    class: "form-control"
-    .col-xs-12.col-sm-4
       = select_tag :rooms,
                    options_for_select([["Комнаты", ""]] + ru(KINDS["real-estate"][:rooms]), params[:rooms]),
                    class: "form-control"
-    .col-xs-12.col-sm-4
-      = select_tag :baths, options_for_select([["Ванные", ""]] + (1..5).to_a, params[:baths]),
-                   class: "form-control"
-  br
-
-  .row
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.col-md-3
       = sort_select(rp_sort_opts)
-    .col-xs-12.col-sm-6 data-id="apartment_fields"
-      = check_box_tag :fee, '0',  params[:fee], class: "checkbox-inline"
-      = " "
-      = label_tag :fee, "Без комиссии"
-  br
-  = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевые слова... "
+      = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевые слова... "
 
   hr
-  = submit_tag "Обновить", name: nil, class: "btn btn-block mobile-btn"
+  small.text-muted Объявлений: #{@listings.total_count}
+  = submit_tag "Обновить", name: nil, class: "btn btn-ez pull-right"

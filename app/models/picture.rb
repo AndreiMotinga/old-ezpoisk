@@ -1,7 +1,7 @@
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true, touch: true
 
-  has_attached_file :image, styles: { medium: "x120",
+  has_attached_file :image, styles: { medium: "x180",
                                       thumbnail: "100x100#",
                                       large: "x450" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}

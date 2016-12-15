@@ -1,70 +1,34 @@
 .listing {
-  a {
-    color: $dark-gray;
-    text-decoration: none;
+  background-color: $white;
+  margin-bottom: 20px;
+  padding: 5px;
+
+  .logo {
+    max-width: 180px;
   }
 
-  .devider {
-    margin-top: 5px;
-    margin-bottom: 5px;
+  .post-devider {
+    margin: 2px 0;
+  }
+
+  i {
+    margin: 2px;
   }
 
   .title {
-    font-weight: bold;
-    font-size: 16px;
-    margin: 3px 0;
-    overflow: hidden;
-  }
-
-  p {
-    overflow: hidden;
-  }
-
-  .logo {
-    padding: 0;
-  }
-
-  .dropdown {
-    top: 5px;
-  }
-
-  .fa {
-    padding-right: 5px;
-  }
-
-  .no-fee {
-    background-color: $body-bg;
-    font-size: 12px;
-    padding: 2px 5px;
-    font-weight: 500;
-    margin-right: 3px;
-    color: black;
-  }
-}
-
-.google-maps {
-  height: 0;
-  overflow: hidden;
-  padding-bottom: 75%; // This is the aspect ratio
-  position: relative;
-
-  iframe {
-    height: 100% !important;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100% !important;
-  }
-}
-
-.post-devider {
-  margin-bottom: 5px;
-  margin-top: 0;
-}
-
-.post-devider-gray {
-    margin-top: 5px;
     margin-bottom: 5px;
-    border: 0;
-    border-top: 5px solid #eeeeee;
+    margin-top: 0;
+
+    @media(max-width: $screen-sm) {
+      margin-top: 10px;
+    }
+
+    a {
+      color: $dark-gray;
+
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
 }

@@ -1,11 +1,10 @@
+// disable auto discover
+Dropzone.autoDiscover = false;
+
 $(document).ready(function(){
-  Dropzone.autoDiscover = false;
   if ($(".dropzone").length) {
     var type = $("#pictures-data").data("type");
     var id = $("#pictures-data").data("id");
-
-    // disable auto discover
-    Dropzone.autoDiscover = false;
 
     var dropzone = new Dropzone (".dropzone", {
       dictDefaultMessage: "Перетяните сюда фотографии или кликните",

@@ -15,7 +15,10 @@ describe Media::Creator do
           state_id: 33,
           city_id: 17_880,
           user_id: 1,
-          kind: "job"
+          kind: "job",
+          category: "wanted",
+          subcategory: "restaurants",
+          title: "Dummy title"
         }
       }
 

@@ -1,7 +1,7 @@
 class SourceValidator < ActiveModel::Validator
   def validate(record)
     return if has_source?(record)
-    record.errors[:phone] << "Добавьте телефон, email, ссылку на vk или fb"
+    record.errors[:phone] << "Добавьте телефон, email, ссылку на vkontakte или facebook"
   end
 
   def has_source?(record)

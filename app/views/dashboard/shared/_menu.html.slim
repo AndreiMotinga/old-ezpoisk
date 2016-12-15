@@ -1,7 +1,0 @@
-ul.list-group.menu
-  - if user_signed_in?
-    = link_to "Мои настройки" , edit_dashboard_user_path(current_user) , class: "list-group-item"
-  = link_to "Объявления"  , main_app.dashboard_listings_path         , class: "list-group-item"
-  = link_to "Ответы"        , main_app.dashboard_answers_path        , class: "list-group-item"
-  /= link_to "Отзывы"        , main_app.dashboard_reviews_path        , class: "list-group-item"
-  /= link_to "Реклама"       , main_app.dashboard_partners_path       , class: "list-group-item"

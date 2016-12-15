@@ -1,5 +1,5 @@
 = bootstrap_form_for([:dashboard, current_user]) do |f|
-  .white-block
+  .white-block.mdl-shadow--2dp
     .panel
       .panel-body
         = link_to "Обновить пароль", edit_user_registration_path
@@ -7,7 +7,7 @@
         = f.text_field :name, label: "Ваше имя"
         = f.text_area :about, label: "Расскажите о себе", rows: 5
 
-  .white-block
+  .white-block.mdl-shadow--2dp
     .panel
       .panel-body
         = f.text_field :street, label: "Улица"
@@ -42,4 +42,4 @@
           .col-sm-6
             = f.text_field :twitter, label: "Twitter"
 
-        .actions= f.submit "Обновить", class: "btn mobile-btn", id: "contacts-save-btn"
+        .actions= f.submit "Обновить", class: "btn btn-ez", id: "contacts-save-btn"

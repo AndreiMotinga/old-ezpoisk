@@ -31,7 +31,7 @@ $(document).on("change","#listing_category", function(e){
 
 $(document).on("change","#listing_subcategory", function(e){
   // hide apartment fileds if subcategory is not apartment
-  var fields = $("#apartment_fields");
+  var fields = $("#re_fields");
   if (this.value !== "apartment") {
     fields.addClass("hidden");
   } else {
@@ -54,7 +54,7 @@ function getSubcategories(category){
 
 function getCategories(val) {
   $.ajax({
-    url: "/dashboard/listings/categories",
+    url: "/listings/categories",
     type: 'GET',
     dataType: 'script',
     data: {

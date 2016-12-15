@@ -6,7 +6,6 @@ module Ezpoisk
   class Application < Rails::Application
     config.assets.quiet = true
     config.action_controller.action_on_unpermitted_parameters = :raise
-    # todo remove it when use delayed job
     config.eager_load_paths += %W(#{config.root}/app/jobs #{Rails.root}/lib)
     config.generators do |generate|
       generate.helper false
@@ -20,9 +19,8 @@ module Ezpoisk
     end
 
     config.i18n.load_path += Dir[Rails.root.join("config", "locales",
-                                                 "**", "*.{rb,yml}")]
+                                                 "**/*", "*.{rb,yml}")]
 
-    # TODO: remove when no longer use font-awesome
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins "*"

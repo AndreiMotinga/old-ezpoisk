@@ -25,17 +25,16 @@ describe Fb::Unifier do
       result = Fb::Unifier.new(item, group).unified
 
       kind = group[:kind].to_sym
-      expected_attrs = {
-        kind: group[:kind],
-        category: KINDS[kind][:categories].first,
-        subcategory: KINDS[kind][:subcategories].first,
-        text: item[:message],
-        state_id: group[:state_id],
-        city_id: group[:city_id],
-        user_id: 1,
-        fb: "https://www.facebook.com/#{item[:from][:id]}",
-        created_at: 5.minutes.ago
-      }
+      expected_attrs = { title: "Dummy title",
+                         kind: group[:kind],
+                         category: KINDS[kind][:categories].first,
+                         subcategory: KINDS[kind][:subcategories].first,
+                         text: item[:message],
+                         state_id: group[:state_id],
+                         city_id: group[:city_id],
+                         user_id: 1,
+                         fb: "https://www.facebook.com/#{item[:from][:id]}",
+                         created_at: 5.minutes.ago }
       expect(result[:attributes]).to eq expected_attrs
       expect(Fb::Attachments).to have_received(:new).with(item[:attachments])
       expect(atts).to have_received(:attachments)

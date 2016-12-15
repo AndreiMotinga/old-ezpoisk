@@ -1,11 +1,15 @@
-.col-md-8
-  h2= t('.change_your_password', :default => 'Change your password')
-  = bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-    = devise_error_messages!
-    = f.hidden_field :reset_password_token
-    div
-      = f.password_field :password, label: "Новый пароль"
-    div
-      = f.password_field :password_confirmation, label: "Повторите новый пароль"
-    div= f.submit t('.change_my_password', :default => 'Change my password')
-  = render "devise/shared/links"
+.container.container-md
+  .row
+    .col-xs-12
+      h4= t('.change_your_password', :default => 'Change your password')
+      hr
+      br
+      = bootstrap_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+        = devise_error_messages!
+        = f.hidden_field :reset_password_token
+        div
+          = f.password_field :password, label: "Новый пароль"
+        div
+          = f.password_field :password_confirmation, label: "Повторите новый пароль"
+        div= f.submit t('.change_my_password', :default => 'Change my password')
+      = render "devise/shared/links"

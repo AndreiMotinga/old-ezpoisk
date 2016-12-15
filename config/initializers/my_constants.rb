@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # remove - use chache instead
 STATES = [
+  ['Штат', ''                          ],
   [ 'Alabama', 'alabama'               ],
   [ 'Alaska', 'alaska'                 ],
   [ 'Arizona', 'arizona'               ],

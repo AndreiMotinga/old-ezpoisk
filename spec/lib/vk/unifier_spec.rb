@@ -22,7 +22,8 @@ describe Vk::Unifier do
       result = Vk::Unifier.new(item, group).unified
 
       kind = group[:kind].to_sym
-      expected_attrs = { kind: kind,
+      expected_attrs = { title: "Dummy title",
+                         kind: kind,
                          category: KINDS[kind][:categories].first,
                          subcategory: KINDS[kind][:subcategories].first,
                          text: item[:text],

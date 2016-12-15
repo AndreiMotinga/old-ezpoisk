@@ -1,84 +1,60 @@
 = bootstrap_form_for([:dashboard, @listing]) do |f|
   = hidden_field_tag :token, params[:token]
 
-  .white-block
-    .panel
-      .panel-body
-        = f.select :kind,
-                   ru(KINDS.keys),
-                   include_blank: true,
-                   label: "Раздел"
-        = f.select :category, listing_categories, label: "Категория"
-        = f.select :subcategory, listing_subcategories, label: "Подкатегория"
+  .row
+    .col-sm-4
+      = f.select :kind,
+                 ru(KINDS.keys),
+                 { label: "Раздел *" },
+                 include_blank: true, required: true
+    .col-sm-4
+      = f.select :category, listing_categories, { label: "Категория *" }, required: true
+    .col-sm-4
+      = f.select :subcategory, listing_subcategories, { label: "Подкатегория *" }, required: true
 
+  .row
+    .col-xs-12.col-sm-10
+      = f.text_field :title, label: "Заголовок *", required: true
+    .col-xs-12.col-sm-2
+      = f.number_field :price, label: 'Цена'
 
-  #re_fields class=("hidden" unless @listing.kind == "real-estate")
-    h3 Детали
-    .white-block
-      .panel
-        .panel-body
-          .row
-            .col-xs-12.col-sm-6
-              = f.number_field :price, label: 'Цена'
-            .col-xs-12.col-sm-6
-              = f.number_field :space, label: "Площадь (sq. feet)"
-          #apartment_fields.div
-            .row
-              .col-xs-12.col-sm-4
-                = f.select :rooms, ru(KINDS["real-estate"][:rooms]), label: "* Комнат"
-              .col-xs-12.col-sm-4
-                = f.number_field :baths, label: 'Ванные'
-              #duration.col-xs-12.col-sm-4
-                = f.select :duration, ru(KINDS["real-estate"][:duration]), label: "Продолжительность"
-            .row
-              .col-xs-12
-                = f.check_box :fee, label: "Комиссия *"
+  br
+  = render "dashboard/listings/form/real-estate", f: f
 
-  h3 Описание
-  .white-block
-    .panel
-      .panel-body
-        = f.text_field :title, label: "Заголовок"
-        = f.text_area :text, rows: 5, label: 'Описание'
+  = f.text_area :text, label: "Описание *", required: true, rows: 5
 
-  h3 Контакты
-  .white-block
-    .panel
-      .panel-body
-        .row
-          .col-sm-6
-            = f.text_field :phone, label: 'Телефоны (только цифры)', placeholder: "9292935385, 3472984343"
-          .col-sm-6
-            = f.email_field :email
-        .row
-          .col-xs-12.col-sm-6
-            = f.text_field :vk, label: 'Я vkontakte'
-          .col-xs-12.col-sm-6
-            = f.text_field :fb, label: 'Я в facebook'
-          .col-xs-12.col-sm-6
-            = f.text_field :tw, label: 'Я в twitter'
-          .col-xs-12.col-sm-6
-            = f.text_field :ok, label: 'Я в odnoklassniki'
-          .col-xs-12.col-sm-6
-            = f.text_field :gl, label: 'Я в google'
-          .col-xs-12.col-sm-6
-            = f.text_field :site, label: 'Я online (website)'
+  br
+  h4 Ваши контактные данные
+  hr.heading
+  .row
+    .col-sm-6
+      = f.text_field :phone, label: 'Телефоны (только цифры) *', placeholder: "9292935385, 3472984343"
+    .col-sm-6
+      = f.email_field :email
+  .row
+    .col-xs-12.col-sm-6
+      = f.text_field :vk, label: 'Я vkontakte'
+    .col-xs-12.col-sm-6
+      = f.text_field :fb, label: 'Я в facebook'
+    .col-xs-12.col-sm-6
+      = f.text_field :gl, label: 'Я в google'
+    .col-xs-12.col-sm-6
+      = f.text_field :site, label: 'Я online (website)'
 
-  h3 Адрес
-  .white-block
-    .panel
-      .panel-body
-        = f.text_field :street, label: 'Улица'
-        .row
-          .col-sm-6
-            = form_state_select(f)
-          .col-sm-6
-            = form_city_select(f, @listing)
+  br
+  h4 Местоположение
+  hr.heading
+  = f.text_field :street, label: 'Улица'
+  .row
+    .col-sm-6
+      = form_state_select(f)
+    .col-sm-6
+      = form_city_select(f, @listing)
 
-  .white-block
-    .panel
-      .panel-body
-        = f.check_box :active, label: "Активно *"
-        = f.submit "Сохранить", id: "details-save-btn", class: "btn mobile-btn"
-        - unless @listing.new_record?
-          = link_to "Удалить", dashboard_listing_path(@listing), method: :delete, class: "btn pull-right"
+  = f.check_box :active, label: "Активно"
+  br
+
+  = f.submit "Сохранить", id: "details-save-btn", class: "btn-ez"
+  .pull-right
+  - unless @listing.new_record?
+    = link_to "Удалить", dashboard_listing_path(@listing), method: :delete, class: "pull-right"

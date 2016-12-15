@@ -1,0 +1,11 @@
+header
+  h4= header_title
+  small= header_description
+hr
+
+ul.nav.nav-tabs
+  li role="presentation" class=cp(dashboard_listings_path) = link_to "Объявления", dashboard_listings_path
+  - if current_user
+    li role="presentation" class=cp(edit_dashboard_user_path(current_user))
+      = link_to "Настройки", edit_dashboard_user_path(current_user)
+br

@@ -17,6 +17,7 @@ module Fb
       {
         attachments: attachments,
         attributes: {
+          title: "Dummy title",
           kind: kind,
           category: KINDS[kind][:categories].first,
           subcategory: KINDS[kind][:subcategories].first,

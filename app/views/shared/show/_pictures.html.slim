@@ -1,6 +1,6 @@
-- if record.pictures.any?
+- if record.pictures.count > 0
   .show
-    .white-block
+    .white-block.mdl-shadow--2dp
       ul.pgwSlideshow.pictures
         - record.pictures.each do |pic|
           li

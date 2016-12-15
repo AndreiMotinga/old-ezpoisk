@@ -1,0 +1,16 @@
+#re_fields class=("hidden" unless @listing.kind == "real-estate")
+  h4 Детали
+  hr.heading
+  .row
+    .col-xs-12.col-sm-4
+      = f.select :rooms, ru(KINDS["real-estate"][:rooms]), label: "* Комнат"
+    .col-xs-12.col-sm-4
+      = f.number_field :baths, label: 'Ванные'
+    #duration.col-xs-12.col-sm-4
+      = f.select :duration, ru(KINDS["real-estate"][:duration]), label: "Продолжительность"
+  .row
+    .col-xs-12.col-sm-6
+      = f.number_field :space, label: "Площадь (sq. feet)"
+    .col-xs-12.col-sm-6
+      = f.check_box :fee, label: "Комиссия"
+  hr

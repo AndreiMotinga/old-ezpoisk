@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129221616) do
+ActiveRecord::Schema.define(version: 20161219235247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,21 @@ ActiveRecord::Schema.define(version: 20161129221616) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -95,8 +110,6 @@ ActiveRecord::Schema.define(version: 20161129221616) do
     t.string   "vk"
     t.string   "fb"
     t.string   "gl"
-    t.string   "tw"
-    t.string   "ok"
     t.string   "duration"
     t.integer  "price"
     t.integer  "baths"
@@ -109,28 +122,6 @@ ActiveRecord::Schema.define(version: 20161129221616) do
     t.index ["city_id"], name: "index_listings_on_city_id", using: :btree
     t.index ["state_id"], name: "index_listings_on_state_id", using: :btree
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
-  end
-
-  create_table "partners", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "url"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.string   "title"
-    t.string   "text",               default: "",    null: false
-    t.string   "position"
-    t.integer  "impressions_count",  default: 0,     null: false
-    t.integer  "clicks",             default: 0,     null: false
-    t.string   "phone"
-    t.string   "email"
-    t.boolean  "approved",           default: false
-    t.integer  "budget"
-    t.boolean  "featured",           default: false
-    t.index ["user_id"], name: "index_partners_on_user_id", using: :btree
   end
 
   create_table "pg_search_documents", force: :cascade do |t|
@@ -297,7 +288,6 @@ ActiveRecord::Schema.define(version: 20161129221616) do
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"
   add_foreign_key "listings", "users"
-  add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "reviews", "users"

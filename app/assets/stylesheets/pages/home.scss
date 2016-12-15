@@ -1,62 +1,59 @@
 .home-index {
-
   // links
   .links {
-    padding-top: 20px;
+    margin-top: $large-spacing;
+    margin-bottom: $large-spacing * 2;
+    // border: thin solid black;
 
-    @media(max-width: 767px) {
-      margin-top: -35px;
+    .list-group {
+      margin-bottom: 0;
+    }
+
+    .list-group-item {
+      background-color: transparent;
+      border: 0;
+    }
+
+    .fa {
+      border-radius: 50%;
+      border: thin solid $gray;
+      color: $orange;
+      padding: $base-spacing;;
+    }
+
+    .first {
+      font-size: 16px;
     }
   }
 
-  .mdl-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-
-  .material-icons {
-    background-color: $white;
-    font-size: 36px;
-    text-align: center;
-  }
-
-  .home {
-    color: $blue;
-  }
-
-  .job {
-    color: $green;
-  }
-
-  .sale {
-    color: $orange;
-  }
-
-  .service {
-    color: $dark-blue;
-  }
-
-  .section-heading {
-    margin-left: 5px;
-  }
-
-  .separator {
-    margin-bottom: 40px;
-    margin-top: 40px;
-  }
-
   // listings
+  .listings-section {
+    padding-top: $large-spacing;
+    padding-bottom: $large-spacing;
+    background-color: $white;
+  }
+
   .listings {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   .mdl-card {
     flex: 1 1 200px;
     height: 250px;
     margin: 5px;
-    max-width: 218px;
+  }
+
+  // answers
+  .answers-section {
+    background-color: $background;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .about {
+    padding-bottom: $large-spacing;
+    padding-top: $large-spacing;
   }
 }

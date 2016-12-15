@@ -16,9 +16,14 @@ class Listing < ApplicationRecord
   validates_presence_of :state
   validates_presence_of :city
   validates_with SourceValidator
+  validates :title, presence: true, length: { minimum: 5, maximum: 70 }
+  validates_presence_of :kind
+  validates_presence_of :category
+  validates_presence_of :subcategory
+  validates :text, presence: true, length: { minimum: 10 }
 
-  def logo_url
-    return logo.image.url(:medium) if logo.present?
+  def logo_url(style = :medium)
+    return logo.image.url(style) if logo.present?
     "https://s3.amazonaws.com/ezpoisk/missing.png"
   end
 
@@ -32,8 +37,8 @@ class Listing < ApplicationRecord
   end
 
   def contact_email
-    return user.email if user.present?
     return email if email.present?
+    user.email
   end
 
   def clear_phone!

@@ -17,7 +17,6 @@ feature "user creates listing" do
     fill_in "Email", with: listing.email
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно")
 
     click_on "Сохранить"
 

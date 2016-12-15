@@ -1,3 +1,6 @@
-br
-.empty-message
- p К сожалению, здесь пусто :(
+.container.container-md
+  .row
+    .col-xs-12
+      section.empty-message
+        h4.text-muted К сожалению, здесь пусто :(
+        = link_to "+ Подать объявление", new_dashboard_listing_path, class: "btn btn-ez"

@@ -1,9 +1,6 @@
-- if record.street.present?
-  .col-xs-12
-    .row
-      .hidden-xs
-        .white-block
-          #map.google-maps
+- if record.street?
+  .hidden-xs.hidden-sm style="width: 100%;"
+     #map style='width: 100%; height: 200px;'
 
   javascript:
     $(document).ready(function(){
@@ -12,6 +9,6 @@
         markers = handler.addMarkers(#{raw record.map_marker.to_json});
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
-        handler.getMap().setZoom(12);
+        handler.getMap().setZoom(8);
       });
     });

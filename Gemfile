@@ -16,6 +16,8 @@ gem "neat"
 gem "material_design_lite-rails", "~> 1.2"
 gem "material_icons"
 
+gem "metamagic"
+
 gem "recipient_interceptor"
 gem "autoprefixer-rails"
 gem "flutie"

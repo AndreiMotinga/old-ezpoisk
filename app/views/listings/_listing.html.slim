@@ -1,44 +1,39 @@
-.row.white-block.mdl-shadow--3dp data-listing-id=listing.id
-  .listing
-    .col-xs-12.col-sm-4.logo
+.col-xs-12.listing.mdl-shadow--2dp
+  .row
+    .col-xs-12.col-sm-4
       = link_to listing do
-        img.img-responsive.center-block src=listing.logo_url data-id="logo"
+        img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
 
     .col-xs-12.col-sm-8
-      /line 0
+      / line 0
       h4.title= link_to listing.title, listing
 
       / line 1
       = "#{t listing.category} | #{t listing.subcategory}"
-
-      / line 2
-      hr.post-devider
-      = link_to listing.state.name, search_listings_path(kind: listing.kind, state: listing.state.slug)
-      = " | "
-      = link_to listing.city.name, search_listings_path(kind: listing.kind, state: listing.state.slug, city: listing.city.slug)
-      hr.post-devider
-
       / line 3
       - if listing.re?
-        = "#{t listing.rooms}" if listing.rooms?
+        = " | #{t listing.rooms}" if listing.rooms?
         = " | $#{listing.price}" if listing.price?
-        - if listing.rooms? || listing.price?
-          hr.post-devider
+
+
+      // line 2
+      hr.post-devider
+      = "#{listing.street} | " if listing.street?
+      = link_to listing.city.name, search_listings_path(kind: listing.kind, state: listing.state.slug, city: listing.city.slug)
+      = " | "
+      = link_to listing.state.name, search_listings_path(kind: listing.kind, state: listing.state.slug)
+      hr.post-devider
 
         / line 4
-        = t(listing.duration) if listing.duration?
-        = " | ванные: #{listing.baths}" if listing.baths?
-        = " | площадь:  #{listing.space} ft" if listing.space?
-        - if listing.duration? || listing.baths.present? || listing.space?
-          hr.post-devider
+        - if listing.re?
+          = t(listing.duration) if listing.duration?
+          = " | ванные: #{listing.baths}" if listing.baths?
+          = " | площадь:  #{listing.space} ft" if listing.space?
+          - if listing.duration? || listing.baths.present? || listing.space?
+            hr.post-devider
 
       / line 5
       span data-time=listing.id
         = timeago_tag listing.updated_at
       = " | "
       = render "shared/indicators", record: listing
-
-    - if listing.text?
-      .col-xs-12.text
-        hr.post-devider-gray
-        = simple_format listing.text, sanitize: true

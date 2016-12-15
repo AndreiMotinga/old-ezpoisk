@@ -1,11 +1,9 @@
 .scroll-up {
-  background-color: $blue;
-  border: 0;
-  border-radius: 30px;
+  border-radius: 50%;
   bottom: 20px;
-  color: $white;
+  color: $orange;
   display: none;
-  font-size: 40px;
+  font-size: 23px;
   height: 46px;
   left: 20px;
   line-height: 1;
@@ -17,7 +15,6 @@
   width: 46px;
 
   &:hover {
-    background-color: $blue;
-    color: $white;
+    border: thin solid $orange;
   }
 }

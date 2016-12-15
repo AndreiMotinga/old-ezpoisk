@@ -18,15 +18,12 @@ feature "user creates listing" do
     fill_in "Email", with: listing.email
     fill_in "Я vkontakte", with: listing.vk
     fill_in "Я в facebook", with: listing.fb
-    fill_in "Я в twitter", with: listing.tw
-    fill_in "Я в odnoklassniki", with: listing.ok
     fill_in "Я в google", with: listing.gl
     fill_in "Я online", with: listing.site
 
     fill_in "Улица", with: listing.street
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно")
 
     click_on "Сохранить"
 
@@ -43,8 +40,6 @@ feature "user creates listing" do
     expect(saved_listing.email).to eq listing.email
     expect(saved_listing.vk).to eq listing.vk
     expect(saved_listing.fb).to eq listing.fb
-    expect(saved_listing.tw).to eq listing.tw
-    expect(saved_listing.ok).to eq listing.ok
     expect(saved_listing.gl).to eq listing.gl
     expect(saved_listing.site).to eq listing.site
 
@@ -78,7 +73,6 @@ feature "user creates listing" do
     fill_in "Улица", with: listing.street
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно")
 
     click_on "Сохранить"
 
@@ -118,7 +112,6 @@ feature "user creates listing" do
     fill_in "Улица", with: listing.street
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно")
 
     click_on "Сохранить"
 
@@ -153,7 +146,6 @@ feature "user creates listing" do
     fill_in "Улица", with: listing.street
     select("Alabama", from: "Штат")
     select("Abbeville", from: "Город")
-    check("Активно")
 
     click_on "Сохранить"
 

@@ -1,0 +1,9 @@
+.container
+  .row
+    .col-xs-12.col-sm-3
+      = render "editors/links"
+    .col-xs-12.col-sm-9
+      = render "editors/total"
+
+      - if @answers.any?
+        = render "editors/table", records: @answers, title: "Ответы"

@@ -4,7 +4,7 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   def create
-    @picture = current_user.images.build(picture_params)
+    @picture = user.images.build(picture_params)
     if @picture.save
       render json: { message: "success", fileID: @picture.id }
     else
@@ -25,6 +25,10 @@ class Dashboard::PicturesController < ApplicationController
   end
 
   private
+
+  def user
+    current_user || User.find(1)
+  end
 
   def picture_params
     params.require(:picture).permit(:image, :imageable_id, :imageable_type)

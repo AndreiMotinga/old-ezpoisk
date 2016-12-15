@@ -19,12 +19,13 @@ $screen-lg: 1200px;
 // $base-spacing: $base-line-height * 1em;
 // $small-spacing: $base-spacing / 2;
 // $base-z-index: 0;
+
+// sizes
 $base-spacing: 10px;
+$large-spacing: 20px;
 $border-radius: 0;
 
 // Colors
-$body-bg: #edeef0;
-
 $orange: #e07a01;
 $red: #f00;
 $white: #fff;
@@ -43,6 +44,7 @@ $btn-vk: #45668e;
 $btn-gl: rgb(234, 67, 53);
 $btn-fb: #3b5998;
 
+$background: #f7f7f7;
 
 // // Font Colors
 // $base-font-color: $dark-gray;

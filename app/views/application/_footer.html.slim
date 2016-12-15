@@ -1,24 +1,37 @@
-footer.text-center.hidden-xs
-  ul.list-inline
-    li.hidden-sm= link_to "Недвижимость", main_app.search_listings_path(kind: "real-estate")
-    li.hidden-sm= link_to "Работа", main_app.search_listings_path(kind: "jobs")
-    li.hidden-sm= link_to "Продажи", main_app.search_listings_path(kind: "sales")
-    li.hidden-sm= link_to "Услуги", main_app.search_listings_path(kind: "services")
-    li.hidden-sm= link_to "Ответы", main_app.answers_path
-    li.hidden-sm= link_to 'Terms of Service',  '/tos', rel: "nofollow"
-    li.text-center
-      = link_to "https://vk.com/ezpoiskusa", target: "_blank" do
-        i.fa.fa-vk
-    li.text-center
-      = link_to "https://plus.google.com/communities/114953583463984391933", target: "_blank" do
-        i.fa.fa-google-plus
-    li.text-center
-      = link_to "https://www.facebook.com/ezpoisk", target: "_blank" do
-        i.fa.fa-facebook
-    li.text-center
-      = link_to "https://twitter.com/ezpoisk", target: "_blank" do
-        i.fa.fa-twitter
-    li: h5 Copyright © ezpoisk #{Time.now.year}
+footer.hidden-xs
+  .container.container-md
+    .row
+      .col-sm-3
+        ul
+          li= link_to "Недвижимость", main_app.search_listings_path(kind: "real-estate")
+          li= link_to "Работа", main_app.search_listings_path(kind: "jobs")
+          li= link_to "Продажи", main_app.search_listings_path(kind: "sales")
+          li= link_to "Услуги", main_app.search_listings_path(kind: "services")
+      .col-sm-3
+        ul
+          li= link_to "Ответы", main_app.answers_path
+      .col-sm-3
+        ul
+          li= link_to "Контакты",  "/users/1"
+          li= link_to "Terms of Service",  "/tos", rel: "nofollow"
+
+      .col-sm-3
+        .row
+          ul.list-inline.pull-right
+            li.text-center
+              = link_to "https://vk.com/ezpoiskusa", target: "_blank" do
+                i.fa.fa-vk
+            li.text-center
+              = link_to "https://plus.google.com/communities/114953583463984391933", target: "_blank" do
+                i.fa.fa-google-plus
+            li.text-center
+              = link_to "https://www.facebook.com/ezpoisk", target: "_blank" do
+                i.fa.fa-facebook
+            li.text-center
+              = link_to "https://twitter.com/ezpoisk", target: "_blank" do
+                i.fa.fa-twitter
+        .row
+          h5.pull-right Copyright © ezpoisk #{Time.now.year}
 
 a#scrollUp.scroll-up href="#top"
   i.fa.fa-chevron-up

@@ -1,31 +1,14 @@
-ul.nav.nav-tabs[role="tablist"]
-  li.active[role="presentation"]
-    a[href="#city" aria-controls="city" role="tab" data-toggle="tab"]
-      | Выбрать город
-  li[role="presentation"]
-    a[href="#radius" aria-controls="radius" role="tab" data-toggle="tab"]
-      | Радиус поиска
+.row
+  .col-xs-12.col-sm-3
+    = select_tag :state,
+                 options_for_select(STATES, state),
+                 class: "form-control state-select-slug my-dropdown"
 
-.tab-content
-  #city.tab-pane.active role="tabpanel" data-id="address"
-    br
-    .row
-      .col-xs-12.col-sm-6
-        = select_tag :state, options_for_select([["Штат", ""]] + STATES, state), class: "form-control state-select-slug my-dropdown"
-        .visible-xs: br
+  .col-xs-12.col-sm-3
+    = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),
+                 class: "form-control city-select my-dropdown"
 
-      .col-xs-12.col-sm-6
-        = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),
-                     class: "form-control city-select my-dropdown"
-
-
-  #radius.tab-pane[role="tabpanel"]
-    .row
-      .col-xs-12.col-sm-3
-        = label_tag "Радиус (миль)", nil,  class: "control-label"
-        = within_text_field_param
-      .col-xs-12.col-sm-9
-        = label_tag "от (address / zipcode)", nil,  class: "control-label"
-        = origin_text_field_param
-
-hr
+  .col-xs-12.col-sm-2
+    = within_text_field_param
+  .col-xs-12.col-sm-4
+    = origin_text_field_param

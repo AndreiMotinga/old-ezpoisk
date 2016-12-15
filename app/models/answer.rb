@@ -13,7 +13,7 @@ class Answer < ActiveRecord::Base
   validates :title, presence: true
   validates :text, presence: true
   delegate :name_to_show, to: :user
-  delegate :logo, to: :user
+  delegate :avatar, to: :user
 
   has_attached_file :image, styles: { medium: "x330>", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}

@@ -16,11 +16,11 @@ class Dashboard::ListingsController < ApplicationController
   end
 
   def new
-    @listing = Listing.new(state_id: current_user.try(:state_id),
-                           city_id: current_user.try(:city_id),
+    @listing = Listing.new(state_id: current_user.state_id,
+                           city_id: current_user.city_id,
                            active: true,
-                           phone: current_user.try(:new_phone),
-                           email: current_user.try(:new_email))
+                           phone: current_user.phone,
+                           email: current_user.email)
   end
 
   def edit
@@ -32,7 +32,8 @@ class Dashboard::ListingsController < ApplicationController
     if @listing.save
       @listing.clear_phone!
       run_create_notifications
-      redirect_on_create
+      redirect_to edit_dashboard_listing_path(@listing),
+                  notice: I18n.t(:post_created)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -65,20 +66,6 @@ class Dashboard::ListingsController < ApplicationController
 
   private
 
-  def redirect_on_create
-    if @listing.user
-      redirect_to(
-        edit_dashboard_listing_path(@listing),
-        notice: I18n.t(:post_created)
-      )
-    else
-      redirect_to(
-        edit_dashboard_job_path(@listing, token: @listing.token),
-        notice: I18n.t(:post_created_wr)
-      )
-    end
-  end
-
   def update_redirect_path
     if params[:token].present?
       edit_dashboard_listing_path(@listing, token: params[:token])
@@ -88,7 +75,7 @@ class Dashboard::ListingsController < ApplicationController
   end
 
   def run_update_notifications
-    return if current_user.try(:team_member?)
+    return if current_user.try(:admin?)
     SlackNotifierJob.perform_async(@listing.id, "Listing", "update")
   end
 

@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :comments
 
-  has_many :partners, dependent: :destroy
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
 
@@ -53,16 +52,6 @@ class User < ActiveRecord::Base
     Rails.application.routes.url_helpers.user_url(self)
   end
 
-  def new_email
-    return "" if admin?
-    email
-  end
-
-  def new_phone
-    return "" if admin?
-    phone
-  end
-
   def editor?
     admin? || role == "editor"
   end
@@ -71,16 +60,8 @@ class User < ActiveRecord::Base
     self == record.user || admin?
   end
 
-  def team_member?
-    admin? || editor?
-  end
-
   def online?
     last_seen > 5.minutes.ago
-  end
-
-  def logo
-    avatar(:thumb)
   end
 
   def address

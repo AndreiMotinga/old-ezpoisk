@@ -61,14 +61,14 @@ module FormHelper
   def within_text_field_param
     text_field_tag "geo_scope[within]",
                    within,
-                   placeholder: "20",
+                   placeholder: "Радиус (миль): e.g 20",
                    class: "form-control"
   end
 
   def form_state_select(f)
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
-             { label: "* Штат", include_blank: true },
+             { label: "Штат *", include_blank: true },
              class: "state-select-id my-dropdown"
   end
 
@@ -77,10 +77,10 @@ module FormHelper
     if state
       f.select :city_id,
                state.cities.collect { |city| [city.name, city.id] },
-               { label: "* Город" },
+               { label: "Город *" },
                class: "city-select my-dropdown"
     else
-      f.select :city_id, [], { label: "* Город" }, class: "city-select my-dropdown"
+      f.select :city_id, [], { label: "Город *" }, class: "city-select my-dropdown"
     end
   end
 
@@ -91,21 +91,22 @@ module FormHelper
 
   def listing_categories
     kind = @listing.kind
-    return [] unless kind
+    return [] unless kind.present?
     opts = ru(KINDS[kind][:categories])
     options_for_select(opts, @listing.category)
   end
 
   def listing_subcategories
     kind = @listing.kind
-    return [] unless kind
+    return [] unless kind.present?
     options_for_select(listing_sub_opts, @listing.subcategory)
   end
 
   def listing_sub_opts
     kind = @listing.kind
+    return [] unless kind.present?
     return ru(KINDS[kind][:subcategories]) unless kind == "services"
-    ru(KINDS[kind][:subcategories][kind])
+    ru(KINDS[kind][:subcategories][@listing.category])
   end
 
   def confirm?

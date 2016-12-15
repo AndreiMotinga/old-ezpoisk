@@ -26,8 +26,6 @@ FactoryGirl.define do
     vk "https://vk.com/id129328692"
     fb "https://www.facebook.com/101"
     gl "MyString"
-    tw "MyString"
-    ok "MyString"
     site "MyString"
 
     user
@@ -73,23 +71,6 @@ FactoryGirl.define do
   factory :comment do
     text { Faker::Lorem.paragraph }
     association :commentable, factory: :listing
-    user
-  end
-
-  factory :partner do
-    title { Faker::Lorem.sentence.truncate(45) }
-    text { Faker::Lorem.sentence.truncate(45) }
-    url "//google.com?image=#{(1..10).to_a.sample}"
-    position { %w(left right).sample }
-    budget { Faker::Number.number(2).to_i }
-    phone "1234567890"
-    email { Faker::Internet.email }
-    image do
-      Rack::Test::UploadedFile.new(
-        "#{Rails.root}/spec/support/fixtures/#{(1..10).to_a.sample}.jpg",
-        "image/png"
-      )
-    end
     user
   end
 

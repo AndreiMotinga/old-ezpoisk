@@ -22,24 +22,9 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.includes(:state, :city, :pictures).find(params[:id])
-    if @listing && @listing.active?
-    else
+    @listing = Listing.includes(:state, :city).find(params[:id])
+    unless @listing && @listing.active?
       redirect_to root_path, alert: I18n.t(:post_not_found)
     end
-  end
-
-  def subcategories
-    @subcategories = KINDS[:services][:subcategories][category]
-  end
-
-  private
-
-  def category_param
-    params.require(:attrs).permit(:category)
-  end
-
-  def category
-    category_param[:category]
   end
 end

@@ -1,4 +1,4 @@
-- image_url = user_signed_in? ? current_user.logo : "default-avatar"
+- image_url = user_signed_in? ? current_user.avatar(:thumb) : "default-avatar"
 .row.comment
   .col-xs-1
     = image_tag image_url, class: "center-block avatar"

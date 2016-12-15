@@ -1,6 +1,7 @@
-- if records.empty?
-  .col-xs-12= render "shared/no_posts_message"
-- else
-  .text-center
-    #p2.mdl-progress.mdl-js-progress.mdl-progress__indeterminate
-    = paginate records
+.pagination-container
+  - if records.empty?
+    = render "shared/no_posts_message"
+  - else
+    .text-center
+      #p2.mdl-progress.mdl-js-progress.mdl-progress__indeterminate.hidden
+      = paginate records

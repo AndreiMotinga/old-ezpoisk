@@ -33,14 +33,9 @@
               a href="mailto:#{record.email}" target="_top"
                 i.fa.fa-envelope-o
                 | email
-        li.list-group-item
-          strong
-            = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
-              i.fa.fa-map-o
-              | Google Map
-
-        /li.list-group-item
-        /  strong * Укажите, что нашли объявление на ezpoisk.com
-
-        li.list-group-item
-          = render "shared/social", count: nil, inline: false
+        - if record.street?
+          li.list-group-item
+            strong
+              = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
+                i.fa.fa-map-o
+                | Google Map

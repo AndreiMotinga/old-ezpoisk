@@ -1,12 +1,15 @@
 html,
 body {
-  background-color: $body-bg;
+  background-color: $background;
   height: 100%;
-  padding-top: 35px;
+}
+
+body {
+  padding-top: 70px;
 }
 
 .page-wrap {
-  margin-bottom: -60px;  // equal to footer height
+  margin-bottom: -160px;  // equal to footer height (inluding margin)
   min-height: 100%;
 
   &::after {
@@ -17,10 +20,9 @@ body {
 
 footer,
 .page-wrap::after {
-  height: 40px;
+  height: 140px;
 }
 
-.side-column {
-  padding-left: 0;
-  padding-right: 0;
+.container-md {
+  max-width: $screen-md;
 }

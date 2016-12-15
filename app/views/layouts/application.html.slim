@@ -3,25 +3,13 @@ html lang="ru"
   = render "head"
   body class= body_class
     = render "navbar"
-    .container.page-wrap
-      = yield :cover if content_for?(:cover)
+
+    .page-wrap
       = render "notice" unless devise_controller?
-
-      .row
-        - if content_for?(:sidebar)
-          .hidden-xs.col-sm-3.col-md-2.side-column
-            = yield :sidebar
-            .sticky data-id="left"
-              /= render "partners/left"
-
-        .col-xs-12 class=(content_for?(:sidebar) ? "col-sm-9 col-md-6" : "col-sm-12 col-md-8")
-          = yield
-
-        .hidden-xs.hidden-sm.col-md-4.side-column
-          .sticky data-id="right"
-            = render "shared/gads/sky"
+      main
+        = yield
 
     = render "footer"
     = render "shared/new_session_modal"
-    = render "shared/main_sidebar"
     = render "javascript"
+    = render "sliding_panel"

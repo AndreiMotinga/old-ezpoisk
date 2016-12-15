@@ -1,0 +1,3 @@
+$("#listing_subcategory").html("<%= j(options_for_select(ru(@subcategories))) %>");
+$("#listing_subcategory")
+  .prepend("<option value='' selected='selected'></option>").val('');

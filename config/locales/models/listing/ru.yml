@@ -1,6 +1,6 @@
-# TODO: remove duplicate translations / orgonize 'em
 ru:
-  job: Работа
-  re: Недвижимость
-  sale: Продажи
-  service: Услуги
+  post_created: Обьявление успешно сохранено.
+  post_saved: Обьявление успешно сохранено
+  post_not_saved: Обьявление не сохранено, пожалуйста исправьте ошибки
+  post_not_found: Обьявление не найдено, возможно оно больше не активно
+  post_removed: Обьявление успешно удалено

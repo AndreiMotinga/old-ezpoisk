@@ -1,0 +1,18 @@
+.row
+  .col-xs-12
+    .white-block
+      table.table.table-hover.table-bordered style="margin-bottom:0"
+        thead
+          tr
+            td.text-center Type
+            td.text-center Unpaid articles
+            td.text-center Total to pay
+            td.text-center= link_to "mark paid",
+                                     editor_path(@user),
+                                     method: :put, data: { confirm: I18n.t(:confirm) }
+        tbody
+          tr
+            td.text-center Ответы
+            td.text-center= @answers.count
+            td.text-center= number_to_currency(total_price(@answers), locale: :en)
+            td

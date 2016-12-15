@@ -1,22 +1,20 @@
-- d = strip_tags(@listing.text).truncate(150)
-- d = "#{t @listing.category} #{d}"
-= desc(d)
+- meta title: @listing.title,
+       description: strip_tags(@listing.text),
+       og: { type: "article",
+             url: @listing.show_url,
+             image: @listing.logo_url }
 
-- t = @listing.title? ? @listing.title : t(@listing.category)
-= title("#{t} #{@listing.city.name} #{@listing.state.name}")
+.container.container-md
+  .row
+    .col-xs-12.col-md-8
+      = render "shared/show/pictures", record: @listing
 
-= og_type("article")
-= og_url(@listing.show_url)
+      = render @listing
 
-- content_for :sidebar do
-  = render "shared/show/contacts", record: @listing
+      = render "shared/show/text", record: @listing
 
-= render "shared/show/pictures", record: @listing
+      = render "shared/comments", record: @listing
 
-.col-xs-12
-  = render @listing
-= render "shared/comments", record: @listing
-/= render "shared/gads/leaderboard"
-.visible-xs
-  = render "shared/show/contacts", record: @listing
-= render "shared/show/map", record: @listing
+    .col-xs-12.col-md-4
+      = render "shared/show/contacts", record: @listing
+      = render "shared/show/map", record: @listing

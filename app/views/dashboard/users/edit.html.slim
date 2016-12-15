@@ -1,19 +1,24 @@
-#pictures-data data-id=current_user.id data-type=current_user.class.to_s
-ul.nav.nav-tabs role="tablist"
-  li.active role="presentation"
-    = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-  li role="presentation"
-    = link_to "Аватар", "#logo", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-  li role="presentation"
-    = link_to "Галерея", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+.container.container-md
+  = render "dashboard/shared/header",
+           header_title: "Мои настройки",
+           header_description:  "Здесь вы можете редактировать свои личные данные"
 
-br
-.tab-content
-  #form.tab-pane.fade.in.active role="tabpanel"
-    = render 'form'
+  #pictures-data data-id=current_user.id data-type=current_user.class.to_s
+  ul.nav.nav-tabs role="tablist"
+    li.active role="presentation"
+      = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+    li role="presentation"
+      = link_to "Аватар", "#logo", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+    li role="presentation"
+      = link_to "Галерея", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
-  #logo.tab-pane.fade role="tabpanel"
-      = render "dashboard/users/images_form"
+  br
+  .tab-content
+    #form.tab-pane.fade.in.active role="tabpanel"
+      = render 'form'
 
-  #pictures.tab-pane.fade role="tabpanel"
-    = render "dashboard/shared/pictures_form", record: current_user
+    #logo.tab-pane.fade role="tabpanel"
+        = render "dashboard/users/images_form"
+
+    #pictures.tab-pane.fade role="tabpanel"
+      = render "dashboard/shared/pictures_form", record: current_user

@@ -1,9 +1,0 @@
-tr
-  td= image_tag partner.image.url(:thumb), class: "center-block"
-  td= link_to partner.title, edit_dashboard_partner_path(partner)
-  td
-  td= partner.clicks
-  td.text-center = partner.approved? ? "Активно" : "Рассматривается"
-  td.text-center= link_to 'Удалить',
-            dashboard_partner_path(partner),
-            method: :delete, data: { confirm: I18n.t(:confirm) }

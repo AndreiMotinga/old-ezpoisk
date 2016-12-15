@@ -1,12 +1,11 @@
 footer {
-  background-color: $light-gray;
-  margin-top: 20px;
-  .list-inline { margin-bottom: 0; }
+  background-color: darken($background, 10%);
+  margin-top: $large-spacing;
+
+  padding-bottom: $large-spacing;
+  padding-top: $large-spacing;
 
   a {
     color: $dark-gray;
-    text-decoration: none;
   }
-
-  li { padding: 2px; }
 }

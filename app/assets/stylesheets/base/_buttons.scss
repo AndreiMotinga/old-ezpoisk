@@ -1,10 +1,22 @@
-.mobile-btn {
+.btn-ez {
   background-color: transparent;
-  border: 1px solid $blue;
+  border: 1px solid $action-color;
   border-radius: 0;
-  color: $blue;
+  color: $action-color;
   font-size: 12px;
   height: 30px;
   padding: 7px 12px;
   text-transform: uppercase;
+  transition: color $base-duration $base-timing;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: $orange;
+    border: 1px solid $orange;
+  }
+}
+
+.mdl-button.mdl-button--colored {
+  color: $orange;
 }

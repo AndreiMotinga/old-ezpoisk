@@ -1,0 +1,11 @@
+.dashboard-listings-edit {
+  .edit-form-images {
+    display: flex;
+    flex-wrap: wrap;
+
+    .thumbnail {
+      flex-grow: 1;
+      margin: 5px;
+    }
+  }
+}

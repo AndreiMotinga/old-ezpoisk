@@ -1,45 +1,23 @@
 nav#navbar-main.navbar-fixed-top.navbar-main
   .container
-    .pull-left
-      ul.nav.navbar-nav
-        li
-          button.hamburger.is-closed data-toggle="offcanvas" type="button"
-            span.hamb-top
-            span.hamb-middle
-            span.hamb-bottom
-      = link_to root_path do
-        / todo replace navbar-logo with ezpoisk
-        = image_tag "navbar-logo", class: "img-responsive navbar-logo"
-
-    .pull-right.hidden-xs
-      ul.nav.navbar-nav
-        li= link_to "Подать объявление", new_dashboard_listing_path
-
-        - if user_signed_in?
-          li.dropdown.hidden-xs
-            a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
-                                     data-toggle="dropdown" href="#" role="button"]
-              = image_tag current_user.logo, class: "img-circle"
-              span.caret
-            ul.dropdown-menu.pull-right
-              li= link_to "Моя страница", user_path(current_user)
-              li= link_to "Mои настройки", main_app.edit_dashboard_user_path(current_user), "data-turbolinks": false
-              li = link_to "Мои Объявления", main_app.dashboard_listings_path
-              li = link_to "Мои Ответы", main_app.dashboard_answers_path, tabindex: '-1'
-              /li = link_to "Мои Отзывы", main_app.dashboard_reviews_path, tabindex: '-1'
-              li.divider role="separator"
-              /li = link_to "Реклама", main_app.dashboard_partners_path
-              - if current_user.try(:editor?)
-                li = link_to "Мои Статьи", main_app.dashboard_editor_path(current_user)
-                li.divider role="separator"
-              li= link_to t(:sign_out), main_app.destroy_user_session_path, method: :delete
-        - else
-          li= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"
-javascript:
-  $(document).ready(function(){
-    $('.dropdown-submenu a.test').on("click", function(e){
-      $(this).next('ul').toggle();
-      e.stopPropagation();
-      e.preventDefault();
-    });
-  });
+    ul.pull-left
+      li.nav-link
+        a href="#" class="js-menu-trigger sliding-panel-button"
+          = fa_icon "bars"
+    a href=root_path = image_tag "navbar-logo"
+    ul.pull-right
+      li.nav-link.hidden-xs= link_to "Подать объявление", new_dashboard_listing_path
+      - if user_signed_in?
+        li.nav-link.dropdown
+          a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
+                                   data-toggle="dropdown" href="#" role="button"]
+            = image_tag current_user.avatar(:thumb), class: "img-circle avatar"
+            span.caret
+          ul.dropdown-menu.pull-right
+            /li= link_to "Моя страница", user_path(current_user)
+            li= link_to "Мои объявления", dashboard_listings_path
+            li= link_to "Mои настройки", edit_dashboard_user_path(current_user)
+            /li = link_to "Мои ответы", dashboard_answers_path
+            li= link_to t(:sign_out), destroy_user_session_path, method: :delete
+      - else
+        li.nav-link= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"

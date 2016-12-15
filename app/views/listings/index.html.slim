@@ -1,17 +1,18 @@
-= title("Объявления в США: Нью Йорке, Сан-Франциско, Лос-Анджелес, Хьюстон, Майами - ezpoisk")
-= desc("Объявления для русскоговорящих людей в США")
+- meta title: "Бесплатные объявления в США: #{t params[:kind]} - ezpoisk",
+       description: t("#{params[:kind]}-description")
 
-#search-toggle.btn.mobile-btn.margin-bottom-10
-  | Настроить фильтр | #{@listings.total_count}
+section
+  #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
+    | Настроить фильтр | #{@listings.total_count}
 
+section#search-form.search
+  .container.container-md
+    = render "listings/search/#{params[:kind]}"
 
-#search-form.search-form.white-block.mdl-shadow--3dp
-  .panel
-    .panel-body
-      = render "listings/search/#{params[:kind]}"
-
-.col-xs-12 data-id="listings" data-term=params[:term]
-  = render @listings
+- if @listings.any?
+  .listings-container
+    .container.container-md data-id="listings" data-term=params[:term]
+      = render @listings
 
 .row
   .col-xs-12

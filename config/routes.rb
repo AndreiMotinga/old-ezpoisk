@@ -34,28 +34,26 @@ Rails.application.routes.draw do
   get "/tos", to: "tos#tos"
 
   namespace :dashboard do
+    resources :listings, except: :show
     resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
-    namespace :listings do
-      # todo move there categories somehere else
-      resources :categories, only: [:index]
-    end
-    resources :listings, except: :show
     resources :reviews, except: :show
     resources :answers, only: [:index]
-    authenticate :user, ->(u) { u.editor? } do
-      resources :editors, only: [:show, :update]
-    end
-    resources :partners do
-      post "increment", to: "partners#increment", on: :collection
-    end
+  end
+
+  authenticate :user, ->(u) { u.editor? } do
+    resources :editors, only: [:show, :update]
+  end
+
+  namespace :listings do
+    resources :categories, only: [:index]
+    resources :subcategories, only: [:index]
   end
 
   resources :listings, only: [:index, :show] do
     collection do
-      get :subcategories
-      get(":kind(/:state(/:city(/:category(/:subcategory))))",
+      get(":kind(/:state(/:city))",
           kind: /real-estate|jobs|services|sales/,
           to: "listings#search",
           as: "search")
@@ -63,7 +61,7 @@ Rails.application.routes.draw do
   end
 
   authenticate :user, ->(u) { u.admin? } do
-    mount Sidekiq::Web => "/sidekiq_monstro"
+    mount Sidekiq::Web => "/sidekiq"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
 

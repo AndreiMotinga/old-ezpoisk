@@ -1,7 +1,30 @@
-.search-form {
-  display: none;
+.listings {
+  .listings-container {
+    padding-top: $large-spacing;
+    padding-bottom: $large-spacing;
+    margin-bottom: $large-spacing;
+    background-color: $white;
+  }
 
-  .nav-tabs > li > a {
-    padding: 10px 12px;
+  // search
+  .search-toggle {
+    margin: $base-spacing;
+  }
+
+  .search {
+    background: $background;
+    padding-bottom: $base-spacing;
+
+    @media(max-width: $screen-sm) {
+      display: none;
+    }
+
+    select,
+    input {
+      margin-bottom: 5px;
+    }
+  }
+  .select2-container {
+    margin-bottom: 5px;
   }
 }
