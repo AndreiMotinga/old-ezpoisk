@@ -1,0 +1,67 @@
+// Question autocomplete styles
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  width: 160px;
+  padding: 4px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  background-clip: padding-box;
+
+  .ui-menu-item > a.ui-corner-all {
+    clear: both;
+    color: #555555;
+    display: block;
+    font-weight: normal;
+    line-height: 18px;
+    padding: 3px 15px;
+    white-space: nowrap;
+
+    &.ui-state-hover,
+    &.ui-state-active {
+      background-color: #0088cc;
+      background-image: none;
+      border-radius: 0px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}
+
+li.ui-menu-item {
+  border-bottom: 1px solid #ddd;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 14px;
+  padding: 5px 10px;
+}
+
+// searched term
+.ui-state-highlight {
+  color: $blue;
+  font-weight: bold;
+}
+
+.ui-menu-item {
+  cursor: pointer;
+}
+
+li.ui-menu-item:hover {
+  background-color: $light-blue;
+}
+
+//  some weird div on the bottom of the page
+.ui-helper-hidden-accessible {
+  display: none;
+}

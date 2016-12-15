@@ -6,7 +6,6 @@
 @import "base/_base";
 @import "_helpers"; // todo fix
 
-@import "components/questions/_search";
 @import "components/_answer";
 @import "components/_comment";
 @import "components/_fa";
@@ -26,6 +25,7 @@
 @import "components/_sidebar";
 @import "components/_tag_cloud";
 @import "components/_tags";
+@import "components/_question_search";
 
 @import "pages/listings";
 @import "pages/articles";
