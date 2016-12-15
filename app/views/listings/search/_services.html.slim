@@ -7,7 +7,7 @@ form.form-horizontal action=search_listings_path(kind: "services") method="get"
         options_for_select([["Раздел", ""]] + ru(KINDS[:services][:categories]), params[:category]),
                    class: "form-control", id: "service_category"
     .col-xs-12.col-sm-6
-      = select_tag :subcategory,
+      = select_tag :listing_subcategory,
                    service_subcategories_options,
                    class: "form-control", "data-id": "listing_subcategory"
 
