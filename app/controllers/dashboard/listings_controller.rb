@@ -101,7 +101,7 @@ class Dashboard::ListingsController < ApplicationController
       :kind, :category, :subcategory, :title, :text, :active,
       :state_id, :city_id, :street,
       :phone, :email, :vk, :fb, :gl, :tw, :ok, :site,
-      :duration, :price, :baths, :space, :rooms, :fee
+      :duration, :price, :baths, :space, :rooms
     )
   end
 

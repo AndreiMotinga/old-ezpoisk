@@ -14,7 +14,7 @@ FactoryGirl.define do
     featured false
     token "MyString"
 
-    state_id 33
+    state_id 34
     city_id 18_031
     street "MyString"
     lat 1.5

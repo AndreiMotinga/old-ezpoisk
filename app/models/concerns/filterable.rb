@@ -26,7 +26,6 @@ module Filterable
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, ->(id) { where(city_id: id) }
     scope :state, ->(slug) { where(state_id: State.find_by_slug(slug).try(:id)) }
-    scope :fee, ->(fee) { where(fee: fee) }
     scope :category, ->(category) { where(category: category) }
     scope :subcategory, ->(subcategory) { where(subcategory: subcategory) }
     scope :duration, ->(type) { where(duration: type) }

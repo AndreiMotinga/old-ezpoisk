@@ -85,7 +85,7 @@ describe User do
     it "has an address" do
       record = create(:user,
                       street: "1970 East 18th str",
-                      state_id: 33,
+                      state_id: 34,
                       city_id: 18_033,
                       zip: 11_229)
 

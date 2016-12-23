@@ -32,7 +32,7 @@ RSpec.describe Listing, type: :model do
       it "has an address" do
         record = create(:listing,
                         street: "1970 East 18th str",
-                        state_id: 33,
+                        state_id: 34,
                         city_id: 18_033,
                         zip: 11_229)
 
@@ -44,7 +44,7 @@ RSpec.describe Listing, type: :model do
       it "returns infowindow string" do
         record = create(:listing,
                         street: "1970 East 18th str",
-                        state_id: 33,
+                        state_id: 34,
                         city_id: 18_033,
                         zip: 11_229)
         address = "1970 East 18th str Brooklyn New York 11229"
@@ -57,12 +57,21 @@ RSpec.describe Listing, type: :model do
       it "return map_marker" do
         record = create(:listing,
                         street: "1970 East 18th str",
-                        state_id: 33,
+                        state_id: 34,
                         city_id: 18_033,
                         zip: 11_229)
 
         expect(record.map_marker).to_not eq nil
       end
+    end
+  end
+
+  describe ".to_deactivate" do
+    it "returns active listings that weren't edited more than 30 days" do
+      create_list :listing, 5, updated_at: 31.days.ago
+      create :listing, active: false, updated_at: 31.days.ago
+      create :listing
+      expect(Listing.to_deactivate.size).to eq 5
     end
   end
 end

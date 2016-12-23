@@ -7,7 +7,7 @@ describe Vk::Unifier do
   describe "#unified" do
     it "returns formatted item" do
       group = { kind: "jobs",
-                state_id: 33,
+                state_id: 34,
                 city_id: 17_880 }
       item = { from_id: 216_072_410,
                text: "item text",

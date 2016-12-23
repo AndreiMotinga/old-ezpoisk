@@ -35,7 +35,6 @@ class ApplicationController < ActionController::Base
     prms[:rooms]       = params[:rooms]       if params[:rooms].present?
     prms[:baths]       = params[:baths]       if params[:baths].present?
     prms[:sorted]      = params[:sorted]      if params[:sorted].present?
-    prms[:fee]         = params[:fee]         if params[:fee].present?
     if params[:geo_scope] && params[:geo_scope][:origin].present?
       prms[:geo_scope] = {}
       prms[:geo_scope][:origin] = params[:geo_scope][:origin]
