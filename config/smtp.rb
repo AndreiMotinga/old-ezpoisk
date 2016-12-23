@@ -3,6 +3,7 @@ SMTP_SETTINGS = {
   authentication: :plain,
   domain: ENV.fetch("SMTP_DOMAIN"), # example: "heroku.com"
   password: ENV.fetch("SMTP_PASSWORD"),
+  enable_starttls_auto: true,
   port: "587",
   user_name: ENV.fetch("SMTP_USERNAME")
 }
