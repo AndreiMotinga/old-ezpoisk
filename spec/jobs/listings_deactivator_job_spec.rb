@@ -12,11 +12,11 @@ describe ListingsDeactivatorJob do
   end
 
   it "destroys ez's listings" do
-    ez = create :user # ez / id: 1
+    ez = create :user
     user = create :user
     create :listing
     create :listing, updated_at: 32.days.ago, user_id: user.id
-    create_list :listing, 10, updated_at: 32.days.ago, user_id: 1 # ez.id
+    create_list :listing, 10, updated_at: 32.days.ago, user_id: ez.id
 
     ListingsDeactivatorJob.perform_async
     ListingsDeactivatorJob.drain

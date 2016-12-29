@@ -73,5 +73,11 @@ RSpec.describe Listing, type: :model do
       create :listing
       expect(Listing.to_deactivate.size).to eq 5
     end
+
+    it "doesn't include services" do
+      create_list :listing, 5, :apartment, updated_at: 31.days.ago
+      create :listing, :service
+      expect(Listing.to_deactivate.size).to eq 5
+    end
   end
 end

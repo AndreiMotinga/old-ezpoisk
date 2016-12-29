@@ -3,8 +3,9 @@ class ListingsDeactivatorJob
   include Sidekiq::Worker
 
   def perform
+    user = User.first # ez
     listings = Listing.to_deactivate
-    listings.where(user_id: 1).destroy_all
+    listings.where(user_id: user.id).destroy_all
     listings.update_all(active: false)
   end
 end

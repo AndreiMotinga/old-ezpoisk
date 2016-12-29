@@ -23,7 +23,8 @@ class Listing < ApplicationRecord
   validates :text, presence: true, length: { minimum: 10 }
 
   def self.to_deactivate
-    where("active = ? AND updated_at < ?", true, 30.days.ago)
+    where.not(kind: "services")
+         .where("active = ? AND updated_at < ?", true, 30.days.ago)
   end
 
   def logo_url(style = :medium)
