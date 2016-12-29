@@ -1,28 +1,27 @@
-.white-block
-  .panel
-    .panel-body
-      = bootstrap_form_for @question do |f|
+.panel
+  .panel-body
+    = bootstrap_form_for @question do |f|
+      .field
+        = f.text_field :title, label: "Ваш вопрос", value: @question.title || params[:question]
+
+      .field
+        = f.text_area :text, label: "Подробности"
+
+      - if current_user.try(:editor?)
         .field
-          = f.text_field :title, label: "Ваш вопрос", value: @question.title || params[:question]
+          = f.text_field :image_url, label: "Картинка"
 
-        .field
-          = f.text_area :text, label: "Подробности"
+      .field
+        = label_tag "Тэги", nil
+        = collection_select :question,
+          :tag_list,
+          ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
+          { :selected => @question.tag_list },
+          { :multiple => true, :name => 'question[tag_list][]', class: "q-select my-dropdown" }
+      - if @question.errors[:tag_list].any?
+        ul.list-group-item-danger
+          li Добавьте тэги, чтобы пользователи могли найти ваш вопрос
 
-        - if current_user.try(:editor?)
-          .field
-            = f.text_field :image_url, label: "Картинка"
-
-        .field
-          = label_tag "Тэги", nil
-          = collection_select :question,
-            :tag_list,
-            ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
-            { :selected => @question.tag_list },
-            { :multiple => true, :name => 'question[tag_list][]', class: "q-select my-dropdown" }
-        - if @question.errors[:tag_list].any?
-          ul.list-group-item-danger
-            li Добавьте тэги, чтобы пользователи могли найти ваш вопрос
-
-        br/
-        .actions
-          = f.submit 'Сохранить', class: "btn mobile-btn"
+      br/
+      .actions
+        = f.submit 'Сохранить', class: "btn-ez"
