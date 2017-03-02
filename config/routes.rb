@@ -4,6 +4,8 @@ require "sidekiq/cron/web"
 Rails.application.routes.draw do
   default_url_options host: ENV.fetch("APPLICATION_HOST")
 
+  get '.well-known/acme-challenge/Kxaxwygc2ucTLW2-D3TF3wM5XHi6OQ9X_nhloCkhilc', to: "home#cert"
+
   # remove with pg_search
   resources :searches, only: [:index]
   resources :comments, only: [:create]
