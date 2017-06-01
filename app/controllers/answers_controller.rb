@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
   before_action :set_answer, only: [:edit, :update, :destroy]
+  layout "answers"
 
   def index
     @answers = Answer.includes(:user).search(params[:term]).page(params[:page])

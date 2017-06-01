@@ -1,26 +1,22 @@
 /todo test for this page
-/= title("#{@question.title} - ezpoisk")
-/- description = strip_tags(@question.text).truncate(160)
-/- description.present? ? description : "#{@question.title} - ezpoisk"
-/= desc(description)
-/
-/= og_type("article")
-/= og_url(question_url(@question))
-/= og_image(@question.image)
-/
-.container
-  .row
-    .col-xs-12
-      = render "answers/search"
-      = render @question
+- description = strip_tags(@question.text).truncate(160)
+- meta_desc = description.present? ? description : "#{@question.title} - ezpoisk"
+- meta title: "#{@question.title} - ezpoisk",
+       description: meta_desc,
+       og: { type: "article",
+             url: question_url(@question),
+             image: @question.image }
 
-  / ANSWERS
-  .row
-    .col-xs-12
-      - if @question.answers_count > 0
-        = render @question.answers.includes(:user)
-      - else
-        h3= link_to new_answer_path(question_id: @question.id) do
-            |  Можете ответить на этот вопрос?
-            = "  "
-            .fa.fa-pencil
+= render "answers/search"
+= render @question
+
+/ ANSWERS
+.row
+  .col-xs-12
+    - if @question.answers_count > 0
+      = render @question.answers.includes(:user)
+    - else
+      h3= link_to new_answer_path(question_id: @question.id) do
+          |  Можете ответить на этот вопрос?
+          = "  "
+          .fa.fa-pencil

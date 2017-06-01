@@ -1,10 +1,5 @@
-= question_title
-= question_desc
-
 - content_for :sidebar do
   = render "shared/tag_cloud", tags: @tags, url: "/questions/unanswered/"
-
-= render "questions/search_form"
 
 .col-xs-12 data-id="listings"
   = render @questions

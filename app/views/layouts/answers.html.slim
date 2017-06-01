@@ -1,0 +1,20 @@
+doctype html
+html lang="ru"
+  = render "head"
+  body class= body_class
+    = render "navbar"
+
+    .page-wrap
+      = render "notice" unless devise_controller?
+      .container
+        .hidden-xs.hidden-sm.col-md-3.col-lg-2
+          = yield :sidebar
+        .col-xs-12.col-md-9.col-lg-7
+          = yield
+        .visible-lg.col-lg-3
+          = yield :right
+
+    = render "footer"
+    = render "shared/new_session_modal"
+    = render "javascript"
+    = render "sliding_panel"

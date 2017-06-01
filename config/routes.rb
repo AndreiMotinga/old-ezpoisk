@@ -4,15 +4,12 @@ require "sidekiq/cron/web"
 Rails.application.routes.draw do
   default_url_options host: ENV.fetch("APPLICATION_HOST")
 
-  get '.well-known/acme-challenge/Kxaxwygc2ucTLW2-D3TF3wM5XHi6OQ9X_nhloCkhilc', to: "home#cert"
-
-  # remove with pg_search
+  # todo remove with pg_search
   resources :searches, only: [:index]
   resources :comments, only: [:create]
 
-  resources :questions, except: [:edit, :update, :destroy] do
+  resources :questions, only: [:show] do
     collection do
-      get "tag/:tag", to: "questions#tag", as: :tag
       get "unanswered", to: "questions#unanswered"
       get "unanswered/:tag", to: "questions#unanswered_tag", as: :unanswered_tag
     end

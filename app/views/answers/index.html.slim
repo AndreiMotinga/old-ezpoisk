@@ -1,8 +1,11 @@
-.container data-id="listings" data-term=params[:term]
-  .row
-    .col-xs-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-      = render "answers/search"
-      = render @answers
+- content_for :sidebar do
+  = render "shared/tag_cloud",
+           tags: @tags = Answer.tag_counts.sort_by(&:name),
+           url: "/answers/tag/"
+
+div data-id="listings" data-term=params[:term]
+  = render "answers/search"
+  = render @answers
 
 .row
   .col-xs-12
