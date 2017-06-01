@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   delegate :show_url, to: :commentable
   delegate :title, to: :commentable
-  delegate :logo, to: :user
+  delegate :avatar, to: :user
 
   def emails
     subscribers.reject(&:online?).map(&:email)

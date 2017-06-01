@@ -1,6 +1,6 @@
 .row.comment
   .col-xs-1
-    = image_tag comment.logo, class: "center-block avatar"
+    = image_tag comment.avatar, class: "center-block avatar"
   .col-xs-11
     - if comment.user
       span.name= link_to comment.user.name_to_show, user_path(comment.user)
