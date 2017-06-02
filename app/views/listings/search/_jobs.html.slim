@@ -2,16 +2,16 @@ form.form-horizontal action=search_listings_path(kind: "jobs") method="get"
   = render "shared/search_by_address"
 
   .row
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.col-md-6
       = select_tag :category,
         options_for_select(ru(KINDS[:jobs][:categories]), params[:category]),
                    class: "form-control"
       = select_tag :subcategory,
                   options_for_select([["Подкатегория", ""]] + ru(KINDS[:jobs][:subcategories]), params[:category]),
                   class: "form-control"
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.col-md-6
       = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
 
-  hr
   small.text-muted Объявлений: #{@listings.total_count}
+  hr
   = submit_tag "Обновить", name: nil, class: "btn btn-ez pull-right"

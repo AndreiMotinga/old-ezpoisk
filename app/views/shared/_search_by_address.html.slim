@@ -1,14 +1,14 @@
 .row
-  .col-xs-12.col-sm-3
+  .col-xs-12.col-sm-3.col-md-12
     = select_tag :state,
                  options_for_select(STATES, state),
                  class: "form-control state-select-slug my-dropdown"
 
-  .col-xs-12.col-sm-3
+  .col-xs-12.col-sm-3.col-md-12
     = select_tag :city, options_from_collection_for_select(state_cities, :slug, :name, city),
                  class: "form-control city-select my-dropdown"
 
-  .col-xs-12.col-sm-2
+  .col-xs-12.col-sm-2.col-md-12
     = within_text_field_param
-  .col-xs-12.col-sm-4
+  .col-xs-12.col-sm-4.col-md-12
     = origin_text_field_param

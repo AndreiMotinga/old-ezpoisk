@@ -2,7 +2,7 @@ form.form-horizontal action=search_listings_path(kind: "services") method="get"
   = render "shared/search_by_address"
 
   .row
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
         options_for_select([["Раздел", ""]] + ru(KINDS[:services][:categories]), params[:category]),
                    class: "form-control", id: "service_category"
@@ -10,11 +10,11 @@ form.form-horizontal action=search_listings_path(kind: "services") method="get"
                    service_subcategories_options,
                    class: "form-control", "data-id": "listing_subcategory"
 
-    .col-xs-12.col-sm-6
+    .col-xs-12.col-sm-6.col-md-12
       = text_field_tag :term,
                        params[:term],
                        class: "form-control", placeholder: "Ключевое слово..."
 
-  hr/
   small.text-muted Объявлений: #{@listings.total_count}
+  hr/
   = submit_tag "Обновить", name: nil, class: "btn btn-ez pull-right"

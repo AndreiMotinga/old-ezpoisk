@@ -2,28 +2,28 @@ form.form-horizontal action=search_listings_path(kind: "real-estate") method="ge
   = render "shared/search_by_address"
 
   .row
-    .col-xs-12.col-sm-6.col-md-3
+    .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
         options_for_select(ru(KINDS["real-estate"][:categories]), params[:category]),
                    class: "form-control"
       = select_tag :subcategory,
                    options_for_select(ru(KINDS["real-estate"][:subcategories]), params[:subcategory]),
                    class: "form-control"
-    .col-xs-12.col-sm-6.col-md-3
+    .col-xs-12.col-sm-6.col-md-12
       = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
       = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
 
-    .col-xs-12.col-sm-6.col-md-3
+    .col-xs-12.col-sm-6.col-md-12
       = select_tag :duration,
                    options_for_select([["Период", ""]] + ru(KINDS["real-estate"][:duration]), params[:duration]),
                    class: "form-control"
       = select_tag :rooms,
                    options_for_select([["Комнаты", ""]] + ru(KINDS["real-estate"][:rooms]), params[:rooms]),
                    class: "form-control"
-    .col-xs-12.col-sm-6.col-md-3
+    .col-xs-12.col-sm-6.col-md-12
       = sort_select(rp_sort_opts)
       = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевые слова... "
 
-  hr
   small.text-muted Объявлений: #{@listings.total_count}
+  hr
   = submit_tag "Обновить", name: nil, class: "btn btn-ez pull-right"

@@ -5,13 +5,14 @@ section
   #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
     | Настроить фильтр | #{@listings.total_count}
 
-section#search-form.search
-  .container.container-md
-    = render "listings/search/#{params[:kind]}"
 
-- if @listings.any?
-  .listings-container
-    .container.container-md data-id="listings" data-term=params[:term]
+.container
+  .row
+    .col-xs-12.col-md-2.col-md-offset-1
+      section#search-form.search
+        = render "listings/search/#{params[:kind]}"
+
+    .col-xs-12.col-md-8 data-id="listings"
       = render @listings
 
 .row
