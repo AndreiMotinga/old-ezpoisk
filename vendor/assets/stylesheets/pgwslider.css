@@ -91,8 +91,8 @@
 .pgwSlideshow .ps-list li img {
     display: block;
     border: 1px solid #777;
-    width: 80px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
 }
 
 .pgwSlideshow .ps-list li .ps-item.ps-selected {
@@ -107,14 +107,14 @@
 }
 
 .pgwSlideshow .ps-prevIcon {
-    border-color:transparent #fff transparent;
+    border-color:transparent orange transparent;
     border-style: solid;
     border-width: 10px 10px 10px 0;
     display: block;
 }
 
 .pgwSlideshow .ps-nextIcon {
-    border-color:transparent #fff transparent;
+    border-color:transparent orange transparent;
     border-style: solid;
     border-width: 10px 0 10px 10px;
     display: block;
