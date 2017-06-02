@@ -1,4 +1,4 @@
-.col-xs-12.listing.mdl-shadow--2dp
+.col-xs-12.listing.mdl-shadow--2dp class=("featured mdl-shadow--8dp" if listing.featured?)
   .row
     .col-xs-12.col-sm-4
       = link_to listing do
@@ -6,7 +6,11 @@
 
     .col-xs-12.col-sm-8
       / line 0
-      h4.title= link_to listing.title, listing
+      h4.title
+        - if listing.featured?
+          span.top Top
+        = " "
+        = link_to listing.title, listing
 
       / line 1
       = "#{t listing.category} | #{t listing.subcategory}"

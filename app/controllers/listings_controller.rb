@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   def index
     @listings = Listing.includes(:state, :city)
+                       .order("featured, priority desc, updated_at desc")
                        .filter(sliced_params)
                        .page(params[:page])
     respond_to do |format|

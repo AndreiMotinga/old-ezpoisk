@@ -1,10 +1,19 @@
 .listing {
   background-color: $white;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding: 5px;
 
   .logo {
     max-width: 180px;
+  }
+
+  .top {
+    border: thin solid $light-gray;
+    border-radius: 3px;
+    color: $yellow;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 1px 5px;
   }
 
   .post-devider {
@@ -31,4 +40,8 @@
       }
     }
   }
+}
+
+.listing.featured {
+  margin-bottom: 20px;
 }
