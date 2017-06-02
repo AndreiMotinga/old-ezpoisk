@@ -40,7 +40,7 @@ module FormHelper
     category = params[:category]
     return unless category.present?
     opts = [["Категория", ""]] + ru(KINDS[:services][:subcategories][category])
-    options_for_select(opts, params[:subcategory])
+    options_for_select(opts, params[:listing_subcategory])
   end
 
   def origin
