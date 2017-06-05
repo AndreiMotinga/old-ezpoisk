@@ -48,10 +48,10 @@ SitemapGenerator::Sitemap.create do
         changefreq: "monthly"
   end
 
-  User.find_each do |user|
-    add user_path(user),
-        priority: 0.4,
-        lastmod: user.updated_at,
-        changefreq: "monthly"
-  end
+  # User.find_each do |user|
+  #   add user_path(user),
+  #       priority: 0.4,
+  #       lastmod: user.updated_at,
+  #       changefreq: "monthly"
+  # end
 end
