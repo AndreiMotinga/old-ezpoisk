@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :searches, only: [:index]
   resources :comments, only: [:create]
 
-  resources :questions, only: [:show] do
+  resources :questions, only: [:new, :create, :show] do
     collection do
       get "unanswered", to: "questions#unanswered"
       get "unanswered/:tag", to: "questions#unanswered_tag", as: :unanswered_tag
