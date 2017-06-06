@@ -6,9 +6,9 @@ form.form-horizontal action=search_listings_path(kind: "services") method="get"
       = select_tag :category,
         options_for_select([["Раздел", ""]] + ru(KINDS[:services][:categories]), params[:category]),
                    class: "form-control", id: "service_category"
-      = select_tag :listing_subcategory,
+      = select_tag :subcategory,
                    service_subcategories_options,
-                   class: "form-control", "data-id": "listing_subcategory"
+                   class: "form-control", "data-id": "listing_subcategory", id: "listing_subcategory"
 
     .col-xs-12.col-sm-6.col-md-12
       = text_field_tag :term,

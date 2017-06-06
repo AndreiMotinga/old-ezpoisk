@@ -29,15 +29,15 @@ $(document).on("change","#listing_category", function(e){
   }
 });
 
-$(document).on("change","#listing_subcategory", function(e){
-  // hide apartment fileds if subcategory is not apartment
-  var fields = $("#re_fields");
-  if (this.value !== "apartment") {
-    fields.addClass("hidden");
-  } else {
-    fields.removeClass("hidden");
-  }
-});
+// $(document).on("change","#listing_subcategory", function(e){
+//   // hide apartment fileds if subcategory is not apartment
+//   var fields = $("#re_fields");
+//   if (this.value !== "apartment") {
+//     fields.addClass("hidden");
+//   } else {
+//     fields.removeClass("hidden");
+//   }
+// });
 
 function getSubcategories(category){
   $.ajax({
