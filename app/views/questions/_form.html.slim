@@ -7,9 +7,9 @@
       .field
         = f.text_area :text, label: "Подробности"
 
-      - if current_user.try(:editor?)
-        .field
-          = f.text_field :image_url, label: "Картинка"
+      /- if current_user.try(:editor?)
+      /  .field
+      /    = f.text_field :image_url, label: "Картинка"
 
       .field
         = label_tag "Тэги", nil
