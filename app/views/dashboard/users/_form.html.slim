@@ -5,6 +5,7 @@
         = link_to "Обновить пароль", edit_user_registration_path
         hr
         = f.text_field :name, label: "Ваше имя"
+        = f.text_field :slug, label: "Профессия"
         = f.text_area :about, label: "Расскажите о себе", rows: 5
 
   .white-block.mdl-shadow--2dp

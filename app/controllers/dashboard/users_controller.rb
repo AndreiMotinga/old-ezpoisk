@@ -20,9 +20,9 @@ class Dashboard::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:cover, :about, :facebook, :email, :name,
-                                    :google, :vk, :ok, :site, :twitter, :street,
-                                    :phone, :state_id, :city_id, :avatar,
-                                    :show_email)
+                                 :google, :vk, :ok, :site, :twitter, :street,
+                                 :phone, :state_id, :city_id, :avatar,
+                                 :show_email, :slug)
   end
 
   def prms
