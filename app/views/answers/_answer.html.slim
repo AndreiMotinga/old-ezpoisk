@@ -15,6 +15,7 @@
                               class: "img-responsive img-circle center-block"
               .col-xs-9.col-sm-10.name-block
                 h4.name= link_to answer.name_to_show, user_path(answer.user)
+                small= answer.user.slug
                 p.date.text-muted= "#{answer.votes_count} голосов "
 
           .panel-body
