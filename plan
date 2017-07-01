@@ -1,0 +1,46 @@
+Tech problems
+  How to architect system, monolith / microservices ?
+  Listings | Account | Login
+
+
+
+
+
+Feed
+
+Listings
+  Недивжимость
+  Работа
+  Продается
+  Услуги
+
+Answers
+
+Reviews
+Tickets
+
+Plan
+
+STEP 0 = find 60 companies that will buy ads on price 10/week
+
+STEP 1  - Listings MVP
+  - Lounch bulleting board
+  - Gather 60 companies * $10 week / 12 weeks = $7200
+  - Find Additional 140 companies to increase profits to $2000/week
+
+2. Implement Answers
+  - Build quora
+  - hire 4 content writers
+  - implement context advertising
+  - This stage should be  heavy growth
+
+3. Feed
+  - hire front and back end developer
+  - All attributes of social media platform
+    - Feed
+    - User Profile Page
+  - Additional ad placements
+
+4. Mobile Apps
+5. Tickets sales
+6. Review and further improvements
