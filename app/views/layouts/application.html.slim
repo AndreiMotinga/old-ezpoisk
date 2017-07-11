@@ -2,14 +2,14 @@ doctype html
 html lang="ru"
   = render "head"
   body class= body_class
-    /= render "navbar"
+    = render "navbar"
 
     .page-wrap
       = render "notice" unless devise_controller?
       main
         = yield
 
-    /= render "footer"
-    /= render "shared/new_session_modal"
-    /= render "javascript"
-    /= render "sliding_panel"
+    = render "footer"
+    = render "shared/new_session_modal"
+    = render "javascript"
+    = render "sliding_panel"
