@@ -1,5 +1,4 @@
-- meta title: "Бесплатные объявления в США: #{t params[:kind]} - ezpoisk",
-       description: t("#{params[:kind]}-description")
+- meta title: "Бесплатные объявления в США - ezpoisk"
 
 section
   #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
@@ -10,7 +9,7 @@ section
   .row
     .col-xs-12.col-md-2.col-md-offset-1
       section#search-form.search
-        = render "listings/search/#{params[:kind]}"
+        = render "listings/search"
 
     .col-xs-12.col-md-8 data-id="listings"
       = render @listings
