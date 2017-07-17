@@ -1,7 +1,7 @@
 class Action < ApplicationRecord
   belongs_to :actionable, polymorphic: true
 
-  delegate :user, :text, :show_url, :created_at, to: :actionable
+  delegate :user, :text, :title, :show_url, :created_at, to: :actionable
 
   def kind
     case actionable.class.to_s
