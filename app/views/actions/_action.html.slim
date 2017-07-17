@@ -1,0 +1,12 @@
+/= render "actions/#{action.actionable}"
+li.red
+  h5
+    = action.user.try(:name) || "Anonymous"
+    = " "
+    = action.kind
+  small= timeago_tag action.updated_at
+
+  p
+    = strip_tags(action.text).truncate(200)
+    = link_to "eше", action.show_url if action.text.size > 200
+br

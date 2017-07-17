@@ -1,10 +1,14 @@
 class HomeController < ApplicationController
   def index
-    @listings = Listing.joins(:pictures)
-                       .where(pictures: {logo: true}, listings: { active: true })
-                       .order("listings.updated_at desc")
-                       .limit(16)
+    @actions = Action.includes(actionable: :user)
+                     .order(created_at: :desc)
+                     .page(params[:page])
 
-    @answers = Answer.includes(:user).desc.limit(5)
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @actions }
+      end
+    end
   end
 end
