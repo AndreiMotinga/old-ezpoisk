@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 FactoryGirl.define do
+  factory :post do
+    title { Faker::Lorem.sentence(3) }
+    text { Faker::Lorem.paragraph(5) }
+  end
   factory :action do
     actionable nil
   end
