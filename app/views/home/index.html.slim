@@ -16,6 +16,14 @@
   .col-lg-3.red
     p Latests News here
     hr
+    ul
+      - @posts.each do |post|
+        li
+          h6= link_to post.title, post
+          small= timeago_tag post.created_at
+
+    hr
+    p.text-center показать еще
 
 .row
   .col-xs-12
