@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 FactoryGirl.define do
+  factory :action do
+    actionable nil
+  end
   factory :listing do
     kind { %w(real-estate jobs sales).sample }
     category { KINDS[kind][:categories].sample }

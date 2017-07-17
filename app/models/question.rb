@@ -8,6 +8,7 @@ class Question < ActiveRecord::Base
   belongs_to :state
   belongs_to :city
   has_many :answers
+  has_one :action, as: :actionable, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
   validates_presence_of :tag_list

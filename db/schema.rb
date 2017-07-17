@@ -10,275 +10,284 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161219235247) do
+ActiveRecord::Schema.define(version: 20170717221524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "answers", force: :cascade do |t|
-    t.text     "text"
-    t.integer  "user_id"
-    t.integer  "question_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.string   "slug"
-    t.string   "title"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
+  create_table "actions", force: :cascade do |t|
+    t.string "actionable_type"
+    t.bigint "actionable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actionable_type", "actionable_id"], name: "index_actions_on_actionable_type_and_actionable_id"
+  end
+
+  create_table "answers", id: :serial, force: :cascade do |t|
+    t.text "text"
+    t.integer "user_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.string "title"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
-    t.boolean  "paid",               default: false
-    t.integer  "votes_count",        default: 0
-    t.string   "cached_tags",        default: ""
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.index ["city_id"], name: "index_answers_on_city_id", using: :btree
-    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
-    t.index ["slug"], name: "index_answers_on_slug", using: :btree
-    t.index ["state_id"], name: "index_answers_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string  "name"
+    t.boolean "paid", default: false
+    t.integer "votes_count", default: 0
+    t.string "cached_tags", default: ""
+    t.integer "city_id"
     t.integer "state_id"
-    t.string  "slug"
-    t.string  "state_slug"
-    t.index ["slug"], name: "index_cities_on_slug", using: :btree
-    t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
+    t.index ["city_id"], name: "index_answers_on_city_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["slug"], name: "index_answers_on_slug"
+    t.index ["state_id"], name: "index_answers_on_state_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "commentable_type"
-    t.integer  "commentable_id"
-    t.text     "text"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "parent_id"
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
-    t.index ["parent_id"], name: "index_comments_on_parent_id", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  create_table "cities", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "state_id"
+    t.string "slug"
+    t.string "state_slug"
+    t.index ["slug"], name: "index_cities_on_slug"
+    t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
-  create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
-    t.text     "last_error"
+  create_table "comments", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "commentable_type"
+    t.integer "commentable_id"
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string "locked_by"
+    t.string "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "listings", force: :cascade do |t|
-    t.string   "title"
-    t.text     "text"
-    t.string   "category"
-    t.string   "subcategory"
-    t.string   "token"
-    t.boolean  "active"
-    t.integer  "priority"
-    t.boolean  "featured"
-    t.integer  "user_id"
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.string   "street"
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "zip"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "site"
-    t.string   "vk"
-    t.string   "fb"
-    t.string   "gl"
-    t.string   "duration"
-    t.integer  "price"
-    t.integer  "baths"
-    t.integer  "space"
-    t.string   "rooms"
-    t.boolean  "fee"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "kind"
-    t.index ["city_id"], name: "index_listings_on_city_id", using: :btree
-    t.index ["state_id"], name: "index_listings_on_state_id", using: :btree
-    t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
-  end
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text     "content"
-    t.string   "searchable_type"
-    t.integer  "searchable_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
-  end
-
-  create_table "pictures", force: :cascade do |t|
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.boolean  "logo"
-    t.integer  "user_id"
-    t.datetime "created_at",         default: '2016-10-07 07:19:18', null: false
-    t.datetime "updated_at",         default: '2016-10-07 07:19:18', null: false
-    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id", using: :btree
-    t.index ["user_id"], name: "index_pictures_on_user_id", using: :btree
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string   "title"
-    t.text     "text",          default: ""
-    t.integer  "user_id"
-    t.integer  "answers_count", default: 0
-    t.string   "slug"
-    t.string   "image_url",     default: ""
-    t.string   "cached_tags"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["city_id"], name: "index_questions_on_city_id", using: :btree
-    t.index ["slug"], name: "index_questions_on_slug", unique: true, using: :btree
-    t.index ["state_id"], name: "index_questions_on_state_id", using: :btree
-    t.index ["title"], name: "index_questions_on_title", using: :btree
-    t.index ["user_id"], name: "index_questions_on_user_id", using: :btree
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.integer  "listing_id"
-    t.integer  "user_id"
-    t.integer  "rating",     null: false
-    t.text     "text",       null: false
+  create_table "listings", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.string "category"
+    t.string "subcategory"
+    t.string "token"
+    t.boolean "active"
+    t.integer "priority"
+    t.boolean "featured"
+    t.integer "user_id"
+    t.integer "state_id"
+    t.integer "city_id"
+    t.string "street"
+    t.float "lat"
+    t.float "lng"
+    t.integer "zip"
+    t.string "phone"
+    t.string "email"
+    t.string "site"
+    t.string "vk"
+    t.string "fb"
+    t.string "gl"
+    t.string "duration"
+    t.integer "price"
+    t.integer "baths"
+    t.integer "space"
+    t.string "rooms"
+    t.boolean "fee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "title"
-    t.index ["listing_id", "user_id"], name: "index_reviews_on_listing_id_and_user_id", unique: true, using: :btree
-    t.index ["listing_id"], name: "index_reviews_on_listing_id", using: :btree
-    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+    t.string "kind"
+    t.string "original_url"
+    t.index ["city_id"], name: "index_listings_on_city_id"
+    t.index ["state_id"], name: "index_listings_on_state_id"
+    t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
-  create_table "states", force: :cascade do |t|
+  create_table "pg_search_documents", id: :serial, force: :cascade do |t|
+    t.text "content"
+    t.string "searchable_type"
+    t.integer "searchable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
+  end
+
+  create_table "pictures", id: :serial, force: :cascade do |t|
+    t.integer "imageable_id"
+    t.string "imageable_type"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean "logo"
+    t.integer "user_id"
+    t.datetime "created_at", default: "2016-10-07 07:19:18", null: false
+    t.datetime "updated_at", default: "2016-10-07 07:19:18", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+    t.index ["user_id"], name: "index_pictures_on_user_id"
+  end
+
+  create_table "questions", id: :serial, force: :cascade do |t|
+    t.string "title"
+    t.text "text", default: ""
+    t.integer "user_id"
+    t.integer "answers_count", default: 0
+    t.string "slug"
+    t.string "image_url", default: ""
+    t.string "cached_tags"
+    t.integer "city_id"
+    t.integer "state_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["city_id"], name: "index_questions_on_city_id"
+    t.index ["slug"], name: "index_questions_on_slug", unique: true
+    t.index ["state_id"], name: "index_questions_on_state_id"
+    t.index ["title"], name: "index_questions_on_title"
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "reviews", id: :serial, force: :cascade do |t|
+    t.integer "listing_id"
+    t.integer "user_id"
+    t.integer "rating", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "title"
+    t.index ["listing_id", "user_id"], name: "index_reviews_on_listing_id_and_user_id", unique: true
+    t.index ["listing_id"], name: "index_reviews_on_listing_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "states", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "abbr"
     t.string "slug"
-    t.index ["slug"], name: "index_states_on_slug", using: :btree
+    t.index ["slug"], name: "index_states_on_slug"
   end
 
-  create_table "taggings", force: :cascade do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       limit: 128
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.integer "taggable_id"
+    t.string "taggable_type"
+    t.integer "tagger_id"
+    t.string "tagger_type"
+    t.string "context", limit: 128
     t.datetime "created_at"
-    t.index ["context"], name: "index_taggings_on_context", using: :btree
-    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
-    t.index ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
-    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy", using: :btree
-    t.index ["taggable_id"], name: "index_taggings_on_taggable_id", using: :btree
-    t.index ["taggable_type"], name: "index_taggings_on_taggable_type", using: :btree
-    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
-    t.index ["tagger_id"], name: "index_taggings_on_tagger_id", using: :btree
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string  "name"
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name"
     t.integer "taggings_count", default: 0
-    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
-    t.string   "reset_password_token"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "admin",                  default: false
-    t.string   "role",                   default: ""
-    t.integer  "failed_attempts",        default: 0
-    t.string   "unlock_token"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
+    t.string "role", default: ""
+    t.integer "failed_attempts", default: 0
+    t.string "unlock_token"
     t.datetime "locked_at"
-    t.string   "slug"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
+    t.string "slug"
+    t.string "provider"
+    t.string "uid"
+    t.string "name"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "phone",                  default: ""
-    t.integer  "state_id"
-    t.integer  "city_id"
-    t.string   "site",                   default: ""
-    t.string   "cover_file_name"
-    t.string   "cover_content_type"
-    t.integer  "cover_file_size"
+    t.string "phone", default: ""
+    t.integer "state_id"
+    t.integer "city_id"
+    t.string "site", default: ""
+    t.string "cover_file_name"
+    t.string "cover_content_type"
+    t.integer "cover_file_size"
     t.datetime "cover_updated_at"
-    t.text     "about",                  default: ""
-    t.string   "street",                 default: ""
-    t.string   "facebook",               default: ""
-    t.string   "google",                 default: ""
-    t.string   "vk",                     default: ""
-    t.string   "ok",                     default: ""
-    t.string   "twitter",                default: ""
-    t.float    "lat"
-    t.float    "lng"
-    t.integer  "zip"
-    t.string   "state_slug"
-    t.string   "city_slug"
-    t.boolean  "show_email",             default: true
+    t.text "about", default: ""
+    t.string "street", default: ""
+    t.string "facebook", default: ""
+    t.string "google", default: ""
+    t.string "vk", default: ""
+    t.string "ok", default: ""
+    t.string "twitter", default: ""
+    t.float "lat"
+    t.float "lng"
+    t.integer "zip"
+    t.string "state_slug"
+    t.string "city_slug"
+    t.boolean "show_email", default: true
     t.datetime "last_seen"
-    t.index ["city_id"], name: "index_users_on_city_id", using: :btree
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-    t.index ["state_id"], name: "index_users_on_state_id", using: :btree
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+    t.index ["city_id"], name: "index_users_on_city_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["state_id"], name: "index_users_on_state_id"
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.integer  "vote_weight"
+  create_table "votes", id: :serial, force: :cascade do |t|
+    t.integer "votable_id"
+    t.string "votable_type"
+    t.integer "voter_id"
+    t.string "voter_type"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
   add_foreign_key "answers", "questions"

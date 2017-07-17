@@ -11,6 +11,7 @@ class Listing < ApplicationRecord
   belongs_to :state
   belongs_to :city
   has_many :pictures, as: :imageable, dependent: :destroy
+  has_one :action, as: :actionable, dependent: :destroy
 
   validates_presence_of :user
   validates_presence_of :state
