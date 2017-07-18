@@ -1,6 +1,6 @@
 - content_for :sidebar do
   = render "shared/tag_cloud",
-           tags: @tags = Answer.tag_counts.sort_by(&:name),
+           tags: @tags = Answer.tag_counts.sort_by(&:name).select {|t| %w(медицина образование иммиграция финансы).include? t.name },
            url: "/answers/tag/"
 
 div data-id="listings" data-term=params[:term]
