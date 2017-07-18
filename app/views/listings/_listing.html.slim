@@ -41,3 +41,7 @@
         = timeago_tag listing.updated_at
       = " | "
       = render "shared/indicators", record: listing
+      = " | "
+      - if listing.user_id == current_user.try(:id)
+        = link_to "редактировать", edit_dashboard_listing_path(listing)
+
