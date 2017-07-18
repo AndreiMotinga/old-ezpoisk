@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
   layout "answers"
 
   def index
-    @answers = Answer.includes(:user).search(params[:term]).page(params[:page])
+    @answers = Answer.includes(:user, :question).search(params[:term]).page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
   end
 
   def tag
-    @answers = Answer.includes(:user)
+    @answers = Answer.includes(:user, :question)
                      .tagged_with(params[:tag], any: true)
                      .page(params[:page])
 
