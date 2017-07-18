@@ -1,0 +1,27 @@
+.panel
+  .panel-body
+    = bootstrap_form_for @post do |f|
+      .field
+        = f.text_field :title, label: "Заголовок"
+
+      .field
+        = f.text_area :text, label: "Tекст"
+
+      /- if current_user.try(:editor?)
+      /  .field
+      /    = f.text_field :image_url, label: "Картинка"
+
+      /.field
+      /  = label_tag "Тэги", nil
+      /  = collection_select :question,
+      /    :tag_list,
+      /    ActsAsTaggableOn::Tag.all.sort_by{|t| t.name}, :name, :name,
+      /    { :selected => @post.tag_list },
+      /    { :multiple => true, :name => 'post[tag_list][]', class: "q-select my-dropdown" }
+      /- if @post.errors[:tag_list].any?
+      /  ul.list-group-item-danger
+      /    li Добавьте тэги, чтобы пользователи могли найти ваш вопрос
+
+      br/
+      .actions
+        = f.submit 'Сохранить', class: "btn-ez"

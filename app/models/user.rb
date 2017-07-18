@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :reviews
   has_many :comments
+  has_many :posts
 
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy

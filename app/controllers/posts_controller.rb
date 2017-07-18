@@ -8,7 +8,29 @@ class PostsController < ApplicationController
     end
   end
 
+  def new
+    @post = Post.new
+  end
+
+  def create
+    @post = current_user.posts.build(post_params)
+
+    if @post.save
+      SlackNotifierJob.perform_async(@post.id, "Post")
+      # redirect_to @post, notice: I18n.t(:p_created)
+      redirect_to @post, notice: "Пост добавлен"
+    else
+      render :new
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :text)
   end
 end
