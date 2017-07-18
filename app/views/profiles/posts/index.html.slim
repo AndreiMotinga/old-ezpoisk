@@ -1,0 +1,5 @@
+- content_for :header, render("profiles/header")
+- content_for :sidebar, render("profiles/sidebar")
+
+- @posts.each do |p|
+  = render "posts/post", post: p

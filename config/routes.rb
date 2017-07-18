@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   resources :profiles, only: :show do
     scope module: :profiles do
       resources :questions, only: [:index]
+      resources :posts, only: [:index]
     end
   end
 
