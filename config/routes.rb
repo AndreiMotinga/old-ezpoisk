@@ -2,9 +2,10 @@ require "sidekiq/web"
 require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
+  # TODO: figure out why it's here
   default_url_options host: ENV.fetch("APPLICATION_HOST")
 
-  # todo remove with pg_search
+  # TODO: remove with pg_search
   resources :searches, only: [:index]
   resources :comments, only: [:create]
 
