@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-lg-3
+      = image_tag @user.avatar(:medium),
+                  alt: "автор ответа #{@user.name_to_show}",
+                  class: "img-responsive img-circle center-block"
+    .col-lg-6
+      h1= @user.name
+      p Find me in app/views/profiles/show.html.slim
+  hr
+
+
+  .row
+    .col-lg-3
+      ul
+        li= link_to "Answers", profile_path(@user)
+        li= link_to "Questions", answers_path
+        li= link_to "Posts", answers_path
+        li= link_to "Listings", answers_path
+        li= link_to "Settings", answers_path
+    .col-lg-6
+      = render @user.answers.includes(:question)
+

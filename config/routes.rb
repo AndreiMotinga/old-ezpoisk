@@ -61,6 +61,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :profiles, only: :show
+
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
