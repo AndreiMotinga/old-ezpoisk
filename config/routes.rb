@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     scope module: :profiles do
       resources :questions, only: [:index]
       resources :posts, only: [:index]
+      resources :listings, only: [:index]
     end
   end
 
