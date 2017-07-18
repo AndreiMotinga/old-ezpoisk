@@ -1,0 +1,30 @@
+/ - user feed
+
+/answers - shows all answers
+/answers/:id
+/answers/:id/edit
+
+/questions = shows all unanswered questions
+/questions/:id - shows answers of that question
+/questions/:id/edit = edit question
+
+/answers/tag/:tag - shows answers by tag
+/questions/tag/:tag - shows questions by tag
+
+/posts - shows all the posts
+/posts/:id - show post
+/posts/new - write new post
+/posts/:id/edit - edit post
+
+/profiles/:id - shows user profile
+/profiles/:id/answers - shows user answers
+/profiles/:id/questions - shows user questions
+/profiles/:id/posts - shows user posts
+/profiles/:id/listings - shows user listings
+/profiles/:id/settings - user settings
+
+
+/listings - shows all listings
+/listings/:category - shows listings by category
+/listings/:id - shows listings by id
+/listings/:id/edit - edit listings
