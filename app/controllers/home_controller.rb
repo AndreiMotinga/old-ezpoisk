@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  layout "answers"
+
   def index
     @actions = Action.includes(actionable: :user)
                      .order(created_at: :desc)

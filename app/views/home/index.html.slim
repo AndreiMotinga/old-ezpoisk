@@ -4,27 +4,24 @@
               url: "https://www.ezpoisk.com",
               image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
 
-.container
-  .col-lg-2.red
-    - if user_signed_in?
-      p = image_tag current_user.avatar(:thumb), class: "img-responsive img-circle center-block"
-      p = current_user.name
+- content_for :sidebar do
+  - if user_signed_in?
+    p = image_tag current_user.avatar(:thumb), class: "img-responsive img-circle center-block"
+    p = current_user.name
     hr
-  .col-lg-6
-    ul data-id="listings"
-      = render @actions
-  .col-lg-3.red
-    p Latests News here
-    hr
-    ul
-      - @posts.each do |post|
-        li
-          h6= link_to post.title, post
-          small= timeago_tag post.created_at
+
+- content_for :right do
+  p Latests News here
+  hr
+  ul
+    - @posts.each do |post|
+      li
+        h6= link_to post.title, post
+        small= timeago_tag post.created_at
 
     hr
     p.text-center показать еще
 
-.row
-  .col-xs-12
-    = render "shared/pagination", records: @actions
+ul data-id="listings"
+  = render @actions
+  = render "shared/pagination", records: @actions
