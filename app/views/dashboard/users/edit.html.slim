@@ -1,8 +1,4 @@
 .container.container-md
-  = render "dashboard/shared/header",
-           header_title: "Мои настройки",
-           header_description:  "Здесь вы можете редактировать свои личные данные"
-
   #pictures-data data-id=current_user.id data-type=current_user.class.to_s
   ul.nav.nav-tabs role="tablist"
     li.active role="presentation"

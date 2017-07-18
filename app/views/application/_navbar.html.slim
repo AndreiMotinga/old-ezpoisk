@@ -15,9 +15,6 @@ nav#navbar-main.navbar-fixed-top.navbar-main
             span.caret
           ul.dropdown-menu.pull-right
             li= link_to "Моя страница", profile_path(current_user)
-            li= link_to "Мои объявления", dashboard_listings_path
-            li= link_to "Mои настройки", edit_dashboard_user_path(current_user)
-            /li = link_to "Мои ответы", dashboard_answers_path
             li= link_to t(:sign_out), destroy_user_session_path, method: :delete
       - else
         li.nav-link= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"

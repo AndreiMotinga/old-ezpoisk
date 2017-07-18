@@ -3,4 +3,5 @@ ul
   li= link_to "Questions", profile_questions_path(@user)
   li= link_to "Posts", profile_posts_path(@user)
   li= link_to "Listings", profile_listings_path(@user)
-  li= link_to "Settings", answers_path
+  - if user_signed_in?
+    li= link_to "Settings", edit_dashboard_user_path(current_user)
