@@ -5,8 +5,7 @@
       .article.answer
         .panel
           .panel-heading
-            - unless controller_name == "questions"
-              h1.title= link_to answer.title, answer.question
+            h1.title= link_to answer.title, answer
             .row.author
               .col-xs-3.col-sm-2
                 = link_to user_path(answer.user) do
