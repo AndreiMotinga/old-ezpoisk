@@ -61,7 +61,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, only: :show
+  resources :profiles, only: :show do
+    scope module: :profiles do
+      resources :questions, only: [:index]
+    end
+  end
+
 
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"

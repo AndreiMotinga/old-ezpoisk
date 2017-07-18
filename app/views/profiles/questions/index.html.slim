@@ -1,4 +1,5 @@
 - content_for :header, render("profiles/header")
 - content_for :sidebar, render("profiles/sidebar")
 
-= render @user.answers.includes(:question)
+- @questions.each do |q|
+  = render "questions/question", question: q

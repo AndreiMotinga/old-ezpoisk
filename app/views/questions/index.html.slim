@@ -2,7 +2,7 @@
 .container
   .hidden-xs.col-sm-3
     = link_to "Неотвеченные", unanswered_questions_path, class: "btn btn-block btn-ez margin-bottom-10"
-    = render "shared/tag_cloud", tags: @tags, url: "/questions/tag/"
+    /= render "shared/tag_cloud", tags: @tags, url: "/questions/tag/"
 
   .col-xs-12.col-sm-9 data-id="listings"
     = render "answers/search"

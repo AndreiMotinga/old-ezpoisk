@@ -14,7 +14,7 @@ nav#navbar-main.navbar-fixed-top.navbar-main
             = image_tag current_user.avatar(:thumb), class: "img-circle avatar"
             span.caret
           ul.dropdown-menu.pull-right
-            /li= link_to "Моя страница", user_path(current_user)
+            li= link_to "Моя страница", profile_path(current_user)
             li= link_to "Мои объявления", dashboard_listings_path
             li= link_to "Mои настройки", edit_dashboard_user_path(current_user)
             /li = link_to "Мои ответы", dashboard_answers_path
