@@ -27,7 +27,6 @@ Rails.application.routes.draw do
   namespace :dashboard do
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
-    resources :answers, only: [:index]
   end
 
   resources :pictures, only: [:index, :create, :update, :destroy]
