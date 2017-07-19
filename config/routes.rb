@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
   get "sitemaps/sitemap:id.:format.:compression", to: "sitemap#show_id"
   resources :cities, only: :index
-  get "/tos", to: "tos#tos"
 
   namespace :dashboard do
     resources :listings, except: :show
