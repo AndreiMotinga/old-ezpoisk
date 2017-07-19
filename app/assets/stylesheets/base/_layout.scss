@@ -9,7 +9,7 @@ body {
 }
 
 .page-wrap {
-  margin-bottom: -160px;  // equal to footer height (inluding margin)
+  margin-bottom: -120px;  // equal to footer height (inluding margin)
   min-height: 100%;
 
   &::after {
@@ -20,7 +20,7 @@ body {
 
 footer,
 .page-wrap::after {
-  height: 140px;
+  height: 100px;
 }
 
 .container-md {
