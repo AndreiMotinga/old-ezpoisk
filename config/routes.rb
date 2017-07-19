@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   # TODO: figure out why it's here
   default_url_options host: ENV.fetch("APPLICATION_HOST")
 
-  # TODO: remove with pg_search
-  resources :searches, only: [:index]
   resources :comments, only: [:create]
 
   resources :posts
