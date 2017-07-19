@@ -9,7 +9,7 @@ nav#navbar-main.navbar-fixed-top.navbar-main
       li.nav-link.hidden-xs= link_to "Объявления", listings_path
       li.nav-link.hidden-xs= link_to "Ответы", answers_path
       li.nav-link.hidden-xs= link_to "Посты", posts_path
-      li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path
+      li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path, class: "btn-ez"
       - if user_signed_in?
         li.nav-link.dropdown
           a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"

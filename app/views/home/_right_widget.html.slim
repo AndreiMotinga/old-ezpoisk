@@ -1,11 +1,11 @@
-.posts-widget.white-bg
-  p Latests News here
+.right-widget.mdl-shadow--3dp
+  span.widget-title О чем говорят...
   hr
-  ul
+  ul.posts
     - @posts.each do |post|
-      li
-        h6= link_to post.title, post
-        small= timeago_tag post.created_at
+      li.post.red
+        = link_to post.title, post, class: "title"
+        small.time= timeago_tag post.created_at
 
-    hr
-    p.text-center показать еще
+  hr
+  p.text-center= link_to "показать еще", posts_path

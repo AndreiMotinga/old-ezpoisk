@@ -1,0 +1,26 @@
+.right-widget {
+  background-color: $white;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: $dark-gray;
+  color: $dark-gray;
+
+  .widget-title {
+    float: right;
+    margin-left: 5px;
+  }
+
+  .posts {
+    .post {
+      .title {
+        font-size: 14px;
+        display: block;
+        line-height: 15px;
+        color: $black;
+      }
+      .time {
+        color: $medium-gray;
+      }
+    }
+  }
+}
