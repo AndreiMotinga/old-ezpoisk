@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search, :show]
   before_action :set_listing, only: [:edit, :update, :destroy]
+  layout "answers"
 
   def index
     @listings = Listing.includes(:state, :city)

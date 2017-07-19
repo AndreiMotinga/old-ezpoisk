@@ -1,17 +1,16 @@
 - meta title: "Бесплатные объявления в США - ezpoisk"
 
-section
-  #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
-    | Настроить фильтр | #{@listings.total_count}
+- content_for :sidebar do
+  section
+    #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
+      | Настроить фильтр | #{@listings.total_count}
 
-.container
-  .row
-    .col-xs-12.col-md-2.col-md-offset-1
-      section#search-form.search
-        = render "listings/search"
+    section#search-form.search
+      = render "listings/search"
 
-    .col-xs-12.col-md-8 data-id="listings"
-      = render @listings
+
+div data-id="listings"
+  = render @listings
 
 .row
   .col-xs-12
