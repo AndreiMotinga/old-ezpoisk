@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
-    resources :reviews, except: :show
     resources :answers, only: [:index]
   end
 
