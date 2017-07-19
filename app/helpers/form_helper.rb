@@ -6,12 +6,12 @@ module FormHelper
 
   def state
     return params[:state] if params[:state]
-    return current_user.try(:state_slug) if current_user.try(:state_slug)
+    # return current_user.try(:state_slug) if current_user.try(:state_slug)
   end
 
   def city
     return params[:city] if params[:city]
-    return current_user.try(:city_slug) if current_user.try(:city_slug)
+    # return current_user.try(:city_slug) if current_user.try(:city_slug)
   end
 
   def rp_sort_opts
