@@ -23,9 +23,9 @@
       // line 2
       hr.post-devider
       = "#{listing.street} | " if listing.street?
-      = link_to listing.city.name, search_listings_path(kind: listing.kind, state: listing.state.slug, city: listing.city.slug)
+      = link_to listing.city.name, listings_path(kind: listing.kind, state: listing.state.slug, city: listing.city.slug)
       = " | "
-      = link_to listing.state.name, search_listings_path(kind: listing.kind, state: listing.state.slug)
+      = link_to listing.state.name, listings_path(kind: listing.kind, state: listing.state.slug)
       hr.post-devider
 
         / line 4

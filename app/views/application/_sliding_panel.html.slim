@@ -1,10 +1,10 @@
 nav.js-menu.sliding-panel-content
   ul
     li= link_to "Подать объявление", new_listing_path
-    li= link_to "Недвижимость", search_listings_path(kind: "real-estate")
-    li= link_to "Работа", search_listings_path(kind: "jobs")
-    li= link_to "Продается", search_listings_path(kind: "sales")
-    li= link_to "Услуги", search_listings_path(kind: "services")
+    li= link_to "Недвижимость", listings_path(kind: "real-estate")
+    li= link_to "Работа", listings_path(kind: "jobs")
+    li= link_to "Продается", listings_path(kind: "sales")
+    li= link_to "Услуги", listings_path(kind: "services")
     li= link_to "Ответы", answers_path
     li= link_to "Контакты", user_path(1)
 

@@ -10,14 +10,7 @@ Rails.application.routes.draw do
     resources :subcategories, only: [:index]
   end
 
-  resources :listings do
-    collection do
-      get(":kind(/:state(/:city))",
-          kind: /real-estate|jobs|services|sales/,
-          to: "listings#search",
-          as: "search")
-    end
-  end
+  resources :listings
 
   resources :answers do
     collection do

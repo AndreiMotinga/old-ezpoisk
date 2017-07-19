@@ -14,16 +14,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  def search
-    @listings = Listing.includes(:state, :city)
-                       .filter(sliced_params)
-                       .page(params[:page])
-    respond_to do |format|
-      format.html { render :index }
-      format.js { render partial: "shared/index", locals: { records: @listings } }
-    end
-  end
-
   def show
     @listing = Listing.includes(:state, :city).find(params[:id])
     unless @listing && @listing.active?

@@ -4,7 +4,7 @@ feature "User filters listings" do
   scenario "success" do
     listing = create :listing
 
-    visit search_listings_path(kind: listing.kind)
+    visit listings_path(kind: listing.kind)
 
     select(listing.state.name, from: :state)
     select I18n.t(listing.category), from: :category
