@@ -33,10 +33,6 @@ Rails.application.routes.draw do
     resources :answers, only: [:index]
   end
 
-  authenticate :user, ->(u) { u.editor? } do
-    resources :editors, only: [:show, :update]
-  end
-
   namespace :listings do
     resources :categories, only: [:index]
     resources :subcategories, only: [:index]

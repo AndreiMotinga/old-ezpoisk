@@ -53,10 +53,6 @@ class User < ActiveRecord::Base
     Rails.application.routes.url_helpers.user_url(self)
   end
 
-  def editor?
-    admin? || role == "editor"
-  end
-
   def can_edit?(record)
     self == record.user || admin?
   end

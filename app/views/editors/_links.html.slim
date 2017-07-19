@@ -1,3 +1,0 @@
-ul.list-group.menu.white-block
-  - User.where(role: "editor").or(User.where(admin: true)).each do |user|
-    = link_to user.name_to_show, editor_path(user), class: "list-group-item"

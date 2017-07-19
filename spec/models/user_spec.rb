@@ -57,17 +57,6 @@ describe User do
     end
   end
 
-  describe "#editor?" do
-    it "returns true if user is editor or admin" do
-      admin = create :user, admin: true
-      editor = create :user, role: "editor"
-      regular = create :user
-      expect(admin.editor?).to eq true
-      expect(editor.editor?).to eq true
-      expect(regular.editor?).to eq false
-    end
-  end
-
   describe "#can_edit?" do
     it "returns true if user is recrod's owner or is admin" do
       owner = create :user
