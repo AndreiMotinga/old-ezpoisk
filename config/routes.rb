@@ -48,10 +48,10 @@ Rails.application.routes.draw do
   end
 
   resources :profiles, only: :show do
-    scope module: :profiles do
-      resources :questions, only: [:index]
-      resources :posts, only: [:index]
-      resources :listings, only: [:index]
+    member do
+      get :questions
+      get :posts
+      get :listings
     end
   end
 

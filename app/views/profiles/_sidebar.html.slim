@@ -1,7 +1,7 @@
 ul
   li= link_to "Answers", profile_path(@user)
-  li= link_to "Questions", profile_questions_path(@user)
-  li= link_to "Posts", profile_posts_path(@user)
-  li= link_to "Listings", profile_listings_path(@user)
+  li= link_to "Questions", questions_profile_path(@user)
+  li= link_to "Posts", posts_profile_path(@user)
+  li= link_to "Listings", listings_profile_path(@user)
   - if user_signed_in?
     li= link_to "Settings", edit_dashboard_user_path(current_user)
