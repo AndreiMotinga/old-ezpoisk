@@ -65,7 +65,7 @@ describe AnswersController do
     end
   end
 
-  describe "xhr PUT #upvote" do
+  xdescribe "xhr PUT #upvote" do
     it "increases score by 1" do
       sign_in(@user = create(:user))
       question = create(:question, user: @user)
@@ -80,7 +80,7 @@ describe AnswersController do
     end
   end
 
-  describe "xhr PUT #downvote" do
+  xdescribe "xhr PUT #downvote" do
     it "increases score by 1" do
       sign_in(@user = create(:user))
       question = create(:question, user: @user)
@@ -94,7 +94,7 @@ describe AnswersController do
     end
   end
 
-  describe "xhr PUT #unvote" do
+  xdescribe "xhr PUT #unvote" do
     it "increases score by 1" do
       sign_in(@user = create(:user))
       question = create(:question, user: @user)

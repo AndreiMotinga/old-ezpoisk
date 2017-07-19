@@ -36,19 +36,19 @@
     .panel-footer
       = render "shared/tags", record: @answer
 
-      .row
-        .col-xs-12.col-md-5
-          - if user_signed_in?
-            = current_user.voted_for?(@answer) ? voted_answer_btn(@answer) : upvote_answer_btn(@answer)
-            = " "
-            = link_to "Downvote",
-                       downvote_answer_path(@answer),
-                       method: :put, remote: true, class: "btn btn-xs btn-vote margin-bottom-10"
-          - else
-            = link_to "Войдите, что бы голосовать", "",
-                      "data-target": "#new_session_modal",
-                      "data-toggle": "modal", id: "login_link"
-          br
+      /.row
+      /  .col-xs-12.col-md-5
+      /    - if user_signed_in?
+      /      = current_user.voted_for?(@answer) ? voted_answer_btn(@answer) : upvote_answer_btn(@answer)
+      /      = " "
+      /      = link_to "Downvote",
+      /                 downvote_answer_path(@answer),
+      /                 method: :put, remote: true, class: "btn btn-xs btn-vote margin-bottom-10"
+      /    - else
+      /      = link_to "Войдите, что бы голосовать", "",
+      /                "data-target": "#new_session_modal",
+      /                "data-toggle": "modal", id: "login_link"
+      /    br
 
 .col-xs-12.col-md-6.col-md-offset-3
   - if @answer.question.answers_count > 1

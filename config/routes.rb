@@ -16,11 +16,6 @@ Rails.application.routes.draw do
     collection do
       get "tag/:tag", to: "answers#tag", as: :tag
     end
-    member do
-      put "upvote", to: "answers#upvote"
-      put "downvote", to: "answers#downvote"
-      put "unvote", to: "answers#unvote"
-    end
   end
 
   resources :search_suggestions, only: [:index]

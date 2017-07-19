@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Voting on answers" do
+xfeature "Voting on answers" do
   context "user logged in" do
     scenario "user upvotes answer", js: true do
       user = create_and_login_user
