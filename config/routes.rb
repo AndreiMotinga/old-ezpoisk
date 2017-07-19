@@ -25,12 +25,12 @@ Rails.application.routes.draw do
   resources :cities, only: :index
 
   namespace :dashboard do
-    resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
     resources :answers, only: [:index]
   end
 
+  resources :pictures, only: [:index, :create, :update, :destroy]
   namespace :listings do
     resources :categories, only: [:index]
     resources :subcategories, only: [:index]

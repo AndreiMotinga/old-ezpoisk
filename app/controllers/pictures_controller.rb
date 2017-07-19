@@ -1,4 +1,6 @@
-class Dashboard::PicturesController < ApplicationController
+class PicturesController < ApplicationController
+  # TODO ? before_action :authenticate_user
+
   def index
     @pictures = klass.find(params["id"]).pictures
   end
