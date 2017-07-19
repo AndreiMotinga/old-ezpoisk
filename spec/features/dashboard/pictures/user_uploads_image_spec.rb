@@ -6,7 +6,7 @@ feature "user uploads image" do
     record = create :listing, :job, user: user
     file = "#{Rails.root}/spec/support/images/redhead.jpg"
 
-    visit edit_dashboard_listing_path record
+    visit edit_listing_path record
     attach_file "picture_image", file
     click_on "Upload"
 

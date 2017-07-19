@@ -1,4 +1,4 @@
-= bootstrap_form_for([:dashboard, @listing]) do |f|
+= bootstrap_form_for(@listing) do |f|
   = hidden_field_tag :token, params[:token]
 
   .row
@@ -19,7 +19,7 @@
       = f.number_field :price, label: 'Цена'
 
   br
-  = render "dashboard/listings/form/real-estate", f: f
+  = render "listings/form/real-estate", f: f
 
   = f.text_area :text, label: "Описание *", required: true, rows: 5
 
@@ -57,4 +57,4 @@
   = f.submit "Сохранить", id: "details-save-btn", class: "btn-ez"
   .pull-right
   - unless @listing.new_record?
-    = link_to "Удалить", dashboard_listing_path(@listing), method: :delete, class: "pull-right"
+    = link_to "Удалить", listing_path(@listing), method: :delete, class: "pull-right"

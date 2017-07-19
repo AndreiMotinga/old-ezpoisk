@@ -6,7 +6,7 @@ feature "user creates listing" do
     record = create :listing, :job, user: user
     listing = build :listing, :apartment
 
-    visit edit_dashboard_listing_path record
+    visit edit_listing_path record
 
     select(I18n.t(listing.kind), from: "Раздел")
     select(I18n.t(listing.category), from: "Категория")

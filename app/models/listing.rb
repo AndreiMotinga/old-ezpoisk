@@ -59,7 +59,7 @@ class Listing < ApplicationRecord
 
   def edit_url_with_token
     Rails.application.routes.url_helpers
-                            .edit_dashboard_listing_url(self, token: token)
+                            .edit_listing_url(self, token: token)
   end
 
   def re?

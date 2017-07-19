@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   resources :cities, only: :index
 
   namespace :dashboard do
-    resources :listings, except: :show
     resources :pictures, only: [:index, :create, :update, :destroy]
     resources :summernote, only: [:create]
     resources :users, only: [:edit, :update]
@@ -38,7 +37,7 @@ Rails.application.routes.draw do
     resources :subcategories, only: [:index]
   end
 
-  resources :listings, only: [:index, :show] do
+  resources :listings do
     collection do
       get(":kind(/:state(/:city))",
           kind: /real-estate|jobs|services|sales/,

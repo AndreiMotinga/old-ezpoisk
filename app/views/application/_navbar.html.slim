@@ -6,7 +6,7 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           = fa_icon "bars"
     a href=root_path = image_tag "navbar-logo"
     ul.pull-right
-      li.nav-link.hidden-xs= link_to "Подать объявление", new_dashboard_listing_path
+      li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path
       - if user_signed_in?
         li.nav-link.dropdown
           a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"

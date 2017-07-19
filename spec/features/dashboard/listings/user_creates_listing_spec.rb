@@ -4,7 +4,7 @@ feature "user creates listing" do
   scenario "user creates job", js: true do
     create_and_login_user
 
-    visit new_dashboard_listing_path
+    visit new_listing_path
     listing = build :listing, :job
 
     select(I18n.t(listing.kind), from: "Раздел")
@@ -53,7 +53,7 @@ feature "user creates listing" do
   scenario "user creates apartment", js: true do
     create_and_login_user
 
-    visit new_dashboard_listing_path
+    visit new_listing_path
     listing = build :listing, :apartment
 
     find("option[value='#{listing.kind}']").select_option
@@ -98,7 +98,7 @@ feature "user creates listing" do
   scenario "user creates service", js: true do
     create_and_login_user
 
-    visit new_dashboard_listing_path
+    visit new_listing_path
     listing = build :listing, :service
 
     find("option[value='#{listing.kind}']").select_option
@@ -132,7 +132,7 @@ feature "user creates listing" do
   scenario "user creates sale", js: true do
     create_and_login_user
 
-    visit new_dashboard_listing_path
+    visit new_listing_path
     listing = build :listing, :sale
 
     find("option[value='#{listing.kind}']").select_option

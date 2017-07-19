@@ -8,7 +8,7 @@ feature "user removes image" do
                    imageable_type: record.class.name,
                    user_id: user.id)
 
-    visit edit_dashboard_listing_path record
+    visit edit_listing_path record
     click_on "Фото"
     click_on "Сделать главной"
     wait_for_ajax

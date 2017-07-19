@@ -5,7 +5,7 @@ feature "user destroys listing" do
     user = create_and_login_user
     record = create :listing, user: user
 
-    visit edit_dashboard_listing_path record
+    visit edit_listing_path record
 
     click_on "Удалить"
 

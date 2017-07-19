@@ -5,7 +5,7 @@ describe "Listings" do
     context "user logged in" do
       it "renders the new temlpate" do
         create_and_login_user
-        get "/dashboard/listings/new"
+        get "/listings/new"
 
         expect(response).to render_template(:new)
       end
@@ -13,7 +13,7 @@ describe "Listings" do
 
     context "user not logged in" do
       it "renders the new temlpate" do
-        get "/dashboard/listings/new"
+        get "/listings/new"
 
         expect(response).to redirect_to new_user_session_path
       end
@@ -26,7 +26,7 @@ describe "Listings" do
         user = create_and_login_user
         listing = create :listing, user: user
 
-        get "/dashboard/listings/#{listing.id}/edit"
+        get "/listings/#{listing.id}/edit"
 
         expect(response).to render_template(:edit)
         expect(response.body).to include(listing.title)
@@ -36,19 +36,8 @@ describe "Listings" do
         create_and_login_user
         listing = create :listing
 
-        expect { get "/dashboard/listings/#{listing.id}/edit" }
+        expect { get "/listings/#{listing.id}/edit" }
           .to raise_exception(ActiveRecord::RecordNotFound)
-      end
-    end
-
-    context "user isn't logged in but uses token" do
-      it "renders edit template" do
-        listing = create :listing
-
-        get "/dashboard/listings/#{listing.id}/edit?token=#{listing.token}"
-
-        expect(response).to render_template(:edit)
-        expect(response.body).to include(listing.title)
       end
     end
   end
