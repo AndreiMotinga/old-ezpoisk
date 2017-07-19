@@ -35,7 +35,7 @@ $(document).ready(function(){
     return $.ajax({
       data: data,
       type: 'POST',
-      url: '/dashboard/summernote',
+      url: '/summernote',
       cache: false,
       contentType: false,
       processData: false,

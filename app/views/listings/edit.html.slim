@@ -1,9 +1,10 @@
 #pictures-data data-id=@listing.id data-type="Listing"
 
 .container.container-md
-  = render "dashboard/shared/header",
-           header_title: @listing.title,
-           header_description:  "Редактирование объявления"
+  header
+    h4= @listing.title
+    small Редактирование объявления
+  hr
 
   section.form-container
     .row
@@ -26,7 +27,7 @@
               = render "form"
 
           #pictures.tab-pane.fade role="tabpanel"
-              = render "dashboard/shared/pictures_form", record: @listing
+              = render "listings/pictures_form", record: @listing
 
           #preview.tab-pane.fade role="tabpanel"
             .col-xs-12

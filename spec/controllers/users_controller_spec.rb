@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Dashboard::UsersController do
+describe UsersController do
   describe "POST #create" do
       it "updates the record" do
         user = create :user

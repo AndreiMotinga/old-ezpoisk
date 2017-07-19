@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     dropzone.on("success", function(file) {
       this.removeFile(file);
-      $.getScript("/dashboard/pictures?type=" + type + "&id=" + id);
+      $.getScript("/pictures?type=" + type + "&id=" + id);
     });
   }
 });

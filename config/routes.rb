@@ -24,10 +24,7 @@ Rails.application.routes.draw do
   get "sitemaps/sitemap:id.:format.:compression", to: "sitemap#show_id"
   resources :cities, only: :index
 
-  namespace :dashboard do
-    resources :summernote, only: [:create]
-  end
-
+  resources :summernote, only: [:create]
   resources :users, only: [:edit, :update]
   resources :pictures, only: [:index, :create, :update, :destroy]
   namespace :listings do
