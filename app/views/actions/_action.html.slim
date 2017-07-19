@@ -1,13 +1,14 @@
 /= render "actions/#{action.actionable}"
 - text = action.text.blank? ? action.title: action.text
-li
-  h5
-    = action.user.try(:name_to_show)
-    = " "
-    = action.kind
-  small= timeago_tag action.updated_at
+.row.red
+  .col-xs-12.col-action
+    .action.white-bg
+      h5
+        = action.user.try(:name_to_show)
+        = " "
+        = action.kind
+      small= timeago_tag action.updated_at
 
-  p
-    = strip_tags(text).truncate(200)
-    = link_to "eше", action.show_url if text.size > 200
-br
+      p
+        = strip_tags(text).truncate(200)
+        = link_to "eше", action.show_url if text.size > 200

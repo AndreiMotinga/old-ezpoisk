@@ -1,0 +1,5 @@
+.user-widget.white-bg
+  p
+    = image_tag current_user.avatar(:thumb), class: "img-responsive img-circle center-block"
+  p = current_user.name
+  hr

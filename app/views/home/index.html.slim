@@ -4,24 +4,9 @@
               url: "https://www.ezpoisk.com",
               image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
 
-- content_for :sidebar do
-  - if user_signed_in?
-    p = image_tag current_user.avatar(:thumb), class: "img-responsive img-circle center-block"
-    p = current_user.name
-    hr
+- content_for :sidebar, render("user_widget")
+- content_for :right, render("right_widget")
 
-- content_for :right do
-  p Latests News here
-  hr
-  ul
-    - @posts.each do |post|
-      li
-        h6= link_to post.title, post
-        small= timeago_tag post.created_at
-
-    hr
-    p.text-center показать еще
-
-ul data-id="listings"
+div data-id="listings"
   = render @actions
 = render "shared/pagination", records: @actions
