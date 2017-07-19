@@ -72,6 +72,5 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
-  resources :posts, only: :show
   root to: "home#index"
 end
