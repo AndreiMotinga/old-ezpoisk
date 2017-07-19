@@ -4,7 +4,7 @@
       ul.list-group
         - if record.user and !record.user.admin?
           li.list-group-item
-            strong= link_to "Автор",  user_path(record.user)
+            strong= link_to "Автор",  profiles_path(record.user)
 
         - unless record.try(:vk).blank?
           li.list-group-item
