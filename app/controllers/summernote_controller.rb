@@ -1,4 +1,4 @@
-class Dashboard::SummernoteController < ApplicationController
+class SummernoteController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
 
