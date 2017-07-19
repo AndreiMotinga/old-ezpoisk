@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   # TODO: figure out why it's here
   default_url_options host: ENV.fetch("APPLICATION_HOST")
 
-  resources :comments, only: [:create]
-
   resources :posts
   resources :questions, only: [:new, :create, :show] do
     collection do

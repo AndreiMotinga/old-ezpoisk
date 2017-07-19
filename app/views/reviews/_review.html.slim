@@ -18,7 +18,3 @@
 
       .panel-body
         p= review.text
-      - unless controller_name == "services" && action_name == "show"
-        .panel-footer
-          .row
-            = render "shared/comments", record: review

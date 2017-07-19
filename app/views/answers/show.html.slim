@@ -61,8 +61,3 @@
     = link_to "Добавить ответ",
               new_answer_path(question_id: @answer.question_id),
               class: "btn btn-ez margin-bottom-10"
-
-hr
-.row
-  .col-xs-12
-    = render "shared/comments", record: @answer
