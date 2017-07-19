@@ -6,14 +6,44 @@ html lang="ru"
 
     .page-wrap
       = render "notice" unless devise_controller?
+      h5.text-center Tatian Kopernik - Иммиграционный адвокат ...
       = yield :header
-      .container
-        .hidden-xs.hidden-sm.col-md-3.col-lg-2.red
-          = yield :sidebar
-        .col-xs-12.col-md-9.col-lg-7.red
-          = yield
-        .visible-lg.col-lg-3.red
-          = yield :right
+      .container.red
+        .row
+          / Sidebar && MAIN && Right
+          - if content_for?(:sidebar) && content_for?(:right)
+            .col-xs-12.col-sm-12.col-md-3.col-lg-3.black
+              = yield :sidebar
+
+            .col-xs-12.col-md-9.col-lg-6.black
+              = yield
+
+            .visible-lg.col-lg-3.black
+              = yield :right
+              .row
+                = render "google_ad"
+
+          / Sidebar && MAIN
+          - elsif content_for?(:sidebar)
+            .col-xs-12.col-sm-12.col-md-3.col-lg-3.black
+              = yield :sidebar
+
+            .col-xs-12.col-md-9.col-lg-9.black
+              = yield
+
+          /  MAIN && Right
+          - elsif content_for?(:right)
+            .col-xs-12.col-md-9.col-lg-9.black
+              = yield
+
+            .visible-lg.col-lg-3.black
+              = yield :right
+              .row
+                = render "google_ad"
+
+          /  only MAIN, aka plain
+          - else
+            = yield
 
     = render "footer"
     = render "shared/new_session_modal"

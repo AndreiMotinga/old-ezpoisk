@@ -1,6 +1,6 @@
 /= render "actions/#{action.actionable}"
 - text = action.text.blank? ? action.title: action.text
-li.red
+li
   h5
     = action.user.try(:name_to_show)
     = " "
