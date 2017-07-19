@@ -3,8 +3,8 @@ form.form-horizontal action=listings_path method="get"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
-      = select_tag :category,
-                   options_for_select(ru(KINDS.keys), params[:category]),
+      = select_tag :kind,
+                   options_for_select(ru(KINDS.keys), params[:kind]),
                    class: "form-control"
 
     .col-xs-12.col-sm-6.col-md-12
