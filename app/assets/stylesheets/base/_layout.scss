@@ -18,6 +18,12 @@ body {
   }
 }
 
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+
 footer,
 .page-wrap::after {
   height: 100px;
