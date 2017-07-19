@@ -6,7 +6,7 @@ feature "user updates profile" do
     user = create_and_login_user
     attrs = build(:user)
 
-    visit edit_dashboard_user_path user
+    visit edit_user_path user
     fill_in "Телефон", with: attrs.phone
     fill_in "Ваш сайт", with: attrs.site
     fill_in "Facebook", with: attrs.facebook
@@ -37,7 +37,7 @@ feature "user updates profile" do
   #   bk = create :city, name: "Brooklyn", state: ny
   #   street = "1970 East 18th str"
   #
-  #   visit edit_dashboard_user_path user
+  #   visit edit_user_path user
   #   fill_in "Улица", with: street
   #   select("New York", from: "Штат")
   #   select("Brooklyn", from: "Город")

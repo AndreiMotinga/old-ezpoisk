@@ -5,8 +5,6 @@
       = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
     li role="presentation"
       = link_to "Аватар", "#logo", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-    li role="presentation"
-      = link_to "Галерея", "#pictures", "aria-controls": "form", "data-toggle": "tab", role: "tab"
 
   br
   .tab-content
@@ -14,7 +12,4 @@
       = render 'form'
 
     #logo.tab-pane.fade role="tabpanel"
-        = render "dashboard/users/images_form"
-
-    #pictures.tab-pane.fade role="tabpanel"
-      = render "dashboard/shared/pictures_form", record: current_user
+        = render "users/images_form"

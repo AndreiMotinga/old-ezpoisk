@@ -9,7 +9,7 @@ describe Dashboard::UsersController do
 
         put :update, params: { id: user.id, user: attrs }
 
-        expect(response).to redirect_to(edit_dashboard_user_path user)
+        expect(response).to redirect_to(edit_user_path user)
         expect(flash[:notice]).to eq I18n.t(:user_updated)
         user.reload
 

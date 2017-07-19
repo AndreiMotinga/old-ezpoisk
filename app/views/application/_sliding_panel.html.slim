@@ -12,7 +12,7 @@ nav.js-menu.sliding-panel-content
   /ul
   /  - if user_signed_in?
   /    li= link_to "Моя страница"  , user_path(current_user)
-  /    li= link_to "Мои настройки" , edit_dashboard_user_path(current_user)
+  /    li= link_to "Мои настройки" , edit_user_path(current_user)
   /    li= link_to "Мои объявления"  , dashboard_listings_path
   /    li= link_to "Мои ответы"        , dashboard_answers_path
   /    li= link_to "Выйти", main_app.destroy_user_session_path, method: :delete

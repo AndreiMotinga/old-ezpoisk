@@ -1,4 +1,4 @@
-class Dashboard::UsersController < ApplicationController
+class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def edit
@@ -8,7 +8,7 @@ class Dashboard::UsersController < ApplicationController
     address_changed = address_changed?(current_user, prms)
     if current_user.update(prms)
       GeocodeJob.perform_async(current_user.id, "User") if address_changed
-      redirect_to edit_dashboard_user_path(current_user),
+      redirect_to edit_user_path(current_user),
                   notice: I18n.t(:user_updated)
     else
       flash.now[:alert] = "Возникли ошибки"
