@@ -2,19 +2,6 @@ class Dashboard::ListingsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create]
   before_action :set_listing, only: [:edit, :update, :destroy]
 
-  def index
-    @listings = current_user.listings
-                            .order("updated_at desc")
-                            .page(params[:page])
-                            .per(25)
-    respond_to do |format|
-      format.html
-      format.js do
-        render partial: "shared/index", locals: { records: @listings }
-      end
-    end
-  end
-
   def new
     @listing = Listing.new(state_id: current_user.state_id,
                            city_id: current_user.city_id,
@@ -32,8 +19,7 @@ class Dashboard::ListingsController < ApplicationController
     if @listing.save
       @listing.clear_phone!
       run_create_notifications
-      redirect_to edit_dashboard_listing_path(@listing),
-                  notice: I18n.t(:post_created)
+      redirect_to listing_path(@listing), notice: I18n.t(:post_created)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -58,7 +44,8 @@ class Dashboard::ListingsController < ApplicationController
     @listing.destroy
     respond_to do |format|
       format.html do
-        redirect_to destroy_redirect_path, notice: I18n.t(:post_removed)
+        redirect_to listings_profile_path(current_user),
+                    notice: I18n.t(:post_removed)
       end
       format.js
     end
@@ -103,9 +90,5 @@ class Dashboard::ListingsController < ApplicationController
       :phone, :email, :vk, :fb, :gl, :tw, :ok, :site,
       :duration, :price, :baths, :space, :rooms
     )
-  end
-
-  def destroy_redirect_path
-    params[:token].present? ? root_path : dashboard_listings_path
   end
 end

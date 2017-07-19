@@ -5,7 +5,7 @@ feature "User browses listings" do
     user = create_and_login_user
     listing = create :listing, user: user
 
-    visit dashboard_listings_path
+    visit listings_profile_path(user)
 
     expect(page).to have_content listing.title
   end
