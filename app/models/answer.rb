@@ -16,6 +16,8 @@ class Answer < ActiveRecord::Base
   delegate :name_to_show, to: :user
   delegate :avatar, to: :user
 
+  after_create :create_action
+
   has_attached_file :image, styles: { medium: "x330>", thumb: "x160#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   attr_reader :image_remote_url

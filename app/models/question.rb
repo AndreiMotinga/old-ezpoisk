@@ -14,6 +14,8 @@ class Question < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates_presence_of :tag_list
 
+  after_create :create_action
+
   def self.term_for(term)
     qs = where("title ILIKE ?", "%#{term}%").limit(10).pluck(:title, :slug)
     qs.map!{ |q| { value: "/questions/#{q[1]}", label: q[0]}}

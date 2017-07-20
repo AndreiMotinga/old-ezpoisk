@@ -23,6 +23,8 @@ class Listing < ApplicationRecord
   validates_presence_of :subcategory
   validates :text, presence: true, length: { minimum: 10 }
 
+  after_create :create_action
+
   def self.to_deactivate
     where.not(kind: "services")
          .where("active = ? AND updated_at < ?", true, 30.days.ago)
