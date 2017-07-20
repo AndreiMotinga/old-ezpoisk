@@ -24,9 +24,7 @@ Rails.application.routes.draw do
     end
   end
   resources :questions, only: [:index, :new, :create, :show] do
-    collection do
-      get "unanswered/:tag", to: "questions#unanswered_tag", as: :unanswered_tag
-    end
+    get "tag/:tag", to: "questions#tag", as: :tag, on: :collection
   end
 
   # POSTS

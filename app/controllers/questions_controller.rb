@@ -1,15 +1,6 @@
 class QuestionsController < ApplicationController
   layout "answers"
 
-  # def tag
-  #   @questions = Question.tagged_with(params[:tag]).page(params[:page])
-  #   @tags = Question.tag_counts.sort_by(&:name)
-  #   respond_to do |format|
-  #     format.html { render :index }
-  #     format.js { render partial: "shared/index", locals: { records: @questions } }
-  #   end
-  # end
-
   def index
     @questions = Question.unanswered.search(params[:term])
                                     .page(params[:page])
@@ -20,13 +11,13 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def unanswered_tag
+  def tag
     @questions = Question.unanswered.tagged_with(params[:tag])
                                     .search(params[:term])
                                     .page(params[:page])
-  @tags = Question.unanswered.tag_counts.sort_by(&:name)
+    @tags = Question.unanswered.tag_counts.sort_by(&:name)
     respond_to do |format|
-      format.html { render :unanswered }
+      format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @questions } }
     end
   end
