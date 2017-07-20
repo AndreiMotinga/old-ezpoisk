@@ -25,8 +25,9 @@ describe Fb::Unifier do
       result = Fb::Unifier.new(item, group).unified
 
       kind = group[:kind].to_sym
-      expected_attrs = { title: "Dummy title",
+      expected_attrs = { title: "У нас на работе есть вакансия",
                          kind: group[:kind],
+                         active: true,
                          category: KINDS[kind][:categories].first,
                          subcategory: KINDS[kind][:subcategories].first,
                          text: item[:message],
