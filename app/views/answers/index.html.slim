@@ -1,7 +1,8 @@
 - content_for :sidebar do
-  = render "answers_menu",
+  = render "shared/answers_menu",
            url: "/answers/tag/",
-           tags: @tags = Answer.tag_counts.sort_by(&:name)
+           tags: @tags = Answer.tag_counts.sort_by(&:name),
+           type: "answers"
 
 - content_for :right do
   div
