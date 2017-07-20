@@ -9,9 +9,17 @@ module Vk
     end
 
     def data
-      prms = { group_id: group[:id], topic_id: group[:topic], sort: :desc }
+      prms = {
+        group_id: group[:id],
+        topic_id: group[:topic],
+        sort: :desc,
+        extended: 1
+      }
       response = vk.board.getComments(prms)
-      response.items.map! { |post| Vk::Unifier.new(post, group).unified }
+      response.items.map! do |post|
+        user = response.profiles.find { |p| p.id == post.from_id }
+        Vk::Unifier.new(post, group, user).unified
+      end
     end
   end
 end

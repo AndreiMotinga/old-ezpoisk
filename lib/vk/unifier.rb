@@ -1,11 +1,12 @@
 # modifies vk post for easy creation of the listing
 module Vk
   class Unifier
-    attr_reader :post, :group, :unified
+    attr_reader :post, :group, :unified, :user
 
-    def initialize(post, group)
+    def initialize(post, group, user)
       @post = post
       @group = group
+      @user = user
       @unified = unify
     end
 
@@ -14,6 +15,7 @@ module Vk
     def unify
       kind = group[:kind].to_sym
       original_url = "https://vk.com/topic-#{group[:id]}_#{group[:topic]}?post=#{post[:id]}"
+      user_name = user ? "#{user.first_name} #{user.last_name}" : "Anonymous"
       {
         attachments: attachments,
         attributes: {
@@ -26,6 +28,7 @@ module Vk
           vk: "https://vk.com/id#{post[:from_id]}",
           state_id: group[:state_id],
           city_id: group[:city_id],
+          from_name: user_name,
           user_id: 1,
           created_at: Time.at(post[:date]),
           original_url: original_url
