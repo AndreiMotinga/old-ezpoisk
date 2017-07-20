@@ -3,59 +3,41 @@
         og: { type: "article",
               url: answer_path(@answer),
               image: @answer.image.url(:medium) }
-
-- content_for :right do
-  div
-
-.article.answer.white-block
-  .panel
-    .panel-heading
-      h1.title itemprop="name" = @answer.title
-      .row.author
-        .col-xs-3.col-sm-2
-          = link_to user_path(@answer.user), target: "_blank" do
-            = image_tag @answer.avatar(:thumb),
-                        alt: "автор ответа #{@answer.name_to_show}",
-                        class: "img-responsive img-circle center-block"
-        .col-xs-9.col-sm-10.name-block
-          h4.name= link_to @answer.name_to_show, user_path(@answer.user), target: "_blank"
-          p.date.text-muted
-            = "#{@answer.score} голосов "
-            br
-            - if current_user.try(:can_edit?, @answer)
-              = link_to "Редактировать", edit_answer_path(@answer), class: "text-muted"
-
-    .panel-body
-      /- if @answer.image?
-      /  = image_tag @answer.image.url(:medium),
-      /              class: "img-responsive center-block margin-bottom-10",
-      /              alt: "Помощь русским в США - #{@answer.title}"
-      .text= raw @answer.text
-    .panel-footer
-      = render "shared/tags", record: @answer
-
-      /.row
-      /  .col-xs-12.col-md-5
-      /    - if user_signed_in?
-      /      = current_user.voted_for?(@answer) ? voted_answer_btn(@answer) : upvote_answer_btn(@answer)
-      /      = " "
-      /      = link_to "Downvote",
-      /                 downvote_answer_path(@answer),
-      /                 method: :put, remote: true, class: "btn btn-xs btn-vote margin-bottom-10"
-      /    - else
-      /      = link_to "Войдите, что бы голосовать", "",
-      /                "data-target": "#new_session_modal",
-      /                "data-toggle": "modal", id: "login_link"
-      /    br
-
-.col-xs-12.col-md-6.col-md-offset-3
-  - if @answer.question.answers_count > 1
-    = link_to "Просмотреть другие ответы #{@answer.question.answers_count}",
-              @answer.question,
-              class: "btn btn-ez btn-block"
+- content_for :right, render("similar_answers")
 
 .row
-  .col-xs-12
-    = link_to "Добавить ответ",
-              new_answer_path(question_id: @answer.question_id),
-              class: "btn btn-ez margin-bottom-10"
+  .col-lg-10.col-lg-offset-1
+    .article.answer
+      .panel
+        .panel-heading
+          h1.title itemprop="name" = @answer.title
+          .row.author
+            .col-xs-3.col-sm-2
+              = link_to profile_path(@answer.user), target: "_blank" do
+                = image_tag @answer.avatar(:thumb),
+                            alt: "автор ответа #{@answer.name_to_show}",
+                            class: "img-responsive img-circle center-block"
+            .col-xs-9.col-sm-10.name-block
+              h4.name= link_to @answer.name_to_show, profile_path(@answer.user), target: "_blank"
+              p.date.text-muted
+                = "#{@answer.score} голосов "
+                br
+                - if current_user.try(:can_edit?, @answer)
+                  = link_to "Редактировать", edit_answer_path(@answer), class: "text-muted"
+
+        .panel-body
+          .text= raw @answer.text
+        .panel-footer
+          = render "shared/tags", record: @answer
+
+    .col-xs-12.col-md-6.col-md-offset-3
+      - if @answer.question.answers_count > 1
+        = link_to "Просмотреть другие ответы #{@answer.question.answers_count}",
+                  @answer.question,
+                  class: "btn btn-ez btn-block"
+
+    .row
+      .col-xs-12
+        = link_to "Добавить ответ",
+                  new_answer_path(question_id: @answer.question_id),
+                  class: "btn btn-ez margin-bottom-10"

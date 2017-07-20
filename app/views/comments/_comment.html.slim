@@ -3,7 +3,7 @@
     = image_tag comment.avatar, class: "center-block avatar"
   .col-xs-11
     - if comment.user
-      span.name= link_to comment.user.name_to_show, user_path(comment.user)
+      span.name= link_to comment.user.name_to_show, profile_path(comment.user)
     span= sanitize comment.text
     br
     span.text-muted

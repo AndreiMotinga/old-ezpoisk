@@ -1,0 +1,9 @@
+- answers = Answer.desc.limit(10)
+.row.right-widget.mdl-shadow--3dp
+  span.widget-title Похожие вопросы...
+  hr
+  ul.posts
+    - answers.each do |answer|
+      li.post
+        = link_to answer.title, answer, class: "title"
+        small.time= timeago_tag answer.created_at
