@@ -4,15 +4,10 @@
              url: @listing.show_url,
              image: @listing.logo_url }
 
-.container.container-md
-  .row
-    .col-xs-12.col-md-8
-      = render "shared/show/pictures", record: @listing
+- content_for :right do
+  = render "shared/show/contacts", record: @listing
+  = render "shared/show/map", record: @listing
 
-      = render @listing
-
-      = render "shared/show/text", record: @listing
-
-    .col-xs-12.col-md-4
-      = render "shared/show/contacts", record: @listing
-      = render "shared/show/map", record: @listing
+= render "shared/show/pictures", record: @listing
+= render @listing
+= render "shared/show/text", record: @listing
