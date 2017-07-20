@@ -34,6 +34,7 @@ describe Fb::Unifier do
                          state_id: group[:state_id],
                          city_id: group[:city_id],
                          user_id: 1,
+                         from_name: "Marianna Sumina",
                          fb: "https://www.facebook.com/#{item[:from][:id]}",
                          created_at: 5.minutes.ago }
       expect(result[:attributes]).to eq expected_attrs

@@ -14,7 +14,6 @@ module Fb
 
     def unify
       kind = group[:kind]
-      url = "https://www.facebook.com/groups/#{group[:id]}/permalink/#{post['id']}"
       {
         attachments: attachments,
         attributes: {
@@ -23,7 +22,6 @@ module Fb
           active: true,
           category: KINDS[kind][:categories].first,
           subcategory: KINDS[kind][:subcategories].first,
-          original_url: url,
           text: text,
           fb: "https://www.facebook.com/#{post['from']['id']}",
           from_name: post['from']['name'],

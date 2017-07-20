@@ -16,13 +16,17 @@ describe Vk::Unifier do
                text: "Фотосессия в Нью-Йорке. Детская, семейная и портретная съемка. Лучшие снимки отобранные",
                date: 5.minutes.ago,
                attachments: [] }
+      user = Hashie::Mash.new(
+        "first_name": "Andrei",
+        "last_name": "Motinga",
+      )
       atts = double(Vk::Attachments)
       allow(Vk::Attachments).to(receive(:new))
                             .with(item[:attachments])
                             .and_return(atts)
       allow(atts).to receive(:attachments)
 
-      result = Vk::Unifier.new(item, group).unified
+      result = Vk::Unifier.new(item, group, user).unified
 
       kind = group[:kind].to_sym
       expected_attrs = { title: "Фотосессия в Нью-Йорке. Детская, семейная и портретная съемка. ...",
@@ -34,6 +38,7 @@ describe Vk::Unifier do
                          vk: "https://vk.com/id#{item[:from_id]}",
                          state_id: group[:state_id],
                          city_id: group[:city_id],
+                         from_name: "Andrei Motinga",
                          user_id: 1,
                          original_url: "https://vk.com/topic-22558194_24112410?post=2056",
                          created_at: Time.at(5.minutes.ago) }

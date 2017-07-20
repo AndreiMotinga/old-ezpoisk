@@ -29,8 +29,13 @@ describe Vk::GroupLoader do
   end
 
   def stub_request_to(grp)
-    body = { group_id: grp[:id].to_s, sort: "desc",
-             topic_id: grp[:topic].to_s, v: "5.33" }
+    body = {
+      group_id: grp[:id].to_s,
+      sort: "desc",
+      topic_id: grp[:topic].to_s,
+      extended: "1",
+      v: "5.33"
+    }
     res = File.read("spec/support/vk_response.json")
     url = "https://api.vk.com/method/board.getComments"
     stub_request(:post, url).with(body: body).to_return(body: res)
