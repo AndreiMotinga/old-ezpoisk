@@ -12,6 +12,9 @@
 
   .posts {
     .post {
+      border-bottom: 1px solid $gray;
+      margin-bottom: 5px;
+
       .title {
         font-size: 14px;
         display: block;
