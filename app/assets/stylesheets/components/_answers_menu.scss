@@ -1,0 +1,21 @@
+.answers-menu {
+  li.header {
+    border-bottom: 1px solid $medium-gray;
+    margin-bottom: 10px;
+  }
+
+  li.tag {
+    a {
+      display: inline-block;
+      padding: 2px 5px;
+      width: 100%;
+
+      &:active,
+      &:focus,
+      &:hover {
+        background-color: $light-gray;
+        text-decoration: none;
+      }
+    }
+  }
+}

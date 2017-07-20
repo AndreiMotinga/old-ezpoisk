@@ -1,7 +1,7 @@
 - content_for :sidebar do
-  = render "menu",
+  = render "answers_menu",
            url: "/answers/tag/",
-           tags: @tags = Answer.tag_counts.sort_by(&:name).select {|t| %w(медицина образование иммиграция финансы).include? t.name }
+           tags: @tags = Answer.tag_counts.sort_by(&:name).take(15)
 
 - content_for :right do
   div
