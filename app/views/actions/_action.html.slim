@@ -12,8 +12,10 @@
                           class: "img-responsive img-circle center-block"
           .col-xs-9.col-sm-10.name-block
             h4.name
-              = link_to "#{action.user.try(:name_to_show)} #{action.kind}",
-                        profile_path(action.user)
+              = link_to action.user.try(:name_to_show), profile_path(action.user)
+              = " "
+              = link_to action.kind, action.show_url
+
             small= action.user.slug
             p.date.text-muted= timeago_tag action.updated_at
 
