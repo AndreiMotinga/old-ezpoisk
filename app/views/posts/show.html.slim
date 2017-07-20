@@ -1,2 +1,12 @@
-h1 Posts#show
-p Find me in app/views/posts/show.html.slim
+.container.container-md
+  .row
+    .col-xs-12
+      h1.text-center= @post.title
+      h4.text-center= link_to @post.name_to_show, profile_path(@post.user), target: "_blank"
+      - if current_user.try(:can_edit?, @post)
+        p.text-center= link_to "Редактировать", edit_post_path(@post), class: "text-muted"
+
+    .col-xs-12
+      .panel
+        .panel-body
+          = raw @post.text

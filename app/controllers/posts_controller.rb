@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   layout "answers"
+  before_action :set_post, only: [:edit, :update, :destroy]
+
   def index
     @side_posts = Post.desc.offset(10).take(5)
     @posts = Post.includes(:user).page(params[:page])
@@ -29,11 +31,9 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = current_user.posts.find(params[:id])
   end
 
   def update
-    @post = current_user.posts.find(params[:id])
     if @post.update(post_params)
       redirect_to post_path(@post), notice: I18n.t(:p_updated)
     else
@@ -50,5 +50,10 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :text)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+    @post = nil unless current_user.try(:can_edit?, @post)
   end
 end
