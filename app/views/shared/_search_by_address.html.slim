@@ -1,5 +1,6 @@
 .row
   .col-xs-12.col-sm-3.col-md-12
+    = hidden_field_tag :kind, params[:kind]
     = select_tag :state,
       options_for_select(STATES, state),
                  class: "form-control state-select-slug my-dropdown"

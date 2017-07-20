@@ -6,7 +6,11 @@
       | Настроить фильтр | #{@listings.total_count}
 
     section#search-form.search
-      = render "listings/search"
+      - if params[:kind]
+        = render "listings/search/#{params[:kind]}"
+      - else
+        = render "listings/search"
+
 - content_for :right do
   div
 

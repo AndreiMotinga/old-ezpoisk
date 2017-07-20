@@ -1,17 +1,8 @@
-form.form-horizontal action=listings_path method="get"
-  = render "shared/search_by_address"
+ul
+  li= link_to "Недвижимость", listings_path(kind: "real-estate")
+  li= link_to "Работа", listings_path(kind: "jobs")
+  li= link_to "Услуги", listings_path(kind: "services")
+  li= link_to "Продажи", listings_path(kind: "sales")
 
-  .row
-    .col-xs-12.col-sm-6.col-md-12
-      = select_tag :kind,
-                   options_for_select(ru(KINDS.keys), params[:kind]),
-                   class: "form-control"
-
-    .col-xs-12.col-sm-6.col-md-12
-      = text_field_tag :term, params[:term],
-                       class: "form-control",
-                       placeholder: "Ключевое слово..."
-
-  small.text-muted Объявлений: #{@listings.total_count}
-  hr
-  = submit_tag "Обновить", name: nil, class: "btn btn-ez pull-right"
+small.text-muted Объявлений: #{@listings.total_count}
+hr
