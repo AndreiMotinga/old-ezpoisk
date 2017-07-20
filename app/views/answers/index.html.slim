@@ -1,7 +1,7 @@
 - content_for :sidebar do
-  = render "shared/tag_cloud",
-           tags: @tags = Answer.tag_counts.sort_by(&:name).select {|t| %w(медицина образование иммиграция финансы).include? t.name },
-           url: "/answers/tag/"
+  = render "menu",
+           url: "/answers/tag/",
+           tags: @tags = Answer.tag_counts.sort_by(&:name).select {|t| %w(медицина образование иммиграция финансы).include? t.name }
 
 - content_for :right do
   div
