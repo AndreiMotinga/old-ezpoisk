@@ -1,13 +1,14 @@
-.hidden-xs.hidden-sm.user-widget.mdl-shadow--3dp.text-center
-  div
-    = image_tag current_user.avatar(:medium),
-                class: "img-responsive img-circle center-block img"
-  div
-    span.title= link_to current_user.name, profile_path(current_user), class: "name"
-    span.legend= current_user.slug
-  hr
-  div
-    span.title.karma 234
-    span.legend карма
-  hr
-    = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-block btn-ez"
+.sticky
+  .hidden-xs.hidden-sm.user-widget.mdl-shadow--3dp.text-center
+    div
+      = image_tag current_user.avatar(:medium),
+                  class: "img-responsive img-circle center-block img"
+    div
+      span.title= link_to current_user.name, profile_path(current_user), class: "name"
+      span.legend= current_user.slug
+    hr
+    div
+      span.title.karma 234
+      span.legend карма
+    hr
+      = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-block btn-ez"

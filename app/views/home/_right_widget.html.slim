@@ -1,10 +1,11 @@
-.row.right-widget.mdl-shadow--3dp
-  span.widget-title О чем говорят...
-  hr
-  ul.posts
-    - @posts.each do |post|
-      li.post
-        = link_to post.title, post, class: "title"
-        small.time= timeago_tag post.created_at
+.sticky
+  .row.right-widget.mdl-shadow--3dp
+    span.widget-title О чем говорят...
+    hr
+    ul.posts
+      - @posts.each do |post|
+        li.post
+          = link_to post.title, post, class: "title"
+          small.time= timeago_tag post.created_at
 
-  p.text-center= link_to "показать еще", posts_path
+    p.text-center= link_to "показать еще", posts_path
