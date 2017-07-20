@@ -4,10 +4,8 @@
               url: answer_path(@answer),
               image: @answer.image.url(:medium) }
 
-- content_for :sidebar do
-  = render "shared/tag_cloud",
-            tags: Answer.tag_counts.sort_by(&:name),
-            url: "/answers/tag/"
+- content_for :right do
+  div
 
 .article.answer.white-block
   .panel
@@ -28,10 +26,10 @@
               = link_to "Редактировать", edit_answer_path(@answer), class: "text-muted"
 
     .panel-body
-      - if @answer.image?
-        = image_tag @answer.image.url(:medium),
-                    class: "img-responsive center-block margin-bottom-10",
-                    alt: "Помощь русским в США - #{@answer.title}"
+      /- if @answer.image?
+      /  = image_tag @answer.image.url(:medium),
+      /              class: "img-responsive center-block margin-bottom-10",
+      /              alt: "Помощь русским в США - #{@answer.title}"
       .text= raw @answer.text
     .panel-footer
       = render "shared/tags", record: @answer
