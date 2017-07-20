@@ -1,7 +1,7 @@
 .sticky
   ul.answers-menu.hidden-xs.hidden-sm.col-md-8.col-md-offset-4.red
     li.header Топики
-    li.tag= link_to "Ответить", unanswered_questions_path, class: "gray"
+    li.tag= link_to "Ответить", questions_path, class: "gray"
     li.tag= link_to "Новые", answers_path, class: "gray"
     - tags.each do |tag|
       li.tag= link_to tag.name.mb_chars.capitalize.to_s, "#{url}#{tag.name}", class: "gray"

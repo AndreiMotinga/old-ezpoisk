@@ -23,9 +23,8 @@ Rails.application.routes.draw do
       get "tag/:tag", to: "answers#tag", as: :tag
     end
   end
-  resources :questions, only: [:new, :create, :show] do
+  resources :questions, only: [:index, :new, :create, :show] do
     collection do
-      get "unanswered", to: "questions#unanswered"
       get "unanswered/:tag", to: "questions#unanswered_tag", as: :unanswered_tag
     end
   end
