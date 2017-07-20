@@ -1,3 +1,5 @@
+- content_for :sidebar, render("home/user_widget")
+- content_for :right, render("home/right_widget", posts: @side_posts)
 
 div data-id="listings" data-term=params[:term]
   = render @posts
@@ -5,3 +7,4 @@ div data-id="listings" data-term=params[:term]
 .row
   .col-xs-12
     = render "shared/pagination", records: @posts
+

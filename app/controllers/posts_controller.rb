@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   layout "answers"
   def index
+    @side_posts = Post.desc.offset(10).take(5)
     @posts = Post.includes(:user).page(params[:page])
     respond_to do |format|
       format.html

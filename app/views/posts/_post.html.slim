@@ -1,2 +1,21 @@
-h5= link_to post.title, post
-p= post.text
+.col-xs-12
+  .row.mdl-shadow--3dp.article
+    .panel
+      .panel-heading
+        h1.title= link_to post.title, post
+        .row.author
+          .col-xs-3.col-sm-2
+            = link_to profile_path(post.user) do
+              = image_tag post.user.avatar(:thumb),
+                          alt: "автор ответа #{post.user.name_to_show}",
+                          class: "img-responsive img-circle center-block"
+          .col-xs-9.col-sm-10.name-block
+            h4.name
+              = link_to "#{post.user.try(:name_to_show)}", profile_path(post.user)
+            small= post.user.slug
+            p.date.text-muted= timeago_tag post.updated_at
+
+      .panel-body
+        .text
+          = strip_tags(post.text).truncate(250)
+          = link_to " дальше", post if post.text.size > 200

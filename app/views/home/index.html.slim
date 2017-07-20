@@ -5,7 +5,7 @@
               image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
 
 - content_for :sidebar, render("user_widget")
-- content_for :right, render("right_widget")
+- content_for :right, render("right_widget", posts: @posts)
 
 div data-id="listings"
   = render @actions
