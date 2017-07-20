@@ -1,5 +1,6 @@
 class Question < ActiveRecord::Base
   acts_as_taggable
+  include Filterable
   include MyFriendlyId
   include Searchable
   include Commentable

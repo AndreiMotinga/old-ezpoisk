@@ -7,16 +7,30 @@
              url: question_url(@question),
              image: @question.image }
 
-= render "answers/search"
-= render @question
+- content_for :right do
+  - questions = Question.desc.limit(10)
+  .row.right-widget.mdl-shadow--3dp
+    span.widget-title Похожие вопросы...
+    hr
+    ul.posts
+      - questions.each do |question|
+        li.post
+          = link_to question.title, question, class: "title"
+          small.time= timeago_tag question.created_at
 
-/ ANSWERS
 .row
-  .col-xs-12
-    - if @question.answers_count > 0
-      = render @question.answers.includes(:user)
-    - else
-      h3= link_to new_answer_path(question_id: @question.id) do
-          |  Можете ответить на этот вопрос?
-          = "  "
-          .fa.fa-pencil
+  .col-lg-10.col-lg-offset-1
+    = render @question
+
+    / ANSWERS
+    .row
+      .col-xs-12
+        - @question.answers.includes(:user).each do |answer|
+          = render "questions/answer", answer: answer
+          hr
+
+        h3.text-center
+          = link_to new_answer_path(question_id: @question.id) do
+            |  Можете ответить на этот вопрос?
+            = "  "
+            .fa.fa-pencil

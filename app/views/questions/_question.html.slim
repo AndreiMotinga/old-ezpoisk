@@ -13,8 +13,3 @@
     .panel-body
       .text= simple_format question.text, sanitize: true
       = render "shared/tags", record: question
-
-    - if action_name == "show"
-      .panel-footer
-        /todo move them to popup menu, and build them as links instead of buttons
-        /= render "shared/social", count: nil, inline: true
