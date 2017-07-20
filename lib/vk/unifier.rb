@@ -13,11 +13,13 @@ module Vk
 
     def unify
       kind = group[:kind].to_sym
+      original_url = "https://vk.com/topic-#{group[:id]}_#{group[:topic]}?post=#{post[:id]}"
       {
         attachments: attachments,
         attributes: {
-          title: "Dummy title",
+          title: post[:text].truncate(66),
           kind: kind,
+          active: true,
           category: KINDS[kind][:categories].first,
           subcategory: KINDS[kind][:subcategories].first,
           text: Media::Sanitizer.clean(post[:text]),
@@ -25,7 +27,8 @@ module Vk
           state_id: group[:state_id],
           city_id: group[:city_id],
           user_id: 1,
-          created_at: Time.at(post[:date])
+          created_at: Time.at(post[:date]),
+          original_url: original_url
         }
       }
     end
