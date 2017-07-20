@@ -12,7 +12,7 @@ $(document).ready(function(){
       // ['height', ['height']]
     ],
     lang: 'ru',
-    height: 200,
+    height: 300,
     codemirror: {
       lineNumbers: true,
       tabSize: 2,

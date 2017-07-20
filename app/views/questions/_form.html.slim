@@ -1,11 +1,10 @@
-.panel
-  .panel-body
+.row
+  .col-lg-10.col-lg-offset-1
     = bootstrap_form_for @question do |f|
       .field
         = f.text_field :title, label: "Ваш вопрос", value: @question.title || params[:question]
-
       .field
-        = f.text_area :text, label: "Подробности"
+        = f.text_area :text, label: "Подробности", rows: 7
 
       .field
         = label_tag "Тэги", nil
