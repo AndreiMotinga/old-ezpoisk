@@ -13,4 +13,26 @@ class Action < ApplicationRecord
       "задал(а) вопрос"
     end
   end
+
+  def name
+    return actionable.from_name if actionable.try(:from_name).present?
+    "ez"
+  end
+
+  def name_url
+    if actionable.user_id == 1 # was imported
+      return actionable.vk if actionable.vk.present?
+      return actionable.fb if actionable.fb.present?
+    end
+    Rails.application.routes.url_helpers.profile_path(actionable.user)
+  end
+
+  def text_to_show
+    return text if text.present?
+    title
+  end
+
+  def slug
+    user.slug unless actionable.user_id == 1
+  end
 end
