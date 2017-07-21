@@ -40,7 +40,6 @@ describe Vk::Unifier do
                          city_id: group[:city_id],
                          from_name: "Andrei Motinga",
                          user_id: 1,
-                         original_url: "https://vk.com/topic-22558194_24112410?post=2056",
                          created_at: Time.at(5.minutes.ago) }
       expect(result[:attributes]).to eq expected_attrs
 

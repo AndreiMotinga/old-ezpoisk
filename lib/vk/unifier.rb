@@ -14,7 +14,6 @@ module Vk
 
     def unify
       kind = group[:kind].to_sym
-      original_url = "https://vk.com/topic-#{group[:id]}_#{group[:topic]}?post=#{post[:id]}"
       user_name = user ? "#{user.first_name} #{user.last_name}" : "Anonymous"
       {
         attachments: attachments,
@@ -30,8 +29,7 @@ module Vk
           city_id: group[:city_id],
           from_name: user_name,
           user_id: 1,
-          created_at: Time.at(post[:date]),
-          original_url: original_url
+          created_at: Time.at(post[:date])
         }
       }
     end
