@@ -17,5 +17,9 @@
         text-decoration: none;
       }
     }
+
+    a.active {
+      background-color: $light-gray;
+    }
   }
 }

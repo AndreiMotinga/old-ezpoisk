@@ -6,7 +6,7 @@ html lang="ru"
 
     .page-wrap
       = render "notice" unless devise_controller?
-      h5.text-center Tatian Kopernik - Иммиграционный адвокат ...
+      p.text-center.red Tatian Kopernik - Иммиграционный адвокат ...
       = yield :header
       .container.red
         .row

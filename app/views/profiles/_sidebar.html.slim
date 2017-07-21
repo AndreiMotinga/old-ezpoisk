@@ -1,7 +1,9 @@
-ul
-  li= link_to "Ответы", profile_path(@user)
-  li= link_to "Вопросы", questions_profile_path(@user)
-  li= link_to "Посты", posts_profile_path(@user)
-  li= link_to "Объявления", listings_profile_path(@user)
-  - if user_signed_in?
-    li= link_to "Настройки", edit_user_path(current_user)
+.stick.tagy
+  ul.answers-menu.hidden-xs.hidden-sm.col-md-8.col-md-offset-4
+    li.header Топики
+    li.tag= link_to "Ответы", profile_path(@user), class: "grey #{cp(profile_path(@user))}"
+    li.tag= link_to "Вопросы", questions_profile_path(@user), class: "grey #{cp(questions_profile_path(@user))}"
+    li.tag= link_to "Посты", posts_profile_path(@user), class: "grey #{cp(posts_profile_path(@user))}"
+    li.tag= link_to "Объявления", listings_profile_path(@user), class: "grey #{cp(listings_profile_path(@user))}"
+    - if user_signed_in?
+      li.tag= link_to "Настройки", edit_user_path(current_user), class: "grey"
