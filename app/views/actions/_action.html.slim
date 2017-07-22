@@ -8,12 +8,13 @@
             = link_to action.name_url do
               = image_tag action.user.avatar(:thumb),
                           alt: "автор ответа #{action.user.name_to_show}",
-                          class: "img-responsive img-circle center-block"
+                          class: "img-responsive img-circle center-block",
+                          target: "_blank"
           .col-xs-9.col-sm-10.name-block
             h4.name
-              = link_to action.name, action.name_url
+              = link_to action.name, action.name_url, target: "_blank"
               = " "
-              = link_to action.kind, action.show_url
+              = link_to action.kind, action.show_url, target: "_blank"
 
             small= action.slug
             p.date.text-muted= timeago_tag action.updated_at

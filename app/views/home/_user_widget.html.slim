@@ -14,4 +14,11 @@
       hr
         = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-block btn-ez"
 - else
-  = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow", class: "btn btn-ez"
+  .sticky
+    .hidden-xs.hidden-sm.user-widget.mdl-shadow--3dp.text-center
+      div
+        = image_tag "https://s3.amazonaws.com/ezpoisk/missing.png",
+                    class: "img-responsive center-block"
+      hr
+      br
+      = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", class: "btn btn-block btn-ez"
