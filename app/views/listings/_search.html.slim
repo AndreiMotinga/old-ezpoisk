@@ -1,16 +1,20 @@
-ul
-  li
-    = link_to "Недвижимость", listings_path(kind: "real-estate")
-    .pull-right= Listing.active.where(kind: "real-estate").count
-  li
-    = link_to "Работа", listings_path(kind: "jobs")
-    .pull-right= Listing.active.where(kind: "jobs").count
-  li
-    = link_to "Услуги", listings_path(kind: "services")
-    .pull-right= Listing.active.where(kind: "sales").count
-  li
-    = link_to "Продажи", listings_path(kind: "sales")
-    .pull-right= Listing.active.where(kind: "services").count
+.listings-menu
+  h5 ВСЕ КАТЕГОРИИ
+  hr
+  ul
+    li
+      = link_to "Недвижимость", listings_path(kind: "real-estate")
+      .pull-right= Listing.active.where(kind: "real-estate").count
+    li
+      = link_to "Работа", listings_path(kind: "jobs")
+      .pull-right= Listing.active.where(kind: "jobs").count
+    li
+      = link_to "Услуги", listings_path(kind: "services")
+      .pull-right= Listing.active.where(kind: "services").count
+    li
+      = link_to "Продажи", listings_path(kind: "sales")
+      .pull-right= Listing.active.where(kind: "sales").count
 
-small.text-muted Объявлений: #{@listings.total_count}
-hr
+  hr
+  small.text-muted.pull-right Объявлений: #{@listings.total_count}
+br

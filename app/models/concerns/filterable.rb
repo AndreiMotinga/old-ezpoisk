@@ -19,6 +19,7 @@ module Filterable
     scope :today, -> { where("#{table_name}.created_at > ?", Date.today) }
     scope :week, -> { where("#{table_name}.created_at > ?",
                             Date.today.at_beginning_of_week) }
+    scope :featured, -> { where(featured: true) }
     scope :desc, -> { order("#{table_name}.created_at desc") }
     scope :random, -> { order("RANDOM()") }
     scope :unpaid, -> { where(paid: false) }

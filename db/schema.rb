@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721000622) do
+ActiveRecord::Schema.define(version: 20170723164400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,21 +69,6 @@ ActiveRecord::Schema.define(version: 20170721000622) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "delayed_jobs", id: :serial, force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", null: false
-    t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
-  end
-
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -127,13 +112,37 @@ ActiveRecord::Schema.define(version: 20170721000622) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "kind"
-    t.string "original_url"
-    t.string "vk_name"
-    t.integer "from_id"
     t.string "from_name"
     t.index ["city_id"], name: "index_listings_on_city_id"
     t.index ["state_id"], name: "index_listings_on_state_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "title", default: "", null: false
+    t.text "text", default: "", null: false
+    t.string "category", null: false
+    t.boolean "active", default: false, null: false
+    t.integer "priority", default: 0, null: false
+    t.boolean "featured", default: false, null: false
+    t.bigint "user_id"
+    t.bigint "state_id"
+    t.bigint "city_id"
+    t.string "street", default: ""
+    t.string "lat", default: ""
+    t.string "lng", default: ""
+    t.integer "zip"
+    t.string "phone", default: ""
+    t.string "email", default: ""
+    t.string "site", default: ""
+    t.string "vk", default: ""
+    t.string "fb", default: ""
+    t.string "gl", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_partners_on_city_id"
+    t.index ["state_id"], name: "index_partners_on_state_id"
+    t.index ["user_id"], name: "index_partners_on_user_id"
   end
 
   create_table "pg_search_documents", id: :serial, force: :cascade do |t|
@@ -309,6 +318,9 @@ ActiveRecord::Schema.define(version: 20170721000622) do
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"
   add_foreign_key "listings", "users"
+  add_foreign_key "partners", "cities"
+  add_foreign_key "partners", "states"
+  add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"

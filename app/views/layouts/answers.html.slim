@@ -6,7 +6,9 @@ html lang="ru"
 
     .page-wrap
       = render "notice" unless devise_controller?
-      p.text-center.red Tatian Kopernik - Иммиграционный адвокат ...
+      p.text-center.red
+        - l = Listing.featured.order("random()").sample
+        span= link_to l.title, l.show_url
       = yield :header
       .container.red
         .row
@@ -38,6 +40,7 @@ html lang="ru"
 
             .visible-lg.col-lg-3.black
               = yield :right
+              br
               .row
                 = render "google_ad"
 

@@ -1,41 +1,40 @@
 .row
-  .col-xs-12
-    .menu
-      ul.list-group
-        - if record.user and !record.user.admin?
-          li.list-group-item
-            strong= link_to "Автор",  profile_path(record.user)
+  .menu
+    ul.list-group
+      - if record.user and !record.user.admin?
+        li.list-group-item
+          strong= link_to "Автор",  profile_path(record.user)
 
-        - unless record.try(:vk).blank?
-          li.list-group-item
-            strong
-              = link_to record.vk, target: "_blank", rel: "nofollow" do
-                i.fa.fa-lg.fa-vk
-                |  Я vkontakte
+      - unless record.try(:vk).blank?
+        li.list-group-item
+          strong
+            = link_to record.vk, target: "_blank", rel: "nofollow" do
+              i.fa.fa-lg.fa-vk
+              |  Я vkontakte
 
-        - unless record.try(:fb).blank?
-          li.list-group-item
-            strong
-              = link_to record.fb, target: "_blank", rel: "nofollow" do
-                i.fa.fa-lg.fa-facebook
-                |  Я в facebook
+      - unless record.try(:fb).blank?
+        li.list-group-item
+          strong
+            = link_to record.fb, target: "_blank", rel: "nofollow" do
+              i.fa.fa-lg.fa-facebook
+              |  Я в facebook
 
-        - if record.try(:phone).present?
-          - record.phone.split(",").each do |phone|
-            li.list-group-item
-              i.fa.fa-phone
-              a href="tel:#{phone}"
-                strong= number_to_phone phone, area_code: 1
+      - if record.try(:phone).present?
+        - record.phone.split(",").each do |phone|
+          li.list-group-item
+            i.fa.fa-phone
+            a href="tel:#{phone}"
+              strong= number_to_phone phone, area_code: 1
 
-        - if record.try(:email).present?
-          li.list-group-item
-            strong
-              a href="mailto:#{record.email}" target="_top"
-                i.fa.fa-envelope-o
-                | email
-        - if record.street?
-          li.list-group-item
-            strong
-              = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
-                i.fa.fa-map-o
-                | Google Map
+      - if record.try(:email).present?
+        li.list-group-item
+          strong
+            a href="mailto:#{record.email}" target="_top"
+              i.fa.fa-envelope-o
+              | email
+      - if record.street?
+        li.list-group-item
+          strong
+            = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
+              i.fa.fa-map-o
+              | Google Map
