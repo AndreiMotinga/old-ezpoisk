@@ -75,6 +75,11 @@ gem "babosa" # todo remove? handle russian
 gem "rails-timeago", "~> 2.0"
 gem "puma"
 
+
+# put back to dev-test
+gem "factory_girl_rails"
+gem "faker"
+
 group :development do
   gem "listen"
   gem "spring"
@@ -91,8 +96,6 @@ group :development, :test do
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "dotenv-rails"
-  gem "factory_girl_rails"
-  gem "faker"
   gem "pry-byebug"
   gem "rspec-rails", "~> 3.5.0.beta4"
 end
