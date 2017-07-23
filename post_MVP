@@ -1,0 +1,36 @@
+GENERAL
+  - extensive testing/cleanup
+  - conent writing
+  - extensive advertising
+  - improving design
+
+Answers app
+  - implementing votes
+  - implementing points ( karms? )
+  - implementing comments
+  - implementing following, request and answer feature
+  - notifications
+
+Listings App
+  - improving search
+  - insite messaging
+  - ask users for feedback
+
+Partners
+  - extracting business from Listings
+  - Allow user to browse businesses
+  - design great show page for a business ( depends on the requirements )
+    - introduce team?
+    - allow multiple address, contacts
+    - allow gallery?
+    - any additional required features for a how page
+
+Feed
+  - allow user customize feed
+  - like/share functionality
+
+Posts
+  - scrape web for posts, combine topics, generate interesting content
+
+TECH
+  - build mobile app
