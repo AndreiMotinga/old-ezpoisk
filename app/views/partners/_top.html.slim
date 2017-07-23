@@ -1,3 +1,6 @@
 - if @top
-  .text-center
-    span= link_to @top.title, @top.show_url
+  .row
+    .partner-top.text-center
+      h5= link_to @top.show_url do
+        span.title= @top.title
+        span.legend= " - #{@top.legend}"

@@ -6,7 +6,6 @@ html lang="ru"
 
     .page-wrap
       = render "notice" unless devise_controller?
-      p.text-center.red
       = render "partners/top"
       = yield :header
       .container.red

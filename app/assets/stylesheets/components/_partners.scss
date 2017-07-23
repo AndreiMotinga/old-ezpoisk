@@ -1,0 +1,38 @@
+.partner-left,
+.partner-right,
+.partner-inserted {
+  background-color: $white;
+  margin-bottom: 20px;
+  padding: 5px;
+  border: $dark-gray;
+  color: $dark-gray;
+}
+
+.partner-top {
+  a:hover {
+    text-decoration: underline;
+  }
+  .legend {
+    color: $dark-gray;
+  }
+}
+
+.partner-left {
+  h5 {
+    margin-bottom: 0;
+  }
+  .title {
+    color: $dark-gray;
+  }
+  .site {
+    color: $medium-gray;
+  }
+}
+
+.partner-right {
+
+}
+
+.partner-inserted {
+
+}
