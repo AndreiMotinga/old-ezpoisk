@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
   # before_action :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :set_featured
+
+  def set_featured
+    @top, @left, @right, @inserted = Listing.featured.order("random()").take(4)
+  end
+
   protected
 
   def address_changed?(record, prms)
