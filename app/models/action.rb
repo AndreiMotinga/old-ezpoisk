@@ -20,7 +20,7 @@ class Action < ApplicationRecord
   end
 
   def name_url
-    if actionable.try(:kind )== "Listing" && actionable.user_id == 1 # was imported
+    if actionable_type == "Listing" && actionable.user_id == 1 # was imported
       return actionable.vk if actionable.vk.present?
       return actionable.fb if actionable.fb.present?
     end
