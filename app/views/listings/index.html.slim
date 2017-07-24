@@ -1,5 +1,8 @@
 - meta title: "Бесплатные объявления в США - ezpoisk"
 
+
+- content_for :header, render("partners/top")
+
 - content_for :sidebar do
   section
     #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
@@ -11,9 +14,10 @@
       - else
         = render "listings/search"
 
-- content_for :right do
-  div
+  = render "partners/left"
 
+- content_for :right do
+  = render "google_ad"
 
 div data-id="listings"
   = render @listings

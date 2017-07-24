@@ -7,6 +7,8 @@
              url: question_url(@question),
              image: @question.image }
 
+- content_for :header, render("partners/top")
+
 - content_for :right do
   - questions = Question.desc.limit(10)
   .row.right-widget.mdl-shadow--3dp
@@ -17,6 +19,8 @@
         li.post
           = link_to question.title, question, class: "title"
           small.time= timeago_tag question.created_at
+
+  = render "google_ad"
 
 .row
   .col-lg-10.col-lg-offset-1

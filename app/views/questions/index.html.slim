@@ -3,8 +3,11 @@
            url: "/questions/tag/",
            tags: @tags,
            type: "questions"
+
+- content_for :header, render("partners/top")
+
 - content_for :right do
-  div
+  = render "google_ad"
 
 .col-xs-12 data-id="listings"
   = render @questions

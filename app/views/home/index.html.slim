@@ -4,8 +4,7 @@
               url: "https://www.ezpoisk.com",
               image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
 
-- content_for :header do
-  = render "partners/top"
+- content_for :header, render("partners/top")
 
 - content_for :sidebar do
   = render "user_widget"

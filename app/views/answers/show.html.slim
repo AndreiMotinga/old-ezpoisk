@@ -3,7 +3,12 @@
         og: { type: "article",
               url: answer_path(@answer),
               image: @answer.image.url(:medium) }
-- content_for :right, render("similar_answers")
+
+- content_for :header, render("partners/top")
+
+- content_for :right do
+  = render "similar_answers"
+  = render "google_ad"
 
 .row
   .col-lg-10.col-lg-offset-1
