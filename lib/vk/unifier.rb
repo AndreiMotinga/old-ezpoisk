@@ -22,7 +22,7 @@ module Vk
           kind: kind,
           active: true,
           category: KINDS[kind][:categories].first,
-          subcategory: KINDS[kind][:subcategories].first,
+          subcategory: "other",
           text: Media::Sanitizer.clean(post[:text]),
           vk: "https://vk.com/id#{post[:from_id]}",
           state_id: group[:state_id],

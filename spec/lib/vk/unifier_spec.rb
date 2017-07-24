@@ -33,7 +33,7 @@ describe Vk::Unifier do
                          kind: kind,
                          active: true,
                          category: KINDS[kind][:categories].first,
-                         subcategory: KINDS[kind][:subcategories].first,
+                         subcategory: "other",
                          text: item[:text],
                          vk: "https://vk.com/id#{item[:from_id]}",
                          state_id: group[:state_id],

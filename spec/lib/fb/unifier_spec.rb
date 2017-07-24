@@ -29,7 +29,7 @@ describe Fb::Unifier do
                          kind: group[:kind],
                          active: true,
                          category: KINDS[kind][:categories].first,
-                         subcategory: KINDS[kind][:subcategories].first,
+                         subcategory: "other",
                          text: item[:message],
                          state_id: group[:state_id],
                          city_id: group[:city_id],

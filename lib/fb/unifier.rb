@@ -21,7 +21,7 @@ module Fb
           kind: kind,
           active: true,
           category: KINDS[kind][:categories].first,
-          subcategory: KINDS[kind][:subcategories].first,
+          subcategory: "other",
           text: text,
           fb: "https://www.facebook.com/#{post['from']['id']}",
           from_name: post['from']['name'],
