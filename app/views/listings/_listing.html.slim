@@ -42,6 +42,9 @@
       = " | "
       = render "shared/indicators", record: listing
       = " | "
-      - if listing.user_id == current_user.try(:id)
+      - if listing.user_id == current_user.try(:id) || current_user.try(:id) == 84 # me
         = link_to "редактировать", edit_listing_path(listing)
+        = link_to listing_path(listing), method: :delete do
+          = " | "
+          i.fa.fa-trash aria-hidden="true"
 
