@@ -4,8 +4,16 @@
               url: "https://www.ezpoisk.com",
               image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
 
-- content_for :sidebar, render("user_widget")
-- content_for :right, render("right_widget", posts: @posts)
+- content_for :header do
+  = render "partners/top"
+
+- content_for :sidebar do
+  = render "user_widget"
+  = render "partners/left"
+
+- content_for :right do
+  = render "right_widget", posts: @posts
+  = render "google_ad"
 
 div data-id="listings"
   = render @actions

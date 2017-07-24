@@ -1,11 +1,12 @@
-- if Rails.env.production?
-  script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-  ins[class="adsbygoogle"
-      style="display:inline-block;width:300px;height:250px"
-      data-ad-client="ca-pub-1350854790289606"
-      data-ad-slot="2734126171"]
-  javascript:
-    (adsbygoogle = window.adsbygoogle || []).push({});
+.row
+  - if Rails.env.production?
+    script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ins[class="adsbygoogle"
+        style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-1350854790289606"
+        data-ad-slot="2734126171"]
+    javascript:
+      (adsbygoogle = window.adsbygoogle || []).push({});
 
-- else
-  div style="display:inline-block;width:300px;height:250px;background-color:black;"
+  - else
+    div style="display:inline-block;width:300px;height:250px;background-color:black;"

@@ -1,5 +1,5 @@
 $(document).ready(function(){
   $('.sticky').each(function (i, obj) {
-    $(obj).sticky({topSpacing:70});
+    $(obj).sticky({topSpacing:60});
   });
 });
