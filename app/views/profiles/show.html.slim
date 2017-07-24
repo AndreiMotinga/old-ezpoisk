@@ -2,4 +2,10 @@
 - content_for :sidebar, render("profiles/sidebar")
 - content_for :right, render("profiles/right")
 
+= link_to questions_path do
+  | Добавить ответы
+  = "  "
+  .fa.fa-pencil
+hr
+
 = render @user.answers

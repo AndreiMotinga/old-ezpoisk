@@ -2,5 +2,11 @@
 - content_for :sidebar, render("profiles/sidebar")
 - content_for :right, render("profiles/right")
 
+
+= link_to new_post_path do
+  | Добавить пост
+  = "  "
+  .fa.fa-pencil
+hr
 - @posts.each do |p|
   = render "posts/post", post: p

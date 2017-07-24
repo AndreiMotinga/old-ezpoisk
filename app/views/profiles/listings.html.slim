@@ -2,5 +2,10 @@
 - content_for :sidebar, render("profiles/sidebar")
 - content_for :right, render("profiles/right")
 
+= link_to new_listing_path do
+  | Добавить объявление
+  = "  "
+  .fa.fa-pencil
+hr
 - @listings.each do |l|
   = render "listings/listing", listing: l
