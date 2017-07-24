@@ -1,4 +1,5 @@
 # deactivates listings that weren't updated for 30 days.
+# todo - I removed cron schedule form heroku - do I need this?
 class ListingsDeactivatorJob
   include Sidekiq::Worker
 
