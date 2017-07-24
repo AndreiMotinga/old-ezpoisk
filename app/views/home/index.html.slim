@@ -8,11 +8,9 @@
 
 - content_for :sidebar do
   = render "user_widget"
-  = render "partners/left"
 
 - content_for :right do
   = render "right_widget", posts: @posts
-  = render "google_ad"
 
 div data-id="listings"
   = render @actions

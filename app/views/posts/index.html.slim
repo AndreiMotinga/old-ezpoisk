@@ -1,11 +1,9 @@
 - content_for :header, render("partners/top")
 - content_for :sidebar do
   = render("home/user_widget")
-  = render "partners/left"
 
 - content_for :right do
   = render "home/right_widget", posts: @side_posts
-  = render "google_ad"
 
 div data-id="listings" data-term=params[:term]
   = render @posts
@@ -13,4 +11,3 @@ div data-id="listings" data-term=params[:term]
 .row
   .col-xs-12
     = render "shared/pagination", records: @posts
-
