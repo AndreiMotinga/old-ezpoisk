@@ -35,4 +35,9 @@ class Action < ApplicationRecord
   def slug
     user.slug unless actionable.user_id == 1
   end
+
+  def image_url
+    return user.avatar(:thumb) unless actionable.user_id == 1
+    "https://s3.amazonaws.com/ezpoisk/default-avatar.png"
+  end
 end
