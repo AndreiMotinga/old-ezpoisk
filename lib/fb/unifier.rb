@@ -14,6 +14,8 @@ module Fb
 
     def unify
       kind = group[:kind]
+      subcategory = kind == "real-estate" ? "apartment" : "other"
+      rooms = kind == "real-estate" ? "room" : ""
       {
         attachments: attachments,
         attributes: {
@@ -21,7 +23,8 @@ module Fb
           kind: kind,
           active: true,
           category: KINDS[kind][:categories].first,
-          subcategory: "other",
+          subcategory: subcategory,
+          rooms: rooms,
           text: text,
           fb: "https://www.facebook.com/#{post['from']['id']}",
           from_name: post['from']['name'],

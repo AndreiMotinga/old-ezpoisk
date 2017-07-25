@@ -29,11 +29,14 @@ describe Vk::Unifier do
       result = Vk::Unifier.new(item, group, user).unified
 
       kind = group[:kind].to_sym
+      subcategory = kind == :"real-estate" ? "apartment" : "other"
+      rooms = kind == :"real-estate" ? "room" : ""
       expected_attrs = { title: "Фотосессия в Нью-Йорке. Детская, семейная и портретная съемка. ...",
                          kind: kind,
                          active: true,
                          category: KINDS[kind][:categories].first,
-                         subcategory: "other",
+                         subcategory: subcategory,
+                         rooms: rooms,
                          text: item[:text],
                          vk: "https://vk.com/id#{item[:from_id]}",
                          state_id: group[:state_id],

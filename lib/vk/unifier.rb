@@ -15,6 +15,8 @@ module Vk
     def unify
       kind = group[:kind].to_sym
       user_name = user ? "#{user.first_name} #{user.last_name}" : "Anonymous"
+      subcategory = kind == :"real-estate" ? "apartment" : "other"
+      rooms = kind == :"real-estate" ? "room" : ""
       {
         attachments: attachments,
         attributes: {
@@ -22,7 +24,8 @@ module Vk
           kind: kind,
           active: true,
           category: KINDS[kind][:categories].first,
-          subcategory: "other",
+          subcategory: subcategory,
+          rooms: rooms,
           text: Media::Sanitizer.clean(post[:text]),
           vk: "https://vk.com/id#{post[:from_id]}",
           state_id: group[:state_id],

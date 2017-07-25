@@ -25,11 +25,14 @@ describe Fb::Unifier do
       result = Fb::Unifier.new(item, group).unified
 
       kind = group[:kind].to_sym
+      subcategory = kind == :"real-estate" ? "apartment" : "other"
+      rooms = kind == :"real-estate" ? "room" : ""
       expected_attrs = { title: "У нас на работе есть вакансия",
                          kind: group[:kind],
                          active: true,
                          category: KINDS[kind][:categories].first,
-                         subcategory: "other",
+                         subcategory: subcategory,
+                         rooms: rooms,
                          text: item[:message],
                          state_id: group[:state_id],
                          city_id: group[:city_id],
