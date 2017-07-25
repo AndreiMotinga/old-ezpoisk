@@ -1,9 +1,10 @@
 - if @right
-  .hidden-xs.hidden-sm
-    .partner-right
-      = link_to @right.show_url do
-        = image_tag @right.logo_url, class: "img-responsive"
-      h5= link_to @right.title, @right.show_url, class: "title"
-      small= link_to @right.site, @right.site, class: "site"
-      hr
-      p= @right.legend
+  .row
+    .hidden-xs.hidden-sm
+      .partner-right
+        = link_to @right.show_url do
+          = image_tag @right.logo_url, class: "img-responsive"
+        h5= link_to @right.title, @right.show_url, class: "title"
+        small= link_to @right.site, @right.site, class: "site"
+        hr
+        p= @right.legend

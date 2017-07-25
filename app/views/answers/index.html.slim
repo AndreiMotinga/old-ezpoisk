@@ -8,6 +8,8 @@
 
 - content_for :right do
   = render "google_ad"
+  br
+  = render "partners/right"
 
 div data-id="listings" data-term=params[:term]
   = render "answers/search"
