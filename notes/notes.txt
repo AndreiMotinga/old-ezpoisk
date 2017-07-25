@@ -1,0 +1,25 @@
+- karma
+- Answer created
+- Answer upvoted
+- Answer shared
+- Answer liked
+- Question liked
+- Question shared
+- Question upvoted
+- Question followed
+- Listing created
+- Listing shared
+- Post created
+- Post liked
+- Post shared
+- Profile thanked
+
+- 1 point = 1 cent
+- - answer, post 10 points
+- Listing 1
+- - each upvote 10 points
+
+
+Posts
+- Build importers to import news
+- Admin writes simple summary and adds news-links to post (LinkedIn style)
