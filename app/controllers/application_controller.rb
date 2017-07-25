@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_featured
 
   def set_featured
-    @top, @left, @right, @inserted = Listing.featured.order("random()").take(4)
+    @right, @left, @top  = Listing.featured.order("random ()").take(3)
   end
 
   protected

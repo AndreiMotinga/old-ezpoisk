@@ -1,25 +1,24 @@
 .partner-left,
 .partner-right,
 .partner-inserted {
-  background-color: $white;
+  // background-color: $white;
+  // border: 1px solid $medium-gray;
   margin-bottom: 20px;
-  padding: 5px;
-  border: $dark-gray;
   color: $dark-gray;
 }
 
 .partner-top {
   margin-bottom: 15px;
 
-  a:hover {
-    text-decoration: underline;
-  }
   .legend {
     color: $dark-gray;
   }
 }
 
-.partner-left {
+.partner-left,
+.partner-right {
+  max-width: 200px;
+
   h5 {
     margin-bottom: 0;
   }
@@ -28,6 +27,10 @@
   }
   .site {
     color: $medium-gray;
+  }
+
+  hr {
+    margin: 5px 0;
   }
 }
 
