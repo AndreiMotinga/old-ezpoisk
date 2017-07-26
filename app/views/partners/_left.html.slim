@@ -1,9 +1,9 @@
 - if @left
   .hidden-xs.hidden-sm
     .partner-left.pull-right
-      = link_to @left.show_url do
+      = link_to @left.show_url, target: "_blank" do
         = image_tag @left.logo_url(:large), class: "img-responsive center-block"
-      h5= link_to @left.title, @left.show_url, class: "title"
-      small= link_to @left.site, @left.site, class: "site"
+      h5= link_to @left.title, @left.show_url, class: "title", target: "_blank"
+      small= link_to @left.site, @left.site, class: "site", target: "_blank"
       hr
       span.legend= @left.legend

@@ -2,9 +2,9 @@
   .row
     .hidden-xs.hidden-sm
       .partner-right
-        = link_to @right.show_url do
+        = link_to @right.show_url, target: "_blank" do
           = image_tag @right.logo_url, class: "img-responsive"
-        h5= link_to @right.title, @right.show_url, class: "title"
-        small= link_to @right.site, @right.site, class: "site"
+        h5= link_to @right.title, @right.show_url, class: "title", target: "_blank"
+        small= link_to @right.site, @right.site, class: "site", target: "_blank"
         hr
         p= @right.legend

@@ -1,6 +1,6 @@
 - if @top
   .row
     .partner-top.text-center
-      h5= link_to @top.show_url do
+      h5= link_to @top.show_url, target: "_blank" do
         span.title= @top.title
         span.legend= " - #{@top.legend}"
