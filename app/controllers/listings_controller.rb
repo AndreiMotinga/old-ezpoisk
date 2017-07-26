@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search, :show]
   before_action :set_listing, only: [:edit, :update, :destroy]
+  before_action :check_search, only: :index
   layout "answers"
 
   def index
@@ -9,6 +10,18 @@ class ListingsController < ApplicationController
                        .page(params[:page])
     respond_to do |format|
       format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @listings }
+      end
+    end
+  end
+
+  def search
+    @listings = Listing.includes(:state, :city)
+                       .filter(sliced_params)
+                       .page(params[:page])
+    respond_to do |format|
+      format.html { render :index }
       format.js do
         render partial: "shared/index", locals: { records: @listings }
       end
@@ -93,6 +106,16 @@ class ListingsController < ApplicationController
       @listing = Listing.includes(:state, :city).find(params[:id])
     else
       @listing = current_user.listings.find(params[:id])
+    end
+  end
+
+  def check_search
+    if [params[:kind], params[:category], params[:subcategory]].all?(&:present?)
+      prms = request.parameters
+                    .reject { |key| %w(controller action).include? key }
+                    .reject { | _ , val| val.blank? }
+                    .symbolize_keys
+      redirect_to search_listings_path(prms)
     end
   end
 end

@@ -11,7 +11,14 @@ Rails.application.routes.draw do
     resources :categories, only: [:index]
     resources :subcategories, only: [:index]
   end
-  resources :listings
+  resources :listings do
+    collection do
+      get ":kind(/:category(/:subcategory(/:state(/:city))))",
+        constraints: { kind: /[^new][a-z\-]+/ },
+        to: "listings#search",
+        as: "search"
+    end
+  end
   resources :cities, only: :index
   resources :pictures, only: [:index, :create, :update, :destroy]
 

@@ -6,7 +6,16 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           = fa_icon "bars"
     a href=root_path = image_tag "navbar-logo"
     ul.pull-right
-      li.nav-link.hidden-xs= link_to "Объявления", listings_path
+      li.nav-link.dropdown
+        a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
+                                 data-toggle="dropdown" href="#" role="button"]
+          | Объявления
+          span.caret
+        ul.dropdown-menu.pull-right
+          li= link_to "Недвижимость", listings_path(kind: "real-estate")
+          li= link_to "Работа", listings_path(kind: "jobs")
+          li= link_to "Услуги", listings_path(kind: "services")
+          li= link_to "Продажи", listings_path(kind: "sales")
       li.nav-link.hidden-xs= link_to "Ответы", answers_path
       li.nav-link.hidden-xs= link_to "Посты", posts_path
       li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path, class: "btn-ez"
