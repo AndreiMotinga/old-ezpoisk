@@ -22,8 +22,6 @@
 
 
 
-/lisings - should be removed
-
 объявления/
 объявления/работа
 объявления/недвижимость/
@@ -31,15 +29,5 @@
 объявления/недвижимость/квартиры
 
 listings/kind/category/subcategory/:state/:city
-
-index
-  you check for kind
-    category
-      subcategory
-
-
-обёявления/недвижимость
-обёявления/работа/
-обёявления/продажи/
 
 бизнес/категория/подкатегория/нью-йорк

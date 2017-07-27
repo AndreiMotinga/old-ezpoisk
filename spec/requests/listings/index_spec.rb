@@ -3,7 +3,7 @@ require "rails_helper"
 describe "Listings" do
   describe "GET #index" do
     it "renders index temlpate" do
-      get "/listings"
+      get listings_path
 
       expect(response).to render_template(:index)
     end
@@ -13,7 +13,7 @@ describe "Listings" do
     it "renders show template with listing" do
       listing = create :listing
 
-      get "/listings/#{listing.id}"
+      get listing_path listing
 
       expect(response).to render_template(:show)
       expect(response.body).to include(listing.title)

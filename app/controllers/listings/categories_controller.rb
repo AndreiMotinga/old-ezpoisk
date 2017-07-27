@@ -15,11 +15,11 @@ class Listings::CategoriesController < ApplicationController
   end
 
   def categories
-    KINDS[kind][:categories]
+    RU_KINDS[kind][:categories]
   end
 
   def subcategories
-    subs = KINDS[kind][:subcategories]
+    subs = RU_KINDS[kind][:subcategories]
     return [] if kind == "services"
     subs
   end

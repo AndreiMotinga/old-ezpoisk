@@ -7,9 +7,9 @@ feature "user creates listing" do
     visit new_listing_path
     listing = build :listing, :job
 
-    select(I18n.t(listing.kind), from: "Раздел")
-    select(I18n.t(listing.category), from: "Категория")
-    select(I18n.t(listing.subcategory), from: "Подкатегория")
+    select(listing.kind, from: "Раздел")
+    select(listing.category, from: "Категория")
+    select(listing.subcategory, from: "Подкатегория")
 
     fill_in "Заголовок", with: listing.title
     fill_in "Описание", with: listing.text
@@ -29,7 +29,7 @@ feature "user creates listing" do
 
     expect(page).to have_content I18n.t(:post_created)
     saved_listing = Listing.last
-    expect(saved_listing.kind).to eq "jobs"
+    expect(saved_listing.kind).to eq listing.kind
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
 
@@ -79,7 +79,7 @@ feature "user creates listing" do
     expect(page).to have_content I18n.t(:post_created)
     saved_listing = Listing.last
 
-    expect(saved_listing.kind).to eq "real-estate"
+    expect(saved_listing.kind).to eq listing.kind
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
     expect(saved_listing.price).to eq listing.price
@@ -118,7 +118,7 @@ feature "user creates listing" do
     expect(page).to have_content I18n.t(:post_created)
     saved_listing = Listing.last
 
-    expect(saved_listing.kind).to eq "services"
+    expect(saved_listing.kind).to eq listing.kind
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
     expect(saved_listing.title).to eq listing.title
@@ -151,7 +151,7 @@ feature "user creates listing" do
 
     expect(page).to have_content I18n.t(:post_created)
     saved_listing = Listing.last
-    expect(saved_listing.kind).to eq "sales"
+    expect(saved_listing.kind).to eq listing.kind
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
     expect(saved_listing.title).to eq listing.title

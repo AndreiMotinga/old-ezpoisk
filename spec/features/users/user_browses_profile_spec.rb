@@ -14,8 +14,7 @@ feature "User browses profile" do
     user = create :user
     listing = create :listing, user: user
 
-    visit profile_path(user)
-    first(:link, "Объявления").click
+    visit listings_profile_path(user)
 
     expect(page).to have_content listing.title
   end

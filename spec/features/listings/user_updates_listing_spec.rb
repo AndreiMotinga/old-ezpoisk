@@ -8,9 +8,9 @@ feature "user creates listing" do
 
     visit edit_listing_path record
 
-    select(I18n.t(listing.kind), from: "Раздел")
-    select(I18n.t(listing.category), from: "Категория")
-    select(I18n.t(listing.subcategory), from: "Подкатегория")
+    select(listing.kind, from: "Раздел")
+    select(listing.category, from: "Категория")
+    select(listing.subcategory, from: "Подкатегория")
 
     fill_in "Заголовок", with: listing.title
     fill_in "Телефон", with: listing.phone

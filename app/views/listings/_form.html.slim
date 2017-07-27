@@ -4,7 +4,7 @@
   .row
     .col-sm-4
       = f.select :kind,
-                 ru(KINDS.keys),
+                 RU_KINDS.keys,
                  { label: "Раздел *" },
                  include_blank: true, required: true
     .col-sm-4

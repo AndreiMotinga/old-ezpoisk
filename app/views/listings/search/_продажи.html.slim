@@ -1,13 +1,13 @@
-form.form-horizontal action=listings_path(kind: "sales") method="get"
+form.form-horizontal action=listings_path(kind: "продажи") method="get"
   = render "shared/search_by_address"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
-        options_for_select(ru(KINDS[:sales][:categories]), params[:category]),
+        options_for_select(RU_KINDS[:продажи][:categories], params[:category]),
                     class: "form-control"
       = select_tag :subcategory,
-        options_for_select([["Категория", ""]] + ru(KINDS[:sales][:subcategories]), params[:category]),
+        options_for_select([["Категория", ""]] + RU_KINDS[:продажи][:subcategories], params[:category]),
                    class: "form-control"
     .col-xs-12.col-sm-6.col-md-12
       = sort_select(sale_sort_opts)

@@ -15,15 +15,15 @@ module Vk
     def unify
       kind = group[:kind].to_sym
       user_name = user ? "#{user.first_name} #{user.last_name}" : "Anonymous"
-      subcategory = kind == :"real-estate" ? "apartment" : "other"
-      rooms = kind == :"real-estate" ? "room" : ""
+      subcategory = kind == :"недвижимость" ? "квартира" : "другое"
+      rooms = kind == :"недвижимость" ? "комната" : ""
       {
         attachments: attachments,
         attributes: {
           title: post[:text].truncate(66),
           kind: kind,
           active: true,
-          category: KINDS[kind][:categories].first,
+          category: RU_KINDS[kind][:categories].first,
           subcategory: subcategory,
           rooms: rooms,
           text: Media::Sanitizer.clean(post[:text]),

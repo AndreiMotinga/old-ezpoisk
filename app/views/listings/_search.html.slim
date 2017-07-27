@@ -3,17 +3,17 @@
   hr
   ul
     li
-      = link_to "Недвижимость", listings_path(kind: "real-estate")
-      .pull-right= Listing.active.where(kind: "real-estate").count
+      = link_to "Недвижимость", listings_path(kind: "недвижимость")
+      .pull-right= Listing.active.where(kind: "недвижимость").count
     li
-      = link_to "Работа", listings_path(kind: "jobs")
-      .pull-right= Listing.active.where(kind: "jobs").count
+      = link_to "Работа", listings_path(kind: "работа")
+      .pull-right= Listing.active.where(kind: "работа").count
     li
-      = link_to "Услуги", listings_path(kind: "services")
-      .pull-right= Listing.active.where(kind: "services").count
+      = link_to "Услуги", listings_path(kind: "услуги")
+      .pull-right= Listing.active.where(kind: "услуги").count
     li
-      = link_to "Продажи", listings_path(kind: "sales")
-      .pull-right= Listing.active.where(kind: "sales").count
+      = link_to "Продажи", listings_path(kind: "продажи")
+      .pull-right= Listing.active.where(kind: "продажи").count
 
   hr
   small.text-muted.pull-right Объявлений: #{@listings.total_count}

@@ -1,13 +1,13 @@
-form.form-horizontal action=listings_path(kind: "real-estate") method="get"
+form.form-horizontal action=listings_path(kind: "недвижимость") method="get"
   = render "shared/search_by_address"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
-        options_for_select(ru(KINDS["real-estate"][:categories]), params[:category]),
+        options_for_select([["Категория", ""]] + RU_KINDS["недвижимость"][:categories], params[:category]),
                    class: "form-control"
       = select_tag :subcategory,
-                   options_for_select(ru(KINDS["real-estate"][:subcategories]), params[:subcategory]),
+                   options_for_select([["Тип", ""]] + RU_KINDS["недвижимость"][:subcategories], params[:subcategory]),
                    class: "form-control"
     .col-xs-12.col-sm-6.col-md-12
       = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
@@ -15,10 +15,10 @@ form.form-horizontal action=listings_path(kind: "real-estate") method="get"
 
     .col-xs-12.col-sm-6.col-md-12
       = select_tag :duration,
-                   options_for_select([["Период", ""]] + ru(KINDS["real-estate"][:duration]), params[:duration]),
+                   options_for_select([["Период", ""]] + RU_KINDS["недвижимость"][:duration], params[:duration]),
                    class: "form-control"
       = select_tag :rooms,
-                   options_for_select([["Комнаты", ""]] + ru(KINDS["real-estate"][:rooms]), params[:rooms]),
+                   options_for_select([["Комнаты", ""]] + RU_KINDS["недвижимость"][:rooms], params[:rooms]),
                    class: "form-control"
     .col-xs-12.col-sm-6.col-md-12
       = sort_select(rp_sort_opts)

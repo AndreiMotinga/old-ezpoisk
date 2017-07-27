@@ -1,7 +1,7 @@
 $("#listing_category").html("<%= j(options_for_select(ru(@categories))) %>");
 $("#listing_subcategory").html("<%= j(options_for_select(ru(@subcategories))) %>");
 
-<% if @kind == "services" %>
+<% if @kind == "услуги" %>
   $("#listing_category")
     .prepend("<option value='' selected='selected'></option>").val('');
 <% end %>

@@ -13,10 +13,10 @@
         = link_to listing.title, listing
 
       / line 1
-      = "#{t listing.category} | #{t listing.subcategory}"
+      = "#{listing.category} | #{listing.subcategory}"
       / line 3
       - if listing.re?
-        = " | #{t listing.rooms}" if listing.rooms?
+        = " | #{listing.rooms}" if listing.rooms?
         = " | $#{listing.price}" if listing.price?
 
 
@@ -30,7 +30,7 @@
 
         / line 4
         - if listing.re?
-          = t(listing.duration) if listing.duration?
+          = listing.duration if listing.duration?
           = " | ванные: #{listing.baths}" if listing.baths?
           = " | площадь:  #{listing.space} ft" if listing.space?
           - if listing.duration? || listing.baths.present? || listing.space?

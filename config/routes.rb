@@ -11,13 +11,12 @@ Rails.application.routes.draw do
     resources :categories, only: [:index]
     resources :subcategories, only: [:index]
   end
-  resources :listings do
-    collection do
-      get ":kind(/:category(/:subcategory(/:state(/:city))))",
-        constraints: { kind: /[^new][a-z\-]+/ },
-        to: "listings#search",
-        as: "search"
-    end
+  resources :listings, path: "объявления" do
+    get ":kind(/:category(/:subcategory(/:state(/:city))))",
+      constraints: lambda { |req| %w(работа недвижимость услуги продажи).include? req.params[:kind] },
+      to: "listings#search",
+      as: "search",
+      on: :collection
   end
   resources :cities, only: :index
   resources :pictures, only: [:index, :create, :update, :destroy]

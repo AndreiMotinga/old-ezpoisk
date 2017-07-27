@@ -1,6 +1,6 @@
 class Listings::SubcategoriesController < ApplicationController
   def index
-    @subcategories = KINDS[:services][:subcategories][category]
+    @subcategories = RU_KINDS["услуги"][:subcategories][category]
   end
 
   private

@@ -1,13 +1,13 @@
-#re_fields class=("hidden" unless @listing.kind == "real-estate")
+#re_fields class=("hidden" unless @listing.kind == "недвижимость")
   h4 Детали
   hr.heading
   .row
     .col-xs-12.col-sm-4
-      = f.select :rooms, ru(KINDS["real-estate"][:rooms]), label: "* Комнат"
+      = f.select :rooms, RU_KINDS["недвижимость"][:rooms], label: "* Комнат"
     .col-xs-12.col-sm-4
       = f.number_field :baths, label: 'Ванные'
     #duration.col-xs-12.col-sm-4
-      = f.select :duration, ru(KINDS["real-estate"][:duration]), label: "Продолжительность"
+      = f.select :duration, RU_KINDS["недвижимость"][:duration], label: "Продолжительность"
   .row
     .col-xs-12.col-sm-6
       = f.number_field :space, label: "Площадь (sq. feet)"

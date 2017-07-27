@@ -5,7 +5,7 @@ describe "Listings" do
     context "user logged in" do
       it "renders the new temlpate" do
         create_and_login_user
-        get "/listings/new"
+        get new_listing_path
 
         expect(response).to render_template(:new)
       end
@@ -13,7 +13,7 @@ describe "Listings" do
 
     context "user not logged in" do
       it "renders the new temlpate" do
-        get "/listings/new"
+        get new_listing_path
 
         expect(response).to redirect_to new_user_session_path
       end
@@ -26,7 +26,7 @@ describe "Listings" do
         user = create_and_login_user
         listing = create :listing, user: user
 
-        get "/listings/#{listing.id}/edit"
+        get edit_listing_path(listing)
 
         expect(response).to render_template(:edit)
         expect(response.body).to include(listing.title)
@@ -36,7 +36,7 @@ describe "Listings" do
         create_and_login_user
         listing = create :listing
 
-        expect { get "/listings/#{listing.id}/edit" }
+        expect { get edit_listing_path(listing) }
           .to raise_exception(ActiveRecord::RecordNotFound)
       end
     end

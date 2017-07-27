@@ -1,10 +1,10 @@
-form.form-horizontal action=listings_path(kind: "services") method="get"
+form.form-horizontal action=listings_path(kind: "услуги") method="get"
   = render "shared/search_by_address"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
-        options_for_select([["Раздел", ""]] + ru(KINDS[:services][:categories]), params[:category]),
+        options_for_select([["Раздел", ""]] + RU_KINDS[:услуги][:categories], params[:category]),
                    class: "form-control", id: "service_category"
       = select_tag :subcategory,
                    service_subcategories_options,

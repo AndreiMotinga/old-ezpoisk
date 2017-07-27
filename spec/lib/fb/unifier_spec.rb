@@ -6,7 +6,7 @@ describe Fb::Unifier do
 
   describe "#unified" do
     it "returns formatted post" do
-      group = { kind: "real-estate",
+      group = { kind: "недвижимость",
                 state_id: 43,
                 city_id: 24_757 }
       item = HashWithIndifferentAccess.new(
@@ -25,12 +25,12 @@ describe Fb::Unifier do
       result = Fb::Unifier.new(item, group).unified
 
       kind = group[:kind].to_sym
-      subcategory = kind == :"real-estate" ? "apartment" : "other"
-      rooms = kind == :"real-estate" ? "room" : ""
+      subcategory = kind == :"недвижимость" ? "квартира" : "другое"
+      rooms = kind == :"недвижимость" ? "комната" : ""
       expected_attrs = { title: "У нас на работе есть вакансия",
                          kind: group[:kind],
                          active: true,
-                         category: KINDS[kind][:categories].first,
+                         category: RU_KINDS[kind][:categories].first,
                          subcategory: subcategory,
                          rooms: rooms,
                          text: item[:message],

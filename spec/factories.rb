@@ -8,9 +8,9 @@ FactoryGirl.define do
     actionable nil
   end
   factory :listing do
-    kind { %w(real-estate jobs sales).sample }
-    category { KINDS[kind][:categories].sample }
-    subcategory { KINDS[kind][:subcategories].sample }
+    kind { %w(недвижимость работа продажи).sample }
+    category { RU_KINDS[kind][:categories].sample }
+    subcategory { RU_KINDS[kind][:subcategories].sample }
 
     title { Faker::Name.title }
     text { Faker::Lorem.paragraph(5) }
@@ -38,33 +38,33 @@ FactoryGirl.define do
     user
 
     trait :job do
-      kind "jobs"
-      category { KINDS[:jobs][:categories].sample }
-      subcategory { KINDS[:jobs][:subcategories].sample }
+      kind "работа"
+      category { RU_KINDS["работа"][:categories].sample }
+      subcategory { RU_KINDS["работа"][:subcategories].sample }
     end
 
     trait :apartment do
-      kind "real-estate"
-      category "renting"
-      subcategory "apartment"
+      kind "недвижимость"
+      category "сдаю-в-аренду"
+      subcategory "квартира"
 
-      duration { KINDS["real-estate"][:duration].sample }
-      rooms { KINDS["real-estate"][:rooms].sample }
+      duration { RU_KINDS["недвижимость"][:duration].sample }
+      rooms { RU_KINDS["недвижимость"][:rooms].sample }
       baths 1
       space 1000
       fee { [true, false].sample }
     end
 
     trait :service do
-      kind "services"
-      category { KINDS[:services][:categories].sample }
-      subcategory { KINDS[:services][:subcategories][category].sample }
+      kind "услуги"
+      category { RU_KINDS["услуги"][:categories].sample }
+      subcategory { RU_KINDS["услуги"][:subcategories][category].sample }
     end
 
     trait :sale do
-      kind "sales"
-      category { KINDS[:sales][:categories].sample }
-      subcategory { KINDS[:sales][:subcategories].sample }
+      kind "продажи"
+      category { RU_KINDS["продажи"][:categories].sample }
+      subcategory { RU_KINDS["продажи"][:subcategories].sample }
     end
   end
   factory :answer do

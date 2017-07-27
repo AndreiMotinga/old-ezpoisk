@@ -15,7 +15,7 @@
         = render "listings/search"
 
 - content_for :right do
-  = render "google_ad" unless params[:kind] == "services"
+  = render "google_ad" unless params[:kind] == "услуги"
 
 div data-id="listings"
   = render @listings

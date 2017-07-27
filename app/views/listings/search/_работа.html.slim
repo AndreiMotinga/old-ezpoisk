@@ -1,13 +1,13 @@
-form.form-horizontal action=listings_path(kind: "jobs") method="get"
+form.form-horizontal action=listings_path(kind: "работа") method="get"
   = render "shared/search_by_address"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
-        options_for_select(ru(KINDS[:jobs][:categories]), params[:category]),
+        options_for_select(RU_KINDS["работа"][:categories], params[:category]),
                    class: "form-control"
       = select_tag :subcategory,
-                  options_for_select([["Подкатегория", ""]] + ru(KINDS[:jobs][:subcategories]), params[:category]),
+                  options_for_select([["Подкатегория", ""]] + RU_KINDS["работа"][:subcategories], params[:subcategory]),
                   class: "form-control"
     .col-xs-12.col-sm-6.col-md-12
       = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
