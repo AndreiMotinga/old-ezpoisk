@@ -3,7 +3,7 @@ require "rails_helper"
 describe GeocodeJob do
   it "sets latitude, longitute and zip" do
     info = double(:info, lat: 1, lng: 2, zip: 11_223)
-    listing = create(:listing)
+    listing = create(:listing, lat: 1, lng: 2, zip: 11_223)
     stub_geokit(listing, info)
 
     GeocodeJob.perform_async(listing.id, "Listing")

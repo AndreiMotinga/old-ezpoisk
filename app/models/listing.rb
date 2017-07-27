@@ -24,6 +24,7 @@ class Listing < ApplicationRecord
   validates :text, presence: true, length: { minimum: 10 }
 
   after_create :create_action
+  after_create :notify_slack
 
   def self.to_deactivate
     where.not(kind: "services")
@@ -66,5 +67,12 @@ class Listing < ApplicationRecord
 
   def re?
     kind == "real-estate"
+  end
+
+  private
+
+  def notify_slack
+    SlackNotifierJob.perform_async(id, "Listing")
+    GeocodeJob.perform_async(id, "Listing")
   end
 end

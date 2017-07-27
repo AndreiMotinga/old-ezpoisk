@@ -48,7 +48,6 @@ class ListingsController < ApplicationController
     @listing.user = current_user
     if @listing.save
       @listing.clear_phone!
-      run_create_notifications
       redirect_to edit_listing_path(@listing), notice: I18n.t(:post_created)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -94,11 +93,6 @@ class ListingsController < ApplicationController
   def run_update_notifications
     return if current_user.try(:admin?)
     SlackNotifierJob.perform_async(@listing.id, "Listing", "update")
-  end
-
-  def run_create_notifications
-    SlackNotifierJob.perform_async(@listing.id, "Listing")
-    GeocodeJob.perform_async(@listing.id, "Listing")
   end
 
   def set_listing
