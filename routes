@@ -1,33 +1,21 @@
-/                                                   home#index
-/users/:id(.:format) -> profile/Andrei-Motinga-id
+x/                                                   home#index
 
-/listings(.:format)                                 listings#index
-/listings(.:format)                                 listings#create
-/listings/:id(.:format)                             listings#show
+x/listings(.:format)                                 listings#index
+xобъявления/:kind/:category/:subcategory/:state/:city
 
-/answers/tag/:tag(.:format)                         answers#tag
+
+x/listings/:id(.:format)                             listings#show
 
 /answers(.:format)                                  answers#index
 /answers/:id(.:format)                              answers#show
-/questions/tag/:tag(.:format)                       questions#tag
+
 /questions(.:format)                                questions#index
 /questions/:id(.:format)                            questions#show
+
 /posts(.:format)                                    posts#index
 /posts/:id(.:format)                                posts#show
 
+/biz/адвокаты
+
 /profiles/:id(.:format)                             profiles#show
-/profiles/:id/questions(.:format)                   profiles#questions
-/profiles/:id/posts(.:format)                       profiles#posts
-/profiles/:id/listings(.:format)                    profiles#listings
 
-
-
-объявления/
-объявления/работа
-объявления/недвижимость/
-объявления/недвижимость/офисы
-объявления/недвижимость/квартиры
-
-listings/kind/category/subcategory/:state/:city
-
-бизнес/категория/подкатегория/нью-йорк

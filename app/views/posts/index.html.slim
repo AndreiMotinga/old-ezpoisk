@@ -1,3 +1,11 @@
+- tag = params[:tag]
+- title = tag.present? ? "#{tag.mb_chars.capitalize} - " : ""
+- meta title: "#{title}Новости комьюнити - ezpoisk",
+       description: "Новости русской иммиграции в сша",
+       og: { type: "website",
+             url: "https://www.ezpoisk.com/posts",
+             image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
+
 - content_for :header, render("partners/top")
 - content_for :sidebar do
   = render("home/user_widget")

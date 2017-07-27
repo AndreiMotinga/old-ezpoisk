@@ -1,5 +1,11 @@
-- meta title: "Бесплатные объявления в США - ezpoisk"
-
+- prms = [params[:kind], params[:category], params[:subcategory], params[:state], params[:city]]
+- title = prms.compact.join(" ")
+- meta title: "Объявления #{title} - ezpoisk",
+       description: listings_desc,
+       rel: { canonical: listings_url(kind: params[:kind]) },
+       og: { type: "website",
+             url: "https://www.ezpoisk.com/объявления",
+             image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
 
 - content_for :header, render("partners/top")
 
