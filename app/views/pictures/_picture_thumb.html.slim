@@ -1,7 +1,0 @@
-.thumbnail id="picture-#{picture.id}"
-  = image_tag picture.image.url(:thumbnail), class: "img-responsive post-item-picture"
-  .caption.text-center
-    - unless picture.imageable_type == "Service" || picture.imageable_type == "User"
-      = link_to 'Сделать главной', picture_path(picture), method: :put, remote: true
-      br
-    = link_to 'Удалить', picture_path(picture), method: :delete, data: { remote: true }
