@@ -1,9 +1,10 @@
 .container.container-md
-  = bootstrap_form_for @post do |f|
-    .field
-      = f.text_field :title, label: "Заголовок"
+  = form_for @post do |f|
+    .mdl-textfield.mdl-js-textfield.text-center
+      = f.text_field :title, class: "mdl-textfield__input"
+      = f.label :title, class: "mdl-textfield__label"
 
-    .field
+    .field.summernote-container
       = f.text_area :text, skip_label: true, class: "summernote"
 
     /.field

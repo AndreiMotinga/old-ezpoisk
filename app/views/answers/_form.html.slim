@@ -2,15 +2,17 @@
 
 .row
   .col-lg-10.col-lg-offset-1
-    = bootstrap_form_for @answer do |f|
-      h3.title= @answer.question.title
+    = form_for @answer do |f|
+      h5.title= @answer.question.title
+      hr
       = f.hidden_field :question_id, value: (params[:question_id] || @answer.question_id)
       -  @answer.question.tag_list.each do |tag|
         = hidden_field_tag 'answer[tag_list][]', tag
 
-      .field
+      .field.summernote-container
         = f.text_area :text, skip_label: true, class: "summernote"
 
+      br
       .actions
         = f.submit 'Сохранить', class: "btn btn-ez"
         = " "

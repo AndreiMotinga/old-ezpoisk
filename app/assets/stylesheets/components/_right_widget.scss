@@ -11,6 +11,10 @@
   }
 
   .posts {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
     .post {
       border-bottom: 1px solid $gray;
       margin-bottom: 5px;

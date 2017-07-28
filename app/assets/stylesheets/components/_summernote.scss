@@ -1,0 +1,14 @@
+.summernote-container {
+  .note-editor {
+    border: 0;
+  }
+
+  .panel-heading {
+    background: $white;
+    text-align: center;
+  }
+
+  .note-editable.panel-body {
+    p { font-size: 15px; }
+  }
+}
