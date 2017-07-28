@@ -2,6 +2,7 @@ class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search, :show]
   before_action :set_listing, only: [:edit, :update, :destroy]
   before_action :check_search, only: :index
+  skip_before_action :authenticate_user!, only: [:edit, :update, :destroy], if: -> { params[:token].present? }
   layout "answers"
 
   def index
@@ -64,8 +65,7 @@ class ListingsController < ApplicationController
       @listing.clear_phone!
       GeocodeJob.perform_async(@listing.id, "Listing") if address_changed
       run_update_notifications
-      redirect_to edit_listing_path(@listing),
-                  notice: I18n.t(:post_saved)
+      redirect_to after_udpate_path, notice: I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :edit
@@ -73,13 +73,16 @@ class ListingsController < ApplicationController
   end
 
   def destroy
-    @id = @listing.id
     @listing.destroy
-    redirect_to listings_profile_path(current_user),
-                notice: I18n.t(:post_removed)
+    redirect_to root_path, notice: I18n.t(:post_removed)
   end
 
   private
+
+  def after_udpate_path
+    return edit_listing_path(@listing, token: params[:token]) if params[:token].present?
+    edit_listing_path(@listing)
+  end
 
   def listing_params
     params.require(:listing).permit(
@@ -97,7 +100,9 @@ class ListingsController < ApplicationController
 
   def set_listing
     if current_user.try(:admin?)
-      @listing = Listing.includes(:state, :city).find(params[:id])
+      @listing = Listing.find(params[:id])
+    elsif params[:token]
+      @listing = Listing.find_by_token(params[:token])
     else
       @listing = current_user.listings.find(params[:id])
     end
