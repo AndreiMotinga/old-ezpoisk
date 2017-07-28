@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @actions = Action.includes(actionable: :user)
-                     .order(created_at: :desc)
+                     .order(updated_at: :desc)
                      .page(params[:page])
     @posts = Post.order(created_at: :desc).first(5)
 

@@ -25,6 +25,7 @@ class Listing < ApplicationRecord
 
   after_create :create_action
   after_create :notify_slack
+  after_save :touch_action
 
   # todo remove deactivate
   def self.to_deactivate
@@ -75,5 +76,9 @@ class Listing < ApplicationRecord
   def notify_slack
     SlackNotifierJob.perform_async(id, "Listing")
     GeocodeJob.perform_async(id, "Listing")
+  end
+
+  def touch_action
+    action.touch
   end
 end
