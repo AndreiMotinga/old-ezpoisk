@@ -26,6 +26,7 @@ class Listing < ApplicationRecord
   after_create :create_action
   after_create :notify_slack
 
+  # todo remove deactivate
   def self.to_deactivate
     where.not(kind: "services")
          .where("active = ? AND updated_at < ?", true, 30.days.ago)
@@ -66,7 +67,7 @@ class Listing < ApplicationRecord
   end
 
   def re?
-    kind == "real-estate"
+    kind == "недвижимость"
   end
 
   private

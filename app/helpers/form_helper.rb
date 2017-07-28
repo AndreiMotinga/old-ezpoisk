@@ -106,7 +106,7 @@ module FormHelper
   def listing_sub_opts
     kind = @listing.kind
     return [] unless kind.present?
-    return RU_KINDS[kind][:subcategories] unless kind == "services"
+    return RU_KINDS[kind][:subcategories] unless kind == "услуги"
     RU_KINDS[kind][:subcategories][@listing.category]
   end
 
