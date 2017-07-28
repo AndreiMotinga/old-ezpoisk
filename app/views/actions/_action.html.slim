@@ -17,7 +17,7 @@
               = link_to action.kind, action.show_url, target: "_blank"
 
             small= action.slug
-            p.date.text-muted= timeago_tag action.updated_at
+            p.date.text-muted= time_ago_in_words action.updated_at
 
       .panel-body
         .text

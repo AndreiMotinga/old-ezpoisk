@@ -38,7 +38,7 @@
 
       / line 5
       span data-time=listing.id
-        = timeago_tag listing.updated_at
+        = time_ago_in_words listing.updated_at
       = " | "
       = render "shared/indicators", record: listing
       = " | "
