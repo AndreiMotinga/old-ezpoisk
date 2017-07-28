@@ -1,7 +1,7 @@
 - token = params[:token] if params[:token].present?
 / if record had errors and wasn't saved app rendered :edit action again
 / it's impossible to pass params to 'redner'. This hack allows to keep token
-- token ||= url_for(:back).match(/token=.+/).remove('token=')
+- token ||= url_for(:back).match(/token=.+/).try(:remove, 'token=')
 
 = bootstrap_form_for(@listing) do |f|
   = hidden_field_tag :token, token

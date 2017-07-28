@@ -65,11 +65,11 @@ class ListingsController < ApplicationController
       @listing.clear_phone!
       GeocodeJob.perform_async(@listing.id, "Listing") if address_changed
       run_update_notifications
-      redirect_to after_udpate_path, notice: I18n.t(:post_saved)
+      flash.now[:notice] = I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
-      render :edit
     end
+    render :edit
   end
 
   def destroy
@@ -78,11 +78,6 @@ class ListingsController < ApplicationController
   end
 
   private
-
-  def after_udpate_path
-    return edit_listing_path(@listing, token: params[:token]) if params[:token].present?
-    edit_listing_path(@listing)
-  end
 
   def listing_params
     params.require(:listing).permit(
@@ -101,7 +96,7 @@ class ListingsController < ApplicationController
   def set_listing
     if current_user.try(:admin?)
       @listing = Listing.find(params[:id])
-    elsif params[:token]
+    elsif params[:token].present?
       @listing = Listing.find_by_token(params[:token])
     else
       @listing = current_user.listings.find(params[:id])

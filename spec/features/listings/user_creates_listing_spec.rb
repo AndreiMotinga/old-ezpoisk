@@ -102,7 +102,7 @@ feature "user creates listing" do
     listing = build :listing, :service
 
     find("option[value='#{listing.kind}']").select_option
-    find("option[value='#{listing.category}']").select_option
+    select(listing.category, from: "Категория")
     find("option[value='#{listing.subcategory}']").select_option
 
     fill_in "Заголовок", with: listing.title
