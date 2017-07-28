@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe ListingsDeactivatorJob do
+xdescribe ListingsDeactivatorJob do
   it "deactivates listings that weren't edited for more than 30 days" do
     listing = create :listing
     create_list :listing, 10, updated_at: 32.days.ago

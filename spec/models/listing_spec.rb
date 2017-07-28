@@ -66,7 +66,7 @@ RSpec.describe Listing, type: :model do
     end
   end
 
-  describe ".to_deactivate" do
+  xdescribe ".to_deactivate" do
     it "returns active listings that weren't edited more than 30 days" do
       create_list :listing, 5, updated_at: 31.days.ago
       create :listing, active: false, updated_at: 31.days.ago

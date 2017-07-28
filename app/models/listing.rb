@@ -28,10 +28,10 @@ class Listing < ApplicationRecord
   after_save :touch_action
 
   # todo remove deactivate
-  def self.to_deactivate
-    where.not(kind: "services")
-         .where("active = ? AND updated_at < ?", true, 30.days.ago)
-  end
+  # def self.to_deactivate
+  #   where.not(kind: "services")
+  #        .where("active = ? AND updated_at < ?", true, 30.days.ago)
+  # end
 
   def logo_url(style = :medium)
     return logo.image.url(style) if logo.present?
