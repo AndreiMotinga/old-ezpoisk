@@ -14,7 +14,7 @@
     #search-toggle.btn.btn-ez.center-block.search-toggle.visible-xs
       | Настроить фильтр | #{@listings.total_count}
 
-    section#search-form.search
+    section#search-form.search.mdl-shadow--2dp
       - if params[:kind]
         = render "listings/search/#{params[:kind]}"
       - else

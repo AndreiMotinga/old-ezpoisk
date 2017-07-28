@@ -12,8 +12,8 @@
   }
 
   .search {
-    background: $background;
-    padding-bottom: $base-spacing;
+    background: $white;
+    padding: $base-spacing;
 
     @media(max-width: $screen-sm) {
       display: none;
