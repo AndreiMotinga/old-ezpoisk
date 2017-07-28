@@ -8,6 +8,6 @@ class FbImporterJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "FbImporterJob - every 1 hour (on 30th min)",
-                          cron: "30 */1 * * *",
+Sidekiq::Cron::Job.create(name: "FbImporterJob - every 2 hours (on 10th min)",
+                          cron: "10 */2 * * *",
                           class: "FbImporterJob")

@@ -8,6 +8,6 @@ class VkImporterJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "VkImporterJob - every hour",
-                          cron: "0 */1 * * *",
+Sidekiq::Cron::Job.create(name: "VkImporterJob - every 2 hours",
+                          cron: "0 */2 * * *",
                           class: "VkImporterJob")

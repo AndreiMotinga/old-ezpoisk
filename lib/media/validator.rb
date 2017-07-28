@@ -41,7 +41,7 @@ module Media
     private
 
     def too_old?
-      attrs[:created_at] < 1.hour.ago
+      attrs[:created_at] < 2.hour.ago
     end
 
     def too_short?
