@@ -20,7 +20,7 @@ class Listings::CategoriesController < ApplicationController
 
   def subcategories
     subs = RU_KINDS[kind][:subcategories]
-    return [] if kind == "services"
+    return [] if kind == "услуги"
     subs
   end
 end
