@@ -1,3 +1,5 @@
+include RailsAdminTagList::SuggestionsHelper
+
 RailsAdmin.config do |config|
   config.current_user_method { current_user }
 
@@ -11,9 +13,17 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
-
   end
-  config.excluded_models = ["State", "City", "User"]
+
+  config.included_models = [
+    "Action",
+    "ActsAsTaggableOn::Tag",
+    "Answer",
+    "Listing",
+    "Picture",
+    "Question ",
+    "User"
+  ]
 
   config.model "Question" do
     include_all_fields
