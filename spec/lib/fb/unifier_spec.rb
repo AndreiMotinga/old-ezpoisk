@@ -25,7 +25,7 @@ describe Fb::Unifier do
       result = Fb::Unifier.new(item, group).unified
 
       kind = group[:kind].to_sym
-      subcategory = kind == :"недвижимость" ? "квартира" : "другое"
+      subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
       expected_attrs = { title: "У нас на работе есть вакансия",
                          kind: group[:kind],

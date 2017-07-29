@@ -14,7 +14,7 @@ module Fb
 
     def unify
       kind = group[:kind]
-      subcategory = kind == "недвижимость" ? "квартира" : "другое"
+      subcategory = kind == "недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == "недвижимость" ? "комната" : ""
       {
         attachments: attachments,
