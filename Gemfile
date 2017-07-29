@@ -52,7 +52,7 @@ gem "gmaps4rails"
 gem "underscore-rails"
 
 # rails admin
-gem "rails_admin", github: "sferik/rails_admin"
+gem "rails_admin"
 gem "rack-pjax", github: "afcapel/rack-pjax"
 gem "remotipart", github: "mshibuya/remotipart"
 gem "rails_admin_tag_list"

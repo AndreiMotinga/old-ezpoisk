@@ -3,7 +3,7 @@ class Question < ActiveRecord::Base
   include Filterable
   include MyFriendlyId
   include Searchable
-  include Commentable
+  # include Commentable
 
   belongs_to :user, optional: true
   belongs_to :state

@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  acts_as_taggable
   include Filterable
   belongs_to :user
 
