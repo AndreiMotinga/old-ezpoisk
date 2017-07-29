@@ -15,6 +15,7 @@ class Question < ActiveRecord::Base
   validates_presence_of :tag_list
 
   after_create :create_action
+  after_create :notify_slack
 
   def self.term_for(term)
     qs = where("title ILIKE ?", "%#{term}%").limit(10).pluck(:title, :slug)
@@ -43,5 +44,9 @@ class Question < ActiveRecord::Base
 
   def active
     true
+  end
+
+  def notify_slack
+    SlackNotifierJob.perform_async(id, "Question")
   end
 end

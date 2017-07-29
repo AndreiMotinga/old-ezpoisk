@@ -13,7 +13,7 @@ class Ez
     name = record.class == User ? record.name_to_show : record.user.try(:name_to_show)
     string = "#{type} #{record.class} #{record.id} | author #{name} | #{record.try(:category)}\n\n"
     string += "#{strip_html_tags(record.try(:text))}\n"
-    string += "<#{record.show_url}|show>"
+    string += "<#{record.try(:show_url)}|show>"
     string += " | <#{record.try(:edit_url_with_token)}|edit>"
     notifier.ping(string)
   end
