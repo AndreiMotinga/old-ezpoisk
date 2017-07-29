@@ -4,7 +4,10 @@ class AnswersController < ApplicationController
   layout "answers"
 
   def index
-    @answers = Answer.includes(:user).search(params[:term]).page(params[:page])
+    @answers = Answer.includes(:user)
+              .desc
+              .search(params[:term])
+              .page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
