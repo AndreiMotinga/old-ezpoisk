@@ -17,7 +17,7 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           li= link_to "Услуги", listings_path(kind: "услуги")
           li= link_to "Продажи", listings_path(kind: "продажи")
       li.nav-link.hidden-xs= link_to "Ответы", answers_path
-      li.nav-link.hidden-xs= link_to "Посты", posts_path
+      /li.nav-link.hidden-xs= link_to "Посты", posts_path
       li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path, class: "btn-ez"
       - if user_signed_in?
         li.nav-link.dropdown
