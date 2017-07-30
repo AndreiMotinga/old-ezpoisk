@@ -1,4 +1,5 @@
-a#toggle-comments.text-muted href="#" Комментарии
+- count = record.comments.count
+a#toggle-comments.text-muted href="#" Комментарии #{count.zero? ? "" : count}
 #comments-container.row.comments.hidden
   .col-xs-12
     .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
