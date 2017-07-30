@@ -20,7 +20,7 @@ module Vk
       {
         attachments: attachments,
         attributes: {
-          title: post[:text].truncate(66),
+          title: Media::Title.of(post[:text]),
           kind: kind,
           active: true,
           category: RU_KINDS[kind][:categories].first,

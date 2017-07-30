@@ -13,7 +13,7 @@ describe Vk::Unifier do
                 city_id: 17_880 }
       item = { id: 2056,
                from_id: 216_072_410,
-               text: "Фотосессия в Нью-Йорке. Детская, семейная и портретная съемка. Лучшие снимки отобранные",
+               text: "ФОТОСЕССИЯ В нЬЮ-йОРКЕ. Детская, семейная и портретная съемка. Лучшие снимки отобранные",
                date: 5.minutes.ago,
                attachments: [] }
       user = Hashie::Mash.new(
@@ -31,7 +31,7 @@ describe Vk::Unifier do
       kind = group[:kind].to_sym
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
-      expected_attrs = { title: "Фотосессия в Нью-Йорке. Детская, семейная и портретная съемка. ...",
+      expected_attrs = { title: "Фотосессия в нью-йорке. детская, семейная и портретная съемка. ...",
                          kind: kind,
                          active: true,
                          category: RU_KINDS[kind][:categories].first,

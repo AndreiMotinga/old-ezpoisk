@@ -19,7 +19,7 @@ module Fb
       {
         attachments: attachments,
         attributes: {
-          title: text.truncate(66),
+          title: Media::Title.of(text),
           kind: kind,
           active: true,
           category: RU_KINDS[kind][:categories].first,
