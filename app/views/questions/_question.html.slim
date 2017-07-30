@@ -1,5 +1,6 @@
-.article.white-block.mdl-shadow--4dp
+.article.white-block.mdl-shadow--2dp
   .panel
+    = render "shared/tags", record: question
     .panel-heading
       h1.title
         = link_to question.title, question
@@ -12,4 +13,6 @@
       - if question.text?
     .panel-body
       .text= simple_format question.text, sanitize: true
-      = render "shared/tags", record: question
+    - if current_page? question_path(question)
+      .panel-foote
+        = render "shared/comments", record: question

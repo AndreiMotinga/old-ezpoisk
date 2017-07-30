@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   default_url_options host: ENV.fetch("APPLICATION_HOST")
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
+  resources :comments, only: [:create]
+
   # LISTINGS
   namespace :listings do
     resources :categories, only: [:index]
     resources :subcategories, only: [:index]
   end
+
   resources :listings, path: "объявления" do
     get ":kind(/:category(/:subcategory(/:state(/:city))))",
       constraints: lambda { |req| %w(работа недвижимость услуги продажи).include? req.params[:kind] },

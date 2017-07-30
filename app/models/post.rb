@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   acts_as_taggable
   include Filterable
+  include Commentable
   belongs_to :user
 
   delegate :avatar, :name_to_show, to: :user

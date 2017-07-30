@@ -14,6 +14,12 @@
   = render "home/right_widget", posts: @side_posts
 
 div data-id="listings" data-term=params[:term]
+  = link_to new_post_path do
+    | Добавить пост
+    = "  "
+    .fa.fa-pencil
+  hr
+
   = render @posts
 
 .row

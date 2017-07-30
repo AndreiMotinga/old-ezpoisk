@@ -30,14 +30,12 @@
     = render @question
 
     / ANSWERS
-    .row
-      .col-xs-12
-        - @question.answers.includes(:user).each do |answer|
-          = render "questions/answer", answer: answer
-          hr
+    - @question.answers.includes(:user).each do |answer|
+      = render "questions/answer", answer: answer
 
-        h3.text-center
-          = link_to new_answer_path(question_id: @question.id) do
-            |  Можете ответить на этот вопрос?
-            = "  "
-            .fa.fa-pencil
+    hr
+    h4
+      = link_to new_answer_path(question_id: @question.id) do
+        |  Можете ответить на этот вопрос?
+        = "  "
+        .fa.fa-pencil

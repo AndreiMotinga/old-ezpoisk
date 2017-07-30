@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @actions = Action.includes(actionable: :user)
                      .order(updated_at: :desc)
                      .page(params[:page])
-    @posts = Post.order(created_at: :desc).first(5)
+    @popular = Comment.popular
 
     respond_to do |format|
       format.html

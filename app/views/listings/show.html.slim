@@ -12,6 +12,8 @@
 = render "shared/show/pictures", record: @listing
 = render @listing
 = render "shared/show/text", record: @listing
+= render "shared/comments", record: @listing
+
 .visible-xs.visible-sm
   .col-md-12
     = render "shared/show/contacts", record: @listing

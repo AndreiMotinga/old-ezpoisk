@@ -6,7 +6,13 @@
       - if current_user.try(:can_edit?, @post)
         p.text-center= link_to "Редактировать", edit_post_path(@post), class: "text-muted"
 
+  .row
     .col-xs-12
       .panel
         .panel-body
           = raw @post.text
+
+  br
+  .row
+    .col-xs-12
+      = render "shared/comments", record: @post

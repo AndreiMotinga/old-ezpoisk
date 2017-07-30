@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   acts_as_taggable
   include Filterable
+  include Commentable
   include MyFriendlyId
   include Searchable
   # include Commentable
@@ -39,7 +40,7 @@ class Question < ActiveRecord::Base
   end
 
   def update_cached_tags
-    update_column(:cached_tags, tags.pluck(:name).join(", "))
+    update_column(:cached_tags, tags.pluck(:name).join(","))
   end
 
   def active

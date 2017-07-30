@@ -8,6 +8,6 @@
           = link_to post.title, post, class: "title"
           small.time= timeago_tag post.created_at
 
-    p.text-center= link_to "показать еще", posts_path
+    p.more.text-center= link_to "показать еще", posts_path
 
   = render "partners/right"

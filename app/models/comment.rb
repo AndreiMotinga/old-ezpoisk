@@ -10,6 +10,16 @@ class Comment < ActiveRecord::Base
   delegate :title, to: :commentable
   delegate :avatar, to: :user
 
+  def self.popular
+    where.not(commentable_type: "Listing")
+      .where('created_at > ?', 4.hours.ago)
+      .group(:commentable_type, :commentable_id)
+      .order(:count).reverse_order.count
+      .keys
+      .first(5)
+      .map {|rec| rec[0].constantize.find(rec[1]) }
+  end
+
   def emails
     subscribers.reject(&:online?).map(&:email)
   end

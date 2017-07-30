@@ -1,4 +1,4 @@
-.article.answer
+.article.answer.mdl-shadow--2dp
   .panel
     .panel-heading
       .row.author
@@ -15,3 +15,5 @@
 
     .panel-body
       .text= raw answer.text
+    .panel-footer
+      = render "shared/comments", record: answer

@@ -3,5 +3,5 @@
 
 $('input[name="comment[body]"]').val("")
 
-var el = $("div[data-target='comments-<%= type %>-<%= id  %>']");
+var el = $("div[data-target='comments-<%= type %>-<%= id %>']");
 el.append('<%= j render @comment %>')

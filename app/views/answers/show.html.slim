@@ -15,28 +15,8 @@
 
 .row
   .col-lg-10.col-lg-offset-1
-    .article.answer
-      .panel
-        .panel-heading
-          h1.title itemprop="name" = @answer.title
-          .row.author
-            .col-xs-3.col-sm-2
-              = link_to profile_path(@answer.user), target: "_blank" do
-                = image_tag @answer.avatar(:thumb),
-                            alt: "автор ответа #{@answer.name_to_show}",
-                            class: "img-responsive img-circle center-block"
-            .col-xs-9.col-sm-10.name-block
-              h4.name= link_to @answer.name_to_show, profile_path(@answer.user), target: "_blank"
-              p.date.text-muted
-                = "#{@answer.score} голосов "
-                br
-                - if current_user.try(:can_edit?, @answer)
-                  = link_to "Редактировать", edit_answer_path(@answer), class: "text-muted"
-
-        .panel-body
-          .text= raw @answer.text
-        .panel-footer
-          = render "shared/tags", record: @answer
+    = render @answer.question
+    = render "questions/answer", answer: @answer
 
     .col-xs-12.col-md-6.col-md-offset-3
       - if @answer.question.answers_count > 1

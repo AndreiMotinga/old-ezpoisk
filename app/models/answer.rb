@@ -42,7 +42,7 @@ class Answer < ActiveRecord::Base
 
   # extract to concern
   def update_cached_tags
-    update_column(:cached_tags, tags.pluck(:name).join(", "))
+    update_column(:cached_tags, tags.pluck(:name).join(","))
   end
 
   def active
