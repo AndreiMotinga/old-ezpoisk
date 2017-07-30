@@ -9,9 +9,10 @@
                         class: "img-responsive img-circle center-block"
         .col-xs-9.col-sm-10.name-block
           h4.name= link_to answer.name_to_show, profile_path(answer.user), target: "_blank"
-          p.date.text-muted
-            - if current_user.try(:can_edit?, answer)
-              = link_to "Редактировать", edit_answer_path(answer), class: "text-muted"
+          small= answer.user.slug
+          br
+          - if current_user.try(:can_edit?, answer)
+            small= link_to "Редактировать", edit_answer_path(answer), class: "text-muted"
 
     .panel-body
       .text= raw answer.text
