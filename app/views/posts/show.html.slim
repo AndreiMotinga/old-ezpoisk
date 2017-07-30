@@ -1,10 +1,10 @@
 .container.container-md
   .row
     .col-xs-12
-      h1.text-center= @post.title
+      h2.text-center= @post.title
       h4.text-center= link_to @post.name_to_show, profile_path(@post.user), target: "_blank"
       - if current_user.try(:can_edit?, @post)
-        p.text-center= link_to "Редактировать", edit_post_path(@post), class: "text-muted"
+        p.text-center: small= link_to "Редактировать", edit_post_path(@post), class: "text-muted"
 
   .row
     .col-xs-12

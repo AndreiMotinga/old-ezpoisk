@@ -1,8 +1,7 @@
 - count = record.comments.count
 a#toggle-comments.text-muted href="#" Комментарии #{count.zero? ? "" : count}
 #comments-container.row.comments.hidden
+  .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
+    = render record.comments.includes(:user).order("created_at asc")
   .col-xs-12
-    .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
-      = render record.comments.includes(:user).order("created_at asc")
-    .col-xs-12
-      = render "comments/form", record: record
+    = render "comments/form", record: record
