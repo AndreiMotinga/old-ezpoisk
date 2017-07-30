@@ -1,3 +1,8 @@
+$(document).on("click","#toggle-comments", function(e){
+  e.preventDefault();
+  $("#comments-container").toggleClass("hidden")
+});
+
 $(document).on('keypress','[data-action="enter"]', function(e){
   if (e.which == 13){
     $(this).closest("form").submit();
@@ -40,7 +45,7 @@ $(document).ready(function(){
   $.each(fields, function(i, el){
     function resize () {
       el.style.height = 'auto';
-      el.style.height = el.scrollHeight+2+'px';
+      el.style.height = el.scrollHeight+32+'px';
     }
     /* 0-timeout to get the already changed text */
     function delayedResize () {

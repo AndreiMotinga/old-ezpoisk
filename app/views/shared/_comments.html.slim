@@ -1,6 +1,5 @@
-h6.text-muted ВОПРОСЫ / КОММЕНТАРИИ
-hr
-.row.comments
+a#toggle-comments.text-muted href="#" Комментарии
+#comments-container.row.comments.hidden
   .col-xs-12
     .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
       = render record.comments.includes(:user).order("created_at asc")
