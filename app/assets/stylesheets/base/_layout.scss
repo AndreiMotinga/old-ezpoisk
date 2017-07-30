@@ -9,7 +9,7 @@ body {
 }
 
 .page-wrap {
-  margin-bottom: -100px;  // equal to footer height (inluding margin)
+  // margin-bottom: -100px;  // equal to footer height (inluding margin)
   min-height: 100%;
 
   &::after {
@@ -24,10 +24,10 @@ body {
   }
 }
 
-footer,
-.page-wrap::after {
-  height: 100px;
-}
+// footer,
+// .page-wrap::after {
+//   height: 100px;
+// }
 
 .container-md {
   max-width: $screen-md;
