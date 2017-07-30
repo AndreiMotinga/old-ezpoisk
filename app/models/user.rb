@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
     default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
   validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
+  # todo rename to display_name
   def name_to_show
     name.present? ? name : email
   end
