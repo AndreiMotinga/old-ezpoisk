@@ -12,10 +12,10 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           | Объявления
           span.caret
         ul.dropdown-menu.pull-right
-          li= link_to "Недвижимость", listings_path(kind: "недвижимость")
-          li= link_to "Работа", listings_path(kind: "работа")
-          li= link_to "Услуги", listings_path(kind: "услуги")
-          li= link_to "Продажи", listings_path(kind: "продажи")
+          li= link_to "Недвижимость", search_listings_path(kind: "недвижимость")
+          li= link_to "Работа", search_listings_path(kind: "работа")
+          li= link_to "Услуги", search_listings_path(kind: "услуги")
+          li= link_to "Продажи", search_listings_path(kind: "продажи")
       li.nav-link.hidden-xs= link_to "Ответы", answers_path
       li.nav-link.hidden-xs= link_to "Посты", posts_path
       li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path, class: "btn-ez"
