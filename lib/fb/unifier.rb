@@ -41,7 +41,7 @@ module Fb
     end
 
     def text
-      @text ||= Media::Sanitizer.clean(post["message"])
+      @text ||= Media::Text.clean(post["message"])
     end
   end
 end

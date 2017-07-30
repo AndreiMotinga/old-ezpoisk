@@ -14,8 +14,10 @@ module Media
     def sanitize
       return "" unless text.present?
       text.gsub(REGEX, "") # remove emojis
-          .gsub("<br>", "\r\n")
-          .gsub("&amp;", "&")
+        .gsub("<br>", "\r\n")
+        .gsub("&amp;", "&")
+        .split('.')
+        .map {|s| s.mb_chars.downcase.strip.capitalize.to_s }.join(". ")
     end
 
     REGEX = /[\u{1F600}-\u{1F6FF}]/

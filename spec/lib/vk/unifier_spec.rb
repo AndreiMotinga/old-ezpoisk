@@ -4,6 +4,7 @@ describe Vk::Unifier do
   before { Timecop.freeze(Time.now) }
   after { Timecop.return }
 
+  # todo replace title and text with stubbed calls to media::title and media::text
   describe "#unified" do
     it "returns formatted item" do
       group = { kind: "работа",
@@ -37,15 +38,15 @@ describe Vk::Unifier do
                          category: RU_KINDS[kind][:categories].first,
                          subcategory: subcategory,
                          rooms: rooms,
-                         text: item[:text],
+                         text: "Фотосессия в нью-йорке. Детская, семейная и портретная съемка. Лучшие снимки отобранные",
                          vk: "https://vk.com/id#{item[:from_id]}",
                          state_id: group[:state_id],
                          city_id: group[:city_id],
                          from_name: "Andrei Motinga",
                          user_id: 1,
                          created_at: Time.at(5.minutes.ago) }
-      expect(result[:attributes]).to eq expected_attrs
 
+      expect(result[:attributes]).to eq expected_attrs
       expect(Vk::Attachments).to have_received(:new).with(item[:attachments])
       expect(atts).to have_received(:attachments)
     end

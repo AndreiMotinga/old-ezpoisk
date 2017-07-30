@@ -20,13 +20,13 @@ module Vk
       {
         attachments: attachments,
         attributes: {
-          title: Media::Title.of(post[:text]),
+          title: Media::Title.of(text),
           kind: kind,
           active: true,
           category: RU_KINDS[kind][:categories].first,
           subcategory: subcategory,
           rooms: rooms,
-          text: Media::Sanitizer.clean(post[:text]),
+          text: text,
           vk: "https://vk.com/id#{post[:from_id]}",
           state_id: group[:state_id],
           city_id: group[:city_id],
@@ -39,6 +39,10 @@ module Vk
 
     def attachments
       Vk::Attachments.new(post[:attachments]).attachments
+    end
+
+    def text
+      @text ||= Media::Text.clean(post[:text])
     end
   end
 end
