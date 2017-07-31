@@ -1,4 +1,5 @@
-- if record.pictures.count > 1
+/ don't show huge logo             but show solo image for real estate
+- if record.pictures.count > 1 || record.kind == "недвижимость" && record.pictures.any?
   .show
     .white-block.mdl-shadow--2dp
       ul.pgwSlideshow.pictures

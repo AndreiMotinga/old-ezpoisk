@@ -7,6 +7,11 @@
     max-width: 180px;
   }
 
+  .mdl-button--icon .material-icons {
+    top: 45%;
+    left: 45%;
+  }
+
   .top {
     border: thin solid $light-gray;
     border-radius: 3px;
@@ -39,6 +44,10 @@
         color: $orange;
       }
     }
+  }
+
+  p.text {
+    margin: 5px 0;
   }
 }
 

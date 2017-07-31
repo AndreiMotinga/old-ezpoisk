@@ -1,0 +1,49 @@
+- has_pics = listing.logo_url != "https://s3.amazonaws.com/ezpoisk/missing.png"
+.col-xs-12.listing.mdl-shadow--2dp class=("featured mdl-shadow--8dp" if listing.featured?)
+  .row
+    - if has_pics
+      .col-xs-12.col-sm-4
+        = link_to listing do
+          img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
+
+    .col-xs-12 class=("col-sm-8" if has_pics)
+      / menu
+      - if listing.user_id == current_user.try(:id) || current_user.try(:admin?)
+        button.mdl-button.mdl-js-button.mdl-button--icon.pull-right id=listing.id
+          i.material-icons more_vert
+        ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for=listing.id
+          li.mdl-menu__item= link_to "Редактировать", edit_listing_path(listing)
+          li.mdl-menu__item= link_to "Удалить", listing_path(listing), method: :delete
+
+      / line 0
+      h4.title= link_to listing.title, listing
+
+      / line 1
+      = "#{listing.category} | #{listing.subcategory} | #{listing.rooms}"
+      = " | $#{listing.price}" if listing.price?
+
+      // line 2
+      hr.post-devider
+      = "#{listing.street} | " if listing.street?
+      = link_to listing.city.name, listings_path(kind: listing.kind, state: listing.state.slug, city: listing.city.slug)
+      = " | "
+      = link_to listing.state.name, listings_path(kind: listing.kind, state: listing.state.slug)
+
+      / line 4
+      hr.post-devider
+      = listing.duration if listing.duration?
+      = " | ванные: #{listing.baths}" if listing.baths?
+      = " | площадь:  #{listing.space} ft" if listing.space?
+      = " | "
+      span data-time=listing.id = time_ago_in_words listing.updated_at
+      = " | "
+      = render "shared/indicators", record: listing
+
+  hr.post-devider
+  .row
+    .col-xs-12
+      / line 5
+      p.text
+        = strip_tags(listing.text).truncate(280)
+        = link_to " дальше", listing_path(listing) if listing.text.size > 280
+

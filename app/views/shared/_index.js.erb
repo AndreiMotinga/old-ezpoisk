@@ -13,3 +13,8 @@ $("[data-id='listings']").append("<%= j render(records) %>");
   $(".pagination").remove();
   $("#p2").remove();
 <% end %>
+
+// MDL fix
+if(!(typeof(componentHandler) == 'undefined')){
+  componentHandler.upgradeAllRegistered();
+}
