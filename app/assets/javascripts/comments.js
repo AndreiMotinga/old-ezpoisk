@@ -45,7 +45,8 @@ $(document).ready(function(){
   $.each(fields, function(i, el){
     function resize () {
       el.style.height = 'auto';
-      el.style.height = el.scrollHeight+32+'px';
+      var h = el.scrollHeight > 10 ? 2 : 32;
+      el.style.height = el.scrollHeight + h +'px';
     }
     /* 0-timeout to get the already changed text */
     function delayedResize () {
