@@ -3,10 +3,22 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
-    @side_posts = Post.desc.offset(10).take(5)
+    @popular = Comment.popular
     @posts = Post.includes(:user).page(params[:page])
     respond_to do |format|
       format.html
+      format.js { render partial: "shared/index", locals: { records: @posts } }
+    end
+  end
+
+  def tag
+    @popular = Comment.popular
+    @posts = Post.includes(:user)
+                 .tagged_with(params[:tag], any: true)
+                 .page(params[:page])
+
+    respond_to do |format|
+      format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @posts } }
     end
   end

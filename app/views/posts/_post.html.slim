@@ -1,6 +1,7 @@
 .col-xs-12
   .row.mdl-shadow--3dp.article
     .panel
+      = render "shared/tags", record: post
       .panel-heading
         h1.title= link_to post.title, post
         .row.author
@@ -10,10 +11,9 @@
                           alt: "автор ответа #{post.user.name_to_show}",
                           class: "img-responsive img-circle center-block"
           .col-xs-9.col-sm-10.name-block
-            h4.name
-              = link_to "#{post.user.try(:name_to_show)}", profile_path(post.user)
+            span.name= link_to "#{post.user.try(:name_to_show)}", profile_path(post.user)
             small= post.user.slug
-            p.date.text-muted= timeago_tag post.updated_at
+            .date.text-muted= timeago_tag post.updated_at
 
       .panel-body
         .text

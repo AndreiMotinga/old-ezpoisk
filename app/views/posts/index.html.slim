@@ -11,7 +11,7 @@
   = render("home/user_widget")
 
 - content_for :right do
-  = render "home/right_widget", posts: @side_posts
+  = render "home/right_widget", posts: @popular
 
 div data-id="listings" data-term=params[:term]
   = link_to new_post_path do

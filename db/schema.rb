@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170723230105) do
+ActiveRecord::Schema.define(version: 20170731172600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20170723230105) do
     t.string "kind"
     t.string "from_name"
     t.string "legend", default: "", null: false
+    t.string "slug"
     t.index ["city_id"], name: "index_listings_on_city_id"
     t.index ["state_id"], name: "index_listings_on_state_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(version: 20170723230105) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "cached_tags", default: "", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

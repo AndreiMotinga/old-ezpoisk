@@ -1,4 +1,7 @@
-- if record.cached_tags.present?
-  p.tags
+p.tags
+  = link_to t(record.class), record.show_url, class: "tag"
+  - if record.class == Listing
+    = link_to "##{record.kind}", search_listings_path(kind: record.kind), class: "tag"
+  - elsif record.cached_tags.present?
     - record.cached_tags.split(",").map do |tag|
       = sanitize link_to "##{tag}", "/#{record.class.table_name}/tag/#{tag}", class: "tag"

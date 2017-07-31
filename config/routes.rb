@@ -37,7 +37,11 @@ Rails.application.routes.draw do
   end
 
   # POSTS
-  resources :posts
+  resources :posts do
+    collection do
+      get "tag/:tag", to: "posts#tag", as: :tag
+    end
+  end
 
   # PROFILES
   resources :profiles, only: :show do
