@@ -12,7 +12,7 @@ feature "User browses profile" do
 
   scenario "visits listings" do
     user = create :user
-    listing = create :listing, user: user
+    listing = create :listing, kind: "недвижимость", user: user
 
     visit listings_profile_path(user)
 

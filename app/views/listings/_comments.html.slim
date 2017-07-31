@@ -1,0 +1,11 @@
+- count = record.comments.count
+.row
+  .col-xs-12
+    .card.mdl-shadow--2dp
+      a#toggle-comments.text-muted href="#": h4.text-muted Коментарии
+      hr
+      #comments-container.row.comments
+        .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
+          = render record.comments.includes(:user).order("created_at asc")
+        .col-xs-12
+          = render "comments/form", record: record
