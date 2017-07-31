@@ -7,7 +7,7 @@ feature "user destroys listing" do
 
     visit edit_listing_path record
 
-    click_on "Удалить"
+    click_on "remove"
 
     expect(page).to have_content I18n.t(:post_removed)
     expect(Listing.count).to eq 0

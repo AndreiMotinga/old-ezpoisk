@@ -1,3 +1,5 @@
+- kind = params[:kind] || @listing.kind
+
 .container.container-md
   section.form-container
     .row
@@ -5,4 +7,4 @@
         h4 Подать бесплатное объявление на ezpoisk
         hr.heading
         br
-        = render "form"
+        = render "listings/form/#{kind}"

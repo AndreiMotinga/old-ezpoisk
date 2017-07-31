@@ -1,28 +1,28 @@
-$(document).on("change","#listing_kind", function(e){
-  // show re_fields if listing is re
-  var listing_kind = $(this).val();
-  if(listing_kind == "недвижимость") {
-    $("#re_fields").removeClass("hidden");
-  } else {
-    $("#re_fields").addClass("hidden");
-  }
-
-  // get categories
-  var val = $('#listing_kind').val();
-  getCategories(val);
-});
+// $(document).on("change","#listing_kind", function(e){
+//   // show re_fields if listing is re
+//   var listing_kind = $(this).val();
+//   if(listing_kind == "недвижимость") {
+//     $("#re_fields").removeClass("hidden");
+//   } else {
+//     $("#re_fields").addClass("hidden");
+//   }
+//
+//   // get categories
+//   var val = $('#listing_kind').val();
+//   getCategories(val);
+// });
 
 $(document).on("change","#listing_category", function(e){
   // get subcategories for service
   var kind = $("#listing_kind").val();
-  var category = $(this).val();
+  var category = $(this).val()
   if(kind === "услуги") {
     getSubcategories(category);
   }
 
   // hide duration if kind is re and category is permanent (e.g sale)
   var duration = $("#duration");
-  if(kind === "недвижимость" && (category === "хочу-купить" || category === "продаю")) {
+  if (category === "хочу-купить" || category === "продаю") {
     duration.addClass("hidden");
   } else {
     duration.removeClass("hidden");

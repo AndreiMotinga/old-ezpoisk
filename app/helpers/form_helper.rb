@@ -90,24 +90,22 @@ module FormHelper
     opts.map { |key| [key, key] }
   end
 
+  def kind
+    params[:kind] || @listing.kind
+  end
+
   def listing_categories
-    kind = @listing.kind
-    return [] unless kind.present?
     opts = RU_KINDS[kind][:categories]
     options_for_select(opts, @listing.category)
   end
 
   def listing_subcategories
-    kind = @listing.kind
-    return [] unless kind.present?
     options_for_select(listing_sub_opts, @listing.subcategory)
   end
 
   def listing_sub_opts
-    kind = @listing.kind
-    return [] unless kind.present?
-    return RU_KINDS[kind][:subcategories] unless kind == "услуги"
-    RU_KINDS[kind][:subcategories][@listing.category]
+    RU_KINDS[kind][:subcategories][@listing.category] if kind == "услуги"
+    return RU_KINDS[kind][:subcategories]
   end
 
   def confirm?

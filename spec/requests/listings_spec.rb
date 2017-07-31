@@ -5,7 +5,7 @@ describe "Listings" do
     context "user logged in" do
       it "renders the new temlpate" do
         create_and_login_user
-        get new_listing_path
+        get new_listing_path(kind: "недвижимость")
 
         expect(response).to render_template(:new)
       end

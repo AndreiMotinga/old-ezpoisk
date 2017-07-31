@@ -4,11 +4,10 @@ feature "user creates listing" do
   scenario "successfully", js: true do
     user = create_and_login_user
     record = create :listing, :job, user: user
-    listing = build :listing, :apartment
+    listing = build :listing, :job
 
     visit edit_listing_path record
 
-    select(listing.kind, from: "Раздел")
     select(listing.category, from: "Категория")
     select(listing.subcategory, from: "Подкатегория")
 

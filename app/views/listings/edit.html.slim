@@ -24,14 +24,14 @@
         .tab-content
           #form.tab-pane.fade.in.active role="tabpanel"
             .col-xs-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-              = render "form"
+              = render "listings/form/#{@listing.kind}"
 
           #pictures.tab-pane.fade role="tabpanel"
-              = render "listings/pictures_form", record: @listing
+              = render "listings/form/pictures", record: @listing
 
           #preview.tab-pane.fade role="tabpanel"
             .col-xs-12
-              = render "listings/listing", listing: @listing
+              = render @listing
 
           - if current_user.try(:admin?)
             #message.tab-pane.fade role="tabpanel"

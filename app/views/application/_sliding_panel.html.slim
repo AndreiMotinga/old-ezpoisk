@@ -1,6 +1,16 @@
 nav.js-menu.sliding-panel-content
   ul
-    li= link_to "Подать объявление", new_listing_path
+    li.nav-link.dropdown
+      a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
+                               data-toggle="dropdown" href="#" role="button"]
+        | Подать объявление
+        span.caret
+      ul.dropdown-menu.pull-right
+        li= link_to "Недвижимость", new_listing_path(kind: "недвижимость")
+        li= link_to "Работа", new_listing_path(kind: "работа")
+        li= link_to "Услуги", new_listing_path(kind: "услуги")
+        li= link_to "Продажи", new_listing_path(kind: "продажи")
+
     li.nav-link.dropdown
       a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                data-toggle="dropdown" href="#" role="button"]

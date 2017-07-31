@@ -4,10 +4,9 @@ feature "user creates listing" do
   scenario "user creates job", js: true do
     create_and_login_user
 
-    visit new_listing_path
     listing = build :listing, :job
+    visit new_listing_path(kind: listing.kind)
 
-    select(listing.kind, from: "Раздел")
     select(listing.category, from: "Категория")
     select(listing.subcategory, from: "Подкатегория")
 
@@ -53,15 +52,13 @@ feature "user creates listing" do
   scenario "user creates apartment", js: true do
     create_and_login_user
 
-    visit new_listing_path
     listing = build :listing, :apartment
+    visit new_listing_path(kind: listing.kind)
 
-    find("option[value='#{listing.kind}']").select_option
     find("option[value='#{listing.category}']").select_option
     find("option[value='#{listing.subcategory}']").select_option
 
     fill_in "Цена", with: listing.price
-    fill_in "Площадь", with: listing.space
     fill_in "Ванные", with: listing.baths
     find("option[value='#{listing.rooms}']").select_option
     find("option[value='#{listing.duration}']").select_option
@@ -83,7 +80,6 @@ feature "user creates listing" do
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
     expect(saved_listing.price).to eq listing.price
-    expect(saved_listing.space).to eq listing.space
     expect(saved_listing.baths).to eq listing.baths
     expect(saved_listing.rooms).to eq listing.rooms
     expect(saved_listing.duration).to eq listing.duration
@@ -98,10 +94,9 @@ feature "user creates listing" do
   scenario "user creates service", js: true do
     create_and_login_user
 
-    visit new_listing_path
     listing = build :listing, :service
+    visit new_listing_path(kind: listing.kind)
 
-    find("option[value='#{listing.kind}']").select_option
     select(listing.category, from: "Категория")
     find("option[value='#{listing.subcategory}']").select_option
 
@@ -132,10 +127,9 @@ feature "user creates listing" do
   scenario "user creates sale", js: true do
     create_and_login_user
 
-    visit new_listing_path
     listing = build :listing, :sale
+    visit new_listing_path(kind: listing.kind)
 
-    find("option[value='#{listing.kind}']").select_option
     find("option[value='#{listing.category}']").select_option
     find("option[value='#{listing.subcategory}']").select_option
 

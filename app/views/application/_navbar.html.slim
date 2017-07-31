@@ -18,7 +18,19 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           li= link_to "Продажи", search_listings_path(kind: "продажи")
       li.nav-link.hidden-xs= link_to "Ответы", answers_path
       li.nav-link.hidden-xs= link_to "Посты", posts_path
-      li.nav-link.hidden-xs= link_to "Подать объявление", new_listing_path, class: "btn-ez"
+
+      li.nav-link.dropdown.hidden-xs.hidden-sm
+        a.dropdown-toggle.btn-ez[aria-expanded="false" aria-haspopup="true"
+                                 data-toggle="dropdown" href="#" role="button" class="hidden-xs"]
+          | Подать объявление
+          span.caret
+        ul.dropdown-menu.pull-right
+          li= link_to "Недвижимость", new_listing_path(kind: "недвижимость")
+          li= link_to "Работа", new_listing_path(kind: "работа")
+          li= link_to "Услуги", new_listing_path(kind: "услуги")
+          li= link_to "Продажи", new_listing_path(kind: "продажи")
+
+
       - if user_signed_in?
         li.nav-link.dropdown
           a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
