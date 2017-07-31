@@ -14,8 +14,15 @@ class Post < ApplicationRecord
   validates_presence_of :tag_list
 
   after_create :create_action
+  after_save :update_cached_tags
 
   def show_url
     Rails.application.routes.url_helpers.post_url(self)
+  end
+
+  private
+
+  def update_cached_tags
+    update_column(:cached_tags, tags.pluck(:name).join(","))
   end
 end

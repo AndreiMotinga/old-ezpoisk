@@ -36,8 +36,6 @@ class QuestionsController < ApplicationController
     verify_title
 
     if @question.save
-      SlackNotifierJob.perform_async(@question.id, "Question")
-      @question.update_cached_tags
       redirect_to @question, notice: I18n.t(:q_created)
     else
       render :new

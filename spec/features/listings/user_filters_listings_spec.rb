@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User filters listings" do
   scenario "by state" do
-    listing = create :listing
+    listing = create :listing, :service
 
     visit listings_path(kind: listing.kind)
     select(listing.state.name, from: :state)

@@ -17,6 +17,7 @@ class Question < ActiveRecord::Base
 
   after_create :create_action
   after_create :notify_slack
+  after_save :update_cached_tags
 
   def self.term_for(term)
     qs = where("title ILIKE ?", "%#{term}%").limit(10).pluck(:title, :slug)
@@ -47,7 +48,14 @@ class Question < ActiveRecord::Base
     true
   end
 
+  private
+
   def notify_slack
     SlackNotifierJob.perform_async(id, "Question")
+  end
+
+  def update_cached_tags
+    update_column(:cached_tags, tags.pluck(:name).join(","))
+    answers.each { |a| a.update_column(:cached_tags, cached_tags) }
   end
 end
