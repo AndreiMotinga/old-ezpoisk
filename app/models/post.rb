@@ -9,7 +9,7 @@ class Post < ApplicationRecord
 
   has_one :action, as: :actionable, dependent: :destroy
 
-  validates :title, presence: true, length: { minimum: 5, maximum: 70 }
+  validates :title, presence: true
   validates_presence_of :text
   validates_presence_of :tag_list
 
