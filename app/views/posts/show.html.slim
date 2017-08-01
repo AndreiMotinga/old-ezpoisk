@@ -15,7 +15,6 @@
     .muted= render "shared/tags", record: @post
     hr
     h1= @post.title
-    = render "social_share_buttons", record: @post
     small
       | Автор
       = " "
@@ -31,6 +30,8 @@
     .panel
       .panel-body.summernote-container
         = raw @post.text
+      .panel-footer
+        = render "social_share_buttons", record: @post
 
 br
 = render "listings/comments", record: @post

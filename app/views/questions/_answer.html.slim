@@ -17,4 +17,5 @@
     .panel-body
       .text= raw answer.text
     .panel-footer
+      = render "social_share_buttons", record: answer
       = render "shared/comments", record: answer

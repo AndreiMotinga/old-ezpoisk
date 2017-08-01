@@ -14,5 +14,6 @@
     .panel-body
       .text= simple_format question.text, sanitize: true
     - if current_page? question_path(question)
-      .panel-foote
+      .panel-footer
+        = render "social_share_buttons", record: question
         = render "shared/comments", record: question
