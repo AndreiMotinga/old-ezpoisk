@@ -16,6 +16,14 @@ head
   = javascript_include_tag "application"
   = timeago_script_tag
 
+  script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"
+  javascript:
+    window.___gcfg = {
+      lang: 'ru',
+      parsetags: 'onload'
+    };
+  script src="https://apis.google.com/js/platform.js" async defer></script>
+
+  script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/27597bc25de8ded90e9c9b5165060dd9a939a969e5e01bcc122aec50dda34f3d.js"
   script src="//maps.google.com/maps/api/js?v=3.24&libraries=geometry&key=#{ENV["GOOGLE_MAPS_API_KEY"]}" type="text/javascript" defer="" async=""
   script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
-  script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"
