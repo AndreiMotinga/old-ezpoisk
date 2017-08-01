@@ -12,6 +12,8 @@
 
 .row
   .col-xs-12
+    .muted= render "shared/tags", record: @post
+    hr
     h1= @post.title
     small
       | Автор
