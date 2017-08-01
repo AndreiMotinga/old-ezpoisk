@@ -12,7 +12,7 @@ class Comment < ActiveRecord::Base
 
   def self.popular
     where.not(commentable_type: "Listing")
-      .where('created_at > ?', 4.hours.ago)
+      .where('created_at > ?', 1.day.ago)
       .group(:commentable_type, :commentable_id)
       .order(:count).reverse_order.count
       .keys

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @popular = Comment.popular
-    @posts = Post.includes(:user).page(params[:page])
+    @posts = Post.includes(:user).order(created_at: :desc).page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @posts } }
