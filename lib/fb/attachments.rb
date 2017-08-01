@@ -23,7 +23,10 @@ module Fb
 
     def subattachments
       items = data["subattachments"]["data"]
-      items.map { |obj| obj["media"]["image"]["src"] }
+      items.map do |obj|
+        next if obj["media"].blank?
+        obj["media"]["image"]["src"]
+      end
     end
   end
 end
