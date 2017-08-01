@@ -8,7 +8,7 @@
 
 - content_for :right do
   = render "google_ad"
-  = render "home/right_widget", posts: @popular
+  = render "home/right_widget", posts: @post.side_posts.first(5)
 
 .row
   .col-xs-12

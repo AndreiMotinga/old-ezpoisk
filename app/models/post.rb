@@ -22,6 +22,10 @@ class Post < ApplicationRecord
     Rails.application.routes.url_helpers.post_url(self)
   end
 
+  def side_posts
+    self.class.tagged_with(tag_list).order(created_at: :desc).take(8)
+  end
+
   private
 
   def update_cached_tags
