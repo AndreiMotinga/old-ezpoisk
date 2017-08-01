@@ -7,7 +7,7 @@
             li= "#{t type} #{error}"
 
   = form_for @post do |f|
-    .mdl-textfield.mdl-js-textfield.text-center
+    .mdl-textfield.mdl-js-textfield.full-width
       = f.text_field :title, class: "mdl-textfield__input"
       = f.label :title, "Заголовок", class: "mdl-textfield__label"
 
