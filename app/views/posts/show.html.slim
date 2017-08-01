@@ -15,6 +15,7 @@
     .muted= render "shared/tags", record: @post
     hr
     h1= @post.title
+    = render "social_share_buttons", record: @post
     small
       | Автор
       = " "
