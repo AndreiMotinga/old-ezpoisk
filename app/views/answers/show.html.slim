@@ -1,4 +1,4 @@
-- meta title: "#{@answer.user.name_to_show} - #{@answer.title}",
+- meta title: "#{@answer.title} - #{@answer.user.name_to_show}",
        description: strip_tags(@answer.text),
        rel: { canonical: question_url(@answer.question) },
        og: { type: "article",
@@ -17,7 +17,6 @@
   .col-lg-10.col-lg-offset-1
     = render @answer.question
     = render "questions/answer", answer: @answer
-
 
     br
     br
