@@ -41,6 +41,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @popular = Comment.popular
   end
 
   def edit

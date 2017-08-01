@@ -1,18 +1,33 @@
-.container.container-md
-  .row
-    .col-xs-12
-      h2.text-center= @post.title
-      h4.text-center= link_to @post.name_to_show, profile_path(@post.user), target: "_blank"
+- meta title: "#{@post.user.name_to_show} - #{@post.title}",
+       description: strip_tags(@post.text),
+       rel: { canonical: post_url(@post) },
+       og: { type: "article",
+             url: post_url(@post) }
+
+- content_for :header, render("partners/top")
+
+- content_for :right do
+  = render "google_ad"
+  = render "home/right_widget", posts: @popular
+
+.row
+  .col-xs-12
+    h1= @post.title
+    small
+      | Автор
+      = " "
+      = link_to @post.name_to_show, profile_path(@post.user), target: "_blank"
+      = " - #{time_ago_in_words @post.created_at}"
       - if current_user.try(:can_edit?, @post)
-        p.text-center: small= link_to "Редактировать", edit_post_path(@post), class: "text-muted"
+        = link_to " | Редактировать", edit_post_path(@post), class: "text-muted"
+    br
+    br
 
-  .row
-    .col-xs-12
-      .panel
-        .panel-body.summernote-container
-          = raw @post.text
+.row
+  .col-xs-12
+    .panel
+      .panel-body.summernote-container
+        = raw @post.text
 
-  br
-  .row
-    .col-xs-12
-      = render "shared/comments", record: @post
+br
+= render "listings/comments", record: @post

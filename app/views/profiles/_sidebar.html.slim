@@ -3,7 +3,7 @@
     li.header Топики
     li.tag= link_to "Ответы", profile_path(@user), class: "grey #{cp(profile_path(@user))}"
     li.tag= link_to "Вопросы", questions_profile_path(@user), class: "grey #{cp(questions_profile_path(@user))}"
-    li.tag= link_to "Посты", posts_profile_path(@user), class: "grey #{cp(posts_profile_path(@user))}"
+    li.tag= link_to "Новости", posts_profile_path(@user), class: "grey #{cp(posts_profile_path(@user))}"
     li.tag= link_to "Объявления", listings_profile_path(@user), class: "grey #{cp(listings_profile_path(@user))}"
     - if user_signed_in?
       li.tag= link_to "Настройки", edit_user_path(current_user), class: "grey"

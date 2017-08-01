@@ -1,39 +1,38 @@
 #pictures-data data-id=@post.id data-type="Post"
 
-.container.container-md
-  - if @post.errors.any?
-    #error_explanation
-      ul
-        - @post.errors.messages.each_pair do |type, errors|
-          - errors.each do |error|
-            li= "#{t type} #{error}"
+- if @post.errors.any?
+  #error_explanation
+    ul
+      - @post.errors.messages.each_pair do |type, errors|
+        - errors.each do |error|
+          li= "#{t type} #{error}"
 
-  = form_for @post do |f|
-    .mdl-textfield.mdl-js-textfield.full-width
-      = f.text_field :title, class: "mdl-textfield__input"
-      = f.label :title, "Заголовок", class: "mdl-textfield__label"
+= form_for @post do |f|
+  .mdl-textfield.mdl-js-textfield.full-width
+    = f.text_field :title, class: "mdl-textfield__input"
+    = f.label :title, "Заголовок", class: "mdl-textfield__label"
 
-    .field.summernote-container
-      = f.text_area :text, skip_label: true, class: "summernote"
+  .field.summernote-container
+    = f.text_area :text, skip_label: true, class: "summernote"
 
-    .field
-      = label_tag "Тэги", nil
-      = collection_select :post,
-                          :tag_list,
-                          ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
-                          { selected: @post.tag_list },
-                          { multiple: true, class: "q-select my-dropdown" }
-    - if @post.errors[:tag_list].any?
-      ul.list-group-item-danger
-        li Добавьте тэги
+  .field
+    = label_tag "Тэги", nil
+    = collection_select :post,
+                        :tag_list,
+                        ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
+                        { selected: @post.tag_list },
+                        { multiple: true, class: "q-select my-dropdown" }
+  - if @post.errors[:tag_list].any?
+    ul.list-group-item-danger
+      li Добавьте тэги
 
-    br/
-    .actions
-      = f.submit 'Сохранить', class: "btn-ez"
-      = " "
-      - unless @post.new_record?
-        = link_to 'Удалить',
-                  post_path(@post),
-                  class: "text-muted",
-                  method: :delete,
-                  data: { confirm: I18n.t(:confirm) }
+  br/
+  .actions
+    = f.submit 'Сохранить', class: "btn-ez"
+    = " "
+    - unless @post.new_record?
+      = link_to 'Удалить',
+                post_path(@post),
+                class: "text-muted",
+                method: :delete,
+                data: { confirm: I18n.t(:confirm) }

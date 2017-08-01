@@ -76,6 +76,14 @@ SitemapGenerator::Sitemap.create do
         changefreq: "weekly"
   end
 
+  add posts_path, priority: 0.8, changefreq: "daily"
+  Post.find_each do |post|
+    add post_path(post),
+        priority: 0.6,
+        lastmod: post.created_at,
+        changefreq: "weekly"
+  end
+
   User.find_each do |user|
     add profile_path(user),
         priority: 0.4,
