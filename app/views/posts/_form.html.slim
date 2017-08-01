@@ -1,8 +1,15 @@
 .container.container-md
+  - if @post.errors.any?
+    #error_explanation
+      ul
+        - @post.errors.messages.each_pair do |type, errors|
+          - errors.each do |error|
+            li= "#{t type} #{error}"
+
   = form_for @post do |f|
     .mdl-textfield.mdl-js-textfield.text-center
       = f.text_field :title, class: "mdl-textfield__input"
-      = f.label :title, class: "mdl-textfield__label"
+      = f.label :title, "Заголовок", class: "mdl-textfield__label"
 
     .field.summernote-container
       = f.text_area :text, skip_label: true, class: "summernote"
