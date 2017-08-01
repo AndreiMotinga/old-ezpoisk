@@ -3,11 +3,13 @@ class Post < ApplicationRecord
   include Filterable
   include Commentable
   include MyFriendlyId
+
   belongs_to :user
 
   delegate :avatar, :name_to_show, to: :user
 
   has_one :action, as: :actionable, dependent: :destroy
+  has_many :pictures, as: :imageable, dependent: :destroy
 
   validates :title, presence: true
   validates_presence_of :text
