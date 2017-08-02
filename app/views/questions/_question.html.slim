@@ -7,7 +7,7 @@
       p.text-muted
         = "#{question.answers_count} ответов | "
         = link_to new_answer_path(question_id: question.id) do
-          = " Добавить ответит "
+          = " Добавить ответ "
           i.fa.fa-pencil
       - if question.text?
         .panel-body

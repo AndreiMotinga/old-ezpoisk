@@ -1,3 +1,10 @@
+- if current_user.try(:admin?)
+  = current_page?(record.show_url)
+  br
+  =  record.show_url
+  br
+  = request.original_url
+
 - if current_page?(record.show_url)
   .row
     .col-xs-12
