@@ -23,7 +23,7 @@ class Post < ApplicationRecord
   end
 
   def side_posts
-    self.class.tagged_with(tag_list).order(created_at: :desc).take(8)
+    self.class.tagged_with(tag_list, any: true).order(created_at: :desc).take(8)
   end
 
   private
