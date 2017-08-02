@@ -181,9 +181,7 @@ RU_KINDS = HashWithIndifferentAccess.new(
     ],
     "duration" => [
       "помесячно",
-      "понедельно",
       "посуточно",
-      "почасово"
     ],
     "rooms" => [
       "место-в-комнате",
