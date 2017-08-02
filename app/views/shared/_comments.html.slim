@@ -1,6 +1,6 @@
 - count = record.comments.count
-a#toggle-comments.text-muted href="#" Комментарии #{count.zero? ? "" : count}
-#comments-container.row.comments.hidden
+a#toggle-comments.text-muted data-id=record.id href="#" Комментарии #{count.zero? ? "" : count}
+#comments-container.row.comments.hidden data-id=record.id
   .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
     = render record.comments.includes(:user).order("created_at asc")
   .col-xs-12

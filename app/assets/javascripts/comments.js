@@ -1,6 +1,7 @@
 $(document).on("click","#toggle-comments", function(e){
   e.preventDefault();
-  $("#comments-container").toggleClass("hidden")
+  var id = $(this).data('id')
+  $("#comments-container[data-id='" + id + "']").toggleClass("hidden")
 });
 
 $(document).on('keypress','[data-action="enter"]', function(e){
