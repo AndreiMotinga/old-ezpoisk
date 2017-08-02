@@ -5,14 +5,13 @@
       h1.title
         = link_to question.title, question
       p.text-muted
+        = "#{question.answers_count} ответов | "
         = link_to new_answer_path(question_id: question.id) do
+          = " Добавить ответит "
           i.fa.fa-pencil
-          |  Ответить
-        br
-        = "#{question.answers_count} ответов"
       - if question.text?
-    .panel-body
-      .text= simple_format question.text, sanitize: true
+        .panel-body
+          .text= simple_format question.text, sanitize: true
     - if current_page? question_path(question)
       .panel-footer
         = render "social_share_buttons", record: question
