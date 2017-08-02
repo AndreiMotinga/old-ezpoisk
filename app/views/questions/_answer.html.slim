@@ -21,5 +21,6 @@
         .col-xs-12.col-sm-6
           = render "answers/vote_links", record: answer
         .col-xs-12.col-sm-6
-          = render "social_share_buttons", record: answer
+          - if controller_name == "answers"
+            = render "social_share_buttons", record: answer
       = render "shared/comments", record: answer
