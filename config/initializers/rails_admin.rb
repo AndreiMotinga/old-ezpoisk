@@ -1,5 +1,3 @@
-include RailsAdminTagList::SuggestionsHelper
-
 RailsAdmin.config do |config|
   config.current_user_method { current_user }
 
@@ -21,16 +19,9 @@ RailsAdmin.config do |config|
     "Answer",
     "Listing",
     "Picture",
-    "Question ",
+    "Question",
     "User"
   ]
-
-  config.model "Question" do
-    include_all_fields
-    configure :tag_list  do
-      partial 'tag_list_with_autocomplete'
-    end
-  end
 
   config.model "Answer" do
     include_all_fields

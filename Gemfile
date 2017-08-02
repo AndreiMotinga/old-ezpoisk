@@ -55,7 +55,6 @@ gem "underscore-rails"
 gem "rails_admin"
 gem "rack-pjax", github: "afcapel/rack-pjax"
 gem "remotipart", github: "mshibuya/remotipart"
-gem "rails_admin_tag_list"
 
 gem "sitemap_generator"
 gem "slack-notifier"

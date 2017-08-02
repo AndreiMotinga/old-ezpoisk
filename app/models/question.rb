@@ -56,6 +56,10 @@ class Question < ActiveRecord::Base
 
   def update_cached_tags
     update_column(:cached_tags, tags.pluck(:name).join(","))
-    answers.each { |a| a.update_column(:cached_tags, cached_tags) }
+    answers.each do |a|
+      a.cached_tags = cached_tags
+      a.tag_list = tag_list
+      a.save
+    end
   end
 end
