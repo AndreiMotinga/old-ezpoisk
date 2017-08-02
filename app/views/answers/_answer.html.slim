@@ -13,8 +13,9 @@
           .col-xs-9.col-sm-10.name-block
             span.name= link_to answer.name_to_show, profile_path(answer.user)
             small= ", #{answer.user.slug}" if answer.user.slug.present?
-            .date.text-muted= time_ago_in_words answer.created_at
-            /p.date.text-muted= "#{answer.votes_count} голосов "
+            .date.text-muted
+              = time_ago_in_words answer.created_at
+              = " | #{answer.votes_count} голосов"
 
       .panel-body
         .text

@@ -1,0 +1,11 @@
+ul.list-inline.vote_links
+  - if user_signed_in?
+    li.list-inline-item
+      / voting_links
+      = current_user.voted_for?(record) ? voted_answer_btn(record) : upvote_answer_btn(record)
+    li.list-inline-item
+      = downvote_btn(record)
+  - else
+    li.list-inline-item
+    a#login_link href="" data-target="#new_session_modal" data-toggle="modal"
+      | Войдите, что бы голосовать

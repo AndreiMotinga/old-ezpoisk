@@ -28,10 +28,15 @@ Rails.application.routes.draw do
   resources :summernote, only: [:create]
   resources :search_suggestions, only: [:index]
   resources :answers do
-    collection do
-      get "tag/:tag", to: "answers#tag", as: :tag
+    get "tag/:tag", to: "answers#tag", as: :tag, on: :collection
+
+    member do
+      put "upvote", to: "answers#upvote"
+      put "downvote", to: "answers#downvote"
+      put "unvote", to: "answers#unvote"
     end
   end
+
   resources :questions, only: [:index, :new, :create, :show] do
     get "tag/:tag", to: "questions#tag", as: :tag, on: :collection
   end
