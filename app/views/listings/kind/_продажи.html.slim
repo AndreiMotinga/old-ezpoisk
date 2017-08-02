@@ -32,6 +32,7 @@
           search_listings_path(kind: kind, category: cat, subcategory: sub, state: listing.state.slug, city: listing.city.slug)
 
       / line 3
+      = " | "
       span data-time=listing.id = time_ago_in_words listing.updated_at
       = " | "
       = render "shared/indicators", record: listing
