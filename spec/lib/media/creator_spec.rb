@@ -28,7 +28,7 @@ describe Media::Creator do
       item[:attributes].each do |key, val|
         expect(listing.send(key)).to eq val
       end
-      expect(listing.active?).to eq false
+      expect(listing.active?).to eq true
       expect(ImageDownloaderJob.jobs.size).to eq 1
     end
   end
