@@ -12,11 +12,21 @@
     font-size: 15px !important;
   }
 
+  img {
+    max-width: 100% !important;
+  }
+
   img[style*='float: left'] {
     margin-right: 10px;
   }
 
   img[style*='float: right'] {
     margin-left: 10px;
+  }
+
+  img[style*='float: none'] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
