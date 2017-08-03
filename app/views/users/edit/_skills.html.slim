@@ -1,0 +1,13 @@
+= bootstrap_form_for(current_user) do |f|
+  = hidden_field_tag :act, "skills"
+  .field
+    = label_tag "Тэги", nil
+    = collection_select :user,
+                        :tag_list,
+                        ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
+                        { selected: current_user.tag_list },
+                        { multiple: true, class: "q-select my-dropdown" }
+
+  br
+  .actions
+    = f.submit 'Сохранить', class: "btn-ez"

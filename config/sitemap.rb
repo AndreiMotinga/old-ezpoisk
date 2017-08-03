@@ -85,7 +85,7 @@ SitemapGenerator::Sitemap.create do
   end
 
   User.find_each do |user|
-    add profile_path(user),
+    add user_path(user),
         priority: 0.4,
         lastmod: user.updated_at,
         changefreq: "weekly"

@@ -1,0 +1,17 @@
+.row.header
+  .col-xs-12.col-sm-3
+    = link_to user_path(@user) do
+      = image_tag @user.avatar(:medium),
+                  alt: "автор ответа #{@user.name_to_show}",
+                  class: "img-responsive img-circle center-block"
+  .col-xs-12.col-sm-9
+    p
+      strong.name= link_to @user.name, user_path(@user)
+      = ", "
+      span.slug= @user.short_bio
+    p
+      span#text data-text=@user.about = @user.about.truncate(250)
+      = " "
+      - if @user.about.size > 250
+        a#about-show href="#" дальше
+hr

@@ -44,7 +44,7 @@ nav#navbar-main.navbar-fixed-top.navbar-main
             = image_tag current_user.avatar(:thumb), class: "img-circle avatar"
             span.caret
           ul.dropdown-menu.pull-right
-            li= link_to "Моя страница", profile_path(current_user)
-            li= link_to t(:sign_out), destroy_user_session_path, method: :delete
+            li= link_to "Моя страница", user_path(current_user)
+            li= link_to t(:sign_out), destroy_user_session_path
       - else
-        li.nav-link= link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", id: "login_link", rel: "nofollow"
+        li.nav-link: a#login-link href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)

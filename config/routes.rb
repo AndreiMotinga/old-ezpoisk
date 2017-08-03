@@ -4,7 +4,12 @@ require "sidekiq/cron/web"
 Rails.application.routes.draw do
   # TODO: figure out why it's here
   default_url_options host: ENV.fetch("APPLICATION_HOST")
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, skip: [:sessions, :registrations], controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
+  devise_scope :user do
+     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
 
   resources :comments, only: [:create]
 
@@ -48,15 +53,14 @@ Rails.application.routes.draw do
     end
   end
 
-  # PROFILES
-  resources :profiles, only: :show do
+  resources :users, path: "profiles", only: [:show, :edit, :update] do
     member do
       get :questions
       get :posts
       get :listings
     end
   end
-  resources :users, only: [:edit, :update]
+  resources :experiences, only: [:create, :update, :destroy]
 
   # Utils
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"

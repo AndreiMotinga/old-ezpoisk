@@ -6,14 +6,14 @@
           = image_tag current_user.avatar(:medium),
                       class: "img-responsive img-circle center-block img"
         div
-          span.title= link_to current_user.name_to_show, profile_path(current_user), class: "name"
-          span.legend= current_user.slug
+          span.title= link_to current_user.name_to_show, user_path(current_user), class: "name"
+          span.legend= current_user.short_bio
         hr
         /div
         /  span.title.karma 234
         /  span.legend карма
         /hr
-        = link_to "СПРОСИТЬ", new_question_path, class: "btn btn-block btn-ez"
+        = link_to "Редактировать", edit_user_path(current_user, act: "general"), class: "btn btn-block btn-ez"
     - else
       .user-widget.mdl-shadow--3dp.text-center.pull-right
         div

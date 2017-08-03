@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   include OmniLogin
   include Mappable
+  include Commentable
+  acts_as_taggable
   acts_as_voter
   acts_as_mappable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+  devise :database_authenticatable, :rememberable,
          :trackable, :lockable, :async, :omniauthable, :lastseenable,
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
@@ -16,13 +18,14 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :reviews
-  has_many :comments
   has_many :posts
+  has_many :experiences, dependent: :destroy
 
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
+  validates :name, presence: true
 
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
   scope :today, -> { where("created_at > ?", Date.today) }

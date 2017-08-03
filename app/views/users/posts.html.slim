@@ -1,0 +1,19 @@
+- meta title: "Новости | #{@user.name_to_show} - ezpoisk",
+       description: @user.about,
+       rel: { canonical: posts_user_url(@user) },
+       og: { type: "website",
+             url: posts_user_url(@user),
+             image: @user.avatar(:medium) }
+- content_for :right, render("users/right")
+
+= render "users/header"
+.row
+  = render "users/sidebar"
+  .col-xs-12.col-sm-9
+    = link_to new_post_path do
+      | Добавить пост
+      = "  "
+      .fa.fa-pencil
+    hr
+    - @posts.each do |p|
+      = render "posts/post", post: p

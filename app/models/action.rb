@@ -19,7 +19,7 @@ class Action < ApplicationRecord
       return actionable.vk if actionable.vk.present?
       return actionable.fb if actionable.fb.present?
     end
-    Rails.application.routes.url_helpers.profile_path(actionable.user)
+    Rails.application.routes.url_helpers.user_path(actionable.user)
   end
 
   def text_to_show
@@ -27,8 +27,8 @@ class Action < ApplicationRecord
     title
   end
 
-  def slug
-    user.slug unless actionable.user_id == 1
+  def short_bio
+    user.short_bio unless actionable.user_id == 1
   end
 
   def image_url

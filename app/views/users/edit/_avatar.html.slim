@@ -1,4 +1,7 @@
 = form_for(current_user) do |f|
+  // just to have something in parmas on sumbit
+  = hidden_field_tag :'user[name]', @user.name
+  = hidden_field_tag :act, "avatar"
   .white-block.mdl-shadow--2dp
     .panel
       .panel-body
@@ -11,19 +14,4 @@
             = image_tag current_user.avatar.url(:medium),
               class: "pull-right thumbnail img-responsive"
 
-  /.white-block.mdl-shadow--2dp
-  /  .panel
-  /    .panel-body
-  /      .row
-  /        .col-sm-3
-  /          label Обложка
-  /          = f.file_field :cover
-  /          p.text-muted 780 x 390px
-  /        .col-sm-8.col-sm-offset-1
-  /          = image_tag current_user.cover.url(:large),
-  /            class: "pull-right thumbnail img-responsive"
-
-  .white-block.mdl-shadow--2dp
-    .panel
-      .panel-body
         = f.submit "Сохранить", class: "btn btn-ez"

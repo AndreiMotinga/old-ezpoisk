@@ -64,7 +64,7 @@ module FormHelper
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
              { label: "Штат *", include_blank: true },
-             class: "state-select-id"
+             class: "state-select-id mdl-textfield__input"
   end
 
   def form_city_select(f, record)
@@ -73,9 +73,9 @@ module FormHelper
       f.select :city_id,
                state.cities.collect { |city| [city.name, city.id] },
                { label: "Город *" },
-               class: "city-select"
+               class: "city-select mdl-textfield__input"
     else
-      f.select :city_id, [], { label: "Город *" }, class: "city-select"
+      f.select :city_id, [], { label: "Город *" }, class: "city-select mdl-textfield__input"
     end
   end
 

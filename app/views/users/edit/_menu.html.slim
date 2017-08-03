@@ -1,0 +1,9 @@
+.col-xs-12.col-sm-3
+  ul.answers-menu
+    li.header Настройки
+    li.tag= link_to "Основное", edit_user_path(current_user, act: "general"), class: "grey #{'active' if params[:act] == 'general'}"
+    li.tag= link_to "Контакты", edit_user_path(current_user, act: "contacts"), class: "grey #{'active' if params[:act] == 'contacts'}"
+    li.tag= link_to "Аватар", edit_user_path(current_user, act: "avatar"), class: "grey #{'active' if params[:act] == 'avatar'}"
+    li.tag= link_to "Образование", edit_user_path(current_user, act: "education"), class: "grey #{'active' if params[:act] == 'education'}"
+    li.tag= link_to "Карьера", edit_user_path(current_user, act: "job"), class: "grey #{'active' if params[:act] == 'job'}"
+    li.tag= link_to "Навыки", edit_user_path(current_user, act: "skills"), class: "grey #{'active' if params[:act] == 'skills'}"

@@ -1,0 +1,19 @@
+- meta title: "Вопросы | #{@user.name_to_show} - ezpoisk",
+       description: @user.about,
+       rel: { canonical: questions_user_url(@user) },
+       og: { type: "website",
+             url: questions_user_url(@user),
+             image: @user.avatar(:medium) }
+- content_for :right, render("users/right")
+
+= render "users/header"
+.row
+  = render "users/sidebar"
+  .col-xs-12.col-sm-9
+    = link_to new_question_path do
+      | Задать вопрос
+      = "  "
+      .fa.fa-pencil
+    hr
+    - @questions.each do |q|
+      = render "questions/question", question: q

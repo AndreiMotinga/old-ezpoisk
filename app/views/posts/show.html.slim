@@ -18,7 +18,7 @@
     small
       | Автор
       = " "
-      = link_to @post.name_to_show, profile_path(@post.user), target: "_blank"
+      = link_to @post.name_to_show, user_path(@post.user), target: "_blank"
       = " - #{time_ago_in_words @post.created_at}"
       - if current_user.try(:can_edit?, @post)
         = link_to " | Редактировать", edit_post_path(@post), class: "text-muted"

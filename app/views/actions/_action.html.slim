@@ -14,10 +14,10 @@
                           target: "_blank"
           .col-xs-9.col-sm-10.name-block
             span.name= link_to action.name, action.name_url, target: "_blank"
-            small= ", #{action.slug}" if action.slug.present?
+            small= ", #{action.short_bio}" if action.short_bio.present?
             p.date.text-muted= time_ago_in_words action.updated_at
 
       .panel-body
         .text
           = strip_tags(action.text_to_show).truncate(250)
-          = link_to " дальше", action.show_url if action.text_to_show.size > 200
+          = link_to " дальше", action.show_url if action.text_to_show.size > 250

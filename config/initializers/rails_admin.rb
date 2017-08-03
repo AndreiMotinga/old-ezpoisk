@@ -17,6 +17,7 @@ RailsAdmin.config do |config|
     "Action",
     "ActsAsTaggableOn::Tag",
     "Answer",
+    "Experience",
     "Listing",
     "Picture",
     "Question",

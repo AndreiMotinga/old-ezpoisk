@@ -1,0 +1,53 @@
+- name = exp.kind == "job" ? "Место работы" : "Школа"
+- title = exp.kind == "job" ? "Должность" : "Специализация"
+
+- if exp.new_record?
+  br
+  br
+  | + Добавить новое
+  hr
+.white-block.mdl-shadow--2dp.margin-bottom-10
+  .panel
+    .panel-body
+      = form_for exp do |f|
+        = f.hidden_field :kind
+        .row
+          .col-xs-6
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+              = f.text_field :country, class: "mdl-textfield__input", required: true
+              = f.label :country, "Страна", class: "mdl-textfield__label"
+          .col-xs-6
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+              = f.text_field :city, class: "mdl-textfield__input", required: true
+              = f.label :city, "Город", class: "mdl-textfield__label"
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :name, class: "mdl-textfield__input", required: true
+          = f.label :name, name, class: "mdl-textfield__label"
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :title, class: "mdl-textfield__input", required: true
+          = f.label :title, title, class: "mdl-textfield__label"
+
+        .row
+          .col-xs-6
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              = f.select :start_year,
+                         (Time.current.year.downto(1960)).map{|y| [y, y]},
+                         { include_blank: true },
+                         class: "mdl-textfield__input", required: true
+              = f.label :start_year, "Год начала", class: "mdl-textfield__label"
+
+          .col-xs-6
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              = f.select :end_year,
+                         (Time.current.year.downto(1960)).map{|y| [y, y]},
+                         { include_blank: true },
+                         class: "mdl-textfield__input"
+              = f.label :end_year, "Год окончания", class: "mdl-textfield__label"
+
+        = f.submit "Сохранить", class: "btn btn-ez", id: "contacts-save-btn"
+        .pull-right
+          - unless exp.new_record?
+            = link_to "Удалить",
+                      experience_path(exp), method: :delete

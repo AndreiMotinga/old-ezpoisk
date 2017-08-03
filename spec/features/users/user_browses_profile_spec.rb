@@ -5,7 +5,7 @@ feature "User browses profile" do
   scenario "visits page" do
     user = create :user
 
-    visit profile_path(user)
+    visit user_path(user)
     expect(page).to have_content user.name
     expect(page).to have_content user.about
   end
@@ -14,7 +14,7 @@ feature "User browses profile" do
     user = create :user
     listing = create :listing, kind: "недвижимость", user: user
 
-    visit listings_profile_path(user)
+    visit listings_user_path(user)
 
     expect(page).to have_content listing.title
   end
@@ -24,7 +24,7 @@ feature "User browses profile" do
     q = create :question
     answer = create :answer, user: user, question: q, title: q.title
 
-    visit profile_path(user)
+    visit user_path(user)
     first(:link, "Ответы").click
     expect(page).to have_content answer.title
   end

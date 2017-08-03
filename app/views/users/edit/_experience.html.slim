@@ -1,0 +1,4 @@
+- records.each do |exp|
+  = render "experiences/form", exp: exp
+
+= render "experiences/form", exp: Experience.new(kind: kind)

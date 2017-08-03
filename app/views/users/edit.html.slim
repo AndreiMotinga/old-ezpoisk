@@ -1,15 +1,7 @@
-.container.container-md
-  #pictures-data data-id=current_user.id data-type=current_user.class.to_s
-  ul.nav.nav-tabs role="tablist"
-    li.active role="presentation"
-      = link_to "Детали", "#form", "aria-controls": "form", "data-toggle": "tab", role: "tab"
-    li role="presentation"
-      = link_to "Аватар", "#logo", "aria-controls": "form", "data-toggle": "tab", role: "tab"
+- content_for :right, render("users/right")
 
-  br
-  .tab-content
-    #form.tab-pane.fade.in.active role="tabpanel"
-      = render 'form'
-
-    #logo.tab-pane.fade role="tabpanel"
-        = render "users/images_form"
+= render "users/header"
+.row
+  = render "users/edit/menu"
+  .col-xs-12.col-sm-9
+    = render "users/edit/#{params[:act]}"

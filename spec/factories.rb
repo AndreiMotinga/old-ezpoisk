@@ -1,5 +1,15 @@
 # frozen_string_literal: true
 FactoryGirl.define do
+  factory :experience do
+    kind ""
+    name "MyString"
+    title "MyString"
+    country "MyString"
+    city "MyString"
+    start_year 1
+    end_year 1
+    user nil
+  end
   factory :post do
     title { Faker::Lorem.sentence(3) }
     text { Faker::Lorem.paragraph(5) }

@@ -50,11 +50,6 @@ describe User do
       user = create :user, name: "me"
       expect(user.name_to_show).to eq "me"
     end
-
-    it "returns emails if name isn't present" do
-      user = create :user, name: ""
-      expect(user.name_to_show).to eq user.email
-    end
   end
 
   describe "#can_edit?" do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802135727) do
+ActiveRecord::Schema.define(version: 20170804170636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,20 @@ ActiveRecord::Schema.define(version: 20170802135727) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.string "kind", null: false
+    t.string "name", null: false
+    t.string "title", null: false
+    t.string "country", null: false
+    t.string "city", null: false
+    t.integer "start_year", null: false
+    t.integer "end_year"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -114,37 +128,9 @@ ActiveRecord::Schema.define(version: 20170802135727) do
     t.string "kind"
     t.string "from_name"
     t.string "legend", default: "", null: false
-    t.string "slug"
     t.index ["city_id"], name: "index_listings_on_city_id"
     t.index ["state_id"], name: "index_listings_on_state_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
-  end
-
-  create_table "partners", force: :cascade do |t|
-    t.string "title", default: "", null: false
-    t.text "text", default: "", null: false
-    t.string "category", null: false
-    t.boolean "active", default: false, null: false
-    t.integer "priority", default: 0, null: false
-    t.boolean "featured", default: false, null: false
-    t.bigint "user_id"
-    t.bigint "state_id"
-    t.bigint "city_id"
-    t.string "street", default: ""
-    t.string "lat", default: ""
-    t.string "lng", default: ""
-    t.integer "zip"
-    t.string "phone", default: ""
-    t.string "email", default: ""
-    t.string "site", default: ""
-    t.string "vk", default: ""
-    t.string "fb", default: ""
-    t.string "gl", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_partners_on_city_id"
-    t.index ["state_id"], name: "index_partners_on_state_id"
-    t.index ["user_id"], name: "index_partners_on_user_id"
   end
 
   create_table "pg_search_documents", id: :serial, force: :cascade do |t|
@@ -264,7 +250,7 @@ ActiveRecord::Schema.define(version: 20170802135727) do
     t.integer "failed_attempts", default: 0
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.string "slug"
+    t.string "short_bio"
     t.string "provider"
     t.string "uid"
     t.string "name"
@@ -285,8 +271,6 @@ ActiveRecord::Schema.define(version: 20170802135727) do
     t.string "facebook", default: ""
     t.string "google", default: ""
     t.string "vk", default: ""
-    t.string "ok", default: ""
-    t.string "twitter", default: ""
     t.float "lat"
     t.float "lng"
     t.integer "zip"
@@ -294,6 +278,8 @@ ActiveRecord::Schema.define(version: 20170802135727) do
     t.string "city_slug"
     t.boolean "show_email", default: true
     t.datetime "last_seen"
+    t.string "gender", default: "male", null: false
+    t.string "skype", default: ""
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -319,12 +305,10 @@ ActiveRecord::Schema.define(version: 20170802135727) do
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "users"
+  add_foreign_key "experiences", "users"
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"
   add_foreign_key "listings", "users"
-  add_foreign_key "partners", "cities"
-  add_foreign_key "partners", "states"
-  add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"
