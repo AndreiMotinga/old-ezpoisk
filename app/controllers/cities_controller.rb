@@ -1,18 +1,39 @@
 class CitiesController < ApplicationController
+  before_action :id, :slug, :set_val
+
   def index
-    slug = params[:state_slug]
-    id = params[:state_id]
-    if slug.present?
-      state = State.find_by_slug(slug)
-      @cities = City.where(state_id: state.id).or(City.where(slug: City::ALL))
-      @id = "slug"
-    elsif id.present?
-      state = State.find(params[:state_id])
-      @cities = City.where(state_id: state.id).or(City.where(slug: City::ALL))
-      @id = "id"
+    if params[:kind].present?
+      @cities = cities.joins(:listings)
+        .where(listings: { kind: params[:kind] })
+        .distinct
+        .order(:name)
     else
-      @cities = []
-      @id = ""
+      @cities = cities.order(:name)
     end
+  end
+
+  private
+
+  def set_val
+    @val = :slug if slug.present?
+    @val = :id if id.present?
+  end
+
+  def slug
+    @slug ||= params[:state_slug]
+  end
+
+  def id
+    @id ||= params[:state_id]
+  end
+
+  def state
+    return State.find_by_slug(slug) if slug.present?
+    return State.find(id) if id.present?
+  end
+
+  def cities
+    City.where(state_id: state.id)
+        .or(City.where(slug: City::ALL))
   end
 end

@@ -374,3 +374,115 @@ RU_KINDS = HashWithIndifferentAccess.new(
     }
   }
 )
+
+
+ST = {
+  Arizona: %w(Phoenix Tucson Mesa Chandler Scottsdale Glendale Gilbert),
+  California: [
+    "Los Angeles",
+    "San Diego",
+    "San Jose",
+    "San Francisco",
+    "Fresno",
+    "Sacramento",
+    "Long Beach",
+    "Oakland",
+    "Bakersfield",
+    "Anaheim",
+    "Santa Ana",
+    "Riverside",
+    "Stockton",
+    "Chula Vista",
+    "Fremont",
+    "Irvine",
+    "San Bernardino",
+    "Modesto"
+  ],
+  Colorado: [
+    "Denver",
+    "Colorado Springs",
+    "Aurora"
+  ],
+  DC: ["Washington"],
+  Florida: [
+    "Jacksonville",
+    "Miami",
+    "Tampa",
+    "Saint Petersburg",
+    "Orlando",
+    "Hialeah",
+    "Aventura",
+    "Orlando",
+    "Hollywood",
+    "Hallandale",
+    "Sunny Isles Beach",
+    "North Miami Beach",
+    "Miami Beach",
+    "North Miami Beach",
+    "Fort Lauderdale",
+  ],
+  Georgia: [
+    "Atlanta",
+    "Columbus"
+  ],
+
+  Illinois: [
+    "Chicago",
+    "Aurora"
+  ],
+
+  Indiana: [
+    "Indianapolis",
+    "Fort Wayne"
+  ],
+  Kansas: [
+    "Wichita",
+    "Overland Park",
+    "Kansas",
+  ],
+  Maryland: ["Baltimore"],
+  Massachusetts: ["Boston"],
+  Michigan: ["Detroit", "Grand Rapids"],
+  Minnesota: ["Minneapolis", "Saint Paul"],
+  Mississippi: ["Jackson", "Gulfport"],
+  Missouri: ["Kansas", "Saint Louis"],
+  Nebraska: %w(Omaha Lincoln),
+  Nevada: ["Las Vegas", "Henderson", "Reno", "North Las Vegas"],
+  "New Jersey": ["Newark", "Jersey City"],
+  "New Mexico": ["Albuquerque"],
+  "New York": [
+    "New York",
+    "Buffalo",
+    "Rochester",
+    "Yonkers",
+    "Syracuse",
+    "Staten Island",
+    "Bronx",
+    "Long Island City",
+    "Brooklyn"
+  ],
+  "North Carolina": ["Charlotte", "Raleigh", "Greensboro", "Durham", "Fayetteville"],
+  "Ohio": ["Columbus", "Cleveland", "Cincinnati", "Toledo", "Akron"] ,
+  "Oklahoma": ["Oklahoma City", "Tulsa", "Norman"],
+  "Oregon": ["Portland", "Eugene", "Salem", "Gresham"],
+  "Pennsylvania": ["Philadelphia", "Pittsburgh", "Allentown"],
+  "Tennessee": ["Memphis"],
+  "Texas":  ["Houston", "San Antonio", "Dallas", "Austin", "Fort Worth", "El Paso", "Arlington", "Corpus Christi", "Plano", "Laredo", "Lubbock", "Garland", "Irving"],
+  "Virginia": [
+    "Virginia Beach",
+    "Norfolk",
+    "Chesapeake",
+    "Richmond"
+  ],
+  "Washington": [
+    "Seattle",
+    "Spokane",
+    "Tacoma",
+    "Vancouver"
+  ],
+
+  "Wisconsin": [
+    "Milwaukee",
+    "Madison"
+  ]
+}

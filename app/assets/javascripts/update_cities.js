@@ -5,7 +5,8 @@ $(document).ready(function(){
       type: 'GET',
       dataType: 'script',
       data: {
-        state_slug: $(".state-select-slug :selected").val()
+        state_slug: $(".state-select-slug :selected").val(),
+        kind: $("#kind").val()
       }
     });
   });

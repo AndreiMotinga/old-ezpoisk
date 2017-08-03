@@ -1,9 +1,4 @@
 module FormHelper
-  def state_cities
-    return [] unless state
-    City.where(state_slug: state).or(City.where(slug: City::ALL))
-  end
-
   def state
     return params[:state] if params[:state]
     # return current_user.try(:state_slug) if current_user.try(:state_slug)
@@ -69,7 +64,7 @@ module FormHelper
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
              { label: "Штат *", include_blank: true },
-             class: "state-select-id my-dropdown"
+             class: "state-select-id"
   end
 
   def form_city_select(f, record)
@@ -78,9 +73,9 @@ module FormHelper
       f.select :city_id,
                state.cities.collect { |city| [city.name, city.id] },
                { label: "Город *" },
-               class: "city-select my-dropdown"
+               class: "city-select"
     else
-      f.select :city_id, [], { label: "Город *" }, class: "city-select my-dropdown"
+      f.select :city_id, [], { label: "Город *" }, class: "city-select"
     end
   end
 

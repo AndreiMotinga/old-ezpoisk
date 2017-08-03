@@ -1,2 +1,5 @@
-$(".city-select").html("<%= j(select_tag "", options_from_collection_for_select(@cities, @id, "name")) %>");
-$(".city-select").select2({ matcher: matcher });
+$(".city-select").html(
+  "<%= j(select_tag "",
+          options_for_select(@cities.map{|c| [c.name, c.send(@val)] }.insert(0, ["Выберите город", ""]))
+        ) %>"
+);
