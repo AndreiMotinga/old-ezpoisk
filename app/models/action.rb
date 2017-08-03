@@ -11,7 +11,7 @@ class Action < ApplicationRecord
   def name
     return actionable.from_name if actionable.try(:from_name).present?
     return actionable.user.name if actionable.user.name.present?
-    "Ez"
+    ""
   end
 
   def name_url
