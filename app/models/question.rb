@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
   belongs_to :user, optional: true
   belongs_to :state
   belongs_to :city
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_one :action, as: :actionable, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
