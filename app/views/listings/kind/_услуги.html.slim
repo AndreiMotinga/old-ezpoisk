@@ -5,12 +5,11 @@
 
 .col-xs-12.listing.mdl-shadow--2dp
   .row
-    - if has_pics
-      .col-xs-12.col-sm-4
-        = link_to listing do
-          img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
+    div.col-xs-12.col-sm-4
+      = link_to listing do
+        img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
 
-    .col-xs-12 class=("col-sm-8" if has_pics)
+    .col-xs-8
       / line 0
       = render "listings/kind/menu", listing: listing
       h4.title= link_to listing.title, listing
