@@ -10,7 +10,6 @@ feature "user creates listing" do
     select(listing.category, from: "Категория")
     select(listing.subcategory, from: "Подкатегория")
 
-    fill_in "Заголовок", with: listing.title
     fill_in "Описание", with: listing.text
 
     fill_in "Телефон", with: listing.phone
@@ -32,7 +31,6 @@ feature "user creates listing" do
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
 
-    expect(saved_listing.title).to eq listing.title
     expect(saved_listing.text).to eq listing.text
 
     expect(saved_listing.phone).to eq listing.phone
@@ -63,7 +61,6 @@ feature "user creates listing" do
     find("option[value='#{listing.rooms}']").select_option
     find("option[value='#{listing.duration}']").select_option
 
-    fill_in "Заголовок", with: listing.title
     fill_in "Описание", with: listing.text
     fill_in "Телефон", with: listing.phone
 
@@ -83,7 +80,6 @@ feature "user creates listing" do
     expect(saved_listing.baths).to eq listing.baths
     expect(saved_listing.rooms).to eq listing.rooms
     expect(saved_listing.duration).to eq listing.duration
-    expect(saved_listing.title).to eq listing.title
     expect(saved_listing.text).to eq listing.text
     expect(saved_listing.phone).to eq listing.phone
     expect(saved_listing.street).to eq listing.street
@@ -116,7 +112,6 @@ feature "user creates listing" do
     expect(saved_listing.kind).to eq listing.kind
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
-    expect(saved_listing.title).to eq listing.title
     expect(saved_listing.text).to eq listing.text
     expect(saved_listing.phone).to eq listing.phone
     expect(saved_listing.street).to eq listing.street
@@ -133,7 +128,6 @@ feature "user creates listing" do
     find("option[value='#{listing.category}']").select_option
     find("option[value='#{listing.subcategory}']").select_option
 
-    fill_in "Заголовок", with: listing.title
     fill_in "Описание", with: listing.text
     fill_in "Телефон", with: listing.phone
 
@@ -148,7 +142,6 @@ feature "user creates listing" do
     expect(saved_listing.kind).to eq listing.kind
     expect(saved_listing.category).to eq listing.category
     expect(saved_listing.subcategory).to eq listing.subcategory
-    expect(saved_listing.title).to eq listing.title
     expect(saved_listing.text).to eq listing.text
     expect(saved_listing.phone).to eq listing.phone
     expect(saved_listing.street).to eq listing.street

@@ -12,7 +12,7 @@
     .col-xs-8
       / line 0
       = render "listings/kind/menu", listing: listing
-      h4.title= link_to "#{listing.rooms} #{listing.price}", listing
+      h4.title= link_to listing.title, listing
 
       / line 1
       = link_to cat, search_listings_path(kind: kind, category: cat)

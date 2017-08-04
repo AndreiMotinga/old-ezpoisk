@@ -7,6 +7,6 @@ feature "User browses listings" do
 
     visit listings_user_path(user)
 
-    expect(page).to have_content listing.title
+    expect(page).to have_content listing.category
   end
 end

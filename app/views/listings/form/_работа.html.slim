@@ -7,18 +7,19 @@
 = bootstrap_form_for(@listing) do |f|
   = hidden_field_tag :token, token
 
-  = f.text_field :title, label: "Заголовок *", required: true
-  = f.text_area :text, label: "Описание *", required: true, rows: 5
   .row
-    .col-sm-4
-      = f.select :category, RU_KINDS["работа"]["categories"], { label: "Категория *" }, required: true
-    .col-sm-4
-      = f.select :subcategory, RU_KINDS["работа"]["subcategories"], { label: "Подкатегория *" }, required: true
-    .col-sm-4 class=("hidden" unless current_user.try(:admin?))
+    .col-xs-12 class=("hidden" unless current_user.try(:admin?))
       = f.select :kind,
                  options_for_select(RU_KINDS.keys, kind),
                  { label: "Раздел *" },
                  include_blank: true, required: true
+
+  = f.text_area :text, label: "Описание *", required: true, rows: 5
+  .row
+    .col-sm-6
+      = f.select :category, RU_KINDS["работа"]["categories"], { label: "Категория *" }, required: true
+    .col-sm-6
+      = f.select :subcategory, RU_KINDS["работа"]["subcategories"], { label: "Подкатегория *" }, required: true
 
   = render "listings/form/contacts", f: f
   = f.submit "Сохранить", id: "details-save-btn", class: "btn-ez"

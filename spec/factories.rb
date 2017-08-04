@@ -23,7 +23,7 @@ FactoryGirl.define do
     subcategory { RU_KINDS[kind][:subcategories].sample }
 
     title { Faker::Name.title }
-    text { Faker::Lorem.paragraph(5) }
+    text { Faker::Lorem.paragraph(1) }
     active true
     price 40
 

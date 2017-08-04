@@ -8,8 +8,8 @@ feature "User filters listings" do
     page.execute_script "window.scrollBy(0,10000)"
     wait_for_ajax
 
-    Listing.pluck(:title).map do |title|
-      expect(page).to have_content title
+    Listing.pluck(:text).map do |text|
+      expect(page).to have_content text
     end
   end
 end

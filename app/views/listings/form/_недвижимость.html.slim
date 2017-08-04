@@ -7,9 +7,12 @@
   = hidden_field_tag :token, token
 
   .row
-    .col-xs-12
-      = f.text_field :title, label: "Заголовок *", required: true
-    .col-xs-12.col-sm-2
+    .col-xs-12 class=("hidden" unless current_user.try(:admin?))
+      = f.select :kind,
+                 options_for_select(RU_KINDS.keys, kind),
+                 { label: "Раздел *" },
+                 include_blank: true, required: true
+
   = f.text_area :text, label: "Описание *", required: true, rows: 10
   hr
 
@@ -28,12 +31,6 @@
       = f.select :duration, RU_KINDS["недвижимость"][:duration], label: "Продолжительность"
     .col-xs-12.col-sm-4
       = f.number_field :baths, label: 'Ванные'
-
-    .col-xs-12 class=("hidden" unless current_user.try(:admin?))
-      = f.select :kind,
-                 options_for_select(RU_KINDS.keys, kind),
-                 { label: "Раздел *" },
-                 include_blank: true, required: true
 
   = render "listings/form/contacts", f: f
   = f.submit "Сохранить", id: "details-save-btn", class: "btn-ez"

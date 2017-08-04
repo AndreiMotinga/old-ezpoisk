@@ -16,7 +16,7 @@ feature "User browses profile" do
 
     visit listings_user_path(user)
 
-    expect(page).to have_content listing.title
+    expect(page).to have_content listing.category
   end
 
   scenario "visits answers" do

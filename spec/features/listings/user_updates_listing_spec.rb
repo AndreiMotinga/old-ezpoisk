@@ -11,7 +11,6 @@ feature "user creates listing" do
     select(listing.category, from: "Категория")
     select(listing.subcategory, from: "Подкатегория")
 
-    fill_in "Заголовок", with: listing.title
     fill_in "Телефон", with: listing.phone
     fill_in "Email", with: listing.email
     select("Alabama", from: "Штат")
@@ -25,7 +24,6 @@ feature "user creates listing" do
     expect(record.category).to eq listing.category
     expect(record.subcategory).to eq listing.subcategory
 
-    expect(record.title).to eq listing.title
     expect(record.phone).to eq listing.phone
     expect(record.email).to eq listing.email
   end

@@ -6,7 +6,6 @@ feature "User filters listings" do
 
     visit listings_path(kind: listing.kind)
     select(listing.state.name, from: :state)
-    select(listing.category, from: :category)
     click_on "Обновить"
 
     expect(page).to have_content listing.title
