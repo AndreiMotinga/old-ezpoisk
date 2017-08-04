@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
+  before_action :set_user, only: [:show, :posts, :questions]
   layout "answers"
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def listings
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) unless params[:id] == "1"
     @listings = @user.listings.includes(:state, :city).page(params[:page])
     respond_to do |format|
       format.html
@@ -34,7 +34,6 @@ class UsersController < ApplicationController
   end
 
   def posts
-    @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
     respond_to do |format|
       format.html
@@ -45,7 +44,6 @@ class UsersController < ApplicationController
   end
 
   def questions
-    @user = User.find(params[:id])
     @questions = @user.questions.page(params[:page])
     @tags = Question.tag_counts.sort_by(&:name)
     respond_to do |format|
@@ -63,6 +61,10 @@ class UsersController < ApplicationController
                                  :google, :vk, :site, :street, :gender, :skype,
                                  :phone, :state_id, :city_id, :avatar,
                                  :show_email, :short_bio, tag_list: [])
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def prms

@@ -71,6 +71,12 @@ class Listing < ApplicationRecord
     kind == "недвижимость"
   end
 
+  # listings that belong to same author
+  def siblings
+    return Listing.where(from_name: from_name) if user.admin?
+    user.listings
+  end
+
   private
 
   def notify_slack
