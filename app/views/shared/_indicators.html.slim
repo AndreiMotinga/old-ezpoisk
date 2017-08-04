@@ -12,3 +12,8 @@
   i.fa.fa-facebook.text-muted
 - if record.vk.present?
   i.fa.fa-vk.text-muted
+- if current_user.try(:admin?)
+  = " | "
+  = link_to "Редактировать", edit_listing_path(record)
+  = " | "
+  = link_to "Удалить", listing_path(record), method: :delete
