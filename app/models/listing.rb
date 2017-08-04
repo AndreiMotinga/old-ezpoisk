@@ -73,8 +73,8 @@ class Listing < ApplicationRecord
 
   # listings that belong to same author
   def siblings
-    return Listing.where(from_name: from_name) if user.admin?
-    user.listings
+    listings = user.admin? ? Listing.where(from_name: from_name) : user.listings
+    listings.where.not(id: id).includes(:state, :city)
   end
 
   private
