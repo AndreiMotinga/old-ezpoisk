@@ -14,9 +14,10 @@
 = render "shared/show/text", record: @listing
 = render "listings/comments", record: @listing
 
-h4.text-muted Другие объявления пользователя
-hr
-= render @listing.siblings
+- @listing.siblings.any?
+  h4.text-muted Другие объявления пользователя
+  hr
+  = render @listing.siblings
 
 .visible-xs.visible-sm
   .col-md-12

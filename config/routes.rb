@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       to: "listings#search",
       as: "search",
       on: :collection
+    post :touch, on: :member
   end
   resources :cities, only: :index
   resources :pictures, only: [:index, :create, :update, :destroy]

@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search, :show]
-  before_action :set_listing, only: [:edit, :update, :destroy]
+  before_action :set_listing, only: [:edit, :update, :touch, :destroy]
   before_action :check_search, only: :index
   skip_before_action :authenticate_user!, only: [:edit, :update, :destroy], if: -> { params[:token].present? }
   layout "answers"
@@ -70,6 +70,10 @@ class ListingsController < ApplicationController
       flash.now[:alert] = I18n.t(:post_not_saved)
     end
     render :edit
+  end
+
+  def touch
+    @listing.touch
   end
 
   def destroy
