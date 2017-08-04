@@ -17,7 +17,7 @@ class Listing < ApplicationRecord
   validates_presence_of :state
   validates_presence_of :city
   validates_with SourceValidator
-  validates :title, presence: true, length: { minimum: 5, maximum: 70 }
+  # validates :title, presence: true, length: { minimum: 5, maximum: 70 }
   validates_presence_of :kind
   validates_presence_of :category
   validates_presence_of :subcategory

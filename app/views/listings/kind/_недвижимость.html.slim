@@ -13,8 +13,10 @@
     .col-xs-12 class=("col-sm-8" if has_pics)
       = render "listings/kind/menu", listing: listing
 
-      / line 0
-      h4.title= link_to listing.title, listing
+      // line 0
+      h4.title= link_to listing do
+        = "#{listing.city.name}, #{listing.rooms}"
+        = " - $#{listing.price}" if listing.price.present?
 
       / line 1
       = link_to cat, search_listings_path(kind: kind, category: cat)
