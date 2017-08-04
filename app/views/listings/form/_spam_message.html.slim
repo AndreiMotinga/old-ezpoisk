@@ -1,0 +1,22 @@
+= link_to record.vk, record.vk, target: "_blnak" if record.vk?
+= link_to record.fb, record.fb, target: "_blnak" if record.fb?
+= "  "
+a#copy.btn.btn-ez href="#" Copy
+= "  "
+a#half-copy.btn.btn-ez href="#" Half-Copy
+
+br
+br
+.col-xs-12.white-block
+  .panel
+    .panel-body
+      p#text
+        span#half-text
+          |  Привет,
+          br
+          |  Мы разместили ваше объявление на  #{URI.unescape record.show_url}
+          br
+          |  Вы можете его редактировать или удалить на  #{URI.unescape record.edit_url_with_token}
+        br
+        br
+        | Не все посетители пользуются соц. сетями, поэтому вам стоит добавить свой email или телефон
