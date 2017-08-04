@@ -9,5 +9,5 @@ class FbImporterJob
 end
 
 Sidekiq::Cron::Job.create(name: "FbImporterJob - every 2 hours (on 10th min)",
-                          cron: "10 */2 * * *",
+                          cron: "5 */2 * * *",
                           class: "FbImporterJob")
