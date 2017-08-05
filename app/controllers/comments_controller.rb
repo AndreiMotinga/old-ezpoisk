@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @comment = current_user.comments.new(comment_params)
+    @comment = current_user.comments.build(comment_params)
     @comment.save
     SlackNotifierJob.perform_async(@comment.id, "Comment")
   end

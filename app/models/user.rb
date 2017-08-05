@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   include OmniLogin
   include Mappable
-  include Commentable
   acts_as_taggable
   acts_as_voter
   acts_as_mappable
@@ -19,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :answers
   has_many :reviews
   has_many :posts
+  has_many :comments, dependent: :destroy
   has_many :experiences, dependent: :destroy
 
   has_many :images, class_name: "Picture", dependent: :destroy
