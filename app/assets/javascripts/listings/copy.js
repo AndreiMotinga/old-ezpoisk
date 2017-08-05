@@ -7,7 +7,7 @@ $(document).on("click","#half-copy", function(e){
 });
 
 function copyToClipboard(element) {
-  var $temp = $("<input>");
+  var $temp = $("<textarea>");
   $("body").append($temp);
   $temp.val($(element).text()).select();
   document.execCommand("copy");
