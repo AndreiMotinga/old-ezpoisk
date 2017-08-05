@@ -4,8 +4,7 @@
     .card.mdl-shadow--2dp
       h4.text-muted Коментарии
       hr
-      #comments-container.row.comments
-        .col-xs-12 data-target="comments-#{record.class.name}-#{record.id}"
+      #comments-container
+        div data-target="comments-#{record.class.name}-#{record.id}"
           = render record.comments.includes(:user).order("created_at asc")
-        .col-xs-12
-          = render "comments/form", record: record
+        = render "comments/form", record: record

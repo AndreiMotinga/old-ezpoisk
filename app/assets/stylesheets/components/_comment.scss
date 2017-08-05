@@ -12,16 +12,15 @@
   margin-bottom: 5px;
   font-size: 13px;
 
-  .col-xs-1 {
-    padding: 0;
-  }
-  .col-xs-11 {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-
   .avatar {
     max-width: 32px;
+    vertical-align: top;
+    margin-right: 5px;
+  }
+
+  .content {
+    width: calc(100% - 40px);
+    display: inline-block;
   }
 
   textarea {
@@ -33,11 +32,8 @@
   .name {
     padding-right: 5px;
   }
+
   .form-group {
     margin-bottom: 0;
-  }
-
-  .respond {
-    cursor: pointer;
   }
 }
