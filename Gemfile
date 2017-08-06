@@ -87,6 +87,9 @@ end
 
 group :development, :test do
   gem "awesome_print"
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "chromedriver-helper"
   gem "bullet"
   gem "bundler-audit", ">= 0.5.0", require: false
   gem "dotenv-rails"
@@ -101,7 +104,6 @@ group :development, :staging do
 end
 
 group :test do
-  gem "capybara-webkit"
   gem "database_cleaner"
   gem "fuubar"
   gem "launchy"
