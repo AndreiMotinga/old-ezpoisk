@@ -15,5 +15,9 @@
       = "  "
       .fa.fa-pencil
     hr
-    - @listings.each do |l|
-      = render "listings/listing", listing: l
+    div data-id="listings"
+      = render @listings
+
+    .row
+      .col-xs-12
+      = render "shared/pagination", records: @listings

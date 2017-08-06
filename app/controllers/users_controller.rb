@@ -4,6 +4,13 @@ class UsersController < ApplicationController
   layout "answers"
 
   def show
+    @answers = @user.answers.page(params[:page])
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @answers }
+      end
+    end
   end
 
   def edit

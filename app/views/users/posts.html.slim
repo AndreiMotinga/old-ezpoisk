@@ -15,5 +15,9 @@
       = "  "
       .fa.fa-pencil
     hr
-    - @posts.each do |p|
-      = render "posts/post", post: p
+    div data-id="listings"
+      = render @posts
+
+    .row
+      .col-xs-12
+        = render "shared/pagination", records: @posts

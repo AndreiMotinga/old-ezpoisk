@@ -15,4 +15,9 @@
       = "  "
       .fa.fa-pencil
     hr
-    = render @user.answers
+    div data-id="listings"
+      = render @answers
+
+    .row
+      .col-xs-12
+      = render "shared/pagination", records: @answers
