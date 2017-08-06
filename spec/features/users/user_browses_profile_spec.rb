@@ -12,11 +12,12 @@ feature "User browses profile" do
 
   scenario "visits listings" do
     user = create :user
-    listing = create :listing, kind: "недвижимость", user: user
+    listing = create :listing, user: user
 
     visit listings_user_path(user)
 
-    expect(page).to have_content listing.category
+    prm = listing.kind == "услуги" ? :title : :text
+    expect(page).to have_content listing.send(prm)
   end
 
   scenario "visits answers" do
@@ -27,5 +28,15 @@ feature "User browses profile" do
     visit user_path(user)
     first(:link, "Ответы").click
     expect(page).to have_content answer.title
+  end
+
+  scenario "visits questions" do
+    user = create :user
+    q = create :question, user: user
+
+    visit questions_user_path(user)
+    first(:link, "Вопросы").click
+
+    expect(page).to have_content q.title
   end
 end

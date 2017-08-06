@@ -3,7 +3,7 @@ require "rails_helper"
 describe Vk::GroupLoader do
   it "imports data" do
     group = { "id": 2_258_194, "topic": 24_112_410,
-              "model": "Job", "state_id": 34, "city_id": 17_880 }
+              "model": "Job", "state_id": 32, "city_id": 17_880 }
     stub_request_to(group)
     unifier = double(Vk::Unifier)
     item = double("item")

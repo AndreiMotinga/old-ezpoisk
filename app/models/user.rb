@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_mappable
   devise :database_authenticatable, :rememberable,
-         :trackable, :lockable, :async, :omniauthable, :lastseenable,
+         :trackable, :async, :omniauthable, :lastseenable,
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
   after_create :run_notifications
@@ -67,6 +67,10 @@ class User < ActiveRecord::Base
 
   def address
     "#{street} #{city.try(:name)} #{state.try(:name)} #{zip}".strip
+  end
+
+  def ez?
+    email == "ez@ezpoisk.com"
   end
 
   private

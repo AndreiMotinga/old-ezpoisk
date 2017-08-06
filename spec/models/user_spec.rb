@@ -69,8 +69,8 @@ describe User do
     it "has an address" do
       record = create(:user,
                       street: "1970 East 18th str",
-                      state_id: 34,
-                      city_id: 18_033,
+                      state_id: 32,
+                      city_id: 18_031,
                       zip: 11_229)
 
       expect(record.address).to eq("1970 East 18th str Brooklyn New York 11229")

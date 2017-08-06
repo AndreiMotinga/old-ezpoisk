@@ -18,9 +18,15 @@ FactoryGirl.define do
     actionable nil
   end
   factory :listing do
-    kind { %w(недвижимость работа продажи).sample }
+    kind { RU_KINDS.keys.sample }
     category { RU_KINDS[kind][:categories].sample }
-    subcategory { RU_KINDS[kind][:subcategories].sample }
+    subcategory do
+      if kind == "услуги"
+        RU_KINDS[kind][:subcategories][category].sample
+      else
+        RU_KINDS[kind][:subcategories].sample
+      end
+    end
 
     title { Faker::Name.title }
     text { Faker::Lorem.paragraph(1) }
@@ -31,7 +37,7 @@ FactoryGirl.define do
     featured false
     token "MyString"
 
-    state_id 34
+    state_id 32
     city_id 18_031
     street "MyString"
     lat 1.5
@@ -76,7 +82,23 @@ FactoryGirl.define do
       category { RU_KINDS["продажи"][:categories].sample }
       subcategory { RU_KINDS["продажи"][:subcategories].sample }
     end
+
+    trait :in_brooklyn do
+      state_id 32
+      city_id 18031
+    end
+
+    trait :in_bronx do
+      state_id 32
+      city_id 17882
+    end
+
+    trait :in_miami do
+      state_id 9
+      city_id 3964
+    end
   end
+
   factory :answer do
     title { Faker::Lorem.paragraph }
     text { Faker::Lorem.paragraph(20) }

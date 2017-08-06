@@ -10,7 +10,7 @@ describe Vk::Unifier do
       group = { kind: "работа",
                 id: 22558194 ,
                 topic: 24112410,
-                state_id: 34,
+                state_id: 32,
                 city_id: 17_880 }
       item = { id: 2056,
                from_id: 216_072_410,

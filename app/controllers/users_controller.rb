@@ -30,7 +30,8 @@ class UsersController < ApplicationController
   end
 
   def listings
-    @user = User.find(params[:id]) unless params[:id] == "1"
+    @user = User.find(params[:id])
+    @user = nil if @user.ez? # don't show listings for ez
     @listings = @user.listings.includes(:state, :city).page(params[:page])
     respond_to do |format|
       format.html

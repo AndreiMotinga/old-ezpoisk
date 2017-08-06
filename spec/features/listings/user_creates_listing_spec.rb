@@ -20,8 +20,8 @@ feature "user creates listing" do
     fill_in "Я online", with: listing.site
 
     fill_in "Улица", with: listing.street
-    select("Alabama", from: "Штат")
-    select("Abbeville", from: "Город")
+    select("Arizona", from: "Штат")
+    select("Phoenix", from: "Город")
 
     click_on "Сохранить"
 
@@ -41,8 +41,8 @@ feature "user creates listing" do
     expect(saved_listing.site).to eq listing.site
 
     expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Alabama"
-    expect(saved_listing.city.name).to eq "Abbeville"
+    expect(saved_listing.state.name).to eq "Arizona"
+    expect(saved_listing.city.name).to eq "Phoenix"
 
     expect(saved_listing.user_id).to_not be nil
   end
@@ -65,8 +65,8 @@ feature "user creates listing" do
     fill_in "Телефон", with: listing.phone
 
     fill_in "Улица", with: listing.street
-    select("Alabama", from: "Штат")
-    select("Abbeville", from: "Город")
+    select("Arizona", from: "Штат")
+    select("Phoenix", from: "Город")
 
     click_on "Сохранить"
 
@@ -83,8 +83,8 @@ feature "user creates listing" do
     expect(saved_listing.text).to eq listing.text
     expect(saved_listing.phone).to eq listing.phone
     expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Alabama"
-    expect(saved_listing.city.name).to eq "Abbeville"
+    expect(saved_listing.state.name).to eq "Arizona"
+    expect(saved_listing.city.name).to eq "Phoenix"
   end
 
   scenario "user creates service", js: true do
@@ -101,8 +101,8 @@ feature "user creates listing" do
     fill_in "Телефон", with: listing.phone
 
     fill_in "Улица", with: listing.street
-    select("Alabama", from: "Штат")
-    select("Abbeville", from: "Город")
+    select("Arizona", from: "Штат")
+    select("Phoenix", from: "Город")
 
     click_on "Сохранить"
 
@@ -115,8 +115,8 @@ feature "user creates listing" do
     expect(saved_listing.text).to eq listing.text
     expect(saved_listing.phone).to eq listing.phone
     expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Alabama"
-    expect(saved_listing.city.name).to eq "Abbeville"
+    expect(saved_listing.state.name).to eq "Arizona"
+    expect(saved_listing.city.name).to eq "Phoenix"
   end
 
   scenario "user creates sale", js: true do
@@ -132,8 +132,8 @@ feature "user creates listing" do
     fill_in "Телефон", with: listing.phone
 
     fill_in "Улица", with: listing.street
-    select("Alabama", from: "Штат")
-    select("Abbeville", from: "Город")
+    select("Arizona", from: "Штат")
+    select("Phoenix", from: "Город")
 
     click_on "Сохранить"
 
@@ -145,7 +145,7 @@ feature "user creates listing" do
     expect(saved_listing.text).to eq listing.text
     expect(saved_listing.phone).to eq listing.phone
     expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Alabama"
-    expect(saved_listing.city.name).to eq "Abbeville"
+    expect(saved_listing.state.name).to eq "Arizona"
+    expect(saved_listing.city.name).to eq "Phoenix"
   end
 end

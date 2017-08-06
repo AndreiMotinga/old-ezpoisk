@@ -13,8 +13,8 @@ feature "user creates listing" do
 
     fill_in "Телефон", with: listing.phone
     fill_in "Email", with: listing.email
-    select("Alabama", from: "Штат")
-    select("Abbeville", from: "Город")
+    select("Arizona", from: "Штат")
+    select("Phoenix", from: "Город")
 
     click_on "Сохранить"
 

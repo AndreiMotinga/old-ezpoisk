@@ -29,8 +29,8 @@ RSpec.describe Listing, type: :model do
       it "has an address" do
         record = create(:listing,
                         street: "1970 East 18th str",
-                        state_id: 34,
-                        city_id: 18_033,
+                        state_id: 32,
+                        city_id: 18_031,
                         zip: 11_229)
 
         expect(record.address).to eq("1970 East 18th str Brooklyn New York 11229")
@@ -41,8 +41,8 @@ RSpec.describe Listing, type: :model do
       it "returns infowindow string" do
         record = create(:listing,
                         street: "1970 East 18th str",
-                        state_id: 34,
-                        city_id: 18_033,
+                        state_id: 32,
+                        city_id: 18_031,
                         zip: 11_229)
         address = "1970 East 18th str Brooklyn New York 11229"
         string = "<a href='https://maps.google.com/?q=#{address}'  rel='nofollow' target='blank'>#{address}</a>"
@@ -54,8 +54,8 @@ RSpec.describe Listing, type: :model do
       it "return map_marker" do
         record = create(:listing,
                         street: "1970 East 18th str",
-                        state_id: 34,
-                        city_id: 18_033,
+                        state_id: 32,
+                        city_id: 18_031,
                         zip: 11_229)
 
         expect(record.map_marker).to_not eq nil

@@ -12,7 +12,7 @@ describe Media::Creator do
           text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
           vk: "https://vk.com/id325677385",
           fb: "",
-          state_id: 34,
+          state_id: 32,
           city_id: 17_880,
           user_id: 1,
           kind: "job",
