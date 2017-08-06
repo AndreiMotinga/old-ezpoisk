@@ -16,7 +16,7 @@ $(document).on('keypress','[data-action="enter"]', function(e){
 $(document).on('focus','[data-action="enter"]', function(e){
   var user_logged_in = getCookieValue("signed_in=1");
   if(!user_logged_in) {
-    $("#login_link").trigger("click");
+    $('#new_session_modal').modal('show');
   }
 });
 
