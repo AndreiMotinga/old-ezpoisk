@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804170636) do
+ActiveRecord::Schema.define(version: 20170807220900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,19 +31,11 @@ ActiveRecord::Schema.define(version: 20170804170636) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.string "title"
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.boolean "paid", default: false
     t.integer "votes_count", default: 0
     t.string "cached_tags", default: ""
-    t.integer "city_id"
-    t.integer "state_id"
-    t.index ["city_id"], name: "index_answers_on_city_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["slug"], name: "index_answers_on_slug"
-    t.index ["state_id"], name: "index_answers_on_state_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
@@ -174,15 +166,10 @@ ActiveRecord::Schema.define(version: 20170804170636) do
     t.integer "user_id"
     t.integer "answers_count", default: 0
     t.string "slug"
-    t.string "image_url", default: ""
     t.string "cached_tags"
-    t.integer "city_id"
-    t.integer "state_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["city_id"], name: "index_questions_on_city_id"
     t.index ["slug"], name: "index_questions_on_slug", unique: true
-    t.index ["state_id"], name: "index_questions_on_state_id"
     t.index ["title"], name: "index_questions_on_title"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end

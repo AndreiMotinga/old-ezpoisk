@@ -4,7 +4,7 @@ form.form-horizontal action=listings_path(kind: "работа") method="get"
   .row
     .col-xs-12.col-sm-6.col-md-12
       = select_tag :category,
-        options_for_select(RU_KINDS["работа"][:categories], params[:category]),
+        options_for_select([["Подкатегория", ""]] + RU_KINDS["работа"][:categories], params[:category]),
                    class: "form-control"
       = select_tag :subcategory,
                   options_for_select([["Подкатегория", ""]] + RU_KINDS["работа"][:subcategories], params[:subcategory]),

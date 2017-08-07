@@ -8,7 +8,7 @@ feature "user updates education" do
 
     visit edit_user_path(user, act: "education")
 
-    within(:css, "#edit_experience_1") do
+    within(:css, "#edit_experience_#{exp.id}") do
       fill_in "Страна", with: attrs.country
       fill_in "Город", with: attrs.city
       fill_in "Школа", with: attrs.name

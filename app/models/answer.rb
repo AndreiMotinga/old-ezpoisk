@@ -18,16 +18,6 @@ class Answer < ActiveRecord::Base
 
   after_create :create_action
 
-  has_attached_file :image, styles: { medium: "x330>", thumb: "x160#" }
-  validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
-  attr_reader :image_remote_url
-  def image_remote_url=(url_value)
-    if url_value.present?
-      self.image = URI.parse(url_value)
-      @image_remote_url = url_value
-    end
-  end
-
   def score
     get_upvotes.count - get_downvotes.count
   end

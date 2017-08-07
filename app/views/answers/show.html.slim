@@ -2,8 +2,8 @@
        description: strip_tags(@answer.text),
        rel: { canonical: question_url(@answer.question) },
        og: { type: "article",
-             url: answer_path(@answer),
-             image: @answer.image.url(:medium) }
+             url: answer_path(@answer) }
+             /image: @answer.image_url }
 
 - content_for :header, render("partners/top")
 

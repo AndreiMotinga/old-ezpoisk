@@ -25,23 +25,4 @@ feature "user updates profile" do
     expect(user.vk).to eq attrs.vk
     expect(page).to have_content I18n.t(:user_updated)
   end
-
-  # scenario "updates address", js: true do
-  #   user = create_and_login_user
-  #   ny = create :state, name: "New York"
-  #   bk = create :city, name: "Brooklyn", state: ny
-  #   street = "1970 East 18th str"
-  #
-  #   visit edit_user_path user
-  #   fill_in "Улица", with: street
-  #   select("New York", from: "Штат")
-  #   select("Brooklyn", from: "Город")
-  #   click_on "address-save-btn"
-  #   user.reload
-  #
-  #   expect(page).to have_content I18n.t(:user_updated)
-  #   expect(user.street).to eq street
-  #   # expect(user.state).to eq ny
-  #   expect(user.city.name).to eq "Brooklyn"
-  # end
 end
