@@ -1,22 +1,33 @@
 # frozen_string_literal: true
 FactoryGirl.define do
   factory :experience do
-    kind ""
-    name "MyString"
-    title "MyString"
-    country "MyString"
-    city "MyString"
-    start_year 1
-    end_year 1
-    user nil
+    kind %w(education job).sample
+    name { Faker::Name.title }
+    title { Faker::Name.title }
+    country { Faker::Address.country }
+    city { Faker::Address.city }
+    start_year { (1960..Time.now.year).to_a.sample }
+    end_year { (1960..Time.now.year).to_a.sample }
+
+    trait :education do
+      kind "education"
+    end
+
+    trait :job do
+      kind "job"
+    end
   end
+
   factory :post do
     title { Faker::Lorem.sentence(3) }
     text { Faker::Lorem.paragraph(5) }
+    tag_list ["работа"]
   end
+
   factory :action do
     actionable nil
   end
+
   factory :listing do
     kind { RU_KINDS.keys.sample }
     category { RU_KINDS[kind][:categories].sample }
@@ -32,6 +43,10 @@ FactoryGirl.define do
     text { Faker::Lorem.paragraph(1) }
     active true
     price 40
+
+    duration { RU_KINDS["недвижимость"][:duration].sample }
+    rooms { RU_KINDS["недвижимость"][:rooms].sample }
+    baths { (1..5).to_a.sample }
 
     priority 1
     featured false
@@ -114,8 +129,22 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email { Faker::Internet.email }
     name { Faker::Name.name }
+    short_bio { Faker::Lorem.paragraph(1) }
+    about { Faker::Lorem.paragraph(2) }
+
+    email { Faker::Internet.email }
+    site { Faker::Internet.url }
+    phone { Faker::PhoneNumber.cell_phone }
+    facebook { Faker::Internet.url("facebook.com") }
+    vk { Faker::Internet.url("vk.com") }
+    google { Faker::Internet.url("plus.google.com") }
+    gender { %w(Мужчина Женщина).sample }
+    skype { Faker::Internet.user_name }
+
+    street { Faker::Address.street_address }
+    state_id 32
+    city_id 18031
   end
 
   factory :question do

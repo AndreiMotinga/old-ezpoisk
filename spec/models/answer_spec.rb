@@ -15,7 +15,7 @@ describe Answer do
     end
   end
 
-  xdescribe ".score" do
+  describe ".score" do
     it "returns upvotes minues downvotes" do
       answer = build(:answer)
       allow(answer)

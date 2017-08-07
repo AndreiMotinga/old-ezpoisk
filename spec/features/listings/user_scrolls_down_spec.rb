@@ -9,7 +9,7 @@ feature "User" do
     page.execute_script "window.scrollBy(0,10000)"
 
     prm = kind == "услуги" ? :title : :text
-    Listing.pluck(:text).map do |text|
+    Listing.pluck(prm).map do |text|
       expect(page).to have_content text
     end
   end

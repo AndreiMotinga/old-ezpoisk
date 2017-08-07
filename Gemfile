@@ -88,6 +88,7 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "capybara"
+  gem "capybara-select2", github: "goodwill/capybara-select2"
   gem "selenium-webdriver"
   gem "chromedriver-helper"
   gem "bullet"

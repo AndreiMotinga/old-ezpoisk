@@ -98,8 +98,9 @@ module FormHelper
     options_for_select(listing_sub_opts, @listing.subcategory)
   end
 
+  # todo test it with feature spec
   def listing_sub_opts
-    RU_KINDS[kind][:subcategories][@listing.category] if kind == "услуги"
+    return RU_KINDS[kind][:subcategories][@listing.category] if kind == "услуги"
     return RU_KINDS[kind][:subcategories]
   end
 

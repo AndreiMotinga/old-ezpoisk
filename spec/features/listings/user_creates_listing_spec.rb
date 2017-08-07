@@ -1,151 +1,92 @@
 require "rails_helper"
 
 feature "user creates listing" do
-  scenario "user creates job", js: true do
-    create_and_login_user
-
-    listing = build :listing, :job
-    visit new_listing_path(kind: listing.kind)
-
-    select(listing.category, from: "Категория")
-    select(listing.subcategory, from: "Подкатегория")
-
-    fill_in "Описание", with: listing.text
-
-    fill_in "Телефон", with: listing.phone
-    fill_in "Email", with: listing.email
-    fill_in "Я vkontakte", with: listing.vk
-    fill_in "Я в facebook", with: listing.fb
-    fill_in "Я в google", with: listing.gl
-    fill_in "Я online", with: listing.site
-
-    fill_in "Улица", with: listing.street
-    select("Arizona", from: "Штат")
-    select("Phoenix", from: "Город")
-
-    click_on "Сохранить"
-
-    expect(page).to have_content I18n.t(:post_created)
-    saved_listing = Listing.last
-    expect(saved_listing.kind).to eq listing.kind
-    expect(saved_listing.category).to eq listing.category
-    expect(saved_listing.subcategory).to eq listing.subcategory
-
-    expect(saved_listing.text).to eq listing.text
-
-    expect(saved_listing.phone).to eq listing.phone
-    expect(saved_listing.email).to eq listing.email
-    expect(saved_listing.vk).to eq listing.vk
-    expect(saved_listing.fb).to eq listing.fb
-    expect(saved_listing.gl).to eq listing.gl
-    expect(saved_listing.site).to eq listing.site
-
-    expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Arizona"
-    expect(saved_listing.city.name).to eq "Phoenix"
-
-    expect(saved_listing.user_id).to_not be nil
+  before do
+    @user = create_and_login_user
+    @attrs = build :listing
   end
 
-  scenario "user creates apartment", js: true do
-    create_and_login_user
+  scenario "successfully", js: true do
+    visit new_listing_path(kind: @attrs.kind)
 
-    listing = build :listing, :apartment
-    visit new_listing_path(kind: listing.kind)
-
-    find("option[value='#{listing.category}']").select_option
-    find("option[value='#{listing.subcategory}']").select_option
-
-    fill_in "Цена", with: listing.price
-    fill_in "Ванные", with: listing.baths
-    find("option[value='#{listing.rooms}']").select_option
-    find("option[value='#{listing.duration}']").select_option
-
-    fill_in "Описание", with: listing.text
-    fill_in "Телефон", with: listing.phone
-
-    fill_in "Улица", with: listing.street
-    select("Arizona", from: "Штат")
-    select("Phoenix", from: "Город")
-
+    case @attrs.kind
+    when "недвижимость" then fill_re
+    when "продажи" then fill_sale
+    when "услуги" then fill_service
+    end
+    fill_general
+    fill_contacts
     click_on "Сохранить"
 
+    expect(page).to_not have_content "Раздел"
     expect(page).to have_content I18n.t(:post_created)
-    saved_listing = Listing.last
+    @listing = Listing.last
+    expect(@listing.user).to eq @user
+    expect(@listing.kind).to eq @attrs.kind
+    expect(@listing.category).to eq @attrs.category
+    expect(@listing.subcategory).to eq @attrs.subcategory
+    expect(@listing.text).to eq @attrs.text
+    expect(@listing.phone).to eq @attrs.phone
+    expect(@listing.email).to eq @attrs.email
+    expect(@listing.vk).to eq @attrs.vk
+    expect(@listing.fb).to eq @attrs.fb
+    expect(@listing.gl).to eq @attrs.gl
+    expect(@listing.site).to eq @attrs.site
+    expect(@listing.street).to eq @attrs.street
+    expect(@listing.state.name).to eq "Arizona"
+    expect(@listing.city.name).to eq "Phoenix"
 
-    expect(saved_listing.kind).to eq listing.kind
-    expect(saved_listing.category).to eq listing.category
-    expect(saved_listing.subcategory).to eq listing.subcategory
-    expect(saved_listing.price).to eq listing.price
-    expect(saved_listing.baths).to eq listing.baths
-    expect(saved_listing.rooms).to eq listing.rooms
-    expect(saved_listing.duration).to eq listing.duration
-    expect(saved_listing.text).to eq listing.text
-    expect(saved_listing.phone).to eq listing.phone
-    expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Arizona"
-    expect(saved_listing.city.name).to eq "Phoenix"
+    case @attrs.kind
+    when "недвижимость" then re_expecs
+    when "продажи" then sale_expecs
+    when "услуги" then service_expecs
+    end
   end
 
-  scenario "user creates service", js: true do
-    create_and_login_user
-
-    listing = build :listing, :service
-    visit new_listing_path(kind: listing.kind)
-
-    select(listing.category, from: "Категория")
-    find("option[value='#{listing.subcategory}']").select_option
-
-    fill_in "Заголовок", with: listing.title
-    fill_in "Описание", with: listing.text
-    fill_in "Телефон", with: listing.phone
-
-    fill_in "Улица", with: listing.street
-    select("Arizona", from: "Штат")
-    select("Phoenix", from: "Город")
-
-    click_on "Сохранить"
-
-    expect(page).to have_content I18n.t(:post_created)
-    saved_listing = Listing.last
-
-    expect(saved_listing.kind).to eq listing.kind
-    expect(saved_listing.category).to eq listing.category
-    expect(saved_listing.subcategory).to eq listing.subcategory
-    expect(saved_listing.text).to eq listing.text
-    expect(saved_listing.phone).to eq listing.phone
-    expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Arizona"
-    expect(saved_listing.city.name).to eq "Phoenix"
+  def sale_expecs
+    expect(@listing.price).to eq @attrs.price
   end
 
-  scenario "user creates sale", js: true do
-    create_and_login_user
+  def re_expecs
+    expect(@listing.price).to eq @attrs.price
+    expect(@listing.duration).to eq @attrs.duration
+    expect(@listing.baths).to eq @attrs.baths
+  end
 
-    listing = build :listing, :sale
-    visit new_listing_path(kind: listing.kind)
+  def service_expecs
+    expect(@listing.title).to eq @attrs.title
+  end
 
-    find("option[value='#{listing.category}']").select_option
-    find("option[value='#{listing.subcategory}']").select_option
+  def fill_sale
+    fill_in "Цена", with: @attrs.price
+  end
 
-    fill_in "Описание", with: listing.text
-    fill_in "Телефон", with: listing.phone
+  def fill_service
+    fill_in "Заголовок", with: @attrs.title
+  end
 
-    fill_in "Улица", with: listing.street
+  def fill_re
+    find("option[value='#{@attrs.rooms}']").select_option
+    fill_in "Цена", with: @attrs.price
+    find("option[value='#{@attrs.duration}']").select_option
+    fill_in "Ванные", with: @attrs.baths
+  end
+
+  def fill_general
+    fill_in "Описание", with: @attrs.text
+    find("option[value='#{@attrs.category}']").select_option
+    find("option[value='#{@attrs.subcategory}']").select_option
+  end
+
+  def fill_contacts
+    fill_in "Телефон", with: @attrs.phone
+    fill_in "Email", with: @attrs.email
+    fill_in "Я vkontakte", with: @attrs.vk
+    fill_in "Я в facebook", with: @attrs.fb
+    fill_in "Я в google+", with: @attrs.gl
+    fill_in "Я online (website)", with: @attrs.site
+    fill_in "Улица", with: @attrs.street
     select("Arizona", from: "Штат")
     select("Phoenix", from: "Город")
-
-    click_on "Сохранить"
-
-    expect(page).to have_content I18n.t(:post_created)
-    saved_listing = Listing.last
-    expect(saved_listing.kind).to eq listing.kind
-    expect(saved_listing.category).to eq listing.category
-    expect(saved_listing.subcategory).to eq listing.subcategory
-    expect(saved_listing.text).to eq listing.text
-    expect(saved_listing.phone).to eq listing.phone
-    expect(saved_listing.street).to eq listing.street
-    expect(saved_listing.state.name).to eq "Arizona"
-    expect(saved_listing.city.name).to eq "Phoenix"
   end
 end

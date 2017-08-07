@@ -5,7 +5,8 @@ class ExperiencesController < ApplicationController
   def create
     @experience = current_user.experiences.build(experience_params)
     if @experience.save
-      redirect_to edit_user_path(current_user, act: @experience.kind), notice: "Success"
+      redirect_to edit_user_path(current_user, act: @experience.kind),
+                  notice: I18n.t(:user_updated)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render :new
@@ -14,7 +15,8 @@ class ExperiencesController < ApplicationController
 
   def update
     if @experience.update(experience_params)
-      redirect_to edit_user_path(current_user, act: @experience.kind), notice: "Success"
+      redirect_to edit_user_path(current_user, act: @experience.kind),
+                  notice: I18n.t(:user_updated)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
       render "users/edit"
@@ -24,7 +26,8 @@ class ExperiencesController < ApplicationController
   def destroy
     kind = @experience.kind
     @experience.destroy
-    redirect_to edit_user_path(current_user, act: kind), notice: "Success"
+    redirect_to edit_user_path(current_user, act: kind),
+                notice: I18n.t(:user_updated)
   end
 
   private

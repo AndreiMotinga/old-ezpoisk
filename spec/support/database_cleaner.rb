@@ -1,7 +1,7 @@
 RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.clean_with(
-      :truncation, except: %w(states cities)
+      :truncation, except: %w(states cities tags)
     )
   end
 
@@ -11,7 +11,7 @@ RSpec.configure do |config|
 
   config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation, {
-      except: %w(states cities)
+      except: %w(states cities tags)
     }
   end
 

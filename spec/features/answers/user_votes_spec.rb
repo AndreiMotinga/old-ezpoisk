@@ -1,17 +1,17 @@
 require "rails_helper"
 
-xfeature "Voting on answers" do
+feature "Voting on answers" do
   context "user logged in" do
     scenario "user upvotes answer", js: true do
       user = create_and_login_user
       answer = create(:answer, user: user)
 
       visit answer_path(answer)
-      click_on "Upvote"
+      click_on "Вверх"
       wait_for_ajax
       answer.reload
 
-      expect(page).to have_content("Voted | 1")
+      expect(page).to have_content("Засчитано | 1")
       expect(answer.score).to eq 1
     end
 
@@ -20,11 +20,11 @@ xfeature "Voting on answers" do
       answer = create(:answer, user: user)
 
       visit answer_path(answer)
-      click_on "Downvote"
+      click_on "Вниз"
       wait_for_ajax
       answer.reload
 
-      expect(page).to have_content("Voted | -1")
+      expect(page).to have_content("Засчитано | -1")
       expect(answer.score).to eq(-1)
     end
   end

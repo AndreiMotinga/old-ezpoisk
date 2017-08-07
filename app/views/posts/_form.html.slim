@@ -33,6 +33,5 @@
     - unless @post.new_record?
       = link_to 'Удалить',
                 post_path(@post),
-                class: "text-muted",
-                method: :delete,
-                data: { confirm: I18n.t(:confirm) }
+                class: "text-muted pull-right",
+                method: :delete
