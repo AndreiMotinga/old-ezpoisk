@@ -100,7 +100,7 @@ module FormHelper
 
   # todo test it with feature spec
   def listing_sub_opts
-    return RU_KINDS[kind][:subcategories][@listing.category] if kind == "услуги"
+    return RU_KINDS[kind][:subcategories][@listing.category] if kind == "услуги" && @listing.category
     return RU_KINDS[kind][:subcategories]
   end
 
