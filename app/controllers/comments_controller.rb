@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @comment.save
     SlackNotifierJob.perform_async(@comment.id, "Comment")
+    render "create.js.erb"
   end
 
   private

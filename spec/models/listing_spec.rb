@@ -62,19 +62,4 @@ RSpec.describe Listing, type: :model do
       end
     end
   end
-
-  xdescribe ".to_deactivate" do
-    it "returns active listings that weren't edited more than 30 days" do
-      create_list :listing, 5, updated_at: 31.days.ago
-      create :listing, active: false, updated_at: 31.days.ago
-      create :listing
-      expect(Listing.to_deactivate.size).to eq 5
-    end
-
-    it "doesn't include services" do
-      create_list :listing, 5, :apartment, updated_at: 31.days.ago
-      create :listing, :service
-      expect(Listing.to_deactivate.size).to eq 5
-    end
-  end
 end

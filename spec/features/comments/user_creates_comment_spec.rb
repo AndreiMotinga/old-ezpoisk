@@ -1,12 +1,13 @@
 # todo fix, and find all xfeature and fix
 require "rails_helper"
 
-xfeature "User comments on listing", js: true do
+feature "User comments on listing", js: true do
   scenario "user is not logged in" do
     rp = create :listing
 
     visit listing_path(rp)
+    fill_in("comment_text", with: "foo")
 
-    expect(page).to have_content "Войдите, чтобы читать/добавлять комментарии"
+    expect(page).to have_content "Войти с Facebook"
   end
 end

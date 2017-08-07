@@ -27,12 +27,6 @@ class Listing < ApplicationRecord
   after_create :notify_slack
   after_save :touch_action
 
-  # todo remove deactivate
-  # def self.to_deactivate
-  #   where.not(kind: "services")
-  #        .where("active = ? AND updated_at < ?", true, 30.days.ago)
-  # end
-
   def logo_url(style = :medium)
     return logo.image.url(style) if logo.present?
     "https://s3.amazonaws.com/ezpoisk/missing.png"
@@ -73,6 +67,7 @@ class Listing < ApplicationRecord
 
   # listings that belong to same author
   def siblings
+    return [] if user.ez?
     listings = user.admin? ? Listing.where(from_name: from_name) : user.listings
     listings.where.not(id: id).includes(:state, :city)
   end

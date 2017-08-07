@@ -1,6 +1,6 @@
 require "rails_helper"
 
-xdescribe CommentsController do
+describe CommentsController do
   before { Timecop.freeze(Time.now) }
   after { Timecop.return }
 
