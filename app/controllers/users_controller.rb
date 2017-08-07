@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :set_user, only: [:show, :posts, :questions]
-  layout "answers"
 
   def show
     @answers = @user.answers.page(params[:page])

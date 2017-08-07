@@ -3,7 +3,6 @@ class ListingsController < ApplicationController
   before_action :set_listing, only: [:edit, :update, :touch, :destroy]
   before_action :check_search, only: :index
   skip_before_action :authenticate_user!, only: [:edit, :update, :destroy], if: -> { params[:token].present? }
-  layout "answers"
 
   def index
     @listings = Listing.includes(:state, :city)

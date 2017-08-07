@@ -1,6 +1,5 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
-  layout "answers"
 
   def index
     @questions = Question.unanswered.search(params[:term])

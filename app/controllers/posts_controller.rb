@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  layout "answers"
   before_action :authenticate_user!, except: [:index, :tag, :show]
   before_action :set_post, only: [:edit, :update, :destroy]
 
