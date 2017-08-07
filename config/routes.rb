@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   # LISTINGS
   namespace :listings do
-    resources :categories, only: [:index]
     resources :subcategories, only: [:index]
   end
 
