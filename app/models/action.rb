@@ -35,8 +35,4 @@ class Action < ApplicationRecord
     return user.avatar(:thumb) unless actionable.user_id == 1
     "https://s3.amazonaws.com/ezpoisk/default-avatar.png"
   end
-
-  def display_name
-    actionable.class.to_s
-  end
 end

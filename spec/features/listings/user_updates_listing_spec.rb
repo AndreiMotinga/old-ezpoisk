@@ -17,7 +17,6 @@ feature "user creates listing" do
     end
     fill_general
     fill_contacts
-    save_and_open_page
     click_on "Сохранить"
 
     expect(page).to_not have_content "Раздел"
