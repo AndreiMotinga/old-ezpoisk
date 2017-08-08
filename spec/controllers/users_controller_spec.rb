@@ -5,7 +5,7 @@ describe UsersController do
     it "updates the record" do
       user = create :user
       sign_in(user)
-      attrs = attributes_for(:user, state_id: 32, city_id: 18031)
+      attrs = { name: "Andrei", gender: "male" }
 
       put :update, params: { id: user.id, user: attrs }
 

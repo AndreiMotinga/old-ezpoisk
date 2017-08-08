@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807234651) do
+ActiveRecord::Schema.define(version: 20170808002457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,24 @@ ActiveRecord::Schema.define(version: 20170807234651) do
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["parent_id"], name: "index_comments_on_parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "phone"
+    t.string "vk"
+    t.string "fb"
+    t.string "google"
+    t.string "site"
+    t.string "skype"
+    t.string "street"
+    t.bigint "state_id"
+    t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_contacts_on_city_id"
+    t.index ["state_id"], name: "index_contacts_on_state_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "experiences", force: :cascade do |t|
@@ -275,6 +293,9 @@ ActiveRecord::Schema.define(version: 20170807234651) do
   add_foreign_key "answers", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "users"
+  add_foreign_key "contacts", "cities"
+  add_foreign_key "contacts", "states"
+  add_foreign_key "contacts", "users"
   add_foreign_key "experiences", "users"
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"

@@ -3,31 +3,31 @@ require "rails_helper"
 feature "user updates contacts", js: true do
   scenario "successfully" do
     user = create_and_login_user
-    attrs = build :user
+    attrs = build :contact
 
     visit edit_user_path(user, act: "contacts")
 
     fill_in "Телефон", with: attrs.phone
     fill_in "Личный сайт...", with: attrs.site
-    fill_in "Facebook", with: attrs.facebook
+    fill_in "Facebook", with: attrs.fb
     fill_in "Vkontakte", with: attrs.vk
     fill_in "Google+", with: attrs.google
     fill_in "Skype", with: attrs.skype
     fill_in "Улица", with: attrs.street
-    select user.state.name, from: "Штат"
-    select user.city.name, from: "Город"
+    select attrs.state.name, from: "Штат"
+    select attrs.city.name, from: "Город"
     click_on "Сохранить"
 
     expect(page).to have_content I18n.t(:user_updated)
-    user.reload
-    expect(user.phone).to eq attrs.phone
-    expect(user.site).to eq attrs.site
-    expect(user.facebook).to eq attrs.facebook
-    expect(user.vk).to eq attrs.vk
-    expect(user.google).to eq attrs.google
-    expect(user.skype).to eq attrs.skype
-    expect(user.street).to eq attrs.street
-    expect(user.state_id).to eq attrs.state_id
-    expect(user.city_id).to eq attrs.city_id
+    contact = user.reload.contact
+    expect(contact.phone).to eq attrs.phone
+    expect(contact.site).to eq attrs.site
+    expect(contact.fb).to eq attrs.fb
+    expect(contact.vk).to eq attrs.vk
+    expect(contact.google).to eq attrs.google
+    expect(contact.skype).to eq attrs.skype
+    expect(contact.street).to eq attrs.street
+    expect(contact.state_id).to eq attrs.state_id
+    expect(contact.city_id).to eq attrs.city_id
   end
 end

@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   belongs_to :state
   belongs_to :city
-
+  has_one :contact
   has_many :listings, dependent: :destroy
   has_many :questions
   has_many :answers
@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
 
+  after_create :create_contact
   after_create :notify
 
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }

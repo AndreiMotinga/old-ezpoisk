@@ -7,7 +7,6 @@ feature "user updates post", js: true do
     attrs = build :post
 
     visit edit_post_path(record)
-
     fill_in "Заголовок", with: attrs.title
     find("div[contenteditable]").send_keys("New text.")
     select2("законы", from: "Тэги")

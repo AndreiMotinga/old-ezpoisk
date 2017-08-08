@@ -5,10 +5,10 @@
         = hidden_field_tag :act, "general"
 
         .row
-          .col-xs-12.col-sm-6
+          .col-sm-6.user-email
             .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :name, class: "mdl-textfield__input"
-              = f.label :name, "Имя", class: "mdl-textfield__label"
+              = f.text_field :email, class: "mdl-textfield__input", disabled: true
+              = f.label :email, class: "mdl-textfield__label"
 
           .col-xs-12.col-sm-6
             .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
@@ -17,6 +17,13 @@
                          { include_blank: true },
                          class: "mdl-textfield__input", required: true
               = f.label :start_year, "Пол", class: "mdl-textfield__label"
+
+        .row
+          .col-xs-12
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+              = f.text_field :name, class: "mdl-textfield__input"
+              = f.label :name, "Имя", class: "mdl-textfield__label"
+
 
         .row
           .col-xs-12

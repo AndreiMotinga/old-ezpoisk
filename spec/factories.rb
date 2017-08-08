@@ -129,19 +129,22 @@ FactoryGirl.define do
   end
 
   factory :user do
+    email { Faker::Internet.email }
+
+    gender { %w(Мужчина Женщина).sample }
     name { Faker::Name.name }
     short_bio { Faker::Lorem.paragraph(1) }
     about { Faker::Lorem.paragraph(2) }
 
-    email { Faker::Internet.email }
+  end
+
+  factory :contact do
     site { Faker::Internet.url }
     phone { Faker::PhoneNumber.cell_phone }
-    facebook { Faker::Internet.url("facebook.com") }
+    fb { Faker::Internet.url("facebook.com") }
     vk { Faker::Internet.url("vk.com") }
     google { Faker::Internet.url("plus.google.com") }
-    gender { %w(Мужчина Женщина).sample }
     skype { Faker::Internet.user_name }
-
     street { Faker::Address.street_address }
     state_id 32
     city_id 18031

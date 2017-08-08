@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     end
   end
   resources :experiences, only: [:create, :update, :destroy]
+  resources :contacts, only: [:update]
 
   # Utils
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
