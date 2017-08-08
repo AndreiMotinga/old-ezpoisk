@@ -6,4 +6,4 @@ ul.answers-menu.hidden-xs.hidden-sm.col-md-8.col-md-offset-4
   - elsif type == "questions"
     li.tag= link_to "Все", questions_path, class: "gray"
   - tags.each do |tag|
-    li.tag= link_to tag.name.mb_chars.capitalize.to_s, "#{url}#{tag.name}", class: "gray"
+    li.tag= link_to tag.name.capitalize, "#{url}#{tag.name}", class: "gray"

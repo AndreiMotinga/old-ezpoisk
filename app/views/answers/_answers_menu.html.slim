@@ -4,4 +4,4 @@
     li.tag= link_to "Ответить", questions_path, class: "gray"
     li.tag= link_to "Новые", answers_path, class: "gray"
     - tags.each do |tag|
-      li.tag= link_to tag.name.mb_chars.capitalize.to_s, "#{url}#{tag.name}", class: "gray"
+      li.tag= link_to tag.name.capitalize, "#{url}#{tag.name}", class: "gray"

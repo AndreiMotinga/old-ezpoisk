@@ -12,7 +12,7 @@ module Media
     end
 
     def call
-      text.truncate(66).mb_chars.downcase.capitalize.to_s
+      text.truncate(66).downcase.capitalize
     end
   end
 end

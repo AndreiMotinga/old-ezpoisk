@@ -17,7 +17,7 @@ module Media
         .gsub("<br>", "\r\n")
         .gsub("&amp;", "&")
         .split('.')
-        .map {|s| s.mb_chars.downcase.strip.capitalize.to_s }.join(". ")
+        .map {|s| s.downcase.strip.capitalize }.join(". ")
     end
 
     REGEX = /[\u{1F600}-\u{1F6FF}]/

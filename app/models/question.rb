@@ -58,7 +58,7 @@ class Question < ActiveRecord::Base
 
   def verify_title
     self.title = title.strip
-    self.title += "?" unless title.strip.match(/\?$/)
-    self.title = title.mb_chars.capitalize.to_s
+    self.title += "?" unless title.match(/\?$/)
+    self.title = title.capitalize
   end
 end
