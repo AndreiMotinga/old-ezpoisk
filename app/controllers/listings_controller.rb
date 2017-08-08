@@ -36,10 +36,10 @@ class ListingsController < ApplicationController
   end
 
   def new
-    @listing = Listing.new(state_id: current_user.state_id,
-                           city_id: current_user.city_id,
+    @listing = Listing.new(state_id: current_user.contact.state_id,
+                           city_id: current_user.contact.city_id,
                            active: true,
-                           phone: current_user.phone,
+                           phone: current_user.contact.phone,
                            email: current_user.email)
   end
 
@@ -110,7 +110,7 @@ class ListingsController < ApplicationController
     if [params[:kind], params[:category], params[:subcategory]].all?(&:present?)
       prms = request.parameters
                     .reject { |key| %w(controller action).include? key }
-                    .reject { | _ , val| val.blank? }
+                    .reject { |_, val| val.blank? }
                     .symbolize_keys
       redirect_to search_listings_path(prms)
     end

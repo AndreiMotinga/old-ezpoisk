@@ -3,8 +3,6 @@ require "rails_helper"
 describe User do
   it { should have_many(:images).dependent(:destroy) }
   it { should have_many(:listings).dependent(:destroy) }
-  it { should belong_to(:city) }
-  it { should belong_to(:state) }
 
   it { should have_many(:questions) }
   it { should have_many(:answers) }

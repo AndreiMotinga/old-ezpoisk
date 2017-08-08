@@ -44,7 +44,7 @@
               = f.label :state_id, "Штат", class: "mdl-textfield__label"
           .col-sm-6
             .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              = form_city_select(f, current_user)
+              = form_city_select(f, current_user.contact)
               = f.label :city_id, "Город", class: "mdl-textfield__label"
 
 

@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
          :trackable, :async, :omniauthable, :lastseenable,
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
-  belongs_to :state
-  belongs_to :city
   has_one :contact
   has_many :listings, dependent: :destroy
   has_many :questions
