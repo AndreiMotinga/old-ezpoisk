@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe User do
-  it { should have_many(:pictures).dependent(:destroy) }
+  it { should have_many(:images).dependent(:destroy) }
   it { should have_many(:listings).dependent(:destroy) }
   it { should belong_to(:city) }
   it { should belong_to(:state) }
@@ -34,15 +34,6 @@ describe User do
       expect(SlackNotifierJob)
         .to have_received(:perform_async).with(user.id, "User")
     end
-
-    it "notifies slack" do
-      allow(UserMailerJob).to receive(:perform_async)
-
-      user = create :user
-
-      expect(UserMailerJob)
-        .to have_received(:perform_async).with(user.id)
-    end
   end
 
   describe "#name_to_show" do
@@ -62,18 +53,6 @@ describe User do
       expect(owner.can_edit?(record)).to eq true
       expect(admin.can_edit?(record)).to eq true
       expect(regular.can_edit?(record)).to eq false
-    end
-  end
-
-  describe "#address" do
-    it "has an address" do
-      record = create(:user,
-                      street: "1970 East 18th str",
-                      state_id: 32,
-                      city_id: 18_031,
-                      zip: 11_229)
-
-      expect(record.address).to eq("1970 East 18th str Brooklyn New York 11229")
     end
   end
 end

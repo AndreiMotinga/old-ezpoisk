@@ -1,14 +1,10 @@
 class User < ActiveRecord::Base
   include OmniLogin
-  include Mappable
   acts_as_taggable
   acts_as_voter
-  acts_as_mappable
   devise :database_authenticatable, :rememberable,
          :trackable, :async, :omniauthable, :lastseenable,
          omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
-
-  after_create :run_notifications
 
   belongs_to :state
   belongs_to :city
@@ -20,12 +16,12 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments, dependent: :destroy
   has_many :experiences, dependent: :destroy
-
   has_many :images, class_name: "Picture", dependent: :destroy
-  has_many :pictures, as: :imageable, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true
+
+  after_create :notify
 
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
   scope :today, -> { where("created_at > ?", Date.today) }
@@ -34,19 +30,6 @@ class User < ActiveRecord::Base
                     styles: { thumb: "50x50#", medium: "100x100#" },
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
-  attr_reader :avatar_remote_url
-  def avatar_remote_url=(url_value)
-    if url_value.present?
-      self.avatar = URI.parse(url_value)
-      @avatar_remote_url = url_value
-    end
-  end
-
-  has_attached_file(
-    :cover,
-    styles: { large: "780x390#" },
-    default_url: "https://s3.amazonaws.com/ezpoisk/default_cover.jpg")
-  validates_attachment_content_type :cover, content_type: %r{\Aimage\/.*\Z}
 
   # todo rename to display_name
   def name_to_show
@@ -65,18 +48,13 @@ class User < ActiveRecord::Base
     last_seen > 5.minutes.ago
   end
 
-  def address
-    "#{street} #{city.try(:name)} #{state.try(:name)} #{zip}".strip
-  end
-
   def ez?
     email == "ez@ezpoisk.com"
   end
 
   private
 
-  def run_notifications
+  def notify
     SlackNotifierJob.perform_async(id, "User")
-    UserMailerJob.perform_async(id)
   end
 end

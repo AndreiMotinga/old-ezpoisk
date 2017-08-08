@@ -17,9 +17,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    address_changed = address_changed?(current_user, prms)
-    if current_user.update(prms)
-      GeocodeJob.perform_async(current_user.id, "User") if address_changed
+    if current_user.update(user_params)
       redirect_to edit_user_path(current_user, act: params[:act]),
                   notice: I18n.t(:user_updated)
     else
@@ -64,22 +62,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:cover, :about, :facebook, :email, :name,
+    params.require(:user).permit(:about, :facebook, :email, :name,
                                  :google, :vk, :site, :street, :gender, :skype,
                                  :phone, :state_id, :city_id, :avatar,
-                                 :show_email, :short_bio, tag_list: [])
+                                 :short_bio, tag_list: [])
   end
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def prms
-    prms = user_params
-    state_id = user_params[:state_id]
-    prms[:state_slug] = State.find(state_id).slug if state_id.present?
-    city_id = user_params[:city_id]
-    prms[:city_slug] = City.find(city_id).slug if city_id.present?
-    prms
   end
 end
