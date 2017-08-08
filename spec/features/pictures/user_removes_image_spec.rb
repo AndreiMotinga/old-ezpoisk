@@ -11,7 +11,6 @@ feature "user removes image" do
     visit edit_listing_path record
     click_on "Фото"
     click_on "Удалить"
-    wait_for_ajax
 
     expect(Picture.count).to eq 0
   end

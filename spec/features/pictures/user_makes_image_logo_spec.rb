@@ -11,7 +11,6 @@ feature "user removes image" do
     visit edit_listing_path record
     click_on "Фото"
     click_on "Сделать главной"
-    wait_for_ajax
 
     expect(Picture.first.logo).to eq true
   end
