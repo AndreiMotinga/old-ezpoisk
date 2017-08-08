@@ -32,7 +32,7 @@ class Question < ActiveRecord::Base
   end
 
   def image
-    return image_url if image_url.present?
+    # return image_url if image_url.present?
     "https://s3.amazonaws.com/ezpoisk/missing.png"
   end
 
