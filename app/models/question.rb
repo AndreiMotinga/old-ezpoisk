@@ -12,11 +12,12 @@ class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   has_one :action, as: :actionable, dependent: :destroy
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: true, length: { minimum: 10, maximum: 260 }
   validates_presence_of :tag_list
 
   after_create :create_action
   after_create :notify_slack
+  before_save :verify_title
   after_save :update_cached_tags
 
   def self.term_for(term)
@@ -40,14 +41,6 @@ class Question < ActiveRecord::Base
     Rails.application.routes.url_helpers.question_url(self)
   end
 
-  def update_cached_tags
-    update_column(:cached_tags, tags.pluck(:name).join(","))
-  end
-
-  def active
-    true
-  end
-
   private
 
   def notify_slack
@@ -56,10 +49,16 @@ class Question < ActiveRecord::Base
 
   def update_cached_tags
     update_column(:cached_tags, tags.pluck(:name).join(","))
-    answers.each do |a|
+    answers.find_each do |a|
       a.cached_tags = cached_tags
       a.tag_list = tag_list
       a.save
     end
+  end
+
+  def verify_title
+    self.title = title.strip
+    self.title += "?" unless title.strip.match(/\?$/)
+    self.title = title.mb_chars.capitalize.to_s
   end
 end

@@ -3,10 +3,7 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:edit, :update, :destroy]
 
   def index
-    @answers = Answer.includes(:user)
-              .desc
-              .search(params[:term])
-              .page(params[:page])
+    @answers = Answer.includes(:user).page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }

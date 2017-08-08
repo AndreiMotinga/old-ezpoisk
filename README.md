@@ -71,6 +71,16 @@ various parts of the stack. Here's a short summary:
 
 16. Application is heavily tested using [**Rspec**](https://github.com/rspec/rspec-rails)
 
+### Model order
+- module includes
+- module settings
+- belongs_to
+- has_many
+- validations
+- callbacks
+- scope
+- instance methods
+
 
 ### To run app locally
 

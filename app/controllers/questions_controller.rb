@@ -32,8 +32,6 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
-    verify_title
-
     if @question.save
       redirect_to @question, notice: I18n.t(:q_created)
     else
@@ -45,10 +43,5 @@ class QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(:title, :text, :image_url, tag_list: [])
-  end
-
-  def verify_title
-    @question.title += "?" unless @question.title.strip.match(/\?$/)
-    @question.title.mb_chars.capitalize.to_s
   end
 end

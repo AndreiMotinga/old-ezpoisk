@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 FactoryGirl.define do
   factory :experience do
-    kind %w(education job).sample
+    kind %w[education job].sample
     name { Faker::Name.title }
     title { Faker::Name.title }
     country { Faker::Address.country }
@@ -131,11 +131,10 @@ FactoryGirl.define do
   factory :user do
     email { Faker::Internet.email }
 
-    gender { %w(Мужчина Женщина).sample }
+    gender { %w[Мужчина Женщина].sample }
     name { Faker::Name.name }
     short_bio { Faker::Lorem.paragraph(1) }
     about { Faker::Lorem.paragraph(2) }
-
   end
 
   factory :contact do
@@ -151,8 +150,8 @@ FactoryGirl.define do
   end
 
   factory :question do
-    title { Faker::Name.title }
-    text { Faker::Lorem.paragraph(20) }
+    title { Faker::Lorem.sentence + "?" }
+    text { Faker::Lorem.paragraph(3) }
     tag_list ["auto"]
   end
 end

@@ -1,9 +1,9 @@
 class Answer < ActiveRecord::Base
   acts_as_taggable
-  include Filterable
+  acts_as_votable
   include MyFriendlyId
   include Commentable
-  acts_as_votable
+  include Filterable
 
   belongs_to :user
   belongs_to :question, touch: true
@@ -17,6 +17,7 @@ class Answer < ActiveRecord::Base
   delegate :avatar, to: :user
 
   after_create :create_action
+  after_create :update_cached_tags
 
   def score
     get_upvotes.count - get_downvotes.count
@@ -30,12 +31,9 @@ class Answer < ActiveRecord::Base
     Rails.application.routes.url_helpers.edit_answer_url(self)
   end
 
-  # extract to concern
-  def update_cached_tags
-    update_column(:cached_tags, tags.pluck(:name).join(","))
-  end
+  private
 
-  def active
-    true
+  def update_cached_tags
+    update_column(:cached_tags, question.tags.pluck(:name).join(","))
   end
 end
