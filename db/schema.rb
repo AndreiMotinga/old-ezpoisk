@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808002457) do
+ActiveRecord::Schema.define(version: 20170808012948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -258,21 +258,10 @@ ActiveRecord::Schema.define(version: 20170808002457) do
     t.string "avatar_content_type"
     t.integer "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string "phone", default: ""
-    t.integer "state_id"
-    t.integer "city_id"
-    t.string "site", default: ""
     t.text "about", default: ""
-    t.string "street", default: ""
-    t.string "facebook", default: ""
-    t.string "google", default: ""
-    t.string "vk", default: ""
     t.datetime "last_seen"
     t.string "gender", default: "male", null: false
-    t.string "skype", default: ""
-    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["state_id"], name: "index_users_on_state_id"
   end
 
   create_table "votes", id: :serial, force: :cascade do |t|
