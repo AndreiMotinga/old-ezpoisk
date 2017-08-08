@@ -2,9 +2,8 @@ class User < ActiveRecord::Base
   include OmniLogin
   acts_as_taggable
   acts_as_voter
-  devise :database_authenticatable, :rememberable,
-         :trackable, :async, :omniauthable, :lastseenable,
-         omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
+  devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
+    :lastseenable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
   has_one :contact
   has_many :listings, dependent: :destroy

@@ -31,14 +31,6 @@ GIT
       activerecord (>= 4.2.8)
 
 GIT
-  remote: git://github.com/mhfs/devise-async.git
-  revision: 177f6363a002f7ff28f1d289c8cab7ad8d9cb8c5
-  branch: devise-4.x
-  specs:
-    devise-async (0.10.2)
-      devise (>= 4.0)
-
-GIT
   remote: git://github.com/mshibuya/remotipart.git
   revision: cd653ddc43bb09767b8f2802d6e27b3e00ef992f
   specs:
@@ -173,8 +165,6 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.1.2)
-    devise-i18n-views (0.3.7)
     devise_lastseenable (0.0.6)
       devise
       rails (>= 3.0.4)
@@ -541,9 +531,6 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
-  devise-async!
-  devise-i18n
-  devise-i18n-views
   devise_lastseenable
   dotenv-rails
   dropzonejs-rails

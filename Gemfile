@@ -21,15 +21,12 @@ gem "autoprefixer-rails"
 gem "flutie"
 gem "rack-canonical-host"
 
-gem "pg_search" # todo clean up remove
+gem "pg_search"
 gem "redis-rails"
 gem "koala", "~> 2.2"
 gem "vkontakte_api", '~> 1.4'
 
 gem "devise"
-gem "devise-i18n-views"
-gem "devise-i18n"
-gem "devise-async", github: "mhfs/devise-async", branch: "devise-4.x"
 gem "devise_lastseenable"
 
 gem "bootstrap_form"
