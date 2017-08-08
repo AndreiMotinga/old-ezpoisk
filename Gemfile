@@ -10,7 +10,6 @@ gem "jquery-ui-rails"
 gem "bootstrap-sass"
 gem "select2-rails"
 gem "summernote-rails"
-gem "neat"
 
 gem "material_design_lite-rails", "~> 1.2"
 gem "material_icons"
