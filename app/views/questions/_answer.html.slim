@@ -5,10 +5,10 @@
         .col-xs-3.col-sm-2
           = link_to user_path(answer.user), target: "_blank" do
             = image_tag answer.avatar(:thumb),
-                        alt: "автор ответа #{answer.name_to_show}",
+                        alt: "автор ответа #{answer.name}",
                         class: "img-responsive img-circle center-block"
         .col-xs-9.col-sm-10.name-block
-          h4.name= link_to answer.name_to_show, user_path(answer.user), target: "_blank"
+          h4.name= link_to answer.name, user_path(answer.user), target: "_blank"
           small= answer.user.short_bio
           br
           - if current_user.try(:can_edit?, answer)

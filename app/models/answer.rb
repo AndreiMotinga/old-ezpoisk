@@ -13,7 +13,7 @@ class Answer < ActiveRecord::Base
 
   validates :title, presence: true
   validates :text, presence: true
-  delegate :name_to_show, to: :user
+  delegate :name, to: :user
   delegate :avatar, to: :user
 
   after_create :create_action

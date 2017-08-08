@@ -8,10 +8,10 @@
           .col-xs-3.col-sm-2
             = link_to user_path(post.user) do
               = image_tag post.user.avatar(:thumb),
-                          alt: "автор ответа #{post.user.name_to_show}",
+                          alt: "автор ответа #{post.name}",
                           class: "img-responsive img-circle center-block"
           .col-xs-9.col-sm-10.name-block
-            span.name= link_to "#{post.user.try(:name_to_show)}", user_path(post.user)
+            span.name= link_to "#{post.name}", user_path(post.user)
             small= post.user.short_bio
             .date.text-muted= timeago_tag post.updated_at
 

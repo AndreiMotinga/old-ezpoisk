@@ -8,10 +8,10 @@
           .col-xs-3.col-sm-2
             = link_to user_path(answer.user) do
               = image_tag answer.avatar(:thumb),
-                          alt: "автор ответа #{answer.name_to_show}",
+                          alt: "автор ответа #{answer.name}",
                           class: "img-responsive img-circle center-block"
           .col-xs-9.col-sm-10.name-block
-            span.name= link_to answer.name_to_show, user_path(answer.user)
+            span.name= link_to answer.name, user_path(answer.user)
             small= ", #{answer.user.short_bio}" if answer.user.short_bio.present?
             .date.text-muted
               = time_ago_in_words answer.created_at

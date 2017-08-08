@@ -6,7 +6,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  delegate :avatar, :name_to_show, to: :user
+  delegate :avatar, :name, to: :user
 
   has_one :action, as: :actionable, dependent: :destroy
   has_many :pictures, as: :imageable, dependent: :destroy

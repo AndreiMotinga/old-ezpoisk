@@ -2,7 +2,7 @@
   .col-xs-12.col-sm-3
     = link_to user_path(@user) do
       = image_tag @user.avatar(:medium),
-                  alt: "автор ответа #{@user.name_to_show}",
+                  alt: "автор ответа #{@user.name}",
                   class: "img-responsive img-circle center-block"
   .col-xs-12.col-sm-9
     p

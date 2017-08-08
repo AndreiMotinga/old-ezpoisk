@@ -1,4 +1,4 @@
-- meta title: "#{@answer.title} - #{@answer.user.name_to_show}",
+- meta title: "#{@answer.title} - #{@answer.user.name}",
        description: strip_tags(@answer.text),
        rel: { canonical: question_url(@answer.question) },
        og: { type: "article",

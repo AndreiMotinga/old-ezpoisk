@@ -34,13 +34,6 @@ describe User do
     end
   end
 
-  describe "#name_to_show" do
-    it "returns name if name is present" do
-      user = create :user, name: "me"
-      expect(user.name_to_show).to eq "me"
-    end
-  end
-
   describe "#can_edit?" do
     it "returns true if user is recrod's owner or is admin" do
       owner = create :user

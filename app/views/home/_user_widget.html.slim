@@ -6,7 +6,7 @@
           = image_tag current_user.avatar(:medium),
                       class: "img-responsive img-circle center-block img"
         div
-          span.title= link_to current_user.name_to_show, user_path(current_user), class: "name"
+          span.title= link_to current_user.name, user_path(current_user), class: "name"
           span.legend= current_user.short_bio
         hr
         /div

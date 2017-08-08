@@ -30,11 +30,6 @@ class User < ActiveRecord::Base
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
 
-  # todo rename to display_name
-  def name_to_show
-    name.present? ? name : email
-  end
-
   def show_url
     Rails.application.routes.url_helpers.user_url(self)
   end

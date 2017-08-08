@@ -10,7 +10,7 @@ class Ez
   end
 
   def self.notify_about(record, type)
-    name = record.class == User ? record.name_to_show : record.user.try(:name_to_show)
+    name = record.class == User ? record.name : record.user.try(:name)
     string = "#{type} #{record.class} #{record.id} | author #{name} | #{record.try(:category)}\n\n"
     string += "#{strip_html_tags(record.try(:text))}\n"
     string += "<#{record.try(:show_url)}|show>"
