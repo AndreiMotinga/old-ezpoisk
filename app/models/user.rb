@@ -28,6 +28,13 @@ class User < ActiveRecord::Base
                     styles: { thumb: "50x50#", medium: "100x100#" },
                     default_url: "default-avatar.png")
   validates_attachment_content_type :avatar, content_type: %r{\Aimage\/.*\Z}
+  # for omnouth login
+  def avatar_remote_url=(url_value)
+    if url_value.present?
+      self.avatar = URI.parse(url_value)
+      @avatar_remote_url = url_value
+    end
+  end
 
   def show_url
     Rails.application.routes.url_helpers.user_url(self)
