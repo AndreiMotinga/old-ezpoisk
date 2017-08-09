@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :experiences, dependent: :destroy
   has_many :images, class_name: "Picture", dependent: :destroy
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, uniqueness: true
   validates :name, presence: true
 
   after_create :create_contact
