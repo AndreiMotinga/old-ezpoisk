@@ -61,15 +61,6 @@ class Listing < ApplicationRecord
                             .edit_listing_url(self, token: token)
   end
 
-  def re?
-    kind == "недвижимость"
-  end
-
-  def service?
-    kind == "услуги"
-  end
-
-  # listings that belong to same author
   def siblings
     listings = user.admin? ? Listing.where(from_name: from_name) : user.listings
     listings.where.not(id: id).includes(:state, :city)

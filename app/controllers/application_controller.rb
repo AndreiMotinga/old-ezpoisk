@@ -18,16 +18,6 @@ class ApplicationController < ActionController::Base
     return true if record.city_id != prms[:city_id].to_i
   end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: fields)
-    devise_parameter_sanitizer.permit(:account_update, keys: fields)
-  end
-
-  def fields
-    [:name, :phone, :email, :password, :slug, :state_id, :city_id, :lat, :lng,
-     :password_confirmation, :remember_me, :current_password, :avatar, :site]
-  end
-
   def sliced_params
     prms = {}
     prms[:kind]        = params[:kind]        if params[:kind].present?
