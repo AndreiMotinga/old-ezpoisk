@@ -30,4 +30,15 @@ describe Answer do
       expect(result).to eq 3
     end
   end
+
+  # PRIVATE
+
+  it "private updates logo before save" do
+    answer = build :answer, text: "Foo <img src='some_url'/>Bar"
+
+    answer.save
+    answer.reload
+
+    expect(answer.logo_url).to eq "some_url"
+  end
 end

@@ -35,4 +35,8 @@ class Action < ApplicationRecord
     return user.avatar(:thumb) unless actionable.user_id == 1
     "https://s3.amazonaws.com/ezpoisk/default-avatar.png"
   end
+
+  def logo_url
+    actionable.logo_url if %w[Post Answer].include? actionable_type
+  end
 end

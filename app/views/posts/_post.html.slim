@@ -16,6 +16,9 @@
             .date.text-muted= timeago_tag post.updated_at
 
       .panel-body
+        - if post.logo_url
+          = link_to post do
+            = image_tag post.logo_url, class: "img-responsive logo"
         .text
           = strip_tags(post.text).truncate(250)
           = link_to " дальше", post if post.text.size > 200

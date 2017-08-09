@@ -6,7 +6,8 @@
       - posts.each do |post|
         li.post
           = link_to post.title, post, class: "title"
-          small.time= timeago_tag post.created_at
+          small.time
+            = timeago_tag post.created_at
 
     p.more.text-center= link_to "показать еще", posts_path
 

@@ -18,6 +18,9 @@
               = " | #{answer.votes_count} голосов"
 
       .panel-body
+        - if answer.logo_url
+          = link_to answer do
+            = image_tag answer.logo_url, class: "img-responsive logo"
         .text
           = strip_tags(answer.text).truncate(250)
           = link_to " дальше", answer

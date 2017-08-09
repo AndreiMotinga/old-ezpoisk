@@ -18,6 +18,7 @@ class Answer < ActiveRecord::Base
 
   after_create :create_action
   after_create :update_cached_tags
+  before_save :update_logo
 
   def score
     get_upvotes.count - get_downvotes.count
@@ -35,5 +36,10 @@ class Answer < ActiveRecord::Base
 
   def update_cached_tags
     update_column(:cached_tags, question.tags.pluck(:name).join(","))
+  end
+
+  def update_logo
+    img = Nokogiri::HTML(text).xpath("//img").first
+    self.logo_url = img.attr("src") if img
   end
 end

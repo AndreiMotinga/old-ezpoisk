@@ -16,6 +16,7 @@ class Post < ApplicationRecord
   validates_presence_of :tag_list
 
   after_create :create_action
+  before_save :update_logo
   after_save :update_cached_tags
 
   def show_url
@@ -30,5 +31,10 @@ class Post < ApplicationRecord
 
   def update_cached_tags
     update_column(:cached_tags, tags.pluck(:name).join(","))
+  end
+
+  def update_logo
+    img = Nokogiri::HTML(text).xpath("//img").first
+    self.logo_url = img.attr("src") if img
   end
 end

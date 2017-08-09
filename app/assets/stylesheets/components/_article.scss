@@ -14,11 +14,6 @@
     padding: 0 15px;
   }
 
-  .panel-body {
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-
   .author {
     margin-bottom: 0;
     margin-top: 5px;
@@ -45,11 +40,20 @@
     }
   }
 
+  .panel-body {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
   .title {
     font-weight: 500;
     line-height: 1.25;
     margin: 5px 0;
     font-size: 16px;
+  }
+
+  .logo {
+    margin-bottom: 5px;
   }
 
   .text {

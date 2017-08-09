@@ -18,6 +18,9 @@
             p.date.text-muted= time_ago_in_words action.updated_at
 
       .panel-body
+        - if action.logo_url
+          = link_to action.actionable do
+            = image_tag action.logo_url, class: "img-responsive logo"
         .text
           = strip_tags(action.text_to_show).truncate(250)
           = link_to " дальше", action.show_url if action.text_to_show.size > 250

@@ -15,7 +15,8 @@
             small= link_to "Редактировать", edit_answer_path(answer), class: "text-muted"
 
     .panel-body
-      .text= raw answer.text
+      .text.summernote-container
+        = raw answer.text
     .panel-footer
       .row
         .col-xs-12.col-sm-6
