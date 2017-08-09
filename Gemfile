@@ -27,6 +27,7 @@ gem "koala", "~> 2.2"
 gem "vkontakte_api", '~> 1.4'
 
 gem "devise"
+gem "devise-i18n"
 gem "devise_lastseenable"
 
 gem "bootstrap_form"

@@ -165,6 +165,7 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise-i18n (1.2.0)
     devise_lastseenable (0.0.6)
       devise
       rails (>= 3.0.4)
@@ -531,6 +532,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
+  devise-i18n
   devise_lastseenable
   dotenv-rails
   dropzonejs-rails
