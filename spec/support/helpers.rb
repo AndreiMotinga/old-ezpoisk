@@ -13,4 +13,9 @@ module Helpers
   def deliveries
     ActionMailer::Base.deliveries
   end
+
+  def select3(value)
+    first(".select2-container").click
+    find(".select2-results__option", text: value).click
+  end
 end

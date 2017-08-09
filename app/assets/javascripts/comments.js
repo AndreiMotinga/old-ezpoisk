@@ -42,7 +42,7 @@ $(document).ready(function(){
     };
   }
 
-  var fields = $("[data-id='new-comment']");
+  var fields = $("[data-id='new-comment'], .note-editable");
   $.each(fields, function(i, el){
     function resize () {
       el.style.height = 'auto';

@@ -8,8 +8,8 @@ feature "user creates question" do
     visit new_question_path
     fill_in "Ваш вопрос", with: attrs.title
     fill_in "Подробности", with: attrs.text
-    select2("недвижимость", from: "Тэги")
-    select2("работа", from: "Тэги")
+    select3("недвижимость")
+    select3("работа")
     click_on "Сохранить"
 
     expect(page).to have_content I18n.t(:q_created)

@@ -4,7 +4,10 @@ class PostsController < ApplicationController
 
   def index
     @popular = Comment.popular
-    @posts = Post.includes(:user).order(created_at: :desc).page(params[:page])
+    @posts = Post.includes(:user)
+                 .published
+                 .order(created_at: :desc)
+                 .page(params[:page])
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @posts } }
@@ -62,7 +65,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :text, tag_list: [])
+    params.require(:post).permit(:title, :text, :published, tag_list: [])
   end
 
   def set_post

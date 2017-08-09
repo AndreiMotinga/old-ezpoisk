@@ -18,11 +18,13 @@
 = render "shared/show/text", record: @listing
 = render "listings/comments", record: @listing
 
-- @listing.siblings.any?
-  h4.text-muted Другие объявления пользователя
-  hr
-  = render @listing.siblings
+.row
+  .col-xs-12
+    - @listing.siblings.any?
+      h4.text-muted Другие объявления пользователя
+      hr
+      = render @listing.siblings
 
-.visible-xs.visible-sm
-  .col-md-12
-    = render "shared/show/contacts", record: @listing
+.visible-xs.visible-sm.col-xs-12
+  = render "shared/show/contacts", record: @listing
+= render "social_share_buttons_js"

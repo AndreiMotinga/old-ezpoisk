@@ -1,0 +1,25 @@
+- content_for :javascript do
+  #fb-root
+  javascript:
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.10&appId=1746983858848479";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    $(".js-fb-share").click(function() {
+      FB.ui({ method: 'share', href: this.href});
+    })
+
+    $(".js-gl-share").click(function() {
+      window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+      return false;
+    })
+
+    $(".js-vk-share").click(function(e) {
+      e.preventDefault();
+      $('body').append(VK.Share.button(false,{type: "custom", text: "Vk-share"}));
+      $('a:contains("Vk-share")')[0].click();
+    })

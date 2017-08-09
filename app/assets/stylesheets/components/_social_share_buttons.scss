@@ -1,4 +1,50 @@
 .social-share-buttons {
-  display: flex;
-  align-items: flex-end;
+  .buttons {
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+  }
+
+  .social {
+    color: $white;
+    font-weight: normal;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    text-decoration: none;
+    i {
+      margin-right: 10px;
+    }
+  }
+
+  .inline > li {
+    display: inline-block;
+    margin: 5px;
+  }
+
+  .block > li {
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .inline.small {
+    margin: 0;
+
+    li {
+      margin: 1px;
+    }
+
+    .social {
+      padding: 0 5px;
+      i {
+        margin-right: 0;
+      }
+    }
+  }
+
+}
+
+// move vk-share button past screen
+a:contains("Vk-share") {
+  position: absolute;
+  left: -100px
 }

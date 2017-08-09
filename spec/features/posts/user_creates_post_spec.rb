@@ -10,8 +10,9 @@ feature "user creates post", js: true do
     fill_in "Заголовок", with: attrs.title
     find('div[contenteditable]').send_keys('This is awesome blog.')
 
-    select2("недвижимость", from: "Тэги")
-    select2("работа", from: "Тэги")
+    select3("работа")
+    select3("недвижимость")
+
     click_on "Сохранить"
 
     expect(page).to have_content I18n.t(:p_created)

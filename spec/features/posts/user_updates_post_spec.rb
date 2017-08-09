@@ -9,8 +9,8 @@ feature "user updates post", js: true do
     visit edit_post_path(record)
     fill_in "Заголовок", with: attrs.title
     find("div[contenteditable]").send_keys("New text.")
-    select2("законы", from: "Тэги")
-    select2("недвижимость", from: "Тэги")
+    select3("законы")
+    select3("недвижимость")
     click_on "Сохранить"
 
     expect(page).to have_content I18n.t(:p_updated)

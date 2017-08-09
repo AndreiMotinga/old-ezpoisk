@@ -1,7 +1,9 @@
 $(document).ready(function(){
   $('.my-dropdown').each(function (i, obj) {
     if (!$(obj).hasClass('select2-hidden-accessible')) {
+      var placeholder= $(this).data('placeholder');
       $(obj).select2({
+        placeholder: placeholder,
         matcher: matcher
       });
     }

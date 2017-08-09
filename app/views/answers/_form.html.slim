@@ -13,12 +13,14 @@
         = f.text_area :text, skip_label: true, class: "summernote"
 
       br
+      br
+      br
       .actions
         = f.submit 'Сохранить', class: "btn btn-ez"
         = " "
         - unless @answer.new_record?
           = link_to 'Удалить',
                     answer_path(@answer),
-                    class: "text-muted",
+                    class: "text-muted pull-right",
                     method: :delete,
                     data: { confirm: I18n.t(:confirm) }

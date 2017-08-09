@@ -11,8 +11,8 @@ $(document).ready(function(){
       ['misc', ['undo', 'redo', 'codeview']],
       // ['height', ['height']]
     ],
+    disableResizeEditor: true,
     lang: 'ru',
-    height: 300,
     codemirror: {
       lineNumbers: true,
       tabSize: 2,
@@ -24,6 +24,8 @@ $(document).ready(function(){
       }
     }
   });
+  $('.note-editable').css('min-height','300px');
+  $('.note-statusbar').hide();
 
   function sendFile(file) {
     var type = $("#pictures-data").data("type"),
