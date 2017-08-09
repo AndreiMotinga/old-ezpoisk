@@ -95,6 +95,7 @@ module FormHelper
   end
 
   def listing_subcategories
+    return [] unless listing_sub_opts # fix for services
     options_for_select(listing_sub_opts, @listing.subcategory)
   end
 
