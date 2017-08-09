@@ -26,12 +26,20 @@
             a href="tel:#{phone}"
               strong= number_to_phone phone, area_code: 1
 
+      - if record.try(:site).present?
+        li.list-group-item
+          strong
+            = link_to record.site, target: "_blank", rel: "nofollow" do
+              i.fa.fa-lg.fa-globe
+              |  Я онлайн
+
       - if record.try(:email).present?
         li.list-group-item
           strong
             a href="mailto:#{record.email}" target="_top"
               i.fa.fa-envelope-o
               | email
+
       - if record.street?
         li.list-group-item
           strong
