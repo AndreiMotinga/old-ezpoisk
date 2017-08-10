@@ -10,11 +10,11 @@
     }(document, 'script', 'facebook-jssdk'));
 
     $(".js-fb-share").click(function() {
-      FB.ui({ method: 'share', href: this.href});
+      FB.ui({ method: 'share', href: $(this).attr('href') });
     })
 
     $(".js-gl-share").click(function() {
-      window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+      window.open($(this).attr('href'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
       return false;
     })
 
