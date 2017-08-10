@@ -8,10 +8,9 @@
 }
 
 .bottom_post.mdl-card {
-  width: 300px;
   min-width: 260px;
   height: 280px;
-  flex: 1 1;
+  flex: 1 1 auto;
 
   a {
     text-decoration: none;

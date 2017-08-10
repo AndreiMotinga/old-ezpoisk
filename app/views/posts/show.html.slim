@@ -13,7 +13,7 @@
 
 - content_for :right do
   = render "posts/show/side_posts", posts: @post.related_posts(4)
-  = render "posts/show/answers", answers: @post.related_answers(5), tags: @post.cached_tags
+  = render "posts/show/answers", answers: @post.related_answers(10), tags: @post.cached_tags
 
 .row
   .col-xs-12
