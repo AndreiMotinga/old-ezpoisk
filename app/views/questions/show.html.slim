@@ -3,9 +3,14 @@
 - meta_desc = description.present? ? description : "#{@question.title} - ezpoisk"
 - meta title: "#{@question.title} - ezpoisk",
        description: meta_desc,
-       og: { type: "article",
+       rel: { canonical: question_url(@question) },
+       og: { title: "@question.title",
+             description: meta_desc,
+             type: "article",
+             locale: "ru",
+             site_name: "ezpoisk",
              url: question_url(@question),
-             image: @question.image }
+             image: @question.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
 - content_for :header, render("partners/top")
 

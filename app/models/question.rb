@@ -41,6 +41,10 @@ class Question < ActiveRecord::Base
     Rails.application.routes.url_helpers.question_url(self)
   end
 
+  def logo_url
+    answers.where.not(logo_url: nil).pluck(:logo_url).sample
+  end
+
   private
 
   def notify_slack

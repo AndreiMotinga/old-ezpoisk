@@ -62,4 +62,34 @@ RSpec.describe Listing, type: :model do
       end
     end
   end
+
+  # PRIVATE
+
+  describe "private ensure_title" do
+    context "title exits" do
+      it "does nothing" do
+        title = "Foo bar baz"
+        listing = build :listing, title: title
+
+        listing.save
+        listing.reload
+
+        expect(listing.title).to eq title
+      end
+    end
+
+    context "title doesn't exit" do
+      it "generates title from Media::Title" do
+        title = "Foo bar baz"
+        listing = build :listing, title: nil
+        allow(Media::Title).to receive(:of).with(listing.text).and_return(title)
+
+        listing.save
+        listing.reload
+
+        expect(listing.title).to eq title
+        expect(Media::Title).to have_received(:of).with(listing.text)
+      end
+    end
+  end
 end

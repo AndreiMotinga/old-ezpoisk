@@ -25,12 +25,17 @@ class Post < ApplicationRecord
     Rails.application.routes.url_helpers.post_url(self)
   end
 
-  def similar(n)
-    Post.tagged_with(tag_list, any: true).order(created_at: :desc).take(n)
+  def related_posts(n, offset = 0)
+    Post.where.not(id: id)
+        .older(created_at)
+        .tagged_with(tag_list, any: true)
+        .order(created_at: :desc)
+        .offset(offset)
+        .take(n)
   end
 
-  def similar_older(n)
-    Post.tagged_with(tag_list, any: true).older(created_at).take(n)
+  def related_answers(n)
+    Answer.tagged_with(tag_list, any: true).order(created_at: :desc).take(n)
   end
 
   private

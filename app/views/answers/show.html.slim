@@ -1,9 +1,13 @@
 - meta title: "#{@answer.title} - #{@answer.user.name}",
        description: strip_tags(@answer.text),
        rel: { canonical: question_url(@answer.question) },
-       og: { type: "article",
-             url: answer_path(@answer) }
-             /image: @answer.image_url }
+       og: { title: @answer.title,
+             description: strip_tags(@answer.text),
+             type: "article",
+             locale: "ru",
+             site_name: "ezpoisk",
+             url: answer_url(@answer),
+             image: @answer.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
 - content_for :header, render("partners/top")
 

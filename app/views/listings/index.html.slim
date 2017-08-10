@@ -1,11 +1,16 @@
 - prms = [params[:kind], params[:category], params[:subcategory], params[:state], params[:city]]
 - title = prms.compact.join(" ")
+- canonical_url = params[:kind].present? ? search_listings_url(params[:kind]) : listings_url
 - meta title: "Объявления #{title} - ezpoisk",
        description: listings_desc,
-       rel: { canonical: listings_url(kind: params[:kind]) },
-       og: { type: "website",
-             url: "https://www.ezpoisk.com/объявления",
-             image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
+       rel: { canonical: canonical_url },
+       og: { title: "Объявления #{title}",
+             description: listings_desc,
+             type: "website",
+             locale: "ru",
+             site_name: "ezpoisk",
+             url: canonical_url,
+             image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
 - content_for :header, render("partners/top")
 

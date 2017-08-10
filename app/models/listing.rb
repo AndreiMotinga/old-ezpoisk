@@ -23,9 +23,9 @@ class Listing < ApplicationRecord
   validates_presence_of :subcategory
   validates :text, presence: true, length: { minimum: 10 }
 
+  before_save :ensure_title
   after_create :create_action
   after_create :notify_slack
-  after_save :touch_action
 
   def logo_url(style = :medium)
     return logo.image.url(style) if logo.present?
@@ -73,7 +73,8 @@ class Listing < ApplicationRecord
     GeocodeJob.perform_async(id, "Listing")
   end
 
-  def touch_action
-    action.touch
+  def ensure_title
+    return if title.present?
+    self.title = Media::Title.of(text)
   end
 end

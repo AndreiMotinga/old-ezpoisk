@@ -2,9 +2,14 @@
 - title = tag.present? ? "#{tag.capitalize} - " : ""
 - meta title: "#{title}Новости комьюнити - ezpoisk",
        description: "Новости русской иммиграции в сша",
-       og: { type: "website",
-             url: "https://www.ezpoisk.com/posts",
-             image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
+       rel: { canonical: posts_url },
+       og: { title: "#{title}Новости комьюнити",
+             description: "Новости русской иммиграции в сша",
+             type: "website",
+             locale: "ru",
+             site_name: "ezpoisk",
+             url: posts_url,
+             image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
 - content_for :header, render("partners/top")
 - content_for :sidebar do

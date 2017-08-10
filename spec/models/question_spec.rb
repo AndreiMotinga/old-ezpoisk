@@ -52,6 +52,17 @@ describe Question do
     end
   end
 
+  describe "logo_url" do
+    it "returns logo_url from one of its answers" do
+      q = create :question
+      create :answer, question: q, logo_url: "foo.com/image"
+      create :answer, logo_url: "foo.com/not_what_im_looking"
+      create :answer, question: q, logo_url: nil
+
+      expect(q.logo_url).to eq "foo.com/image"
+    end
+  end
+
   # PRIVATE
 
   describe "private verify_title" do

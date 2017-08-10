@@ -1,0 +1,42 @@
+.bottom-posts {
+  display: flex;
+  flex-wrap: wrap;
+
+  .bottom_post {
+    margin: 5px 2px;
+  }
+}
+
+.bottom_post.mdl-card {
+  width: 300px;
+  min-width: 260px;
+  height: 280px;
+  flex: 1 1;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.bottom_post > .mdl-card__title {
+  color: $white;
+  padding: 10px;
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #46B6AC;
+}
+
+.bottom_post .mdl-card__title-text {
+  padding: 10px;
+  a {
+    text-decoration: none;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: rgba(145, 181, 211, 0.84);
+    transition: background-color $base-duration $base-timing;
+  }
+}

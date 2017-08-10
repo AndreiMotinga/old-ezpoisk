@@ -1,14 +1,19 @@
 - meta title: "#{@post.title} - #{@post.name}",
        description: strip_tags(@post.text),
        rel: { canonical: post_url(@post) },
-       og: { type: "article",
-             url: post_url(@post) }
+       og: { title: "#{@post.title} - #{@post.name}",
+             description: strip_tags(@post.text),
+             type: "article",
+             locale: "ru",
+             site_name: "ezpoisk",
+             url: post_url(@post),
+             image: @post.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
 - content_for :header, render("partners/top")
 
 - content_for :right do
-  = render "google_ad"
-  = render "home/right_widget", posts: @post.similar(5)
+  = render "posts/show/side_posts", posts: @post.related_posts(4)
+  = render "posts/show/answers", answers: @post.related_answers(5), tags: @post.cached_tags
 
 .row
   .col-xs-12
@@ -31,7 +36,6 @@
             = " | "
             = link_to "Редактировать", edit_post_path(@post), class: "text-muted"
 
-
     = render "social_share_buttons", record: @post, klass: "inline"
 
 .row
@@ -43,10 +47,7 @@
 br
 = render "listings/comments", record: @post
 
-/.row
-/  .col-xs-12
-/    - @post.similar_older(6).each do |post|
-/      = render "posts/post", post: post
+= render "posts/show/bottom_posts", posts: @post.related_posts(9, 4)
 
 
 

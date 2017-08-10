@@ -2,9 +2,14 @@
 - title = tag.present? ? "#{tag.capitalize} - " : ""
 - meta title: "#{title}Вопросы, статьи, консультации, помощь в сша - ezpoisk",
        description: "Задайте вопрос, и получите овтет, консультацию специалиста",
-       og: { type: "website",
-             url: "https://www.ezpoisk.com/questions",
-             image: "https://s3.amazonaws.com/ezpoisk/pictures/home.png" }
+       rel: { canonical: questions_url },
+       og: { title: "#{title}Вопросы, статьи, консультации, помощь в сша",
+             description: "Задайте вопрос, и получите овтет, консультацию специалиста",
+             type: "website",
+             locale: "ru",
+             site_name: "ezpoisk",
+             url: questions_url,
+             image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
 - content_for :sidebar do
   = render "shared/answers_menu",
