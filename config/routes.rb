@@ -18,6 +18,8 @@ Rails.application.routes.draw do
     resources :subcategories, only: [:index]
   end
 
+  extend AbsoleteRoutes
+
   resources :listings, path: "объявления" do
     get ":kind(/:category(/:subcategory(/:state(/:city))))",
       constraints: lambda { |req| %w(работа недвижимость услуги продажи).include? req.params[:kind] },
@@ -67,7 +69,6 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
 
-  extend AbsoleteRoutes
 
   root to: "home#index"
 end
