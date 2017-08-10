@@ -13,4 +13,4 @@ br
   /= render partial: "pictures/picture_thumb", collection: record.pictures
 
   - record.pictures.each do |pic|
-    = render "pictures/thumb", thumb: pic
+    = render "pictures/thumb", thumb: pic, token: token

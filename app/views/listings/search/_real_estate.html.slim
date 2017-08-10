@@ -3,12 +3,9 @@ form.form-horizontal action=listings_path(kind: "недвижимость") meth
 
   .row
     .col-xs-12.col-sm-6.col-md-12
-      = select_tag :category,
-        options_for_select([["Категория", ""]] + RU_KINDS["недвижимость"][:categories], params[:category]),
-                   class: "form-control"
-      = select_tag :subcategory,
-                   options_for_select([["Тип", ""]] + RU_KINDS["недвижимость"][:subcategories], params[:subcategory]),
-                   class: "form-control"
+      = select_tag :category, category_opts, class: "form-control"
+      = select_tag :subcategory, subcategory_opts, class: "form-control"
+
     .col-xs-12.col-sm-6.col-md-12
       = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
       = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
@@ -21,7 +18,7 @@ form.form-horizontal action=listings_path(kind: "недвижимость") meth
                    options_for_select([["Комнаты", ""]] + RU_KINDS["недвижимость"][:rooms], params[:rooms]),
                    class: "form-control"
     .col-xs-12.col-sm-6.col-md-12
-      = sort_select(rp_sort_opts)
+      = sort_select(RP_SORT_OPTIONS)
       = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевые слова... "
 
   small.text-muted Объявлений: #{@listings.total_count}

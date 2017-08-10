@@ -1,5 +1,6 @@
 class Listings::SubcategoriesController < ApplicationController
   def index
+    category = category_param[:category]
     @subcategories = RU_KINDS["услуги"][:subcategories][category]
   end
 
@@ -7,9 +8,5 @@ class Listings::SubcategoriesController < ApplicationController
 
   def category_param
     params.require(:attrs).permit(:category)
-  end
-
-  def category
-    category_param[:category]
   end
 end

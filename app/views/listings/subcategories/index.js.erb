@@ -1,3 +1,5 @@
-$("#listing_subcategory").html("<%= j(options_for_select(ru(@subcategories))) %>");
+<% subs = @subcategories.map { |sub| display_option(sub) } %>
+
+$("#listing_subcategory").html("<%= j(options_for_select(subs)) %>");
 $("#listing_subcategory")
   .prepend("<option value='' selected='selected'></option>").val('');

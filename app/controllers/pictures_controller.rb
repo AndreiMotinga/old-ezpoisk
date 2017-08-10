@@ -1,7 +1,4 @@
 class PicturesController < ApplicationController
-  # TODO ? before_action :authenticate_user
-  # TODO / protect from destroying images but at the same time allow create them with token
-
   def index
     @pictures = klass.find(params["id"]).pictures
   end
@@ -24,7 +21,11 @@ class PicturesController < ApplicationController
 
   def destroy
     @id = params[:id]
-    Picture.find(@id).destroy
+    pic = Picture.find(@id)
+    unless current_user.try(:can_edit?, pic) || pic.imageable.token == params[:token]
+      redirect_to root_path
+    end
+    pic.destroy
   end
 
   private

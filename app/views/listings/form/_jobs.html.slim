@@ -1,25 +1,23 @@
-- token = params[:token] if params[:token].present?
-/ if record had errors and wasn't saved app rendered :edit action again
-/ it's impossible to pass params to 'redner'. This hack allows to keep token
-- token ||= url_for(:back).match(/token=.+/).try(:remove, 'token=')
-- kind = params[:kind] || @listing.kind
-
 = bootstrap_form_for(@listing) do |f|
   = hidden_field_tag :token, token
 
   .row
     .col-xs-12 class=("hidden" unless current_user.try(:admin?))
       = f.select :kind,
-                 options_for_select(RU_KINDS.keys, kind),
+                 RU_KINDS.keys,
                  { label: "Раздел *" },
                  include_blank: true, required: true
 
   = f.text_area :text, label: "Описание *", required: true, rows: 5
   .row
     .col-sm-6
-      = f.select :category, RU_KINDS["работа"]["categories"], { label: "Категория *" }, required: true
+      = f.select :category,
+          RU_KINDS["работа"]["categories"].map { |c| display_option(c) },
+          { label: "Категория *" }, required: true
     .col-sm-6
-      = f.select :subcategory, RU_KINDS["работа"]["subcategories"], { label: "Подкатегория *" }, required: true
+      = f.select :subcategory,
+          RU_KINDS["работа"]["subcategories"].map { |c| display_option(c) },
+          { label: "Подкатегория *" }, required: true
 
   = render "listings/form/contacts", f: f
   = f.submit "Сохранить", id: "details-save-btn", class: "btn-ez"

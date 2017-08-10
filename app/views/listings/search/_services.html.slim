@@ -3,12 +3,11 @@ form.form-horizontal action=listings_path(kind: "услуги") method="get"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
-      = select_tag :category,
-        options_for_select([["Раздел", ""]] + RU_KINDS[:услуги][:categories], params[:category]),
-                   class: "form-control", id: "service_category"
+      = select_tag :category, category_opts, class: "form-control", id: "service_category"
+
       = select_tag :subcategory,
-                   service_subcategories_options,
-                   class: "form-control", "data-id": "listing_subcategory", id: "listing_subcategory"
+        options_for_select(service_sub_opts(params[:category], true), params[:subcategory]),
+        class: "form-control", "data-id": "listing_subcategory", id: "listing_subcategory"
 
     .col-xs-12.col-sm-6.col-md-12
       = text_field_tag :term,

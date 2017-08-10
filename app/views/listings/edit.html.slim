@@ -1,3 +1,8 @@
+- token = params[:token] if params[:token].present?
+/ if record had errors and wasn't saved app rendered :edit action again
+/ it's impossible to pass params to 'redner'. This hack allows to keep token
+- token ||= url_for(:back).match(/token=.+/).try(:remove, 'token=')
+
 #pictures-data data-id=@listing.id data-type="Listing"
 
 .container.container-md
@@ -24,10 +29,10 @@
         .tab-content
           #form.tab-pane.fade.in.active role="tabpanel"
             .col-xs-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
-              = render "listings/form/#{@listing.kind}"
+              = render "listings/form/#{t @listing.kind}", token: token
 
           #pictures.tab-pane.fade role="tabpanel"
-              = render "listings/form/pictures", record: @listing
+              = render "listings/form/pictures", record: @listing, token: token
 
           #preview.tab-pane.fade role="tabpanel"
             .col-xs-12

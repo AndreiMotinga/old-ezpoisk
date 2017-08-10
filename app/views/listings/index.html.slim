@@ -21,7 +21,7 @@
 
     section#search-form.search.mdl-shadow--2dp
       - if params[:kind]
-        = render "listings/search/#{params[:kind]}"
+        = render "listings/search/#{t params[:kind]}"
       - else
         = render "listings/search"
 

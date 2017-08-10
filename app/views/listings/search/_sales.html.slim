@@ -3,14 +3,11 @@ form.form-horizontal action=listings_path(kind: "продажи") method="get"
 
   .row
     .col-xs-12.col-sm-6.col-md-12
-      = select_tag :category,
-        options_for_select([["Раздел", ""]] + RU_KINDS[:продажи][:categories], params[:category]),
-                    class: "form-control"
-      = select_tag :subcategory,
-        options_for_select([["Категория", ""]] + RU_KINDS[:продажи][:subcategories], params[:category]),
-                   class: "form-control"
+      = select_tag :category, category_opts, class: "form-control"
+      = select_tag :subcategory, subcategory_opts, class: "form-control"
+
     .col-xs-12.col-sm-6.col-md-12
-      = sort_select(sale_sort_opts)
+      = sort_select(SALE_SORT_OPTIONS)
     .col-xs-12.col-sm-6.col-md-12
       = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
 

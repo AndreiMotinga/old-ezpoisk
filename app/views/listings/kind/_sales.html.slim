@@ -17,9 +17,9 @@
         = "#{listing.city.name}, #{cat}"
 
       / line 1
-      = link_to cat, search_listings_path(kind: kind, category: cat)
+      = link_to display(cat), search_listings_path(kind: kind, category: cat)
       = " | "
-      = link_to sub, search_listings_path(kind: kind, category: cat, subcategory: sub)
+      = link_to display(sub), search_listings_path(kind: kind, category: cat, subcategory: sub)
       = " | $#{listing.price}" if listing.price?
 
       // line 2

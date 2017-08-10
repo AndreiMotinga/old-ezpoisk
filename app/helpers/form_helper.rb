@@ -1,43 +1,4 @@
 module FormHelper
-  def state
-    return params[:state] if params[:state]
-    # return current_user.try(:state_slug) if current_user.try(:state_slug)
-  end
-
-  def city
-    return params[:city] if params[:city]
-    # return current_user.try(:city_slug) if current_user.try(:city_slug)
-  end
-
-  def rp_sort_opts
-    { "Сортировать": "",
-      "Подешевле": "price asc",
-      "Подороже": "case when price is null then -1 else price end desc",
-      "Поменьше": "space asc",
-      "Побольше": "space desc",
-      "Поновее": "created_at desc" }
-  end
-
-  def sale_sort_opts
-    { "Сортировать": "",
-      "Подешевле": "price asc",
-      "Подороже": "case when price is null then -1 else price end desc",
-      "Поновее": "created_at desc" }
-  end
-
-  def sort_select(opts)
-    select_tag(:sorted,
-               options_for_select(opts, params[:sorted]),
-               class: "form-control")
-  end
-
-  def service_subcategories_options
-    category = params[:category]
-    return unless category.present?
-    opts = [["Категория", ""]] + RU_KINDS["услуги"][:subcategories][category]
-    options_for_select(opts, params[:subcategory])
-  end
-
   def origin
     params[:geo_scope][:origin] if params[:geo_scope].present?
   end
@@ -60,6 +21,42 @@ module FormHelper
                    class: "form-control"
   end
 
+  def sort_select(opts)
+    select_tag :sorted,
+               options_for_select(opts, params[:sorted]),
+               class: "form-control"
+  end
+
+  def category_opts
+    kind = params[:kind]
+    categories = RU_KINDS[kind][:categories].map {|cat| display_option(cat)}
+                                            .insert(0, ["Категория", ""])
+    options_for_select(categories, params[:category])
+  end
+
+  def subcategory_opts
+    kind = params[:kind]
+    subcategories = RU_KINDS[kind][:subcategories].map { |cat| display_option(cat) }
+                                                  .insert(0, ["Подкатегория", ""])
+    options_for_select(subcategories, params[:subcategory])
+  end
+
+  def service_sub_opts(category, placeholder = nil)
+    return [] unless category.present?
+    subs = RU_KINDS["услуги"][:subcategories][category].map { |sub| display_option(sub) }
+    placeholder ? subs.insert(0, ["Подкатегория", ""]) : subs
+  end
+
+  def display_option(phrase)
+    [display(phrase), phrase]
+  end
+
+  def display(phrase)
+    phrase.split("--")
+          .map { |w| w.tr("-", " ").capitalize }
+          .join(", ")
+  end
+
   def form_state_select(f)
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
@@ -77,35 +74,5 @@ module FormHelper
     else
       f.select :city_id, [], { label: "Город *" }, class: "city-select mdl-textfield__input"
     end
-  end
-
-  # TODO - probably no longer used - should be removed
-  def ru(opts)
-    return "" unless opts
-    opts.map { |key| [key, key] }
-  end
-
-  def kind
-    params[:kind] || @listing.kind
-  end
-
-  def listing_categories
-    opts = RU_KINDS[kind][:categories]
-    options_for_select(opts, @listing.category)
-  end
-
-  def listing_subcategories
-    return [] unless listing_sub_opts # fix for services
-    options_for_select(listing_sub_opts, @listing.subcategory)
-  end
-
-  # todo test it with feature spec
-  def listing_sub_opts
-    return RU_KINDS[kind][:subcategories][@listing.category] if kind == "услуги" && @listing.category
-    return RU_KINDS[kind][:subcategories]
-  end
-
-  def confirm?
-    current_user.try(:admin?) ? false : I18n.t(:confirm)
   end
 end

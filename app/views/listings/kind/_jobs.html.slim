@@ -12,9 +12,9 @@
       = link_to " дальше", listing_path(listing) if listing.text.size > 280
 
   / line 1
-  = link_to cat, search_listings_path(kind: kind, category: cat)
+  = link_to display(cat), search_listings_path(kind: kind, category: cat)
   = " | "
-  = link_to sub, search_listings_path(kind: kind, category: cat, subcategory: sub)
+  = link_to display(sub), search_listings_path(kind: kind, category: cat, subcategory: sub)
   = " | "
   = link_to listing.state.name,
       search_listings_path(kind: kind, category: cat, subcategory: sub, state: listing.state.slug)

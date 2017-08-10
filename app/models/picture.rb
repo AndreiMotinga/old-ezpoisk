@@ -1,5 +1,6 @@
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true, touch: true
+  belongs_to :user
 
   has_attached_file :image, styles: { medium: "x180",
                                       thumbnail: "100x100#",

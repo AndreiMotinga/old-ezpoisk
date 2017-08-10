@@ -41,9 +41,10 @@ feature "User" do
 
   scenario "browses listings by category" do
     listing = create :listing
+    category = display(listing.category)
 
     visit search_listings_path(kind: listing.kind)
-    select(listing.category, from: "category")
+    select(category, from: "category")
     click_on "Обновить"
 
     prm = listing.kind == "услуги" ? :title : :text
@@ -52,10 +53,12 @@ feature "User" do
 
   scenario "browses listings by subcategory", js: true do
     listing = create :listing
+    category = display(listing.category)
+    subcategory = display(listing.subcategory)
 
     visit search_listings_path(kind: listing.kind)
-    select(listing.category, from: "category")
-    select(listing.subcategory, from: "subcategory")
+    select(category, from: "category")
+    select(subcategory, from: "subcategory")
     click_on "Обновить"
 
     prm = listing.kind == "услуги" ? :title : :text

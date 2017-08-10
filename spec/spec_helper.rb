@@ -12,6 +12,8 @@ end
 require "webmock/rspec"
 
 RSpec.configure do |config|
+  config.include FormHelper
+
   config.mock_with :rspec do |mocks|
     mocks.verify_partial_doubles = true
   end

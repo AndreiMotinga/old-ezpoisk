@@ -36,7 +36,8 @@ class ListingsController < ApplicationController
   end
 
   def new
-    @listing = Listing.new(state_id: current_user.contact.state_id,
+    @listing = Listing.new(kind: params[:kind],
+                           state_id: current_user.contact.state_id,
                            city_id: current_user.contact.city_id,
                            active: true,
                            phone: current_user.contact.phone,
