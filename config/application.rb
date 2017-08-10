@@ -29,5 +29,7 @@ module Ezpoisk
     end
 
     config.middleware.insert_before 0, SearchSuggestions
+
+    config.autoload_paths += %W(#{config.root}/config/routes)
   end
 end

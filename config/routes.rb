@@ -46,12 +46,7 @@ Rails.application.routes.draw do
     get "tag/:tag", to: "questions#tag", as: :tag, on: :collection
   end
 
-  # POSTS
-  resources :posts do
-    collection do
-      get "tag/:tag", to: "posts#tag", as: :tag
-    end
-  end
+  extend PostRoutes
 
   resources :users, path: "profiles", only: [:show, :edit, :update] do
     member do
@@ -71,6 +66,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
+
+  extend AbsoleteRoutes
 
   root to: "home#index"
 end
