@@ -25,8 +25,12 @@ class Post < ApplicationRecord
     Rails.application.routes.url_helpers.post_url(self)
   end
 
-  def side_posts
-    self.class.tagged_with(tag_list, any: true).order(created_at: :desc).take(8)
+  def similar(n)
+    Post.tagged_with(tag_list, any: true).order(created_at: :desc).take(n)
+  end
+
+  def similar_older(n)
+    Post.tagged_with(tag_list, any: true).older(created_at).take(n)
   end
 
   private

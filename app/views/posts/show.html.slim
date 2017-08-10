@@ -8,7 +8,7 @@
 
 - content_for :right do
   = render "google_ad"
-  = render "home/right_widget", posts: @post.side_posts.first(5)
+  = render "home/right_widget", posts: @post.similar(5)
 
 .row
   .col-xs-12
@@ -42,5 +42,15 @@
 
 br
 = render "listings/comments", record: @post
+
+/.row
+/  .col-xs-12
+/    - @post.similar_older(6).each do |post|
+/      = render "posts/post", post: post
+
+
+
+
+
 
 = render "social_share_buttons_js"
