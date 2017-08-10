@@ -38,7 +38,7 @@ SitemapGenerator::Sitemap.create do
       RU_KINDS[kind]["subcategories"].each do |sub|
         if Listing.where(kind: kind, category: cat, subcategory: sub).any?
           url = search_listings_path(kind: kind, category: cat, subcategory: sub)
-          add url, priority: 0.8, changefreq: "daily"
+          add URI.unescape(url), priority: 0.8, changefreq: "daily"
         end
       end
     end
@@ -48,13 +48,13 @@ SitemapGenerator::Sitemap.create do
     RU_KINDS["услуги"]["subcategories"][cat].each do |sub|
       if Listing.where(kind: "услуги", category: cat, subcategory: sub).any?
         url = search_listings_path(kind: "услуги", category: cat, subcategory: sub)
-        add url, priority: 0.8, changefreq: "daily"
+        add URI.unescape(url), priority: 0.8, changefreq: "daily"
       end
     end
   end
 
   Listing.active.find_each do |listing|
-    add listing_path(listing),
+    add URI.unescape(listing_path(listing)),
         priority: 0.4,
         lastmod: listing.updated_at,
         changefreq: "weekly"
