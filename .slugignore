@@ -1,0 +1,10 @@
+# Heres a comment
+*.psd
+*.pdf
+/test
+/spec
+.rspec
+.rubocop.yml
+customers
+Guardfile
+README.md
