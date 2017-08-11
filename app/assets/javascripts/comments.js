@@ -24,7 +24,7 @@ $(document).on('click','[data-action="respond"]', function(e){
   e.preventDefault();
   var name = $(this).data('name');
   var id = $(this).data('id');
-  var form = $(this).parents(".comments").find("form");
+  var form = $(this).parents("#comments-container").find("form");
   form.find("[data-parent]").val(id);
   form.find("textarea").val(name + ", ").focus();
 });
