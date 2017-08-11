@@ -25,6 +25,7 @@ class Listing < ApplicationRecord
   validates :text, presence: true, length: { minimum: 10 }
 
   before_save :ensure_title
+  before_save :format_site
   after_create :create_action
   after_create :notify_slack
 
@@ -77,5 +78,10 @@ class Listing < ApplicationRecord
   def ensure_title
     return if title.present?
     self.title = Media::Title.of(text)
+  end
+
+  def format_site
+    return unless site
+    self.site = site.prepend("http://") unless site.match(/http/)
   end
 end

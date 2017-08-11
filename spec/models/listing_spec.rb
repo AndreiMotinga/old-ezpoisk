@@ -92,4 +92,28 @@ RSpec.describe Listing, type: :model do
       end
     end
   end
+
+  describe "private format site" do
+    context "doesn't have http" do
+      it "prepends http" do
+        listing = build :listing, site: "www.ezpoisk.com"
+
+        listing.save
+        listing.reload
+
+        expect(listing.site).to eq "http://www.ezpoisk.com"
+      end
+    end
+
+    context "has http" do
+      it "does nothing" do
+        listing = build :listing, site: "http://www.ezpoisk.com"
+
+        listing.save
+        listing.reload
+
+        expect(listing.site).to eq "http://www.ezpoisk.com"
+      end
+    end
+  end
 end
