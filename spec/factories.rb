@@ -65,7 +65,7 @@ FactoryGirl.define do
     vk "https://vk.com/id129328692"
     fb "https://www.facebook.com/101"
     gl "MyString"
-    site "MyString"
+    site "https://www.example.com"
 
     user
 
