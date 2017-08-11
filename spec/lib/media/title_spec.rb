@@ -7,4 +7,10 @@ describe Media::Title do
 
     expect(Media::Title.of(text)).to eq result
   end
+
+  context "with insufficient text" do
+    it "doesn't blow up" do
+      expect(Media::Title.of("")).to eq ""
+    end
+  end
 end
