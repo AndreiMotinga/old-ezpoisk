@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AnswersController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
   before_action :set_answer, only: [:edit, :update, :destroy]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # modifies vk post for easy creation of the listing
 module Vk
   class Unifier

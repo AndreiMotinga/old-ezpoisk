@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TosController < ApplicationController
   def tos
     data = open("https://s3.amazonaws.com/ezpoisk/tos.pdf")

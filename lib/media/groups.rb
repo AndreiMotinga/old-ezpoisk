@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Media
   # load vk/fb groups from public/#{vk|fb}_groups.json file
   class Groups

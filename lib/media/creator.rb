@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # creates listings from posts provided by vk and fb importers
 module Media
   class Creator

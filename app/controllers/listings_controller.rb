@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ListingsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :search, :show]
   before_action :set_listing, only: [:edit, :update, :touch, :destroy]

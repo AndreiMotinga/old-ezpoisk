@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 require_relative '../app/middleware/search_suggestions'
 require 'rails/all'

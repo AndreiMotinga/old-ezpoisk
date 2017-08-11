@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Media
   # sanitizes text
   class Text
@@ -14,10 +16,10 @@ module Media
     def sanitize
       return "" unless text.present?
       text.gsub(REGEX, "") # remove emojis
-        .gsub("<br>", "\r\n")
-        .gsub("&amp;", "&")
-        .split('.')
-        .map {|s| s.downcase.strip.capitalize }.join(". ")
+          .gsub("<br>", "\r\n")
+          .gsub("&amp;", "&")
+          .split('.')
+          .map {|s| s.downcase.strip.capitalize }.join(". ")
     end
 
     REGEX = /[\u{1F600}-\u{1F6FF}]/

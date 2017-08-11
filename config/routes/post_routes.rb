@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PostRoutes
   def self.extended(router)
     router.instance_exec do

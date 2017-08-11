@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SourceValidator < ActiveModel::Validator
   def validate(record)
     return if has_source?(record)

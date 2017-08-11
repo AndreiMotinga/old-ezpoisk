@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # sends messages to slack (ez channel)
 class SlackNotifierJob
   include Sidekiq::Worker

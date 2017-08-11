@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # creates images for posts, imported from vk and fb
 class ImageDownloaderJob
   include Sidekiq::Worker

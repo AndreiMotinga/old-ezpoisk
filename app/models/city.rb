@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class City < ActiveRecord::Base
-  ALL = "all".freeze
+  ALL = "all"
   default_scope { order(:name) }
 
   belongs_to :state

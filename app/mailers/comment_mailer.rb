@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # notifies user of new comments on listsings
 class CommentMailer < ApplicationMailer
   def new_comment(comment, email)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProfileMailer < ApplicationMailer
   def ten_visitors(user)
     @user = user

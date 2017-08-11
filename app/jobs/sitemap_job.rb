@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SitemapJob
   include Sidekiq::Worker
   def perform

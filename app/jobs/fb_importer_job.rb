@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # imports records from fb
 class FbImporterJob
   include Sidekiq::Worker

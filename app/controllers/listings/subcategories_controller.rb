@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Listings::SubcategoriesController < ApplicationController
   def index
     category = category_param[:category]

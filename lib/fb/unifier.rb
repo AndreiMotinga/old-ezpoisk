@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Fb
   # changes post received from fb api
   class Unifier

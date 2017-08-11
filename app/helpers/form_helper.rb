@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FormHelper
   def origin
     params[:geo_scope][:origin] if params[:geo_scope].present?

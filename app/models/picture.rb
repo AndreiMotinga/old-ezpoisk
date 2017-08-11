@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Picture < ActiveRecord::Base
   belongs_to :imageable, polymorphic: true, touch: true
   belongs_to :user

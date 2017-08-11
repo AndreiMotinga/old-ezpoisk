@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Question < ActiveRecord::Base
   acts_as_taggable
   include Filterable

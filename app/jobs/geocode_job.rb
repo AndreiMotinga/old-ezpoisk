@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # perfroms geolocation
 # updates latitude, longitute and zipcode on listings
 class GeocodeJob

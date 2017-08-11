@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Listing represents all the classifieds
 class Listing < ApplicationRecord
   include Filterable

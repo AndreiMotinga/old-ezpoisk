@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fb
   class Attachments
     attr_reader :atts, :data

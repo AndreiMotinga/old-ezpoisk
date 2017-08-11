@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SummernoteController < ApplicationController
   def create
     @picture = Picture.new(picture_params)

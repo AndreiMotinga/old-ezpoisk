@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Answer < ActiveRecord::Base
   acts_as_taggable
   acts_as_votable

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # wraps Slack::Notifier.
 # posts messages directly to ez channel
 class Ez

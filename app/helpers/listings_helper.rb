@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ListingsHelper
   def search_states
     State.joins(:listings)

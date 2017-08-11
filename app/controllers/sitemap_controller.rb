@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SitemapController < ApplicationController
   def show
     url = "https://s3.amazonaws.com/ezpoisk/sitemaps/sitemap.xml.gz"

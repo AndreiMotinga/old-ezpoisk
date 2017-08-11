@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vk
   # loads posts from vk group
   class GroupLoader

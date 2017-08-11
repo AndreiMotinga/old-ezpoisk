@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :tag, :show]
   before_action :set_post, only: [:edit, :update, :destroy]

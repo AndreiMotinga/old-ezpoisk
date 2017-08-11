@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RP_SORT_OPTIONS = {
   "Сортировать": "",
   "Подешевле": "price asc",
@@ -5,7 +7,7 @@ RP_SORT_OPTIONS = {
   "Поменьше": "space asc",
   "Побольше": "space desc",
   "Поновее": "created_at desc"
-}.freeze
+}
 
 SALE_SORT_OPTIONS = {
   "Сортировать": "",

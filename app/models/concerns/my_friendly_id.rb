@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module MyFriendlyId
   def self.included(klass)
     klass.extend FriendlyId

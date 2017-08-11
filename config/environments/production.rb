@@ -1,3 +1,5 @@
+#frozen_string_literal: true
+
 require Rails.root.join("config/smtp")
 Rails.application.configure do
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CitiesController < ApplicationController
   before_action :id, :slug, :set_val
 

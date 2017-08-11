@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 

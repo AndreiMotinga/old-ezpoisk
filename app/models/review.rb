@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Review < ApplicationRecord
   belongs_to :listing
   belongs_to :user

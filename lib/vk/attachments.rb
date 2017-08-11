@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Vk
   # unifiies vk post attachments
   class Attachments

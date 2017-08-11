@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Media
   # validate that listing is fresh, not yet persisted etc
   class Validator

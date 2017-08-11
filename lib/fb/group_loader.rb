@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Fb
   # loads posts from fb group
   class GroupLoader
