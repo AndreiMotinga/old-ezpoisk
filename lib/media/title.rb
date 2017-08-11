@@ -14,7 +14,7 @@ module Media
     end
 
     def call
-      text.truncate(66).downcase.capitalize
+      text.truncate(66).downcase!.capitalize!
     end
   end
 end
