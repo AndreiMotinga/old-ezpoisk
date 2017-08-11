@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  layout :set_layout
   def index
     @actions = Action.includes(actionable: :user)
                      .order(updated_at: :desc)
@@ -13,5 +14,13 @@ class HomeController < ApplicationController
         render partial: "shared/index", locals: { records: @actions }
       end
     end
+  end
+
+  def about; end
+
+  private
+
+  def set_layout
+    "about" if action_name == "about"
   end
 end

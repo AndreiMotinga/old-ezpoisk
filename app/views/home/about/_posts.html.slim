@@ -1,0 +1,15 @@
+.mdl-card.posts.mdl-cell.mdl-cell--12-col
+  .mdl-card__media.mdl-color-text--grey-50
+    h3= link_to "Новости", posts_path, target: "_blank"
+  .mdl-card__supporting-text.mdl-color-text--grey-600
+    p.quote
+      | Хорошая новость - на вес золота! Она и приободрит, и подтвердит, что запланированные действия приведут к ожидаемому результату. Поэтому мы стараемся искать самую свежую информацию, чтобы всегда настроить своих читателей на лучшее, порадовать или наоборот, заставить собраться и лишний раз продумать свои планы. Задача Изи – это рассказать вам о происходящем за углом, здесь вы найдете много полезной новой информации, а также с легкостью сможете поделиться своей новостью с комьюнити. Предлагаете какую-нибудь акцию? Открываете ресторан?  Организовываете вечеринку и все приглашены? #{link_to "Расскажите об этом !", new_post_path, target: "_blank"}
+  .mdl-card__supporting-text.meta.mdl-color-text--grey-600
+    = link_to posts_path, target: "_blank" do
+      .minilogo
+    div
+      strong= link_to "Новости", posts_path, target: "_blank"
+      span
+        | #{Post.count} статей,
+        = "  "
+        = link_to "добавьте свою !", new_post_path, target: "_blank"

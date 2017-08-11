@@ -1,0 +1,17 @@
+.mdl-card.listings.mdl-cell.mdl-cell--12-col
+  .mdl-card__media.mdl-color-text--grey-50
+    h3= link_to "Бесплатные объявления", search_listings_path(kind: "услуги"), target: "_blank"
+  .mdl-color-text--grey-600.mdl-card__supporting-text
+    | Мы часто пользуемся социальными сетями для того чтобы #{link_to "найти работу", search_listings_path(kind: "работа", category: "требуется"), target: "_blank" }, #{link_to "сдать комнату", search_listings_path(kind: "недвижимость", category: "квартира"), target: "_blank" }, #{link_to "продать наушники", search_listings_path(kind: "продажи", category: "продаю"), target: "_blank" } или #{link_to "рассказать о своих услугах", search_listings_path(kind: "услуги"), target: "_blank" }. И хотя Facebook, Twitter, Vkontakte и Google+ превосходно справляются с этой задачей, это не совсем то, для чего они были созданы. Общайтесь с друзьями, делитесь фотографиями, музыкой, моментами.  Оставьте объявления нам.
+    br
+    br
+    | Мы постарались создать удобный фильтр по разделам, городам, и датам, все чтобы облегчить поиски. Нет нужды сканировать повторяющиеся объявления снова и снова, просматривать посты не по теме, зря тратить время. Мы позаботимся о качестве размещаемых объявлений, вы - расслабьтесь и получайте удовольствие. А самое главное все объявления были, есть и навсегда останутся бесплатными.
+  .mdl-card__supporting-text.meta.mdl-color-text--grey-600
+    = link_to search_listings_path(kind: "услуги"), target: "_blank" do
+      .minilogo
+    div
+      strong= link_to "Объявления", search_listings_path(kind: "услуги"), target: "_blank"
+      span
+        | #{Listing.count} объявлений,
+        = "  "
+        = link_to "Добавьте своe !", new_listing_path, target: "_blank"

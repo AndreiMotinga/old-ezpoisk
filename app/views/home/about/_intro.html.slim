@@ -1,0 +1,21 @@
+.mdl-card.intro.mdl-cell.mdl-cell--8-col
+  .mdl-card__media.mdl-color-text--grey-50
+    h3 Добро пожаловать !
+  .mdl-color-text--grey-600.mdl-card__supporting-text
+    |  #{link_to "ezpoisk.com", root_url}
+    em
+      |  (a.k.a изи )
+    |  - это информационный портал, стремящийся аккумулировать и распространять информацию со всех уголков США. Объявления, ответы, новости - полезная информация на расстоянии одного клика.
+  .mdl-card__supporting-text.meta.mdl-color-text--grey-600
+    = link_to root_path, target: "_blank" do
+      .minilogo
+    .social-share-buttons
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.vk-bg.js-vk-share href=about_url
+        i.fa.fa-vk
+        span.social-text  Поделиться
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.facebook-bg.js-fb-share href=about_url
+        i.fa.fa-facebook
+        span.social-text  Поделиться
+      button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.google-bg.js-gl-share href="https://plus.google.com/share?url=#{about_url}"
+        i.fa.fa-google-plus
+        span.social-text  Поделиться

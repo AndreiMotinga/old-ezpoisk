@@ -10,6 +10,10 @@ $(document).on("click","#copy-comment", function(e){
   copyToClipboard($('#comment'))
 });
 
+$(document).on("click","#copy-share", function(e){
+  copyToClipboard($('#share'))
+});
+
 function copyToClipboard(element) {
   var $temp = $("<textarea>");
   $("body").append($temp);

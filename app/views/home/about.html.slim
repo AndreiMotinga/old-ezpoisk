@@ -1,0 +1,43 @@
+.demo-blog.mdl-layout.mdl-js-layout.has-drawer.is-upgraded
+  main.mdl-layout__content
+    .demo-blog__posts.mdl-grid
+      = render "home/about/intro"
+      = render "home/about/ez"
+      = render "home/about/listings"
+      = render "home/about/answers"
+      = render "home/about/posts"
+      = render "home/about/summary"
+
+      nav.demo-nav.mdl-cell.mdl-cell--12-col
+        .section-spacer
+        a.demo-nav__button href=root_path title=("show more") target="_blank"
+          |  Дальше
+          button.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
+            i.material-icons role="presentation"  arrow_forward
+  /.mdl-layout__obfuscator
+
+
+#fb-root
+javascript:
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.10&appId=1746983858848479";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  $(".js-fb-share").click(function() {
+    FB.ui({ method: 'share', href: $(this).attr('href') });
+  })
+
+  $(".js-gl-share").click(function() {
+    window.open($(this).attr('href'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+    return false;
+  })
+
+  $(".js-vk-share").click(function(e) {
+    e.preventDefault();
+    $('body').append(VK.Share.button(false,{type: "custom", text: "Vk-share"}));
+    $('a:contains("Vk-share")')[0].click();
+  })

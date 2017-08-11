@@ -1,0 +1,35 @@
+html lang="ru"
+  head
+    meta charset="utf-8" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible" /
+    meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0" name="viewport" /
+
+    title Информационный портал для наших в США - ezpoisk.com
+    meta content="Информационный портал, стремящийся аккумулировать и распространять информацию со всех уголков США. Объявления, ответы, новости - полезная информация на расстоянии одного клика." name="description"
+    link rel="canonical" href=about_url
+
+    meta property="fb:app_id" content= ENV["FACEBOOK_APP_ID"]
+    meta property="og:title" content="Информационный портал для наших в США"
+    meta property="og:description" content="Объявления, ответы, новости - полезная информация на расстоянии одного клика. Информационный портал, стремящийся аккумулировать и распространять информацию со всех уголков США"
+    meta property="og:locale" content="ru_RU"
+    meta property="og:type" content="website"
+    meta property="og:site_name" content="ezpoisk"
+    meta property="og:url" content=about_url
+    meta property="og:image" content="https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
+    meta property="og:image:width"   content="450"
+    meta property="og:image:height"  content="298"
+
+    = stylesheet_link_tag    "about"
+    = favicon_link_tag "favicon"
+    script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"
+
+    javascript:
+      window.___gcfg = {
+        lang: 'ru',
+        parsetags: 'onload'
+      };
+    script src="https://apis.google.com/js/platform.js" async="" defer=""
+    = javascript_include_tag "about"
+
+  body
+    = yield

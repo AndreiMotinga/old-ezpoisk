@@ -71,6 +71,6 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
   end
 
-
+  get "/about", to: "home#about"
   root to: "home#index"
 end

@@ -1,0 +1,18 @@
+.mdl-card.ez.mdl-cell.mdl-cell--8-col.mdl-cell--4-col-desktop
+  a.mdl-button.mdl-js-ripple-effect.mdl-js-button.mdl-button--fab.mdl-color--accent href=root_path
+    i.material-icons.mdl-color-text--white role="presentation"  add
+    span.visuallyhidden add
+  .mdl-card__media.mdl-color--white.mdl-color-text--grey-600
+    img src="https://s3.amazonaws.com/ezpoisk/ezpoisk.png"
+    /| +1,337
+  .mdl-card__supporting-text.meta.meta--fill.mdl-color-text--grey-600
+    div
+      strong Объявления
+    ul.mdl-menu.mdl-js-menu.mdl-menu--bottom-right.mdl-js-ripple-effect for="menubtn"
+      li.mdl-menu__item= link_to "Недвижимость", search_listings_path(kind: "недвижимость"), target: "_blank"
+      li.mdl-menu__item= link_to "Работа", search_listings_path(kind: "работа"), target: "_blank"
+      li.mdl-menu__item= link_to "Продажи", search_listings_path(kind: "продажи"), target: "_blank"
+      li.mdl-menu__item= link_to "Услуги", search_listings_path(kind: "услуги"), target: "_blank"
+    button#menubtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon
+      i.material-icons role="presentation"  more_vert
+      span.visuallyhidden show menu

@@ -1,42 +1,59 @@
 = link_to record.vk, record.vk, target: "_blnak" if record.vk?
 = link_to record.fb, record.fb, target: "_blnak" if record.fb?
-= "  "
+hr
+br
+
 a#copy.btn.btn-ez href="#" Copy
 = "  "
 a#half-copy.btn.btn-ez href="#" Half-Copy
-
 br
 br
-.col-xs-12.white-block
-  .panel
-    .panel-body
-      p#text
-        span#half-text
-          |  Привет,
-          | &#13;
-          br
-          |  Мы разместили ваше объявление на  #{URI.unescape record.show_url}
-          | &#13;
-          | &#13;
-          br
-          |  Вы можете его редактировать или удалить на  #{URI.unescape record.edit_url_with_token}
-        | &#13;
-        | &#13;
-        br
-        br
-        | Не все посетители пользуются соц. сетями, поэтому вам стоит добавить свой email или телефон
+p#text
+  span#half-text
+    |  Привет,
+    | &#13;
+    br
+    |  Мы разместили ваше объявление на  #{URI.unescape record.show_url}
+    | &#13;
+    | &#13;
+    br
+    |  Вы можете его редактировать или удалить на  #{URI.unescape record.edit_url_with_token}
+  | &#13;
+  | &#13;
+  br
+  br
+  | Не все посетители пользуются соц. сетями, поэтому вам стоит добавить свой email или телефон
+hr
 
-      hr
-        a#copy-comment.btn.btn-ez href="#" Коммент
-      br
-      p#comment
-        |  Появились новые комментарии под объявлением.
-        | &#13;
-        br
-        |  Вы можете просмотреть их на  #{URI.unescape record.show_url}
-        | &#13;
-        | &#13;
-        br
-        |  Если хотите обновить или удалить объявление вы можете сделать это тут -  #{URI.unescape record.edit_url_with_token}
-        | &#13;
-        | &#13;
+a#copy-comment.btn.btn-ez href="#" Коммент
+br
+br
+p#comment
+  |  Появились новые комментарии под объявлением.
+  | &#13;
+  br
+  |  Вы можете просмотреть их на  #{URI.unescape record.show_url}
+  | &#13;
+  | &#13;
+  br
+  |  Если хотите обновить или удалить объявление вы можете сделать это тут -  #{URI.unescape record.edit_url_with_token}
+  | &#13;
+  | &#13;
+hr
+
+a#copy-share.btn.btn-ez href="#" Поделитесь
+br
+br
+
+p#share
+  |  Я надеюсь сайт послужит вам сейчас или в будущем.
+  | &#13;
+  br
+  |  Мы стараемся сделать его лучше. Если у вас будут какие-нибудь идеи - дайте нам знать.
+  | &#13;
+  | &#13;
+  br
+  |  Также, мы будем колосcально признательны если вы поделитесь этой страницей онлайн -  #{about_url}
+  | &#13;
+  | &#13;
+  hr
