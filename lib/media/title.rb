@@ -14,8 +14,7 @@ module Media
     end
 
     def call
-      return "" if text.blank?
-      text.truncate(66).downcase!.capitalize!
+      text.truncate(66).downcase.capitalize
     end
   end
 end
