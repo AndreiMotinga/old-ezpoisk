@@ -1,5 +1,5 @@
 /= render "actions/#{action.actionable}"
-.col-xs-12
+.col-xs-12 class=('hidden' if action.actionable.try(:unpublished?))
   .row.mdl-shadow--3dp.article
     .panel
       = render "shared/tags", record: action.actionable

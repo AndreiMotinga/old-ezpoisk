@@ -30,6 +30,8 @@ module Ezpoisk
       end
     end
 
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     config.middleware.insert_before 0, SearchSuggestions
 
     config.autoload_paths += %W(#{config.root}/config/routes)

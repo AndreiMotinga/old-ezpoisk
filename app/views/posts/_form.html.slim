@@ -10,9 +10,9 @@
 = form_for @post do |f|
   br
   .field
-    = f.label :published, "Дата публикации:  "
+    = f.label :published_at, "Дата публикации:  "
     = " "
-    = f.datetime_select :published, minute_step: 15
+    = f.datetime_select :published_at, minute_step: 15, default: Time.zone.now
 
   br
   .field

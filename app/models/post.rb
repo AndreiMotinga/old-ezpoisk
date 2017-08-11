@@ -21,7 +21,11 @@ class Post < ApplicationRecord
   before_save :update_logo
   after_save :update_cached_tags
 
-  scope :published, -> { where("published < ?", Time.zone.now) }
+  scope :published, -> { where("published_at < ?", Time.zone.now) }
+
+  def unpublished?
+    published_at > Time.zone.now
+  end
 
   def show_url
     Rails.application.routes.url_helpers.post_url(self)

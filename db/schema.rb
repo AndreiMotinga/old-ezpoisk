@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809213337) do
+ActiveRecord::Schema.define(version: 20170811194820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,7 +177,7 @@ ActiveRecord::Schema.define(version: 20170809213337) do
     t.string "cached_tags", default: "", null: false
     t.string "slug", default: "", null: false
     t.string "logo_url"
-    t.datetime "published", default: "2017-08-09 21:34:35", null: false
+    t.datetime "published_at", default: -> { "now()" }
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
