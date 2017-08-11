@@ -45,7 +45,9 @@ module FormHelper
 
   def service_sub_opts(category, placeholder = nil)
     return [] unless category.present?
-    subs = RU_KINDS["услуги"][:subcategories][category].map { |sub| display_option(sub) }
+    subs = RU_KINDS["услуги"][:subcategories][category]
+    return [] unless subs # fix for kind mismatch
+    subs = subs.map { |sub| display_option(sub) }
     placeholder ? subs.insert(0, ["Подкатегория", ""]) : subs
   end
 
