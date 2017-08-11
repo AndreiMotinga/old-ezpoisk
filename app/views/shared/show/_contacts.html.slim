@@ -31,7 +31,7 @@
           strong
             = link_to record.site, target: "_blank", rel: "nofollow" do
               i.fa.fa-lg.fa-globe
-              |  Я онлайн
+              = "  #{record.site}"
 
       - if record.try(:email).present?
         li.list-group-item
