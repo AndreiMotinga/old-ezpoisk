@@ -16,6 +16,6 @@
   = " | "
   = link_to "Редактировать", edit_listing_path(record)
   = " | "
-  = link_to "Удалить", listing_path(record), method: :delete
+  = link_to "Удалить", listing_path(record), method: :delete, target: "_blank"
   = " | "
   = link_to "Touch", touch_listing_path(record), method: :post, data: { remote: true }
