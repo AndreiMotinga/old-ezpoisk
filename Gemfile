@@ -79,6 +79,7 @@ group :development do
   gem "rails_best_practices", require: false # code quality
   gem "brakeman", require: false # security vulnerabilities
   gem "traceroute", require: false # find unused routes
+  gem "derailed" # memory profiling
 end
 
 group :development, :test do
