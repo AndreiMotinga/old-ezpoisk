@@ -317,6 +317,9 @@ GEM
       pry (~> 0.10)
     public_suffix (2.0.5)
     puma (3.9.1)
+    puma_worker_killer (0.1.0)
+      get_process_mem (~> 0.2)
+      puma (>= 2.7, < 4)
     rack (2.0.3)
     rack-canonical-host (0.2.3)
       addressable (> 0, < 3)
@@ -576,6 +579,7 @@ DEPENDENCIES
   pg_search
   pry-byebug
   puma
+  puma_worker_killer
   rack-canonical-host
   rack-cors
   rack-mini-profiler

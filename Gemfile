@@ -69,6 +69,7 @@ gem "babosa" # todo remove? handle russian
 
 gem "rails-timeago", "~> 2.0"
 gem "puma"
+gem "puma_worker_killer"
 
 group :development do
   gem "listen"
