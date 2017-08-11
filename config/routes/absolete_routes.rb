@@ -28,6 +28,7 @@ module AbsoleteRoutes
       # get "/ezanswer", to: redirect("/answers")
       # get "/ezanswer/:id", to: redirect("/answers/%{id}")
       #
+      get "/объявления/услуги/требуется", to: redirect(URI.encode("/объявления/услуги/другое-разное"))
       get "/объявления/услуги/другое", to: redirect(URI.encode("/объявления/услуги/другое-разное"))
       get "/объявления/услуги/другое/:id", to: redirect(URI.encode("/объявления/услуги/другое-разное/%{id}"))
       get "/объявления/услуги/другое/:id/:id1", to: redirect(URI.encode("/объявления/услуги/другое-разное/%{id}/%{id1}"))
