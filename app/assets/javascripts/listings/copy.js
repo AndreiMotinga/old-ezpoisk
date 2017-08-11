@@ -6,6 +6,10 @@ $(document).on("click","#half-copy", function(e){
   copyToClipboard($('#half-text'))
 });
 
+$(document).on("click","#copy-comment", function(e){
+  copyToClipboard($('#comment'))
+});
+
 function copyToClipboard(element) {
   var $temp = $("<textarea>");
   $("body").append($temp);

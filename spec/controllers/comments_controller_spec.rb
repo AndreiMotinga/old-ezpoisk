@@ -18,7 +18,7 @@ describe CommentsController do
       comment = Comment.last
       expect(comment.user).to eq @user
       expect(comment.text).to eq attrs[:text]
-      expect(rp.updated_at).to eq Time.zone.now
+      expect(rp.updated_at).to eq 1.day.ago
     end
   end
 end
