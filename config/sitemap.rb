@@ -35,22 +35,45 @@ SitemapGenerator::Sitemap.create do
   #   end
 
   # add index listings pages
+  %w(работа продажи недвижимость услуги).each do |kind|
+    add URI.unescape(search_listings_path(kind: kind)),
+        priority: 0.8,
+        changefreq: "hourly"
+  end
+
+  # categories
+  %w(работа продажи недвижимость).each do |kind|
+    RU_KINDS[kind]["categories"].each do |cat|
+      next unless Listing.where(kind: kind, category: cat).any?
+      url = search_listings_path(kind: kind, category: cat)
+      add URI.unescape(url), priority: 0.8, changefreq: "daily"
+    end
+  end
+
+  # subcategories
   %w(работа продажи недвижимость).each do |kind|
     RU_KINDS[kind]["categories"].each do |cat|
       RU_KINDS[kind]["subcategories"].each do |sub|
-        if Listing.where(kind: kind, category: cat, subcategory: sub).any?
-          url = search_listings_path(kind: kind, category: cat, subcategory: sub)
-          add URI.unescape(url), priority: 0.8, changefreq: "daily"
-        end
+        next unless Listing.where(kind: kind, category: cat, subcategory: sub).any?
+        url = search_listings_path(kind: kind, category: cat, subcategory: sub)
+        add URI.unescape(url), priority: 0.8, changefreq: "weekly"
       end
     end
   end
 
+  # service categories
+  RU_KINDS["услуги"]["categories"].each do |cat|
+    next unless Listing.where(kind: "услуги", category: cat).any?
+    url = search_listings_path(kind: "услуги", category: cat)
+    add URI.unescape(url), priority: 0.8, changefreq: "weekly"
+  end
+
+  # service subcategories
   RU_KINDS["услуги"]["categories"].each do |cat|
     RU_KINDS["услуги"]["subcategories"][cat].each do |sub|
       if Listing.where(kind: "услуги", category: cat, subcategory: sub).any?
         url = search_listings_path(kind: "услуги", category: cat, subcategory: sub)
-        add URI.unescape(url), priority: 0.8, changefreq: "daily"
+        add URI.unescape(url), priority: 0.8, changefreq: "weekly"
       end
     end
   end
@@ -92,4 +115,6 @@ SitemapGenerator::Sitemap.create do
         lastmod: user.updated_at,
         changefreq: "weekly"
   end
+
+  add about_path, priority: 0.3, changefreq: "never"
 end
