@@ -1,8 +1,10 @@
-button.mdl-button.mdl-js-button.mdl-button--icon.pull-right id=listing.id
-  i.material-icons more_vert
-ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for=listing.id
-  li.mdl-menu__item= link_to "Подробнее", listing_path(listing)
-  - if listing.user_id == current_user.try(:id) || current_user.try(:admin?)
-    li.mdl-menu__item= link_to "Обновить", touch_listing_path(listing), method: :post, data: { remote: true }
-    li.mdl-menu__item= link_to "Редактировать", edit_listing_path(listing)
-    li.mdl-menu__item= link_to "Удалить", listing_path(listing), method: :delete
+- if listing.user_id == current_user.try(:id) || !current_page?(listing_path(listing))
+  button.mdl-button.mdl-js-button.mdl-button--icon.pull-right id=listing.id
+    i.material-icons more_vert
+  ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect for=listing.id
+    - unless current_page?(listing_path(listing))
+      li.mdl-menu__item= link_to "Подробнее", listing_path(listing)
+    - if listing.user_id == current_user.try(:id) || current_user.try(:admin?)
+      li.mdl-menu__item= link_to "Обновить", touch_listing_path(listing), method: :post, data: { remote: true }
+      li.mdl-menu__item= link_to "Редактировать", edit_listing_path(listing)
+      li.mdl-menu__item= link_to "Удалить", listing_path(listing), method: :delete
