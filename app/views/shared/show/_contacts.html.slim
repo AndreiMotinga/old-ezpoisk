@@ -27,7 +27,7 @@
               strong= number_to_phone phone, area_code: 1
 
       - if record.try(:site).present?
-        li.list-group-item
+        li.list-group-item style="overflow:hidden"
           strong
             = link_to record.site, target: "_blank", rel: "nofollow" do
               i.fa.fa-lg.fa-globe
