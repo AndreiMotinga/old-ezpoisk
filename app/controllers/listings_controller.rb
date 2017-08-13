@@ -44,8 +44,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(listing_params)
-    @listing.user = current_user
+    @listing = current_user.new(listing_params)
     if @listing.save
       @listing.clear_phone!
       redirect_to edit_listing_path(@listing), notice: I18n.t(:post_created)

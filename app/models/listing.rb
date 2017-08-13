@@ -81,7 +81,7 @@ class Listing < ApplicationRecord
   end
 
   def format_site
-    return unless site
+    return unless site.present?
     self.site = site.prepend("http://") unless site.match(/http/)
   end
 end
