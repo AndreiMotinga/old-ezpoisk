@@ -31,10 +31,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listing = Listing.includes(:state, :city).find_by_id(params[:id])
-    unless @listing && @listing.active?
-      redirect_to root_path, alert: I18n.t(:post_not_found)
-    end
+    @listing = Listing.active.includes(:state, :city).find(params[:id])
   end
 
   def new

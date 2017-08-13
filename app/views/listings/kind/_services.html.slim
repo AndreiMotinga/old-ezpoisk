@@ -6,13 +6,20 @@
 .col-xs-12.listing.mdl-shadow--2dp
   .row
     div.col-xs-12.col-sm-4
-      = link_to listing do
+      - if current_page?(listing_path(listing))
         img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
+      - else
+        = link_to listing do
+          img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
 
     .col-xs-8
       / line 0
       = render "listings/kind/menu", listing: listing
-      h4.title= link_to listing.title, listing
+
+      - if current_page?(listing_path(listing))
+          h4.title= listing.title
+      - else
+        h4.title= link_to listing.title, listing
 
       / line 1
       = link_to display(cat), search_listings_path(kind: kind, category: cat)

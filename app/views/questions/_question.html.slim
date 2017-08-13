@@ -2,8 +2,11 @@
   .panel
     = render "shared/tags", record: question
     .panel-heading
-      h1.title
-        = link_to question.title, question
+      - if current_page?(question_path(question))
+        h1.title= question.title
+      - else
+        h1.title= link_to question.title, question
+
       p.text-muted
         = "#{question.answers_count} ответов | "
         = link_to new_answer_path(question_id: question.id) do

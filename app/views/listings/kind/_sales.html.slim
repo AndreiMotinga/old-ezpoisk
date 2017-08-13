@@ -7,14 +7,20 @@
   .row
     - if has_pics
       .col-xs-12.col-sm-4
-        = link_to listing do
+        - if current_page?(listing_path(listing))
           img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
+        - else
+          = link_to listing do
+            img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
 
     .col-xs-12 class=("col-sm-8" if has_pics)
       = render "listings/kind/menu", listing: listing
 
-      h4.title= link_to listing do
-        = "#{listing.city.name}, #{cat}"
+      - title = "#{listing.city.name}, #{cat}"
+      - if current_page?(listing_path(listing))
+        h4.title= title
+      - else
+        h4.title= link_to title, listing
 
       / line 1
       = link_to display(cat), search_listings_path(kind: kind, category: cat)

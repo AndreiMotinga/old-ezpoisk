@@ -4,8 +4,13 @@
 
 .col-xs-12.listing.mdl-shadow--2dp
   = render "listings/kind/menu", listing: listing
-  h4.title= link_to listing do
-    = "#{listing.city.name}, #{cat}"
+
+  - title = "#{listing.city.name}, #{cat}"
+  - if current_page?(listing_path(listing))
+    h4.title= title
+  - else
+    h4.title= link_to title, listing
+
   - unless current_page?(listing_path(listing))
     p.text
       = strip_tags(listing.text).truncate(280)
