@@ -41,4 +41,8 @@ class Action < ApplicationRecord
   def logo_url
     actionable.logo_url if %w[Post Answer].include? actionable_type
   end
+
+  def article?
+    %(Answer Post Question).include? actionable_type
+  end
 end

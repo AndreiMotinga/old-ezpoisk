@@ -4,7 +4,8 @@
     .panel
       = render "shared/tags", record: action.actionable
       .panel-heading
-        /h1.title= link_to action.title, action.show_url
+        - if action.article?
+          h1.title= link_to action.title, action.show_url
         .row.author
           .col-xs-3.col-sm-2
             = link_to action.name_url do
