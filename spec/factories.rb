@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
+  factory :impression do
+    impressionable nil
+    kind "MyString"
+    user nil
+    ip_address "MyString"
+    referrer "MyString"
+  end
   factory :experience do
     kind %w[education job].sample
     name { Faker::Name.title }
@@ -112,6 +119,16 @@ FactoryGirl.define do
     trait :in_miami do
       state_id 9
       city_id 3964
+    end
+
+    trait :without_callbacks do
+      after(:build) do |order|
+        order.class.skip_callback :create, :after, :notify_slack
+      end
+
+      after(:create) do |order|
+        order.class.set_callback :create, :after, :notify_slack
+      end
     end
   end
 

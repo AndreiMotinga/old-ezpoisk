@@ -5,6 +5,7 @@ class Listing < ApplicationRecord
   include Filterable
   include Tokenable
   include Commentable
+  include Impressionable
   include Mappable
   acts_as_mappable
 

@@ -14,6 +14,26 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def create_show_impressions(records)
+    records.each do |rec|
+      ImpressionableJob.perform_async(rec.class.to_s,
+                                      rec.id,
+                                      "show",
+                                      current_user.try(:id),
+                                      request.remote_ip,
+                                      request.referrer)
+    end
+  end
+
+  def create_visit_impression(rec)
+    ImpressionableJob.perform_async(rec.class.to_s,
+                                    rec.id,
+                                    "visit",
+                                    current_user.try(:id),
+                                    request.remote_ip,
+                                    request.referrer)
+  end
+
   def address_changed?(record, prms)
     return true if record.try(:street) != prms[:street]
     return true if record.state_id != prms[:state_id].to_i
