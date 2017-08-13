@@ -55,13 +55,6 @@ SitemapGenerator::Sitemap.create do
     end
   end
 
-  Listing.active.find_each do |listing|
-    add URI.unescape(listing_path(listing)),
-        priority: 0.4,
-        lastmod: listing.updated_at,
-        changefreq: "weekly"
-  end
-
   add answers_path, priority: 0.8, changefreq: "daily"
   Answer.find_each do |answer|
     add answer_path(answer),
@@ -83,6 +76,13 @@ SitemapGenerator::Sitemap.create do
     add post_path(post),
         priority: 0.6,
         lastmod: post.created_at,
+        changefreq: "weekly"
+  end
+
+  Listing.active.find_each do |listing|
+    add URI.unescape(listing_path(listing)),
+        priority: 0.4,
+        lastmod: listing.updated_at,
         changefreq: "weekly"
   end
 
