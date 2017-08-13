@@ -19,6 +19,8 @@ class PostsController < ApplicationController
   def tag
     @popular = Comment.popular
     @posts = Post.includes(:user)
+                 .published
+                 .order(created_at: :desc)
                  .tagged_with(params[:tag], any: true)
                  .page(params[:page])
 
