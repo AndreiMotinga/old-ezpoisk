@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class Impression < ApplicationRecord
-  belongs_to :impressionable, polymorphic: true
+  belongs_to :impressionable, polymorphic: true, counter_cache: true
   belongs_to :user
 
   before_save :unescape_uri
 
   scope :show, -> { where(kind: "show") }
   scope :visit, -> { where(kind: "visit") }
-  scope :uniq_count, -> { group(:ip_address).count }
+  scope :by_ip, -> { group(:ip_address).count }
 
   private
 

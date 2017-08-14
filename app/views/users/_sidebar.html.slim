@@ -7,5 +7,3 @@
     // don't show listings for ez
     - unless @user.id == 1
       li.tag= link_to "Объявления", listings_user_path(@user), class: "grey #{cp(listings_user_path(@user))}"
-    - if user_signed_in? && @user == current_user
-      li.tag= link_to "Настройки", edit_user_path(current_user, act: "general"), class: "grey"

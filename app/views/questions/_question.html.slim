@@ -9,6 +9,7 @@
 
       p.text-muted
         = "#{question.answers_count} ответов | "
+        = "#{question.impressions_count} просмотров | "
         = link_to new_answer_path(question_id: question.id) do
           = " Добавить ответ "
           i.fa.fa-pencil

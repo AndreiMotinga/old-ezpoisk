@@ -17,6 +17,6 @@ feature "user creates question" do
     expect(question.title).to eq attrs.title
     expect(question.text).to eq attrs.text
     expect(question.slug).not_to be_empty
-    expect(question.cached_tags).to eq "недвижимость,работа"
+    expect(question.cached_tags.split(",")).to match_array %w[недвижимость работа]
   end
 end

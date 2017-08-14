@@ -1,0 +1,23 @@
+span
+  i.fa.fa-eye style=("display:none;" if current_page?(articles_path))
+  span.badge
+    span[data-toggle="tooltip"
+         data-placement="bottom"
+         title="Количество уникальных показов объявления в разных частях сайта."]
+      = record.impressions.by_ip.count
+    = " / "
+    small[data-toggle="tooltip"
+          data-placement="bottom"
+          title="Общее количество показов"]
+      = record.impressions_count
+  = " | "
+  span.badge
+    span[data-toggle="tooltip"
+             data-placement="bottom"
+             title="Количество уникальных просмотров этой страницы"]
+      = record.impressions.visit.by_ip.count
+    = " / "
+    small[data-toggle="tooltip"
+          data-placement="bottom"
+          title="Общее количество просмотров этой страницы"]
+      = record.impressions.visit.size

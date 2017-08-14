@@ -6,9 +6,10 @@ class Answer < ActiveRecord::Base
   include MyFriendlyId
   include Commentable
   include Filterable
+  include Impressionable
 
   belongs_to :user
-  belongs_to :question, touch: true
+  belongs_to :question, touch: true, counter_cache: true
   belongs_to :state
   belongs_to :city
   has_one :action, as: :actionable, dependent: :destroy

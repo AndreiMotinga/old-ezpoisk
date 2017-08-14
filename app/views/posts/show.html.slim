@@ -32,6 +32,7 @@
         small= ", #{@post.user.short_bio}" if @post.user.short_bio.present?
         p.date.text-muted
           = time_ago_in_words @post.published_at
+          = " | #{@post.impressions_count} просмотов"
           - if current_user.try(:can_edit?, @post)
             = " | "
             = link_to "Редактировать", edit_post_path(@post), class: "text-muted"

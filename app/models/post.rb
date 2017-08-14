@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   include Filterable
   include Commentable
   include MyFriendlyId
+  include Impressionable
 
   belongs_to :user
 

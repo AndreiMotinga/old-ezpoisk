@@ -3,6 +3,8 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :tag, :show]
   before_action :set_post, only: [:edit, :update, :destroy]
+  after_action(only: [:index, :tag]) { create_show_impressions(@posts) }
+  after_action(only: :show) { create_visit_impression(@post)  }
 
   def index
     @popular = Comment.popular

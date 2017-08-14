@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Picture < ActiveRecord::Base
-  belongs_to :imageable, polymorphic: true, touch: true
+  belongs_to :imageable, polymorphic: true, touch: true, counter_cache: true
   belongs_to :user
 
   has_attached_file :image, styles: { medium: "x180",

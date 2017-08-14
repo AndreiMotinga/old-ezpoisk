@@ -19,6 +19,6 @@ feature "user updates post", js: true do
     expect(record.title).to eq attrs.title
     expect(record.text).to eq "New text." + "Old Text"
     expect(record.slug).not_to be_empty
-    expect(record.cached_tags).to eq "работа,законы,недвижимость"
+    expect(record.cached_tags.split(",")).to match_array %w[работа законы недвижимость]
   end
 end

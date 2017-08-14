@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170813204325) do
+ActiveRecord::Schema.define(version: 20170814205026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20170813204325) do
     t.integer "votes_count", default: 0
     t.string "cached_tags", default: ""
     t.string "logo_url"
+    t.integer "impressions_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["slug"], name: "index_answers_on_slug"
     t.index ["user_id"], name: "index_answers_on_user_id"
@@ -152,6 +154,9 @@ ActiveRecord::Schema.define(version: 20170813204325) do
     t.string "kind"
     t.string "from_name"
     t.string "legend", default: "", null: false
+    t.integer "impressions_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
+    t.integer "pictures_count", default: 0, null: false
     t.index ["city_id"], name: "index_listings_on_city_id"
     t.index ["state_id"], name: "index_listings_on_state_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
@@ -191,6 +196,8 @@ ActiveRecord::Schema.define(version: 20170813204325) do
     t.string "slug", default: "", null: false
     t.string "logo_url"
     t.datetime "published_at", default: -> { "now()" }
+    t.integer "impressions_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -203,6 +210,8 @@ ActiveRecord::Schema.define(version: 20170813204325) do
     t.string "cached_tags"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer "impressions_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["slug"], name: "index_questions_on_slug", unique: true
     t.index ["title"], name: "index_questions_on_title"
     t.index ["user_id"], name: "index_questions_on_user_id"
@@ -277,6 +286,7 @@ ActiveRecord::Schema.define(version: 20170813204325) do
     t.text "about", default: ""
     t.datetime "last_seen"
     t.string "gender", default: "male", null: false
+    t.integer "impressions_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

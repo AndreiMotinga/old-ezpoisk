@@ -47,14 +47,8 @@
               i.fa.fa-map-o
               | Google Map
 
-      - if current_user.try(:admin?)
-        li.list-group-item
-          strong
-            i.fa.fa-eye
-            = record.impressions.show.uniq_count
-            | " / "
-            = record.impressions.visit.uniq_count
-
+      li.list-group-item
+        = render "shared/impressions_stat", record: record
 
       li.list-group-item
         = render "social_share_buttons", record: record, klass: "block"

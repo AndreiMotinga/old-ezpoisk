@@ -1,17 +1,23 @@
 .row.header
-  .col-xs-12.col-sm-3
+  .col-xs-12.col-sm-3.text-center
     = link_to user_path(@user) do
       = image_tag @user.avatar(:medium),
                   alt: "автор ответа #{@user.name}",
                   class: "img-responsive img-circle center-block"
+    hr
+    span #{@user.impressions_count} просмотров
+    br
+    - if user_signed_in? && @user == current_user
+      p= link_to "Настройки", edit_user_path(current_user, act: "general")
+
   .col-xs-12.col-sm-9
     p
       strong.name= link_to @user.name, user_path(@user)
       - if @user.short_bio.present?
         span.slug= ", #{@user.short_bio}"
     p
-      span#text data-text=@user.about = @user.about.truncate(250)
+      span#text data-text=@user.about = @user.about.truncate(400)
       = " "
-      - if @user.about.size > 250
+      - if @user.about.size > 500
         a#about-show href="#" дальше
 hr

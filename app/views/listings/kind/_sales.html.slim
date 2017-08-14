@@ -39,10 +39,7 @@
 
       / line 3
       = " | "
-      span data-time=listing.id = time_ago_in_words listing.updated_at
-      = " | "
       = render "shared/indicators", record: listing
-
 
   - unless current_page?(listing_path(listing))
     hr.post-devider

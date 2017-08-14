@@ -8,11 +8,12 @@
         th Автор
         th Заголовок
         th Тэги
-        th N
-        th N*0.15
+        th.col-xs-1  Просмотры
         th: i class="fa fa-picture-o" aria-hidden="true"
         th: i class="fa fa-comments-o" aria-hidden="true"
-        th: i class="fa fa-eye" aria-hidden="true"
+        th N
+        th N*0.15
+
     tbody data-id="listings"
       - @articles.each do |article|
         = render "articles/article", article: article

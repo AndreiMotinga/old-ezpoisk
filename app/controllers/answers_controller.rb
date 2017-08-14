@@ -3,6 +3,8 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
   before_action :set_answer, only: [:edit, :update, :destroy]
+  after_action(only: [:index, :tag]) { create_show_impressions(@answers) }
+  after_action(only: :show) { create_visit_impression(@answer) }
 
   def index
     @answers = Answer.includes(:user).page(params[:page])
@@ -39,7 +41,7 @@ class AnswersController < ApplicationController
     @answer.cached_tags = @answer.question.tags.pluck(:name).join(", ")
 
     if @answer.save
-      run_create_notifications(user)
+      SlackNotifierJob.perform_async(@answer.id, "Answer")
       redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))
     else
       flash.now[:alert] = I18n.t(:review_not_saved)
@@ -84,11 +86,6 @@ class AnswersController < ApplicationController
   end
 
   private
-
-  def run_create_notifications(user)
-    SlackNotifierJob.perform_async(@answer.id, "Answer")
-    question.update_attribute(:answers_count, question.answers_count + 1)
-  end
 
   def set_answer
     @answer = Answer.find(params[:id])

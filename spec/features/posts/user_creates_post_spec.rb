@@ -20,6 +20,6 @@ feature "user creates post", js: true do
     expect(saved_post.title).to eq attrs.title
     expect(saved_post.text).to eq "<p>This is awesome blog.</p>"
     expect(saved_post.slug).not_to be_empty
-    expect(saved_post.cached_tags).to eq "недвижимость,работа"
+    expect(saved_post.cached_tags.split(",")).to match_array %w[недвижимость работа]
   end
 end

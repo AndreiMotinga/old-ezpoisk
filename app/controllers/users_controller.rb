@@ -3,6 +3,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :set_user, only: [:show, :posts, :questions]
+  after_action(only: :show) { create_visit_impression(@user) }
 
   def show
     @answers = @user.answers.page(params[:page])

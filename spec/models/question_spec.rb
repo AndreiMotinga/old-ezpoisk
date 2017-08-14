@@ -92,7 +92,7 @@ describe Question do
       question.tag_list = %w[работа недвижимость]
       question.save
 
-      expect(question.cached_tags).to eq "работа,недвижимость"
+      expect(question.cached_tags.split(",")).to match_array %w[работа недвижимость]
     end
 
     it "udpates cached_tags on questions answers" do
@@ -103,8 +103,8 @@ describe Question do
       question.save
 
       answer.reload
-      expect(answer.cached_tags).to eq "работа,недвижимость"
-      expect(answer.tag_list).to match %w[работа недвижимость]
+      expect(answer.cached_tags.split(",")).to match_array %w[работа недвижимость]
+      expect(answer.tag_list).to match_array %w[работа недвижимость]
     end
   end
 end

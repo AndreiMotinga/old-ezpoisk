@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   include Commentable
   include MyFriendlyId
   include Searchable
-  # include Commentable
+  include Impressionable
 
   belongs_to :user, optional: true
   belongs_to :state

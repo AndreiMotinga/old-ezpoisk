@@ -11,6 +11,6 @@ feature "user updates skills", js: true do
 
     expect(page).to have_content I18n.t(:user_updated)
     user.reload
-    expect(user.tag_list).to match ["недвижимость", "работа"]
+    expect(user.tag_list).to match_array %W[недвижимость работа]
   end
 end

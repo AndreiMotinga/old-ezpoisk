@@ -1,6 +1,6 @@
 - if record.street.present?
   i.fa.fa-map-o
-- if record.pictures.count > 1
+- if record.pictures_count > 1
   i.fa.fa-picture-o
 - if record.try(:site).present?
   i.fa.fa.fa-share-square-o
@@ -12,6 +12,13 @@
   i.fa.fa-facebook.text-muted
 - if record.vk.present?
   i.fa.fa-vk.text-muted
+= " | "
+span[data-time=record.id
+     data-toggle="tooltip"
+     data-placement="bottom"
+     title="Объявление было создано или обновлено #{time_ago_in_words record.updated_at} назад"]
+  i class="fa fa-refresh" aria-hidden="true"
+  = " #{time_ago_in_words record.updated_at}"
 - if current_user.try(:admin?)
   = " | "
   = link_to "Редактировать", edit_listing_path(record)

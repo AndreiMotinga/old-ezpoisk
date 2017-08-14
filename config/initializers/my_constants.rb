@@ -4,8 +4,6 @@ RP_SORT_OPTIONS = {
   "Сортировать": "",
   "Подешевле": "price asc",
   "Подороже": "case when price is null then -1 else price end desc",
-  "Поменьше": "space asc",
-  "Побольше": "space desc",
   "Поновее": "created_at desc"
 }
 

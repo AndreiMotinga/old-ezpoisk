@@ -11,7 +11,9 @@
           h4.name= link_to answer.name, user_path(answer.user), target: "_blank"
           small= answer.user.short_bio
           br
+          small #{answer.impressions_count} просмотров
           - if current_user.try(:can_edit?, answer)
+            = " | "
             small= link_to "Редактировать", edit_answer_path(answer), class: "text-muted"
 
     .panel-body

@@ -108,7 +108,7 @@ class ListingsController < ApplicationController
   end
 
   def check_search
-    if [params[:kind], params[:category], params[:subcategory]].all?(&:present?)
+    if [params[:kind], params[:category]].all?(&:present?)
       prms = request.parameters
                     .reject { |key| %w(controller action).include? key }
                     .reject { |_, val| val.blank? }
