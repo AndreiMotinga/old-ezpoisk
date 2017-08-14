@@ -4,7 +4,10 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!, only: [:edit]
   before_action :set_answer, only: [:edit, :update, :destroy]
   after_action(only: [:index, :tag]) { create_show_impressions(@answers) }
-  after_action(only: :show) { create_visit_impression(@answer) }
+  after_action(only: :show) do
+    create_visit_impression(@answer)
+    create_visit_impression(@answer.question)
+  end
 
   def index
     @answers = Answer.includes(:user).page(params[:page])

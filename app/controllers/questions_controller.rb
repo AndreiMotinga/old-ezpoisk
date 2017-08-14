@@ -3,7 +3,10 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   after_action(only: [:index, :tag]) { create_show_impressions(@questions) }
-  after_action(only: :show) { create_visit_impression(@question) }
+  after_action(only: :show) do
+    create_visit_impression(@question)
+    create_show_impressions(@question.answers)
+  end
 
   def index
     @questions = Question.unanswered.search(params[:term])
