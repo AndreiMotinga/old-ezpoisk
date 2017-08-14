@@ -5,7 +5,7 @@ html lang="ru"
     = render "navbar"
 
     .page-wrap
-      = render "notice" unless devise_controller?
+      = render "notice"
       = yield :header
 
       .container
