@@ -6,6 +6,7 @@ class FbImporterJob
   sidekiq_options queue: 'critical'
 
   def perform
+    return unless Rails.env.production?
     Media::Importer.new("public/fb_groups.json", Fb::GroupLoader).import
   end
 end

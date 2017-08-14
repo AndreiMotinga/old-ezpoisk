@@ -6,6 +6,7 @@ class VkImporterJob
   sidekiq_options queue: "critical"
 
   def perform
+    return unless Rails.env.production?
     Media::Importer.new("public/vk_groups.json", Vk::GroupLoader).import
   end
 end
