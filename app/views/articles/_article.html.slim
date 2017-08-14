@@ -1,0 +1,14 @@
+- size = strip_tags(article.text).scan(/\S+/).size
+tr
+  td= article.created_at.strftime("%a_%b_%d")
+  td= article.user&.name&.split&.first
+  td= link_to article.title, article.show_url
+  td= render "shared/tags", record: article
+  td= size
+  td $#{(size * 0.15).round / 100.0}
+  - if article.logo_url.present?
+    td: i class="fa fa-check" aria-hidden="true" style="color: green;"
+  - else
+    td: i class="fa fa-times" aria-hidden="true" style="color: red;"
+  td= article.comments.count
+  td 0/0

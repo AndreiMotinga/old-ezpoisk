@@ -1,0 +1,21 @@
+- users = []
+form.form-horizontal action=articles_path method="get"
+  = select_tag :user_id,
+               options_for_select(User.joins(:posts).uniq.collect{ |u| [u.name, u.id] }, params[:user_id]),
+               { include_blank: true }
+  = " - "
+  = select_tag :model,
+               options_for_select([ "Post", "Answer" ], params[:model]),
+               { include_blank: true }
+  br
+  br
+  = select_date 1.week.ago, prefix: :start_date
+  = " - "
+  = select_date Time.zone.now, prefix: :end_date
+  br
+  br
+
+  .actions
+    = "  "
+    = submit_tag "Обновить", name: nil
+br

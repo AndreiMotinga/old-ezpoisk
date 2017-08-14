@@ -1,0 +1,12 @@
+// render records
+<% @articles.each do |article| %>
+  $("[data-id='listings']").append("<%= j render("articles/article", article: article) %>");
+<% end %>
+
+// update pagination links
+<% if @articles.next_page %>
+  $(".pagination").replaceWith("<%= j(paginate @articles) %>")
+<% else  %>
+  $(".pagination").remove();
+  $("#p2").remove();
+<% end %>

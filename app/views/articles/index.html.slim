@@ -1,0 +1,26 @@
+= render "search"
+
+.white-block
+  table.table.table-hover.table-bordered
+    thead
+      tr
+        th Дата
+        th Автор
+        th Заголовок
+        th Тэги
+        th N
+        th N*0.15
+        th: i class="fa fa-picture-o" aria-hidden="true"
+        th: i class="fa fa-comments-o" aria-hidden="true"
+        th: i class="fa fa-eye" aria-hidden="true"
+    tbody data-id="listings"
+      - @articles.each do |article|
+        = render "articles/article", article: article
+    tfoot
+      tr style="text-align: right;"
+        - total_size = @articles.map{|a| strip_tags(a.text).scan(/\S+/).size }.reduce(&:+)
+        - total_price = (total_size * 0.15).round / 100.0
+        td colspan=9 Итого $#{total_price}
+
+tr
+  = render "shared/pagination", records: @articles

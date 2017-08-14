@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
     mount RailsAdmin::Engine => "/teacup", as: "rails_admin"
+    get "/articles", to: "articles#index"
   end
 
   get "/about", to: "home#about"
