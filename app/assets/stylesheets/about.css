@@ -128,7 +128,6 @@ body::before {
   flex-grow: 1;
   flex-direction: row;
   align-items: flex-end;
-  cursor: pointer;
 }
 .demo-blog .mdl-card__media a,
 .demo-blog .mdl-card__title a {
