@@ -1,9 +1,10 @@
-ul.answers-menu.hidden-xs.col-md-8.col-md-offset-4
-  li.header Топики
-  - if type == "answers"
-    li.tag= link_to "Ответить", questions_path, class: "gray"
-    li.tag= link_to "Новые", answers_path, class: "gray"
-  - elsif type == "questions"
-    li.tag= link_to "Все", questions_path, class: "gray"
-  - tags.each do |tag|
-    li.tag= link_to tag.name.capitalize, "#{url}#{tag.name}", class: "gray"
+.answers-menu-container
+  ul.answers-menu
+    li.header Топики
+    - if type == "answers"
+      li.tag= link_to "Ответить", questions_path, class: "gray"
+      li.tag= link_to "Новые", answers_path, class: "gray"
+    - elsif type == "questions"
+      li.tag= link_to "Все", questions_path, class: "gray"
+    - tags.each do |tag|
+      li.tag= link_to tag.name.capitalize, "#{url}#{tag.name}", class: "gray"

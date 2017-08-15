@@ -2,22 +2,22 @@ form.form-horizontal action=listings_path(kind: "недвижимость") meth
   = render "shared/search_by_address"
 
   .row
-    .col-xs-12.col-sm-6.col-md-12
+    .col-xs-12
       = select_tag :category, category_opts, class: "form-control"
       = select_tag :subcategory, subcategory_opts, class: "form-control"
 
-    .col-xs-12.col-sm-6.col-md-12
+    .col-xs-12
       = number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "$ min"
       = number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "$ max"
 
-    .col-xs-12.col-sm-6.col-md-12
+    .col-xs-12
       = select_tag :duration,
                    options_for_select([["Период", ""]] + RU_KINDS["недвижимость"][:duration], params[:duration]),
                    class: "form-control"
       = select_tag :rooms,
                    options_for_select([["Комнаты", ""]] + RU_KINDS["недвижимость"][:rooms], params[:rooms]),
                    class: "form-control"
-    .col-xs-12.col-sm-6.col-md-12
+    .col-xs-12
       = sort_select(RP_SORT_OPTIONS)
       = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевые слова... "
 

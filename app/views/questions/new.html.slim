@@ -1,8 +1,7 @@
 - meta title: "Что, где, когда и как в США? Информация для наших - ezpoisk",
        description: "Форум русскоговорящих в США"
 
-- content_for :header, render("partners/top")
-- content_for :right do
-  = render "google_ad"
+- content_for :header, render("partners/top", partner: Partner.get(1).first)
 
-= render "form"
+.container.container-md
+  = render "form"

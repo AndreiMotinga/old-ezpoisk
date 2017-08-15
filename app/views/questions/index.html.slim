@@ -11,19 +11,22 @@
              url: questions_url,
              image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- content_for :sidebar do
-  = render "shared/answers_menu",
-           url: "/questions/tag/",
-           tags: @tags,
-           type: "questions"
+- top, left, right = Partner.get(3)
+- content_for :left do
+  .hidden-xs.sticky
+    = render "shared/answers_menu",
+             url: "/questions/tag/",
+             tags: @tags,
+             type: "questions"
+    = render "partners/left", partner: left
 
-- content_for :header, render("partners/top")
+- content_for :header do
+  = render "partners/top", partner: top
+
 
 - content_for :right do
-  = render "google_ad"
-  br
   .sticky
-    = render "partners/right"
+    = render "partners/right", partner: right
 
 .col-xs-12 data-id="listings"
   = render @questions

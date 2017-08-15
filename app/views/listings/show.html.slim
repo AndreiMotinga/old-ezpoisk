@@ -10,27 +10,30 @@
              url: @listing.show_url,
              image: @listing.logo_url }
 
--content_for :head do
-  script src="//maps.google.com/maps/api/js?v=3.24&libraries=geometry&key=#{ENV["GOOGLE_MAPS_API_KEY"]}" type="text/javascript" defer="" async=""
-  script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
-
+- top, right = Partner.get(1).first
+- content_for :header do
+  = render "partners/top", partner: top
 - content_for :right do
   = render "shared/show/contacts", record: @listing
   = render "shared/show/map", record: @listing
-  = render "google_ad"
+  = render "partners/right", partner: right
 
 = render "shared/show/pictures", record: @listing
 = render @listing
 = render "shared/show/text", record: @listing
 = render "listings/comments", record: @listing
+.visible-xs.visible-sm.col-xs-12
+  = render "shared/show/contacts", record: @listing
 
 .row
   .col-xs-12
-    - @listing.siblings.any?
-      h4.text-muted Другие объявления пользователя
-      hr
-      = render @listing.siblings
+    div data-id="listings"
+      - @siblings.any?
+        h4.text-muted Другие объявления пользователя
+        hr
+        = render @siblings
 
-.visible-xs.visible-sm.col-xs-12
-  = render "shared/show/contacts", record: @listing
-= render "social_share_buttons_js"
+= render "shared/pagination", records: @siblings
+
+- content_for :javascript do
+  = render "social_share_buttons_js"

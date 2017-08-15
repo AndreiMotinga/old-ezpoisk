@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   end
 
   extend PostRoutes
+  extend DashboardRoutes
 
   resources :users, path: "profiles", only: [:show, :edit, :update] do
     member do
@@ -61,6 +62,8 @@ Rails.application.routes.draw do
   end
   resources :experiences, only: [:create, :update, :destroy]
   resources :contacts, only: [:update]
+
+  resources :impressions, only: [:show, :create]
 
   # Utils
   get "sitemaps/sitemap.:format.:compression", to: "sitemap#show"
@@ -73,5 +76,6 @@ Rails.application.routes.draw do
   end
 
   get "/about", to: "home#about"
+  get "/play", to: "play#index"
   root to: "home#index"
 end

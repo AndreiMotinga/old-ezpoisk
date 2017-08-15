@@ -13,8 +13,6 @@ head
   = favicon_link_tag "favicon"
   = stylesheet_link_tag    "application"
   = csrf_meta_tags
-  = javascript_include_tag "application"
-  = timeago_script_tag
 
   script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"
   javascript:
@@ -22,7 +20,6 @@ head
       lang: 'ru',
       parsetags: 'onload'
     };
-  script src="https://apis.google.com/js/platform.js" async defer></script>
+  script src="https://apis.google.com/js/platform.js" async="" defer=""></script>
 
-  script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/27597bc25de8ded90e9c9b5165060dd9a939a969e5e01bcc122aec50dda34f3d.js"
   = yield :head

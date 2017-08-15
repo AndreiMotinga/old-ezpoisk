@@ -1,10 +1,14 @@
-- if record.street?
+- if record.street.present?
+  - content_for :head do
+    script src="//maps.google.com/maps/api/js?v=3.24&libraries=geometry&key=#{ENV["GOOGLE_MAPS_API_KEY"]}" type="text/javascript" defer="" async=""
+    script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
+
   .row
     .hidden-xs.hidden-sm style="width: 100%;margin-bottom:20px"
-       #map style='width: 100%; height: 200px;'
+      #map style='width: 100%; height: 200px;'
 
-    javascript:
-      $(document).ready(function(){
+    - content_for :javascript do
+      javascript:
         handler = Gmaps.build('Google');
         handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
           markers = handler.addMarkers(#{raw record.map_marker.to_json});
@@ -12,4 +16,3 @@
           handler.fitMapToBounds();
           handler.getMap().setZoom(8);
         });
-      });

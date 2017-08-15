@@ -9,14 +9,14 @@
              url: post_url(@post),
              image: @post.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- content_for :header, render("partners/top")
-
+- top, right = Partner.get(2)
+- content_for :header, render("partners/top", partner: top)
 - content_for :right do
-  = render "posts/show/side_posts", posts: @post.related_posts(4)
+  = render "posts/show/side_posts", posts: @post.related_posts(4), partner: right
   = render "posts/show/answers", answers: @post.related_answers(10), tags: @post.cached_tags
 
 .row
-  .col-xs-12
+  .col-xs-12.post
     .muted= render "shared/tags", record: @post
     hr
     h1= @post.title

@@ -29,9 +29,35 @@ html lang="ru"
         parsetags: 'onload'
       };
     script src="https://apis.google.com/js/platform.js" async="" defer=""
-    = javascript_include_tag "about"
-
-    = render "analytics"
 
   body
     = yield
+
+    = javascript_include_tag "about"
+    = render "analytics"
+    #fb-root
+    javascript:
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.10&appId=1746983858848479";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      $(".js-fb-share").click(function() {
+        FB.ui({ method: 'share', href: $(this).attr('href') });
+      })
+
+      $(".js-gl-share").click(function() {
+        window.open($(this).attr('href'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');
+        return false;
+      })
+
+      $(".js-vk-share").click(function(e) {
+        e.preventDefault();
+        $('body').append(VK.Share.button(false,{type: "custom", text: "Vk-share"}));
+        $('a:contains("Vk-share")')[0].click();
+      })
+
+    script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/27597bc25de8ded90e9c9b5165060dd9a939a969e5e01bcc122aec50dda34f3d.js"

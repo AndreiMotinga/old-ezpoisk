@@ -9,13 +9,13 @@
              url: answer_url(@answer),
              image: @answer.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- content_for :header, render("partners/top")
+- top, right = Partner.get(2)
+- content_for :header, render("partners/top", partner: top)
 
 - content_for :right do
   = render "similar_answers"
-  = render "google_ad"
   .sticky
-    = render "partners/right"
+    = render "partners/right", partner: right
 
 .row
   .col-lg-10.col-lg-offset-1

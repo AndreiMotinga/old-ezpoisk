@@ -12,9 +12,12 @@
              url: canonical_url,
              image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- content_for :header, render("partners/top")
+- top, left, right = Partner.get(3)
+- top = left = right = Partner.first
 
-- content_for :sidebar do
+- content_for :header, render("partners/top", partner: top)
+
+- content_for :left do
   section
     #search-toggle.btn.btn-ez.search-toggle.visible-xs
       | Настроить фильтр | #{@listings.total_count}
@@ -24,9 +27,13 @@
         = render "listings/search/#{t params[:kind]}"
       - else
         = render "listings/search"
+  br
+  .hidden-xs.sticky
+    = render "partners/left", partner: left
 
 - content_for :right do
-  = render "google_ad" unless params[:kind] == "услуги"
+  .sticky
+    = render "partners/right", partner: right
 
 div data-id="listings"
   = render @listings

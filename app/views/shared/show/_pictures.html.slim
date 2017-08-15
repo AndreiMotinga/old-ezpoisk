@@ -7,3 +7,15 @@
           li
             = link_to pic.image.url do
               = image_tag pic.image.url(:large)
+
+- content_for :javascript do
+  javascript:
+    // galleries depend on jquery
+    $('.pgwSlideshow').pgwSlideshow({
+      transitionEffect : 'fading',
+      intervalDuration: 5000,
+      autoSlide: true
+    });
+
+    $('.show .ps-current a').touchTouch();
+    $('[data-action="touchTouch"]').touchTouch();

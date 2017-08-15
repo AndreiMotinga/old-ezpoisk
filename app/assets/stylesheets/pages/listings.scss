@@ -12,6 +12,7 @@
   }
 
   .search {
+    margin-right: -15px;
     background: $white;
     padding: $base-spacing;
 
@@ -55,14 +56,4 @@
   background-color: $white;
   padding: $large-spacing;
   margin-bottom: $large-spacing;
-
-  h4,
-  .heading {
-    margin-left: -$base-spacing;
-  }
-
-  label {
-    font-weight: 400;
-  }
 }
-

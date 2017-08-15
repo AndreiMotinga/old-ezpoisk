@@ -23,18 +23,4 @@ RailsAdmin.config do |config|
     "Question",
     "User"
   ]
-
-  config.model "Answer" do
-    include_all_fields
-    edit do
-      field :text do
-        render do
-          bindings[:view].render(
-            partial: "text",
-            locals: { key: :text, field: self, form: bindings[:form] }
-          )
-        end
-      end
-    end
-  end
 end

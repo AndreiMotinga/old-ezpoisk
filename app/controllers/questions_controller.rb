@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class QuestionsController < ApplicationController
+class QuestionsController < PagesController
   before_action :authenticate_user!, only: [:new, :create]
   after_action(only: [:index, :tag]) { create_show_impressions(@questions) }
   after_action(only: :show) do

@@ -1,25 +1,22 @@
-.hidden-xs
-  .sticky
-    - if user_signed_in?
-      .user-widget.mdl-shadow--3dp.text-center.pull-right
-        div
-          = image_tag current_user.avatar(:medium),
-                      class: "img-responsive img-circle center-block img"
-        div
-          span.title= link_to current_user.name, user_path(current_user), class: "name"
-          span.legend= current_user.short_bio
-        hr
-        /div
-        /  span.title.karma 234
-        /  span.legend карма
-        /hr
-        = link_to "Редактировать", edit_user_path(current_user, act: "general")
-    - else
-      .user-widget.mdl-shadow--3dp.text-center.pull-right
-        div
-          = image_tag "https://s3.amazonaws.com/ezpoisk/missing.png",
-                      class: "img-responsive center-block"
-        hr
-        br
-        = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", class: "btn btn-block btn-ez"
-    = render "partners/left"
+- if user_signed_in?
+  .user-widget.mdl-shadow--3dp.text-center
+    div
+      = image_tag current_user.avatar(:medium),
+                  class: "img-responsive img-circle center-block img"
+    div
+      span.title= link_to current_user.name, user_path(current_user), class: "name"
+      span.legend= current_user.short_bio
+    hr
+    /div
+    /  span.title.karma 234
+    /  span.legend карма
+    /hr
+    = link_to "Редактировать", edit_user_path(current_user, act: "general")
+- else
+  .user-widget.mdl-shadow--3dp.text-center
+    div
+      = image_tag "https://s3.amazonaws.com/ezpoisk/missing.png",
+                  class: "img-responsive center-block"
+    hr
+    br
+    = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal", class: "btn btn-block btn-ez"

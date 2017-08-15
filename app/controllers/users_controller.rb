@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
+class UsersController < PagesController
   before_action :authenticate_user!, only: [:edit, :update]
   before_action :set_user, only: [:show, :posts, :questions]
   after_action(only: :show) { create_visit_impression(@user) }

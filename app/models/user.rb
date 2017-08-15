@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_many :images, class_name: "Picture", dependent: :destroy
+  has_many :campaigns
 
   validates :email, uniqueness: true
   validates :name, presence: true

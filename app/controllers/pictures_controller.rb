@@ -2,7 +2,7 @@
 
 class PicturesController < ApplicationController
   def index
-    @pictures = klass.find(params["id"]).pictures
+    @pictures = klass.find(params["id"]).pictures.includes(:imageable)
   end
 
   def create

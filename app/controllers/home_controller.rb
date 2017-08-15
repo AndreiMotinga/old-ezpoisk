@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class HomeController < ApplicationController
+class HomeController < PagesController
   layout :set_layout
+
   def index
     @actions = Action.includes(actionable: :user)
                      .order(updated_at: :desc)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PostsController < ApplicationController
+class PostsController < PagesController
   before_action :authenticate_user!, except: [:index, :tag, :show]
   before_action :set_post, only: [:edit, :update, :destroy]
   after_action(only: [:index, :tag]) { create_show_impressions(@posts) }

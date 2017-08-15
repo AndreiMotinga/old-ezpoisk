@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AnswersController < ApplicationController
+class AnswersController < PagesController
   before_action :authenticate_user!, only: [:edit]
   before_action :set_answer, only: [:edit, :update, :destroy]
   after_action(only: [:index, :tag]) { create_show_impressions(@answers) }

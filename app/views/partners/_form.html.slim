@@ -1,0 +1,57 @@
+= render "partners/top", partner: @partner
+
+.row
+  .col-xs-12
+    // Left partner
+    .col-xs-3.left-partner
+      = render "partners/left", partner: @partner
+
+    // Form
+    .col-xs-6.middle-col
+      = form_for [@campaign, @partner] do |f|
+        - if @partner.errors.any?
+          #error_explanation
+            h5 = "#{pluralize(@partner.errors.count, "error")} prohibited this partner from being saved:"
+            ul
+              - @partner.errors.full_messages.each do |message|
+                li.text-danger = message
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :title, class: "mdl-textfield__input", required: true
+          = f.label :title, "Заголовок", class: "mdl-textfield__label"
+        br
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :final_url, class: "mdl-textfield__input", required: true
+          = f.label :final_url, "Ссылка", class: "mdl-textfield__label"
+        br
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :headline, class: "mdl-textfield__input", required: true
+          = f.label :headline, "Легенда", class: "mdl-textfield__label"
+        br
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_area :description, class: "mdl-textfield__input", required: true
+          = f.label :description, "Описание", class: "mdl-textfield__label"
+        br
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--file
+          input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly="" required=""
+          div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file"
+            i class="material-icons"  attach_file
+            = f.file_field :image
+          p.text-muted Размер 3:2
+        br
+
+        .actions
+          = f.submit "Cохранить", class: "btn btn-ez"
+
+      // Right inline
+      br
+      br
+      = render "partners/inline", partner: @partner
+
+    // Right partner
+    .col-xs-3
+      = render "partners/right", partner: @partner

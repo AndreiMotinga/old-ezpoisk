@@ -6,7 +6,7 @@ feature "User" do
     create_list :listing, 11, kind: kind
 
     visit listings_path(kind: kind)
-    page.execute_script "window.scrollBy(0,10000)"
+    click_on "load-more"
 
     prm = kind == "услуги" ? :title : :text
     Listing.pluck(prm).map do |text|

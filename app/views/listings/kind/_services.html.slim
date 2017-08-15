@@ -12,7 +12,7 @@
         = link_to listing do
           img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
 
-    .col-xs-8
+    .col-xs-12 class=("col-sm-8" if has_pics)
       / line 0
       = render "listings/kind/menu", listing: listing
 

@@ -4,6 +4,11 @@ body {
   height: 100%;
 }
 
+body.campaigns,
+body.partners {
+  padding-top: 0;
+}
+
 body {
   padding-top: 60px;
 }
@@ -31,4 +36,10 @@ body {
 
 .container-md {
   max-width: $screen-md;
+}
+
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 1400px;
 }

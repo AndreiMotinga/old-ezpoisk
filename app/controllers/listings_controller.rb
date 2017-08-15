@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ListingsController < ApplicationController
+class ListingsController < PagesController
   before_action :authenticate_user!, except: [:index, :search, :show]
   before_action :set_listing, only: [:edit, :update, :touch, :destroy]
   before_action :check_search, only: :index
@@ -34,6 +34,14 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.active.includes(:state, :city).find(params[:id])
+    @siblings = @listing.siblings.page(params[:page])
+    create_show_impressions(@siblings)
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @siblings }
+      end
+    end
   end
 
   def new

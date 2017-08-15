@@ -4,7 +4,7 @@
 - meta title: "#{@question.title} - ezpoisk",
        description: meta_desc,
        rel: { canonical: question_url(@question) },
-       og: { title: "@question.title",
+       og: { title: @question.title,
              description: meta_desc,
              type: "article",
              locale: "ru_RU",
@@ -12,7 +12,8 @@
              url: question_url(@question),
              image: @question.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- content_for :header, render("partners/top")
+- top, right = Partner.get(2)
+- content_for :header, render("partners/top", partner: top)
 
 - content_for :right do
   - questions = Question.desc.limit(10)
@@ -25,10 +26,8 @@
           = link_to question.title, question, class: "title"
           small.time= timeago_tag question.created_at
 
-  = render "google_ad"
-  br
   .sticky
-    = render "partners/right"
+    = render "partners/right", partner: right
 
 .row
   .col-lg-10.col-lg-offset-1

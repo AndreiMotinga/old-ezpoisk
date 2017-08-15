@@ -1,9 +1,12 @@
-- if @left
-  .hidden-xs
-    .partner-left.pull-right
-      = link_to @left.show_url, target: "_blank" do
-        = image_tag @left.logo_url(:large), class: "img-responsive center-block"
-      h5= link_to @left.title, @left.show_url, class: "title", target: "_blank"
-      small= link_to @left.site, @left.site, class: "site", target: "_blank"
-      hr
-      span.legend= @left.legend
+- if partner
+  - url = partner.new_record? ? "javascript:void(0)" : impression_path(id: partner.id, final_url: partner.final_url)
+  .partner-left
+    = link_to url, target: "_blank" do
+      = image_tag partner.image.url(:medium), class: "img-responsive js-image image"
+    .js-title= link_to partner.title, url, class: "title", target: "_blank"
+    .js-final-url= link_to partner.final_url, url, target: "_blank"
+    hr
+    .headline.js-headline= partner.headline
+
+- else
+  = render "shared/gads/left"

@@ -3,6 +3,9 @@
     /= render "shared/no_posts_message"
   - else
     .text-center
-      /#p2.mdl-progress.mdl-js-progress.mdl-progress__indeterminate.hidden
+      br
+      button id="load-more" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent hidden"
+        | Загрузить еще
       #p2.mdl-spinner.mdl-js-spinner.is-active.hidden
-      = paginate records
+      br
+      .hidden= paginate records
