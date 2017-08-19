@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
-  factory :campaign do
-    title { RU_KINDS.keys.sample + " " + (100 * rand).to_i.to_s }
-    bid { (100 * rand).to_i }
-    budget { (100_00 * rand).to_i }
-    state_id 32
-    city_id 18_031
-  end
-
   factory :partner do
     final_url "https://www.ezpoisk.com"
     title { RU_KINDS.keys.sample + " в " + City.order("random ()").name }
     headline "Headline one of two"
     description { Faker::Lorem.sentence(2) }
-    campaign nil
   end
 
   factory :impression do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816211056) do
+ActiveRecord::Schema.define(version: 20170819231734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,21 +40,6 @@ ActiveRecord::Schema.define(version: 20170816211056) do
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["slug"], name: "index_answers_on_slug"
     t.index ["user_id"], name: "index_answers_on_user_id"
-  end
-
-  create_table "campaigns", force: :cascade do |t|
-    t.string "title", null: false
-    t.integer "bid"
-    t.integer "budget"
-    t.bigint "state_id"
-    t.bigint "city_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "active", default: true
-    t.index ["city_id"], name: "index_campaigns_on_city_id"
-    t.index ["state_id"], name: "index_campaigns_on_state_id"
-    t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
   create_table "cities", id: :serial, force: :cascade do |t|
@@ -182,7 +167,6 @@ ActiveRecord::Schema.define(version: 20170816211056) do
     t.string "title"
     t.string "headline"
     t.string "description"
-    t.bigint "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_file_name"
@@ -191,7 +175,14 @@ ActiveRecord::Schema.define(version: 20170816211056) do
     t.datetime "image_updated_at"
     t.boolean "active", default: true
     t.integer "impressions_count", default: 0, null: false
-    t.index ["campaign_id"], name: "index_partners_on_campaign_id"
+    t.string "first", default: "", null: false
+    t.bigint "state_id"
+    t.bigint "city_id"
+    t.bigint "user_id"
+    t.string "subline", default: "", null: false
+    t.index ["city_id"], name: "index_partners_on_city_id"
+    t.index ["state_id"], name: "index_partners_on_state_id"
+    t.index ["user_id"], name: "index_partners_on_user_id"
   end
 
   create_table "pg_search_documents", id: :serial, force: :cascade do |t|
@@ -338,9 +329,6 @@ ActiveRecord::Schema.define(version: 20170816211056) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
-  add_foreign_key "campaigns", "cities"
-  add_foreign_key "campaigns", "states"
-  add_foreign_key "campaigns", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "cities"
@@ -351,7 +339,7 @@ ActiveRecord::Schema.define(version: 20170816211056) do
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"
   add_foreign_key "listings", "users"
-  add_foreign_key "partners", "campaigns"
+  add_foreign_key "partners", "users"
   add_foreign_key "pictures", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "questions", "users"

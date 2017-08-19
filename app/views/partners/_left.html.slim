@@ -4,10 +4,10 @@
     = link_to url, target: "_blank" do
       = image_tag partner.image.url(:medium), class: "img-responsive js-image image"
     .partner-body
-      .js-title= link_to partner.title, url, class: "title", target: "_blank"
+      .js-headline= link_to partner.headline, url, class: "headline", target: "_blank"
       .js-final-url= link_to partner.final_url, url, target: "_blank"
       hr
-      .headline.js-headline= partner.headline
+      .headline.js-subline= partner.subline
 
 - else
   = render "shared/gads/left"

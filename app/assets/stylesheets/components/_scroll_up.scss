@@ -1,20 +1,7 @@
 .scroll-up {
-  border-radius: 50%;
-  bottom: 20px;
-  color: $orange;
   display: none;
-  font-size: 23px;
-  height: 46px;
-  left: 20px;
-  line-height: 1;
-  opacity: .8;
-  overflow: hidden;
   position: fixed;
-  text-align: center;
-  text-decoration: none;
-  width: 46px;
-
-  &:hover {
-    border: thin solid $orange;
-  }
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
 }

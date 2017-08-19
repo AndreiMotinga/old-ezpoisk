@@ -1,11 +1,45 @@
-footer {
+.footer {
   // background-color: darken($background, 10%);
   margin-top: $large-spacing;
-
   padding-bottom: $large-spacing;
   padding-top: $large-spacing;
 
-  a {
-    color: $dark-gray;
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+
+    .post {
+      flex: 1 1 auto;
+      margin: 5px;
+      min-width: 260px;
+      height: 280px;
+
+      a {
+        text-decoration: none;
+      }
+
+      .mdl-card__title {
+        color: $white;
+        padding: 10px;
+
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-color: #46B6AC;
+      }
+
+      .mdl-card__title-text {
+        padding: 10px;
+        a {
+          text-decoration: none;
+          color: $white;
+        }
+
+        &:hover {
+          background-color: rgba(145, 181, 211, 0.84);
+          transition: background-color $base-duration $base-timing;
+        }
+      }
+    }
   }
 }

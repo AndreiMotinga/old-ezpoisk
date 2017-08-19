@@ -41,7 +41,11 @@ html lang="ru"
           - else
             = yield
 
-    = render "footer"
+    = yield :footer
+
+    button#scrollUp.scroll-up.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--colored
+      i.material-icons keyboard_arrow_up
+
     = render "shared/new_session_modal"
     = render "sliding_panel"
     = render "analytics"

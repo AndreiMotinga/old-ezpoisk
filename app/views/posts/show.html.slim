@@ -48,11 +48,8 @@
 br
 = render "listings/comments", record: @post
 
-= render "posts/show/bottom_posts", posts: @post.related_posts(9, 4)
+- content_for :javascript do
+  = render "social_share_buttons_js"
 
-
-
-
-
-
-= render "social_share_buttons_js"
+- content_for :footer do
+  == render "footer", posts: @post.related_posts(8, 4)

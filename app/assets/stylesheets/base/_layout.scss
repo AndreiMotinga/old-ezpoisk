@@ -4,35 +4,9 @@ body {
   height: 100%;
 }
 
-body.campaigns,
-body.partners {
-  padding-top: 0;
-}
-
 body {
   padding-top: 60px;
 }
-
-.page-wrap {
-  // margin-bottom: -100px;  // equal to footer height (inluding margin)
-  min-height: 100%;
-
-  &::after {
-    content: "";
-    display: block;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1200px;
-  }
-}
-
-// footer,
-// .page-wrap::after {
-//   height: 100px;
-// }
 
 .container-md {
   max-width: $screen-md;

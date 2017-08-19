@@ -5,10 +5,9 @@
       = link_to url, target: "_blank" do
         = image_tag partner.image.url(:medium), class: "img-responsive js-image"
     .col-xs-8
-      .title.js-title= link_to partner.title, url, class: "partner-title", target: "_blank"
+      .title.js-headline= link_to partner.headline, url, class: "partner-title", target: "_blank"
       .final-url.js-final-url= link_to partner.final_url, url, class: "site", target: "_blank"
       hr
-      .headline.js-headline= partner.headline
       .description.js-description= partner.description
 
 - else

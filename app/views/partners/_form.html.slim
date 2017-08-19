@@ -8,7 +8,12 @@
 
     // Form
     .col-xs-6.middle-col
-      = form_for [@campaign, @partner] do |f|
+      // inline
+      = render "partners/inline", partner: @partner
+      br
+      br
+
+      = form_for @partner, html: { class: "col-xs-12 white-bg mdl-shadow--2dp" } do |f|
         - if @partner.errors.any?
           #error_explanation
             h5 = "#{pluralize(@partner.errors.count, "error")} prohibited this partner from being saved:"
@@ -17,8 +22,25 @@
                 li.text-danger = message
 
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :title, class: "mdl-textfield__input", required: true
-          = f.label :title, "Заголовок", class: "mdl-textfield__label"
+          = f.text_field :title, class: "mdl-textfield__input"
+          = f.label :title, class: "mdl-textfield__label"
+        br
+
+        .row
+          .col-xs-6
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              = form_state_select(f)
+              = f.label :state_id, "Штат", class: "mdl-textfield__label"
+
+          .col-xs-6
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+              = form_city_select(f, @partner)
+              = f.label :city_id, "Город", class: "mdl-textfield__label"
+        br
+
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :headline, class: "mdl-textfield__input", required: true
+          = f.label :headline, class: "mdl-textfield__label"
         br
 
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
@@ -27,8 +49,8 @@
         br
 
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :headline, class: "mdl-textfield__input", required: true
-          = f.label :headline, "Легенда", class: "mdl-textfield__label"
+          = f.text_field :subline, class: "mdl-textfield__input", required: true
+          = f.label :subline, class: "mdl-textfield__label"
         br
 
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
@@ -46,11 +68,6 @@
 
         .actions
           = f.submit "Cохранить", class: "btn btn-ez"
-
-      // Right inline
-      br
-      br
-      = render "partners/inline", partner: @partner
 
     // Right partner
     .col-xs-3

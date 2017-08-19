@@ -1,7 +1,7 @@
 - content_for :header
-  h4 Кампания: #{@campaign.title}
+  h4 Панель управления
 
-= link_to "Новый блок", new_campaign_partner_path, class: "btn btn-ez"
+= link_to "Новый блок", new_partner_path, class: "btn btn-ez"
 br
 br
 
@@ -26,12 +26,12 @@ table.mdl-data-table.mdl-shadow--2dp
             i.fa.fa-check aria-hidden="" style="color:green;"
           - else
             i.fa.fa-pause aria-hidden=""
-        td = link_to partner.title, edit_campaign_partner_path(@campaign, partner)
+        td = link_to partner.title, edit_partner_path(partner)
         td = partner.impressions.show.count
         td = partner.impressions.visit.count
         td = "#{partner.ctr}%"
-        td = link_to "Копировать", duplicate_campaign_partner_path(@campaign, partner)
-        td = link_to campaign_partner_path(@campaign, partner),
+        td = link_to "Копировать", duplicate_partner_path(partner)
+        td = link_to partner_path(partner),
                      data: { confirm: 'Are you sure?' },
                      method: :delete do
             i.fa.fa-times aria-hidden="" style="color:red;"

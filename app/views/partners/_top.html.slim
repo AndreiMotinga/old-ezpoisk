@@ -2,9 +2,9 @@
   - url = partner.new_record? ? "javascript:void(0)" : impression_path(id: partner.id, final_url: partner.final_url)
   .partner-top data-partner="top" data-id=partner.id
     = link_to url, target: "_blank" do
-      span.title.js-title= partner.title
+      span.title.js-headline= partner.headline
       = " - "
-      span.headline.js-headline= partner.headline
+      span.headline.js-subline= partner.subline
 
 /- else
 /  | show google ad

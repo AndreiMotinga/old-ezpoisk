@@ -2,7 +2,9 @@
 
 class Partner < ApplicationRecord
   include Impressionable
-  belongs_to :campaign
+  belongs_to :user
+  belongs_to :state
+  belongs_to :city
 
   validates :title, presence: true, length: { maximum: 45 }
   validates :final_url, presence: true
