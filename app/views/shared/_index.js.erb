@@ -3,6 +3,20 @@
   ga('send', 'pageview');
 <% end %>
 
+// replace partners
+<% top, left, right = Partner.get(3) %>
+// top
+$("[data-partner='top']").replaceWith("<%= j render('partners/top', partner: top) %>");
+
+// left
+$("[data-partner='left']").replaceWith("<%= j render('partners/left', partner: left) %>");
+
+// right
+$("[data-partner='right']").replaceWith("<%= j render('partners/right', partner: right) %>");
+
+// increment impressions
+incrementPartners()
+
 // render records
 $("[data-id='listings']").append("<%= j render(records) %>");
 

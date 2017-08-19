@@ -46,7 +46,7 @@ describe "Impressions" do
               "127.0.0.1",
               nil)
 
-      post impressions_path(id: partner)
+      post impressions_path("ids[]": partner.id)
 
       expect(ImpressionableJob)
         .to have_received(:perform_in)

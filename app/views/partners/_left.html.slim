@@ -1,6 +1,6 @@
 - if partner
   - url = partner.new_record? ? "javascript:void(0)" : impression_path(id: partner.id, final_url: partner.final_url)
-  .partner-left data-partner="" data-id=partner.id
+  .partner-left data-partner="left" data-id=partner.id
     = link_to url, target: "_blank" do
       = image_tag partner.image.url(:medium), class: "img-responsive js-image image"
     .js-title= link_to partner.title, url, class: "title", target: "_blank"
