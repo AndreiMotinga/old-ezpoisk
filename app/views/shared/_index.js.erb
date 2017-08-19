@@ -4,9 +4,7 @@
 <% end %>
 
 // replace partners
-<% top, left, right = Partner.get(3) %>
-// top
-$("[data-partner='top']").replaceWith("<%= j render('partners/top', partner: top) %>");
+<% left, right = Partner.get(2) %>
 
 // left
 $("[data-partner='left']").replaceWith("<%= j render('partners/left', partner: left) %>");
