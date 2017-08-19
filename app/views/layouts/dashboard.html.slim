@@ -24,3 +24,12 @@ html lang="ru"
         = render "notice"
 
         = yield
+
+    = render "analytics"
+    = javascript_include_tag "application"
+    = timeago_script_tag
+    = yield :javascript
+    - if Rails.env.test?
+      javascript:
+        $.fx.off = true;
+        $.ajaxSetup({ async: false });
