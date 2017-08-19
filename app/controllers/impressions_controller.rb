@@ -15,12 +15,14 @@ class ImpressionsController < ApplicationController
   end
 
   def create
-    ImpressionableJob.perform_in(1.minute,
-                                 "Partner",
-                                 params[:id],
-                                 "show",
-                                 current_user.try(:id),
-                                 request.remote_ip,
-                                 request.referrer)
+    params[:ids].each do |id|
+      ImpressionableJob.perform_in(1.minute,
+                                   "Partner",
+                                   id,
+                                   "show",
+                                   current_user.try(:id),
+                                   request.remote_ip,
+                                   request.referrer)
+    end
   end
 end
