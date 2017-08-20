@@ -24,5 +24,6 @@ class ImpressionsController < ApplicationController
                                    request.remote_ip,
                                    request.referrer)
     end
+    head 201
   end
 end

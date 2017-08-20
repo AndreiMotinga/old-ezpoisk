@@ -1,8 +1,9 @@
+- desc = strip_tags(@post.text).truncate(160)
 - meta title: "#{@post.title} - #{@post.name}",
-       description: strip_tags(@post.text),
+       description: desc,
        rel: { canonical: post_url(@post) },
        og: { title: "#{@post.title} - #{@post.name}",
-             description: strip_tags(@post.text),
+             description: desc,
              type: "article",
              locale: "ru_RU",
              site_name: "ezpoisk",
