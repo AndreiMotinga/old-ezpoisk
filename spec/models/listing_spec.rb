@@ -63,6 +63,16 @@ RSpec.describe Listing, type: :model do
     end
   end
 
+  describe "#answers" do
+    it "returns answers with same tags" do
+      l = create :listing, :apartment
+      a = create :answer, tag_list: ["недвижимость"]
+      create :answer, tag_list: ["работа"]
+
+      expect(l.answers).to match_array [a]
+    end
+  end
+
   # PRIVATE
 
   describe "private ensure_title" do
@@ -125,6 +135,15 @@ RSpec.describe Listing, type: :model do
 
         expect(listing.site).to eq "http://www.ezpoisk.com"
       end
+    end
+  end
+
+  describe "private set_tags" do
+    it "saves tag_list" do
+      l = build :listing
+      l.save
+      result = [l.kind, l.category, l.subcategory, l.state.slug, l.city.slug]
+      expect(l.tag_list).to match_array result
     end
   end
 end

@@ -8,6 +8,7 @@ class Listing < ApplicationRecord
   include Impressionable
   include Mappable
   acts_as_mappable
+  acts_as_taggable
 
   belongs_to :user
   belongs_to :state
@@ -27,6 +28,7 @@ class Listing < ApplicationRecord
 
   before_save :ensure_title
   before_save :format_site
+  before_save :set_tags
   after_create :create_action
   after_create :notify_slack
 
@@ -69,6 +71,11 @@ class Listing < ApplicationRecord
     listings.where.not(id: id).includes(:state, :city)
   end
 
+  def answers(n = 8)
+    order = "case when logo_url is null then -1 else 1 end desc"
+    Answer.tagged_with(tag_list, any: true).order(order).limit(n)
+  end
+
   private
 
   def notify_slack
@@ -84,5 +91,9 @@ class Listing < ApplicationRecord
   def format_site
     return unless site.present?
     self.site = site.prepend("http://") unless site.match(/http/)
+  end
+
+  def set_tags
+    self.tag_list = [kind, category, subcategory, state.slug, city.slug]
   end
 end
