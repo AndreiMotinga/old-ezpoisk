@@ -4,13 +4,11 @@
 <% end %>
 
 // replace partners
-<% left, right = Partner.get(2) %>
-
 // left
-$("[data-partner='left']").replaceWith("<%= j render('partners/left', partner: left) %>");
+$("[data-partner='left']").replaceWith("<%= j render('partners/left', partner: @left) %>");
 
 // right
-$("[data-partner='right']").replaceWith("<%= j render('partners/right', partner: right) %>");
+$("[data-partner='right']").replaceWith("<%= j render('partners/right', partner: @right) %>");
 
 // increment impressions
 incrementPartners()

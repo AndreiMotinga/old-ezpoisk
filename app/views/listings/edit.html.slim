@@ -3,14 +3,13 @@
 / it's impossible to pass params to 'redner'. This hack allows to keep token
 - token ||= url_for(:back).match(/token=.+/).try(:remove, 'token=')
 
+- content_for :header, (render"partners/top", partner: @top)
 #pictures-data data-id=@listing.id data-type="Listing"
 
 .container.container-md
   header
-    h4= @listing.title
     small Редактирование объявления
   hr
-
   section.form-container
     .row
       .col-xs-12

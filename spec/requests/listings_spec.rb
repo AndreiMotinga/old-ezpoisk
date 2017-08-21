@@ -29,7 +29,7 @@ describe "Listings" do
         get edit_listing_path(listing)
 
         expect(response).to render_template(:edit)
-        expect(response.body).to include(listing.title)
+        expect(response.body).to include(listing.text)
       end
 
       it "only shows record that belongs to user" do

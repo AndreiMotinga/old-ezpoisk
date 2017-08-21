@@ -60,6 +60,7 @@ class PartnersController < DashboardController
     # Only allow a trusted parameter "white list" through.
     def partner_params
       params.require(:partner).permit(:final_url, :title, :headline, :subline,
-                                      :description, :image, :state_id, :city_id)
+                                      :text, :image, :state_id, :city_id,
+                                      tag_list: [])
     end
 end

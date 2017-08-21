@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+ # frozen_string_literal: true
 
 class ListingsController < PagesController
   before_action :authenticate_user!, except: [:index, :search, :show]
@@ -12,6 +12,7 @@ class ListingsController < PagesController
     @listings = Listing.includes(:state, :city)
                        .filter(sliced_params)
                        .page(params[:page])
+    set_partners
     respond_to do |format|
       format.html
       format.js do
@@ -24,6 +25,7 @@ class ListingsController < PagesController
     @listings = Listing.includes(:state, :city)
                        .filter(sliced_params)
                        .page(params[:page])
+    set_partners
     respond_to do |format|
       format.html { render :index }
       format.js do
@@ -34,6 +36,7 @@ class ListingsController < PagesController
 
   def show
     @listing = Listing.active.includes(:state, :city).find(params[:id])
+    set_show_partners
     @siblings = @listing.siblings.page(params[:page])
     create_show_impressions(@siblings)
     respond_to do |format|
@@ -51,6 +54,7 @@ class ListingsController < PagesController
                            active: true,
                            phone: current_user.contact.phone,
                            email: current_user.email)
+    @top = Partner.get(limit: 1, tags: params[:kind])
   end
 
   def create
@@ -65,6 +69,10 @@ class ListingsController < PagesController
   end
 
   def edit
+    @top = Partner.get(limit: 1,
+                       state: @listing.state_id,
+                       city: @listing.city_id,
+                       tags: @listing.tag_list)
   end
 
   def update
@@ -123,5 +131,22 @@ class ListingsController < PagesController
                     .symbolize_keys
       redirect_to search_listings_path(prms)
     end
+  end
+
+  def set_partners
+    tags = [params[:kind],
+            params[:category],
+            params[:subcategory].try(:split, "--")]
+    @top, @left, @right = Partner.get(limit: 3,
+                                      state: params[:state],
+                                      city: params[:city],
+                                      tags: tags)
+  end
+
+  def set_show_partners
+    @top, @right = Partner.get(limit: 2,
+                               state: @listing.state_id,
+                               city: @listing.city_id,
+                               tags: @listing.tag_list)
   end
 end

@@ -27,12 +27,29 @@ class Answer < ActiveRecord::Base
     get_upvotes.count - get_downvotes.count
   end
 
+  def self.for_question(n, q)
+    sort = "case when logo_url is null then -1 else 1 end desc, created_at desc"
+    Answer.older(q.created_at)
+          .tagged_with(q.tag_list, any: true)
+          .order(sort)
+          .take(n)
+  end
+
   def show_url
     Rails.application.routes.url_helpers.answer_url(self)
   end
 
   def edit_url_with_token
     Rails.application.routes.url_helpers.edit_answer_url(self)
+  end
+
+  def related(n, logo = nil)
+    sort = "created_at desc"
+    sort = "case when logo_url is null then -1 else 1 end desc, " + sort if logo
+    Answer.older(created_at)
+          .tagged_with(tag_list, any: true)
+          .order(sort)
+          .take(n)
   end
 
   private

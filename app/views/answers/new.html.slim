@@ -1,6 +1,6 @@
 - meta title: "Добавьте свой ответ на часто задаваемые вопросы - ezpoisk"
 - content_for :header do
-  = render "partners/top", partner: Partner.get(1).first
+  = render "partners/top", partner: @top
 
 .container.container-md
   = render "form"

@@ -12,22 +12,12 @@
              url: question_url(@question),
              image: @question.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- top, right = Partner.get(2)
-- content_for :header, render("partners/top", partner: top)
+- content_for :header, render("partners/top", partner: @top)
 
 - content_for :right do
-  - questions = Question.desc.limit(10)
-  .row.right-widget.mdl-shadow--3dp
-    span.widget-title Похожие вопросы...
-    hr
-    ul.posts
-      - questions.each do |question|
-        li.post
-          = link_to question.title, question, class: "title"
-          small.time= timeago_tag question.created_at
-
+  = render "similar_questions", questions: @question.related(10)
   .sticky
-    = render "partners/right", partner: right
+    = render "partners/right", partner: @right
 
 .row
   .col-lg-10.col-lg-offset-1
@@ -44,7 +34,8 @@
         = "  "
         .fa.fa-pencil
 
+- content_for :javascript do
+  = render "social_share_buttons_js"
 
-
-
-= render "social_share_buttons_js"
+- content_for :footer do
+  == render "footer", posts: Answer.for_question(8, @question)

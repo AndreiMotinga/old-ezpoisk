@@ -9,20 +9,18 @@
              url: root_url,
              image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- top, left, right = Partner.get(3)
-
 - content_for :header do
-  = render "partners/top", partner: top
+  = render "partners/top", partner: @top
 
 - content_for :left do
   .hidden-xs.sticky
     = render "user_widget"
-    = render "partners/left", partner: left
+    = render "partners/left", partner: @left
 
 - content_for :right do
   .sticky
     = render "right_widget", posts: @popular
-    = render "partners/right", partner: right
+    = render "partners/right", partner: @right
     #react
 
 div data-id="listings"

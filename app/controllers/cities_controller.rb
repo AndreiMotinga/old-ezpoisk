@@ -36,6 +36,5 @@ class CitiesController < ApplicationController
 
   def cities
     City.where(state_id: state.id)
-        .or(City.where(slug: City::ALL))
   end
 end

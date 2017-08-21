@@ -10,13 +10,12 @@
              url: @listing.show_url,
              image: @listing.logo_url }
 
-- top, right = Partner.get(1).first
 - content_for :header do
-  = render "partners/top", partner: top
+  = render "partners/top", partner: @top
 - content_for :right do
   = render "shared/show/contacts", record: @listing
   = render "shared/show/map", record: @listing
-  = render "partners/right", partner: right
+  = render "partners/right", partner: @right
 
 = render "shared/show/pictures", record: @listing
 = render @listing

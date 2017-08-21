@@ -30,6 +30,7 @@ module Filterable
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, ->(id) { where(city_id: id) }
     scope :state, ->(slug) { where(state_id: State.find_by_slug(slug).try(:id)) }
+    scope :city, ->(slug) { where(city_id: City.find_by_slug(slug).try(:id)) }
     scope :category, ->(category) { where(category: category) }
     scope :subcategory, ->(subcategory) { where(subcategory: subcategory) }
     scope :duration, ->(type) { where(duration: type) }
@@ -41,10 +42,6 @@ module Filterable
     scope :sorted, ->(type) { order type }
     scope :tag_list, ->(tags) { tagged_with(tags, any: true) }
     scope :kind, ->(kind) { where(kind: kind) }
-
-    scope(:city, lambda do |slug|
-      where(city_id: City.where(slug: slug).pluck(:id)) unless slug == City::ALL
-    end)
 
     scope(:geo_scope, lambda do |geo_scope|
       return if geo_scope[:within].blank? || geo_scope[:origin].blank?

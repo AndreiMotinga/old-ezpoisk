@@ -9,13 +9,12 @@
              url: answer_url(@answer),
              image: @answer.logo_url || "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- top, right = Partner.get(2)
-- content_for :header, render("partners/top", partner: top)
+- content_for :header, render("partners/top", partner: @top)
 
 - content_for :right do
-  = render "similar_answers"
+  = render "similar_answers", answers: @answer.related(10)
   .sticky
-    = render "partners/right", partner: right
+    = render "partners/right", partner: @right
 
 .row
   .col-lg-10.col-lg-offset-1
@@ -33,6 +32,8 @@
                 @answer.question,
                 class: "btn btn-ez margin-bottom-10"
 
+- content_for :javascript do
+  = render "social_share_buttons_js"
 
-
-= render "social_share_buttons_js"
+- content_for :footer do
+  == render "footer", posts: @answer.related(8, true)

@@ -12,6 +12,7 @@ class QuestionsController < PagesController
     @questions = Question.unanswered.search(params[:term])
                                     .page(params[:page])
     @tags = Question.unanswered.tag_counts.sort_by(&:name)
+    @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @questions } }
@@ -23,6 +24,7 @@ class QuestionsController < PagesController
                                     .search(params[:term])
                                     .page(params[:page])
     @tags = Question.unanswered.tag_counts.sort_by(&:name)
+    @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|
       format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @questions } }
@@ -31,10 +33,12 @@ class QuestionsController < PagesController
 
   def show
     @question = Question.find(params[:id])
+    @top, @right = Partner.get(limit: 2, tags: @question.tag_list)
   end
 
   def new
     @question = Question.new
+    @top = Partner.get(limit: 1)
   end
 
   def create

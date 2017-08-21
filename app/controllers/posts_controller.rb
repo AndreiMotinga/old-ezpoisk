@@ -12,6 +12,7 @@ class PostsController < PagesController
                  .published
                  .order(created_at: :desc)
                  .page(params[:page])
+    @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @posts } }
@@ -23,9 +24,9 @@ class PostsController < PagesController
     @posts = Post.includes(:user)
                  .published
                  .order(created_at: :desc)
-                 .tagged_with(params[:tag], any: true)
+                 .tagged_with(params[:tag])
                  .page(params[:page])
-
+    @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|
       format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @posts } }
@@ -34,6 +35,7 @@ class PostsController < PagesController
 
   def new
     @post = Post.new
+    @top = Partner.get(limit: 1)
   end
 
   def create
@@ -50,9 +52,11 @@ class PostsController < PagesController
   def show
     @post = Post.find(params[:id])
     @popular = Comment.popular
+    @top, @right = Partner.get(limit: 2, tags: @post.tag_list)
   end
 
   def edit
+    @top = Partner.get(limit: 1, tags: @post.tag_list)
   end
 
   def update

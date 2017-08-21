@@ -12,10 +12,7 @@
              url: canonical_url,
              image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- top, left, right = Partner.get(3)
-- top = left = right = Partner.first
-
-- content_for :header, render("partners/top", partner: top)
+- content_for :header, render("partners/top", partner: @top)
 
 - content_for :left do
   section
@@ -29,11 +26,11 @@
         = render "listings/search"
   br
   .hidden-xs.sticky
-    = render "partners/left", partner: left
+    = render "partners/left", partner: @left
 
 - content_for :right do
   .sticky
-    = render "partners/right", partner: right
+    = render "partners/right", partner: @right
 
 div data-id="listings"
   = render @listings

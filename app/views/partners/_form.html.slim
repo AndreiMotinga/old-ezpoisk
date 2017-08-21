@@ -1,4 +1,4 @@
-= render "partners/top", partner: @partner
+= render "partners/top", partner: @top
 
 .row
   .col-xs-12
@@ -54,8 +54,8 @@
         br
 
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_area :description, class: "mdl-textfield__input", required: true
-          = f.label :description, "Описание", class: "mdl-textfield__label"
+          = f.text_area :text, class: "mdl-textfield__input", required: true
+          = f.label :text, "Описание", class: "mdl-textfield__label"
         br
 
         .mdl-textfield.mdl-js-textfield.mdl-textfield--file
@@ -66,9 +66,17 @@
           p.text-muted Размер 3:2
         br
 
+        .field
+          = label_tag "Навыки", nil
+          = collection_select :partner,
+                              :tag_list,
+                              ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
+                              { selected: @partner.tag_list },
+                              { multiple: true, class: "q-select my-dropdown" }
+
         .actions
           = f.submit "Cохранить", class: "btn btn-ez"
 
     // Right partner
     .col-xs-3
-      = render "partners/right", partner: @partner
+      = render "partners/right", partner: @right

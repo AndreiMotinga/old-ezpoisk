@@ -5,7 +5,10 @@ FactoryGirl.define do
     final_url "https://www.ezpoisk.com"
     title { RU_KINDS.keys.sample + " в " + City.order("random ()").name }
     headline "Headline one of two"
-    description { Faker::Lorem.sentence(2) }
+    text { Faker::Lorem.sentence(2) }
+    active true
+    first "some string"
+    subline "other string"
   end
 
   factory :impression do

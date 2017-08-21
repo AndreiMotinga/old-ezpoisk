@@ -14,7 +14,6 @@ module ListingsHelper
     state = params[:state]
     return [] unless state.present?
     City.where(state_slug: state)
-        .or(City.where(slug: City::ALL))
         .joins(:listings)
         .where(listings: { kind: params[:kind] })
         .distinct

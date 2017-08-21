@@ -11,8 +11,7 @@
              url: answers_url,
              image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- top, left, right = Partner.get(3)
-- content_for :header, render("partners/top", partner: top)
+- content_for :header, render("partners/top", partner: @top)
 
 - content_for :left do
   .hidden-xs.sticky
@@ -20,10 +19,10 @@
              url: "/answers/tag/",
              tags: @tags = Answer.tag_counts.sort_by(&:name),
              type: "answers"
-    = render "partners/left", partner: left
+    = render "partners/left", partner: @left
 
 - content_for :right do
-  = render "partners/right", partner: right
+  = render "partners/right", partner: @right
 
 div data-id="listings" data-term=params[:term]
   = render "answers/search"

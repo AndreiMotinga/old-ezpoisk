@@ -47,6 +47,13 @@ class Question < ActiveRecord::Base
     answers.where.not(logo_url: nil).pluck(:logo_url).sample
   end
 
+  def related(n)
+    Question.older(created_at)
+            .tagged_with(tag_list, any: true)
+            .order(created_at: :desc)
+            .take(n)
+  end
+
   private
 
   def notify_slack
