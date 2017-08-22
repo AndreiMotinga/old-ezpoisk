@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class PartnersController < DashboardController
-  before_action :set_partner, only: [:edit, :update, :destroy, :duplicate]
+  before_action :set_partner, only: [:edit, :update, :destroy]
 
   # GET /partners
   def index
-    @partners = current_user.partners
+    @partners = current_user.admin? ? Partner.order(:title) : current_user.partners
   end
 
   # GET /partners/new
@@ -42,19 +42,30 @@ class PartnersController < DashboardController
   # DELETE /partners/1
   def destroy
     @partner.destroy
-    redirect_to partners_path,
-                notice: 'Partner was successfully destroyed.'
   end
 
   def duplicate
-    @partner.dup.save
-    redirect_to partners_path
+    @old = Partner.find(params[:id])
+    @partner = Partner.create(title: @old.title,
+                              final_url: @old.final_url,
+                              headline: @old.headline,
+                              subline: @old.subline,
+                              text: @old.text,
+                              state_id: @old.state_id,
+                              city_id: @old.city_id,
+                              user_id: @old.user_id,
+                              tag_list: @old.tag_list,
+                              image: @old.image)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_partner
-      @partner = current_user.partners.find(params[:id])
+      if current_user.admin?
+        @partner = Partner.find(params[:id])
+      else
+        @partner = current_user.partners.find(params[:id])
+      end
     end
 
     # Only allow a trusted parameter "white list" through.

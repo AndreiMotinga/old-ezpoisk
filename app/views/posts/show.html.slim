@@ -48,6 +48,8 @@
 br
 = render "listings/comments", record: @post
 
+= render "partners/inline", partner: @inline
+
 - content_for :javascript do
   = render "social_share_buttons_js"
 

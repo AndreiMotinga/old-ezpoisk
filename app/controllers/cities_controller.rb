@@ -35,6 +35,6 @@ class CitiesController < ApplicationController
   end
 
   def cities
-    City.where(state_id: state.id)
+    City.where(state_id: state&.id)
   end
 end

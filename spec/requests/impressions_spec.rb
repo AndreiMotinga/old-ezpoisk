@@ -5,9 +5,8 @@ describe "Impressions" do
     it "schedules job to create visit impression" do
       partner = create :partner
       allow(ImpressionableJob)
-        .to receive(:perform_in)
-        .with(1.minute,
-              "Partner",
+        .to receive(:perform_async)
+        .with("Partner",
               partner.id.to_s,
               "visit",
               nil,
@@ -16,9 +15,8 @@ describe "Impressions" do
 
       get impression_path(id: partner.id, final_url: partner.final_url)
       expect(ImpressionableJob)
-        .to have_received(:perform_in)
-        .with(1.minute,
-              "Partner",
+        .to have_received(:perform_async)
+        .with("Partner",
               partner.id.to_s,
               "visit",
               nil,
@@ -37,9 +35,8 @@ describe "Impressions" do
     it "schedules job to create show impression" do
       partner = create :partner
       allow(ImpressionableJob)
-        .to receive(:perform_in)
-        .with(1.minute,
-              "Partner",
+        .to receive(:perform_async)
+        .with("Partner",
               partner.id.to_s,
               "show",
               nil,
@@ -49,9 +46,8 @@ describe "Impressions" do
       post impressions_path("ids[]": partner.id)
 
       expect(ImpressionableJob)
-        .to have_received(:perform_in)
-        .with(1.minute,
-              "Partner",
+        .to have_received(:perform_async)
+        .with("Partner",
               partner.id.to_s,
               "show",
               nil,

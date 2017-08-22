@@ -33,7 +33,7 @@ class AnswersController < PagesController
 
   def show
     @answer = Answer.find(params[:id])
-    @top, @right = Partner.get(limit: 2, tags: @answer.tag_list)
+    @top, @right, @inline = Partner.get(tags: @answer.tag_list)
   end
 
   def new

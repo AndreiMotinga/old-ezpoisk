@@ -33,6 +33,9 @@
     = render "partners/right", partner: @right
 
 div data-id="listings"
+  - if @inline&.any?
+    - @inline.each do |partner|
+      = render "partners/inline", partner: partner
   = render @listings
 
 .row

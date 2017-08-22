@@ -12,5 +12,6 @@ class ImpressionableJob
                               user_id: user_id,
                               ip_address: ip_address,
                               referrer: referrer)
+    record.update_column(:cached_ctr, record.ctr) if type == "Partner"
   end
 end

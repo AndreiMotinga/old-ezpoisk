@@ -1,0 +1,17 @@
+tr data-id=partner.id
+  td = partner.id
+  td = link_to partner.user_id, user_path(partner.user_id)
+  td
+    - if partner.active?
+      i.fa.fa-check aria-hidden="" style="color:green;"
+    - else
+      i.fa.fa-pause aria-hidden=""
+  td = link_to partner.title, edit_partner_path(partner)
+  td = partner.impressions.show.count
+  td = partner.impressions.visit.count
+  td = "#{partner.cached_ctr}%"
+  td = link_to "Копировать", duplicate_partner_path(partner), data: { remote: true }
+  td = link_to partner_path(partner),
+               data: { confirm: 'Are you sure?', remote: true },
+               method: :delete do
+      i.fa.fa-times aria-hidden="" style="color:red;"

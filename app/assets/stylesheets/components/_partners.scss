@@ -11,6 +11,15 @@
 .partner-top {
   margin: 0 15px 15px;
   text-align: center;
+
+  a {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .subline {
+    color: $dark-gray;
+  }
 }
 
 .partner-left {

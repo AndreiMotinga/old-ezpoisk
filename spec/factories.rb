@@ -9,6 +9,7 @@ FactoryGirl.define do
     active true
     first "some string"
     subline "other string"
+    user
   end
 
   factory :impression do

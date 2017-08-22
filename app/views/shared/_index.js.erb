@@ -14,6 +14,11 @@ $("[data-partner='right']").replaceWith("<%= j render('partners/right', partner:
 incrementPartners()
 
 // render records
+<% if @inline&.any? %>
+  <% @inline.each do |partner| %>
+    $("[data-id='listings']").append("<%= j render("partners/inline", partner: partner) %>");
+  <% end %>
+<% end %>
 $("[data-id='listings']").append("<%= j render(records) %>");
 
 // update pagination links

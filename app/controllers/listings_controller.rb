@@ -137,16 +137,18 @@ class ListingsController < PagesController
     tags = [params[:kind],
             params[:category],
             params[:subcategory].try(:split, "--")]
-    @top, @left, @right = Partner.get(limit: 3,
-                                      state: params[:state],
-                                      city: params[:city],
-                                      tags: tags)
+    partners = Partner.get(limit: 6,
+                           state: params[:state],
+                           city: params[:city],
+                           tags: tags)
+    @top, @left, @right = partners
+    @inline = partners[3..5]
   end
 
   def set_show_partners
-    @top, @right = Partner.get(limit: 2,
-                               state: @listing.state_id,
-                               city: @listing.city_id,
-                               tags: @listing.tag_list)
+    @top, @right, @inline = Partner.get(limit: 3,
+                                        state: @listing.state_id,
+                                        city: @listing.city_id,
+                                        tags: @listing.tag_list)
   end
 end

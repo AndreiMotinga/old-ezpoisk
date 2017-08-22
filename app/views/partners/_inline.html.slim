@@ -1,14 +1,21 @@
 - if partner
-  - url = partner.new_record? ? "javascript:void(0)" : impression_path(id: partner.id, final_url: partner.final_url)
-  .partner-inline data-partner="inline" data-id=partner.id
-    .col-xs-4
-      = link_to url, target: "_blank" do
-        = image_tag partner.image.url(:medium), class: "img-responsive js-image"
-    .col-xs-8
-      .title.js-headline= link_to partner.headline, url, class: "partner-title", target: "_blank"
-      .final-url.js-final-url= link_to partner.final_url, url, class: "site", target: "_blank"
-      hr
-      .description.js-description= partner.text
+  - url = impression_path(id: partner.id, final_url: partner.final_url)
+  - has_image = partner.image.exists?
+  .col-xs-12.listing.mdl-shadow--2dp
+    .row
+      - if has_image
+        .col-xs-12.col-sm-4
+          = link_to url do
+            img.img-responsive.center-block.logo src=partner.image.url(:medium)
 
-- else
-  | google ad
+      .col-xs-12 class=("col-sm-8" if has_image)
+        h4.title
+          span.top Ad
+          = " "
+          = link_to partner.headline, url, class: "js-headline", target: "_blank"
+
+        hr.post-devider
+        p.text.js-text= partner.text
+
+/- else
+/  | google ad

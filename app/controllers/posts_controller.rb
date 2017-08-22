@@ -52,7 +52,7 @@ class PostsController < PagesController
   def show
     @post = Post.find(params[:id])
     @popular = Comment.popular
-    @top, @right = Partner.get(limit: 2, tags: @post.tag_list)
+    @top, @right, @inline = Partner.get(limit: 3, tags: @post.tag_list)
   end
 
   def edit

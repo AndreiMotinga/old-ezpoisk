@@ -19,6 +19,7 @@
 .row
   .col-lg-10.col-lg-offset-1
     = render @answer.question
+    = render "partners/inline", partner: @inline
     = render "questions/answer", answer: @answer
 
     br
