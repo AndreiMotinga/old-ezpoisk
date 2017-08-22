@@ -145,5 +145,15 @@ RSpec.describe Listing, type: :model do
       result = [l.kind, l.category, l.subcategory, l.state.slug, l.city.slug]
       expect(l.tag_list).to match_array result
     end
+
+    it "splits subcategories" do
+      l = build :listing, subcategory: "продавцы--кассиры--администраторы"
+
+      l.save
+      result = [l.kind, l.category, l.state.slug, l.city.slug, "продавцы",
+                "кассиры", "администраторы"]
+
+      expect(l.tag_list).to match_array result
+    end
   end
 end

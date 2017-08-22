@@ -94,6 +94,7 @@ class Listing < ApplicationRecord
   end
 
   def set_tags
-    self.tag_list = [kind, category, subcategory, state.slug, city.slug]
+    subs = subcategory.split("--")
+    self.tag_list = [kind, category, subs, state.slug, city.slug].flatten
   end
 end
