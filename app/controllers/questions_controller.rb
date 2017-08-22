@@ -9,9 +9,8 @@ class QuestionsController < PagesController
   end
 
   def index
-    @questions = Question.unanswered.search(params[:term])
-                                    .page(params[:page])
-    @tags = Question.unanswered.tag_counts.sort_by(&:name)
+    set_questions
+    set_tags
     @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
@@ -20,10 +19,8 @@ class QuestionsController < PagesController
   end
 
   def tag
-    @questions = Question.unanswered.tagged_with(params[:tag])
-                                    .search(params[:term])
-                                    .page(params[:page])
-    @tags = Question.unanswered.tag_counts.sort_by(&:name)
+    @questions = Question.tagged_with(params[:tag]).page(params[:page])
+    set_tags
     @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|
       format.html { render :index }
@@ -54,5 +51,23 @@ class QuestionsController < PagesController
 
   def question_params
     params.require(:question).permit(:title, :text, :image_url, tag_list: [])
+  end
+
+  def set_tags
+    if user_signed_in?
+      @tags = current_user.interest_list
+    else
+      @tags = Question.tag_counts.order("count desc").take(5).pluck(:name)
+    end
+  end
+
+  def set_questions
+    @questions = Question.desc
+    if params[:all].present?
+      # don't filter anymore
+    elsif user_signed_in?
+      @questions = @questions.tagged_with(current_user.skill_list, any: true)
+    end
+    @questions = @questions.page(params[:page])
   end
 end

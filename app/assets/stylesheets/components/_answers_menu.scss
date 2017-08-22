@@ -6,6 +6,7 @@
 
 .answers-menu {
   list-style-type: none;
+  -webkit-padding-start: 0;
 
   li.header {
     border-bottom: 1px solid $medium-gray;

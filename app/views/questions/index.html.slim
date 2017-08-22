@@ -15,10 +15,7 @@
   = render "partners/top", partner: @top
 - content_for :left do
   .hidden-xs.sticky
-    = render "shared/answers_menu",
-             url: "/questions/tag/",
-             tags: @tags,
-             type: "questions"
+    = render "questions/menu", tags: @tags
     = render "partners/left", partner: @left
 - content_for :right do
   .sticky

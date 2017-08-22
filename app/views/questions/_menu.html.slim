@@ -1,0 +1,11 @@
+.answers-menu-container
+  strong.header Ваши навыки
+  - if user_signed_in?
+    = link_to edit_user_path(current_user, act: "skills"), class: "pull-right" do
+      i.fa.fa-pencil.pull-right aria-hidden="true"
+  hr
+
+  ul.answers-menu
+    - tags.each do |tag|
+      li.tag= link_to tag.capitalize, "/questions/tag/#{tag}", class: "gray"
+    li.tag= link_to "Показать все", questions_path(all: 1), class: "gray"
