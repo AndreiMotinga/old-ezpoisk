@@ -63,7 +63,7 @@ class QuestionsController < PagesController
 
   def set_questions
     @questions = Question.desc
-    if params[:all].present?
+    if params[:all].present? || current_user&.skill_list&.empty?
       # don't filter anymore
     elsif user_signed_in?
       @questions = @questions.tagged_with(current_user.skill_list, any: true)

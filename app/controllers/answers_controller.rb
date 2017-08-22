@@ -120,7 +120,7 @@ class AnswersController < PagesController
 
   def set_answers
     @answers = Answer.includes(:user).desc
-    if params[:all]
+    if params[:all] || current_user&.interest_list&.empty?
       # don't filter anymore
     elsif params[:term].present?
       @answers = @answers.term(params[:term]).page(params[:page])
