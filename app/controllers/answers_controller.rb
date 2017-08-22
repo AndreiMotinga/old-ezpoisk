@@ -10,7 +10,8 @@ class AnswersController < PagesController
   end
 
   def index
-    @answers = Answer.includes(:user).page(params[:page])
+    set_answers
+    set_tags
     @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
@@ -22,6 +23,7 @@ class AnswersController < PagesController
     @answers = Answer.includes(:user)
                      .tagged_with(params[:tag])
                      .page(params[:page])
+    set_tags
     @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|
       format.html { render :index }
@@ -106,5 +108,25 @@ class AnswersController < PagesController
 
   def question
     @answer.question
+  end
+
+  def set_tags
+    if user_signed_in?
+      @tags = current_user.interest_list
+    else
+      @tags = Answer.tag_counts.order("count desc").take(5).pluck(:name)
+    end
+  end
+
+  def set_answers
+    @answers = Answer.includes(:user).desc
+    if params[:all]
+      # don't filter anymore
+    elsif params[:term].present?
+      @answers = @answers.term(params[:term]).page(params[:page])
+    elsif user_signed_in?
+      @answers = @answers.tagged_with(current_user.interest_list, any: true)
+    end
+    @answers = @answers.page(params[:page])
   end
 end

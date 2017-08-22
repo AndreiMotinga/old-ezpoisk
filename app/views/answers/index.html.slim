@@ -15,10 +15,7 @@
 
 - content_for :left do
   .hidden-xs.sticky
-    = render "shared/answers_menu",
-             url: "/answers/tag/",
-             tags: @tags = Answer.tag_counts.sort_by(&:name),
-             type: "answers"
+    = render "answers/menu", tags: @tags
     = render "partners/left", partner: @left
 
 - content_for :right do
