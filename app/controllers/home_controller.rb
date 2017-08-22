@@ -2,6 +2,7 @@
 
 class HomeController < PagesController
   layout :set_layout
+  after_action(only: :index) { create_show_impressions(@actions.map(&:actionable)) }
 
   def index
     @actions = Action.includes(actionable: :user)
