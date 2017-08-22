@@ -8,7 +8,9 @@ feature "user updates post", js: true do
 
     visit edit_post_path(record)
     fill_in "Заголовок", with: attrs.title
-    find("div[contenteditable]").send_keys("New text.")
+    script = '$(".summernote").summernote("editor.insertText", "New text.");'
+    execute_script(script)
+    # find("div[contenteditable]").send_keys("New text.")
     select3("законы")
     select3("недвижимость")
     click_on "Сохранить"
@@ -17,7 +19,7 @@ feature "user updates post", js: true do
     record.reload
     expect(record.user).to eq user
     expect(record.title).to eq attrs.title
-    expect(record.text).to eq "New text." + "Old Text"
+    expect(record.text).to eq "<p>New text." + "Old Text</p>"
     expect(record.slug).not_to be_empty
     expect(record.cached_tags.split(",")).to match_array %w[работа законы недвижимость]
   end

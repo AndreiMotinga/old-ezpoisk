@@ -1,9 +1,17 @@
+require "selenium/webdriver"
+
 Capybara.asset_host = 'http://localhost:3000'
+
+# Capybara::Webkit.configure do |config|
+#   config.block_unknown_urls
+# end
+
+Capybara.javascript_driver = :webkit
 
 # Capybara.register_driver :chrome do |app|
 #   Capybara::Selenium::Driver.new(app, browser: :chrome)
 # end
-
+#
 # Capybara.register_driver :headless_chrome do |app|
 #   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
 #     chromeOptions: { args: %w(headless disable-gpu) }
@@ -15,5 +23,3 @@ Capybara.asset_host = 'http://localhost:3000'
 # end
 #
 # Capybara.javascript_driver = :headless_chrome
-
-Capybara.javascript_driver = :webkit
