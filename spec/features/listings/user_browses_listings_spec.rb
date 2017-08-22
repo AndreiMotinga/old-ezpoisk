@@ -1,4 +1,5 @@
 require "rails_helper"
+include FormHelper
 
 feature "User" do
   scenario "browses listings by kind" do

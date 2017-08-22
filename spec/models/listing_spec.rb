@@ -140,7 +140,7 @@ RSpec.describe Listing, type: :model do
 
   describe "private set_tags" do
     it "saves tag_list" do
-      l = build :listing
+      l = build :listing, subcategory: "foo"
       l.save
       result = [l.kind, l.category, l.subcategory, l.state.slug, l.city.slug]
       expect(l.tag_list).to match_array result
