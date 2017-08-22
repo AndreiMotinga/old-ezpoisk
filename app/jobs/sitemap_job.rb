@@ -9,5 +9,5 @@ class SitemapJob
 end
 
 Sidekiq::Cron::Job.create(name: "sitemap job",
-                          cron: "0 0 * * *",
+                          cron: "0 11 * * *",
                           class: "SitemapJob")
