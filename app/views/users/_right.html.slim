@@ -39,7 +39,6 @@ div.credentials
     = link_to edit_user_path(@user, act: "skills"), class: "pull-right" do
       i.fa.fa-pencil.pull-right aria-hidden="true"
   hr
-
   ul.skills
-    - @user.tag_list.each do |tag|
+    - @user.skill_list.each do |tag|
       li= link_to tag, tag_answers_path(tag), class: "tag"

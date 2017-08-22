@@ -7,3 +7,4 @@
     li.tag= link_to "Образование", edit_user_path(current_user, act: "education"), class: "grey #{'active' if params[:act] == 'education'}"
     li.tag= link_to "Карьера", edit_user_path(current_user, act: "job"), class: "grey #{'active' if params[:act] == 'job'}"
     li.tag= link_to "Навыки", edit_user_path(current_user, act: "skills"), class: "grey #{'active' if params[:act] == 'skills'}"
+    li.tag= link_to "Интересы", edit_user_path(current_user, act: "interests"), class: "grey #{'active' if params[:act] == 'interests'}"

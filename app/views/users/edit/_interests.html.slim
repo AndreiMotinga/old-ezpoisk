@@ -1,11 +1,11 @@
 = bootstrap_form_for(current_user) do |f|
-  = hidden_field_tag :act, "skills"
+  = hidden_field_tag :act, "interests"
   .field
-    = label_tag "Навыки", nil
+    = label_tag "Интересы", nil
     = collection_select :user,
-                        :skill_list,
+                        :interest_list,
                         ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
-                        { selected: current_user.skill_list },
+                        { selected: current_user.interest_list },
                         { multiple: true, class: "q-select my-dropdown" }
 
   br

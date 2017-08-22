@@ -66,7 +66,7 @@ class UsersController < PagesController
 
   def user_params
     params.require(:user).permit(:gender, :name, :about, :avatar, :short_bio,
-                                 tag_list: [])
+                                 skill_list: [], interest_list: [])
   end
 
   def set_user

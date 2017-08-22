@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   include OmniLogin
   include Impressionable
 
-  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
   acts_as_voter
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
     :lastseenable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
