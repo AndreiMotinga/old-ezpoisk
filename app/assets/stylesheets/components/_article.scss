@@ -18,6 +18,14 @@
     margin-bottom: 0;
     margin-top: 5px;
 
+    .avatar {
+      display: block;
+      margin: 0 auto;
+      max-width: 50px;
+      height: auto;
+      border-radius: 50px;
+    }
+
     .name-block {
       padding-left: 0;
 
