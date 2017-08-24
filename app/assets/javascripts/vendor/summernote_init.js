@@ -46,4 +46,10 @@ $(document).ready(function(){
       }
     });
   }
+
+  // stick toolbar
+  $(".note-toolbar").sticky({
+    topSpacing: 50,
+    zIndex: 1
+  });
 });
