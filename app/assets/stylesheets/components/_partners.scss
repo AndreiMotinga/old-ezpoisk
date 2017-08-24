@@ -1,13 +1,3 @@
-.partner-left,
-.partner-right,
-.partner-inline {
-  // background-color: $white;
-  // border: 1px solid $medium-gray;
-  margin-bottom: 20px;
-  color: $dark-gray;
-  overflow: hidden;
-}
-
 .partner-top {
   margin: 0 15px 15px;
   text-align: center;
@@ -15,10 +5,57 @@
   a {
     font-size: 15px;
     font-weight: 600;
+
+    .subline {
+      color: $dark-gray;
+    }
+  }
+}
+
+
+.partner-left,
+.partner-right {
+  background-color: $white;
+  border: 1px solid $light-gray;
+  margin-bottom: 20px;
+  color: $dark-gray;
+  overflow: hidden;
+
+  .image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.partner-left,
+.partner-right,
+.partner-inline {
+  a {
+    text-decoration: none;
   }
 
-  .subline {
-    color: $dark-gray;
+  .body {
+    .headline {
+      color: $dark-gray;
+    }
+
+    .subline,
+    .text {
+      color: $dark-gray;
+      font-weight: normal;
+    }
+
+    hr {
+      margin: 5px 0;
+    }
+  }
+}
+
+.partner-left,
+.partner-right {
+  .body {
+    padding: 5px;
   }
 }
 
@@ -28,25 +65,11 @@
   width: 200px;
 }
 
-.partner-left,
 .partner-right {
-  .image {
-    padding-bottom: 5px;
-  }
+  margin-left: -15px;
+  margin-right: -15px;
+}
 
-  .partner-body {
-    padding: 5px;
-  }
-
-  .title {
-    color: $dark-gray;
-  }
-
-  .final_url {
-    color: $medium-gray;
-  }
-
-  hr {
-    margin: 5px 0;
-  }
+.partner-inline {
+  border: 0;
 }

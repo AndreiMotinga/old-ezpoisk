@@ -30,5 +30,7 @@ nav.js-menu.sliding-panel-content
     li= link_to "Ответы", answers_path
     li= link_to "Новости", posts_path
     li= link_to "Об ezpoisk", about_path
+    - if current_user&.admin?
+      li= link_to "Реклама", partners_path
 
 .js-menu-screen.sliding-panel-fade-screen

@@ -1,53 +1,49 @@
-.white-block.mdl-shadow--2dp
-  .panel
-    .panel-body
-      = form_for(current_user.contact) do |f|
-        = hidden_field_tag :act, "contacts"
-        .row
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :skype, class: "mdl-textfield__input", placeholder: "www.yoursite.com"
-              = f.label :skype, class: "mdl-textfield__label"
-
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :phone, class: "mdl-textfield__input"
-              = f.label :phone, "Телефон", class: "mdl-textfield__label"
-        .row
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :site, class: "mdl-textfield__input", placeholder: "www.yoursite.com"
-              = f.label :site, "Личный сайт...", class: "mdl-textfield__label"
-
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :google, class: "mdl-textfield__input"
-              = f.label :google, "Google+", class: "mdl-textfield__label"
-        .row
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :fb, class: "mdl-textfield__input"
-              = f.label :fb, "Facebook", class: "mdl-textfield__label"
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :vk, class: "mdl-textfield__input"
-              = f.label :vk, "Vkontakte", class: "mdl-textfield__label"
-
+.card
+  = form_for(current_user.contact) do |f|
+    = hidden_field_tag :act, "contacts"
+    .row
+      .col-sm-6
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :street, class: "mdl-textfield__input"
-          = f.label :street, "Улица", class: "mdl-textfield__label"
+          = f.text_field :skype, class: "mdl-textfield__input", placeholder: "www.yoursite.com"
+          = f.label :skype, class: "mdl-textfield__label"
 
-        .row
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              = form_state_select(f)
-              = f.label :state_id, "Штат", class: "mdl-textfield__label"
-          .col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              = form_city_select(f, current_user.contact)
-              = f.label :city_id, "Город", class: "mdl-textfield__label"
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :phone, class: "mdl-textfield__input"
+          = f.label :phone, "Телефон", class: "mdl-textfield__label"
+    .row
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :site, class: "mdl-textfield__input", placeholder: "www.yoursite.com"
+          = f.label :site, "Личный сайт...", class: "mdl-textfield__label"
+
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :google, class: "mdl-textfield__input"
+          = f.label :google, "Google+", class: "mdl-textfield__label"
+    .row
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :fb, class: "mdl-textfield__input"
+          = f.label :fb, "Facebook", class: "mdl-textfield__label"
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :vk, class: "mdl-textfield__input"
+          = f.label :vk, "Vkontakte", class: "mdl-textfield__label"
+
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+      = f.text_field :street, class: "mdl-textfield__input"
+      = f.label :street, "Улица", class: "mdl-textfield__label"
+
+    .row
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          = form_state_select(f)
+          = f.label :state_id, "Штат", class: "mdl-textfield__label"
+      .col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          = form_city_select(f, current_user.contact)
+          = f.label :city_id, "Город", class: "mdl-textfield__label"
 
 
-        = f.submit "Сохранить", class: "btn btn-ez", id: "contacts-save-btn"
-
-
+    = f.submit "Сохранить", class: "btn btn-ez", id: "contacts-save-btn"

@@ -1,82 +1,76 @@
-= render "partners/top", partner: @partner
+- content_for :header do
+  = render "partners/top", partner: @partner
+- content_for :left do
+  .hidden-xs
+    = render "partners/left", partner: @partner
+- content_for :right do
+  = render "partners/right", partner: @partner
 
-.row
-  .col-xs-12
-    // Left partner
-    .col-xs-3.left-partner
-      = render "partners/left", partner: @partner
+= render "partners/inline", partner: @partner
 
-    // Form
-    .col-xs-6.middle-col
-      // inline
-      = render "partners/inline", partner: @partner
-      br
-      br
+.col-xs-12.card
+  = form_for @partner do |f|
+    - if @partner.errors.any?
+      #error_explanation
+        h5 = "#{pluralize(@partner.errors.count, "error")} prohibited this partner from being saved:"
+        ul
+          - @partner.errors.full_messages.each do |message|
+            li.text-danger = message
 
-      = form_for @partner, html: { class: "col-xs-12 white-bg mdl-shadow--2dp" } do |f|
-        - if @partner.errors.any?
-          #error_explanation
-            h5 = "#{pluralize(@partner.errors.count, "error")} prohibited this partner from being saved:"
-            ul
-              - @partner.errors.full_messages.each do |message|
-                li.text-danger = message
-
+    .row
+      .col-xs-6
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
           = f.text_field :title, class: "mdl-textfield__input"
           = f.label :title, class: "mdl-textfield__label"
-        br
-
-        .row
-          .col-xs-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              = form_state_select(f)
-              = f.label :state_id, "Штат", class: "mdl-textfield__label"
-
-          .col-xs-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              = form_city_select(f, @partner, true)
-              = f.label :city_id, "Город", class: "mdl-textfield__label"
-        br
-
-        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :headline, class: "mdl-textfield__input", required: true
-          = f.label :headline, class: "mdl-textfield__label"
-        br
-
-        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :final_url, class: "mdl-textfield__input", required: true
-          = f.label :final_url, "Ссылка", class: "mdl-textfield__label"
-        br
-
-        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :subline, class: "mdl-textfield__input", required: true
-          = f.label :subline, class: "mdl-textfield__label"
-        br
-
-        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_area :text, class: "mdl-textfield__input", required: true
-          = f.label :text, "Описание", class: "mdl-textfield__label"
-        br
-
+      .col-xs-6
         .mdl-textfield.mdl-js-textfield.mdl-textfield--file
-          input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly="" required=""
+          input class="mdl-textfield__input" placeholder="Картинка" type="text" id="uploadFile"
           div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file"
             i class="material-icons"  attach_file
             = f.file_field :image
-          p.text-muted Размер 3:2
-        br
+          .text-muted Размер 3:2
 
-        .field
-          = label_tag "Навыки", nil
-          = collection_select :partner,
-                              :tag_list,
-                              ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
-                              { selected: @partner.tag_list },
-                              { multiple: true, class: "q-select my-dropdown" }
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+      = f.text_field :headline, class: "mdl-textfield__input", required: true
+      = f.label :headline, class: "mdl-textfield__label"
+    br
 
-        .actions
-          = f.submit "Cохранить", class: "btn btn-ez"
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+      = f.text_field :final_url, class: "mdl-textfield__input", required: true
+      = f.label :final_url, "Ссылка", class: "mdl-textfield__label"
+    br
 
-    // Right partner
-    .col-xs-3
-      = render "partners/right", partner: @partner
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+      = f.text_field :subline, class: "mdl-textfield__input", required: true
+      = f.label :subline, class: "mdl-textfield__label"
+    br
+
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+      = f.text_area :text, class: "mdl-textfield__input", required: true
+      = f.label :text, "Описание", class: "mdl-textfield__label"
+    br
+
+    .row
+      .col-xs-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          = form_state_select(f)
+          = f.label :state_id, "Штат", class: "mdl-textfield__label"
+
+      .col-xs-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          = form_city_select(f, @partner, true)
+          = f.label :city_id, "Город", class: "mdl-textfield__label"
+    br
+
+    .field
+      = label_tag "Навыки", nil
+      = collection_select :partner,
+                          :tag_list,
+                          ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,
+                          { selected: @partner.tag_list },
+                          { multiple: true, class: "q-select my-dropdown" }
+    br
+
+    .actions
+      = f.submit "Cохранить", class: "btn btn-ez"
+    br

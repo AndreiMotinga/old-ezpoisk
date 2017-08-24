@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class PartnersController < DashboardController
+class PartnersController < ApplicationController
   before_action :set_partner, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /partners
   def index

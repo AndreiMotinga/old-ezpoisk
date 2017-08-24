@@ -1,0 +1,15 @@
+.select2-selection,
+.select2-dropdown {
+  border: 1px solid $light-gray !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  border: 1px solid $light-gray !important;
+  padding: 2px 10px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  padding-right: 5px;
+  font-size: 16px;
+  line-height: 20px;
+}

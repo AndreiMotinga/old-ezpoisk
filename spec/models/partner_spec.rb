@@ -4,9 +4,11 @@ RSpec.describe Partner, type: :model do
   it { should belong_to(:user) }
 
   it { should validate_presence_of(:title) }
-  it { should validate_length_of(:title).is_at_most(45) }
   it { should validate_presence_of(:final_url) }
   it { should validate_presence_of(:headline) }
+  it { should validate_length_of(:headline).is_at_most(50) }
+  it { should validate_length_of(:subline).is_at_most(50) }
+  it { should validate_length_of(:text).is_at_most(160) }
 
   describe ".state" do
     it "returns partners for state and without state" do

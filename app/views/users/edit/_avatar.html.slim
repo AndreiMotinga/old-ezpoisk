@@ -2,16 +2,24 @@
   // just to have something in parmas on sumbit
   = hidden_field_tag :'user[name]', @user.name
   = hidden_field_tag :act, "avatar"
-  .white-block.mdl-shadow--2dp
-    .panel
-      .panel-body
-        .row
-          .col-sm-3
-            label Аватар
+  .card
+    .row
+      .col-xs-12.col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--file
+          input class="mdl-textfield__input" placeholder="Аватар" type="text" id="uploadFile"
+          div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file"
+            i class="material-icons"  attach_file
             = f.file_field :avatar
-            p.text-muted 100 x 100px
-          .col-sm-8.col-sm-offset-1
-            = image_tag current_user.avatar.url(:medium),
-              class: "pull-right thumbnail img-responsive"
+          .text-muted 100 x 100px
 
-        = f.submit "Сохранить", class: "btn btn-ez"
+      .col-xs-12.col-sm-6
+        = image_tag current_user.avatar.url(:medium),
+          class: "pull-right thumbnail img-responsive"
+
+    = f.submit "Сохранить", class: "btn btn-ez"
+
+- content_for :javascript do
+  javascript:
+    $("#user_avatar").on("change keyup paste", function(){
+      var desc = $("#uploadFile").val( this.files[0].name );
+    });

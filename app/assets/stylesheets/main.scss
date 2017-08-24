@@ -9,7 +9,6 @@
 @import "components/_answer";
 @import "components/_answers_menu";
 @import "components/_article";
-@import "components/_dashboard_drawer";
 @import "components/_comment";
 @import "components/_credentials";
 @import "components/_card";
@@ -28,6 +27,7 @@
 @import "components/_review_form";
 @import "components/_right_widget";
 @import "components/_scroll_up";
+@import "components/_select2";
 @import "components/_side_post";
 @import "components/_sliding_panel";
 @import "components/_social_share_buttons";
@@ -39,10 +39,8 @@
 @import "components/_user_widget";
 
 @import "pages/articles";
-@import "pages/dashboard";
 @import "pages/home";
 @import "pages/listings";
-@import "pages/partners";
 @import "pages/posts";
 @import "pages/profiles";
 @import "pages/users";

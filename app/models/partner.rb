@@ -8,9 +8,11 @@ class Partner < ApplicationRecord
   belongs_to :state
   belongs_to :city
 
-  validates :title, presence: true, length: { maximum: 45 }
+  validates :title, presence: true
   validates :final_url, presence: true
-  validates :headline, presence: true, length: { maximum: 45 }
+  validates :headline, presence: true, length: { maximum: 50 }
+  validates :subline, presence: true, length: { maximum: 50 }
+  validates :text, presence: true, length: { maximum: 160 }
 
   before_create :set_random_cached_ctr
 

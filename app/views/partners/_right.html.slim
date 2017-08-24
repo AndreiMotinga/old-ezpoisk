@@ -1,13 +1,14 @@
 - if partner
-  - url = partner.new_record? ? "javascript:void(0)" : impression_path(id: partner.id, final_url: partner.final_url)
-  .row.partner-right.white-bg.mdl-shadow--2dp data-partner="right" data-id=partner.id
+  - url = partner.id? ? impression_path(id: partner.id, final_url: partner.final_url) : ""
+  - image_url = partner.image? ? partner.image.url(:medium) : ""
+  .partner-right data-partner="right" data-id=partner.id
     = link_to url, target: "_blank" do
-      = image_tag partner.image.url(:medium), class: "img-responsive js-image"
-    .partner-body
-      .js-headline= link_to partner.headline, url, class: "headline", target: "_blank"
-      .js-final-url= link_to partner.final_url, url, target: "_blank"
-      hr
-      .headline.js-subline= partner.subline
+      = image_tag image_url, class: "image js-image"
+      .body
+        .headline.js-headline= partner.headline
+        .js-final-url= partner.final_url
+        hr
+        .subline.js-subline= partner.subline
 
 - else
   = render "shared/gads/right"

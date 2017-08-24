@@ -1,5 +1,6 @@
 .card {
   background-color: $white;
-  margin-bottom: $large-spacing;
+  border: 1px solid $light-gray;
+  margin-bottom: $base-spacing;
   padding: $base-spacing;
 }

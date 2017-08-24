@@ -15,16 +15,14 @@
 - content_for :header, render("partners/top", partner: @top)
 
 - content_for :left do
-  section
-    #search-toggle.btn.btn-ez.search-toggle.visible-xs
-      | Настроить фильтр | #{@listings.total_count}
+  #search-toggle.btn.btn-ez.search-toggle.visible-xs
+    | Настроить фильтр | #{@listings.total_count}
 
-    section#search-form.search.mdl-shadow--2dp
-      - if params[:kind]
-        = render "listings/search/#{t params[:kind]}"
-      - else
-        = render "listings/search"
-  br
+  #search-form.card.search
+    - if params[:kind]
+      = render "listings/search/#{t params[:kind]}"
+    - else
+      = render "listings/search"
   .hidden-xs.sticky
     = render "partners/left", partner: @left
 

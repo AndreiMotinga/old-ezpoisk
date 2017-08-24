@@ -1,22 +1,23 @@
-- content_for :header
-  h4 Панель управления
+/- content_for :header
+/  h4 Панель управления
 
-= link_to "Новый блок", new_partner_path, class: "btn btn-ez"
-br
-br
+.col-xs-12
+  = link_to "Новый блок", new_partner_path, class: "btn btn-ez"
+  br
+  br
 
-table.mdl-data-table.mdl-shadow--2dp
-  thead
-    tr
-      th id
-      th.mdl-data-table__cell--non-numeric Автор
-      th.mdl-data-table__cell--non-numeric Статус
-      th.mdl-data-table__cell--non-numeric Заголовок
-      th Показов
-      th Кликов
-      th CTR, %
-      th.mdl-data-table__cell--non-numeric Копировать
-      th.mdl-data-table__cell--non-numeric Удалить
+  table.mdl-data-table
+    thead
+      tr
+        th id
+        th.mdl-data-table__cell--non-numeric Автор
+        th.mdl-data-table__cell--non-numeric Статус
+        th.mdl-data-table__cell--non-numeric Заголовок
+        th Показов
+        th Кликов
+        th CTR, %
+        th.mdl-data-table__cell--non-numeric Копировать
+        th.mdl-data-table__cell--non-numeric Удалить
 
-  tbody
-    = render @partners
+    tbody
+      = render @partners

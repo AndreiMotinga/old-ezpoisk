@@ -1,9 +1,8 @@
 - count = record.comments_count
 .row
   .col-xs-12
-    .card.mdl-shadow--2dp
+    .card
       h4.text-muted Коментарии
-      hr
       #comments-container
         div data-target="comments-#{record.class.name}-#{record.id}"
           = render record.comments.includes(:user).order("created_at asc")

@@ -13,8 +13,6 @@
 
   .search {
     margin-right: -15px;
-    background: $white;
-    padding: $base-spacing;
 
     @media(max-width: $screen-sm) {
       display: none;

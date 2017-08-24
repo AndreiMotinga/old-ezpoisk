@@ -1,40 +1,38 @@
-.white-block.mdl-shadow--2dp
-  .panel
-    .panel-body
-      = form_for(current_user) do |f|
-        = hidden_field_tag :act, "general"
+.card
+  = form_for(current_user) do |f|
+    = hidden_field_tag :act, "general"
 
-        .row
-          .col-sm-6.user-email
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :email, class: "mdl-textfield__input", disabled: true
-              = f.label :email, class: "mdl-textfield__label"
+    .row
+      .col-sm-6.user-email
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :email, class: "mdl-textfield__input", disabled: true
+          = f.label :email, class: "mdl-textfield__label"
 
-          .col-xs-12.col-sm-6
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-              = f.select :gender,
-                         ["Мужчина", "Женщина"],
-                         { include_blank: true },
-                         class: "mdl-textfield__input", required: true
-              = f.label :start_year, "Пол", class: "mdl-textfield__label"
+      .col-xs-12.col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          = f.select :gender,
+                     ["Мужчина", "Женщина"],
+                     { include_blank: true },
+                     class: "mdl-textfield__input", required: true
+          = f.label :start_year, "Пол", class: "mdl-textfield__label"
 
-        .row
-          .col-xs-12
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :name, class: "mdl-textfield__input"
-              = f.label :name, "Имя", class: "mdl-textfield__label"
+    .row
+      .col-xs-12
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :name, class: "mdl-textfield__input"
+          = f.label :name, "Имя", class: "mdl-textfield__label"
 
 
-        .row
-          .col-xs-12
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-              = f.text_field :short_bio, class: "mdl-textfield__input"
-              = f.label :short_bio, "Коротко о себе...", class: "mdl-textfield__label"
+    .row
+      .col-xs-12
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+          = f.text_field :short_bio, class: "mdl-textfield__input"
+          = f.label :short_bio, "Коротко о себе...", class: "mdl-textfield__label"
 
-        .row
-          .col-xs-12
-            .mdl-textfield.mdl-js-textfield.full-width
-              = f.text_area :about, class: "mdl-textfield__input", rows: "3", type: "text"
-              = f.label :about, "Расскажите о себе...", class: "mdl-textfield__label"
+    .row
+      .col-xs-12
+        .mdl-textfield.mdl-js-textfield.full-width
+          = f.text_area :about, class: "mdl-textfield__input", rows: "3", type: "text"
+          = f.label :about, "Расскажите о себе...", class: "mdl-textfield__label"
 
-        = f.submit "Сохранить", class: "btn btn-ez", id: "contacts-save-btn"
+    = f.submit "Сохранить", class: "btn btn-ez", id: "contacts-save-btn"

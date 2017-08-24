@@ -1,5 +1,5 @@
 - if partner
-  - url = partner.new_record? ? "javascript:void(0)" : impression_path(id: partner.id, final_url: partner.final_url)
+  - url = partner.new_record? ? "" : impression_path(id: partner.id, final_url: partner.final_url)
   .partner-top data-partner="top" data-id=partner.id
     = link_to url, target: "_blank" do
       span.headline.js-headline= partner.headline
