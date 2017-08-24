@@ -1,1 +1,7 @@
-= render "form"
+- meta title: @question.title,
+       description: @question.text.truncate(160)
+
+- content_for :header, render("partners/top", partner: @top)
+
+.container.container-md
+  = render "form"
