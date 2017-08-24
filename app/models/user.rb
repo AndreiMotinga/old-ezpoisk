@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     email == "ez@ezpoisk.com"
   end
 
+  def member?
+    %w[editor admin superadmin].include?(role)
+  end
+
   private
 
   def notify

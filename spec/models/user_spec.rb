@@ -44,4 +44,18 @@ describe User do
       expect(regular.can_edit?(record)).to eq false
     end
   end
+
+  describe "#member?" do
+    it "returns true if user is member of the team" do
+      admin = create :user, role: "admin"
+      superadmin = create :user, role: "superadmin"
+      editor = create :user, role: "editor"
+      joe = create :user
+
+      expect(admin.member?).to eq true
+      expect(superadmin.member?).to eq true
+      expect(editor.member?).to eq true
+      expect(joe.member?).to eq false
+    end
+  end
 end
