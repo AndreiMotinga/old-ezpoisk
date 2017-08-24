@@ -9,8 +9,7 @@
                         class: "img-responsive img-circle center-block"
         .col-xs-9.col-sm-10.name-block
           h4.name= link_to answer.name, user_path(answer.user), target: "_blank"
-          small= answer.user.short_bio
-          br
+          small.bio= answer.user.short_bio
           small #{answer.impressions_count} просмотров
           - if current_user.try(:can_edit?, answer)
             = " | "
