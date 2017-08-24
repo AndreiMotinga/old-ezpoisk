@@ -1,5 +1,5 @@
 // send stats
-<% if ENV["SEGMENT_KEY"] %>
+<% if ENV["SEGMENT_KEY"] && !current_user&.member? %>
   ga('send', 'pageview');
 <% end %>
 
