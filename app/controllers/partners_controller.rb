@@ -6,7 +6,17 @@ class PartnersController < ApplicationController
 
   # GET /partners
   def index
-    @partners = current_user.admin? ? Partner.order(:title) : current_user.partners
+    @partners = current_user.admin? ? Partner.all : current_user.partners
+    @partners = @partners.where(user_id: params[:u_id]) if params[:u_id].present?
+    sort_order = "#{params[:sort]} #{params[:order]}"
+    @partners = @partners.includes(:state, :city).order(sort_order).page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js do
+        render partial: "shared/index", locals: { records: @partners }
+      end
+    end
   end
 
   # GET /partners/new

@@ -1,17 +1,23 @@
-tr data-id=partner.id
+tr.partner data-id=partner.id
   td = partner.id
-  td = link_to partner.user_id, user_path(partner.user_id)
   td
     - if partner.active?
       i.fa.fa-check aria-hidden="" style="color:green;"
     - else
       i.fa.fa-pause aria-hidden=""
+  td = image_tag partner.image.url(:medium), class: "image"
   td = link_to partner.title, edit_partner_path(partner)
+  td = link_to partner.user_id,
+    partners_path(u_id: partner.user_id, sort: params[:sort], order: params[:order])
+  td = partner.state&.name
+  td = partner.city&.name
   td = partner.impressions.show.count
   td = partner.impressions.visit.count
   td = "#{partner.cached_ctr}%"
-  td = link_to "Копировать", duplicate_partner_path(partner), data: { remote: true }
-  td = link_to partner_path(partner),
-               data: { confirm: 'Are you sure?', remote: true },
-               method: :delete do
+  td
+    = link_to duplicate_partner_path(partner), data: { remote: true } do
+      i.fa.fa-clone aria-hidden="" style="color:green;margin-right:10px;"
+    = link_to partner_path(partner),
+              data: { confirm: 'Are you sure?', remote: true },
+              method: :delete do
       i.fa.fa-times aria-hidden="" style="color:red;"

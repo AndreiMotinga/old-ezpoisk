@@ -1,5 +1,6 @@
 /- content_for :header
 /  h4 Панель управления
+- order = params[:order] == "desc" ? "asc" : "desc"
 
 .col-xs-12
   = link_to "Новый блок", new_partner_path, class: "btn btn-ez"
@@ -9,15 +10,21 @@
   table.mdl-data-table
     thead
       tr
-        th id
-        th.mdl-data-table__cell--non-numeric Автор
+        th= link_to :id, partners_path(sort: :id, order: order)
         th.mdl-data-table__cell--non-numeric Статус
-        th.mdl-data-table__cell--non-numeric Заголовок
+        th.mdl-data-table__cell--non-numeric Картинка
+        th.mdl-data-table__cell--non-numeric
+          = link_to "Заголовок", partners_path(sort: :title, order: order)
+        th.mdl-data-table__cell--non-numeric
+          = link_to "Автор", partners_path(sort: :user_id, order: order)
+        th.mdl-data-table__cell--non-numeric Штат
+        th.mdl-data-table__cell--non-numeric Город
         th Показов
         th Кликов
-        th CTR, %
-        th.mdl-data-table__cell--non-numeric Копировать
-        th.mdl-data-table__cell--non-numeric Удалить
+        th= link_to "CTR, %", partners_path(sort: :cached_ctr, order: order)
+        th.mdl-data-table__cell--non-numeric Действия
 
-    tbody
+    tbody data-id="listings"
       = render @partners
+
+= render "shared/pagination", records: @partners
