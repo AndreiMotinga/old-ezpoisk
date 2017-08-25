@@ -12,42 +12,37 @@
 
 - content_for :header, render("partners/top", partner: @top)
 - content_for :right do
-  = render "posts/show/side_posts", posts: @post.related_posts(4), partner: @right
+  = render "posts/show/right", posts: @post.related_posts(4), partner: @right
+  = render "partners/right", partner: @right
   = render "posts/show/answers", answers: @post.related_answers(10), tags: @post.cached_tags
 
-.row
-  .col-xs-12.post
-    .muted= render "shared/tags", record: @post
-    hr
-    h1= @post.title
-    .row.author
-      .col-xs-3.col-sm-2
-        = link_to user_path(@post.user.name) do
-          = image_tag @post.user.avatar(:thumb),
-                      alt: "автор ответа #{@post.user.name}",
-                      class: "img-responsive img-circle center-block",
-                      target: "_blank"
-      .col-xs-9.col-sm-10.name-block
-        span.name= link_to @post.user.name, user_path(@post.user), target: "_blank"
-        small= ", #{@post.user.short_bio}" if @post.user.short_bio.present?
-        p.date.text-muted
-          = time_ago_in_words @post.published_at
-          = " | #{@post.impressions_count} просмотов"
-          - if current_user.try(:can_edit?, @post)
-            = " | "
-            = link_to "Редактировать", edit_post_path(@post), class: "text-muted"
+.post
+  .muted= render "shared/tags", record: @post
+  hr
+  h1.title= @post.title
+  .row.author
+    .col-xs-3.col-sm-2.avatar-container
+      = link_to user_path(@post.user.name) do
+        = image_tag @post.user.avatar(:thumb),
+                    alt: "автор ответа #{@post.user.name}",
+                    class: "img-responsive img-circle center-block",
+                    target: "_blank"
+    .col-xs-9.col-sm-10.name-block
+      span.name= link_to @post.user.name, user_path(@post.user), target: "_blank"
+      small= ", #{@post.user.short_bio}" if @post.user.short_bio.present?
+      p.date.text-muted
+        = time_ago_in_words @post.published_at
+        = " | #{@post.impressions_count} просмотов"
+        - if current_user.try(:can_edit?, @post)
+          = " | "
+          = link_to "Редактировать", edit_post_path(@post), class: "text-muted"
 
-    = render "social_share_buttons", record: @post, klass: "inline"
+  = render "social_share_buttons", record: @post, klass: "inline"
 
-.row
-  .col-xs-12
-    .panel
-      .panel-body.summernote-container
-        = raw @post.text
+.card.summernote-container
+  = raw @post.text
 
-br
 = render "listings/comments", record: @post
-
 = render "partners/inline", partner: @inline
 
 - content_for :javascript do

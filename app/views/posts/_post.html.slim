@@ -1,24 +1,22 @@
-.col-xs-12
-  .row.article
-    .panel
-      = render "shared/tags", record: post
-      .panel-heading
-        h1.title= link_to post.title, post
-        .row.author
-          .col-xs-3.col-sm-2
-            = link_to user_path(post.user) do
-              = image_tag post.user.avatar(:thumb),
-                          alt: "автор ответа #{post.name}",
-                          class: "img-responsive img-circle center-block"
-          .col-xs-9.col-sm-10.name-block
-            span.name= link_to "#{post.name}", user_path(post.user)
-            small= post.user.short_bio
-            .date.text-muted= timeago_tag post.updated_at
+.card.article
+  = render "shared/tags", record: post
+  .article-header
+    h1.title= link_to post.title, post
+    .row.author
+      .col-xs-3.col-sm-2
+        = link_to user_path(post.user) do
+          = image_tag post.user.avatar(:thumb),
+                      alt: "автор ответа #{post.name}",
+                      class: "img-responsive img-circle center-block"
+      .col-xs-9.col-sm-10.name-block
+        span.name= link_to "#{post.name}", user_path(post.user)
+        small= ", #{post.user.short_bio}" if post.user.short_bio.present?
+        .date.text-muted= timeago_tag post.updated_at
 
-      .panel-body
-        - if post.logo_url
-          = link_to post do
-            = image_tag post.logo_url, class: "img-responsive logo"
-        .text
-          = strip_tags(post.text).truncate(250)
-          = link_to " дальше", post if post.text.size > 200
+  .article-body
+    - if post.logo_url
+      = link_to post do
+        = image_tag post.logo_url, class: "img-responsive logo"
+    .text
+      = strip_tags(post.text).truncate(250)
+      = link_to " дальше", post if post.text.size > 200

@@ -1,7 +1,7 @@
 - if partner
   - url = partner.id? ? impression_path(id: partner.id, final_url: partner.final_url) : ""
   - image_url = partner.image? ? partner.image.url(:medium) : ""
-  .partner-left data-partner="left" data-id=partner.id
+  .left-widget.partner-left data-partner="left" data-id=partner.id
     = link_to url, target: "_blank" do
       = image_tag image_url, class: "image js-image"
       .body

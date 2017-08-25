@@ -1,9 +1,3 @@
-.answers-menu-container {
-  float: right;
-  margin-right: -15px;
-  min-width: 200px;
-}
-
 .answers-menu {
   list-style-type: none;
   -webkit-padding-start: 0;
@@ -11,6 +5,7 @@
   li.header {
     border-bottom: 1px solid $medium-gray;
     margin-bottom: 10px;
+    font-weight: 600;
   }
 
   li.tag {

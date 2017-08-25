@@ -1,5 +1,19 @@
 nav.js-menu.sliding-panel-content
   ul
+    - if user_signed_in?
+      li.nav-link.dropdown
+        a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
+                                 data-toggle="dropdown" href="#" role="button"]
+          = image_tag current_user.avatar(:thumb), class: "img-circle avatar"
+          = "  "
+          = current_user.name
+          span.caret
+        ul.dropdown-menu.pull-right
+          li= link_to "Моя страница", user_path(current_user)
+          li= link_to t(:sign_out), destroy_user_session_path
+    - else
+      li.nav-link: a#login-link href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+
     li.nav-link.dropdown
       a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                data-toggle="dropdown" href="#" role="button"]

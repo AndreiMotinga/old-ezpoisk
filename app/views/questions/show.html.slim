@@ -15,7 +15,7 @@
 - content_for :header, render("partners/top", partner: @top)
 
 - content_for :right do
-  = render "similar_questions", questions: @question.related(10)
+  = render "right", records: @question.related(10), url: nil
   .sticky
     = render "partners/right", partner: @right
 

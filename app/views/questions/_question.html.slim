@@ -1,26 +1,24 @@
-.article
-  .panel
-    = render "shared/tags", record: question
-    .panel-heading
-      - if current_page?(question_path(question))
-        h1.title= question.title
-      - else
-        h1.title= link_to question.title, question
+.card.article
+  = render "shared/tags", record: question
+  .article-header
+    - if current_page?(question_path(question))
+      h1.title= question.title
+    - else
+      h1.title= link_to question.title, question
 
-      p.text-muted
-        = "#{question.answers_count} ответов | "
-        = "#{question.impressions_count} просмотров | "
-        - if current_page?(question_path(question))
-          = link_to "Редактировать", edit_question_path(question)
-          = " | "
-        = link_to new_answer_path(question_id: question.id) do
-          = " Добавить ответ "
-          i.fa.fa-pencil
-      - if question.text?
-        .panel-body
-          .text= simple_format question.text, sanitize: true
-    - if current_page? question_path(question)
-      .panel-footer
-        .text-center
-          = render "social_share_buttons", record: question, klass: "inline small pull-right"
-        = render "shared/comments", record: question
+    p.text-muted
+      = "#{question.answers_count} ответов | "
+      = "#{question.impressions_count} просмотров | "
+      - if current_page?(question_path(question))
+        = link_to "Редактировать", edit_question_path(question)
+        = " | "
+      = link_to new_answer_path(question_id: question.id) do
+        = " Добавить ответ "
+        i.fa.fa-pencil
+    - if question.text?
+      .article-body
+        .text= strip_tags(question.text)
+  - if current_page? question_path(question)
+    .article-footer
+      = render "social_share_buttons", record: question, klass: "inline small pull-right"
+      = render "shared/comments", record: question

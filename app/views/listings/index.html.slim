@@ -12,19 +12,18 @@
              url: canonical_url,
              image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-- content_for :header, render("partners/top", partner: @top)
+- content_for :header do
+  = render "partners/top", partner: @top
 
 - content_for :left do
-  #search-toggle.btn.btn-ez.search-toggle.visible-xs
-    | Настроить фильтр | #{@listings.total_count}
-
-  #search-form.card.search
-    - if params[:kind]
+  .sticky
+    #search-toggle.btn.btn-ez.search-toggle.visible-xs
+      | Настроить фильтр | #{@listings.total_count}
+    #search-form.card.search
       = render "listings/search/#{t params[:kind]}"
-    - else
-      = render "listings/search"
-  .hidden-xs.sticky
-    = render "partners/left", partner: @left
+
+    .hidden-xs
+      = render "partners/left", partner: @left
 
 - content_for :right do
   .sticky

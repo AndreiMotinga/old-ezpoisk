@@ -1,9 +1,7 @@
-.row
-  .col-xs-12
-    form.card.questions-search role="search" method="get" action=answers_path
-      .input-group
-        input#q-search.form-control[placeholder="Задайте свой вопрос здесь.."
-          type="text" name="term" value=params[:term] ]
-          span.input-group-btn
-            button.btn.btn-default type="submit"
-              i.fa.fa-search
+form.card.questions-search role="search" method="get" action=answers_path
+  .input-group
+    input#q-search.form-control[placeholder="Задайте свой вопрос здесь.."
+      type="text" name="term" value=params[:term] ]
+      span.input-group-btn
+        button.btn.btn-default type="submit"
+          i.fa.fa-search

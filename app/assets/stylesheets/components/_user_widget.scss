@@ -1,32 +1,10 @@
 .user-widget {
-  float: right;
-  margin-right: -15px;
-  width: 200px;
-  background-color: $white;
-  border: 1px solid $light-gray;
-  margin-bottom: 20px;
-  padding: 5px;
-  color: $dark-gray;
+  text-align: center;
 
   .img {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
     max-width: 100px;
-  }
-
-  span {
-    display: block;
-  }
-
-  .title {
-    color: $blue;
-  }
-
-  .karma {
-    font-size: 24px;
-  }
-
-  .legend {
-    color: $medium-gray;
+    height: auto;
+    border-radius: 50%;
   }
 }

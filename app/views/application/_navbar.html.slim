@@ -1,12 +1,7 @@
 nav#navbar-main.navbar-fixed-top.navbar-main
-  .container
-    ul.pull-left
-      li.nav-link
-        a href="#" class="js-menu-trigger sliding-panel-button"
-          = fa_icon "bars"
-    a href=root_path = image_tag "navbar-logo"
-    ul.links.pull-right
-      li.nav-link.dropdown
+  .container-fluid
+    nav.links.pull-right
+      li.nav-link.dropdown.to-hide
         a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                  data-toggle="dropdown" href="#" role="button" class="hidden-xs"]
           | Объявления
@@ -19,7 +14,7 @@ nav#navbar-main.navbar-fixed-top.navbar-main
       li.nav-link.hidden-xs= link_to "Ответы", answers_path
       li.nav-link.hidden-xs= link_to "Новости", posts_path
 
-      li.nav-link.dropdown.hidden-xs.hidden-sm
+      li.nav-link.dropdown.hidden-xs
         a.dropdown-toggle.btn-ez[aria-expanded="false" aria-haspopup="true"
                                  data-toggle="dropdown" href="#" role="button" class="hidden-xs"]
           | Создать новое
@@ -36,9 +31,8 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           li= link_to "Услуги", new_listing_path(kind: "услуги")
           li= link_to "Продажи", new_listing_path(kind: "продажи")
 
-
       - if user_signed_in?
-        li.nav-link.dropdown
+        li.nav-link.dropdown.hidden-xs
           a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
                                    data-toggle="dropdown" href="#" role="button"]
             = image_tag current_user.avatar(:thumb), class: "img-circle avatar"
@@ -47,4 +41,21 @@ nav#navbar-main.navbar-fixed-top.navbar-main
             li= link_to "Моя страница", user_path(current_user)
             li= link_to t(:sign_out), destroy_user_session_path
       - else
-        li.nav-link: a#login-link href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+        li.nav-link.hidden-xs: a#login-link href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+
+    form.search-box.mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.pull-right[
+      role="search" method="get" action=searches_path data-destination=""]
+      = hidden_field_tag :t
+      label.mdl-button.mdl-js-button.mdl-button--icon for="term"
+        i.material-icons search
+      .mdl-textfield__expandable-holder
+        = text_field_tag :term,
+            (current_page?(searches_path) ? "" : params[:term]),
+            class: "mdl-textfield__input"
+        label class="mdl-textfield__label" for="sample-expandable" Expandable Input
+
+    ul.burger.pull-left
+      li.nav-link
+        a href="#" class="js-menu-trigger sliding-panel-button"
+          = fa_icon "bars"
+    a.links.pull-left href=root_path = image_tag "navbar-logo"

@@ -12,10 +12,10 @@
   }
 
   .search {
-    margin-right: -15px;
-
-    @media(max-width: $screen-sm) {
-      display: none;
+    @media(min-width: $screen-sm) {
+      float: right;
+      width: 200px;
+      margin-right: -15px;
     }
 
     select,

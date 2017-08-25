@@ -4,9 +4,8 @@
   background-color: $white;
   height: $navbar-height;
 
-  .links {
-    margin: 0;
-    padding: 0;
+  .burger {
+    -webkit-padding-start: 0;
   }
 
   .nav-link {
@@ -28,5 +27,17 @@
 
   .fa {
     color: $orange;
+  }
+
+  .search-box {
+    margin: -5px 0;
+
+    .material-icons { color: $medium-gray; }
+  }
+
+  @media(max-width: $screen-sm) {
+    .search-box.is-focused ~ .links {
+      opacity: 0;
+    }
   }
 }

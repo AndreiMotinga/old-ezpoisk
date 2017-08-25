@@ -1,8 +1,0 @@
-.row.right-widget
-  span.widget-title Похожие вопросы...
-  hr
-  ul.posts
-    - answers.each do |answer|
-      li.post
-        = link_to answer.title, answer, class: "title"
-        small.time= timeago_tag answer.created_at

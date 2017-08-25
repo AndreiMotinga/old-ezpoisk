@@ -1,81 +1,57 @@
 .article {
-  overflow: hidden;
-  background-color: $white;
-  border: 1px solid $light-gray;
-  margin-bottom: 10px;
-
   .tags {
-    margin: 0 10px;
-    a {
-      color: $medium-gray;
-    }
+    a { color: $medium-gray; }
   }
 
-  .panel-heading {
-    padding: 0 15px;
-  }
+  .article-header {
+    padding-bottom: 5px;
 
-  .author {
-    margin-bottom: 0;
-    margin-top: 5px;
+    .title {
+      font-weight: 500;
+      line-height: 1.25;
+      margin: 5px 0;
+      font-size: 16px;
 
-    .avatar {
-      display: block;
-      margin: 0 auto;
-      max-width: 50px;
-      height: auto;
-      border-radius: 50px;
-    }
-
-    .name-block {
-      padding-left: 0;
-
-      .bio {
-        display: block;
+      a {
+        color: $dark-gray;
+        text-decoration: none;
       }
     }
 
-    .name {
-      margin: 0;
-      font-weight: 300;
+    .author {
+      margin-bottom: 0;
+      margin-top: 5px;
 
-      a {
-        &:active,
-        &:focus,
-        &:hover {
-          text-decoration: underline;
+      .avatar-container {
+        padding-right: 0;
+
+        .avatar {
+          display: block;
+          margin: 0 auto;
+          max-width: 50px;
+          height: auto;
+          border-radius: 50px;
+        }
+      }
+
+      .name-container {
+        padding-left: 0;
+
+        .data {
+          font-size: 12px;
         }
       }
     }
-
-    .date {
-      font-size: 12px;
-    }
   }
 
-  .panel-body {
+  .article-body {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 15px;
     padding-top: 5px;
     padding-bottom: 5px;
   }
 
-  .title {
-    font-weight: 500;
-    line-height: 1.25;
-    margin: 5px 0;
-    font-size: 16px;
-  }
-
   .logo {
     margin-bottom: 5px;
-  }
-
-  .text {
-    p {
-      font-size: 15px;
-    }
-  }
-
-  .comments {
-    margin-bottom: 0;
   }
 }

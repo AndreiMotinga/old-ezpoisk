@@ -1,21 +1,13 @@
 .right-widget {
-  background-color: $white;
-  border: 1px solid $light-gray;
-  margin-bottom: 20px;
-  padding: 5px;
-  color: $dark-gray;
+  margin-left: -15px;
+  margin-right: -15px;
 
-  .widget-title {
-    float: right;
-    margin-left: 5px;
-  }
-
-  .posts {
+  .list {
     list-style-type: none;
     margin: 0;
     padding: 0;
 
-    .post {
+    .item {
       border-bottom: 1px solid $gray;
       margin-bottom: 5px;
 

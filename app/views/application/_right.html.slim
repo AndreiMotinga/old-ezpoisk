@@ -1,0 +1,8 @@
+.card.right-widget
+  ul.list
+    - records.each do |rec|
+      li.item
+        = link_to rec.title, rec, class: "title"
+        small.time= timeago_tag rec.created_at
+  - if url
+    p.more.text-center= link_to "показать еще", url

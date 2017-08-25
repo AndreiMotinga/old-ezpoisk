@@ -14,14 +14,13 @@
 
 - content_for :left do
   .hidden-xs.sticky
-    = render "user_widget"
+    = render "users/widget"
     = render "partners/left", partner: @left
 
 - content_for :right do
   .sticky
-    = render "right_widget", posts: @popular
+    = render "right", records: @popular, url: posts_path
     = render "partners/right", partner: @right
-    #react
 
 div data-id="listings"
   = render @actions

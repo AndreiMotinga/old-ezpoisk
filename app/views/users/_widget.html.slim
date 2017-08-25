@@ -1,0 +1,17 @@
+.card.left-widget.user-widget
+  - if user_signed_in?
+    = image_tag current_user.avatar(:medium), class: "img"
+    hr
+    .title= link_to current_user.name, user_path(current_user)
+    .legend= current_user.short_bio
+    hr
+    /div
+    /  span.title.karma 234
+    /  span.legend карма
+    /hr
+    = link_to "Редактировать", edit_user_path(current_user, act: "general")
+  - else
+    = image_tag "https://s3.amazonaws.com/ezpoisk/missing.png", class: "img"
+    hr
+    br
+    = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal"

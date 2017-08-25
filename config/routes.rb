@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:create]
+  resources :searches, only: :index
 
   # LISTINGS
   namespace :listings do

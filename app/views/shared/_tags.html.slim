@@ -1,4 +1,4 @@
-p.tags
+.tags
   = link_to t(record.class), record.show_url, class: "tag"
   - if record.class == Listing
     = link_to "##{record.kind}", search_listings_path(kind: record.kind), class: "tag"

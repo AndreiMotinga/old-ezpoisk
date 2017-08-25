@@ -1,0 +1,18 @@
+.card.article
+  .article-header
+    .row.author
+      .col-xs-3.col-sm-2.avatar-container
+        = link_to user, target: "_blank" do
+          = image_tag user.avatar.url(:thumb), class: "avatar"
+      .col-xs-9.col-sm-10.name-container
+        span.name= link_to user.name, user, target: "_blank"
+        small= ", #{user.short_bio}" if user.short_bio.present?
+        .data.text-muted
+          = time_ago_in_words user.created_at
+          = " | #{user.impressions_count} просмотров"
+          /= " | #{user.votes_count} голосов"
+
+  .article-body
+    .text
+      = strip_tags(user.about).truncate(250)
+      = link_to " дальше", user, target: "_blank" if user.about.size > 250

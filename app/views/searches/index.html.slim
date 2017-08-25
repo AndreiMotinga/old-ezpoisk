@@ -1,12 +1,52 @@
-= title("ezpoisk - поиск")
-= desc("поиск по объявлениям")
-= og_type("website")
-= og_url("https://www.ezpoisk.com")
-= og_image("https://s3.amazonaws.com/ezpoisk/pictures/home.png")
+- meta title: "Поиск - ezpoisk",
+       description: "Поиск информации в США",
+       rel: { canonical: root_url },
+       og: { title: "Поиск - ezpoisk",
+             description: "Поиск информации в США",
+             locale: "ru_RU",
+             type: "website",
+             site_name: "ezpoisk",
+             url: root_url,
+             image: "https://s3.amazonaws.com/ezpoisk/ezpoisk.png" }
 
-.col-sm-12 data-id="listings" data-term=params[:term]
+- content_for :header do
+  = render "partners/top", partner: @top
+
+- content_for :left do
+  .hidden-xs.sticky
+    = render "users/widget"
+    = render "partners/left", partner: @left
+
+- content_for :right do
+  .sticky
+    .card.right-widget
+      ul.answers-menu
+        li.header Найдено #{@documents.total_count}
+        li.tag= link_to "Все", searches_path(term: params[:term]), class: "grey #{'active' if params[:t].blank?}"
+        li.tag= link_to "Ответы", searches_path(t: "Answer", term: params[:term]), class: "grey #{'active' if params[:t] == "Answer"}"
+        li.tag= link_to "Вопросы", searches_path(t: "Question", term: params[:term]), class: "grey #{'active' if params[:t] == "Question"}"
+        li.tag= link_to "Объявления", searches_path(t: "Listing", term: params[:term]), class: "grey #{'active' if params[:t] == "Listing"}"
+        li.tag= link_to "Новости", searches_path(t: "Post", term: params[:term]), class: "grey #{'active' if params[:t] == "Post"}"
+        li.tag= link_to "Люди", searches_path(t: "User", term: params[:term]), class: "grey #{'active' if params[:t] == "Post"}"
+
+= render "search"
+div data-id="listings" data-term=params[:term]
   = render @documents
 
 .row
   .col-xs-12
     = render "shared/pagination", records: @documents
+
+- content_for :javascript do
+  javascript:
+    var el = $("[data-id='listings']");
+    var term = el.data("term");
+    var html = el.html();
+
+    if(!!term && !!html) {
+      $.each(term.split(" "), function(i, word){
+        var regex = new RegExp(word, "gi");
+        html = html.replace(regex, "<mark>"+word+"</mark>");
+      });
+      el.html(html);
+    }

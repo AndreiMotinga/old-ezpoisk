@@ -2,5 +2,10 @@
 #
 # To ban all spiders from the entire site uncomment the next two lines:
 User-agent: *
+Disallow: /posts/new
+Disallow: /questions/new
+Disallow: /answers/new?*
+Disallow: /imporessions/*
+Disallow: /объявления/new?*
 
 Sitemap: https://s3.amazonaws.com/ezpoisk/sitemaps/sitemap.xml.gz

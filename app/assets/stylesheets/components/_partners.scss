@@ -15,14 +15,13 @@
 
 .partner-left,
 .partner-right {
-  background-color: $white;
-  border: 1px solid $light-gray;
-  margin-bottom: 20px;
-  color: $dark-gray;
-  overflow: hidden;
+  margin-bottom: 10px;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
 
   .image {
-    display: block;
+    margin-bottom: 5px;
     max-width: 100%;
     height: auto;
   }
@@ -50,19 +49,6 @@
       margin: 5px 0;
     }
   }
-}
-
-.partner-left,
-.partner-right {
-  .body {
-    padding: 5px;
-  }
-}
-
-.partner-left {
-  float: right;
-  margin-right: -15px;
-  width: 200px;
 }
 
 .partner-right {

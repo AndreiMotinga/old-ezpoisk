@@ -10,6 +10,12 @@ class Listing < ApplicationRecord
   acts_as_mappable
   acts_as_taggable
 
+  include PgSearch
+  pg_search_scope :pg_search,
+                  against: [:title, :text],
+                  using: { tsearch: { dictionary: "russian" } }
+  multisearchable against: [:title, :text]
+
   belongs_to :user
   belongs_to :state
   belongs_to :city

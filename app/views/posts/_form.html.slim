@@ -30,8 +30,9 @@
     = f.text_field :title, class: "mdl-textfield__input"
     = f.label :title, "Заголовок", class: "mdl-textfield__label"
 
-  .field.summernote-container
-    = f.text_area :text, skip_label: true, class: "summernote"
+  .row
+    .summernote-container
+      = f.text_area :text, skip_label: true, class: "summernote"
 
   br
   br

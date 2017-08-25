@@ -1,0 +1,7 @@
+form.card.questions-search role="search" method="get" action=searches_path data-destination=""
+  = hidden_field_tag :t, params[:t]
+  .input-group
+    input.form-control placeholder="Поиск ..." type="text" name="term" value=params[:term]
+      span.input-group-btn
+        button.btn.btn-default type="submit"
+          i.fa.fa-search

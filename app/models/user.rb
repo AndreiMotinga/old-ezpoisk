@@ -4,6 +4,12 @@ class User < ActiveRecord::Base
   include OmniLogin
   include Impressionable
 
+  include PgSearch
+  pg_search_scope :pg_search,
+                  against: %W[email name short_bio about],
+                  using: { tsearch: { dictionary: "russian" } }
+  multisearchable against: %W[email name short_bio about]
+
   acts_as_taggable_on :skills, :interests
   acts_as_voter
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,

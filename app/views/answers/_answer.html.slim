@@ -1,27 +1,23 @@
-.col-xs-12
-  .row.article
-    .panel
-      = render "shared/tags", record: answer
-      .panel-heading
-        h1.title= link_to answer.title, answer
-        .row.author
-          .col-xs-3.col-sm-2
-            = link_to user_path(answer.user) do
-              = image_tag answer.avatar(:thumb),
-                          alt: "автор ответа #{answer.name}",
-                          class: "avatar"
-          .col-xs-9.col-sm-10.name-block
-            span.name= link_to answer.name, user_path(answer.user)
-            small= ", #{answer.user.short_bio}" if answer.user.short_bio.present?
-            .date.text-muted
-              = time_ago_in_words answer.created_at
-              = " | #{answer.impressions_count} просмотров"
-              = " | #{answer.votes_count} голосов"
+.card.article
+  = render "shared/tags", record: answer
+  .article-header
+    h1.title= link_to answer.title, answer
+    .row.author
+      .col-xs-3.col-sm-2.avatar-container
+        = link_to user_path(answer.user) do
+          = image_tag answer.avatar(:thumb), class: "avatar", alt: "#{answer.name}"
+      .col-xs-9.col-sm-10.name-container
+        span.name= link_to answer.name, user_path(answer.user)
+        small= ", #{answer.user.short_bio}" if answer.user.short_bio.present?
+        .data.text-muted
+          = time_ago_in_words answer.created_at
+          = " | #{answer.impressions_count} просмотров"
+          = " | #{answer.votes_count} голосов"
 
-      .panel-body
-        - if answer.logo_url
-          = link_to answer do
-            = image_tag answer.logo_url, class: "img-responsive logo"
-        .text
-          = strip_tags(answer.text).truncate(250)
-          = link_to " дальше", answer
+  .article-body
+    - if answer.logo_url
+      = link_to answer do
+        = image_tag answer.logo_url, class: "img-responsive logo"
+    .text
+      = strip_tags(answer.text).truncate(250)
+      = link_to " дальше", answer

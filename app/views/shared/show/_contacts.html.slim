@@ -1,54 +1,53 @@
-.row
-  .menu
-    ul.list-group
-      - if record.user and !record.user.admin?
-        li.list-group-item
-          strong= link_to "Автор",  user_path(record.user)
-
-      - unless record.try(:vk).blank?
-        li.list-group-item
-          strong
-            = link_to record.vk, target: "_blank", rel: "nofollow" do
-              i.fa.fa-lg.fa-vk
-              |  Я vkontakte
-
-      - unless record.try(:fb).blank?
-        li.list-group-item
-          strong
-            = link_to record.fb, target: "_blank", rel: "nofollow" do
-              i.fa.fa-lg.fa-facebook
-              |  Я в facebook
-
-      - if record.try(:phone).present?
-        - record.phone.split(",").each do |phone|
-          li.list-group-item
-            i.fa.fa-phone
-            a href="tel:#{phone}"
-              strong= number_to_phone phone, area_code: 1
-
-      - if record.try(:site).present?
-        li.list-group-item style="overflow:hidden"
-          strong
-            = link_to record.site, target: "_blank", rel: "nofollow" do
-              i.fa.fa-lg.fa-globe
-              = "  #{record.site}"
-
-      - if record.try(:email).present?
-        li.list-group-item
-          strong
-            a href="mailto:#{record.email}" target="_top"
-              i.fa.fa-envelope-o
-              | email
-
-      - if record.street?
-        li.list-group-item
-          strong
-            = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
-              i.fa.fa-map-o
-              | Google Map
-
+.right-widget.menu
+  ul.list-group
+    - if record.user and !record.user.admin?
       li.list-group-item
-        = render "shared/impressions_stat", record: record
+        strong= link_to "Автор",  user_path(record.user)
 
+    - unless record.try(:vk).blank?
       li.list-group-item
-        = render "social_share_buttons", record: record, klass: "block"
+        strong
+          = link_to record.vk, target: "_blank", rel: "nofollow" do
+            i.fa.fa-lg.fa-vk
+            |  Я vkontakte
+
+    - unless record.try(:fb).blank?
+      li.list-group-item
+        strong
+          = link_to record.fb, target: "_blank", rel: "nofollow" do
+            i.fa.fa-lg.fa-facebook
+            |  Я в facebook
+
+    - if record.try(:phone).present?
+      - record.phone.split(",").each do |phone|
+        li.list-group-item
+          i.fa.fa-phone
+          a href="tel:#{phone}"
+            strong= number_to_phone phone, area_code: 1
+
+    - if record.try(:site).present?
+      li.list-group-item style="overflow:hidden"
+        strong
+          = link_to record.site, target: "_blank", rel: "nofollow" do
+            i.fa.fa-lg.fa-globe
+            = "  #{record.site}"
+
+    - if record.try(:email).present?
+      li.list-group-item
+        strong
+          a href="mailto:#{record.email}" target="_top"
+            i.fa.fa-envelope-o
+            | email
+
+    - if record.street?
+      li.list-group-item
+        strong
+          = link_to "https://maps.google.com/?q=#{record.address}", target: "_blank", rel: "nofollow" do
+            i.fa.fa-map-o
+            | Google Map
+
+    li.list-group-item
+      = render "shared/impressions_stat", record: record
+
+    li.list-group-item
+      = render "social_share_buttons", record: record, klass: "block"

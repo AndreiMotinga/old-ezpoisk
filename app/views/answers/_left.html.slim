@@ -1,11 +1,10 @@
-.answers-menu-container
-  strong.header Ваши интересы
-  - if user_signed_in?
-    = link_to edit_user_path(current_user, act: "interests"), class: "pull-right" do
-      i.fa.fa-pencil.pull-right aria-hidden="true"
-  hr
-
+.card.left-widget
   ul.answers-menu
+    li.header
+      - if user_signed_in?
+        = link_to edit_user_path(current_user, act: "interests"), class: "pull-right" do
+          i.fa.fa-pencil.pull-right aria-hidden="true"
+      | Ваши интересы
     li.tag= link_to "Ответить", questions_path, class: "gray"
     - tags.each do |tag|
       li.tag= link_to tag.gsub("-", " ").capitalize, "/answers/tag/#{tag}", class: "gray"

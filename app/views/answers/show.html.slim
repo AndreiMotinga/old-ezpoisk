@@ -12,7 +12,7 @@
 - content_for :header, render("partners/top", partner: @top)
 
 - content_for :right do
-  = render "similar_answers", answers: @answer.related(10)
+  = render "right", records: @answer.related(10), url: nil
   .sticky
     = render "partners/right", partner: @right
 
@@ -20,7 +20,9 @@
   .col-lg-10.col-lg-offset-1
     = render @answer.question
     = render "partners/inline", partner: @inline
-    = render "questions/answer", answer: @answer
+    .row
+      .col-xs-12
+        = render "questions/answer", answer: @answer
 
     br
     br

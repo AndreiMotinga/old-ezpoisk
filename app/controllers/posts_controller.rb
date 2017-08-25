@@ -7,7 +7,7 @@ class PostsController < PagesController
   after_action(only: :show) { create_visit_impression(@post)  }
 
   def index
-    @popular = Comment.popular
+    @popular = Post.order(created_at: :desc).take(5)
     @posts = Post.includes(:user)
                  .published
                  .order(created_at: :desc)
