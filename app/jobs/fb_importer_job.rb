@@ -7,7 +7,7 @@ class FbImporterJob
 
   def perform
     return unless Rails.env.production?
-    Media::Importer.new("public/fb_groups.json", Fb::GroupLoader).import
+    Media::Importer.import("public/fb_groups.json", Fb::GroupLoader)
   end
 end
 

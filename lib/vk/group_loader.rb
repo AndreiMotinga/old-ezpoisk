@@ -5,6 +5,10 @@ module Vk
   class GroupLoader
     attr_reader :group, :vk
 
+    def self.load(group)
+      new(group).data
+    end
+
     def initialize(group)
       @vk = VkontakteApi::Client.new
       @group = group
@@ -20,7 +24,7 @@ module Vk
       response = vk.board.getComments(prms)
       response.items.map! do |post|
         user = response.profiles.find { |p| p.id == post.from_id }
-        Vk::Unifier.new(post, group, user).unified
+        Vk::Unifier.unify(post, group, user)
       end
     end
   end

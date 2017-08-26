@@ -3,15 +3,16 @@
 module Fb
   # changes post received from fb api
   class Unifier
-    attr_reader :post, :group, :unified
+    attr_reader :post, :group
+
+    def self.unify(post, group)
+      new(post, group).unify
+    end
 
     def initialize(post, group)
       @post = post
       @group = group
-      @unified = unify
     end
-
-    private
 
     def unify
       kind = group[:kind]
@@ -36,6 +37,8 @@ module Fb
         }
       }
     end
+
+    private
 
     def attachments
       Fb::Attachments.new(post["attachments"]).attachments

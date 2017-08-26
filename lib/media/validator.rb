@@ -5,6 +5,10 @@ module Media
   class Validator
     attr_reader :attrs
 
+    def self.valid?(attrs)
+      new(attrs).valid?
+    end
+
     def initialize(attrs)
       @attrs = attrs
     end

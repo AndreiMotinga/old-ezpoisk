@@ -5,6 +5,10 @@ module Media
   class Creator
     attr_reader :attributes, :attachments
 
+    def self.create(post)
+      new(post).create
+    end
+
     def initialize(post)
       @attributes = post[:attributes]
       @attachments = post[:attachments]

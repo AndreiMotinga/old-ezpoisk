@@ -5,29 +5,23 @@ module Media
   class Importer
     attr_reader :file, :loader
 
+    def self.import(file, loader)
+      new(file, loader).import
+    end
+
     def initialize(file, loader)
       @file = file
       @loader = loader
     end
 
     def import
-      valid_posts.each { |post| Media::Creator.new(post).create }
-    end
-
-    private
-
-    def groups
-      Media::Groups.new(file).groups
-    end
-
-    def posts
-      groups.map! { |group| loader.new(group).data }
-            .flatten
-            .uniq { |post| post[:attributes][:text] }
-    end
-
-    def valid_posts
-      posts.select { |post| Media::Validator.new(post[:attributes]).valid? }
+      groups = Media::Groups.from(file)
+      groups.map! { |group| loader.load(group) }
+            .flatten!
+            .uniq! { |post| post[:attributes][:text] }
+            .select! { |post| Media::Validator.valid?(post[:attributes]) }
+            .map! { |post| Media::Creator.create(post) }
+            .size
     end
   end
 end

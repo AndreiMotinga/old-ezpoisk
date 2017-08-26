@@ -3,16 +3,17 @@
 # modifies vk post for easy creation of the listing
 module Vk
   class Unifier
-    attr_reader :post, :group, :unified, :user
+    attr_reader :post, :group, :user
+
+    def self.unify(post, group, user)
+      new(post, group, user).unify
+    end
 
     def initialize(post, group, user)
       @post = post
       @group = group
       @user = user
-      @unified = unify
     end
-
-    private
 
     def unify
       kind = group[:kind].to_sym
@@ -38,6 +39,8 @@ module Vk
         }
       }
     end
+
+    private
 
     def attachments
       Vk::Attachments.new(post[:attachments]).attachments

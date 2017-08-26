@@ -5,6 +5,10 @@ module Fb
   class GroupLoader
     attr_reader :group, :graph
 
+    def self.load(group)
+      new(group).data
+    end
+
     def initialize(group)
       @graph = Koala::Facebook::API.new(ENV["FB_TOKEN"])
       @group = group
@@ -13,7 +17,7 @@ module Fb
     def data
       fields = %w(from message created_time attachments)
       response = graph.get_connections(group[:id], "feed", fields: fields)
-      response.map! { |post| Fb::Unifier.new(post, group).unified }
+      response.map! { |post| Fb::Unifier.unify(post, group) }
     end
   end
 end
