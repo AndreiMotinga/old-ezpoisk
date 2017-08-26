@@ -1,21 +1,24 @@
 #new_session_modal.modal.fade.session role="dialog" tabindex="-1"
-  .modal-dialog.session
+  .modal-dialog.modal-sm.session
     .modal-content
       .modal-heading
-        h3.text-center.text-muted  ezpoisk
+        h4.title
+          span Ezpoisk.com
+          |  - poisk made izi
         hr
+
       .modal-body
         .row.text-center
           ul.buttons
+            li.text-center
+              a.btn.vk-bg href=user_vkontakte_omniauth_authorize_path
+                i.fa.fa-vk
+                |  Войти с Vkontakte
             li
-              a.btn.btn-block.facebook-bg href=user_facebook_omniauth_authorize_path
+              a.btn.facebook-bg href=user_facebook_omniauth_authorize_path
                 i.fa.fa-facebook
                 |  Войти с Facebook
             li
-              a.btn.btn-block.google-bg href=user_google_oauth2_omniauth_authorize_path
+              a.btn.google-bg href=user_google_oauth2_omniauth_authorize_path
                 i.fa.fa-google
                 |  Войти с Google
-            li
-              a.btn.btn-block.vk-bg href=user_vkontakte_omniauth_authorize_path
-                i.fa.fa-vk
-                |  Войти с Vkontakte

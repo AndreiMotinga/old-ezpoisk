@@ -5,7 +5,7 @@ describe Vk::Unifier do
   after { Timecop.return }
 
   # todo replace title and text with stubbed calls to media::title and media::text
-  describe "#unified" do
+  describe ".unify" do
     it "returns formatted item" do
       group = { kind: "работа",
                 id: 22558194 ,
@@ -27,7 +27,7 @@ describe Vk::Unifier do
                             .and_return(atts)
       allow(atts).to receive(:attachments)
 
-      result = Vk::Unifier.new(item, group, user).unified
+      result = Vk::Unifier.unify(item, group, user)
 
       kind = group[:kind].to_sym
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
@@ -42,8 +42,7 @@ describe Vk::Unifier do
                          vk: "https://vk.com/id#{item[:from_id]}",
                          state_id: group[:state_id],
                          city_id: group[:city_id],
-                         from_name: "Andrei Motinga",
-                         user_id: 1,
+                         source: "https://vk.com/topic-22558194_24112410?post=2056",
                          created_at: Time.at(5.minutes.ago) }
 
       expect(result[:attributes]).to eq expected_attrs

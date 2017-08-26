@@ -39,6 +39,14 @@
             i.fa.fa-envelope-o
             | email
 
+    - if current_user&.admin?
+      - if record.source
+        li.list-group-item
+          strong
+            = link_to record.source, target: "_blank", rel: "nofollow" do
+              i.fa.fa-lg.fa-external-link
+              |  Источник
+
     - if record.street?
       li.list-group-item
         strong

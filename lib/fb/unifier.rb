@@ -18,8 +18,15 @@ module Fb
       kind = group[:kind]
       subcategory = kind == "недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == "недвижимость" ? "комната" : ""
+      uid = post["from"]["id"]
       {
         attachments: attachments,
+        user: {
+          provider: "facebook",
+          uid: uid,
+          avatar_remote_url: "http://graph.facebook.com/#{uid}/picture?type=normal",
+          name: post["from"]["name"]
+        },
         attributes: {
           title: Media::Title.of(text),
           kind: kind,
@@ -29,10 +36,9 @@ module Fb
           rooms: rooms,
           text: text,
           fb: "https://www.facebook.com/#{post['from']['id']}",
-          from_name: post['from']['name'],
           state_id: group[:state_id],
-          user_id: 1,
           city_id: group[:city_id],
+          source: post["permalink_url"],
           created_at: post["created_time"]
         }
       }

@@ -17,11 +17,17 @@ module Vk
 
     def unify
       kind = group[:kind].to_sym
-      user_name = user ? "#{user.first_name} #{user.last_name}" : "Anonymous"
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
       {
         attachments: attachments,
+        user: {
+          provider: "vkontakte",
+          uid: user.id,
+          avatar_remote_url: user.photo_100,
+          gender: (user.sex == "1" ? "female" : "male"),
+          name: "#{user.first_name} #{user.last_name}"
+        },
         attributes: {
           title: Media::Title.of(text),
           kind: kind,
@@ -33,8 +39,7 @@ module Vk
           vk: "https://vk.com/id#{post[:from_id]}",
           state_id: group[:state_id],
           city_id: group[:city_id],
-          from_name: user_name,
-          user_id: 1,
+          source: "https://vk.com/topic-#{group[:id]}_#{group[:topic]}?post=#{post[:id]}",
           created_at: Time.at(post[:date])
         }
       }

@@ -4,7 +4,7 @@ describe Fb::Unifier do
   before { Timecop.freeze(Time.now) }
   after { Timecop.return }
 
-  describe "#unified" do
+  describe ".unify" do
     it "returns formatted post" do
       group = { kind: "недвижимость",
                 state_id: 43,
@@ -13,6 +13,7 @@ describe Fb::Unifier do
         attachments: [],
         from: { name: "Marianna Sumina", id: "101" },
         message: "У нас на работе есть вакансия",
+        permalink_url: "some_fb_url",
         created_time: 5.minutes.ago
       )
 
@@ -22,7 +23,7 @@ describe Fb::Unifier do
                             .and_return(atts)
       allow(atts).to receive(:attachments)
 
-      result = Fb::Unifier.new(item, group).unified
+      result = Fb::Unifier.unify(item, group)
 
       kind = group[:kind].to_sym
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
@@ -36,9 +37,8 @@ describe Fb::Unifier do
                          text: item[:message],
                          state_id: group[:state_id],
                          city_id: group[:city_id],
-                         user_id: 1,
-                         from_name: "Marianna Sumina",
                          fb: "https://www.facebook.com/#{item[:from][:id]}",
+                         source: "some_fb_url",
                          created_at: 5.minutes.ago }
       expect(result[:attributes]).to eq expected_attrs
       expect(Fb::Attachments).to have_received(:new).with(item[:attachments])

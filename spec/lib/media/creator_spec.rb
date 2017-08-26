@@ -1,12 +1,15 @@
 require "rails_helper"
 
 describe Media::Creator do
-  before { create :user, id: 1 }
-
-  describe "#create" do
+  describe ".create" do
     it "creates listing" do
       item = {
         attachments: [],
+        user: {
+          provider: "facebook",
+          uid: "1234",
+          name: "Andrei Motinga"
+        },
         attributes: {
           created_at: Time.zone.now,
           text: "Ищу работу. На кэщ. Манхэттен или Бруклин.",
@@ -14,7 +17,6 @@ describe Media::Creator do
           fb: "",
           state_id: 32,
           city_id: 17_880,
-          user_id: 1,
           kind: "job",
           category: "wanted",
           subcategory: "restaurants",
@@ -22,7 +24,7 @@ describe Media::Creator do
         }
       }
 
-      Media::Creator.new(item).create
+      Media::Creator.create(item)
 
       listing = Listing.last
       item[:attributes].each do |key, val|

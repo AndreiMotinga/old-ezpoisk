@@ -160,6 +160,8 @@ FactoryGirl.define do
 
   factory :user do
     email { Faker::Internet.email }
+    provider { %w[facebook vkontakte google].sample }
+    uid { (rand * 100000).round }
 
     gender { %w[Мужчина Женщина].sample }
     name { Faker::Name.name }

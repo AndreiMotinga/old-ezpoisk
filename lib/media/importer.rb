@@ -16,12 +16,12 @@ module Media
 
     def import
       groups = Media::Groups.from(file)
-      groups.map! { |group| loader.load(group) }
-            .flatten!
-            .uniq! { |post| post[:attributes][:text] }
-            .select! { |post| Media::Validator.valid?(post[:attributes]) }
-            .map! { |post| Media::Creator.create(post) }
-            .size
+      posts = groups.map! { |group| loader.load(group) }.flatten!.compact!
+      return unless posts&.any?
+      posts.uniq! { |post| post[:attributes][:text] }
+           .select! { |post| Media::Validator.valid?(post[:attributes]) }
+           .map! { |post| Media::Creator.create(post) }
+           .size
     end
   end
 end
