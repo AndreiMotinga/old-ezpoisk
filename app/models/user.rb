@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
     :lastseenable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
-  has_one :contact
+  has_one :contact, dependent: :destroy
   has_many :listings, dependent: :destroy
   has_many :questions
   has_many :answers
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :partners
 
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, allow_nil: true
   validates :name, presence: true
 
   after_create :create_contact
