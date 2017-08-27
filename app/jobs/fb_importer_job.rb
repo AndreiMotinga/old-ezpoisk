@@ -3,7 +3,7 @@
 # imports records from fb
 class FbImporterJob
   include Sidekiq::Worker
-  sidekiq_options queue: 'critical'
+  sidekiq_options queue: "critical"
 
   def perform
     return unless Rails.env.production?
@@ -11,6 +11,6 @@ class FbImporterJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "FbImporterJob - every 2 hours (on 10th min)",
-                          cron: "5 */2 * * *",
+Sidekiq::Cron::Job.create(name: "FbImporterJob - every 2 hours (on 4th min)",
+                          cron: "4 */2 * * *",
                           class: "FbImporterJob")
