@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :experiences, dependent: :destroy
   has_many :images, class_name: "Picture", dependent: :destroy
   has_many :partners
+  has_many :karmas
 
   validates :email, uniqueness: true, allow_nil: true
   validates :name, presence: true

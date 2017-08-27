@@ -6,6 +6,10 @@
                   class: "img-responsive img-circle center-block"
     hr
     span #{@user.impressions_count} просмотров
+    - if current_user&.member?
+      div
+        .karma карма #{@user.karmas.sum(:amount)}
+      hr
     br
     - if user_signed_in? && @user == current_user
       p= link_to "Настройки", edit_user_path(current_user, act: "general")

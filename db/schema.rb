@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827011333) do
+ActiveRecord::Schema.define(version: 20170827025323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,20 @@ ActiveRecord::Schema.define(version: 20170827011333) do
     t.datetime "updated_at", null: false
     t.index ["impressionable_type", "impressionable_id"], name: "index_impressions_on_impressionable_type_and_impressionable_id"
     t.index ["user_id"], name: "index_impressions_on_user_id"
+  end
+
+  create_table "karmas", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "giver_id"
+    t.string "karmable_type"
+    t.bigint "karmable_id"
+    t.string "kind", null: false
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["giver_id"], name: "index_karmas_on_giver_id"
+    t.index ["karmable_type", "karmable_id"], name: "index_karmas_on_karmable_type_and_karmable_id"
+    t.index ["user_id"], name: "index_karmas_on_user_id"
   end
 
   create_table "listings", id: :serial, force: :cascade do |t|
@@ -338,6 +352,8 @@ ActiveRecord::Schema.define(version: 20170827011333) do
   add_foreign_key "contacts", "users"
   add_foreign_key "experiences", "users"
   add_foreign_key "impressions", "users"
+  add_foreign_key "karmas", "users"
+  add_foreign_key "karmas", "users", column: "giver_id"
   add_foreign_key "listings", "cities"
   add_foreign_key "listings", "states"
   add_foreign_key "listings", "users"

@@ -9,7 +9,7 @@
     p.text-muted
       = "#{question.answers_count} ответов | "
       = "#{question.impressions_count} просмотров | "
-      - if current_page?(question_path(question))
+      - if current_user&.can_edit?(question)
         = link_to "Редактировать", edit_question_path(question)
         = " | "
       = link_to new_answer_path(question_id: question.id) do

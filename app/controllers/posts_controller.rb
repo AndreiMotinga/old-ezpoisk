@@ -42,6 +42,9 @@ class PostsController < PagesController
     @post = current_user.posts.build(post_params)
 
     if @post.save
+      @post.karmas.create(user: current_user,
+                          giver: current_user,
+                          kind: "created")
       SlackNotifierJob.perform_async(@post.id, "Post")
       redirect_to @post, notice: I18n.t(:p_created)
     else

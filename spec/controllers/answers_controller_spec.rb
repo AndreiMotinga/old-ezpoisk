@@ -32,6 +32,12 @@ describe AnswersController do
 
       expect(question.updated_at).to eq Time.zone.now
       expect(question.answers_count).to eq 1
+
+      karma = Karma.last
+      expect(karma.karmable_type).to eq "Answer"
+      expect(karma.kind).to eq "created"
+      expect(karma.user).to eq @user
+      expect(karma.giver).to eq @user
     end
   end
 
@@ -57,17 +63,20 @@ describe AnswersController do
       sign_in(@user = create(:user))
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
+      create :karma, user: @user, karmable: answer, kind: "created"
 
       delete :destroy, params: { id: answer.id }
 
       expect(response).to redirect_to(question)
       expect(Answer.count).to be 0
+      expect(Karma.count).to eq 0
     end
   end
 
   describe "xhr PUT #upvote" do
     it "increases score by 1" do
-      sign_in(@user = create(:user))
+      sign_in(@voter = create(:user))
+      @user = create(:user)
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user,
                                                    created_at: 1.day.ago)
@@ -77,37 +86,46 @@ describe AnswersController do
       answer.reload
       expect(answer.score).to eq 1
       expect(answer.updated_at).to eq Time.zone.now
+
+      karma = Karma.last
+      expect(karma.karmable_type).to eq "Answer"
+      expect(karma.kind).to eq "upvoted"
+      expect(karma.user).to eq @user
+      expect(karma.giver).to eq @voter
     end
   end
 
   describe "xhr PUT #downvote" do
     it "increases score by 1" do
-      sign_in(@user = create(:user))
+      sign_in(@voter = create(:user))
+      @user = create(:user)
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
+      create :karma, karmable: answer, user: @user, giver: @voter, kind: "upvoted"
 
       put :downvote, xhr: true, params: { id: answer.id }
 
       answer.reload
       expect(answer.score).to eq -1
       expect(answer.updated_at).to eq Time.zone.now
+      expect(Karma.count).to eq 0
     end
   end
 
   describe "xhr PUT #unvote" do
     it "increases score by 1" do
-      sign_in(@user = create(:user))
+      sign_in(@voter = create(:user))
+      @user = create(:user)
       question = create(:question, user: @user)
       answer = create(:answer, question: question, user: @user)
-
-      # instead of creating vote properly
-      put :downvote, xhr: true, params: { id: answer.id }
+      create :karma, karmable: answer, user: @user, giver: @voter, kind: "upvoted"
 
       put :unvote, xhr: true, params: { id: answer.id }
 
       answer.reload
       expect(answer.score).to eq 0
       expect(answer.updated_at).to eq Time.zone.now
+      expect(Karma.count).to eq 0
     end
   end
 end

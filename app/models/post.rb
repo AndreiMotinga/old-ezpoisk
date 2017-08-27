@@ -6,6 +6,7 @@ class Post < ApplicationRecord
   include Commentable
   include MyFriendlyId
   include Impressionable
+  include Karmable
 
   belongs_to :user
 

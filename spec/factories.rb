@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
+  factory :karma do
+    kind "created"
+    amount 20
+
+    user
+  end
   factory :partner do
     final_url "https://www.ezpoisk.com"
     title { RU_KINDS.keys.sample + " в " + City.order("random ()").name }
@@ -185,5 +191,6 @@ FactoryGirl.define do
     title { Faker::Lorem.sentence + "?" }
     text { Faker::Lorem.paragraph(3) }
     tag_list ["auto"]
+    user
   end
 end

@@ -49,6 +49,9 @@ class AnswersController < PagesController
     @answer.cached_tags = @answer.question.tags.pluck(:name).join(", ")
 
     if @answer.save
+      @answer.karmas.create(user: current_user,
+                            giver: current_user,
+                            kind: "created")
       SlackNotifierJob.perform_async(@answer.id, "Answer")
       redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))
     else
@@ -71,6 +74,7 @@ class AnswersController < PagesController
 
   def destroy
     question.decrement!(:answers_count)
+    @answer.karmas.destroy_all
     @answer.destroy
     redirect_to question_path(question), notice: "Ответ удален"
   end
@@ -79,6 +83,9 @@ class AnswersController < PagesController
     @answer = Answer.find(params[:id])
     @answer.upvote_by current_user
     @answer.update_attribute(:votes_count, @answer.score)
+    @answer.karmas.create(user: @answer.user,
+                          giver: current_user,
+                          kind: "upvoted")
   end
 
   def downvote
@@ -86,12 +93,18 @@ class AnswersController < PagesController
     @answer.unvote_by current_user if current_user.voted_for? @answer
     @answer.downvote_by current_user
     @answer.update_attribute(:votes_count, @answer.score)
+    @answer.karmas.where(user: @answer.user,
+                         giver: current_user,
+                         kind: "upvoted").destroy_all
   end
 
   def unvote
     @answer = Answer.find(params[:id])
     @answer.unvote_by current_user
     @answer.update_attribute(:votes_count, @answer.score)
+    @answer.karmas.where(user: @answer.user,
+                         giver: current_user,
+                         kind: "upvoted").destroy_all
   end
 
   private

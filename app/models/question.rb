@@ -7,13 +7,15 @@ class Question < ActiveRecord::Base
   include MyFriendlyId
   include Searchable
   include Impressionable
+  include Karmable
 
-  belongs_to :user, optional: true
+  belongs_to :user
   belongs_to :state
   belongs_to :city
   has_many :answers, dependent: :destroy
   has_one :action, as: :actionable, dependent: :destroy
 
+  validates :user, presence: true
   validates :title, presence: true, uniqueness: true, length: { minimum: 10, maximum: 260 }
   validates_presence_of :tag_list
 

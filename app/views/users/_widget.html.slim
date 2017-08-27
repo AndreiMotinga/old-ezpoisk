@@ -5,10 +5,10 @@
     .title= link_to current_user.name, user_path(current_user)
     .legend= current_user.short_bio
     hr
-    /div
-    /  span.title.karma 234
-    /  span.legend карма
-    /hr
+    - if current_user&.admin?
+      div
+        .karma карма #{current_user.karmas.sum(:amount)}
+      hr
     = link_to "Редактировать", edit_user_path(current_user, act: "general")
   - else
     = image_tag "https://s3.amazonaws.com/ezpoisk/missing.png", class: "img"

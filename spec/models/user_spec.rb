@@ -8,6 +8,7 @@ describe User do
   it { should have_many(:answers) }
   it { should have_many(:reviews) }
   it { should have_many(:comments) }
+  it { should have_many(:karmas) }
 
   describe "#online?" do
     it "true if user last seen less than 5 min ago" do

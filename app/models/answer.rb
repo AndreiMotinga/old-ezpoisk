@@ -7,6 +7,7 @@ class Answer < ActiveRecord::Base
   include Commentable
   include Filterable
   include Impressionable
+  include Karmable
 
   belongs_to :user
   belongs_to :question, touch: true, counter_cache: true

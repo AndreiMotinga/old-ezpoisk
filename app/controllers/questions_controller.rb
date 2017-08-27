@@ -42,6 +42,9 @@ class QuestionsController < PagesController
   def create
     @question = current_user.questions.build(question_params)
     if @question.save
+      @question.karmas.create(user: current_user,
+                              giver: current_user,
+                              kind: "created")
       redirect_to @question, notice: I18n.t(:q_created)
     else
       render :new
