@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :questions, except: :destroy do
+  resources :questions do
     get "tag/:tag", to: "questions#tag", as: :tag, on: :collection
   end
 

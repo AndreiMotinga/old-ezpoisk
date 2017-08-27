@@ -60,6 +60,12 @@ class QuestionsController < PagesController
     end
   end
 
+  def destroy
+    return unless current_user&.member?
+    Question.find(params[:id]).destroy
+    redirect_to questions_url
+  end
+
   private
 
   def question_params

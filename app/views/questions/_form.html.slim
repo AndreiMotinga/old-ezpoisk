@@ -19,3 +19,11 @@
       br/
       .actions
         = f.submit 'Сохранить', class: "btn-ez"
+
+        = " "
+        - if !@question.new_record? && current_user&.member?
+          = link_to 'Удалить',
+                    question_path(@question),
+                    class: "text-muted pull-right",
+                    method: :delete,
+                    data: { confirm: I18n.t(:confirm) }
