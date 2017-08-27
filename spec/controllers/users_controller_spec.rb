@@ -14,7 +14,7 @@ describe UsersController do
       user.reload
 
       expect(user.name).to eq attrs[:name]
-      expect(SlackNotifierJob.jobs.size).to eq 1
+      expect(SlackNotifierJob.jobs.size).to eq 2 # create and update
     end
   end
 end

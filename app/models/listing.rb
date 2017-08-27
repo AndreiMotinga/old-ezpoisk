@@ -36,7 +36,6 @@ class Listing < ApplicationRecord
   before_save :format_site
   before_save :set_tags
   after_create :create_action
-  after_create :notify_slack
 
   def logo_url(style = :medium)
     return logo.image.url(style) if logo.present?
@@ -83,11 +82,6 @@ class Listing < ApplicationRecord
   end
 
   private
-
-  def notify_slack
-    SlackNotifierJob.perform_async(id, "Listing")
-    GeocodeJob.perform_async(id, "Listing")
-  end
 
   def ensure_title
     return if title.present?

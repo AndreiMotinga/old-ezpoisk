@@ -8,6 +8,7 @@ class AnswersController < PagesController
     create_visit_impression(@answer)
     create_visit_impression(@answer.question)
   end
+  after_action(only: [:create, :update]) { notify_slack(@answer, action_name) }
 
   def index
     set_answers
@@ -52,7 +53,6 @@ class AnswersController < PagesController
       @answer.karmas.create(user: current_user,
                             giver: current_user,
                             kind: "created")
-      SlackNotifierJob.perform_async(@answer.id, "Answer")
       redirect_to(answer_path(@answer), notice: I18n.t(:answer_created))
     else
       flash.now[:alert] = I18n.t(:review_not_saved)

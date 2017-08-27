@@ -4,6 +4,11 @@ class PagesController < ApplicationController
 
   protected
 
+  def notify_slack(rec, type)
+    # return if current_user.member?
+    SlackNotifierJob.perform_async(rec.id, rec.class, type)
+  end
+
   def create_show_impressions(records)
     records.each do |rec|
       ImpressionableJob.perform_in(1.minute,

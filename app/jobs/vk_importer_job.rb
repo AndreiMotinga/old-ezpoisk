@@ -8,6 +8,7 @@ class VkImporterJob
   def perform
     return unless Rails.env.production?
     Media::Importer.import("public/vk_groups.json", Vk::GroupLoader)
+    Ez.ping("VkImporterJob done")
   end
 end
 

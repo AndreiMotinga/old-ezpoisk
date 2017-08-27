@@ -20,7 +20,6 @@ class Question < ActiveRecord::Base
   validates_presence_of :tag_list
 
   after_create :create_action
-  after_create :notify_slack
   before_save :verify_title
   after_save :update_cached_tags
 
@@ -57,10 +56,6 @@ class Question < ActiveRecord::Base
   end
 
   private
-
-  def notify_slack
-    SlackNotifierJob.perform_async(id, "Question")
-  end
 
   def update_cached_tags
     update_column(:cached_tags, tags.pluck(:name).join(","))

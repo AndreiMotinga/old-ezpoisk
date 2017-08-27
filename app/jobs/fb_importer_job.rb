@@ -8,6 +8,7 @@ class FbImporterJob
   def perform
     return unless Rails.env.production?
     Media::Importer.import("public/fb_groups.json", Fb::GroupLoader)
+    Ez.ping("FbImporterJob done")
   end
 end
 

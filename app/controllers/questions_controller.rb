@@ -8,6 +8,7 @@ class QuestionsController < PagesController
     create_visit_impression(@question)
     create_show_impressions(@question.answers)
   end
+  after_action(only: :create) { notify_slack(@question, action_name) }
 
   def index
     set_questions

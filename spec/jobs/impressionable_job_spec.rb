@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe ImpressionableJob do
   it "creates impression" do
-    listing = create :listing, :without_callbacks
+    listing = create :listing
     user = create_and_login_user
 
     ImpressionableJob.perform_async("Listing",

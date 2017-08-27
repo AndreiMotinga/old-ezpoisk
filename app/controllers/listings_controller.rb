@@ -7,6 +7,7 @@ class ListingsController < PagesController
   skip_before_action :authenticate_user!, only: [:edit, :update, :destroy], if: -> { params[:token].present? }
   after_action(only: [:index, :search]) { create_show_impressions(@listings) }
   after_action(only: :show) { create_visit_impression(@listing)  }
+  after_action(only: [:create, :update]) { notify_slack(@listing, action_name) }
 
   def index
     @listings = Listing.includes(:state, :city)
@@ -60,6 +61,7 @@ class ListingsController < PagesController
   def create
     @listing = current_user.listings.build(listing_params)
     if @listing.save
+      GeocodeJob.perform_async(@listing.id, "Listing")
       @listing.clear_phone!
       redirect_to edit_listing_path(@listing), notice: I18n.t(:post_created)
     else
@@ -80,7 +82,6 @@ class ListingsController < PagesController
     if @listing.update(listing_params)
       @listing.clear_phone!
       GeocodeJob.perform_async(@listing.id, "Listing") if address_changed
-      run_update_notifications
       flash.now[:notice] = I18n.t(:post_saved)
     else
       flash.now[:alert] = I18n.t(:post_not_saved)
@@ -106,11 +107,6 @@ class ListingsController < PagesController
       :phone, :email, :vk, :fb, :gl, :tw, :ok, :site,
       :duration, :price, :baths, :space, :rooms
     )
-  end
-
-  def run_update_notifications
-    return if current_user.try(:admin?)
-    SlackNotifierJob.perform_async(@listing.id, "Listing", "update")
   end
 
   def set_listing

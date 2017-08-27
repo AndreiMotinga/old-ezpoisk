@@ -9,12 +9,9 @@ class JoinListingsJob
     return unless Rails.env.production?
     Listing.where("created_at > ?", 130.minutes.ago).find_each do |l|
       user = User.find_by_name(l.from_name)
-      if user && l.user_id != user.id
-        ids << user.id
-        l.user_id = user.id
-        l.save
-      end
+      l.update_column(:user_id, user.id) if user && l.user_id != user.id
     end
+    Ez.ping("JoinListingsJob done")
   end
 end
 

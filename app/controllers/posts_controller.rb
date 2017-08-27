@@ -5,6 +5,7 @@ class PostsController < PagesController
   before_action :set_post, only: [:edit, :update, :destroy]
   after_action(only: [:index, :tag]) { create_show_impressions(@posts) }
   after_action(only: :show) { create_visit_impression(@post)  }
+  after_action(only: [:create, :update]) { notify_slack(@post, action_name) }
 
   def index
     @popular = Post.order(created_at: :desc).take(5)
@@ -45,7 +46,6 @@ class PostsController < PagesController
       @post.karmas.create(user: current_user,
                           giver: current_user,
                           kind: "created")
-      SlackNotifierJob.perform_async(@post.id, "Post")
       redirect_to @post, notice: I18n.t(:p_created)
     else
       render :new
