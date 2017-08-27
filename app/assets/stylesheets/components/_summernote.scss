@@ -14,12 +14,11 @@
     text-align: center;
   }
 
-  div {
-    line-height: 24px;
-  }
-
+  div,
   p {
+    font-family: Georgia, Times, "Times New Roman", serif;
     font-size: 15px !important;
+    line-height: 24px;
   }
 
   img {
