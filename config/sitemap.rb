@@ -37,7 +37,7 @@ SitemapGenerator::Sitemap.create do
   # add index listings pages
   %w(работа продажи недвижимость услуги).each do |kind|
     add URI.unescape(search_listings_path(kind: kind)),
-        priority: 0.8,
+        priority: 0.9,
         changefreq: "hourly"
   end
 
@@ -56,7 +56,7 @@ SitemapGenerator::Sitemap.create do
       RU_KINDS[kind]["subcategories"].each do |sub|
         next unless Listing.where(kind: kind, category: cat, subcategory: sub).any?
         url = search_listings_path(kind: kind, category: cat, subcategory: sub)
-        add URI.unescape(url), priority: 0.8, changefreq: "weekly"
+        add URI.unescape(url), priority: 0.8, changefreq: "daily"
       end
     end
   end
@@ -83,7 +83,7 @@ SitemapGenerator::Sitemap.create do
     add answer_path(answer),
         priority: 0.6,
         lastmod: answer.updated_at,
-        changefreq: "weekly"
+        changefreq: "monthly"
   end
 
   add questions_path, priority: 0.8, changefreq: "daily"
@@ -94,24 +94,24 @@ SitemapGenerator::Sitemap.create do
         changefreq: "weekly"
   end
 
-  add posts_path, priority: 0.8, changefreq: "daily"
+  add posts_path, priority: 0.8, changefreq: "hourly"
   Post.find_each do |post|
     add post_path(post),
         priority: 0.6,
         lastmod: post.created_at,
-        changefreq: "weekly"
+        changefreq: "never"
   end
 
   Listing.active.find_each do |listing|
     add URI.unescape(listing_path(listing)),
         priority: 0.4,
         lastmod: listing.updated_at,
-        changefreq: "weekly"
+        changefreq: "never"
   end
 
   User.find_each do |user|
     add user_path(user),
-        priority: 0.4,
+        priority: 0.7,
         lastmod: user.updated_at,
         changefreq: "weekly"
   end
