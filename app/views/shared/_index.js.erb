@@ -10,15 +10,13 @@ $("[data-partner='left']").replaceWith("<%= j render('partners/left', partner: @
 // right
 $("[data-partner='right']").replaceWith("<%= j render('partners/right', partner: @right) %>");
 
-// increment impressions
-incrementPartners()
-
-// render records
 <% if @inline&.any? %>
   <% @inline.each do |partner| %>
     $("[data-id='listings']").append("<%= j render("partners/inline", partner: partner) %>");
   <% end %>
 <% end %>
+
+// render records
 $("[data-id='listings']").append("<%= j render(records) %>");
 
 // update pagination links
@@ -28,6 +26,9 @@ $("[data-id='listings']").append("<%= j render(records) %>");
   $(".pagination").remove();
   $("#p2").remove();
 <% end %>
+
+// increment impressions
+incrementPartners()
 
 // MDL fix
 if(!(typeof(componentHandler) == 'undefined')){

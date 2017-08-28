@@ -142,9 +142,12 @@ class ListingsController < PagesController
   end
 
   def set_show_partners
-    @top, @right, @inline = Partner.get(limit: 3,
-                                        state: @listing.state_id,
-                                        city: @listing.city_id,
-                                        tags: @listing.tag_list)
+    partners = Partner.get(limit: 3,
+                           state: @listing.state_id,
+                           city: @listing.city_id,
+                           tags: @listing.tag_list)
+    @top, @right = partners
+    @inline = [partners.last]
+    @inline_p = partners.last
   end
 end
