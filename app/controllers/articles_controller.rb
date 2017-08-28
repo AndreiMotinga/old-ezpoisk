@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
     @articles = @articles.where(user_id: user_id) if user_id.present?
     @articles = @articles.where("created_at >= ?", start_date) if params[:start_date].present?
     @articles = @articles.where("created_at <= ?", end_date) if params[:end_date].present?
-    @articles = @articles.order(created_at: :desc).page(params[:page]).per(50)
+    @articles = @articles.order(created_at: :desc).page(params[:page]).per(300)
     respond_to do |format|
       format.html
       format.js

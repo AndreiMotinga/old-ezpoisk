@@ -4,24 +4,30 @@
   table.table.table-hover.table-bordered
     thead
       tr
-        th Дата
+        th.col-xs-1 Дата
         th Автор
         th Заголовок
         th Тэги
-        th.col-xs-1  Просмотры
+        th.col-xs-2  Просмотры
         th: i class="fa fa-picture-o" aria-hidden="true"
         th: i class="fa fa-comments-o" aria-hidden="true"
-        th N
-        th N*0.15
+        th Size
+        th Price
 
     tbody data-id="listings"
       - @articles.each do |article|
         = render "articles/article", article: article
     tfoot
       tr style="text-align: right;"
-        - total_size = @articles.map{|a| strip_tags(a.text).scan(/\S+/).size }.reduce(&:+)
-        - total_price = (total_size * 0.15).round / 100.0
-        td colspan=9 Итого $#{total_price}
+        - old_total_size = @articles.map{|a| strip_tags(a.text).scan(/\S+/).size }.reduce(&:+)
+        - new_total_size = @articles.map{|a| strip_tags(a.text).gsub(/[[:space:]]/, '').size }.reduce(&:+)
+        - old_total_price = old_total_size.to_f / 1000 * 1.5
+        - new_total_price = new_total_size.to_f / 1000 * 1.0
+        td colspan=9
+          | Итого
+          |  $#{old_total_price}
+          | /
+          |  $#{new_total_price}
 
 tr
   = render "shared/pagination", records: @articles

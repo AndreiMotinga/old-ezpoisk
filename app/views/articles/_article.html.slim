@@ -1,6 +1,8 @@
-- size = strip_tags(article.text).scan(/\S+/).size
+- old = strip_tags(article.text).scan(/\S+/).size
+- size = strip_tags(article.text).gsub(/[[:space:]]/, '').size
+
 tr
-  td= article.created_at.strftime("%a_%b_%d")
+  td= article.created_at.strftime("%a %b %d")
   td= article.user&.name&.split&.first
   td= link_to article.title, article.show_url
   td= article.cached_tags
@@ -11,4 +13,7 @@ tr
     td: i class="fa fa-times" aria-hidden="true" style="color: red;"
   td= article.comments_count
   td= size
-  td $#{(size * 0.15).round / 100.0}
+  td
+    | $#{(old * 0.15).round / 100.0}
+    | /
+    | $#{(size * 0.10).round / 100.0}
