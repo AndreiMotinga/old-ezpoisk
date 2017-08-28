@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   acts_as_taggable_on :skills, :interests
   acts_as_voter
+  acts_as_votable
   devise :database_authenticatable, :rememberable, :trackable, :omniauthable,
     :lastseenable, omniauth_providers: [:facebook, :google_oauth2, :vkontakte]
 
@@ -31,6 +32,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   after_create :create_contact
+  after_create :create_first_karma
   after_create :notify
 
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
@@ -72,5 +74,14 @@ class User < ActiveRecord::Base
 
   def notify
     SlackNotifierJob.perform_async(id, "User")
+  end
+
+  def create_first_karma
+    return if Rails.env.test?
+    Karma.create(user_id: self.id,
+                giver_id: 1,
+                karmable_type: "User",
+                karmable_id: self.id,
+                kind: "created")
   end
 end

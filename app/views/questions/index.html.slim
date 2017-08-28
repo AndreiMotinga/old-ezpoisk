@@ -15,13 +15,13 @@
   = render "partners/top", partner: @top
 - content_for :left do
   .hidden-xs.sticky
-    = render "questions/left", tags: @tags
+    = render "questions/left"
     = render "partners/left", partner: @left
 - content_for :right do
   .sticky
     = render "partners/right", partner: @right
 
-.col-xs-12 data-id="listings"
+div data-id="listings"
   = render @questions
 
 .row

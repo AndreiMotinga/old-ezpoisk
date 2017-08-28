@@ -10,9 +10,10 @@ nav.js-menu.sliding-panel-content
           span.caret
         ul.dropdown-menu.pull-right
           li= link_to "Моя страница", user_path(current_user)
+          li= link_to "Мои настройки", edit_user_path(current_user, act: "general")
           li= link_to t(:sign_out), destroy_user_session_path
     - else
-      li.nav-link: a#login-link href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+      li.nav-link: a href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
 
     li.nav-link.dropdown
       a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
@@ -21,15 +22,14 @@ nav.js-menu.sliding-panel-content
         span.caret
       ul.dropdown-menu.pull-right
         li.dropdown-header style="padding-left:10px" Комьюнити
-        li= link_to "Вопрос", new_question_path
-        li= link_to "Ответ", questions_path
-        li= link_to "Новость", new_post_path
+        li= link_to "Вопрос", new_question_path, class: "js-login"
+        li= link_to "Новость", new_post_path, class: "js-login"
         li.dropdown-header style="padding-left:10px" Объявления
         li.devider
-        li= link_to "Недвижимость", new_listing_path(kind: "недвижимость")
-        li= link_to "Работа", new_listing_path(kind: "работа")
-        li= link_to "Услуги", new_listing_path(kind: "услуги")
-        li= link_to "Продажи", new_listing_path(kind: "продажи")
+        li= link_to "Недвижимость", new_listing_path(kind: "недвижимость"), class: "js-login"
+        li= link_to "Работа", new_listing_path(kind: "работа"), class: "js-login"
+        li= link_to "Услуги", new_listing_path(kind: "услуги"), class: "js-login"
+        li= link_to "Продажи", new_listing_path(kind: "продажи"), class: "js-login"
 
     li.nav-link.dropdown
       a.dropdown-toggle.avatar[aria-expanded="false" aria-haspopup="true"
@@ -37,14 +37,23 @@ nav.js-menu.sliding-panel-content
         | Объявления
         span.caret
       ul.dropdown-menu.pull-right
-        li= link_to "Недвижимость", search_listings_path(kind: "недвижимость")
-        li= link_to "Работа", search_listings_path(kind: "работа")
-        li= link_to "Услуги", search_listings_path(kind: "услуги")
-        li= link_to "Продажи", search_listings_path(kind: "продажи")
-    li= link_to "Ответы", answers_path
-    li= link_to "Новости", posts_path
-    li= link_to "Об ezpoisk", about_path
+        li= link_to "Недвижимость", search_listings_path(kind: "недвижимость"), class: "js-login"
+        li= link_to "Работа", search_listings_path(kind: "работа"), class: "js-login"
+        li= link_to "Услуги", search_listings_path(kind: "услуги"), class: "js-login"
+        li= link_to "Продажи", search_listings_path(kind: "продажи"), class: "js-login"
+
+    li.nav-link.dropdown
+      a.dropdown-toggle[aria-expanded="false" aria-haspopup="true"
+                               data-toggle="dropdown" href="#" role="button"]
+        | Ответы
+        span.caret
+      ul.dropdown-menu.pull-right
+        li= link_to "Читать", answers_path, class: "js-login", class: "js-login"
+        li= link_to "Ответить", questions_path, class: "js-login", class: "js-login"
+
+    li= link_to "Новости", posts_path, class: "js-login"
+    li= link_to "Об ezpoisk", about_path, class: "js-login"
     - if current_user&.admin?
-      li= link_to "Реклама", partners_path
+      li= link_to "Реклама", partners_path, class: "js-login"
 
 .js-menu-screen.sliding-panel-fade-screen

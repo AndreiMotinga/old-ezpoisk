@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827025323) do
+ActiveRecord::Schema.define(version: 20170829034813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20170827025323) do
     t.string "logo_url"
     t.integer "impressions_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.boolean "anonymously"
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["slug"], name: "index_answers_on_slug"
     t.index ["user_id"], name: "index_answers_on_user_id"
@@ -236,6 +237,7 @@ ActiveRecord::Schema.define(version: 20170827025323) do
     t.datetime "published_at", default: -> { "now()" }
     t.integer "impressions_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.integer "votes_count", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -250,6 +252,8 @@ ActiveRecord::Schema.define(version: 20170827025323) do
     t.datetime "updated_at"
     t.integer "impressions_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
+    t.boolean "anonymously"
+    t.integer "votes_count", default: 0
     t.index ["slug"], name: "index_questions_on_slug", unique: true
     t.index ["title"], name: "index_questions_on_title"
     t.index ["user_id"], name: "index_questions_on_user_id"

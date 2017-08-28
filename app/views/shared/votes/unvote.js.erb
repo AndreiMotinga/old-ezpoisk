@@ -1,0 +1,2 @@
+<% type = @record.class.to_s.downcase %>
+$("#<%= type %>-voted-<%= @record.id %>").replaceWith("<%= j upvote_btn(@record) %>");

@@ -1,10 +1,24 @@
 .user-widget {
   text-align: center;
+  position: relative;
+
+  .background {
+    background-image: url("https://s3.amazonaws.com/ezpoisk/user_widget.jpg");
+    background-size: cover;
+    height: 80px;
+    z-index: 0;
+  }
 
   .img {
-    margin: 20px auto;
-    max-width: 100px;
+    position: absolute;
+    width: 100px;
     height: auto;
+    left: 50px;
+    margin-top: -50px;
     border-radius: 50%;
+  }
+
+  .card {
+    padding-top: 60px;
   }
 }

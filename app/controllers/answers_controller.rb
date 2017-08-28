@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AnswersController < PagesController
-  before_action :authenticate_user!, only: [:edit]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_answer, only: [:edit, :update, :destroy]
   after_action(only: [:index, :tag]) { create_show_impressions(@answers) }
   after_action(only: :show) do
@@ -11,8 +11,7 @@ class AnswersController < PagesController
   after_action(only: [:create, :update]) { notify_slack(@answer, action_name) }
 
   def index
-    set_answers
-    set_tags
+    @answers = Answer.includes(:user).term(params[:term]).desc.page(params[:page])
     @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
@@ -24,7 +23,6 @@ class AnswersController < PagesController
     @answers = Answer.includes(:user)
                      .tagged_with(params[:tag])
                      .page(params[:page])
-    set_tags
     @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|
       format.html { render :index }
@@ -44,10 +42,9 @@ class AnswersController < PagesController
   end
 
   def create
-    user = user_signed_in? ? current_user : User.find(4)
-    @answer = user.answers.build(answer_params)
+    @answer = current_user.answers.build(answer_params)
+    @answer.user_id = 4 if @answer.anonymously?
     @answer.title = @answer.question.title
-    @answer.cached_tags = @answer.question.tags.pluck(:name).join(", ")
 
     if @answer.save
       @answer.karmas.create(user: current_user,
@@ -80,31 +77,34 @@ class AnswersController < PagesController
   end
 
   def upvote
-    @answer = Answer.find(params[:id])
-    @answer.upvote_by current_user
-    @answer.update_attribute(:votes_count, @answer.score)
-    @answer.karmas.create(user: @answer.user,
+    @record = Answer.find(params[:id])
+    @record.upvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.create(user: @record.user,
                           giver: current_user,
                           kind: "upvoted")
+    render "shared/votes/upvote.js.erb"
   end
 
   def downvote
-    @answer = Answer.find(params[:id])
-    @answer.unvote_by current_user if current_user.voted_for? @answer
-    @answer.downvote_by current_user
-    @answer.update_attribute(:votes_count, @answer.score)
-    @answer.karmas.where(user: @answer.user,
+    @record = Answer.find(params[:id])
+    @record.unvote_by current_user if current_user.voted_for? @record
+    @record.downvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.where(user: @record.user,
                          giver: current_user,
                          kind: "upvoted").destroy_all
+    render "shared/votes/downvote.js.erb"
   end
 
   def unvote
-    @answer = Answer.find(params[:id])
-    @answer.unvote_by current_user
-    @answer.update_attribute(:votes_count, @answer.score)
-    @answer.karmas.where(user: @answer.user,
+    @record = Answer.find(params[:id])
+    @record.unvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.where(user: @record.user,
                          giver: current_user,
                          kind: "upvoted").destroy_all
+    render "shared/votes/unvote.js.erb"
   end
 
   private
@@ -115,31 +115,11 @@ class AnswersController < PagesController
   end
 
   def answer_params
-    params.require(:answer).permit(:text, :question_id, :title,
+    params.require(:answer).permit(:text, :question_id, :title, :anonymously,
                                    :image_remote_url, tag_list: [])
   end
 
   def question
     @answer.question
-  end
-
-  def set_tags
-    if user_signed_in?
-      @tags = current_user.interest_list
-    else
-      @tags = Answer.tag_counts.order("count desc").take(5).pluck(:name)
-    end
-  end
-
-  def set_answers
-    @answers = Answer.includes(:user).desc
-    if params[:all] || current_user&.interest_list&.empty?
-      # don't filter anymore
-    elsif params[:term].present?
-      @answers = @answers.term(params[:term]).page(params[:page])
-    elsif user_signed_in?
-      @answers = @answers.tagged_with(current_user.interest_list, any: true)
-    end
-    @answers = @answers.page(params[:page])
   end
 end

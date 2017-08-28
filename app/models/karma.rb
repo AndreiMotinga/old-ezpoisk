@@ -1,6 +1,6 @@
 class Karma < ApplicationRecord
   belongs_to :user
-  belongs_to :giver, class_name: User
+  belongs_to :giver, class_name: "User"
   belongs_to :karmable, polymorphic: true
 
   validates :user, presence: true
@@ -12,17 +12,20 @@ class Karma < ApplicationRecord
 
   AMOUNTS = {
     Question: {
-      created: 20
+      created: 20,
+      upvoted: 10
     },
     Answer: {
       created: 50,
       upvoted: 10
     },
     Post: {
-      created: 10
+      created: 10,
+      upvoted: 5,
     },
     User: {
-      thanked: 100
+      thanked: 100,
+      created: 10
     }
   }
 

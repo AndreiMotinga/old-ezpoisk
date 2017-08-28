@@ -14,10 +14,7 @@ $(document).on('keypress','[data-action="enter"]', function(e){
 });
 
 $(document).on('focus','[data-action="enter"]', function(e){
-  var user_logged_in = getCookieValue("signed_in=1");
-  if(!user_logged_in) {
-    $('#new_session_modal').modal('show');
-  }
+  verifyUserLoggedin(e)
 });
 
 $(document).on('click','[data-action="respond"]', function(e){
@@ -64,11 +61,3 @@ $(document).ready(function(){
     resize();
   });
 });
-
-// find cookie to see wether user sidned_in
-function getCookieValue(cookieName) {
-  var ca = document.cookie.split('; ');
-  return _.find(ca, function (cookie) {
-    return cookie.indexOf(cookieName) === 0;
-  });
-}

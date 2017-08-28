@@ -11,8 +11,7 @@ class QuestionsController < PagesController
   after_action(only: :create) { notify_slack(@question, action_name) }
 
   def index
-    set_questions
-    set_tags
+    @questions = Question.desc.page(params[:page])
     @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
@@ -21,8 +20,7 @@ class QuestionsController < PagesController
   end
 
   def tag
-    @questions = Question.tagged_with(params[:tag]).page(params[:page])
-    set_tags
+    @questions = Question.tag_list(params[:tag]).page(params[:page])
     @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|
       format.html { render :index }
@@ -42,6 +40,7 @@ class QuestionsController < PagesController
 
   def create
     @question = current_user.questions.build(question_params)
+    @question.user_id = 4 if @question.anonymously?
     if @question.save
       @question.karmas.create(user: current_user,
                               giver: current_user,
@@ -70,28 +69,42 @@ class QuestionsController < PagesController
     redirect_to questions_url
   end
 
+  def upvote
+    @record = Question.find(params[:id])
+    @record.upvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.create(user: @record.user,
+                          giver: current_user,
+                          kind: "upvoted")
+    render "shared/votes/upvote.js.erb"
+  end
+
+  def downvote
+    @record = Question.find(params[:id])
+    @record.unvote_by current_user if current_user.voted_for? @record
+    @record.downvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.where(user: @record.user,
+                         giver: current_user,
+                         kind: "upvoted").destroy_all
+    render "shared/votes/downvote.js.erb"
+  end
+
+  def unvote
+    @record = Question.find(params[:id])
+    @record.unvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.where(user: @record.user,
+                         giver: current_user,
+                         kind: "upvoted").destroy_all
+    render "shared/votes/unvote.js.erb"
+  end
+
+
   private
 
   def question_params
-    params.require(:question).permit(:title, :text, tag_list: [])
-  end
-
-  def set_tags
-    if user_signed_in?
-      @tags = current_user.interest_list
-    else
-      @tags = Question.tag_counts.order("count desc").take(5).pluck(:name)
-    end
-  end
-
-  def set_questions
-    @questions = Question.desc
-    if params[:all].present? || current_user&.skill_list&.empty?
-      # don't filter anymore
-    elsif user_signed_in?
-      @questions = @questions.tagged_with(current_user.skill_list, any: true)
-    end
-    @questions = @questions.page(params[:page])
+    params.require(:question).permit(:title, :text, :anonymously, tag_list: [])
   end
 
   def set_question

@@ -6,11 +6,10 @@
       h1.title= link_to action.title, action.show_url
     .row.author
       .col-xs-3.col-sm-2.avatar-container
-        = link_to action.name_url do
+        = link_to action.name_url, target: "_blank" do
           = image_tag action.image_url,
-                      alt: "автор ответа #{action.user.name}",
-                      class: "img-responsive img-circle center-block",
-                      target: "_blank"
+                      alt: "#{action.user.name}",
+                      class: "avatar"
       .col-xs-9.col-sm-10.name-container
         span.name= link_to action.name, action.name_url, target: "_blank"
         small= ", #{action.short_bio}" if action.short_bio.present?

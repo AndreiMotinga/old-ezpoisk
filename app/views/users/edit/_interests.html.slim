@@ -1,7 +1,7 @@
 = bootstrap_form_for(current_user) do |f|
   = hidden_field_tag :act, "interests"
   .field
-    = label_tag "Интересы", nil
+    = label_tag "Укажите ваши интересы", nil
     = collection_select :user,
                         :interest_list,
                         ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,

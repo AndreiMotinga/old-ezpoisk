@@ -7,12 +7,21 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           | Объявления
           span.caret
         ul.dropdown-menu.pull-right
-          li= link_to "Недвижимость", search_listings_path(kind: "недвижимость")
-          li= link_to "Работа", search_listings_path(kind: "работа")
-          li= link_to "Услуги", search_listings_path(kind: "услуги")
-          li= link_to "Продажи", search_listings_path(kind: "продажи")
-      li.nav-link.hidden-xs= link_to "Ответы", answers_path
-      li.nav-link.hidden-xs= link_to "Новости", posts_path
+          li= link_to "Недвижимость", search_listings_path(kind: "недвижимость"), class: "js-login"
+          li= link_to "Работа", search_listings_path(kind: "работа"), class: "js-login"
+          li= link_to "Услуги", search_listings_path(kind: "услуги"), class: "js-login"
+          li= link_to "Продажи", search_listings_path(kind: "продажи"), class: "js-login"
+
+      li.nav-link.dropdown.to-hide
+        a.dropdown-toggle[aria-expanded="false" aria-haspopup="true"
+                          data-toggle="dropdown" href="#" role="button" class="hidden-xs"]
+          | Ответы
+          span.caret
+        ul.dropdown-menu.pull-right
+          li= link_to "Читать", answers_path, class: "js-login"
+          li= link_to "Ответить", questions_path, class: "js-login"
+
+      li.nav-link.hidden-xs= link_to "Новости", posts_path, class: "js-login"
 
       li.nav-link.dropdown.hidden-xs
         a.dropdown-toggle.btn-ez[aria-expanded="false" aria-haspopup="true"
@@ -21,15 +30,14 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           span.caret
         ul.dropdown-menu.pull-right
           li.dropdown-header style="padding-left:10px" Комьюнити
-          li= link_to "Вопрос", new_question_path
-          li= link_to "Ответ", questions_path
-          li= link_to "Новость", new_post_path
+          li= link_to "Вопрос", new_question_path, class: "js-login"
+          li= link_to "Новость", new_post_path, class: "js-login"
           li.dropdown-header style="padding-left:10px" Объявления
           li.devider
-          li= link_to "Недвижимость", new_listing_path(kind: "недвижимость")
-          li= link_to "Работа", new_listing_path(kind: "работа")
-          li= link_to "Услуги", new_listing_path(kind: "услуги")
-          li= link_to "Продажи", new_listing_path(kind: "продажи")
+          li= link_to "Недвижимость", new_listing_path(kind: "недвижимость"), class: "js-login"
+          li= link_to "Работа", new_listing_path(kind: "работа"), class: "js-login"
+          li= link_to "Услуги", new_listing_path(kind: "услуги"), class: "js-login"
+          li= link_to "Продажи", new_listing_path(kind: "продажи"), class: "js-login"
 
       - if user_signed_in?
         li.nav-link.dropdown.hidden-xs
@@ -39,15 +47,16 @@ nav#navbar-main.navbar-fixed-top.navbar-main
             span.caret
           ul.dropdown-menu.pull-right
             li= link_to "Моя страница", user_path(current_user)
+            li= link_to "Мои настройки", edit_user_path(current_user, act: "general")
             li= link_to t(:sign_out), destroy_user_session_path
       - else
-        li.nav-link.hidden-xs: a#login-link href="#" data-target="#new_session_modal" data-toggle="modal" = t(:sign_in)
+        li.nav-link.hidden-xs: a.js-login href="#" = t(:sign_in)
 
     form.search-box.mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.pull-right[
       role="search" method="get" action=searches_path data-destination=""]
       = hidden_field_tag :t
       label.mdl-button.mdl-js-button.mdl-button--icon for="term"
-        i.material-icons search
+        i.material-icons.js-login search
       .mdl-textfield__expandable-holder
         = text_field_tag :term,
             (current_page?(searches_path) ? "" : params[:term]),
@@ -58,4 +67,4 @@ nav#navbar-main.navbar-fixed-top.navbar-main
       li.nav-link
         a href="#" class="js-menu-trigger sliding-panel-button"
           = fa_icon "bars"
-    a.links.pull-left href=root_path = image_tag "navbar-logo"
+    a.links.pull-left href=root_path = image_tag "navbar-logo", class: "js-login"

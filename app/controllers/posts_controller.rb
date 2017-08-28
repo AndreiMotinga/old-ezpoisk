@@ -75,6 +75,37 @@ class PostsController < PagesController
     redirect_to posts_path, notice: I18n.t(:p_destroyed)
   end
 
+  def upvote
+    @record = Post.find(params[:id])
+    @record.upvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.create(user: @record.user,
+                          giver: current_user,
+                          kind: "upvoted")
+    render "shared/votes/upvote.js.erb"
+  end
+
+  def downvote
+    @record = Post.find(params[:id])
+    @record.unvote_by current_user if current_user.voted_for? @record
+    @record.downvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.where(user: @record.user,
+                         giver: current_user,
+                         kind: "upvoted").destroy_all
+    render "shared/votes/downvote.js.erb"
+  end
+
+  def unvote
+    @record = Post.find(params[:id])
+    @record.unvote_by current_user
+    @record.update_attribute(:votes_count, @record.score)
+    @record.karmas.where(user: @record.user,
+                         giver: current_user,
+                         kind: "upvoted").destroy_all
+    render "shared/votes/unvote.js.erb"
+  end
+
   private
 
   def post_params

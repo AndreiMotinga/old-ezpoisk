@@ -2,6 +2,8 @@
 
 class Question < ActiveRecord::Base
   acts_as_taggable
+  acts_as_votable
+
   include Filterable
   include Commentable
   include MyFriendlyId
@@ -22,6 +24,11 @@ class Question < ActiveRecord::Base
   after_create :create_action
   before_save :verify_title
   after_save :update_cached_tags
+
+  # todo duplicated with answer - do it nicer
+  def score
+    get_upvotes.count - get_downvotes.count
+  end
 
   def self.term_for(term)
     qs = where("title ILIKE ?", "%#{term}%").limit(10).pluck(:title, :slug)

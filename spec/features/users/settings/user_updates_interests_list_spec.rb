@@ -5,8 +5,8 @@ feature "user updates interests", js: true do
     user = create_and_login_user
 
     visit edit_user_path(user, act: "interests")
-    select2("недвижимость", from: "Интересы")
-    select2("работа", from: "Интересы")
+    select2("недвижимость", from: "Укажите ваши интересы")
+    select2("работа", from: "Укажите ваши интересы")
     click_on "Сохранить"
 
     expect(page).to have_content I18n.t(:user_updated)

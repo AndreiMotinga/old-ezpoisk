@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < PagesController
-  before_action :authenticate_user!, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:edit, :update, :upvote, :unvote]
   before_action :set_user, only: [:show, :posts, :questions]
   after_action(only: :show) { create_visit_impression(@user) }
   after_action(only: :update) { notify_slack(current_user, action_name) }
@@ -63,6 +63,26 @@ class UsersController < PagesController
     end
   end
 
+  def upvote
+    @user = User.find(params[:id])
+    @user.upvote_by current_user
+    Karma.create(user: @user,
+                 karmable_type: "User",
+                 karmable_id: @user.id,
+                 giver: current_user,
+                 kind: "thanked")
+  end
+
+  def unvote
+    @user = User.find(params[:id])
+    @user.unvote_by current_user
+    Karma.where(user: @user,
+                karmable_type: "User",
+                karmable_id: @user.id,
+                giver: current_user,
+                kind: "thanked").destroy_all
+  end
+
   private
 
   def user_params
@@ -71,6 +91,7 @@ class UsersController < PagesController
   end
 
   def set_user
+    redirect_to root_url if [1, 4].include?(params[:id].to_i)
     @user = User.find(params[:id])
   end
 end

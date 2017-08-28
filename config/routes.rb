@@ -49,6 +49,12 @@ Rails.application.routes.draw do
 
   resources :questions do
     get "tag/:tag", to: "questions#tag", as: :tag, on: :collection
+
+    member do
+      put "upvote", to: "questions#upvote"
+      put "downvote", to: "questions#downvote"
+      put "unvote", to: "questions#unvote"
+    end
   end
 
   extend PostRoutes
@@ -59,6 +65,9 @@ Rails.application.routes.draw do
       get :questions
       get :posts
       get :listings
+
+      put "upvote", to: "users#upvote"
+      put "unvote", to: "users#unvote"
     end
   end
   resources :experiences, only: [:create, :update, :destroy]

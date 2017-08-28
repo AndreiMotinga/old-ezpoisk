@@ -1,17 +1,24 @@
-.card.left-widget.user-widget
-  - if user_signed_in?
-    = image_tag current_user.avatar(:medium), class: "img"
-    hr
-    .title= link_to current_user.name, user_path(current_user)
-    .legend= current_user.short_bio
-    hr
-    - if current_user&.admin?
-      div
-        .karma карма #{current_user.karmas.sum(:amount)}
+- if user_signed_in?
+  .left-widget.user-widget
+    .background
+    = link_to user_path(current_user) do
+      = image_tag current_user.avatar(:medium), class: "img"
+    .card
+      .title= link_to current_user.name, user_path(current_user)
+      .legend= current_user.short_bio
       hr
-    = link_to "Редактировать", edit_user_path(current_user, act: "general")
-  - else
-    = image_tag "https://s3.amazonaws.com/ezpoisk/missing.png", class: "img"
-    hr
-    br
-    = link_to t(:sign_in), "", "data-target": "#new_session_modal", "data-toggle": "modal"
+      div
+        .karma-points = current_user.karmas.sum(:amount)
+        .text карма
+
+        hr
+      = link_to "Редактировать", edit_user_path(current_user, act: "general")
+
+- else
+  .left-widget.user-widget
+    .background
+    = image_tag "https://s3.amazonaws.com/ezpoisk/default-avatar.png", class: "img"
+    .card
+      hr
+      .margin-bottom-10
+        a.js-login href="#" Войти

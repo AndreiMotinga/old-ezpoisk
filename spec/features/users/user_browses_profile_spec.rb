@@ -21,7 +21,7 @@ feature "User browses profile" do
   end
 
   scenario "visits answers" do
-    user = create :user
+    user = create :user, id: 10
     q = create :question
     answer = create :answer, user: user, question: q, title: q.title
 
@@ -31,7 +31,7 @@ feature "User browses profile" do
   end
 
   scenario "visits questions" do
-    user = create :user
+    user = create :user, id: 10
     q = create :question, user: user
 
     visit questions_user_path(user)
@@ -41,7 +41,7 @@ feature "User browses profile" do
   end
 
   scenario "visits posts" do
-    user = create :user
+    user = create :user, id: 10
     q = create :question, user: user
 
     visit posts_user_path(user)

@@ -2,6 +2,7 @@
 
 class Post < ApplicationRecord
   acts_as_taggable
+  acts_as_votable
   include Filterable
   include Commentable
   include MyFriendlyId
@@ -24,6 +25,10 @@ class Post < ApplicationRecord
   after_save :update_cached_tags
 
   scope :published, -> { where("published_at < ?", Time.zone.now) }
+
+  def score
+    get_upvotes.count - get_downvotes.count
+  end
 
   def unpublished?
     published_at > Time.zone.now

@@ -43,7 +43,7 @@ describe Media::Validator do
       expect(result).to be_falsy
     end
 
-    it "returns false if post contains blocked words" do
+    xit "returns false if post contains blocked words" do
       rec = { created_at: 1.minute.ago, text: "Russian America т.. " }
       result = Media::Validator.new(rec).valid?
 

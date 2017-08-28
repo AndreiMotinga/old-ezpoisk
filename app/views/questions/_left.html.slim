@@ -1,10 +1,11 @@
-.card.left-widget
-  ul.answers-menu
-    li.header
-      - if user_signed_in?
-        = link_to edit_user_path(current_user, act: "skills"), class: "pull-right" do
+- if user_signed_in?
+  .card.left-widget
+    ul.answers-menu
+      li.header
+        = link_to edit_user_path(current_user, act: "skills") do
           i.fa.fa-pencil.pull-right aria-hidden="true"
-      | Ваши навыки
-    - tags.each do |tag|
-      li.tag= link_to tag.capitalize, "/questions/tag/#{tag}", class: "gray"
-    li.tag= link_to "Показать все", questions_path(all: 1), class: "gray"
+        | Ваши навыки
+      - current_user.skill_list.each do |tag|
+        li.tag= link_to tag.gsub("-", " ").capitalize, "/questions/tag/#{tag}", class: "gray"
+- else
+  = render "users/widget"

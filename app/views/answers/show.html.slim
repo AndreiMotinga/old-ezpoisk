@@ -28,7 +28,7 @@
     br
     = link_to "Добавить ответ",
               new_answer_path(question_id: @answer.question_id),
-              class: "btn btn-ez margin-bottom-10"
+              class: "btn btn-ez margin-bottom-10 js-login"
     = " "
     - if @answer.question.answers_count > 1
       = link_to "Просмотреть другие ответы (#{@answer.question.answers_count - 1})",

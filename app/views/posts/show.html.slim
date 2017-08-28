@@ -37,10 +37,13 @@
           = " | "
           = link_to "Редактировать", edit_post_path(@post), class: "text-muted"
 
-  = render "social_share_buttons", record: @post, klass: "inline"
+  = render "social_share_buttons", record: @post, klass: "inline small"
+  = render "shared/votes/vote_links", record: @post
 
-.card.summernote-container
-  = raw @post.text
+.row
+  .col-xs-12
+    .card.summernote-container
+      = raw @post.text
 
 = render "listings/comments", record: @post
 = render "partners/inline", partner: @inline

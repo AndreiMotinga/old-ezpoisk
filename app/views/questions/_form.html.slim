@@ -3,6 +3,9 @@
     = bootstrap_form_for @question do |f|
       .field
         = f.text_field :title, label: "Ваш вопрос", value: @question.title || params[:question]
+        = f.check_box :anonymously, label: "Спросить анонимно"
+      br
+
       .field
         = f.text_area :text, label: "Подробности", rows: 7
 

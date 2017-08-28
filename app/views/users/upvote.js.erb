@@ -1,0 +1,2 @@
+$("#js-amount").text("<%= @user.karmas.sum(:amount) %>")
+$("#user-upvote-<%= @user.id %>").replaceWith("<%= j user_voted_btn(@user) %>");

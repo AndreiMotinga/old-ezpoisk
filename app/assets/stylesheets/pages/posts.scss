@@ -10,5 +10,14 @@
     .title {
       font-size: 32px;
     }
+
+    .social-share-buttons,
+    .vote_links {
+      display: inline-block;
+    }
+
+    .social-share-buttons {
+      margin-right: 5px;
+    }
   }
 }

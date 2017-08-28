@@ -21,8 +21,8 @@
   .article-footer
     .row
       .col-xs-12.col-sm-6
-        = render "answers/vote_links", record: answer
+        = render "shared/votes/vote_links", record: answer
       .col-xs-12.col-sm-6
         - if controller_name == "answers"
-          = render "social_share_buttons", record: answer, klass: "inline small"
+          = render "social_share_buttons", record: answer, klass: "inline small pull-right"
     = render "shared/comments", record: answer

@@ -4,17 +4,6 @@ describe AnswersController do
   before { Timecop.freeze(Time.now) }
   after { Timecop.return }
 
-  describe "GET #index" do
-    it "renders the index template and returns answers" do
-      2.times { create :answer }
-
-      get :index
-
-      expect(response).to render_template(:index)
-      expect(assigns(:answers).size).to eq 2
-    end
-  end
-
   describe "POST #create" do
     it "creates answer" do
       sign_in(@user = create(:user))
