@@ -16,7 +16,7 @@ module Vk
     end
 
     def unify
-      kind = group[:kind].to_sym
+      kind = group["kind"].to_sym
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
       {
@@ -37,9 +37,9 @@ module Vk
           rooms: rooms,
           text: text,
           vk: "https://vk.com/id#{post[:from_id]}",
-          state_id: group[:state_id],
-          city_id: group[:city_id],
-          source: "https://vk.com/topic-#{group[:id]}_#{group[:topic]}?post=#{post[:id]}",
+          state_id: group["state_id"],
+          city_id: group["city_id"],
+          source: "https://vk.com/topic-#{group['id']}_#{group['topic']}?post=#{post[:id]}",
           created_at: Time.at(post[:date])
         }
       }

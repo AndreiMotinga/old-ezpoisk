@@ -14,31 +14,31 @@ module Media
     end
 
     BAD_WORDS = [
-      # "Russian America",
-      # "russian-america",
-      # "ООН",
-      # "Профессиональная помощь в оформление политического убежища в США!",
-      # "Смотри рекламу получай деньги! 10часов=250$",
-      # "ТОЛЬКО НЬЮ ЙОРК\nАНГЛИЙСКИЙ ЯЗЫК ДЛЯ ВСЕХ!!!!",
-      # "Rio - это",
-      # "Хороший знакомый (американец) ищет комнату",
-      # "helpdetected.com",
-      # "Американский визовый центр",
-      # "almaz89.ilgamos.com",
-      # "Billionaire.goldandcrypto.com",
-      # "hrimmigration91@yahoo.com",
-      # "Продаю SSN",
-      # "https://crp.center",
-      # "https://vk.com/englishdiscussion",
-      # "АРЕНДА АВТО! ЛЕТНЯЯ АКЦИЯ!",
-      # "hiringman.com"
+      "Russian America",
+      "russian-america",
+      "ООН",
+      "Профессиональная помощь в оформление политического убежища в США!",
+      "Смотри рекламу получай деньги! 10часов=250$",
+      "ТОЛЬКО НЬЮ ЙОРК\nАНГЛИЙСКИЙ ЯЗЫК ДЛЯ ВСЕХ!!!!",
+      "Rio - это",
+      "Хороший знакомый (американец) ищет комнату",
+      "helpdetected.com",
+      "Американский визовый центр",
+      "almaz89.ilgamos.com",
+      "Billionaire.goldandcrypto.com",
+      "hrimmigration91@yahoo.com",
+      "Продаю SSN",
+      "https://crp.center",
+      "https://vk.com/englishdiscussion",
+      "АРЕНДА АВТО! ЛЕТНЯЯ АКЦИЯ!",
+      "hiringman.com"
     ].map(&:freeze).freeze
 
     def valid?
       return if too_old?
-      return if too_short?
+      # return if too_short?
       return if vk_post_is_response?
-      return if post_contains_bad_words?
+      # return if post_contains_bad_words?
       return if vk_post_from_user_exists?
       return if fb_post_from_user_exists?
       true

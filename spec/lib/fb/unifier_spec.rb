@@ -6,9 +6,9 @@ describe Fb::Unifier do
 
   describe ".unify" do
     it "returns formatted post" do
-      group = { kind: "недвижимость",
-                state_id: 43,
-                city_id: 24_757 }
+      group = { "kind" => "недвижимость",
+                "state_id" => 43,
+                "city_id" => 24_757 }
       item = HashWithIndifferentAccess.new(
         attachments: [],
         from: { name: "Marianna Sumina", id: "101" },
@@ -25,18 +25,18 @@ describe Fb::Unifier do
 
       result = Fb::Unifier.unify(item, group)
 
-      kind = group[:kind].to_sym
+      kind = group["kind"].to_sym
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
       expected_attrs = { title: "У нас на работе есть вакансия",
-                         kind: group[:kind],
+                         kind: group["kind"],
                          active: true,
                          category: RU_KINDS[kind][:categories].first,
                          subcategory: subcategory,
                          rooms: rooms,
                          text: item[:message],
-                         state_id: group[:state_id],
-                         city_id: group[:city_id],
+                         state_id: group["state_id"],
+                         city_id: group["city_id"],
                          fb: "https://www.facebook.com/#{item[:from][:id]}",
                          source: "some_fb_url",
                          created_at: 5.minutes.ago }

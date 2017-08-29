@@ -16,8 +16,8 @@ module Vk
 
     def data
       prms = {
-        group_id: group[:id],
-        topic_id: group[:topic],
+        group_id: group["id"],
+        topic_id: group["topic"],
         sort: :desc,
         extended: 1
       }

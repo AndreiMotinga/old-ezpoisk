@@ -30,12 +30,12 @@ class Listing < ApplicationRecord
   validates_presence_of :kind
   validates_presence_of :category
   validates_presence_of :subcategory
-  validates :text, presence: true, length: { minimum: 10 }
+  # validates :text, presence: true, length: { minimum: 10 }
 
   before_save :ensure_title
   before_save :format_site
   before_save :set_tags
-  after_create :create_action
+  after_create :create_action, if: Proc.new { |l| RU_KINDS.keys.include?(l.kind) }
 
   def logo_url(style = :medium)
     return logo.image.url(style) if logo.present?

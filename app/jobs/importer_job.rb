@@ -7,11 +7,12 @@ class ImporterJob
 
   def perform
     return unless Rails.env.production?
-    Media::Importer.import("public/vk_groups.json", Vk::GroupLoader)
-    Media::Importer.import("public/fb_groups.json", Fb::GroupLoader)
+    Media::Importer.import("public/vk_groups.yaml", Vk::GroupLoader)
+    Media::Importer.import("public/fb_groups.yaml", Fb::GroupLoader)
+
     Listing.where("created_at > ?", 130.minutes.ago).find_each do |l|
-      user = User.find_by_name(l.from_name)
-      l.update_column(:user_id, user.id) if user && l.user_id != user.id
+      user = User.find_by_name(l.user.name)
+      Listing.where(from_name: user.name).update_all(user_id: user.id) if user
     end
     Ez.ping("Import done")
   end

@@ -7,11 +7,11 @@ describe Vk::Unifier do
   # todo replace title and text with stubbed calls to media::title and media::text
   describe ".unify" do
     it "returns formatted item" do
-      group = { kind: "работа",
-                id: 22558194 ,
-                topic: 24112410,
-                state_id: 32,
-                city_id: 17_880 }
+      group = { "kind" => "работа",
+                "id" => 22558194 ,
+                "topic" => 24112410,
+                "state_id" => 32,
+                "city_id" => 17_880 }
       item = { id: 2056,
                from_id: 216_072_410,
                text: "ФОТОСЕССИЯ В нЬЮ-йОРКЕ. Детская, семейная и портретная съемка. Лучшие снимки отобранные",
@@ -29,7 +29,7 @@ describe Vk::Unifier do
 
       result = Vk::Unifier.unify(item, group, user)
 
-      kind = group[:kind].to_sym
+      kind = group["kind"].to_sym
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
       expected_attrs = { title: "Фотосессия в нью-йорке. детская, семейная и портретная съемка. ...",
@@ -40,8 +40,8 @@ describe Vk::Unifier do
                          rooms: rooms,
                          text: "Фотосессия в нью-йорке. Детская, семейная и портретная съемка. Лучшие снимки отобранные",
                          vk: "https://vk.com/id#{item[:from_id]}",
-                         state_id: group[:state_id],
-                         city_id: group[:city_id],
+                         state_id: group["state_id"],
+                         city_id: group["city_id"],
                          source: "https://vk.com/topic-22558194_24112410?post=2056",
                          created_at: Time.at(5.minutes.ago) }
 

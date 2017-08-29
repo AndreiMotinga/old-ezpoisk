@@ -15,7 +15,8 @@ module Fb
     end
 
     def unify
-      kind = group[:kind]
+      kind = group["kind"]
+      cat = RU_KINDS.keys.include?(kind) ? RU_KINDS[kind][:categories].first : kind
       subcategory = kind == "недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == "недвижимость" ? "комната" : ""
       uid = post["from"]["id"]
@@ -31,13 +32,13 @@ module Fb
           title: Media::Title.of(text),
           kind: kind,
           active: true,
-          category: RU_KINDS[kind][:categories].first,
+          category: cat,
           subcategory: subcategory,
           rooms: rooms,
           text: text,
           fb: "https://www.facebook.com/#{post['from']['id']}",
-          state_id: group[:state_id],
-          city_id: group[:city_id],
+          state_id: group["state_id"],
+          city_id: group["city_id"],
           source: post["permalink_url"],
           created_at: post["created_time"]
         }

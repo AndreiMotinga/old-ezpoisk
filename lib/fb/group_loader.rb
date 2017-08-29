@@ -16,7 +16,9 @@ module Fb
 
     def data
       fields = %w(from message created_time attachments permalink_url)
-      response = graph.get_connections(group[:id], "feed", fields: fields)
+      Rails.logger.info "importing #{group['kind']} from #{group['id']}"
+      response = graph.get_connections(group["id"], "feed", fields: fields)
+      Rails.logger.info "imported #{response.size}"
       response.map! { |post| Fb::Unifier.unify(post, group) }
     end
   end

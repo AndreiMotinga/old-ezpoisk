@@ -15,13 +15,14 @@ module Media
     end
 
     def import
-      groups = Media::Groups.from(file)
-      posts = groups.map! { |group| loader.load(group) }.flatten!.compact!
-      return unless posts&.any?
-      posts.uniq! { |post| post[:attributes][:text] }
-           .select! { |post| Media::Validator.valid?(post[:attributes]) }
-           .map! { |post| Media::Creator.create(post) }
-           .size
+      groups = YAML::load(File.read(file))
+      groups.map! { |group| loader.load(group) }
+            .flatten
+            .compact
+            .uniq { |post| post[:attributes][:text] }
+            .select { |post| Media::Validator.valid?(post[:attributes]) }
+            .map { |post| Media::Creator.create(post) }
+            .size
     end
   end
 end

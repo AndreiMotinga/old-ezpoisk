@@ -3,15 +3,16 @@ require "rails_helper"
 
 feature "User browses profile" do
   scenario "visits page" do
-    user = create :user
+    user = create :user, id: 10
 
     visit user_path(user)
+
     expect(page).to have_content user.name
     expect(page).to have_content user.about
   end
 
   scenario "visits listings" do
-    user = create :user
+    user = create :user, id: 10
     listing = create :listing, user: user
 
     visit listings_user_path(user)

@@ -2,10 +2,6 @@ require "selenium/webdriver"
 
 Capybara.asset_host = 'http://localhost:3000'
 
-# Capybara::Webkit.configure do |config|
-#   config.block_unknown_urls
-# end
-
 Capybara.javascript_driver = :webkit
 
 # Capybara.register_driver :chrome do |app|
