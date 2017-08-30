@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # sends congratulation email to user, when his profile was visited 10 times
+# todo ? remove or fix or whatever
 class ProfileNotifierJob
   include Sidekiq::Worker
 
