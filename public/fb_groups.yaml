@@ -135,6 +135,10 @@
   kind: недвижимость
   state_id: 32
   city_id: 17880
+- id: 406135993108984
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
 - id: 760712394075890
   kind: работа
   state_id: 9
@@ -209,6 +213,26 @@
   state_id: 32
   city_id: 17880
 - id: 200634953374153
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 1597503923829225
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 100009461835623
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 250760518336281
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 230347657059740
+  kind: разное
+  state_id: 5
+  city_id: 2302
+- id: 264718916912405
   kind: разное
   state_id: 32
   city_id: 17880
