@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   protected
 
   def notify_slack(rec, type)
-    # return if current_user.member?
+    return if current_user&.admin?
     SlackNotifierJob.perform_async(rec.id, rec.class, type)
   end
 
