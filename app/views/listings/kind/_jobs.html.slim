@@ -2,7 +2,7 @@
 - cat = listing.category
 - sub = listing.subcategory
 
-.col-xs-12.listing
+.col-xs-12.listing id="listing-#{listing.id}"
   = render "listings/kind/menu", listing: listing
 
   - title = "#{listing.city.name}, #{cat}"

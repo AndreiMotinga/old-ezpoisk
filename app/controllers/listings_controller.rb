@@ -94,8 +94,12 @@ class ListingsController < PagesController
   end
 
   def destroy
+    @id = @listing.id
     @listing.destroy
-    redirect_to root_path, notice: I18n.t(:post_removed)
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: I18n.t(:post_removed) }
+      format.js
+    end
   end
 
   private

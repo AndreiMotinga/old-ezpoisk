@@ -32,8 +32,9 @@ class UsersController < PagesController
 
   def listings
     @user = User.find(params[:id])
-    @user = nil if @user.ez? # don't show listings for ez
-    @listings = @user.listings.includes(:state, :city).page(params[:page])
+    @listings = @user.listings
+                     .where.not(kind: %W(разное новости))
+                     .includes(:state, :city).page(params[:page])
     respond_to do |format|
       format.html
       format.js do

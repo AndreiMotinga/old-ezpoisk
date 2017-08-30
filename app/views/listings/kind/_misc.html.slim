@@ -1,7 +1,7 @@
 - has_pics = listing.logo_url != "https://s3.amazonaws.com/ezpoisk/missing.png"
 - kind = listing.kind
 
-.card.article
+.card.article id="listing-#{listing.id}"
   = render "listings/kind/menu", listing: listing
   = render "shared/tags", record: listing
   .article-header
