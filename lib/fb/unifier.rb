@@ -43,7 +43,7 @@ module Fb
     private
 
     def category
-      return "продаю" unless RU_KINDS.keys.include?(kind)
+      return "продаю" unless RU_KINDS.keys.include?(kind.to_s)
       RU_KINDS[kind][:categories].first
     end
 
