@@ -17,6 +17,7 @@ module Vk
 
     def unify
       kind = group["kind"].to_sym
+      cat = RU_KINDS.keys.include?(kind) ? RU_KINDS[kind][:categories].first : kind
       subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
       rooms = kind == :"недвижимость" ? "комната" : ""
       {
@@ -32,7 +33,7 @@ module Vk
           title: Media::Title.of(text),
           kind: kind,
           active: true,
-          category: RU_KINDS[kind][:categories].first,
+          category: cat,
           subcategory: subcategory,
           rooms: rooms,
           text: text,
