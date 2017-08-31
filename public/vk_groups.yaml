@@ -1,6 +1,56 @@
 ---
+- id: 13511430
+  topic: 22076293
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+- id: 13511430
+  topic: 33617385
+  kind: работа
+  state_id: 32
+  city_id: 17880
+- id: 125377297
+  topic: 35658308
+  kind: работа
+  state_id: 32
+  city_id: 17880
+- id: 60526377
+  topic: 35658308
+  kind: жилье
+  state_id: 32
+  city_id: 32706627
+- id: 60526377
+  topic: 31612480
+  kind: жилье
+  state_id: 32
+  city_id: 32706627
+- id: 125377297
+  topic: 27443990
+  kind: продажи
+  state_id: 32
+  city_id: 17880
+- id: 20420
+  topic: 32551894
+  kind: продажи
+  state_id: 32
+  city_id: 17880
 - id: 22558194
   topic: 24112410
+  kind: работа
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 32212025
+  kind: услуги
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 24112410
+  kind: работа
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 29064486
   kind: работа
   state_id: 32
   city_id: 17880
@@ -9,21 +59,6 @@
   kind: работа
   state_id: 32
   city_id: 17880
-- id: 22558194
-  topic: 24112410
-  kind: работа
-  state_id: 32
-  city_id: 17880
-- id: 22558194
-  topic: 26241726
-  kind: работа
-  state_id: 32
-  city_id: 17880
-- id: 35762330
-  topic: 29415801
-  kind: работа
-  state_id: 32
-  city_id: 18031
 - id: 35762330
   topic: 26705408
   kind: работа
@@ -64,11 +99,28 @@
   kind: работа
   state_id: 32
   city_id: 17880
+- id: 10519422
+  topic: 35003975
+  kind: работа
+  state_id: 32
+  city_id: 17880
+- id: 10519422
+  topic: 34853563
+  kind: работа
+  state_id: 32
+  city_id: 17880
 - id: 5891839
   topic: 23250392
   kind: работа
   state_id: 32
   city_id: 17880
+
+- id: 1713224
+  topic: 32945938
+  kind: работа
+  state_id: 32
+  city_id: 17880
+
 - id: 63852120
   topic: 29158437
   kind: работа
@@ -132,6 +184,16 @@
 - id: 66817566
   topic: 31081445
   kind: недвижимость
+  state_id: 32
+  city_id: 17880
+- id: 10519422
+  topic: 34718935
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+- id: 10519422
+  topic: 29863471
+  kind: работа
   state_id: 32
   city_id: 17880
 - id: 20420
@@ -244,6 +306,11 @@
   kind: продажи
   state_id: 32
   city_id: 17880
+- id: 66817566
+  topic: 31156398
+  kind: продажи
+  state_id: 32
+  city_id: 17880
 - id: 20420
   topic: 27129264
   kind: продажи
@@ -267,6 +334,65 @@
 - id: 10519422
   topic: 29984440
   kind: продажи
+  state_id: 32
+  city_id: 17880
+- id: 130429357
+  topic: 36172609
+  kind: продажи
+  state_id: 32
+  city_id: 17880
+- id: 18130368
+  topic: 23204046
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+- id: 18130368
+  topic: 34301382
+  kind: работа
+  state_id: 32
+  city_id: 17880
+- id: 57231129
+  topic: 34097109
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+
+- id: 68915281
+  topic: 33511992
+  kind: работа
+  state_id: 32
+  city_id: 17880
+
+- id: 68915281
+  topic: 33511989
+  kind: работа
+  state_id: 32
+  city_id: 17880
+
+- id: 68915281
+  topic: 33512052
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+
+- id: 18130368
+  topic: 29147933
+  kind: продажи
+  state_id: 32
+  city_id: 17880
+- id: 23960872
+  topic: 27152228
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+- id: 130429357
+  topic: 36172610
+  kind: недвижимость
+  state_id: 32
+  city_id: 17880
+- id: 130429357
+  topic: 36172594
+  kind: работа
   state_id: 32
   city_id: 17880
 - id: 5891839
@@ -339,3 +465,255 @@
   kind: продажи
   state_id: 51
   city_id: 29723
+
+- id: 20420
+  topic: 29755079
+  kind: разное
+  state_id: 32
+  city_id: 17780
+- id: 20420
+  topic: 27571705
+  kind: разное
+  state_id: 32
+  city_id: 17780
+- id: 20420
+  topic: 32004582
+  kind: разное
+  state_id: 32
+  city_id: 17780
+- id: 20420
+  topic: 33190809
+  kind: разное
+  state_id: 32
+  city_id: 17780
+- id: 20420
+  topic: 24531018
+  kind: разное
+  state_id: 32
+  city_id: 17780
+- id: 2688174
+  topic: 25557707
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 32570312
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 22141499
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 22776499
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 26132956
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 26691696
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 2688174
+  topic: 27771601
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 20420
+  topic: 32514651
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 20420
+  topic: 22877026
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 13511430
+  topic: 33072868
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 35762330
+  topic: 26826949
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 35762330
+  topic: 33341160
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 35762330
+  topic: 27164865
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 31606994
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 28191178
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 25750568
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 28466348
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 35469419
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 26761869
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 23888332
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 24567375
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 29437145
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 28193775
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 30380890
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 24878941
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 26233242
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 24112410
+  kind: разное
+  state_id: 32
+  city_id: 17880
+
+- id: 22558194
+  topic: 27552085
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 26591776
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 24939480
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 30872227
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 30245850
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 27359579
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 24658287
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 29818709
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 26235294
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 25912822
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 26294058
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 31664270
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 28748487
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 30709204
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 29961608
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 27302943
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 29762455
+  kind: разное
+  state_id: 32
+  city_id: 17880
+- id: 22558194
+  topic: 26178480
+  kind: разное
+  state_id: 32
+  city_id: 17880
