@@ -16,10 +16,6 @@ module Vk
     end
 
     def unify
-      kind = group["kind"].to_sym
-      cat = RU_KINDS.keys.include?(kind) ? RU_KINDS[kind][:categories].first : kind
-      subcategory = kind == :"недвижимость" ? "квартира" : "другое-разное"
-      rooms = kind == :"недвижимость" ? "комната" : ""
       {
         attachments: attachments,
         user: {
@@ -33,7 +29,7 @@ module Vk
           title: Media::Title.of(text),
           kind: kind,
           active: true,
-          category: cat,
+          category: category,
           subcategory: subcategory,
           rooms: rooms,
           text: text,
@@ -48,12 +44,29 @@ module Vk
 
     private
 
+    def subcategory
+      kind == "недвижимость" ? "квартира" : "другое-разное"
+    end
+
+    def rooms
+      kind == "недвижимость" ? "комната" : ""
+    end
+
+    def category
+      return "продаю" unless RU_KINDS.keys.include?(kind)
+      RU_KINDS[kind][:categories].first
+    end
+
+    def kind
+      group["kind"].to_sym
+    end
+
     def attachments
       Vk::Attachments.new(post[:attachments]).attachments
     end
 
     def text
-      @text ||= Media::Text.clean(post[:text])
+      Media::Text.clean(post[:text])
     end
   end
 end

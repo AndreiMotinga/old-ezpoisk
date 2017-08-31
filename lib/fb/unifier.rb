@@ -15,11 +15,6 @@ module Fb
     end
 
     def unify
-      kind = group["kind"]
-      cat = RU_KINDS.keys.include?(kind) ? RU_KINDS[kind][:categories].first : kind
-      subcategory = kind == "недвижимость" ? "квартира" : "другое-разное"
-      rooms = kind == "недвижимость" ? "комната" : ""
-      uid = post["from"]["id"]
       {
         attachments: attachments,
         user: {
@@ -32,7 +27,7 @@ module Fb
           title: Media::Title.of(text),
           kind: kind,
           active: true,
-          category: cat,
+          category: category,
           subcategory: subcategory,
           rooms: rooms,
           text: text,
@@ -46,6 +41,27 @@ module Fb
     end
 
     private
+
+    def category
+      return "продаю" unless RU_KINDS.keys.include?(kind)
+      RU_KINDS[kind][:categories].first
+    end
+
+    def kind
+      group["kind"]
+    end
+
+    def subcategory
+      kind == "недвижимость" ? "квартира" : "другое-разное"
+    end
+
+    def rooms
+      kind == "недвижимость" ? "комната" : ""
+    end
+
+    def uid
+      post["from"]["id"]
+    end
 
     def attachments
       Fb::Attachments.new(post["attachments"]).attachments
