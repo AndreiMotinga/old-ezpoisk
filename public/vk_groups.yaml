@@ -1,4 +1,25 @@
 ---
+- id: 115224115
+  topic: 33446889
+  kind: недвижимость
+  state_id: 5
+  city_id: 2302
+- id: 115224115
+  topic: 33446891
+  kind: работа
+  state_id: 5
+  city_id: 2302
+- id: 59925174
+  topic: 29354897
+  kind: недвижимость
+  state_id: 5
+  city_id: 2302
+- id: 59925174
+  topic: 30339684
+  kind: работа
+  state_id: 5
+  city_id: 2302
+
 - id: 13511430
   topic: 22076293
   kind: недвижимость
@@ -41,7 +62,7 @@
   city_id: 17880
 - id: 2688174
   topic: 32212025
-  kind: услуги
+  kind: разное
   state_id: 32
   city_id: 17880
 - id: 22558194
@@ -114,13 +135,32 @@
   kind: работа
   state_id: 32
   city_id: 17880
-
 - id: 1713224
   topic: 32945938
   kind: работа
   state_id: 32
   city_id: 17880
+- id: 11816095
+  topic: 27930940
+  kind: продажи
+  state_id: 9
+  city_id: 3964
+- id: 11816095
+  topic: 26661548
+  kind: работа
+  state_id: 9
+  city_id: 3964
+- id: 11816095
+  topic: 26661523
+  kind: работа
+  state_id: 9
+  city_id: 3964
 
+- id: 47107176
+  topic: 31093440
+  kind: недвижимость
+  state_id: 9
+  city_id: 3964
 - id: 63852120
   topic: 29158437
   kind: работа
@@ -166,11 +206,23 @@
   kind: работа
   state_id: 43
   city_id: 25336
+
 - id: 13247283
   topic: 22522116
   kind: работа
   state_id: 13
   city_id: 6254
+- id: 106556711
+  topic: 35308905
+  kind: недвижимость
+  state_id: 5
+  city_id: 1685
+- id: 106556711
+  topic: 35308898
+  kind: работа
+  state_id: 5
+  city_id: 1685
+
 - id: 11710820
   topic: 23839499
   kind: работа
@@ -256,6 +308,11 @@
   kind: недвижимость
   state_id: 9
   city_id: 3964
+- id: 34604425
+  topic: 35054284
+  kind: недвижимость
+  state_id: 5
+  city_id: 1685
 - id: 7661136
   topic: 32923836
   kind: недвижимость
@@ -281,8 +338,29 @@
   kind: недвижимость
   state_id: 21
   city_id: 10383
+- id: 130429581
+  topic: 34427590
+  kind: недвижимость
+  state_id: 21
+  city_id: 10383
+- id: 130429581
+  topic: 34427583
+  kind: недвижимость
+  state_id: 21
+  city_id: 10383
+
 - id: 13509700
   topic: 23331849
+  kind: недвижимость
+  state_id: 43
+  city_id: 25336
+- id: 67410749
+  topic: 34209692
+  kind: недвижимость
+  state_id: 43
+  city_id: 25336
+- id: 31071894
+  topic: 34209692
   kind: недвижимость
   state_id: 43
   city_id: 25336
@@ -415,6 +493,32 @@
   kind: продажи
   state_id: 9
   city_id: 3964
+
+- id: 62791759
+  topic: 32247493
+  kind: недвижимость
+  state_id: 9
+  city_id: 3964
+- id: 62791759
+  topic: 33035110
+  kind: недвижимость
+  state_id: 9
+  city_id: 3964
+- id: 79893369
+  topic: 31572045
+  kind: недвижимость
+  state_id: 9
+  city_id: 3964
+- id: 79893369
+  topic: 31572036
+  kind: работа
+  state_id: 9
+  city_id: 3964
+- id: 31571999
+  topic: 31572036
+  kind: работа
+  state_id: 9
+  city_id: 3964
 - id: 12971907
   topic: 28667780
   kind: продажи
@@ -435,6 +539,7 @@
   kind: продажи
   state_id: 5
   city_id: 1685
+
 - id: 13509936
   topic: 29417696
   kind: продажи
@@ -717,3 +822,10 @@
   kind: разное
   state_id: 32
   city_id: 17880
+
+- id: 13509936
+  topic: 24466393
+  kind: разное
+  state_id: 5
+  city_id: 1685
+
