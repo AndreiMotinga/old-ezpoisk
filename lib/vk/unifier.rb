@@ -45,11 +45,11 @@ module Vk
     private
 
     def subcategory
-      kind == "недвижимость" ? "квартира" : "другое-разное"
+      kind == :недвижимость ? "квартира" : "другое-разное"
     end
 
     def rooms
-      kind == "недвижимость" ? "комната" : ""
+      kind == :недвижимость ? "комната" : ""
     end
 
     def category
