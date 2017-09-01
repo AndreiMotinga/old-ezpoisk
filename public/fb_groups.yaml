@@ -232,6 +232,10 @@
   kind: разное
   state_id: 32
   city_id: 17880
+- id: 462275837263493
+  kind: разное
+  state_id: 32
+  city_id: 17880
 - id: 163326977194489
   kind: разное
   state_id: 5
@@ -240,7 +244,10 @@
   kind: разное
   state_id: 5
   city_id: 1685
-
+- id: 157070704319331
+  kind: разное
+  state_id: 43
+  city_id: 25336
 
 - id: 1291591884267506
   kind: новости
