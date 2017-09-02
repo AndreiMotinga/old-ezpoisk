@@ -36,6 +36,7 @@ class Listing < ApplicationRecord
   before_save :format_site
   before_save :set_tags
   after_create :create_action, if: Proc.new { |l| RU_KINDS.keys.include?(l.kind) }
+  after_create :export
 
   def logo_url(style = :medium)
     return logo.image.url(style) if logo.present?
@@ -96,5 +97,10 @@ class Listing < ApplicationRecord
   def set_tags
     subs = subcategory.split("--")
     self.tag_list = [kind, category, subs, state.slug, city.slug].flatten
+  end
+
+  def export
+    return unless Rails.env.production?
+    Vk::Exporter.export(self)
   end
 end

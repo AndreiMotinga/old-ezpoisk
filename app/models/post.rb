@@ -21,6 +21,7 @@ class Post < ApplicationRecord
   validates_presence_of :tag_list
 
   after_create :create_action
+  after_create :export
   before_save :update_logo
   after_save :update_cached_tags
 
@@ -60,5 +61,10 @@ class Post < ApplicationRecord
   def update_logo
     img = Nokogiri::HTML(text).xpath("//img").first
     self.logo_url = img.attr("src") if img
+  end
+
+  def export
+    return unless Rails.env.production?
+    Vk::Exporter.export(self)
   end
 end

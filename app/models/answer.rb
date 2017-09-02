@@ -21,6 +21,7 @@ class Answer < ActiveRecord::Base
   delegate :avatar, to: :user
 
   after_create :create_action
+  after_create :export
   after_create :update_cached_tags
   before_save :update_logo
 
@@ -62,5 +63,10 @@ class Answer < ActiveRecord::Base
   def update_logo
     img = Nokogiri::HTML(text).xpath("//img").first
     self.logo_url = img.attr("src") if img
+  end
+
+  def export
+    return unless Rails.env.production?
+    Vk::Exporter.export(self)
   end
 end
