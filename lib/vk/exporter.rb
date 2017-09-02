@@ -20,7 +20,7 @@ module Vk
       else
         vk.board.createComment(group_id: id,
                                topic_id: topic,
-                               message: record.vk_message)
+                               message: message)
       end
     end
 
@@ -32,6 +32,12 @@ module Vk
 
     def topic
       VK_GROUPS[record.city.name][record.kind]
+    end
+
+    def message
+      html = "#{record.kind} | #{record.category}\n\n"
+      html += "#{record.text}\n\n"
+      html + "Подробнее #{URI.unescape record.show_url}"
     end
   end
 end
