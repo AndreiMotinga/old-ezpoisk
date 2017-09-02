@@ -257,12 +257,6 @@ RU_KINDS = HashWithIndifferentAccess.new(
   }
 )
 
-CITY_TAGS = [
-  "new-york",
-  "los-angeles",
-  "san-francisco"
-]
-
 VK_GROUPS = HashWithIndifferentAccess.new(
   "new-york": {
     id: 112797570,

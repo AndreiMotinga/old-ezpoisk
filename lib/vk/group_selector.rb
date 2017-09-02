@@ -16,22 +16,30 @@ module Vk
     end
 
     def id
-      id = VK_GROUPS[slug][:id]
+      id = VK_GROUPS[group][:id]
       article? ? -id : id
     end
 
     def topic_id
-      VK_GROUPS[slug][record.kind]
+      VK_GROUPS[group][record.kind]
     end
 
     private
 
-    def slug
-      article? ? (CITY_TAGS & record.tag_list).first : city_slug
+    def group
+      return "new-york" if state_id == 32
+      return "miami" if state_id == 9
+      slug
     end
 
-    def city_slug
-      record.city.slug
+    def state_id
+      return record.state_id unless article?
+      City.where(slug: record.tag_list).first.state_id
+    end
+
+    def slug
+      return record.city.slug unless article?
+      City.where(slug: record.tag_list).first.slug
     end
 
     def article?
