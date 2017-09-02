@@ -257,6 +257,12 @@ RU_KINDS = HashWithIndifferentAccess.new(
   }
 )
 
+CITY_TAGS = [
+  "new-york",
+  "los-angeles",
+  "san-francisco"
+]
+
 VK_GROUPS = HashWithIndifferentAccess.new(
   "new-york": {
     id: 112797570,
@@ -264,5 +270,20 @@ VK_GROUPS = HashWithIndifferentAccess.new(
     работа: 33955064,
     продажи: 33955068,
     услуги: 33955067,
+  }
+)
+
+FB_GROUPS = HashWithIndifferentAccess.new(
+  "new-york": {
+    groups: {
+      информация: 113694059344745,
+      недвижимость: 1755700501389776,
+      работа: 3
+    },
+    pages: {
+      информация: 113694059344745,
+      недвижимость: 1755700501389776,
+      работа: 3
+    }
   }
 )

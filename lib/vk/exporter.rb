@@ -27,8 +27,7 @@ module Vk
     private
 
     def tag_id
-      city_tags = ["new-york", "los-angeles", "san-francisco"]
-      slug = (city_tags & record.tag_list).first
+      slug = (CITY_TAGS & record.tag_list).first
       id = VK_GROUPS[slug][:id]
       -id
     end
