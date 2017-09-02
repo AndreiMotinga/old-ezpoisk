@@ -9,7 +9,7 @@ class ImporterJob
     # return unless Rails.env.production?
     Post.for_export.find_each { |p| Vk::Exporter.export(p) }
     Answer.for_export.find_each { |p| Vk::Exporter.export(p) }
-    # Listing.for_vk_export.find_each { |p| Vk::Exporter.export(p) }
+    Listing.for_vk_export.find_each { |p| Vk::Exporter.export(p) }
 
     Ez.ping("Export done")
   end

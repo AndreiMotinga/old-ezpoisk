@@ -18,6 +18,6 @@ class ImporterJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "ImporterJob - every 2 hours",
-                          cron: "0 */2 * * *",
-                          class: "ImporterJob")
+# Sidekiq::Cron::Job.create(name: "ImporterJob - every 2 hours",
+#                           cron: "0 */2 * * *",
+#                           class: "ImporterJob")

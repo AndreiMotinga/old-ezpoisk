@@ -26,6 +26,9 @@ module Filterable
     scope :older, -> (time) { where("#{table_name}.created_at < ?", time) }
     scope :random, -> { order("RANDOM()") }
     scope :for_export, -> { where("created_at > ?", 2.hours.ago) }
+    scope :listings, -> { where(kind: RU_KINDS.keys) }
+    scope :for_vk_export, -> { listings.where(vk: nil).where("created_at > ?", 2.hours.ago) }
+    scope :for_fb_export, -> { listings.where(fb: nil).where("created_at > ?", 2.hours.ago) }
     scope :unpaid, -> { where(paid: false) }
     scope :active, -> { where(active: true) }
     scope :state_id, ->(id) { where(state_id: id) }
