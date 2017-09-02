@@ -25,6 +25,7 @@ module Filterable
     scope :desc, -> { order("#{table_name}.created_at desc") }
     scope :older, -> (time) { where("#{table_name}.created_at < ?", time) }
     scope :random, -> { order("RANDOM()") }
+    scope :in_past, -> (at) { where("created_at > ?", at.ago) }
     scope :unpaid, -> { where(paid: false) }
     scope :active, -> { where(active: true) }
     scope :state_id, ->(id) { where(state_id: id) }
