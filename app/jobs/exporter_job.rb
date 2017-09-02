@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # exports records to vk
-class ImporterJob
+class ExporterJob
   include Sidekiq::Worker
   sidekiq_options queue: "critical"
 
@@ -15,6 +15,6 @@ class ImporterJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "ExporterJob - every 2 hours",
-                          cron: "59 */2 * * *",
-                          class: "ExporterJob")
+# Sidekiq::Cron::Job.create(name: "ExporterJob - every 2 hours",
+#                           cron: "59 */2 * * *",
+#                           class: "ExporterJob")
