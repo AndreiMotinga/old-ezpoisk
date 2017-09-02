@@ -7,38 +7,25 @@ module Vk
       new(record).export
     end
 
-    attr_reader :vk, :record
+    attr_reader :vk, :record, :group
 
     def initialize(record)
       @record = record
+      @group = Vk::GroupSelector.from(record)
       @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
     end
 
     def export
       if %W(Post Answer Question).include? record.class.to_s
-        vk.wall.post(owner_id: tag_id, attachments: record.show_url)
+        vk.wall.post(owner_id: group.id, attachments: record.show_url)
       else
-        vk.board.createComment(group_id: id,
-                               topic_id: topic,
+        vk.board.createComment(group_id: group.id,
+                               topic_id: group.topic_id,
                                message: message)
       end
     end
 
     private
-
-    def tag_id
-      slug = (CITY_TAGS & record.tag_list).first
-      id = VK_GROUPS[slug][:id]
-      -id
-    end
-
-    def id
-      VK_GROUPS[record.city.slug][:id]
-    end
-
-    def topic
-      VK_GROUPS[record.city.slug][record.kind]
-    end
 
     def message
       html = "#{record.kind} | #{record.category}\n\n"
