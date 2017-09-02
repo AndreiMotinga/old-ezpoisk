@@ -17,7 +17,10 @@ module Vk
 
     def export
       return unless @group.id # todo intead of return send to vk page
-      Ez.ping("ERROR #{record.class} #{record.id}") unless @group.topic_id
+      unless @group.topic_id
+        Ez.ping("ERROR #{record.class} #{record.id}")
+        return
+      end
       if %W(Post Answer Question).include? record.class.to_s
         vk.wall.post(owner_id: group.id, attachments: record.show_url)
       else
