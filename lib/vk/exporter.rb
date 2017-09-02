@@ -15,8 +15,8 @@ module Vk
     end
 
     def export
-      if %W(Post Answer).include? record.class.to_s
-        vk.wall.post(owner_id: id, attachments: record.show_url)
+      if %W(Post Answer Question).include? record.class.to_s
+        vk.wall.post(owner_id: tag_id, attachments: record.show_url)
       else
         vk.board.createComment(group_id: id,
                                topic_id: topic,
@@ -26,12 +26,19 @@ module Vk
 
     private
 
+    def tag_id
+      city_tags = ["new-york", "los-angeles", "san-francisco"]
+      slug = (city_tags & record.tag_list).first
+      id = VK_GROUPS[slug][:id]
+      -id
+    end
+
     def id
-      VK_GROUPS[record.city.name][:id]
+      VK_GROUPS[record.city.slug][:id]
     end
 
     def topic
-      VK_GROUPS[record.city.name][record.kind]
+      VK_GROUPS[record.city.slug][record.kind]
     end
 
     def message
