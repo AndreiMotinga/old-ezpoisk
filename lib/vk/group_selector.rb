@@ -16,6 +16,7 @@ module Vk
     end
 
     def id
+      return unless state_id || slug # don't send it anywhere if theres no state
       id = VK_GROUPS[group][:id]
       article? ? -id : id
     end
@@ -34,12 +35,12 @@ module Vk
 
     def state_id
       return record.state_id unless article?
-      City.where(slug: record.tag_list).first.state_id
+      City.where(slug: record.tag_list).first&.state_id
     end
 
     def slug
       return record.city.slug unless article?
-      City.where(slug: record.tag_list).first.slug
+      City.where(slug: record.tag_list).first&.slug
     end
 
     def article?

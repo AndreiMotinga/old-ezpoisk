@@ -16,6 +16,7 @@ module Vk
     end
 
     def export
+      return unless @group.id # todo intead of return send to vk page
       if %W(Post Answer Question).include? record.class.to_s
         vk.wall.post(owner_id: group.id, attachments: record.show_url)
       else

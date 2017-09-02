@@ -55,5 +55,15 @@ describe Vk::GroupSelector do
         expect(result.id).to eq(-VK_GROUPS["new-york"][:id])
       end
     end
+
+    context "tag is texas & houston" do
+      it "retrieves negative id for houston" do
+        record = create :post, tag_list: ["texas", "houston"]
+
+        result = Vk::GroupSelector.from(record)
+
+        expect(result.id).to eq(-VK_GROUPS["houston"][:id])
+      end
+    end
   end
 end
