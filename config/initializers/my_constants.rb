@@ -256,3 +256,13 @@ RU_KINDS = HashWithIndifferentAccess.new(
     }
   }
 )
+
+VK_GROUPS = HashWithIndifferentAccess.new(
+  "New York": {
+    id: 112797570,
+    недвижимость: 33955066,
+    работа: 33955064,
+    продажи: 33955068,
+    услуги: 33955067,
+  }
+)
