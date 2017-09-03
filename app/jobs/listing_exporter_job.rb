@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+#exports listings to social media
+class ListingExporterJob
+  include Sidekiq::Worker
+
+  def perform(type, id)
+    return unless Rails.env.production?
+    record = type.constantize.find_by_id(id)
+    return unless record
+    Vk::Exporter.export(record) unless record.vk?
+    Fb::Exporter.export(record) unless record.fb?
+  end
+end

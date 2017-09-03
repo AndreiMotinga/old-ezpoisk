@@ -10,6 +10,7 @@ class Question < ActiveRecord::Base
   include Searchable
   include Impressionable
   include Karmable
+  include ArticleExportable
 
   belongs_to :user
   belongs_to :state
@@ -22,6 +23,8 @@ class Question < ActiveRecord::Base
   validates_presence_of :tag_list
 
   after_create :create_action
+  # move it to module
+  after_create :export
   before_save :verify_title
   after_save :update_cached_tags
 
@@ -77,5 +80,9 @@ class Question < ActiveRecord::Base
     self.title = title.strip
     self.title += "?" unless title.match(/\?$/)
     self.title = title.capitalize
+  end
+
+  def export
+    ArticleExporterJob.perform_async("Question", id)
   end
 end

@@ -11,21 +11,21 @@ module Vk
 
     def initialize(record)
       @record = record
-      @group = Vk::GroupSelector.from(record)
       @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
     end
 
     def export
-      return unless @group.id # todo intead of return send to vk page
-      unless @group.topic_id
-        Ez.ping("ERROR #{record.class} #{record.id}")
+      # if there is no appropriate place to send record
+      # abort and repost record to ez
+      unless id
+        Ez.ping "VK::Exporter error: #{record.class} #{record.id}"
         return
       end
-      if %W(Post Answer Question).include? record.class.to_s
-        vk.wall.post(owner_id: group.id, attachments: record.show_url)
-      else
-        vk.board.createComment(group_id: group.id,
-                               topic_id: group.topic_id,
+
+      vk.wall.post(owner_id: id, attachments: record.show_url) if record.article?
+      if record.listing?
+        vk.board.createComment(group_id: id,
+                               topic_id: topic_id,
                                message: message)
       end
     end
@@ -36,6 +36,16 @@ module Vk
       html = "#{record.kind} | #{record.category}\n\n"
       html += "#{record.text}\n\n"
       html + "Подробнее #{URI.unescape record.show_url}"
+    end
+
+    def id
+      id = VK_GROUPS[record.city_slug].try(:[], :id)
+      return unless id
+      record.article? ? -id : id
+    end
+
+    def topic_id
+      VK_GROUPS[record.city_slug][record.kind]
     end
   end
 end

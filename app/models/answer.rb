@@ -8,6 +8,7 @@ class Answer < ActiveRecord::Base
   include Filterable
   include Impressionable
   include Karmable
+  include ArticleExportable
 
   belongs_to :user
   belongs_to :question, touch: true, counter_cache: true
@@ -66,7 +67,6 @@ class Answer < ActiveRecord::Base
   end
 
   def export
-    return unless Rails.env.production?
-    Vk::Exporter.export(self)
+    ArticleExporterJob.perform_async("Answer", id)
   end
 end

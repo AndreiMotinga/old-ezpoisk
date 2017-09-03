@@ -48,6 +48,43 @@ RSpec.describe Post, type: :model do
     end
   end
 
+  describe "#listing?" do
+    it "returns false" do
+      answer = build :answer
+      expect(answer.listing?).to be_falsy
+    end
+  end
+
+  describe "#article?" do
+    it "returns false" do
+      answer = build :answer
+      expect(answer.article?).to be true
+    end
+  end
+
+  describe "#city_slug" do
+    context "tag is new-york" do
+      it "returns new-york" do
+        record = build :post, tag_list: "new-york"
+        expect(record.city_slug).to eq "new-york"
+      end
+    end
+
+    context "tag is brooklyn" do
+      it "returns new-york" do
+        record = build :post, tag_list: "new-york"
+        expect(record.city_slug).to eq "new-york"
+      end
+    end
+
+    context "tag is texas & houston" do
+      it "returns houston" do
+        record = build :post, tag_list: ["texas", "houston"]
+        expect(record.city_slug).to eq "houston"
+      end
+    end
+  end
+
   # PRIVATE
 
   it "private updates logo before save" do

@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   include MyFriendlyId
   include Impressionable
   include Karmable
+  include ArticleExportable
 
   belongs_to :user
 
@@ -64,7 +65,6 @@ class Post < ApplicationRecord
   end
 
   def export
-    return unless Rails.env.production?
-    Vk::Exporter.export(self)
+    ArticleExporterJob.perform_at(published_at, "Post", id)
   end
 end

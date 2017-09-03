@@ -73,6 +73,46 @@ RSpec.describe Listing, type: :model do
     end
   end
 
+  describe "#article?" do
+    it "returns falsy" do
+        record = build :listing
+        expect(record.article?).to be_falsy
+    end
+  end
+
+  describe "#listing?" do
+    it "returns true if article is недвижимость, работа, продажи or услуги" do
+      listing = build :listing
+      misc = build :listing, kind: "разное", category: "foo", subcategory: "bar"
+
+      expect(listing.listing?).to eq true
+      expect(misc.listing?).to eq false
+    end
+  end
+
+  describe "#city_slug" do
+    context "for new-york" do
+      it "returns new-york" do
+        record = build :listing, state_id: 32, city_id: 17880
+        expect(record.city_slug).to eq "new-york"
+      end
+    end
+
+    context "for brooklyn" do
+      it "returns new-york" do
+        record = build :listing, :in_brooklyn
+        expect(record.city_slug).to eq "new-york"
+      end
+    end
+
+    context "for orlando" do
+      it "returns miami" do
+        record = build :listing, state_id: 9, city_id: 3917
+        expect(record.city_slug).to eq "miami"
+      end
+    end
+  end
+
   # PRIVATE
 
   describe "private ensure_title" do

@@ -82,6 +82,18 @@ class Listing < ApplicationRecord
     Answer.tagged_with(tag_list, any: true).order(order).limit(n)
   end
 
+  def listing?
+    RU_KINDS.keys.include? kind
+  end
+
+  def article?; end
+
+  def city_slug
+    return "new-york" if state_id == 32
+    return "miami" if state_id == 9
+    city.slug
+  end
+
   private
 
   def ensure_title
@@ -100,7 +112,6 @@ class Listing < ApplicationRecord
   end
 
   def export
-    return unless Rails.env.production?
-    Vk::Exporter.export(self)
+    ListingExporterJob.perform_in(1.hour, "Listing", id)
   end
 end
