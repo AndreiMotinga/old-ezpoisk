@@ -73,8 +73,8 @@ class Listing < ApplicationRecord
   end
 
   def siblings
-    listings = user.admin? ? Listing.where(from_name: from_name) : user.listings
-    listings.where(kind: kind).where.not(id: id).includes(:state, :city)
+    return Listing.none if user.admin?
+    user.listings.where(kind: kind).where.not(id: id).includes(:state, :city)
   end
 
   def answers(n = 8)
