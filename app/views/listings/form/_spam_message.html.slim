@@ -3,9 +3,15 @@
 hr
 br
 
-a#copy.btn.btn-ez href="#" Copy
+i[id="contact" class="fa fa-check #{'hidden' unless record.user.contacted?}"
+  aria-hidden="true" style="color: green;margin-right:10px"]
+= link_to "Copy",
+          contact_user_path(record.user),
+          id: "copy", class: "btn btn-ez", data: { method: :put, remote: true }
 = "  "
-a#half-copy.btn.btn-ez href="#" Half-Copy
+= link_to "Half-Copy",
+          contact_user_path(record.user),
+          id: "half-copy", class: "btn btn-ez", data: { method: :put, remote: true }
 br
 br
 p#text

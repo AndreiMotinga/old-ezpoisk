@@ -68,6 +68,7 @@ Rails.application.routes.draw do
 
       put "upvote", to: "users#upvote"
       put "unvote", to: "users#unvote"
+      put "contact", to: "users#contact"
     end
   end
   resources :experiences, only: [:create, :update, :destroy]

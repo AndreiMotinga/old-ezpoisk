@@ -84,6 +84,10 @@ class UsersController < PagesController
                 kind: "thanked").destroy_all
   end
 
+  def contact
+    User.find(params[:id]).update_column(:contacted, true)
+  end
+
   private
 
   def user_params
