@@ -19,7 +19,7 @@ span[data-time=record.id
      title="Объявление было создано или обновлено #{time_ago_in_words record.updated_at} назад"]
   i class="fa fa-refresh" aria-hidden="true"
   = " #{time_ago_in_words record.updated_at}"
-- if current_user.try(:admin?)
+- if current_user.try(:admin?) && record.source.present?
   = " | "
   = link_to "Редактировать", edit_listing_path(record)
   = " | "
