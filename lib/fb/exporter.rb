@@ -21,14 +21,14 @@ module Fb
     end
 
     def export
-      # if there is no appropriate place to send record
-      # abort and report record to ez
-      unless page && group
+      begin
+        fb.put_connections(group, "feed", link: record.show_url) if record.listing?
+        fb.put_connections(page, "feed", link: record.show_url) if record.article?
+      rescue
+        # if there is no appropriate place to send record
+        # abort and report record to ez
         Ez.ping "Fb::Exporter error: #{record.class} #{record.id}"
-        return
       end
-      fb.put_connections(group, "feed", link: record.show_url) if record.listing?
-      fb.put_connections(page, "feed", link: record.show_url) if record.article?
     end
 
     def group
