@@ -1,5 +1,6 @@
-ul.list-inline.vote_links
-  li.list-inline-item
-    = current_user&.voted_for?(record) ? voted_btn(record) : upvote_btn(record)
-  li.list-inline-item
-    = downvote_btn(record)
+- if user_signed_in?
+  ul.list-inline.vote_links
+    li.list-inline-item
+      = current_user&.voted_for?(record) ? voted_btn(record) : upvote_btn(record)
+    li.list-inline-item
+      = downvote_btn(record)
