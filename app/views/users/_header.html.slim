@@ -7,9 +7,10 @@
     span просмотров #{@user.impressions_count}
     .karma-points#js-amount = @user.karmas.sum(:amount)
     .text карма
-    hr
-    .margin-bottom-10
-      = current_user&.voted_for?(@user) ? user_voted_btn(@user) : user_upvote_btn(@user)
+    - if user_signed_in?
+      hr
+      .margin-bottom-10
+        = current_user&.voted_for?(@user) ? user_voted_btn(@user) : user_upvote_btn(@user)
 
   .col-xs-12.col-sm-9
     p
