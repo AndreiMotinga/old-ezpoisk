@@ -62,12 +62,8 @@ class User < ActiveRecord::Base
     last_seen > 5.minutes.ago
   end
 
-  def ez?
-    email == "ez@ezpoisk.com"
-  end
-
   def member?
-    %w[editor admin superadmin].include?(role)
+    admin? || %w[editor].include?(role)
   end
 
   private

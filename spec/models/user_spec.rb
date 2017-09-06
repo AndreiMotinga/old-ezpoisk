@@ -48,13 +48,11 @@ describe User do
 
   describe "#member?" do
     it "returns true if user is member of the team" do
-      admin = create :user, role: "admin"
-      superadmin = create :user, role: "superadmin"
+      admin = create :user, admin: true
       editor = create :user, role: "editor"
       joe = create :user
 
       expect(admin.member?).to eq true
-      expect(superadmin.member?).to eq true
       expect(editor.member?).to eq true
       expect(joe.member?).to eq false
     end
