@@ -1,0 +1,17 @@
+// render listings
+<% @listings.each do |listing| %>
+  $("[data-id='listings']").append("<%= j render("listings/listing", listing: listing) %>");
+<% end %>
+
+// update pagination links
+<% if @listings.next_page %>
+  $(".pagination").replaceWith("<%= j(paginate @listings) %>")
+<% else  %>
+  $(".pagination").remove();
+  $("#p2").remove();
+<% end %>
+
+// MDL fix
+if(!(typeof(componentHandler) == 'undefined')){
+  componentHandler.upgradeAllRegistered();
+}

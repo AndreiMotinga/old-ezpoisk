@@ -4,26 +4,22 @@
 - sub = listing.subcategory
 
 .col-xs-12.listing id="listing-#{listing.id}"
+  = render "listings/kind/menu", listing: listing
+  - unless current_page?(listing_path(listing))
+    p.text
+      = strip_tags(listing.text).truncate(280)
+      = link_to " дальше", listing_path(listing) if listing.text.size > 280
+
   .row
     - if has_pics
-      .col-xs-12.col-sm-4
+      .col-xs-3.logo-container
         - if current_page?(listing_path(listing))
-          img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
+          img.img-responsive.logo src=listing.logo_url data-id="logo"
         - else
           = link_to listing do
-            img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
+            img.img-responsive.logo src=listing.logo_url data-id="logo"
 
-    .col-xs-12 class=("col-sm-8" if has_pics)
-      = render "listings/kind/menu", listing: listing
-
-      // line 0
-      - title = "#{listing.city.name}, #{listing.rooms}"
-      - title += " - $#{listing.price}" if listing.price.present?
-      - if current_page?(listing_path(listing))
-        h4.title= title
-      - else
-        h4.title= link_to title, listing
-
+    div class=(has_pics ? "col-xs-9" : "col-xs-12")
       / line 1
       = link_to display(cat), search_listings_path(kind: kind, category: cat)
       = " | "
@@ -47,12 +43,3 @@
       = " | площадь:  #{listing.space} ft" if listing.space?
       = " | "
       = render "shared/indicators", record: listing
-
-  - unless current_page?(listing_path(listing))
-    hr.post-devider
-    .row
-      .col-xs-12
-        / line 5
-        p.text
-          = strip_tags(listing.text).truncate(280)
-          = link_to " дальше", listing_path(listing) if listing.text.size > 280

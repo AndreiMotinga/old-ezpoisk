@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   resources :listings, path: "объявления" do
     get ":kind(/:category(/:subcategory(/:state(/:city))))",
-      constraints: lambda { |req| %w(работа недвижимость услуги продажи разное новости).include? req.params[:kind] },
+      constraints: lambda { |req| %w(работа недвижимость услуги продажи).include? req.params[:kind] },
       to: "listings#search",
       as: "search",
       on: :collection

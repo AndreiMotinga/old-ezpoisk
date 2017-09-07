@@ -25,4 +25,6 @@ hr.heading
     = form_state_select(f)
   .col-sm-6
     = form_city_select(f, @listing)
+- if current_user&.admin?
+  = f.check_box :active
 hr

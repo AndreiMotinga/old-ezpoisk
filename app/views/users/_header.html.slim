@@ -7,7 +7,9 @@
     span просмотров #{@user.impressions_count}
     .karma-points#js-amount = @user.karmas.sum(:amount)
     .text карма
-    - if user_signed_in?
+    - if @user == current_user
+      = link_to "Редактировать", edit_user_path(@user, act: "general")
+    - elsif user_signed_in?
       hr
       .margin-bottom-10
         = current_user&.voted_for?(@user) ? user_voted_btn(@user) : user_upvote_btn(@user)

@@ -35,7 +35,7 @@ class Listing < ApplicationRecord
   before_save :ensure_title
   before_save :format_site
   before_save :set_tags
-  after_create :create_action, if: Proc.new { |l| RU_KINDS.keys.include?(l.kind) }
+  # after_create :create_action, if: Proc.new { |l| RU_KINDS.keys.include?(l.kind) }
   after_create :export
 
   def logo_url(style = :medium)

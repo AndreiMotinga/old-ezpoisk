@@ -5,12 +5,6 @@
 .col-xs-12.listing id="listing-#{listing.id}"
   = render "listings/kind/menu", listing: listing
 
-  - title = "#{listing.city.name}, #{cat}"
-  - if current_page?(listing_path(listing))
-    h4.title= title
-  - else
-    h4.title= link_to title, listing
-
   - unless current_page?(listing_path(listing))
     p.text
       = strip_tags(listing.text).truncate(280)

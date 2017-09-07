@@ -31,7 +31,7 @@
     margin-top: 0;
 
     @media(max-width: $screen-sm) {
-      margin-top: 10px;
+      font-size: 14px;
     }
 
     a {
@@ -44,7 +44,12 @@
   }
 
   p.text {
-    margin: 5px 0;
+    margin: 0px 0px 10px;
+  }
+
+  .logo-container {
+    padding-right: 0;
+    margin-right: -10px;
   }
 }
 

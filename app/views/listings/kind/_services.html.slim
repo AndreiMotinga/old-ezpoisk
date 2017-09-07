@@ -6,14 +6,14 @@
 .col-xs-12.listing id="listing-#{listing.id}"
   .row
     - if has_pics
-      div.col-xs-12.col-sm-4
+      .col-xs-3.logo-container
         - if current_page?(listing_path(listing))
           img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
         - else
           = link_to listing do
             img.img-responsive.center-block.logo src=listing.logo_url data-id="logo"
 
-    .col-xs-12 class=("col-sm-8" if has_pics)
+    div class=(has_pics ? "col-xs-9" : "col-xs-12")
       / line 0
       = render "listings/kind/menu", listing: listing
 

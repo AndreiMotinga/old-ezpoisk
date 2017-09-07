@@ -30,7 +30,7 @@ describe Fb::Unifier do
       rooms = kind == :"недвижимость" ? "комната" : ""
       expected_attrs = { title: "У нас на работе есть вакансия",
                          kind: group["kind"],
-                         active: true,
+                         active: false,
                          category: RU_KINDS[kind][:categories].first,
                          subcategory: subcategory,
                          rooms: rooms,

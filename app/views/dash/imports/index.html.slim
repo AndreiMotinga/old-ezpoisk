@@ -1,0 +1,21 @@
+- content_for :left do
+  .card.left-widget
+    ul.answers-menu
+      li.header Всего #{@listings.total_count}
+      li.tag= link_to "Недвижимость", dash_imports_path(kind: "недвижимость")
+      li.tag= link_to "Работа", dash_imports_path(kind: "работа")
+      li.tag= link_to "Продажи", dash_imports_path(kind: "продажи")
+      li.tag= link_to "Разное", dash_imports_path(kind: "разное")
+      li.tag= link_to "Новости", dash_imports_path(kind: "новости")
+
+- content_for :right do
+  .sticky
+    = render "shared/gads/right"
+
+div data-id="listings"
+  - @listings.each do |listing|
+    = render "listings/listing", listing: listing
+
+.row
+  .col-xs-12
+    = render "shared/pagination", records: @listings

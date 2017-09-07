@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170906182203) do
+ActiveRecord::Schema.define(version: 20170907210430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 20170906182203) do
     t.integer "comments_count", default: 0, null: false
     t.boolean "anonymously"
     t.integer "votes_count", default: 0
+    t.string "source"
     t.index ["slug"], name: "index_questions_on_slug", unique: true
     t.index ["title"], name: "index_questions_on_title"
     t.index ["user_id"], name: "index_questions_on_user_id"

@@ -55,5 +55,6 @@ nav.js-menu.sliding-panel-content
     li= link_to "Об ezpoisk", about_path, class: "js-login"
     - if current_user&.admin?
       li= link_to "Реклама", partners_path, class: "js-login"
+      li= link_to "Dashboard", dash_imports_path, class: "js-login"
 
 .js-menu-screen.sliding-panel-fade-screen

@@ -19,6 +19,10 @@
         ul.list-group-item-danger
           li Добавьте тэги, чтобы пользователи могли найти ваш вопрос
 
+      br
+      - if current_user.member?
+        = f.text_field :source, skip_label: true, placeholder: :source
+
       br/
       .actions
         = f.submit 'Сохранить', class: "btn-ez"

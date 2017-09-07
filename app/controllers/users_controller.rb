@@ -96,7 +96,7 @@ class UsersController < PagesController
   end
 
   def set_user
-    redirect_to root_url if [1, 4].include?(params[:id].to_i)
+    redirect_to root_url if [1, 4].include?(params[:id].to_i) # ez and anonymous
     @user = User.find(params[:id])
   end
 end

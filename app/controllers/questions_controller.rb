@@ -104,7 +104,8 @@ class QuestionsController < PagesController
   private
 
   def question_params
-    params.require(:question).permit(:title, :text, :anonymously, tag_list: [])
+    params.require(:question).permit(:title, :text, :anonymously,
+                                     :source, tag_list: [])
   end
 
   def set_question

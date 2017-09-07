@@ -5,15 +5,15 @@
   = render "listings/kind/menu", listing: listing
   = render "shared/tags", record: listing
   .article-header
-    h1.title= link_to listing.title, listing
-    .row.author
-      .col-xs-3.col-sm-2.avatar-container
-        = link_to listing.user, target: "_blank" do
-          = image_tag listing.user.avatar(:thumb), class: "avatar"
-      .col-xs-9.col-sm-10.name-container
-        span.name= link_to listing.user.name, listing.user, target: "_blank"
-        small= ", #{listing.user.short_bio}" if listing.user.short_bio.present?
-        .data.text-muted= time_ago_in_words listing.updated_at
+    /h1.title= link_to listing.title, listing
+    /.row.author
+    /  .col-xs-3.col-sm-2.avatar-container
+    /    = link_to listing.user, target: "_blank" do
+    /      = image_tag listing.user.avatar(:thumb), class: "avatar"
+    /  .col-xs-9.col-sm-10.name-container
+    /    span.name= link_to listing.user.name, listing.user, target: "_blank"
+    /    small= ", #{listing.user.short_bio}" if listing.user.short_bio.present?
+    /    .data.text-muted= time_ago_in_words listing.updated_at
 
   .article-body
     - if has_pics
@@ -27,3 +27,5 @@
     hr
     .pull-right #{listing.state.name} | #{listing.city.name}
     = render "shared/indicators", record: listing
+    hr
+    = link_to listing.source, listing.source, target: "_blank", rel: "nofollow"
