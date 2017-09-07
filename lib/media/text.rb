@@ -18,7 +18,7 @@ module Media
       text.gsub!(REGEX, "") # remove emojis
       text.gsub!("<br>", "\r\n")
       text.gsub!("&amp;", "&")
-      text.split(".").map! { |s| s.downcase.strip.capitalize }.join(". ")
+      text
     end
 
     REGEX = /[\u{1F600}-\u{1F6FF}]/
