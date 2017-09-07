@@ -11,6 +11,7 @@ Rails.application.configure do
   config.assets.js_compressor = :uglifier
   config.force_ssl = true
 
+  # todo cdn try to make if false
   config.assets.compile = true
   config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))
   config.log_level = :debug
