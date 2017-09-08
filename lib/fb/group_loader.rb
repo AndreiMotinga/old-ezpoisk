@@ -15,11 +15,16 @@ module Fb
     end
 
     def data
-      fields = %w(from message created_time attachments permalink_url)
-      Rails.logger.info "importing #{group['kind']} from #{group['id']}"
-      response = graph.get_connections(group["id"], "feed", fields: fields)
-      Rails.logger.info "imported #{response.size}"
-      response.map! { |post| Fb::Unifier.unify(post, group) }
+      begin
+        fields = %w(from message created_time attachments permalink_url)
+        Rails.logger.info "importing #{group['kind']} from #{group['id']}"
+        response = graph.get_connections(group["id"], "feed", fields: fields)
+        Rails.logger.info "imported #{response.size}"
+        response.map! { |post| Fb::Unifier.unify(post, group) }
+      rescue e
+        Ez.ping "Fb::Importer error: #{group}"
+        Ez.ping e
+      end
     end
   end
 end

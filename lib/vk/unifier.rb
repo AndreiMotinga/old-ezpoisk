@@ -53,7 +53,7 @@ module Vk
     end
 
     def category
-      return "продаю" unless RU_KINDS.keys.include?(kind.to_s)
+      return "продаю" unless KINDS.include?(kind.to_s)
       RU_KINDS[kind][:categories].first
     end
 

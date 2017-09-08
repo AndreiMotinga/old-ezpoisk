@@ -11,7 +11,7 @@ module Vk
 
     def initialize(group)
       @group = group
-      if group["id"].to_i == 52035 # needs token
+      if with_token?
         @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
       else
         @vk = VkontakteApi::Client.new
@@ -25,12 +25,21 @@ module Vk
         sort: :desc,
         extended: 1
       }
-      response = vk.board.getComments(prms)
-      response.items.map do |post|
-        user = response.profiles.find { |p| p.id == post.from_id }
-        return nil unless user # skip ads
-        Vk::Unifier.unify(post, group, user)
+      begin
+        response = vk.board.getComments(prms)
+        response.items.map do |post|
+          user = response.profiles.find { |p| p.id == post.from_id }
+          return nil unless user # skip ads
+          Vk::Unifier.unify(post, group, user)
+        end
+      rescue => e
+        Ez.ping "Vk::Importer error: #{group}"
+        Ez.ping e
       end
+    end
+
+    def with_token?
+      [52035, 2688174, 20420, 13511430, 35762330].include? group["id"]
     end
   end
 end

@@ -1,18 +1,20 @@
 # frozen_string_literal: true
 
+KINDS = %W(недвижимость работа услуги продажи).freeze
+
 RP_SORT_OPTIONS = {
   "Сортировать": "",
   "Подешевле": "price asc",
   "Подороже": "case when price is null then -1 else price end desc",
   "Поновее": "created_at desc"
-}
+}.freeze
 
 SALE_SORT_OPTIONS = {
   "Сортировать": "",
   "Подешевле": "price asc",
   "Подороже": "case when price is null then -1 else price end desc",
   "Поновее": "created_at desc"
-}
+}.freeze
 
 RU_KINDS = HashWithIndifferentAccess.new(
   "работа" => {
@@ -445,4 +447,4 @@ FB_GROUPS = HashWithIndifferentAccess.new(
       работа: 258035031383638
     }
   }
-)
+).freeze

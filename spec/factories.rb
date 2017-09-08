@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
-  KINDS = %W(недвижимость работа услуги продажи).freeze
-
   factory :karma do
     kind "created"
     amount 20
