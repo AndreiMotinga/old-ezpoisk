@@ -2,7 +2,8 @@
   .card.left-widget
     ul.answers-menu
       li.header Всего #{@listings.total_count}
-      li.tag= link_to "Недвижимость", dash_imports_path(kind: "недвижимость")
+      li.tag
+        = link_to "Недвижимость", dash_imports_path(kind: "недвижимость")
       li.tag= link_to "Работа", dash_imports_path(kind: "работа")
       li.tag= link_to "Продажи", dash_imports_path(kind: "продажи")
       li.tag= link_to "Разное", dash_imports_path(kind: "разное")

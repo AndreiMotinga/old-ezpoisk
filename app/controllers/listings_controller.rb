@@ -36,7 +36,7 @@ class ListingsController < PagesController
   end
 
   def show
-    @listing = Listing.active.includes(:state, :city).find(params[:id])
+    @listing = Listing.includes(:state, :city).find(params[:id])
     set_show_partners
     @siblings = @listing.siblings.page(params[:page])
     create_show_impressions(@siblings)
