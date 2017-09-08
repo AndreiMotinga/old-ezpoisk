@@ -7,5 +7,6 @@
   *= require material_icons
   *= require font-awesome
   *= require dropzone/dropzone
+  *= require jquery-ui/datepicker
   *= require main
 */

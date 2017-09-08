@@ -9,9 +9,9 @@ form.form-horizontal action=articles_path method="get"
                { include_blank: true }
   br
   br
-  = select_date 1.week.ago, prefix: :start_date
+  = text_field_tag :start, params[:start]
   = " - "
-  = select_date Time.zone.now, prefix: :end_date
+  = text_field_tag :end, params[:end]
   br
   br
 
@@ -19,3 +19,8 @@ form.form-horizontal action=articles_path method="get"
     = "  "
     = submit_tag "Обновить", name: nil
 br
+
+- content_for :javascript do
+  javascript:
+    $("#start").datepicker();
+    $("#end").datepicker();

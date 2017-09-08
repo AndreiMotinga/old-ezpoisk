@@ -1,0 +1,11 @@
+- words = @articles.map{|a| strip_tags(a.text).scan(/\S+/).size }.reduce(&:+)
+- letters = @articles.map{|a| strip_tags(a.text).gsub(/[[:space:]]/, '').size }.reduce(&:+)
+
+| Итого
+ul
+  li Статей: #{@articles.count}
+  li Слов: #{words}
+  li Символов: #{letters}
+
+  li Old Total(слов / 1000 * 1.5): #{ (words.to_f / 1000 * 1.5).round(2) }
+  li New Total(символов / 1000 * 1.0): #{ (letters.to_f / 1000 * 1.0).round(2) }

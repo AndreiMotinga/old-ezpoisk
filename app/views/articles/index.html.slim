@@ -1,4 +1,8 @@
-= render "search"
+.row
+  .col-xs-6
+    = render "search"
+  .col-xs-6
+    = render "reports"
 
 .white-block
   table.table.table-hover.table-bordered
@@ -17,17 +21,6 @@
     tbody data-id="listings"
       - @articles.each do |article|
         = render "articles/article", article: article
-    tfoot
-      tr style="text-align: right;"
-        - old_total_size = @articles.map{|a| strip_tags(a.text).scan(/\S+/).size }.reduce(&:+)
-        - new_total_size = @articles.map{|a| strip_tags(a.text).gsub(/[[:space:]]/, '').size }.reduce(&:+)
-        - old_total_price = old_total_size.to_f / 1000 * 1.5
-        - new_total_price = new_total_size.to_f / 1000 * 1.0
-        td colspan=9
-          | Итого
-          |  $#{old_total_price}
-          | /
-          |  $#{new_total_price}
 
 tr
   = render "shared/pagination", records: @articles
