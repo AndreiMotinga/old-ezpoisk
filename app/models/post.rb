@@ -21,19 +21,16 @@ class Post < ApplicationRecord
   validates_presence_of :text
   validates_presence_of :tag_list
 
-  after_create :create_action
+  after_create :add_action
   after_create :export
   before_save :update_logo
   after_save :update_cached_tags
 
   scope :published, -> { where("published_at < ?", Time.zone.now) }
+  scope :desc, -> { order(published_at: :desc)}
 
   def score
     get_upvotes.count - get_downvotes.count
-  end
-
-  def unpublished?
-    published_at > Time.zone.now
   end
 
   def show_url
@@ -41,7 +38,8 @@ class Post < ApplicationRecord
   end
 
   def related_posts(n, offset = 0)
-    Post.where.not(id: id)
+    Post.published
+        .where.not(id: id)
         .older(created_at)
         .tagged_with(tag_list, any: true)
         .order(created_at: :desc)
@@ -66,5 +64,9 @@ class Post < ApplicationRecord
 
   def export
     ArticleExporterJob.perform_at(published_at, "Post", id)
+  end
+
+  def add_action
+    create_action(created_at: published_at)
   end
 end

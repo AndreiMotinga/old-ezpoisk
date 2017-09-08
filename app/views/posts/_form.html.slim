@@ -8,11 +8,16 @@
           li= "#{t type} #{error}"
 
 = form_for @post do |f|
-  br
-  .field
-    = f.label :published_at, "Дата публикации:  "
-    = " "
-    = f.datetime_select :published_at, minute_step: 15, default: Time.zone.now
+  - if current_user&.member?
+    br
+    .field
+      = f.text_field :published_at
+    - content_for :head do
+      link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css"
+    - content_for :javascript do
+      script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.js"
+      javascript:
+        $("#post_published_at").datetimepicker();
 
   br
   .field

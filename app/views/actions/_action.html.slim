@@ -1,5 +1,5 @@
 /= render "actions/#{action.actionable}"
-.card.article class=('hidden' if action.actionable.try(:unpublished?))
+.card.article
   = render "shared/tags", record: action.actionable
   .article-header
     - if action.article?

@@ -254,7 +254,9 @@ RU_KINDS = HashWithIndifferentAccess.new(
         "другое-разное"
       ]
     }
-  }
+  },
+  "знакомства" => {},
+  "посылки" => {}
 )
 
 VK_GROUPS = HashWithIndifferentAccess.new(

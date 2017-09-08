@@ -44,7 +44,7 @@ class UsersController < PagesController
   end
 
   def posts
-    @posts = @user.posts.page(params[:page])
+    @posts = @user.posts.published.desc.page(params[:page])
     respond_to do |format|
       format.html
       format.js do

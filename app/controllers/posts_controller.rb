@@ -8,11 +8,8 @@ class PostsController < PagesController
   after_action(only: [:create, :update]) { notify_slack(@post, action_name) }
 
   def index
-    @popular = Post.order(created_at: :desc).take(5)
-    @posts = Post.includes(:user)
-                 .published
-                 .order(created_at: :desc)
-                 .page(params[:page])
+    @popular = Post.published.desc.take(5)
+    @posts = Post.includes(:user).published.desc.page(params[:page])
     @top, @left, @right = Partner.get
     respond_to do |format|
       format.html
@@ -23,9 +20,7 @@ class PostsController < PagesController
   def tag
     @popular = Comment.popular
     @posts = Post.includes(:user)
-                 .published
-                 .order(created_at: :desc)
-                 .tagged_with(params[:tag])
+                 .published.desc.tagged_with(params[:tag])
                  .page(params[:page])
     @top, @left, @right = Partner.get(tags: params[:tag])
     respond_to do |format|

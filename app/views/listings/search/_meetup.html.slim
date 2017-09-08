@@ -1,0 +1,14 @@
+form.form-horizontal action=listings_path(kind: "знакомства") method="get"
+  = render "shared/search_by_address"
+
+  .row
+  /  .col-xs-12
+  /    = select_tag :category, category_opts, class: "form-control"
+  /    = select_tag :subcategory, subcategory_opts, class: "form-control"
+
+    .col-xs-12
+      = text_field_tag :term, params[:term], class: "form-control", placeholder: "Ключевое слово..."
+
+  small.text-muted Объявлений: #{@listings.total_count}
+  hr
+  = submit_tag "Обновить", name: nil, class: "btn btn-ez"

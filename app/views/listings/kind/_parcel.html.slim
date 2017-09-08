@@ -1,0 +1,26 @@
+- kind = listing.kind
+- cat = listing.category
+- sub = listing.subcategory
+
+.col-xs-12.listing id="listing-#{listing.id}"
+  = render "listings/kind/menu", listing: listing
+
+  - unless current_page?(listing_path(listing))
+    p.text
+      = strip_tags(listing.text).truncate(280)
+      = link_to " дальше", listing_path(listing) if listing.text.size > 280
+
+  / line 1
+  = link_to display(cat), search_listings_path(kind: kind, category: cat)
+  = " | "
+  = link_to display(sub), search_listings_path(kind: kind, category: cat, subcategory: sub)
+  = " | "
+  = link_to listing.state.name,
+      search_listings_path(kind: kind, category: cat, subcategory: sub, state: listing.state.slug)
+  = " | "
+  = link_to listing.city.name,
+      search_listings_path(kind: kind, category: cat, subcategory: sub, state: listing.state.slug, city: listing.city.slug)
+  hr.post-devider
+
+  / line 5
+  = render "shared/indicators", record: listing

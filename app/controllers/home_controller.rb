@@ -6,7 +6,8 @@ class HomeController < PagesController
 
   def index
     @actions = Action.includes(actionable: :user)
-                     .order(updated_at: :desc)
+                     .visible
+                     .order(created_at: :desc)
                      .page(params[:page])
     @popular = Post.order(created_at: :desc).take(5)
     @top, @left, @right = Partner.get

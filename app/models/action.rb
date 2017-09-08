@@ -5,6 +5,8 @@ class Action < ApplicationRecord
 
   delegate :user, :text, :title, :show_url, :created_at, to: :actionable
 
+  scope :visible, -> { where("created_at < ?", Time.zone.now) }
+
   def cached_tags
     return [] if actionable_type == "Listing"
     actionable.cached_tags
