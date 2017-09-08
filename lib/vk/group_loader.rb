@@ -10,8 +10,12 @@ module Vk
     end
 
     def initialize(group)
-      @vk = VkontakteApi::Client.new
       @group = group
+      if group["id"].to_i == 52035 # needs token
+        @vk = VkontakteApi::Client.new(ENV["VK_ANDREI_TOKEN"])
+      else
+        @vk = VkontakteApi::Client.new
+      end
     end
 
     def data
