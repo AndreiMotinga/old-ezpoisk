@@ -1,7 +1,9 @@
 - content_for :left do
   .card.left-widget
     ul.answers-menu
-      li.header Всего #{@listings.total_count}
+      li.header= link_to dash_imports_path do
+        | Всего
+        span.pull-right  #{@listings.total_count}
       li.tag
         = link_to "Недвижимость", dash_imports_path(kind: "недвижимость")
       li.tag= link_to "Работа", dash_imports_path(kind: "работа")
