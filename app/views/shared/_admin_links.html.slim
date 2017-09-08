@@ -1,0 +1,9 @@
+- if current_user.try(:admin?) && record.source.present?
+  hr.post-devider
+  = link_to "Смотреть", listing_path(record)
+  = " | "
+  = link_to "Редактировать", edit_listing_path(record)
+  = " | "
+  = link_to "Удалить", listing_path(record), method: :delete, target: "_blank", data: { remote: true }
+  = " | "
+  = link_to "Touch", touch_listing_path(record), method: :post, data: { remote: true }

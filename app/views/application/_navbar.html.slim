@@ -11,6 +11,8 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           li= link_to "Работа", search_listings_path(kind: "работа"), class: "js-login"
           li= link_to "Услуги", search_listings_path(kind: "услуги"), class: "js-login"
           li= link_to "Продажи", search_listings_path(kind: "продажи"), class: "js-login"
+          /li= link_to "Посылки", search_listings_path(kind: "посылки"), class: "js-login"
+          /li= link_to "Знакомства & Попутчики", search_listings_path(kind: "знакомства"), class: "js-login"
 
       li.nav-link.dropdown.to-hide
         a.dropdown-toggle[aria-expanded="false" aria-haspopup="true"
@@ -38,6 +40,8 @@ nav#navbar-main.navbar-fixed-top.navbar-main
           li= link_to "Работа", new_listing_path(kind: "работа"), class: "js-login"
           li= link_to "Услуги", new_listing_path(kind: "услуги"), class: "js-login"
           li= link_to "Продажи", new_listing_path(kind: "продажи"), class: "js-login"
+          /li= link_to "Посылки", new_listing_path(kind: "посылки"), class: "js-login"
+          /li= link_to "Знакомства & Попутчики", new_listing_path(kind: "знакомства"), class: "js-login"
 
       - if user_signed_in?
         li.nav-link.dropdown.hidden-xs

@@ -16,7 +16,7 @@ class ImporterJob
     Media::Importer.import("public/fb_misc.yaml", Fb::GroupLoader)
     Media::Importer.import("public/fb_news.yaml", Fb::GroupLoader)
 
-    Listing.where("created_at > ?", 130.minutes.ago).find_each do |l|
+    Listing.where("created_at > ?", 70.minutes.ago).find_each do |l|
       user = User.find_by_name(l.user.name)
       Listing.where(from_name: user.name).update_all(user_id: user.id) if user
     end
