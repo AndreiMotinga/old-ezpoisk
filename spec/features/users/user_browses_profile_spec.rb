@@ -22,7 +22,8 @@ feature "User browses profile" do
   end
 
   scenario "visits answers" do
-    user = create :user, id: 10
+    user = create :user, id: (rand * 100).round
+
     q = create :question
     answer = create :answer, user: user, question: q, title: q.title
 

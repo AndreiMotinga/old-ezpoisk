@@ -4,7 +4,8 @@ include FormHelper
 feature "User" do
   scenario "browses listings by kind" do
     listing = create :listing
-    dummy = create :listing, kind: (RU_KINDS.keys - [listing.kind]).sample
+    kinds = %W(работа недвижимость услуги продажи)
+    dummy = create :listing, kind: (kinds - [listing.kind]).sample
 
     visit search_listings_path(kind: listing.kind)
 
