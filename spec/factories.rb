@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 FactoryGirl.define do
+  KINDS = %W(недвижимость работа услуги продажи).freeze
+
   factory :karma do
     kind "created"
     amount 20
@@ -9,7 +11,7 @@ FactoryGirl.define do
   end
   factory :partner do
     final_url "https://www.ezpoisk.com"
-    title { RU_KINDS.keys.sample + " в " + City.order("random ()").name }
+    title { KINDS.sample + " в " + City.order("random ()").name }
     headline "Headline one of two"
     text { Faker::Lorem.sentence(2) }
     active true
@@ -55,7 +57,7 @@ FactoryGirl.define do
   end
 
   factory :listing do
-    kind { RU_KINDS.keys.sample }
+    kind { KINDS.sample }
     category { RU_KINDS[kind][:categories].sample }
     subcategory do
       if kind == "услуги"

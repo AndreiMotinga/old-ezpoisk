@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170907210430) do
+ActiveRecord::Schema.define(version: 20170908213910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -238,6 +238,7 @@ ActiveRecord::Schema.define(version: 20170907210430) do
     t.integer "impressions_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
     t.integer "votes_count", default: 0
+    t.integer "pictures_count", default: 0
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
