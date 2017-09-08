@@ -376,21 +376,21 @@
   state_id: 13
   city_id: 6254
 
-- id: 52035
-  topic: 33691837
-  kind: недвижимость
-  state_id: 13
-  city_id: 6254
-- id: 52035
-  topic: 34208401
-  kind: работа
-  state_id: 13
-  city_id: 6254
-- id: 52035
-  topic: 30557092
-  kind: работа
-  state_id: 13
-  city_id: 6254
+# - id: 52035
+#   topic: 33691837
+#   kind: недвижимость
+#   state_id: 13
+#   city_id: 6254
+# - id: 52035
+#   topic: 34208401
+#   kind: работа
+#   state_id: 13
+#   city_id: 6254
+# - id: 52035
+#   topic: 30557092
+#   kind: работа
+#   state_id: 13
+#   city_id: 6254
 
 - id: 11710820
   topic: 21874759
