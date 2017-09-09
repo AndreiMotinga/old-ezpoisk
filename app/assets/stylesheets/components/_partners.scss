@@ -57,5 +57,12 @@
 }
 
 .partner-inline {
-  border: 0;
+  a {
+    color: $dark-gray;
+  }
+
+  .text {
+    line-height: 18px;
+    margin: 0;
+  }
 }

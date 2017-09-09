@@ -12,7 +12,7 @@ class AnswersController < PagesController
 
   def index
     @answers = Answer.includes(:user).term(params[:term]).desc.page(params[:page])
-    @top, @left, @right = Partner.get
+    @top, @left, @right = Partner.side
     respond_to do |format|
       format.html
       format.js { render partial: "shared/index", locals: { records: @answers } }
@@ -23,7 +23,7 @@ class AnswersController < PagesController
     @answers = Answer.includes(:user)
                      .tagged_with(params[:tag])
                      .page(params[:page])
-    @top, @left, @right = Partner.get(tags: params[:tag])
+    @top, @left, @right = Partner.side
     respond_to do |format|
       format.html { render :index }
       format.js { render partial: "shared/index", locals: { records: @answers } }
@@ -32,13 +32,14 @@ class AnswersController < PagesController
 
   def show
     @answer = Answer.find(params[:id])
-    @top, @right, @inline = Partner.get(tags: @answer.tag_list)
+    @top, @right = Partner.side
+    @inline = Partner.inline(1, { tags: @answer.tag_list })
   end
 
   def new
     question = Question.find(params[:question_id])
     @answer = question.answers.new
-    @top = Partner.get(limit: 1, tags: question.tag_list)
+    @top = Partner.side(1)
   end
 
   def create
@@ -58,7 +59,7 @@ class AnswersController < PagesController
   end
 
   def edit
-    @top = Partner.get(limit: 1, tags: @answer.tag_list)
+    @top = Partner.side(1)
   end
 
   def update

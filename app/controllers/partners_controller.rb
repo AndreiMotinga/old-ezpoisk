@@ -65,12 +65,10 @@ class PartnersController < ApplicationController
                               state_id: @old.state_id,
                               city_id: @old.city_id,
                               user_id: @old.user_id,
-                              tag_list: @old.tag_list,
-                              image: @old.image)
+                              tag_list: @old.tag_list)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_partner
       if current_user.admin?
         @partner = Partner.find(params[:id])
@@ -79,10 +77,9 @@ class PartnersController < ApplicationController
       end
     end
 
-    # Only allow a trusted parameter "white list" through.
     def partner_params
       params.require(:partner).permit(:final_url, :title, :headline, :subline,
-                                      :text, :image, :state_id, :city_id,
+                                      :text, :image, :state_id, :city_id, :kind,
                                       tag_list: [])
     end
 end

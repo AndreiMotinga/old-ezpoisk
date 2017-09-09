@@ -86,6 +86,7 @@ Rails.application.routes.draw do
     get "/articles", to: "articles#index"
   end
 
+  get "/реклама", to: "home#ad"
   get "/about", to: "home#about"
   get "/play", to: "play#index"
   root to: "home#index"

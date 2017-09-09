@@ -10,7 +10,7 @@ class HomeController < PagesController
                      .order(created_at: :desc)
                      .page(params[:page])
     @popular = Post.order(created_at: :desc).take(5)
-    @top, @left, @right = Partner.get
+    @top, @left, @right = Partner.side
     respond_to do |format|
       format.html
       format.js do

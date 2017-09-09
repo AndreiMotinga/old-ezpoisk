@@ -38,6 +38,14 @@ class User < ActiveRecord::Base
   scope :week, -> { where("created_at > ?", Date.today.at_beginning_of_week) }
   scope :today, -> { where("created_at > ?", Date.today) }
 
+  def self.with_parthers(kind = "side")
+    joins(:partners)
+      .where(partners: { active: true, kind: kind })
+      .order("partners.impressions_count")
+      .pluck(:id)
+      .uniq
+  end
+
   has_attached_file(:avatar,
                     styles: { thumb: "50x50#", medium: "100x100#" },
                     default_url: "default-avatar.png")

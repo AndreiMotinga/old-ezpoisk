@@ -14,8 +14,6 @@ class Partner < ApplicationRecord
   validates :subline, presence: true, length: { maximum: 50 }
   validates :text, presence: true, length: { maximum: 160 }
 
-  before_create :set_random_cached_ctr
-
   has_attached_file :image, styles: { medium: "300x200#" }
   validates_attachment_content_type :image, content_type: %r{\Aimage\/.*\Z}
   validates_attachment_file_name :image, matches: [/png\Z/i, /jpe?g\Z/i]
@@ -23,37 +21,33 @@ class Partner < ApplicationRecord
                  attributes: :image,
                  less_than: 1.megabyte
 
-  scope :approved, -> { where({}) }
-  scope :state, -> (slug) { where(state_id: [nil, State.find_by_slug(slug).try(:id)]) }
-  scope :city, -> (slug) { where(city_id: [nil, City.find_by_slug(slug).try(:id)]) }
-
-  def self.by_ctr
-    # todo  figure out how to write it properly ( in one query? )
-    top = select("user_id, max(cached_ctr)").group(:user_id)
-    q = top.map { |p| "(user_id = '#{p.user_id}' AND cached_ctr = '#{p.max}')" }.join(" OR ")
-    where(q)
-  end
+  scope :active, -> { where(active: true) }
+  scope :by_state, -> (slug) { where(state_id: [nil, State.find_by_slug(slug).try(:id)]) }
+  scope :by_city, -> (slug) { where(city_id: [nil, City.find_by_slug(slug).try(:id)]) }
+  scope :ez, -> { where(final_url: "ezpoisk.com/реклама").order("random ()") }
 
   def self.by_tags(tags)
-    # todo  figure out how to write it properly
-    empty = includes(:taggings).where(taggings: { id: nil }).pluck :id
-    with_tags = tagged_with(tags, any: true).pluck :id
-    where(id: empty + with_tags)
+    tagged_with(tags, any: true)
   end
 
-  def self.get(limit: 3, state: nil, city: nil, tags: nil)
-    tags = [tags].flatten # tags can be string or array of arrays
-    items = approved
-    items = items.state(state)
-    items = items.city(city)
-    items = items.by_tags(tags)
-    items = items.by_ctr.limit(limit)
-    limit == 1 ? items.first : items.to_a.shuffle
+  def self.side(limit = 3)
+    items = User.with_parthers.map do |id|
+      Partner.where(user_id: id, kind: "side").order(:impressions_count).first
+    end
+    limit == 1 ? items.first : items[0..limit-1].shuffle
   end
 
-  private
-
-  def set_random_cached_ctr
-    self.cached_ctr = rand / 10 unless cached_ctr
+  def self.inline(limit = 1, opts = {})
+    items = User.with_parthers("inline").map do |id|
+      Partner.active
+             .by_state(opts[:state])
+             .by_city(opts[:city])
+             .by_tags(opts[:tags])
+             .where(user_id: id)
+             .order(:impressions_count).first
+    end.compact
+    # TODO: spec that returning array doesn't include nils
+    items = items[0..limit - 1].shuffle.compact
+    items.blank? ? ez : items
   end
 end

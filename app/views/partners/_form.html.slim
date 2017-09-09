@@ -18,10 +18,14 @@
             li.text-danger = message
 
     .row
-      .col-xs-6
-        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
-          = f.text_field :title, class: "mdl-textfield__input"
-          = f.label :title, class: "mdl-textfield__label"
+      .col-xs-12.col-sm-6
+        .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+          = f.select :kind,
+                     ["Side", "Inline"],
+                     { include_blank: true },
+                     class: "mdl-textfield__input", required: true
+          = f.label :start_year, "Тип", class: "mdl-textfield__label"
+
       .col-xs-6
         .mdl-textfield.mdl-js-textfield.mdl-textfield--file
           input class="mdl-textfield__input" placeholder="Картинка" type="text" id="uploadFile"
@@ -29,6 +33,10 @@
             i class="material-icons"  attach_file
             = f.file_field :image
           .text-muted Размер 3:2
+
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
+      = f.text_field :title, class: "mdl-textfield__input"
+      = f.label :title, class: "mdl-textfield__label"
 
     .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label.full-width
       = f.text_field :headline, class: "mdl-textfield__input", required: true
@@ -63,7 +71,7 @@
     br
 
     .field
-      = label_tag "Навыки", nil
+      = label_tag "Ключевые слова", nil
       = collection_select :partner,
                           :tag_list,
                           ActsAsTaggableOn::Tag.order(:taggings_count), :name, :name,

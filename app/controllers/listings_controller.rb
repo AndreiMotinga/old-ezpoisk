@@ -55,7 +55,7 @@ class ListingsController < PagesController
                            active: true,
                            phone: current_user.contact.phone,
                            email: current_user.email)
-    @top = Partner.get(limit: 1, tags: params[:kind])
+    @top = Partner.side(1)
   end
 
   def create
@@ -71,10 +71,7 @@ class ListingsController < PagesController
   end
 
   def edit
-    @top = Partner.get(limit: 1,
-                       state: @listing.state_id,
-                       city: @listing.city_id,
-                       tags: @listing.tag_list)
+    @top = Partner.side(1)
   end
 
   def update
@@ -134,24 +131,12 @@ class ListingsController < PagesController
   end
 
   def set_partners
-    tags = [params[:kind],
-            params[:category],
-            params[:subcategory].try(:split, "--")]
-    partners = Partner.get(limit: 6,
-                           state: params[:state],
-                           city: params[:city],
-                           tags: tags)
-    @top, @left, @right = partners
-    @inline = partners[3..5]
+    @top, @left, @right = Partner.side
+    @inline = Partner.inline(3, PageKeywords.from_params(params))
   end
 
   def set_show_partners
-    partners = Partner.get(limit: 3,
-                           state: @listing.state_id,
-                           city: @listing.city_id,
-                           tags: @listing.tag_list)
-    @top, @right = partners
-    @inline = [partners.last]
-    @inline_p = partners.last
+    @top, @right = Partner.side(2)
+    @inline = Partner.inline(1, @listing.page_keywords)
   end
 end

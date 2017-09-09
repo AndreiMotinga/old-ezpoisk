@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   end
 
   def create_show_impressions(records)
+    return if current_user&.member?
     records.each do |rec|
       ImpressionableJob.perform_in(1.minute,
                                    rec.class.to_s,
@@ -22,6 +23,7 @@ class PagesController < ApplicationController
   end
 
   def create_visit_impression(rec)
+    return if current_user&.member?
     ImpressionableJob.perform_in(1.minute,
                                  rec.class.to_s,
                                  rec.id,

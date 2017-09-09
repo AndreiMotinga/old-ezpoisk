@@ -10,74 +10,136 @@ RSpec.describe Partner, type: :model do
   it { should validate_length_of(:subline).is_at_most(50) }
   it { should validate_length_of(:text).is_at_most(160) }
 
-  describe ".state" do
-    it "returns partners for state and without state" do
-      first = create :partner, title: "first", state_id: 32
-      second = create :partner, title: "second", state_id: nil
-      create :partner, state_id: 9
+  describe ".side" do
+    it "retrieves partners for different users ordered by impressions_count" do
+      names = %w(ez agir alfa)
+      names.each do |name|
+        user = create :user, name: name
+        create_list :partner, 2,
+                    user: user,
+                    title: user.name,
+                    kind: "side",
+                    impressions_count: 0
+        create :partner, user: user, kind: "side", impressions_count: 10
+      end
 
-      result = Partner.state("new-york").pluck :title
-      expected = [first, second].map(&:title)
+      result = Partner.side
+      users = result.map { |p| p.user.name }
+      titles = result.pluck(:title)
 
-      expect(result).to match_array expected
+      expect(users).to match_array names
+      expect(titles).to match_array names
     end
   end
 
-  describe ".city" do
-    it "returns partners for city and without city" do
-      first = create :partner, title: "first", city_id: 18031
-      second = create :partner, title: "second", city_id: nil
+  describe ".by_state" do
+    it "return parnter by state" do
+      partner = create :partner, state_id: 32
+      create :partner, state_id: 1
+
+      result = Partner.by_state("new-york")
+
+      expect(result.size).to eq 1
+      expect(result.first).to eq partner
+    end
+
+    it "returns partners where state isn't set" do
+      create :partner, state_id: 32
+      create :partner, state_id: nil
+
+      expect(Partner.by_state("new-york").count).to eq 2
+    end
+  end
+
+  describe ".by_city" do
+    it "returns partners for city" do
+      partner = create :partner, city_id: 18031
       create :partner, city_id: 3964
 
-      result = Partner.city("brooklyn").pluck :title
-      expected = [first, second].map(&:title)
+      result = Partner.by_city("brooklyn")
 
-      expect(result).to match_array expected
+      expect(result.size).to eq 1
+      expect(result.first).to eq partner
+    end
+
+    it "returns partners without city" do
+      create :partner, city_id: 18031
+      create :partner, city_id: nil
+
+      expect(Partner.by_city("brooklyn").count).to eq 2
     end
   end
 
   describe ".by_tags" do
-    it "returns partners by tags and those without tags" do
-      with = create :partner, title: "работа", tag_list: ["работа"]
-      without = create :partner, title: "dummy", tag_list: []
-      create :partner, tag_list: ["услуги"]
+    it "returns partners by tags" do
+      create :partner, tag_list: ["работа", "недвижимость"]
+      create :partner
 
-      result = Partner.by_tags(["работа"]).pluck(:title)
-      expected = [with, without].map(&:title)
-
-      expect(result).to match_array expected
+      expect(Partner.by_tags(["работа", "услуги"]).count).to eq 1
     end
   end
 
-  describe ".by_ctr" do
-    it "returns partners width distinct users by max ctr" do
-      create :partner, cached_ctr: 1.0
-      first = create :partner, cached_ctr: 20.0
-      create :partner, user: first.user, cached_ctr: 10.0
+  describe ".inline" do
+    it "orders by impressions_count before shuffle" do
+      create :partner, title: "second", kind: "inline", impressions_count: 5
+      create :partner, title: "third", kind: "inline", impressions_count: 8
+      create :partner, title: "first", kind: "inline", impressions_count: 2
+      stub_inline_filtering(Partner.active)
 
-      result = Partner.by_ctr.pluck(:cached_ctr)
+      result = Partner.inline(2).pluck(:title)
 
-      expect(result).to match_array [20.0, 1.0]
+      expect(result).to match_array %w[first second]
     end
+
+    context "limit is 3" do
+      it "returns one item" do
+        create_list :partner, 5, kind: "inline"
+        stub_inline_filtering(Partner.active)
+
+        result = Partner.inline(5)
+
+        expect(result.size).to eq 5
+      end
+    end
+
+    it "returns partners for different users" do
+      names = %w(ez agir alfa)
+      names.each do |name|
+        user = create :user, name: name
+        create_list :partner, 2,
+                    user: user,
+                    title: user.name,
+                    kind: "inline",
+                    impressions_count: 0
+        create :partner, user: user, kind: "inline", impressions_count: 10
+      end
+      stub_inline_filtering(Partner.active)
+
+      result = Partner.inline(3)
+      users = result.map { |p| p.user.name }
+      titles = result.pluck(:title)
+
+      expect(users).to match_array names
+      expect(titles).to match_array names
+    end
+
+    it "returns ez if result is empty" do
+      stub_inline_filtering(Partner.active)
+      create :partner, final_url: "ezpoisk.com/реклама"
+
+      result = Partner.inline(3, { tags: "работа" })
+
+      expect(result.size).to eq 1
+      expect(result.first.final_url).to eq "ezpoisk.com/реклама"
+    end
+
+    it "write test without stubbing just to make sure"
   end
 
-  # PRIVATE
 
-  describe "private set_random_cached_ctr" do
-    context "ctr is null" do
-      it "generates random ctr" do
-        partner = create :partner
-
-        expect(partner.cached_ctr).to_not be nil
-      end
-    end
-
-    context "cached_ctr provided" do
-      it "does nothing" do
-        partner = create :partner, cached_ctr: 20
-
-        expect(partner.cached_ctr).to eq 20
-      end
+  def stub_inline_filtering(return_val)
+    %i[by_state by_city by_tags].each do |method|
+      allow(Partner).to receive(method).and_return(return_val)
     end
   end
 end

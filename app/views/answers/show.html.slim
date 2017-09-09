@@ -19,7 +19,8 @@
 .row
   .col-lg-10.col-lg-offset-1
     = render @answer.question
-    = render "partners/inline", partner: @inline
+    - @inline.each do |inline|
+      = render "partners/inline", partner: inline
     .row
       .col-xs-12
         = render "questions/answer", answer: @answer

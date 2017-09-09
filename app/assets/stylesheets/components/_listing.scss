@@ -10,9 +10,10 @@
   }
 
   .top {
-    border: thin solid $light-gray;
-    border-radius: 3px;
-    color: $yellow;
+    margin-right: 5px;
+    border: thin solid $bright-orange;
+    border-radius: 2px;
+    color: $bright-orange;
     font-size: 14px;
     font-weight: normal;
     padding: 1px 5px;
@@ -41,6 +42,19 @@
         color: $orange;
       }
     }
+
+    .featured {
+      color: $bright-orange;
+      border: 1px solid $bright-orange;
+      font-weight: 400;
+      margin-right: 5px;
+      padding: 1px 3px;
+      font-size: 16px;
+
+      @media(max-width: $screen-sm) {
+        font-size: 12px;
+      }
+    }
   }
 
   p.text {
@@ -50,6 +64,13 @@
   .logo-container {
     padding-right: 0;
     margin-right: -10px;
+
+    .logo {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      max-height: 100px;
+    }
   }
 }
 

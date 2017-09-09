@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170908213910) do
+ActiveRecord::Schema.define(version: 20170910154950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,12 +190,11 @@ ActiveRecord::Schema.define(version: 20170908213910) do
     t.datetime "image_updated_at"
     t.boolean "active", default: true
     t.integer "impressions_count", default: 0, null: false
-    t.string "first", default: "", null: false
     t.bigint "state_id"
     t.bigint "city_id"
     t.bigint "user_id"
     t.string "subline", default: "", null: false
-    t.decimal "cached_ctr"
+    t.string "kind"
     t.index ["city_id"], name: "index_partners_on_city_id"
     t.index ["state_id"], name: "index_partners_on_state_id"
     t.index ["user_id"], name: "index_partners_on_user_id"

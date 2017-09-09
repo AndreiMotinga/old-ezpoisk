@@ -25,7 +25,8 @@
 .visible-xs.visible-sm.col-xs-12
   = render "shared/show/contacts", record: @listing
 
-= render "partners/inline", partner: @inline_p
+- @inline.each do |inline|
+  = render "partners/inline", partner: inline
 
 .row
   .col-xs-12

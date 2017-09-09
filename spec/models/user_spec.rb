@@ -57,4 +57,11 @@ describe User do
       expect(joe.member?).to eq false
     end
   end
+
+  describe ".with_parthers" do
+    it "returns ids of users who have active partners"
+    it "orders ids by partners.impressions_count asc"
+    it "returns ids of users with partners of correct kind"
+    it "returns distinct ids"
+  end
 end

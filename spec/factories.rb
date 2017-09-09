@@ -13,7 +13,6 @@ FactoryGirl.define do
     headline "Headline one of two"
     text { Faker::Lorem.sentence(2) }
     active true
-    first "some string"
     subline "other string"
     user
   end

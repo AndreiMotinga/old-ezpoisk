@@ -94,6 +94,12 @@ class Listing < ApplicationRecord
     city.slug
   end
 
+  def page_keywords
+    { state: state.slug,
+      city: city.slug,
+      tags: tag_list }
+  end
+
   private
 
   def ensure_title

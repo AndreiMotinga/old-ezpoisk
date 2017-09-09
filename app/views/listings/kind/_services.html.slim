@@ -2,6 +2,7 @@
 - kind = listing.kind
 - cat = listing.category
 - sub = listing.subcategory
+- url = current_page?(listing_path(listing)) ? "#" : listing_path(listing)
 
 .col-xs-12.listing id="listing-#{listing.id}"
   .row
@@ -16,11 +17,10 @@
     div class=(has_pics ? "col-xs-9" : "col-xs-12")
       / line 0
       = render "listings/kind/menu", listing: listing
-
-      - if current_page?(listing_path(listing))
-          h4.title= listing.title
-      - else
-        h4.title= link_to listing.title, listing
+      h4.title= link_to url do
+        - if listing.featured?
+          span.featured Featured
+        = listing.title
 
       / line 1
       = link_to display(cat), search_listings_path(kind: kind, category: cat)
