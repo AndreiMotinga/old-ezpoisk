@@ -27,5 +27,6 @@
     hr
     .pull-right #{listing.state.name} | #{listing.city.name}
     = render "shared/indicators", record: listing
+    = render "shared/admin_links", record: listing
     hr
     = link_to listing.source, listing.source, target: "_blank", rel: "nofollow"
