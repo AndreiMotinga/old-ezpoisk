@@ -1,0 +1,6 @@
+- if @listing.errors.any?
+  #error_explanation
+    ul.list-group
+      - @listing.errors.messages.each_pair do |type, errors|
+        - errors.each do |error|
+          li.list-group-item.list-group-item-danger= "#{t type} #{error}"

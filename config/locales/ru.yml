@@ -4,6 +4,10 @@ ru:
   sign_out: Выйти
   confirm: Вы уверены?
 
+  state: Штат
+  city: Город
+  phone: Телефон
+
   activerecord:
     errors:
       messages:

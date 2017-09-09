@@ -10,10 +10,20 @@ RSpec.describe Listing, type: :model do
   it { should validate_presence_of(:city) }
   it { should validate_presence_of(:state) }
   it { should validate_presence_of(:kind) }
-  it { should validate_presence_of(:category) }
-  it { should validate_presence_of(:subcategory) }
   xit { should validate_presence_of(:text) }
   xit { should validate_length_of(:text).is_at_least(10) }
+
+  context "one of KINDS" do
+    before { allow(subject).to receive(:kind).and_return(KINDS.sample) }
+    it { should validate_presence_of(:category) }
+    it { should validate_presence_of(:subcategory) }
+  end
+
+  context "one of посылки знакомства" do
+    before { allow(subject).to receive(:kind).and_return(%w(посылки знакомства).sample) }
+    it { should_not validate_presence_of(:category) }
+    it { should_not validate_presence_of(:subcategory) }
+  end
 
   it "validates source" do
     listing = Listing.new

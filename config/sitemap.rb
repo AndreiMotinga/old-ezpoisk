@@ -35,7 +35,7 @@ SitemapGenerator::Sitemap.create do
   #   end
 
   # add index listings pages
-  %w(работа продажи недвижимость услуги).each do |kind|
+  RU_KINDS.keys.each do |kind|
     add URI.unescape(search_listings_path(kind: kind)),
         priority: 0.9,
         changefreq: "hourly"

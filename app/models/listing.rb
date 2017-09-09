@@ -28,8 +28,8 @@ class Listing < ApplicationRecord
   validates_with SourceValidator
   # validates :title, presence: true, length: { minimum: 5, maximum: 70 }
   validates_presence_of :kind
-  validates_presence_of :category
-  validates_presence_of :subcategory
+  validates :category, presence: true, if: Proc.new { |l| KINDS.include?(l.kind) }
+  validates_presence_of :subcategory, if: Proc.new { |l| KINDS.include?(l.kind) }
   # validates :text, presence: true, length: { minimum: 10 }
 
   before_save :ensure_title
@@ -107,6 +107,7 @@ class Listing < ApplicationRecord
   end
 
   def set_tags
+    return unless subcategory.present?
     subs = subcategory.split("--")
     self.tag_list = [kind, category, subs, state.slug, city.slug].flatten
   end

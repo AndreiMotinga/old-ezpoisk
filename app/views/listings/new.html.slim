@@ -7,4 +7,5 @@
         h4 Подать бесплатное объявление на ezpoisk
         hr.heading
         br
+        = render "listings/form/errors"
         = render "listings/form/#{t @listing.kind}", token: nil

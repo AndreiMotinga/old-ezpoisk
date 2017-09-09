@@ -58,7 +58,7 @@
 
       .col-xs-6
         .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-          = form_city_select(f, @partner, true)
+          = form_city_select(f, @partner, blank: true)
           = f.label :city_id, "Город", class: "mdl-textfield__label"
     br
 

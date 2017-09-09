@@ -28,6 +28,7 @@
         .tab-content
           #form.tab-pane.fade.in.active role="tabpanel"
             .col-xs-12.col-md-10.col-md-offset-1.col-lg-8.col-lg-offset-2
+              = render "listings/form/errors"
               = render "listings/form/#{t @listing.kind}", token: token
 
           #pictures.tab-pane.fade role="tabpanel"

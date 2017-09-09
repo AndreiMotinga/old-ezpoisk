@@ -61,22 +61,24 @@ module FormHelper
           .join(", ")
   end
 
-  def form_state_select(f)
+  def form_state_select(f, required: false)
     f.select :state_id,
              State.all.collect { |state| [state.name, state.id] },
              { label: "Штат *", include_blank: true },
-             class: "state-select-id mdl-textfield__input"
+             required: required, class: "state-select-id mdl-textfield__input"
   end
 
-  def form_city_select(f, record, blank = false)
+  def form_city_select(f, record, blank: false, required: false)
     state = record.state
     if state
       f.select :city_id,
-               state.cities.collect { |city| [city.name, city.id] },
-               { include_blank: blank, label: "Город *" },
-               class: "city-select mdl-textfield__input"
+               state.cities.collect { |city| [city.name, city.id] }.insert(["Выберите город", ""]),
+               { label: "Город *" },
+               required: required, class: "city-select mdl-textfield__input"
     else
-      f.select :city_id, [], { label: "Город *" }, class: "city-select mdl-textfield__input"
+      f.select :city_id, [],
+        { label: "Город *" },
+        required: required, class: "city-select mdl-textfield__input"
     end
   end
 end
