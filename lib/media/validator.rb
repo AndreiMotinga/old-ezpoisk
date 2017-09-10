@@ -36,6 +36,7 @@ module Media
 
     def valid?
       return if too_old?
+      return if source_imported?
       # return if too_short?
       return if vk_post_is_response?
       # return if post_contains_bad_words?
@@ -48,6 +49,10 @@ module Media
 
     def too_old?
       attrs[:created_at] < 2.hour.ago
+    end
+
+    def source_imported?
+      attrs[:source] && Listing.active.where(source: attrs[:source]).any?
     end
 
     def too_short?

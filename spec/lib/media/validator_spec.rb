@@ -10,6 +10,16 @@ describe Media::Validator do
       expect(result).to be_falsy
     end
 
+    it "returns false if source already importer" do
+      url = "ezpoisk.com/foo"
+      create :listing, source: url
+      rec = { created_at: 1.minute.ago, source: url }
+
+      result = Media::Validator.new(rec).valid?
+
+      expect(result).to be_falsy
+    end
+
     xit "removes short posts" do
       rec = { created_at: 1.minute.ago, text: "too short" }
       result = Media::Validator.new(rec).valid?
