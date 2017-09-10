@@ -21,7 +21,7 @@ module Fb
         response = graph.get_connections(group["id"], "feed", fields: fields)
         Rails.logger.info "imported #{response.size}"
         response.map! { |post| Fb::Unifier.unify(post, group) }
-      rescue e
+      rescue => e
         Ez.ping "Fb::Importer error: #{group}"
         Ez.ping e
       end

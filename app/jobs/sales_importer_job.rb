@@ -10,7 +10,7 @@ class SalesImporterJob
     Media::Importer.import("public/groups/vk/sales.yaml", Vk::GroupLoader)
     Media::Importer.import("public/groups/fb/sales.yaml", Fb::GroupLoader)
 
-    Listing.where("created_at > ?", 61.minutes.ago).find_each do |l|
+    Listing.where("created_at > ?", 130.minutes.ago).find_each do |l|
       user = User.find_by_name(l.user.name)
       Listing.where(from_name: user.name).update_all(user_id: user.id) if user
     end
@@ -18,6 +18,6 @@ class SalesImporterJob
   end
 end
 
-Sidekiq::Cron::Job.create(name: "SalesImporterJob - every 1 hours on 5th min",
-                          cron: "5 */1 * * *",
+Sidekiq::Cron::Job.create(name: "SalesImporterJob - every 2 hours on 5th min",
+                          cron: "5 */2 * * *",
                           class: "SalesImporterJob")
