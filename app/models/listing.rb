@@ -119,6 +119,6 @@ class Listing < ApplicationRecord
   end
 
   def export
-    ListingExporterJob.perform_in(1.hour, "Listing", id)
+    ListingExporterJob.perform_in(1.hour, id)
   end
 end
