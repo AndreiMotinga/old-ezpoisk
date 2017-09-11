@@ -5,7 +5,7 @@
         = link_to user_path(answer.user), target: "_blank" do
           = image_tag answer.avatar(:thumb), class: "avatar", alt: "#{answer.name}"
       .col-xs-9.col-sm-10.name-container
-        h4.name= link_to answer.name, user_path(answer.user), target: "_blank"
+        span.name= link_to answer.name, user_path(answer.user), target: "_blank"
         small.bio= answer.user.short_bio
         .data
           = time_ago_in_words answer.created_at

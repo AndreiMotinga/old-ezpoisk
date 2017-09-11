@@ -15,8 +15,8 @@
         = current_user&.voted_for?(@user) ? user_voted_btn(@user) : user_upvote_btn(@user)
 
   .col-xs-12.col-sm-9
-    p
-      strong.name= link_to @user.name, user_path(@user)
+    p.name-container
+      strong= link_to @user.name, user_path(@user), class: "name"
       - if @user.short_bio.present?
         span.slug= ", #{@user.short_bio}"
     p

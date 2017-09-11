@@ -25,6 +25,12 @@ hr.heading
     = form_state_select(f, required: true)
   .col-sm-6
     = form_city_select(f, @listing, required: true)
+
 - if current_user&.admin?
   = f.check_box :active
+
+p
+  |  Спасибо, что пользуетесь изипоиском. Мы надеемся, сайт принесет вам пользу и
+  |  будем очень признательны, если вы расскажите о нас друзьям. Всех благ!
+
 hr

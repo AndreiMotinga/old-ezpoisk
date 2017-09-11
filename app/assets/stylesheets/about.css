@@ -191,7 +191,11 @@ body::before {
 /*  Intro */
 
 .demo-blog .intro .mdl-card__media {
-  background-image: url('https://s3.amazonaws.com/ezpoisk/about/ezpoisk-about-intro.jpg');
+  background: linear-gradient(rgba(0, 0, 0, 0.1),
+              rgba(0, 0, 0, 0.9)),
+              url('https://s3.amazonaws.com/ezpoisk/about/ezpoisk-about-intro.jpg');
+              background-position: center center;
+              background-size: cover;
 }
 
 /* ez */
@@ -229,8 +233,11 @@ body::before {
   min-height: 800px;
 }
 .demo-blog .listings .mdl-card__media {
-  background-image: url('https://s3.amazonaws.com/ezpoisk/about/ezpoisk-about-listings.jpg');
-  background-position: center bottom;
+  background: linear-gradient(rgba(0, 0, 0, 0.1),
+              rgba(0, 0, 0, 0.9)),
+              url('https://s3.amazonaws.com/ezpoisk/about/ezpoisk-about-listings.jpg');
+              background-position: center bottom;
+              background-size: cover;
 }
 
 /* Answers */
@@ -239,15 +246,21 @@ body::before {
   min-height: 800px;
 }
 .demo-blog .answers .mdl-card__media {
-  background-image: url('https://s3.amazonaws.com/ezpoisk/about/ezpoisk-about-answers.jpg');
-  background-position: center bottom;
+  background: linear-gradient(rgba(0, 0, 0, 0.1),
+              rgba(0, 0, 0, 0.9)),
+              url('https://s3.amazonaws.com/ezpoisk/about/ezpoisk-about-answers.jpg');
+              background-position: center bottom;
+              background-size: cover;
 }
 
 /* Posts */
 
 .demo-blog .posts .mdl-card__media {
-  background-image: url('https://s3.amazonaws.com/ezpoisk/about/ezpisk-about-news.jpg');
-  background-position: center bottom;
+  background: linear-gradient(rgba(0, 0, 0, 0.1),
+              rgba(0, 0, 0, 0.9)),
+              url('https://s3.amazonaws.com/ezpoisk/about/ezpisk-about-news.jpg');
+              background-position: center bottom;
+              background-size: cover;
 }
 
 /* SUMMARY */
@@ -292,8 +305,6 @@ body::before {
 }
 .demo-blog .mdl-card h3 {
   margin: 0;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.42);
 }
 .demo-blog .mdl-card h3 a {
   color: #fff;

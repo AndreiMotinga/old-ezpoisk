@@ -15,12 +15,12 @@
 
 - content_for :right do
   = render "shared/show/contacts", record: @listing
-  = render "shared/show/map", record: @listing
   = render "partners/right", partner: @right
 
 = render "shared/show/pictures", record: @listing
 = render @listing
 = render "shared/show/text", record: @listing
+= render "shared/show/map", record: @listing
 = render "listings/comments", record: @listing
 .visible-xs.visible-sm.col-xs-12
   = render "shared/show/contacts", record: @listing

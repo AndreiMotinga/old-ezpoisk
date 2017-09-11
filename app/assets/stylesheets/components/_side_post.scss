@@ -12,15 +12,12 @@
 .side_post > .mdl-card__title {
   color: $white;
   padding: 10px;
-
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-color: #46B6AC;
 }
 
 .side_post .mdl-card__title-text {
   padding: 10px;
+  font-size: 22px;
+
   a {
     text-decoration: none;
     color: $white;

@@ -4,8 +4,8 @@
     script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"
 
   .row
-    .hidden-xs.hidden-sm style="width: 100%;margin-bottom:20px"
-      #map.card style='width: 100%; height: 200px;'
+    .hidden-xs.hidden-sm.col-md-12 style="width: 100%;margin-bottom:20px"
+      #map.card style='width: 100%; height: 500px;'
 
     - content_for :javascript do
       javascript:
@@ -14,5 +14,5 @@
           markers = handler.addMarkers(#{raw record.map_marker.to_json});
           handler.bounds.extendWith(markers);
           handler.fitMapToBounds();
-          handler.getMap().setZoom(8);
+          handler.getMap().setZoom(14);
         });

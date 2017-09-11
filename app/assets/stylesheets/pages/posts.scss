@@ -21,3 +21,18 @@
     }
   }
 }
+
+// xs screen
+@media(max-width: $screen-sm) {
+  .posts-show {
+    .post {
+      .title {
+        font-size: 20px;
+      }
+
+      .date {
+        line-height: 16px;
+      }
+    }
+  }
+}

@@ -3,3 +3,11 @@
   margin-right: -15px;
   width: 200px;
 }
+
+@media(max-width: $screen-sm) {
+  .left-widget {
+    float: left;
+    margin-right: 0;
+    width: 100%;
+  }
+}

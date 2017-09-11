@@ -1,10 +1,6 @@
 .users {
   .header {
-    .name {
-      a {
-        color: black;
-      }
-    }
+    .name { color: $black; }
   }
 }
 
@@ -14,4 +10,15 @@
   font-size: 21px;
   font-weight: 200;
   color: #0084bf;
+}
+
+
+@media(max-width: $screen-sm) {
+  .users {
+    .header {
+      .name-container {
+        text-align: center;
+      }
+    }
+  }
 }
