@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910154950) do
+ActiveRecord::Schema.define(version: 20170912165826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,21 @@ ActiveRecord::Schema.define(version: 20170910154950) do
     t.index ["giver_id"], name: "index_karmas_on_giver_id"
     t.index ["karmable_type", "karmable_id"], name: "index_karmas_on_karmable_type_and_karmable_id"
     t.index ["user_id"], name: "index_karmas_on_user_id"
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "category"
+    t.string "address"
+    t.string "phone"
+    t.string "email"
+    t.string "site"
+    t.string "pictures"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "source"
+    t.string "subs"
   end
 
   create_table "listings", id: :serial, force: :cascade do |t|
