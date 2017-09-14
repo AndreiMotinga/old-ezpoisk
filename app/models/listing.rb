@@ -100,6 +100,20 @@ class Listing < ApplicationRecord
       tags: tag_list }
   end
 
+  # TODO: remove
+  def self.update_services
+    where(kind: "услуги", active: false).find_each do |l|
+      res = Geokit::Geocoders::GoogleGeocoder.reverse_geocode [l.lat, l.lng].join(",")
+      state_id = State.find_by_abbr(res.state)&.id || State.create(abbr: res.state).id
+      city_id = City.find_by_name(res.city)&.id || City.create(state_id: state_id, name: res.city, slug: res.city.parameterize)
+
+      l.state_id = state_id || create_state
+      l.city_id = city_id if city_id
+      l.zip = res.zip
+      l.save
+    end
+  end
+
   private
 
   def ensure_title
