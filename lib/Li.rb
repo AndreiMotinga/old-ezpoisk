@@ -44,7 +44,7 @@ class Li
   end
 
   def convert
-    return if Listing.exists?(title: l.title)
+    return if Listing.exists?(title: link.title)
     l = Listing.create(
       user_id: 1,
       state_id: 3, #arizona
