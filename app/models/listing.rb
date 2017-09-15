@@ -110,6 +110,10 @@ class Listing < ApplicationRecord
       l.state_id = state_id || create_state
       l.city_id = city_id if city_id
       l.zip = res.zip
+
+      link = Link.find_by_title(l.title)
+      l.street = ActionController::Base.helpers.strip_tags(link.address.match(/<p>.*</)&.to_s)
+
       l.save
     end
   end
