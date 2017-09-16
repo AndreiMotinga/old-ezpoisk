@@ -26,11 +26,6 @@ class Action < ApplicationRecord
     Rails.application.routes.url_helpers.user_path(actionable.user)
   end
 
-  def text_to_show
-    return text if text.present?
-    title
-  end
-
   def short_bio
     user.short_bio unless actionable.user_id == 1
   end
