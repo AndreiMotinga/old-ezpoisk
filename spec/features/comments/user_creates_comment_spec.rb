@@ -1,4 +1,3 @@
-# todo fix, and find all xfeature and fix
 require "rails_helper"
 
 feature "User comments on listing", js: true do

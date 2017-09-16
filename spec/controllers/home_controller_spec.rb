@@ -1,4 +1,3 @@
-# todo create request / view spec
 require "rails_helper"
 
 describe HomeController do

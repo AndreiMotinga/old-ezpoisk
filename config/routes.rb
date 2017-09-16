@@ -4,7 +4,6 @@ require "sidekiq/web"
 require "sidekiq/cron/web"
 
 Rails.application.routes.draw do
-  # TODO: figure out why it's here
   default_url_options host: ENV.fetch("APPLICATION_HOST")
   devise_for :users, skip: [:sessions, :registrations], controllers: {
     omniauth_callbacks: "users/omniauth_callbacks"

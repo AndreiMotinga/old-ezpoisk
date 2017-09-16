@@ -70,7 +70,7 @@ gem "omniauth-google-oauth2"
 gem "omniauth-vkontakte"
 
 gem "friendly_id", github: "norman/friendly_id", branch: "master"
-gem "babosa" # todo remove? handle russian
+gem "babosa"
 
 gem "rails-timeago", "~> 2.0"
 gem "puma"
