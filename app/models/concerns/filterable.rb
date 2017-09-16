@@ -31,7 +31,12 @@ module Filterable
     scope :for_fb_export, -> { listings.where(fb: nil).where("created_at > ?", 2.hours.ago) }
     scope :unpaid, -> { where(paid: false) }
     scope :active, -> { where(active: true) }
+
+    # TODO: remove
     scope :inactive, -> { where(active: false) }
+    scope :services, -> { where(kind: "услуги") }
+    scope :not_done, -> { where(done: nil) }
+
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, ->(id) { where(city_id: id) }
     scope :state, ->(slug) { where(state_id: State.find_by_slug(slug).try(:id)) }
