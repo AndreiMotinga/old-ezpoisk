@@ -35,7 +35,7 @@ module Filterable
     # TODO: remove
     scope :inactive, -> { where(active: false) }
     scope :services, -> { where(kind: "услуги") }
-    scope :not_done, -> { where(done: nil) }
+    scope :not_done, -> { where(done: false) }
 
     scope :state_id, ->(id) { where(state_id: id) }
     scope :city_id, ->(id) { where(city_id: id) }
