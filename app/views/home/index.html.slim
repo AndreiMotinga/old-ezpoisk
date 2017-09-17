@@ -23,6 +23,7 @@
     = render "partners/right", partner: @right
 
 div data-id="listings"
+  = tag.div id: "react", data: current_user.to_json
   = render "answers/search"
   = render @actions
 = render "shared/pagination", records: @actions

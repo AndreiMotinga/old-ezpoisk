@@ -49,7 +49,6 @@ gem "sidekiq-cron"
 gem "sinatra", require: nil, github: "sinatra/sinatra"
 
 gem "geokit-rails", github: "geokit/geokit-rails", branch: "rails5-test"
-gem "gmaps4rails"
 gem "underscore-rails"
 
 # rails admin

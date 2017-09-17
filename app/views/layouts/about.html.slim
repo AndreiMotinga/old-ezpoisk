@@ -19,6 +19,9 @@ html lang="ru"
     meta property="og:image:width"   content="450"
     meta property="og:image:height"  content="298"
 
+    link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css"
+
     = stylesheet_link_tag    "about"
     = favicon_link_tag "favicon"
     script type="text/javascript" src="https://vk.com/js/api/share.js?95" charset="windows-1251"
@@ -33,9 +36,11 @@ html lang="ru"
   body
     = yield
 
-    = javascript_include_tag "about"
+    script src="https://code.jquery.com/jquery-2.2.4.min.js"
+    script src="https://code.getmdl.io/1.3.0/material.min.js"
     = render "analytics"
     #fb-root
+
     javascript:
       (function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];

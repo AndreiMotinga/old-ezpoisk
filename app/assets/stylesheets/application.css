@@ -3,8 +3,6 @@
   *= require pgwslider
   *= require touchTouch
   *= require select2
-  *= require material
-  *= require material_icons
   *= require font-awesome
   *= require dropzone/dropzone
   *= require jquery-ui/datepicker

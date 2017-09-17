@@ -47,8 +47,7 @@ html lang="ru"
     = render "shared/new_session_modal"
     = render "sliding_panel"
     = render "analytics"
-    = javascript_include_tag "application"
-    = timeago_script_tag
+    = javascript_pack_tag "bundle"
     = yield :javascript
     - if Rails.env.test?
       javascript:
