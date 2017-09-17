@@ -1,4 +1,4 @@
-import Dropzone from "Dropzone"
+import Dropzone from "dropzone"
 
 // disable auto discover
 Dropzone.autoDiscover = false;
