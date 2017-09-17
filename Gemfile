@@ -18,7 +18,7 @@ gem "summernote-rails"
 gem "material_design_lite-rails", "~> 1.2"
 gem "material_icons"
 
-gem 'webpacker', '~> 2.0'
+gem 'webpacker', github: "rails/webpacker"
 gem "metamagic"
 
 gem "recipient_interceptor"

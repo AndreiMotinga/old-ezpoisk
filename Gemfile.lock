@@ -45,6 +45,15 @@ GIT
       activerecord (>= 4.0.0)
 
 GIT
+  remote: git://github.com/rails/webpacker.git
+  revision: a07fc21ea504db031c771992ab99300f0bb535c7
+  specs:
+    webpacker (3.0.1)
+      activesupport (>= 4.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 4.2)
+
+GIT
   remote: git://github.com/sinatra/sinatra.git
   revision: a275ffd00ca32c33ea9eaa168ce99ab1b80b9697
   specs:
@@ -329,6 +338,8 @@ GEM
     rack-cors (0.4.1)
     rack-mini-profiler (0.10.5)
       rack (>= 1.2.0)
+    rack-proxy (0.6.2)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.2)
@@ -524,10 +535,6 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    webpacker (2.0)
-      activesupport (>= 4.2)
-      multi_json (~> 1.2)
-      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -620,10 +627,10 @@ DEPENDENCIES
   vkontakte_api (~> 1.4)
   web-console
   webmock
-  webpacker (~> 2.0)
+  webpacker!
 
 RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.3
+   1.16.0.pre.2
