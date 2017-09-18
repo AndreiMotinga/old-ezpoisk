@@ -31,7 +31,8 @@
       span.name= link_to @post.user.name, user_path(@post.user), target: "_blank"
       small= ", #{@post.user.short_bio}" if @post.user.short_bio.present?
       p.date.text-muted
-        = time_ago_in_words @post.published_at
+        - if @post.published_at
+          = time_ago_in_words @post.published_at
         = " | #{@post.impressions_count} просмотов"
         - if current_user.try(:can_edit?, @post)
           = " | "
