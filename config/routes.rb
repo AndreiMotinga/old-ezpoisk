@@ -89,4 +89,8 @@ Rails.application.routes.draw do
   get "/about", to: "home#about"
   get "/play", to: "play#index"
   root to: "home#index"
+
+  get '*path', to: "home#react", constraints: ->(request) do
+    !request.xhr? && request.format.html?
+  end
 end
