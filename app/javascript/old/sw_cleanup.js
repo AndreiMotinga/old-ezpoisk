@@ -25,3 +25,6 @@ window.__testCleanup = () => {
     clearCaches(),
   ]);
 };
+
+console.log("cleaning")
+window.__testCleanup()
