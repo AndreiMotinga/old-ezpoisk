@@ -22,13 +22,12 @@ class HomeController < PagesController
   def about; end
 
   def react
-    render file: "public/index.html"
+    render file: "public/messages.html", layout: false
   end
 
   private
 
   def set_layout
     "about" if action_name == "about"
-    nil if action_name == "react"
   end
 end
