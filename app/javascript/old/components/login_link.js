@@ -13,7 +13,5 @@ function verifyUserLoggedin(e) {
 // find cookie to see wether user sidned_in
 function getCookieValue(cookieName) {
   var ca = document.cookie.split('; ');
-  return _.find(ca, function (cookie) {
-    return cookie.indexOf(cookieName) === 0;
-  });
+  return ca.find(cookie => cookie === cookieName)
 }
