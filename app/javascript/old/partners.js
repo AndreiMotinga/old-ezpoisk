@@ -14,3 +14,5 @@ function incrementPartners(){
 }
 
 incrementPartners()
+
+export default incrementPartners
