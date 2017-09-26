@@ -10,7 +10,7 @@ class MeetupImporterJob
     Media::Importer.import("public/groups/vk/meetup.yaml", Vk::GroupLoader)
     Media::Importer.import("public/groups/vk/parcel.yaml", Vk::GroupLoader)
 
-    Media::Importer.import("public/groups/fb/news.yaml", Fb::GroupLoader)
+    # Media::Importer.import("public/groups/fb/news.yaml", Fb::GroupLoader)
 
     Listing.where("created_at > ?", 130.minutes.ago).find_each do |l|
       user = User.find_by_name(l.user.name)

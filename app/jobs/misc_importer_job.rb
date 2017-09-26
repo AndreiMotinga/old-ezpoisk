@@ -7,8 +7,8 @@ class MiscImporterJob
 
   def perform
     return unless Rails.env.production?
-    Media::Importer.import("public/groups/vk/misc.yaml", Vk::GroupLoader)
-    Media::Importer.import("public/groups/fb/misc.yaml", Fb::GroupLoader)
+    # Media::Importer.import("public/groups/vk/misc.yaml", Vk::GroupLoader)
+    # Media::Importer.import("public/groups/fb/misc.yaml", Fb::GroupLoader)
 
     Listing.where("created_at > ?", 130.minutes.ago).find_each do |l|
       user = User.find_by_name(l.user.name)
