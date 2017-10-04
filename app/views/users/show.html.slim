@@ -9,21 +9,16 @@
              url: user_url(@user),
              image: @user.avatar(:medium) }
 
-- content_for :right, render("users/right")
+- content_for :right do
+  div
 
-= render "users/header"
+/= render "users/header"
 
 .row
-  = render "users/left"
-  .col-xs-12.col-sm-9
-    = link_to questions_path do
-      | Добавить ответы
-      = "  "
-      .fa.fa-pencil
-    hr
-    div data-id="listings"
-      = render @answers
+  /= render "users/left"
+  div data-id="listings"
+    = render @listings
 
     .row
       .col-xs-12
-      = render "shared/pagination", records: @answers
+      = render "shared/pagination", records: @listings

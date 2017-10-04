@@ -43,5 +43,9 @@ Rails.application.routes.draw do
     !request.xhr? && request.format.html?
   end
 
-  root to: "home#index"
+  namespace :my do
+    resources :listings, only: :index
+  end
+
+  root to: "listings#index"
 end

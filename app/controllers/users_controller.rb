@@ -7,11 +7,13 @@ class UsersController < PagesController
   after_action(only: :update) { notify_slack(current_user, action_name) }
 
   def show
-    @answers = @user.answers.page(params[:page])
+    @listings = @user.listings
+                     .where.not(kind: %W(разное новости))
+                     .includes(:state, :city).page(params[:page])
     respond_to do |format|
       format.html
       format.js do
-        render partial: "shared/index", locals: { records: @answers }
+        render partial: "shared/index", locals: { records: @listings }
       end
     end
   end
