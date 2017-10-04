@@ -34,6 +34,9 @@ module AbsoleteRoutes
       get "/объявления/услуги/другое/:id/:id1", to: redirect(URI.encode("/объявления/услуги/другое-разное/%{id}/%{id1}"))
       get "/объявления/услуги/другое/:id/:id1/:id2", to: redirect(URI.encode("/объявления/услуги/другое-разное/%{id}/%{id1}/%{id2}"))
       get "/объявления/услуги/другое/:id/:id1/:id2/:id3", to: redirect(URI.encode("/объявления/услуги/другое-разное/%{id}/%{id1}/%{id2}/%{id3}"))
+
+      get "/about", to: "home#about"
+      get "/реклама", to: "home#ad"
     end
   end
 end
