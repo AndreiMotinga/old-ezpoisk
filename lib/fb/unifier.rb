@@ -26,7 +26,8 @@ module Fb
         attributes: {
           title: Media::Title.of(text),
           kind: kind,
-          active: false,
+          active: true,
+          approved: false,
           category: category,
           subcategory: subcategory,
           rooms: rooms,

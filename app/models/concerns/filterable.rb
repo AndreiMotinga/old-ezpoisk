@@ -34,6 +34,7 @@ module Filterable
 
     # TODO: remove
     scope :inactive, -> { where(active: false) }
+    scope :unapproved, -> { where(approved: false) }
     scope :services, -> { where(kind: "услуги") }
     scope :not_done, -> { where(done: false) }
 
