@@ -58,6 +58,7 @@ RU_KINDS = HashWithIndifferentAccess.new(
     ],
     "subcategories" => [
       "квартира",
+      "хостел",
       "коммерческая",
       "парковка",
       "другое-разное"
