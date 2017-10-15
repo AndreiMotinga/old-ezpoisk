@@ -106,7 +106,7 @@ class ListingsController < PagesController
       :kind, :category, :subcategory, :title, :text, :active,
       :state_id, :city_id, :street,
       :phone, :email, :vk, :fb, :gl, :tw, :ok, :site,
-      :duration, :price, :baths, :space, :rooms
+      :duration, :price, :baths, :space, :rooms, :approved
     )
   end
 
