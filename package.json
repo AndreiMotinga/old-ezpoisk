@@ -50,9 +50,9 @@
     "webpack-dev-server": "^2.7.1"
   },
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ..",
-    "deploy": "cp -a client/build/. public/",
+    "build": "cd frontend && npm install && npm run build && cd ..",
+    "deploy": "cp -a frontend/build/. public/",
     "rename": "mv public/index.html public/messages.html",
-    "postinstall": "npm run build && npm run deploy && npm run rename && echo 'Client built!'"
+    "postinstall": "npm run build && npm run deploy && npm run rename && echo 'Frontend built!'"
   }
 }

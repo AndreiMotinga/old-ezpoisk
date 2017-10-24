@@ -6,7 +6,6 @@
 
 # Ignore bundler config.
 /.bundle
-.DS_Store
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -32,3 +31,10 @@ todo
 /node_modules
 
 dump.rdb
+
+frontend/coverage
+frontend/build
+frontend/node_modules
+frontend/stats.json
+frontend/npm-debug.log
+frontend/.idea
