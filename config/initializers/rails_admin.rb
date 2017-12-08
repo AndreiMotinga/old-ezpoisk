@@ -24,6 +24,8 @@ RailsAdmin.config do |config|
     "Picture",
     "Post",
     "Question",
-    "User"
+    "User",
+    "City",
+    "State"
   ]
 end
