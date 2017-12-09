@@ -17,7 +17,13 @@
 .row
   /= render "users/left"
   div data-id="listings"
-    = render @listings
+    - if @listings.any?
+      = render @listings
+    - else
+      br
+      br
+      br
+      p У вас нет актвиных объявлений
 
     .row
       .col-xs-12

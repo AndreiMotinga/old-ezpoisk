@@ -6,11 +6,11 @@ class ImpressionableJob
   sidekiq_options queue: "low"
 
   def perform(type, id, kind, user_id, ip_address, referrer)
-    record = type.constantize.find_by_id(id)
-    return unless record
-    record.impressions.create(kind: kind,
-                              user_id: user_id,
-                              ip_address: ip_address,
-                              referrer: referrer)
+    # record = type.constantize.find_by_id(id)
+    # return unless record
+    # record.impressions.create(kind: kind,
+    #                           user_id: user_id,
+    #                           ip_address: ip_address,
+    #                           referrer: referrer)
   end
 end
