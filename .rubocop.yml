@@ -1,0 +1,11 @@
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Copyright:
+  Enabled: false
+
+AllCops:
+  TargetRubyVersion: 2.4
+
+LiteralInInterpolation:
+  Enabled: false
