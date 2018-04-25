@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
   def index
-    render json: { app: "ezpoisk" }, status: :success
+    render file: "public/index.html"
   end
 end
